@@ -4,289 +4,1109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SmartAI Learner - Telegram Mini App</title>
-    <!-- Tailwind CSS для быстрого и красивого UI -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Подключаем Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* Настройка шрифтов и плавных переходов */
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        /* ПРЕМИУМ ЦВЕТОВАЯ ПАЛИТРА И НАСТРОЙКИ */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --bg-950: #020617;
+            --bg-900: #0f172a;
+            --bg-800: #1e293b;
+            --border: #334155;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.1);
+            --amber: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dark: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        /* Скрытие скроллбара для чистоты интерфейса */
-        ::-webkit-scrollbar {
-            width: 0px;
+
+        body {
+            background-color: var(--bg-950);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ШАПКА */
+        header {
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-b: 1px solid var(--border);
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .brand-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #white;
+        }
+
+        .brand-info h1 {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-status {
+            font-size: 10px;
+            color: var(--emerald);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 1px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--emerald);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        .stars-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--amber-glow);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--amber);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .stars-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--amber);
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        main {
+            flex-grow: 1;
+            padding: 16px 16px 90px 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .screen {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ЧАТ ЭКРАН - ОНБОРДИНГ */
+        .onboarding-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            margin: 40px 0 24px 0;
+        }
+
+        .onboarding-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .onboarding-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            max-width: 280px;
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .track-card {
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .track-card:hover {
+            border-color: var(--primary);
+            background-color: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .track-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .track-it { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+        .track-travel { background: var(--emerald-glow); color: var(--emerald); }
+        .track-business { background: var(--amber-glow); color: var(--amber); }
+
+        .track-icon-wrapper svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .track-details h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .track-details p {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* АКТИВНЫЙ ЧАТ */
+        .chat-active-box {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 170px);
+            justify-content: space-between;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-right: 4px;
+            max-height: calc(100vh - 250px);
+        }
+
+        .msg-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            animation: bubbleUp 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .msg-user { align-items: flex-end; }
+        .msg-ai { align-items: flex-start; }
+
+        .msg-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .msg-user .msg-bubble {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 18px 18px 0px 18px;
+        }
+
+        .msg-ai .msg-bubble {
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 18px 18px 18px 0px;
+        }
+
+        /* FEEDBACK / GRAMMAR CHECK */
+        .feedback-box {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 11px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .feedback-success { color: var(--emerald); }
+        .feedback-warning { color: var(--amber); }
+
+        .feedback-box svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        /* ТИПИНГ ИНДИКАТОР */
+        .ai-typing {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 11px;
+            padding-left: 8px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            animation: dotBounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* ИНПУТ ОТПРАВКИ */
+        .chat-input-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 6px 6px 6px 14px;
+            margin-top: 8px;
+        }
+
+        .chat-input-bar input {
+            flex-grow: 1;
             background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 13.5px;
+        }
+
+        .chat-input-bar input::placeholder {
+            color: var(--text-dark);
+        }
+
+        .send-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background-color: var(--primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover { background-color: var(--primary-hover); }
+
+        .send-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* ЭКРАН КУРСОВ */
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+        }
+
+        .course-card {
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+
+        .badge-indigo { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
+        .badge-emerald { background: var(--emerald-glow); color: #6ee7b7; }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .course-header h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .course-header svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--text-muted);
+        }
+
+        .course-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: var(--text-dark);
+        }
+
+        .course-action {
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lock-badge {
+            color: var(--amber);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lock-badge svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--amber);
+        }
+
+        /* ЭКРАН ПРОФИЛЯ */
+        .profile-card {
+            background: linear-gradient(135deg, var(--bg-900), #1e1b4b);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .profile-avatar {
+            width: 54px;
+            height: 54px;
+            background-color: rgba(99, 102, 241, 0.2);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a5b4fc;
+        }
+
+        .profile-avatar svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .profile-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .profile-info p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .profile-info svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--amber);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-cols: 2;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-box {
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .value-xp { color: #818cf8; }
+        .value-fire { color: #f87171; }
+
+        /* РЕФЕРАЛКА */
+        .ref-box {
+            background-color: rgba(99, 102, 241, 0.02);
+            border: 1px dashed rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ref-header {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .ref-badge-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ref-badge-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .ref-header h4 {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .ref-header p {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .ref-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ref-input-group input {
+            flex-grow: 1;
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+            outline: none;
+        }
+
+        .ref-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .ref-btn:hover { background-color: var(--primary-hover); }
+
+        /* ЭКРАН ПРЕМИУМА */
+        .paywall-crown {
+            width: 60px;
+            height: 60px;
+            background-color: var(--amber-glow);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto 10px auto;
+            color: var(--amber);
+            animation: pulse 2s infinite;
+        }
+
+        .paywall-crown svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .paywall-header {
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .paywall-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .paywall-header p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .offer-card {
+            background-color: var(--bg-900);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            justify-content: justify;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .offer-card-best {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, var(--bg-900) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+
+        .offer-tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 0 0 0 10px;
+            text-transform: uppercase;
+        }
+
+        .offer-details h4 {
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .offer-details p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .offer-price {
+            text-align: right;
+        }
+
+        .offer-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--amber);
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .offer-stars svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--amber);
+        }
+
+        .offer-rub {
+            font-size: 10px;
+            color: var(--text-dark);
+            margin-top: 1px;
+            display: block;
+        }
+
+        .pay-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.1s;
+        }
+
+        .pay-btn:active { transform: scale(0.98); }
+
+        .pay-stars {
+            background-color: var(--amber);
+            color: #000;
+        }
+
+        .pay-stars svg {
+            width: 15px;
+            height: 15px;
+            fill: #000;
+        }
+
+        .pay-card {
+            background-color: var(--text-main);
+            color: #000;
+        }
+
+        .pay-card svg {
+            width: 15px;
+            height: 15px;
+            fill: #000;
+        }
+
+        /* ТАББАР */
+        nav {
+            background-color: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--border);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: color 0.2s;
+        }
+
+        .nav-item span {
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .nav-item-active {
+            color: var(--primary);
+        }
+
+        .pulse-dot {
+            position: absolute;
+            top: -2px;
+            right: 32%;
+            width: 7px;
+            height: 7px;
+            background-color: var(--amber);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* АНИМАЦИИ */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bubbleUp {
+            from { opacity: 0; transform: translateY(10px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-indigo-500/30">
+<body>
 
-    <!-- КНОПКА ШАРИНГА ДЛЯ ТЕСТИРОВАНИЯ ВНЕ TG (Шапка приложения) -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-3 sticky top-0 z-50 flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                <i class="fa-solid fa-language text-white text-sm"></i>
+    <!-- ШАПКА -->
+    <header>
+        <div class="header-brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-1.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                </svg>
             </div>
             <div>
-                <h1 class="font-bold text-sm tracking-tight">SmartAI English</h1>
-                <p class="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    AI-Tutor на связи
+                <h1 class="brand-info">SmartAI English</h1>
+                <p class="brand-status">
+                    <span class="status-dot"></span>
+                    AI-Tutor Online
                 </p>
             </div>
         </div>
-        <!-- Демонстрационный кошелек Telegram Stars -->
-        <div class="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full text-amber-400 text-xs font-semibold">
-            <i class="fa-solid fa-star"></i>
+        <div class="stars-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             <span id="user-stars">150</span>
         </div>
     </header>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ (ЭКРАНЫ) -->
-    <main class="flex-grow pb-24 px-4 pt-4 max-w-md mx-auto w-full">
+    <!-- ГЛАВНАЯ РАЗМЕТКА -->
+    <main>
         
-        <!-- ЭКРАН 1: ОБУЧЕНИЕ (AI ТЬЮТОР) -->
-        <section id="screen-chat" class="flex flex-col h-[calc(100vh-10rem)] justify-between">
-            <!-- Выбор темы для старта -->
-            <div id="chat-onboarding" class="space-y-4 my-auto">
-                <div class="text-center space-y-2">
-                    <h2 class="text-xl font-bold">🇬🇧 Начнем интерактивный урок!</h2>
-                    <p class="text-slate-400 text-xs">Выберите языковой трек для симуляции реального диалога</p>
+        <!-- ЭКРАН 1: ЧАТ -->
+        <section id="screen-chat" class="screen">
+            <!-- Выбор темы -->
+            <div id="chat-onboarding">
+                <div class="onboarding-container">
+                    <h2 class="onboarding-title">🇬🇧 Начнем живой урок!</h2>
+                    <p class="onboarding-subtitle">Выберите интересующую сферу для тренировки разговорной речи</p>
                 </div>
-                <div class="grid grid-cols-1 gap-3">
-                    <button onclick="startTutorChat('it-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                <div class="track-list">
+                    <div onclick="startTutorChat('it-english')" class="track-card">
+                        <div class="track-icon-wrapper track-it">
+                            <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-sm">Английский для IT</h4>
-                            <p class="text-[11px] text-slate-400">Собеседования, код-ревью и дейли-митинги</p>
+                        <div class="track-details">
+                            <h4>Английский для IT</h4>
+                            <p>Подготовка к собеседованию, код-ревью и дейли</p>
                         </div>
-                    </button>
-                    <button onclick="startTutorChat('travel-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                            <i class="fa-solid fa-plane text-lg"></i>
+                    </div>
+                    <div onclick="startTutorChat('travel-english')" class="track-card">
+                        <div class="track-icon-wrapper track-travel">
+                            <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l8 2.5z"/></svg>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-sm">Разговорный & Путешествия</h4>
-                            <p class="text-[11px] text-slate-400">Заказ кофе, регистрация на рейс, смолл-ток</p>
+                        <div class="track-details">
+                            <h4>Разговорный & Путешествия</h4>
+                            <p>Регистрация на рейс, заказ еды, смолл-токи</p>
                         </div>
-                    </button>
-                    <button onclick="startTutorChat('business-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
-                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400">
-                            <i class="fa-solid fa-briefcase text-lg"></i>
+                    </div>
+                    <div onclick="startTutorChat('business-english')" class="track-card">
+                        <div class="track-icon-wrapper track-business">
+                            <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-sm">Бизнес-переговоры</h4>
-                            <p class="text-[11px] text-slate-400">Презентация продукта и обсуждение оффера</p>
+                        <div class="track-details">
+                            <h4>Бизнес переговоры</h4>
+                            <p>Питчинг стартапа, обсуждение контракта и зарплаты</p>
                         </div>
-                    </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Активное окно чата (по умолчанию скрыто) -->
-            <div id="chat-active" class="hidden flex flex-col h-full justify-between space-y-4">
-                <!-- Окно сообщений -->
-                <div id="chat-messages" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm max-h-[60vh]">
-                    <!-- Тут будут генерироваться сообщения -->
+            <!-- Активный диалог -->
+            <div id="chat-active" class="chat-active-box hidden">
+                <div id="chat-messages" class="chat-messages">
+                    <!-- Заполняется динамически -->
                 </div>
-                <!-- Индикатор набора текста ИИ -->
-                <div id="ai-typing" class="hidden flex items-center gap-2 text-slate-400 text-xs pl-2">
-                    <div class="flex gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.4s]"></span>
+                
+                <div id="ai-typing" class="ai-typing hidden">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
                     </div>
-                    <span>AI-Учитель анализирует ошибки...</span>
+                    <span>AI-преподаватель анализирует ошибки...</span>
                 </div>
-                <!-- Инпут отправки -->
-                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl p-1.5">
-                    <input id="chat-input" type="text" placeholder="Write your reply in English..." class="flex-grow bg-transparent border-none outline-none text-sm px-3 text-slate-100 placeholder-slate-500">
-                    <button onclick="sendMessage()" class="w-10 h-10 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition-all duration-200 shadow-md shadow-indigo-600/20">
-                        <i class="fa-solid fa-arrow-up"></i>
+
+                <div class="chat-input-bar">
+                    <input id="chat-input" type="text" placeholder="Write your reply in English..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                    <button onclick="sendMessage()" class="send-btn">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                     </button>
                 </div>
             </div>
         </section>
 
         <!-- ЭКРАН 2: КУРСЫ -->
-        <section id="screen-courses" class="hidden space-y-4">
-            <h2 class="text-xl font-bold tracking-tight">Программа обучения</h2>
-            <div class="grid grid-cols-1 gap-3">
-                <!-- Курс 1 -->
-                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-xl"></div>
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-1">
-                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 font-bold px-2 py-0.5 rounded-full">Уровень: Intermediate</span>
-                            <h3 class="font-bold text-base mt-1">IT Interview Accelerator</h3>
-                        </div>
-                        <i class="fa-solid fa-user-tie text-indigo-400 text-xl"></i>
+        <section id="screen-courses" class="screen hidden">
+            <h2 class="section-title">Программы обучения</h2>
+            
+            <div class="course-card">
+                <div class="course-header">
+                    <div>
+                        <span class="badge badge-indigo">Уровень: Intermediate</span>
+                        <h3>IT Interview Accelerator</h3>
                     </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">Разбор вопросов про архитектуру, софт-скиллы и зарплатные ожидания с симуляцией живого HR-менеджера.</p>
-                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/50">
-                        <span class="text-xs text-slate-500">8 уроков • 160 XP</span>
-                        <button onclick="startTutorChat('it-english'); switchTab('chat');" class="text-xs text-indigo-400 font-bold flex items-center gap-1 hover:text-indigo-300">
-                            Запустить <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                        </button>
-                    </div>
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 </div>
-                <!-- Курс 2 -->
-                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3 relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-1">
-                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded-full">Уровень: Pre-Intermediate+</span>
-                            <h3 class="font-bold text-base mt-1">Уличный Сленг & Идиомы</h3>
-                        </div>
-                        <i class="fa-solid fa-comments text-emerald-400 text-xl"></i>
+                <p class="course-desc">Полноценная симуляция технического и HR собеседований. Изучите правильные шаблоны презентации своего опыта.</p>
+                <div class="course-footer">
+                    <span>8 уроков • 160 XP</span>
+                    <span onclick="startTutorChat('it-english'); switchTab('chat');" class="course-action">Запустить →</span>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <div>
+                        <span class="badge badge-emerald">Уровень: Pre-Intermediate+</span>
+                        <h3>Сленг, Мемы & Сериалы</h3>
                     </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">Научитесь говорить на живом английском, понимать мемы, сериалы и шутки без дубляжа.</p>
-                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/50">
-                        <span class="text-xs text-slate-500">12 уроков • 240 XP</span>
-                        <span class="text-xs text-amber-400 font-bold flex items-center gap-1">
-                            <i class="fa-solid fa-lock text-[10px]"></i> Требуется Premium
-                        </span>
-                    </div>
+                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                </div>
+                <p class="course-desc">Перестаньте говорить как учебник! Практика современных идиом, живых сокращений и неформального общения.</p>
+                <div class="course-footer">
+                    <span>12 уроков • 240 XP</span>
+                    <span class="lock-badge">
+                        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        Требуется Premium
+                    </span>
                 </div>
             </div>
         </section>
 
         <!-- ЭКРАН 3: ПРОФИЛЬ -->
-        <section id="screen-profile" class="hidden space-y-5">
-            <!-- Карточка юзера -->
-            <div class="p-5 bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-slate-800/80 rounded-2xl flex items-center gap-4">
-                <div class="w-16 h-16 rounded-full bg-indigo-600/20 border-2 border-indigo-500 flex items-center justify-center text-indigo-300 text-2xl font-bold">
-                    <i class="fa-solid fa-graduation-cap"></i>
+        <section id="screen-profile" class="screen hidden">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                 </div>
-                <div class="space-y-1">
-                    <h3 class="font-bold text-lg" id="tg-username">Ученик</h3>
-                    <p class="text-xs text-slate-400 flex items-center gap-1">
-                        <i class="fa-solid fa-bolt text-amber-400"></i> Текущий уровень: Upper-Intermediate
+                <div class="profile-info">
+                    <h3 id="tg-username">Ученик</h3>
+                    <p>
+                        <svg viewBox="0 0 24 24"><path d="M3.55 18.54l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8zM11 22.45h2V19.5h-2v2.95zM4 10.5H1v2h3v-2zm11-4.95h2V2.6h-2v2.95zM5.31 9.17l1.41-1.41-1.8-1.79-1.41 1.41 1.8 1.79zM18.45 16.74l1.8 1.79 1.41-1.41-1.8-1.79-1.41 1.41zM23 10.5h-3v2h3v-2zm-11-7h2V1h-2v2.5zm5.14 5.67l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM12 5.5c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                        Уровень: Upper-Intermediate
                     </p>
                 </div>
             </div>
 
-            <!-- Статистика -->
-            <div class="grid grid-cols-2 gap-3">
-                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-center space-y-1">
-                    <span class="text-xs text-slate-500">Опыт обучения (XP)</span>
-                    <h4 class="text-2xl font-black text-indigo-400" id="user-xp">45</h4>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Опыт обучения (XP)</span>
+                    <span class="stat-value value-xp" id="user-xp">45</span>
                 </div>
-                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-center space-y-1">
-                    <span class="text-xs text-slate-500">Ударный темп 🔥</span>
-                    <h4 class="text-2xl font-black text-emerald-400">3 дня подряд</h4>
+                <div class="stat-box">
+                    <span class="stat-label">Ударный темп 🔥</span>
+                    <span class="stat-value value-fire">3 дня</span>
                 </div>
             </div>
 
-            <!-- Реферальная система (Виральная петля) -->
-            <div class="p-4 bg-slate-950 border border-dashed border-indigo-500/30 rounded-xl space-y-3">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-                        <i class="fa-solid fa-users"></i>
+            <!-- Рефералка -->
+            <div class="ref-box">
+                <div class="ref-header">
+                    <div class="ref-badge-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                     </div>
                     <div>
-                        <h4 class="font-bold text-sm">Учитесь вместе с друзьями!</h4>
-                        <p class="text-[11px] text-slate-400">За каждого друга оба получаете по 20 Stars</p>
+                        <h4>Пригласить друга</h4>
+                        <p>Оба получите по 20 Stars для оплаты Premium!</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <input type="text" readonly value="https://t.me/SmartAI_EnglishBot/app?startapp=ref123" class="flex-grow bg-slate-900 border border-slate-800 rounded-lg text-xs px-3 py-2.5 text-slate-400 select-all outline-none">
-                    <button onclick="copyLink(this)" class="px-3 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-bold rounded-lg transition-all duration-200">Копировать</button>
+                <div class="ref-input-group">
+                    <input id="ref-link" type="text" readonly value="https://t.me/SmartAI_EnglishBot/app?startapp=ref123">
+                    <button onclick="copyRefLink(this)" class="ref-btn">Копировать</button>
                 </div>
             </div>
         </section>
 
         <!-- ЭКРАН 4: ПОДПИСКА -->
-        <section id="screen-paywall" class="hidden space-y-5">
-            <div class="text-center space-y-2 py-4">
-                <div class="w-16 h-16 bg-amber-400/10 border border-amber-400/30 rounded-full flex items-center justify-center mx-auto text-amber-400 text-3xl animate-pulse">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
-                <h2 class="text-2xl font-black tracking-tight">Разблокируйте Premium</h2>
-                <p class="text-xs text-slate-400 max-w-xs mx-auto">Получите бесконечные диалоги с AI-преподавателем, доступ к аудио-урокам и подробный разбор ошибок произношения.</p>
+        <section id="screen-paywall" class="screen hidden">
+            <div class="paywall-crown">
+                <svg viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-1h14v1z"/></svg>
+            </div>
+            <div class="paywall-header">
+                <h2>Разблокируйте Premium</h2>
+                <p>Получите бесконечные диалоги, доступ ко всем курсам и проверку грамматики в реальном времени.</p>
             </div>
 
-            <!-- Тарифы -->
-            <div class="space-y-3">
-                <!-- Тариф 1 -->
-                <div class="p-4 bg-slate-900 border-2 border-indigo-500 rounded-xl flex items-center justify-between relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-indigo-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg tracking-wider uppercase">Выгодно</div>
-                    <div class="space-y-1">
-                        <h4 class="font-bold text-sm">Месяц Безлимита</h4>
-                        <p class="text-[11px] text-slate-400">Для быстрого преодоления барьера</p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-amber-400 font-bold flex items-center justify-end gap-1 text-sm">
-                            <i class="fa-solid fa-star"></i> 149 Stars
-                        </div>
-                        <span class="text-[10px] text-slate-500">или 390 ₽</span>
-                    </div>
+            <!-- Варианты подписки -->
+            <div class="offer-card offer-card-best">
+                <span class="offer-tag">Выгодно</span>
+                <div class="offer-details">
+                    <h4>Месяц Безлимита</h4>
+                    <p>Для быстрого преодоления барьера</p>
                 </div>
-
-                <!-- Тариф 2 -->
-                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h4 class="font-bold text-sm">Недельный Спринт</h4>
-                        <p class="text-[11px] text-slate-400">Попробовать и оценить силы ИИ</p>
+                <div class="offer-price">
+                    <div class="offer-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        149 Stars
                     </div>
-                    <div class="text-right">
-                        <div class="text-amber-400 font-bold flex items-center justify-end gap-1 text-sm">
-                            <i class="fa-solid fa-star"></i> 49 Stars
-                        </div>
-                        <span class="text-[10px] text-slate-500">или 149 ₽</span>
-                    </div>
+                    <span class="offer-rub">или 390 ₽</span>
                 </div>
             </div>
 
-            <!-- Кнопки оплаты -->
-            <div class="space-y-2.5 pt-4">
-                <button onclick="handlePayment('stars')" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 transition-all duration-200">
-                    <i class="fa-solid fa-star"></i> Оплатить через Telegram Stars
+            <div class="offer-card">
+                <div class="offer-details">
+                    <h4>Недельный Спринт</h4>
+                    <p>Попробовать силы нашего ИИ</p>
+                </div>
+                <div class="offer-price">
+                    <div class="offer-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        49 Stars
+                    </div>
+                    <span class="offer-rub">или 149 ₽</span>
+                </div>
+            </div>
+
+            <!-- Способы оплаты -->
+            <div class="pay-btn-group">
+                <button onclick="paySimulation('Stars')" class="pay-btn pay-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    Оплатить через Telegram Stars
                 </button>
-                <button onclick="handlePayment('card')" class="w-full py-3.5 bg-slate-100 hover:bg-white text-slate-950 font-extrabold rounded-xl flex items-center justify-center gap-2 transition-all duration-200">
-                    <i class="fa-solid fa-credit-card"></i> Банковской картой (РФ)
+                <button onclick="paySimulation('Карту')" class="pay-btn pay-card">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                    Банковской картой (РФ)
                 </button>
             </div>
         </section>
 
     </main>
 
-    <!-- ТАББАР (НИЖНЕЕ МЕНЮ) -->
-    <nav class="bg-slate-900/90 backdrop-blur-md border-t border-slate-800/80 fixed bottom-0 left-0 right-0 py-2.5 z-50">
-        <div class="max-w-md mx-auto grid grid-cols-4 text-center">
-            <button onclick="switchTab('chat')" id="tab-chat" class="flex flex-col items-center gap-1 text-indigo-500">
-                <i class="fa-solid fa-comment-dots text-lg"></i>
-                <span class="text-[10px] font-bold">Обучение</span>
+    <!-- ТАББАР (МЕНЮ) -->
+    <nav>
+        <div class="nav-container">
+            <button onclick="switchTab('chat')" id="tab-chat" class="nav-item nav-item-active">
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                <span>Обучение</span>
             </button>
-            <button onclick="switchTab('courses')" id="tab-courses" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
-                <i class="fa-solid fa-book-open text-lg"></i>
-                <span class="text-[10px] font-bold">Курсы</span>
+            <button onclick="switchTab('courses')" id="tab-courses" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.2 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg>
+                <span>Курсы</span>
             </button>
-            <button onclick="switchTab('profile')" id="tab-profile" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
-                <i class="fa-solid fa-circle-user text-lg"></i>
-                <span class="text-[10px] font-bold">Профиль</span>
+            <button onclick="switchTab('profile')" id="tab-profile" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <span>Профиль</span>
             </button>
-            <button onclick="switchTab('paywall')" id="tab-paywall" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 relative">
-                <span class="absolute top-0 right-7 w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
-                <i class="fa-solid fa-crown text-lg"></i>
-                <span class="text-[10px] font-bold">Премиум</span>
+            <button onclick="switchTab('paywall')" id="tab-paywall" class="nav-item">
+                <span class="pulse-dot"></span>
+                <svg viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-1h14v1z"/></svg>
+                <span>Премиум</span>
             </button>
         </div>
     </nav>
 
-    <!-- Скрипт симуляции логики (Frontend SPA) -->
+    <!-- СКРИПТЫ СИМУЛЯЦИИ РАБОТЫ ПРИЛОЖЕНИЯ -->
     <script>
-        // Инициализируем Telegram WebApp
         let tg = window.Telegram ? window.Telegram.WebApp : null;
         if (tg) {
             tg.ready();
-            tg.expand(); // Разворачиваем приложение на весь экран
-            // Подгружаем имя юзера из Telegram
+            tg.expand();
             if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
                 document.getElementById('tg-username').innerText = tg.initDataUnsafe.user.first_name;
             }
@@ -294,73 +1114,52 @@
 
         let currentActiveTheme = 'it-english';
 
-        // Переключение экранов (SPA роутинг)
+        // Роутер вкладок
         function switchTab(screenId) {
             const screens = ['chat', 'courses', 'profile', 'paywall'];
             screens.forEach(s => {
                 document.getElementById(`screen-${s}`).classList.add('hidden');
-                document.getElementById(`tab-${s}`).classList.replace('text-indigo-500', 'text-slate-400');
+                document.getElementById(`tab-${s}`).classList.remove('nav-item-active');
             });
-
             document.getElementById(`screen-${screenId}`).classList.remove('hidden');
-            document.getElementById(`tab-${screenId}`).classList.replace('text-slate-400', 'text-indigo-500');
+            document.getElementById(`tab-${screenId}`).classList.add('nav-item-active');
         }
 
-        // Копирование ссылки
-        function copyLink(btn) {
-            const input = btn.previousElementSibling;
-            input.select();
-            document.execCommand('copy');
-            btn.innerText = 'Скопировано!';
-            btn.classList.replace('bg-indigo-600', 'bg-emerald-600');
-            setTimeout(() => {
-                btn.innerText = 'Копировать';
-                btn.classList.replace('bg-emerald-600', 'bg-indigo-600');
-            }, 2000);
-        }
-
-        // Логика запуска чата
+        // Запуск сессии чата
         function startTutorChat(topicId) {
             currentActiveTheme = topicId;
             document.getElementById('chat-onboarding').classList.add('hidden');
             document.getElementById('chat-active').classList.remove('hidden');
-            
-            // Очищаем чат и запускаем приветствие
-            const chatMessages = document.getElementById('chat-messages');
-            chatMessages.innerHTML = '';
-            
+            document.getElementById('chat-messages').innerHTML = '';
             triggerAiResponse("init");
         }
 
-        // Симуляция отправки сообщения
+        // Логика отправки сообщения
         function sendMessage() {
             const input = document.getElementById('chat-input');
             const text = input.value.trim();
             if (!text) return;
 
-            // Добавляем сообщение пользователя на экран
             appendMessage('user', text);
             input.value = '';
 
-            // Показываем индикатор печатания ИИ
             document.getElementById('ai-typing').classList.remove('hidden');
 
             setTimeout(() => {
                 triggerAiResponse(text);
-            }, 1800);
+            }, 1500);
         }
 
-        // Функция добавления сообщений
+        // Рендеринг нового сообщения
         function appendMessage(sender, text, feedbackHtml = '') {
             const chatMessages = document.getElementById('chat-messages');
             const isAi = sender === 'ai';
             
             const msgDiv = document.createElement('div');
-            msgDiv.className = `flex flex-col ${isAi ? 'items-start' : 'items-end'} animate-fade-in`;
-            
+            msgDiv.className = `msg-wrapper ${isAi ? 'msg-ai' : 'msg-user'}`;
             msgDiv.innerHTML = `
-                <div class="max-w-[85%] p-3.5 rounded-2xl ${isAi ? 'bg-slate-900 border border-slate-800 text-slate-100 rounded-tl-none' : 'bg-indigo-600 text-white rounded-tr-none'}">
-                    <p class="m-0 leading-relaxed">${text}</p>
+                <div class="msg-bubble">
+                    <p>${text}</p>
                     ${feedbackHtml}
                 </div>
             `;
@@ -368,7 +1167,7 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Древовидная симуляция ответов AI Тьютора по английскому
+        // Сценарий умных диалогов
         function triggerAiResponse(userMsg) {
             document.getElementById('ai-typing').classList.add('hidden');
             let aiText = '';
@@ -376,47 +1175,51 @@
 
             if (currentActiveTheme === 'it-english') {
                 if (userMsg === 'init') {
-                    aiText = "Hi there! I am your AI interviewer. Let's practice. Imagine we are at an interview. How would you answer: **'Tell me about your tech stack and the last project you built.'**";
+                    aiText = "Hi there! I am your AI tech interviewer. Let's practice. Tell me about your development stack and the last project you engineered.";
                 } else if (userMsg.toLowerCase().includes('react') || userMsg.toLowerCase().includes('vue') || userMsg.toLowerCase().includes('python') || userMsg.toLowerCase().includes('build')) {
-                    aiText = "Wow, that sounds impressive! You used great industry keywords. Now, how do you handle strict deadlines? **'Tell me about a time when you had to speed up your work.'**";
+                    aiText = "Awesome! Those are highly requested frameworks. Next: **'How do you handle conflict in a development team when choosing a technology?'**";
                     feedback = `
-                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-emerald-400">
-                            <i class="fa-solid fa-circle-check"></i> <strong>Grammar Check:</strong> Отлично сформулировано! Вы заработали +15 XP!
+                        <div class="feedback-box feedback-success">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            <span><strong>Grammar Check:</strong> Отличный подбор слов! Вы заработали +15 XP!</span>
                         </div>
                     `;
                     addXp(15);
                 } else {
-                    aiText = "Great point. But try using more active verbs to present yourself better (e.g., *I led the project*, *I engineered*). Can you try describing your stack again?";
+                    aiText = "That is a solid start. To sound more professional, try using action-oriented verbs like *I engineered*, *I resolved*, or *I implemented*. Try to phrase it again.";
                     feedback = `
-                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-amber-400">
-                            <i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Вместо \"I am working\" используйте форму \"I specialize in...\".
+                        <div class="feedback-box feedback-warning">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            <span><strong>Tip:</strong> Вместо простых предложений используйте Present Perfect или Past Simple для презентации результатов.</span>
                         </div>
                     `;
                 }
             } else if (currentActiveTheme === 'travel-english') {
                 if (userMsg === 'init') {
-                    aiText = "Hello traveller! Let's roleplay. You just arrived at a cozy hotel in London. You are talking to me (the receptionist). Try asking me if there is a gym in the hotel and what time breakfast is.";
-                } else if (userMsg.toLowerCase().includes('gym') || userMsg.toLowerCase().includes('breakfast') || userMsg.toLowerCase().includes('what time')) {
-                    aiText = "Yes, sir! Our gym is on the 2nd floor, and breakfast is served from 7 to 10 AM. Would you like me to book a table for you?";
+                    aiText = "Hello! You've just arrived at a boutique hotel in London. You are talking to me (the receptionist). Ask me if breakfast is included and how to find the elevator.";
+                } else if (userMsg.toLowerCase().includes('breakfast') || userMsg.toLowerCase().includes('elevator') || userMsg.toLowerCase().includes('lift')) {
+                    aiText = "Yes, breakfast is served daily on the rooftop from 7 to 11 AM. The lift is just down the corridor to your right. Do you need assistance with your luggage?";
                     feedback = `
-                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-emerald-400">
-                            <i class="fa-solid fa-circle-check"></i> <strong>Vocabulary Boost:</strong> Вы правильно использовали фразу \"what time is...\"! +15 XP.
+                        <div class="feedback-box feedback-success">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            <span><strong>Vocabulary:</strong> Правильно использовано ключевое слово! +15 XP.</span>
                         </div>
                     `;
                     addXp(15);
                 } else {
-                    aiText = "No problem, but don't forget to ask about breakfast and the gym. It's a great chance to practice conversational phrasing! Give it another try.";
+                    aiText = "No worries, but make sure to ask specifically about 'breakfast' and 'elevator'. Practice makes perfect!";
                     feedback = `
-                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-amber-400">
-                            <i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Начните фразу с \"Could you tell me...\" или \"Is there...\".
+                        <div class="feedback-box feedback-warning">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            <span><strong>Tip:</strong> Начните с \"Excuse me, is breakfast included...\"</span>
                         </div>
                     `;
                 }
             } else {
                 if (userMsg === 'init') {
-                    aiText = "Hello! Let's practice negotiations. Imagine you are pitching your startup to me (an investor). You need to request $100k for marketing. How do you start your pitch?";
+                    aiText = "Welcome to the boardroom. Imagine you are pitching a marketing strategy to me (your partner). What's the projected ROI?";
                 } else {
-                    aiText = "That's a strong pitch. However, to sound more convincing to an international investor, try incorporating phrases like *ROI (Return on Investment)* and *market reach*. Shall we adjust the offer?";
+                    aiText = "Impressive numbers! Using business collocations like *market penetration* and *competitive edge* will make this argument bulletproof.";
                     addXp(15);
                 }
             }
@@ -424,23 +1227,33 @@
             appendMessage('ai', aiText, feedback);
         }
 
-        // Добавление XP
         function addXp(amount) {
             let xpEl = document.getElementById('user-xp');
             let currentXp = parseInt(xpEl.innerText);
             xpEl.innerText = currentXp + amount;
         }
 
-        // Симуляция оплаты
-        function handlePayment(method) {
+        function copyRefLink(btn) {
+            const input = document.getElementById('ref-link');
+            input.select();
+            document.execCommand('copy');
+            btn.innerText = 'Готово!';
+            btn.style.backgroundColor = 'var(--emerald)';
+            setTimeout(() => {
+                btn.innerText = 'Копировать';
+                btn.style.backgroundColor = 'var(--primary)';
+            }, 2000);
+        }
+
+        function paySimulation(method) {
             if (tg) {
                 tg.showPopup({
                     title: 'Инициализация оплаты',
-                    message: `Подключение шлюза для оплаты через ${method === 'stars' ? 'Telegram Stars' : 'Банковскую карту'}...`,
+                    message: `Подключение безопасного шлюза Telegram для транзакции через ${method}...`,
                     buttons: [{type: 'close'}]
                 });
             } else {
-                alert(`[Демо] Переход к оплате через ${method === 'stars' ? 'Telegram Stars' : 'Карту'}`);
+                alert(`[Демо] Инициация оплаты через ${method}`);
             }
         }
     </script>
