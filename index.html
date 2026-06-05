@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmartAI Learner - Telegram Mini App</title>
+    <!-- Tailwind CSS для быстрого и красивого UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Подключаем Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* Настройка шрифтов и плавных переходов */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Скрытие скроллбара для чистоты интерфейса */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-indigo-500/30">
+
+    <!-- КНОПКА ШАРИНГА ДЛЯ ТЕСТИРОВАНИЯ ВНЕ TG (Шапка приложения) -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-3 sticky top-0 z-50 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                <i class="fa-solid fa-language text-white text-sm"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-sm tracking-tight">SmartAI English</h1>
+                <p class="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    AI-Tutor на связи
+                </p>
+            </div>
+        </div>
+        <!-- Демонстрационный кошелек Telegram Stars -->
+        <div class="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full text-amber-400 text-xs font-semibold">
+            <i class="fa-solid fa-star"></i>
+            <span id="user-stars">150</span>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (ЭКРАНЫ) -->
+    <main class="flex-grow pb-24 px-4 pt-4 max-w-md mx-auto w-full">
+        
+        <!-- ЭКРАН 1: ОБУЧЕНИЕ (AI ТЬЮТОР) -->
+        <section id="screen-chat" class="flex flex-col h-[calc(100vh-10rem)] justify-between">
+            <!-- Выбор темы для старта -->
+            <div id="chat-onboarding" class="space-y-4 my-auto">
+                <div class="text-center space-y-2">
+                    <h2 class="text-xl font-bold">🇬🇧 Начнем интерактивный урок!</h2>
+                    <p class="text-slate-400 text-xs">Выберите языковой трек для симуляции реального диалога</p>
+                </div>
+                <div class="grid grid-cols-1 gap-3">
+                    <button onclick="startTutorChat('it-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Английский для IT</h4>
+                            <p class="text-[11px] text-slate-400">Собеседования, код-ревью и дейли-митинги</p>
+                        </div>
+                    </button>
+                    <button onclick="startTutorChat('travel-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-plane text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Разговорный & Путешествия</h4>
+                            <p class="text-[11px] text-slate-400">Заказ кофе, регистрация на рейс, смолл-ток</p>
+                        </div>
+                    </button>
+                    <button onclick="startTutorChat('business-english')" class="flex items-center gap-3.5 p-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-left transition-all duration-200">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-briefcase text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Бизнес-переговоры</h4>
+                            <p class="text-[11px] text-slate-400">Презентация продукта и обсуждение оффера</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Активное окно чата (по умолчанию скрыто) -->
+            <div id="chat-active" class="hidden flex flex-col h-full justify-between space-y-4">
+                <!-- Окно сообщений -->
+                <div id="chat-messages" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm max-h-[60vh]">
+                    <!-- Тут будут генерироваться сообщения -->
+                </div>
+                <!-- Индикатор набора текста ИИ -->
+                <div id="ai-typing" class="hidden flex items-center gap-2 text-slate-400 text-xs pl-2">
+                    <div class="flex gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.4s]"></span>
+                    </div>
+                    <span>AI-Учитель анализирует ошибки...</span>
+                </div>
+                <!-- Инпут отправки -->
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl p-1.5">
+                    <input id="chat-input" type="text" placeholder="Write your reply in English..." class="flex-grow bg-transparent border-none outline-none text-sm px-3 text-slate-100 placeholder-slate-500">
+                    <button onclick="sendMessage()" class="w-10 h-10 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition-all duration-200 shadow-md shadow-indigo-600/20">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 2: КУРСЫ -->
+        <section id="screen-courses" class="hidden space-y-4">
+            <h2 class="text-xl font-bold tracking-tight">Программа обучения</h2>
+            <div class="grid grid-cols-1 gap-3">
+                <!-- Курс 1 -->
+                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-xl"></div>
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-1">
+                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 font-bold px-2 py-0.5 rounded-full">Уровень: Intermediate</span>
+                            <h3 class="font-bold text-base mt-1">IT Interview Accelerator</h3>
+                        </div>
+                        <i class="fa-solid fa-user-tie text-indigo-400 text-xl"></i>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Разбор вопросов про архитектуру, софт-скиллы и зарплатные ожидания с симуляцией живого HR-менеджера.</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/50">
+                        <span class="text-xs text-slate-500">8 уроков • 160 XP</span>
+                        <button onclick="startTutorChat('it-english'); switchTab('chat');" class="text-xs text-indigo-400 font-bold flex items-center gap-1 hover:text-indigo-300">
+                            Запустить <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Курс 2 -->
+                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-1">
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded-full">Уровень: Pre-Intermediate+</span>
+                            <h3 class="font-bold text-base mt-1">Уличный Сленг & Идиомы</h3>
+                        </div>
+                        <i class="fa-solid fa-comments text-emerald-400 text-xl"></i>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Научитесь говорить на живом английском, понимать мемы, сериалы и шутки без дубляжа.</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/50">
+                        <span class="text-xs text-slate-500">12 уроков • 240 XP</span>
+                        <span class="text-xs text-amber-400 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-lock text-[10px]"></i> Требуется Premium
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 3: ПРОФИЛЬ -->
+        <section id="screen-profile" class="hidden space-y-5">
+            <!-- Карточка юзера -->
+            <div class="p-5 bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-slate-800/80 rounded-2xl flex items-center gap-4">
+                <div class="w-16 h-16 rounded-full bg-indigo-600/20 border-2 border-indigo-500 flex items-center justify-center text-indigo-300 text-2xl font-bold">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="font-bold text-lg" id="tg-username">Ученик</h3>
+                    <p class="text-xs text-slate-400 flex items-center gap-1">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Текущий уровень: Upper-Intermediate
+                    </p>
+                </div>
+            </div>
+
+            <!-- Статистика -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-center space-y-1">
+                    <span class="text-xs text-slate-500">Опыт обучения (XP)</span>
+                    <h4 class="text-2xl font-black text-indigo-400" id="user-xp">45</h4>
+                </div>
+                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl text-center space-y-1">
+                    <span class="text-xs text-slate-500">Ударный темп 🔥</span>
+                    <h4 class="text-2xl font-black text-emerald-400">3 дня подряд</h4>
+                </div>
+            </div>
+
+            <!-- Реферальная система (Виральная петля) -->
+            <div class="p-4 bg-slate-950 border border-dashed border-indigo-500/30 rounded-xl space-y-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Учитесь вместе с друзьями!</h4>
+                        <p class="text-[11px] text-slate-400">За каждого друга оба получаете по 20 Stars</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="text" readonly value="https://t.me/SmartAI_EnglishBot/app?startapp=ref123" class="flex-grow bg-slate-900 border border-slate-800 rounded-lg text-xs px-3 py-2.5 text-slate-400 select-all outline-none">
+                    <button onclick="copyLink(this)" class="px-3 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-bold rounded-lg transition-all duration-200">Копировать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 4: ПОДПИСКА -->
+        <section id="screen-paywall" class="hidden space-y-5">
+            <div class="text-center space-y-2 py-4">
+                <div class="w-16 h-16 bg-amber-400/10 border border-amber-400/30 rounded-full flex items-center justify-center mx-auto text-amber-400 text-3xl animate-pulse">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h2 class="text-2xl font-black tracking-tight">Разблокируйте Premium</h2>
+                <p class="text-xs text-slate-400 max-w-xs mx-auto">Получите бесконечные диалоги с AI-преподавателем, доступ к аудио-урокам и подробный разбор ошибок произношения.</p>
+            </div>
+
+            <!-- Тарифы -->
+            <div class="space-y-3">
+                <!-- Тариф 1 -->
+                <div class="p-4 bg-slate-900 border-2 border-indigo-500 rounded-xl flex items-center justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg tracking-wider uppercase">Выгодно</div>
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-sm">Месяц Безлимита</h4>
+                        <p class="text-[11px] text-slate-400">Для быстрого преодоления барьера</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-amber-400 font-bold flex items-center justify-end gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i> 149 Stars
+                        </div>
+                        <span class="text-[10px] text-slate-500">или 390 ₽</span>
+                    </div>
+                </div>
+
+                <!-- Тариф 2 -->
+                <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between">
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-sm">Недельный Спринт</h4>
+                        <p class="text-[11px] text-slate-400">Попробовать и оценить силы ИИ</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-amber-400 font-bold flex items-center justify-end gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i> 49 Stars
+                        </div>
+                        <span class="text-[10px] text-slate-500">или 149 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопки оплаты -->
+            <div class="space-y-2.5 pt-4">
+                <button onclick="handlePayment('stars')" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 transition-all duration-200">
+                    <i class="fa-solid fa-star"></i> Оплатить через Telegram Stars
+                </button>
+                <button onclick="handlePayment('card')" class="w-full py-3.5 bg-slate-100 hover:bg-white text-slate-950 font-extrabold rounded-xl flex items-center justify-center gap-2 transition-all duration-200">
+                    <i class="fa-solid fa-credit-card"></i> Банковской картой (РФ)
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ТАББАР (НИЖНЕЕ МЕНЮ) -->
+    <nav class="bg-slate-900/90 backdrop-blur-md border-t border-slate-800/80 fixed bottom-0 left-0 right-0 py-2.5 z-50">
+        <div class="max-w-md mx-auto grid grid-cols-4 text-center">
+            <button onclick="switchTab('chat')" id="tab-chat" class="flex flex-col items-center gap-1 text-indigo-500">
+                <i class="fa-solid fa-comment-dots text-lg"></i>
+                <span class="text-[10px] font-bold">Обучение</span>
+            </button>
+            <button onclick="switchTab('courses')" id="tab-courses" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
+                <i class="fa-solid fa-book-open text-lg"></i>
+                <span class="text-[10px] font-bold">Курсы</span>
+            </button>
+            <button onclick="switchTab('profile')" id="tab-profile" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
+                <i class="fa-solid fa-circle-user text-lg"></i>
+                <span class="text-[10px] font-bold">Профиль</span>
+            </button>
+            <button onclick="switchTab('paywall')" id="tab-paywall" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 relative">
+                <span class="absolute top-0 right-7 w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                <i class="fa-solid fa-crown text-lg"></i>
+                <span class="text-[10px] font-bold">Премиум</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Скрипт симуляции логики (Frontend SPA) -->
+    <script>
+        // Инициализируем Telegram WebApp
+        let tg = window.Telegram ? window.Telegram.WebApp : null;
+        if (tg) {
+            tg.ready();
+            tg.expand(); // Разворачиваем приложение на весь экран
+            // Подгружаем имя юзера из Telegram
+            if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                document.getElementById('tg-username').innerText = tg.initDataUnsafe.user.first_name;
+            }
+        }
+
+        let currentActiveTheme = 'it-english';
+
+        // Переключение экранов (SPA роутинг)
+        function switchTab(screenId) {
+            const screens = ['chat', 'courses', 'profile', 'paywall'];
+            screens.forEach(s => {
+                document.getElementById(`screen-${s}`).classList.add('hidden');
+                document.getElementById(`tab-${s}`).classList.replace('text-indigo-500', 'text-slate-400');
+            });
+
+            document.getElementById(`screen-${screenId}`).classList.remove('hidden');
+            document.getElementById(`tab-${screenId}`).classList.replace('text-slate-400', 'text-indigo-500');
+        }
+
+        // Копирование ссылки
+        function copyLink(btn) {
+            const input = btn.previousElementSibling;
+            input.select();
+            document.execCommand('copy');
+            btn.innerText = 'Скопировано!';
+            btn.classList.replace('bg-indigo-600', 'bg-emerald-600');
+            setTimeout(() => {
+                btn.innerText = 'Копировать';
+                btn.classList.replace('bg-emerald-600', 'bg-indigo-600');
+            }, 2000);
+        }
+
+        // Логика запуска чата
+        function startTutorChat(topicId) {
+            currentActiveTheme = topicId;
+            document.getElementById('chat-onboarding').classList.add('hidden');
+            document.getElementById('chat-active').classList.remove('hidden');
+            
+            // Очищаем чат и запускаем приветствие
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.innerHTML = '';
+            
+            triggerAiResponse("init");
+        }
+
+        // Симуляция отправки сообщения
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Добавляем сообщение пользователя на экран
+            appendMessage('user', text);
+            input.value = '';
+
+            // Показываем индикатор печатания ИИ
+            document.getElementById('ai-typing').classList.remove('hidden');
+
+            setTimeout(() => {
+                triggerAiResponse(text);
+            }, 1800);
+        }
+
+        // Функция добавления сообщений
+        function appendMessage(sender, text, feedbackHtml = '') {
+            const chatMessages = document.getElementById('chat-messages');
+            const isAi = sender === 'ai';
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex flex-col ${isAi ? 'items-start' : 'items-end'} animate-fade-in`;
+            
+            msgDiv.innerHTML = `
+                <div class="max-w-[85%] p-3.5 rounded-2xl ${isAi ? 'bg-slate-900 border border-slate-800 text-slate-100 rounded-tl-none' : 'bg-indigo-600 text-white rounded-tr-none'}">
+                    <p class="m-0 leading-relaxed">${text}</p>
+                    ${feedbackHtml}
+                </div>
+            `;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Древовидная симуляция ответов AI Тьютора по английскому
+        function triggerAiResponse(userMsg) {
+            document.getElementById('ai-typing').classList.add('hidden');
+            let aiText = '';
+            let feedback = '';
+
+            if (currentActiveTheme === 'it-english') {
+                if (userMsg === 'init') {
+                    aiText = "Hi there! I am your AI interviewer. Let's practice. Imagine we are at an interview. How would you answer: **'Tell me about your tech stack and the last project you built.'**";
+                } else if (userMsg.toLowerCase().includes('react') || userMsg.toLowerCase().includes('vue') || userMsg.toLowerCase().includes('python') || userMsg.toLowerCase().includes('build')) {
+                    aiText = "Wow, that sounds impressive! You used great industry keywords. Now, how do you handle strict deadlines? **'Tell me about a time when you had to speed up your work.'**";
+                    feedback = `
+                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-emerald-400">
+                            <i class="fa-solid fa-circle-check"></i> <strong>Grammar Check:</strong> Отлично сформулировано! Вы заработали +15 XP!
+                        </div>
+                    `;
+                    addXp(15);
+                } else {
+                    aiText = "Great point. But try using more active verbs to present yourself better (e.g., *I led the project*, *I engineered*). Can you try describing your stack again?";
+                    feedback = `
+                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-amber-400">
+                            <i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Вместо \"I am working\" используйте форму \"I specialize in...\".
+                        </div>
+                    `;
+                }
+            } else if (currentActiveTheme === 'travel-english') {
+                if (userMsg === 'init') {
+                    aiText = "Hello traveller! Let's roleplay. You just arrived at a cozy hotel in London. You are talking to me (the receptionist). Try asking me if there is a gym in the hotel and what time breakfast is.";
+                } else if (userMsg.toLowerCase().includes('gym') || userMsg.toLowerCase().includes('breakfast') || userMsg.toLowerCase().includes('what time')) {
+                    aiText = "Yes, sir! Our gym is on the 2nd floor, and breakfast is served from 7 to 10 AM. Would you like me to book a table for you?";
+                    feedback = `
+                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-emerald-400">
+                            <i class="fa-solid fa-circle-check"></i> <strong>Vocabulary Boost:</strong> Вы правильно использовали фразу \"what time is...\"! +15 XP.
+                        </div>
+                    `;
+                    addXp(15);
+                } else {
+                    aiText = "No problem, but don't forget to ask about breakfast and the gym. It's a great chance to practice conversational phrasing! Give it another try.";
+                    feedback = `
+                        <div class="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-amber-400">
+                            <i class="fa-solid fa-circle-info"></i> <strong>Tip:</strong> Начните фразу с \"Could you tell me...\" или \"Is there...\".
+                        </div>
+                    `;
+                }
+            } else {
+                if (userMsg === 'init') {
+                    aiText = "Hello! Let's practice negotiations. Imagine you are pitching your startup to me (an investor). You need to request $100k for marketing. How do you start your pitch?";
+                } else {
+                    aiText = "That's a strong pitch. However, to sound more convincing to an international investor, try incorporating phrases like *ROI (Return on Investment)* and *market reach*. Shall we adjust the offer?";
+                    addXp(15);
+                }
+            }
+
+            appendMessage('ai', aiText, feedback);
+        }
+
+        // Добавление XP
+        function addXp(amount) {
+            let xpEl = document.getElementById('user-xp');
+            let currentXp = parseInt(xpEl.innerText);
+            xpEl.innerText = currentXp + amount;
+        }
+
+        // Симуляция оплаты
+        function handlePayment(method) {
+            if (tg) {
+                tg.showPopup({
+                    title: 'Инициализация оплаты',
+                    message: `Подключение шлюза для оплаты через ${method === 'stars' ? 'Telegram Stars' : 'Банковскую карту'}...`,
+                    buttons: [{type: 'close'}]
+                });
+            } else {
+                alert(`[Демо] Переход к оплате через ${method === 'stars' ? 'Telegram Stars' : 'Карту'}`);
+            }
+        }
+    </script>
+</body>
+</html>
