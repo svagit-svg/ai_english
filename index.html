@@ -116,7 +116,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.4</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.5</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -503,6 +503,8 @@ async function callClaude(userText,isGreeting,existingDiv){
   try{
     const res=await fetch('https://api.mistral.ai/v1/chat/completions',{
       method:'POST',
+      mode:'cors',
+      credentials:'omit',
       headers:{
         'Content-Type':'application/json',
         'Authorization':'Bearer '+MISTRAL_KEY
