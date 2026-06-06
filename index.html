@@ -222,37 +222,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <section id="screen-profile" class="screen">
     <p class="screen-title">Профиль</p>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:center">
-      <div class="profile-avatar">👤</div>
+      <div class="profile-avatar" id="profile-avatar">👤</div>
       <h3 id="user-name" style="font-family:var(--font-head);font-size:15px;font-weight:800">Пользователь</h3>
-      <p style="font-size:12px;color:var(--accent);margin-top:2px">Уровень: Intermediate</p>
+      <p id="user-handle" style="font-size:11px;color:var(--muted);margin-top:2px"></p>
+      <p id="user-level" style="font-size:12px;color:var(--accent);margin-top:3px">Уровень: Beginner</p>
       <div style="margin-top:8px">
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px">
-          <span>Прогресс до Upper-Int</span><span style="color:var(--text)">1250 / 2000 XP</span>
+          <span id="level-label">Прогресс</span>
+          <span id="xp-progress-text" style="color:var(--text)">0 / 500 XP</span>
         </div>
-        <div class="level-bar"><div class="level-fill"></div></div>
+        <div class="level-bar"><div class="level-fill" id="level-fill-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="stats-grid">
-      <div class="stat-box"><div class="val" style="color:var(--green)">24</div><div class="lbl">Уроков пройдено</div></div>
-      <div class="stat-box"><div class="val" style="color:var(--accent)">1250</div><div class="lbl">Очков (XP)</div></div>
-      <div class="stat-box"><div class="val" style="color:var(--amber)">7</div><div class="lbl">Дней подряд 🔥</div></div>
-      <div class="stat-box"><div class="val" style="color:var(--rose)">48</div><div class="lbl">AI-диалогов</div></div>
+      <div class="stat-box"><div class="val" id="stat-lessons" style="color:var(--green)">0</div><div class="lbl">Уроков пройдено</div></div>
+      <div class="stat-box"><div class="val" id="stat-xp" style="color:var(--accent)">0</div><div class="lbl">Очков (XP)</div></div>
+      <div class="stat-box"><div class="val" id="stat-streak" style="color:var(--amber)">0</div><div class="lbl">Дней подряд 🔥</div></div>
+      <div class="stat-box"><div class="val" id="stat-dialogs" style="color:var(--rose)">0</div><div class="lbl">AI-диалогов</div></div>
     </div>
     <div class="divider"></div>
     <p class="section-label">История занятий</p>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
-      <div class="history-item">
-        <div><p style="font-size:13px;font-weight:600">IT English диалог</p><p style="font-size:10px;color:var(--muted)">Сегодня • 15 мин</p></div>
-        <span style="color:var(--green);font-size:12px;font-weight:700">+30 XP</span>
-      </div>
-      <div class="history-item">
-        <div><p style="font-size:13px;font-weight:600">Business English • Урок 8</p><p style="font-size:10px;color:var(--muted)">Вчера • 22 мин</p></div>
-        <span style="color:var(--green);font-size:12px;font-weight:700">+50 XP</span>
-      </div>
-      <div class="history-item">
-        <div><p style="font-size:13px;font-weight:600">IELTS Speaking mock</p><p style="font-size:10px;color:var(--muted)">2 дня назад • 18 мин</p></div>
-        <span style="color:var(--green);font-size:12px;font-weight:700">+40 XP</span>
-      </div>
+    <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
+      <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>
     </div>
   </section>
 
@@ -331,10 +322,98 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <script>
 const tg = window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();}
-const user = tg?.initDataUnsafe?.user;
-if(user) document.getElementById('user-name').innerText = `${user.first_name} ${user.last_name||''}`.trim();
+const tgUser = tg?.initDataUnsafe?.user;
 
 const MISTRAL_KEY='1rM5EHYxtwouCc0zqfpL5u9Wp3QswgHa';
+
+// ── STATS ────────────────────────────────────────────────
+const LEVELS=[
+  {name:'Beginner',next:500},{name:'Elementary',next:1200},
+  {name:'Pre-Intermediate',next:2500},{name:'Intermediate',next:4500},
+  {name:'Upper-Intermediate',next:7000},{name:'Advanced',next:10000},
+  {name:'Proficiency',next:Infinity}
+];
+function getStats(){
+  try{return Object.assign({xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[]},
+    JSON.parse(localStorage.getItem('smart_stats')||'{}'));}
+  catch{return{xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[]};}
+}
+function saveStats(s){localStorage.setItem('smart_stats',JSON.stringify(s));}
+
+function updateStreak(){
+  const s=getStats();
+  const today=new Date().toDateString();
+  if(s.lastDate===today)return;
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  s.streak=(s.lastDate===yesterday)?s.streak+1:1;
+  s.lastDate=today;
+  saveStats(s);
+}
+
+function getLevelInfo(xp){
+  for(let i=0;i<LEVELS.length;i++){
+    if(xp<LEVELS[i].next){
+      const prev=i>0?LEVELS[i-1].next:0;
+      const pct=Math.round((xp-prev)/(LEVELS[i].next-prev)*100);
+      const nextName=LEVELS[Math.min(i+1,LEVELS.length-1)].name;
+      return{name:LEVELS[i].name,pct:Math.max(0,Math.min(100,pct)),next:LEVELS[i].next,nextName};
+    }
+  }
+  return{name:'Proficiency',pct:100,next:Infinity,nextName:'Max'};
+}
+
+function renderProfile(){
+  const s=getStats();
+  const lv=getLevelInfo(s.xp);
+  // header badge
+  document.getElementById('xp-count').textContent=s.xp;
+  // stats boxes
+  document.getElementById('stat-lessons').textContent=s.lessons;
+  document.getElementById('stat-xp').textContent=s.xp;
+  document.getElementById('stat-streak').textContent=s.streak;
+  document.getElementById('stat-dialogs').textContent=s.dialogs;
+  // level
+  document.getElementById('user-level').textContent='Уровень: '+lv.name;
+  document.getElementById('level-label').textContent='До '+lv.nextName;
+  document.getElementById('xp-progress-text').textContent=s.xp+(lv.next===Infinity?' XP (MAX)':' / '+lv.next+' XP');
+  document.getElementById('level-fill-bar').style.width=lv.pct+'%';
+  // history
+  const hist=s.history||[];
+  const el=document.getElementById('history-list');
+  if(!hist.length){
+    el.innerHTML='<div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>';
+  } else {
+    el.innerHTML=hist.slice().reverse().slice(0,10).map(h=>`
+      <div class="history-item">
+        <div><p style="font-size:13px;font-weight:600">${h.topic}</p>
+        <p style="font-size:10px;color:var(--muted)">${h.date} • ${h.msgs} сообщений</p></div>
+        <span style="color:var(--green);font-size:12px;font-weight:700">+${h.xp} XP</span>
+      </div>`).join('');
+  }
+  // avatar
+  renderAvatar();
+}
+
+function renderAvatar(){
+  const el=document.getElementById('profile-avatar');
+  if(tgUser?.photo_url){
+    el.innerHTML=`<img src="${tgUser.photo_url}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+    el.style.padding='0';el.style.overflow='hidden';el.style.background='none';
+  } else if(tgUser?.first_name){
+    const initials=(tgUser.first_name[0]+(tgUser.last_name?.[0]||'')).toUpperCase();
+    el.innerHTML=`<span style="font-family:var(--font-head);font-size:24px;font-weight:800;">${initials}</span>`;
+  }
+  if(tgUser){
+    document.getElementById('user-name').textContent=
+      `${tgUser.first_name} ${tgUser.last_name||''}`.trim();
+    document.getElementById('user-handle').textContent=
+      tgUser.username?'@'+tgUser.username:'';
+  }
+}
+
+// Init
+updateStreak();
+renderProfile();
 
 function switchTab(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -342,6 +421,7 @@ function switchTab(id){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('nav-'+id).classList.add('active');
   document.getElementById('main-scroll').scrollTop=0;
+  if(id==='profile')renderProfile();
 }
 function selectPlan(id,btn){
   document.querySelectorAll('.plan-tab').forEach(t=>t.classList.remove('active'));
@@ -350,23 +430,35 @@ function selectPlan(id,btn){
   document.getElementById('plan-'+id).classList.add('active');
 }
 
-let chatHistory=[],currentSystemPrompt='',isLoading=false;
+let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
 
 function startChat(key,sysPrompt,icon,label){
   currentSystemPrompt=sysPrompt;
+  currentTopic=label;
+  sessionMsgs=0;sessionXp=0;
   chatHistory=[];
   document.getElementById('topic-picker').style.display='none';
   document.getElementById('chat-view').classList.add('visible');
   document.getElementById('chat-title').innerText=label;
   document.getElementById('messages').innerHTML='';
   document.getElementById('chat-input').value='';
+  // count dialog
+  const s=getStats();s.dialogs++;saveStats(s);
   addAiMessage('...',true);
   callClaude(null,true);
 }
 function backToTopics(){
+  if(sessionMsgs>0){
+    const s=getStats();
+    const now=new Date();
+    const dateStr=now.toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
+    s.history=s.history||[];
+    s.history.push({topic:currentTopic,date:dateStr,msgs:sessionMsgs,xp:sessionXp});
+    saveStats(s);
+  }
   document.getElementById('topic-picker').style.display='';
   document.getElementById('chat-view').classList.remove('visible');
-  chatHistory=[];
+  chatHistory=[];sessionMsgs=0;sessionXp=0;
 }
 function addUserMessage(text){
   const d=document.createElement('div');
@@ -431,8 +523,13 @@ async function callClaude(userText,isGreeting,existingDiv){
     else addAiMessage(reply,false);
     if(!isGreeting){
       chatHistory.push({role:'assistant',content:reply});
-      const xp=document.getElementById('xp-count');
-      xp.textContent=parseInt(xp.textContent)+5;
+      sessionMsgs++;sessionXp+=5;
+      const s=getStats();
+      s.xp+=5;
+      // каждые 5 сообщений = 1 урок
+      if(sessionMsgs%5===0)s.lessons++;
+      saveStats(s);
+      document.getElementById('xp-count').textContent=s.xp;
     } else {
       chatHistory=[
         {role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'},
