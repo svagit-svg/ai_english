@@ -543,7 +543,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     scrollMessages();
   }catch(err){
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
-    if(target)target.innerHTML='❌ Ошибка соединения. Проверь интернет.';
+    if(target)target.innerHTML='❌ '+err.message;
   }finally{
     isLoading=false;
     document.getElementById('send-btn').disabled=false;
