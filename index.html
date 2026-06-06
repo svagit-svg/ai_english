@@ -116,7 +116,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.5</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.6</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -501,21 +501,17 @@ async function callClaude(userText,isGreeting,existingDiv){
     ?[sysMsg,{role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'}]
     :[sysMsg,...chatHistory];
   try{
-    const res=await fetch('https://api.mistral.ai/v1/chat/completions',{
-      method:'POST',
-      mode:'cors',
-      credentials:'omit',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+MISTRAL_KEY
-      },
-      body:JSON.stringify({
-        model:'mistral-small-latest',
-        max_tokens:1000,
-        messages
-      })
+    const data=await new Promise((resolve,reject)=>{
+      const xhr=new XMLHttpRequest();
+      xhr.open('POST','https://api.mistral.ai/v1/chat/completions');
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.setRequestHeader('Authorization','Bearer '+MISTRAL_KEY);
+      xhr.timeout=30000;
+      xhr.onload=()=>{try{resolve(JSON.parse(xhr.responseText));}catch(e){reject(e);}};
+      xhr.onerror=()=>reject(new Error('XHR network error'));
+      xhr.ontimeout=()=>reject(new Error('Request timeout'));
+      xhr.send(JSON.stringify({model:'mistral-small-latest',max_tokens:1000,messages}));
     });
-    const data=await res.json();
     if(data.error){
       const target=existingDiv||document.querySelector('.msg.ai:last-child');
       if(target)target.innerHTML='❌ Ошибка API: '+data.error.message;
