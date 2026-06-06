@@ -107,6 +107,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .nav-btn i{font-size:17px;}
 .nav-btn.active{color:var(--accent);}
 .nav-btn.active::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--accent);border-radius:0 0 2px 2px;}
+/* API KEY MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.hidden{display:none;}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;width:100%;max-width:360px;}
+.modal-box h2{font-family:var(--font-head);font-size:17px;font-weight:800;margin-bottom:6px;}
+.modal-box p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.modal-box a{color:var(--accent);text-decoration:none;}
+.api-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:13px;outline:none;margin-bottom:6px;}
+.api-input:focus{border-color:var(--accent);}
+.api-input::placeholder{color:var(--muted);}
+.api-error{font-size:11px;color:var(--rose);margin-bottom:10px;display:none;}
+.modal-btn{width:100%;padding:12px;border-radius:11px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.2s;}
+.modal-btn:active{opacity:0.85;}
+.settings-btn{background:var(--surface2);border:1px solid var(--border);width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--muted);flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -119,8 +133,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
-  <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
+    <div class="settings-btn" onclick="openApiModal()" title="API ключ"><i class="fa-solid fa-key"></i></div>
+  </div>
 </header>
+
+<!-- API KEY MODAL -->
+<div class="modal-overlay hidden" id="api-modal">
+  <div class="modal-box">
+    <h2>🔑 API-ключ Anthropic</h2>
+    <p>Для работы AI-чата нужен ключ Anthropic.<br>
+    Получи бесплатно: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key</p>
+    <input class="api-input" id="api-key-input" type="password" placeholder="sk-ant-..." />
+    <div class="api-error" id="api-error">Введи корректный ключ (начинается с sk-ant-)</div>
+    <button class="modal-btn" onclick="saveApiKey()">Сохранить и продолжить</button>
+  </div>
+</div>
 
 <main class="main" id="main-scroll">
 
@@ -334,6 +363,26 @@ if(tg){tg.ready();tg.expand();}
 const user = tg?.initDataUnsafe?.user;
 if(user) document.getElementById('user-name').innerText = `${user.first_name} ${user.last_name||''}`.trim();
 
+// API KEY MANAGEMENT
+function getApiKey(){return localStorage.getItem('anthropic_api_key')||'';}
+function openApiModal(){
+  const modal=document.getElementById('api-modal');
+  document.getElementById('api-key-input').value=getApiKey();
+  document.getElementById('api-error').style.display='none';
+  modal.classList.remove('hidden');
+}
+function saveApiKey(){
+  const val=document.getElementById('api-key-input').value.trim();
+  if(!val.startsWith('sk-ant-')){
+    document.getElementById('api-error').style.display='block';
+    return;
+  }
+  localStorage.setItem('anthropic_api_key',val);
+  document.getElementById('api-modal').classList.add('hidden');
+}
+// Show modal on first launch if no key
+if(!getApiKey()) openApiModal();
+
 function switchTab(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
@@ -398,21 +447,42 @@ async function sendMessage(){
 }
 
 async function callClaude(userText,isGreeting,existingDiv){
+  const apiKey=getApiKey();
+  if(!apiKey){
+    openApiModal();
+    isLoading=false;
+    document.getElementById('send-btn').disabled=false;
+    if(existingDiv)existingDiv.innerHTML='⚠️ Введи API-ключ для работы чата.';
+    return;
+  }
   const messages=isGreeting
     ?[{role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'}]
     :chatHistory;
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-4-5',
         max_tokens:1000,
         system:currentSystemPrompt+'\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question.',
         messages
       })
     });
     const data=await res.json();
+    if(data.error){
+      const target=existingDiv||document.querySelector('.msg.ai:last-child');
+      const errMsg=data.error.type==='authentication_error'?'❌ Неверный API-ключ. Нажми 🔑 и проверь ключ.':'❌ Ошибка API: '+data.error.message;
+      if(target)target.innerHTML=errMsg;
+      isLoading=false;
+      document.getElementById('send-btn').disabled=false;
+      return;
+    }
     const reply=data.content?.[0]?.text||'Something went wrong. Try again.';
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
     if(target)target.innerHTML=reply.replace(/\n/g,'<br>');
@@ -430,7 +500,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     scrollMessages();
   }catch(err){
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
-    if(target)target.innerHTML='❌ Ошибка соединения. Попробуй снова.';
+    if(target)target.innerHTML='❌ Ошибка соединения. Проверь интернет.';
   }finally{
     isLoading=false;
     document.getElementById('send-btn').disabled=false;
