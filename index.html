@@ -2,25 +2,27 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SmartAI English</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0d14; color: white; }
+        * { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0d14; color: white; overflow-x: hidden; }
+        .safe-area { padding-bottom: calc(env(safe-area-inset-bottom) + 60px); }
     </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen">
 
-    <header class="flex items-center justify-between p-4 border-b border-slate-800">
+    <header class="flex items-center justify-between p-4 border-b border-slate-800 bg-[#0a0d14]/80 backdrop-blur-md sticky top-0 z-40">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-language text-xl"></i>
+                <i class="fa-solid fa-language text-lg"></i>
             </div>
             <div>
-                <h1 class="font-bold text-lg">SmartAI English</h1>
+                <h1 class="font-bold text-base">SmartAI English</h1>
                 <p class="text-[10px] text-emerald-500 font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> AI-Tutor Online
                 </p>
@@ -31,96 +33,99 @@
         </div>
     </header>
 
-    <main id="main-container" class="px-4 py-6 max-w-lg mx-auto">
+    <main class="max-w-md mx-auto px-4 py-6 safe-area">
         <!-- Chat Section -->
         <section id="screen-chat" class="hidden space-y-4">
-            <h2 class="text-lg font-bold mb-4">Тема для диалога</h2>
+            <h2 class="text-lg font-bold mb-4">Темы для диалога</h2>
             <div class="grid grid-cols-1 gap-3">
-                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-indigo-500 transition-all">
-                    <div class="w-10 h-10 bg-indigo-500/10 flex items-center justify-center rounded-xl text-indigo-400 text-lg"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 active:opacity-80">
+                    <div class="w-10 h-10 bg-indigo-500/10 flex items-center justify-center rounded-xl text-indigo-400"><i class="fa-solid fa-laptop-code"></i></div>
                     <div><h3 class="font-bold text-sm">IT English</h3><p class="text-[10px] text-slate-400">Техническое интервью.</p></div>
                 </div>
-                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-emerald-500 transition-all">
-                    <div class="w-10 h-10 bg-emerald-500/10 flex items-center justify-center rounded-xl text-emerald-400 text-lg"><i class="fa-solid fa-plane"></i></div>
+                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 active:opacity-80">
+                    <div class="w-10 h-10 bg-emerald-500/10 flex items-center justify-center rounded-xl text-emerald-400"><i class="fa-solid fa-plane"></i></div>
                     <div><h3 class="font-bold text-sm">Travel English</h3><p class="text-[10px] text-slate-400">Аэропорт и отели.</p></div>
                 </div>
-                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-rose-500 transition-all">
-                    <div class="w-10 h-10 bg-rose-500/10 flex items-center justify-center rounded-xl text-rose-400 text-lg"><i class="fa-solid fa-microphone-lines"></i></div>
-                    <div><h3 class="font-bold text-sm">Interview Prep</h3><p class="text-[10px] text-slate-400">HR-вопросы и ответы.</p></div>
+                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 active:opacity-80">
+                    <div class="w-10 h-10 bg-rose-500/10 flex items-center justify-center rounded-xl text-rose-400"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <div><h3 class="font-bold text-sm">Interview Prep</h3><p class="text-[10px] text-slate-400">HR-вопросы.</p></div>
                 </div>
-                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-amber-500 transition-all">
-                    <div class="w-10 h-10 bg-amber-500/10 flex items-center justify-center rounded-xl text-amber-400 text-lg"><i class="fa-solid fa-comments"></i></div>
-                    <div><h3 class="font-bold text-sm">Daily Slang</h3><p class="text-[10px] text-slate-400">Разговорный сленг.</p></div>
+                <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4 active:opacity-80">
+                    <div class="w-10 h-10 bg-purple-500/10 flex items-center justify-center rounded-xl text-purple-400"><i class="fa-solid fa-coffee"></i></div>
+                    <div><h3 class="font-bold text-sm">Casual Talk</h3><p class="text-[10px] text-slate-400">Повседневное общение.</p></div>
                 </div>
             </div>
         </section>
 
+        <!-- Courses Section -->
         <section id="screen-courses" class="space-y-4">
             <h2 class="text-lg font-bold mb-4">Программы обучения</h2>
-            <div class="bg-[#131821] border border-slate-800 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-emerald-500 transition-all">
-                <div class="w-12 h-12 bg-emerald-500/10 flex items-center justify-center rounded-xl text-emerald-400 text-xl"><i class="fa-solid fa-book-open"></i></div>
-                <div><h3 class="font-bold text-sm">Basic English</h3><p class="text-[10px] text-slate-400">Основы языка и грамматики.</p></div>
+            <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-emerald-500/10 flex items-center justify-center rounded-xl text-emerald-400 text-lg"><i class="fa-solid fa-book-open"></i></div>
+                <div><h3 class="font-bold text-sm">Basic English</h3><p class="text-[10px] text-slate-400">Основы языка.</p></div>
             </div>
-            <div class="bg-[#131821] border border-slate-800 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-indigo-500 transition-all">
-                <div class="w-12 h-12 bg-blue-500/10 flex items-center justify-center rounded-xl text-blue-400 text-xl"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-500/10 flex items-center justify-center rounded-xl text-blue-400 text-lg"><i class="fa-solid fa-briefcase"></i></div>
                 <div><h3 class="font-bold text-sm">Business English</h3><p class="text-[10px] text-slate-400">Переговоры, emails.</p></div>
             </div>
-            <div class="bg-[#131821] border border-slate-800 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 flex items-center justify-center rounded-xl text-purple-400 text-xl"><i class="fa-solid fa-pen-nib"></i></div>
-                <div><h3 class="font-bold text-sm">Grammar Pro</h3><p class="text-[10px] text-slate-400">Продвинутая грамматика.</p></div>
+            <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-amber-500/10 flex items-center justify-center rounded-xl text-amber-400 text-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div><h3 class="font-bold text-sm">IELTS Intensive</h3><p class="text-[10px] text-slate-400">Подготовка к экзамену.</p></div>
             </div>
-            <div class="bg-[#131821] border border-slate-800 p-5 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-sky-500 transition-all">
-                <div class="w-12 h-12 bg-sky-500/10 flex items-center justify-center rounded-xl text-sky-400 text-xl"><i class="fa-solid fa-envelope"></i></div>
-                <div><h3 class="font-bold text-sm">Email Mastery</h3><p class="text-[10px] text-slate-400">Пишем письма профи.</p></div>
+            <div class="bg-[#131821] border border-slate-800 p-4 rounded-2xl flex items-center gap-4">
+                <div class="w-12 h-12 bg-indigo-500/10 flex items-center justify-center rounded-xl text-indigo-400 text-lg"><i class="fa-solid fa-code"></i></div>
+                <div><h3 class="font-bold text-sm">IT Development</h3><p class="text-[10px] text-slate-400">Разработка на английском.</p></div>
             </div>
         </section>
 
+        <!-- Profile Section -->
         <section id="screen-profile" class="hidden space-y-4">
             <h2 class="text-lg font-bold mb-4">Профиль</h2>
             <div class="bg-[#131821] border border-slate-800 p-6 rounded-2xl text-center">
                 <div class="w-20 h-20 bg-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">👤</div>
-                <h3 class="font-bold text-base">Иван Иванов</h3>
+                <h3 id="user-name" class="font-bold text-base">Загрузка...</h3>
                 <p class="text-[12px] text-indigo-400 mb-6">Уровень: Intermediate</p>
-                <div class="grid grid-cols-2 gap-4 text-left">
-                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Уроков пройдено</p><p class="font-bold text-sm">24</p></div>
-                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Всего очков (XP)</p><p class="font-bold text-sm">1250</p></div>
-                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Дней в серии</p><p class="font-bold text-sm">12</p></div>
-                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Ранг</p><p class="font-bold text-sm">Gold</p></div>
+                <div class="grid grid-cols-2 gap-3 text-left">
+                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Уроков</p><p class="font-bold text-sm">24</p></div>
+                    <div class="bg-slate-900 p-3 rounded-xl"><p class="text-[9px] text-slate-500">Очков (XP)</p><p class="font-bold text-sm">1250</p></div>
                 </div>
             </div>
         </section>
 
+        <!-- Premium Section -->
         <section id="screen-premium" class="hidden space-y-4">
             <h2 class="text-lg font-bold mb-4">Премиум-тарифы</h2>
-            <div class="bg-[#131821] border border-rose-500/30 p-5 rounded-2xl space-y-2">
+            <div class="bg-[#131821] border border-rose-500/30 p-4 rounded-2xl space-y-2">
                 <h3 class="font-bold text-sm">Недельный план</h3>
-                <p class="text-[10px] text-slate-400">Пробный доступ на неделю.</p>
                 <button class="w-full bg-rose-500 text-white py-2 rounded-lg font-bold text-xs">99 ₽ / неделя</button>
             </div>
-            <div class="bg-[#131821] border border-amber-500/30 p-5 rounded-2xl space-y-2">
+            <div class="bg-[#131821] border border-amber-500/30 p-4 rounded-2xl space-y-2">
                 <h3 class="font-bold text-sm">Месячный план</h3>
-                <p class="text-[10px] text-slate-400">Полный доступ к GPT-4o и тренажеру.</p>
                 <button class="w-full bg-amber-500 text-black py-2 rounded-lg font-bold text-xs">299 ₽ / месяц</button>
             </div>
-            <div class="bg-[#131821] border border-indigo-500/30 p-5 rounded-2xl space-y-2">
-                <h3 class="font-bold text-sm">Годовой план (Выгодно)</h3>
-                <p class="text-[10px] text-slate-400">Экономия 40% + подарки.</p>
-                <button class="w-full bg-indigo-500 text-white py-2 rounded-lg font-bold text-xs">1999 ₽ / год</button>
+            <div class="bg-[#131821] border border-indigo-500/30 p-4 rounded-2xl space-y-2">
+                <h3 class="font-bold text-sm">Годовой план <span class="text-indigo-400 text-[10px] bg-indigo-900/30 px-1 rounded">Выгодно</span></h3>
+                <button class="w-full bg-indigo-600 text-white py-2 rounded-lg font-bold text-xs">1 999 ₽ / год</button>
             </div>
         </section>
     </main>
 
-    <nav class="fixed bottom-0 w-full bg-[#0a0d14] border-t border-slate-800 p-2 flex justify-center gap-12 z-50">
-        <button id="nav-chat" onclick="switchTab('chat')" class="text-slate-500 flex flex-col items-center gap-1 text-[9px] font-bold"><i class="fa-solid fa-comments text-lg"></i> Общение</button>
-        <button id="nav-courses" onclick="switchTab('courses')" class="text-indigo-500 flex flex-col items-center gap-1 text-[9px] font-bold"><i class="fa-solid fa-book-open text-lg"></i> Курсы</button>
-        <button id="nav-profile" onclick="switchTab('profile')" class="text-slate-500 flex flex-col items-center gap-1 text-[9px] font-bold"><i class="fa-solid fa-user text-lg"></i> Профиль</button>
-        <button id="nav-premium" onclick="switchTab('premium')" class="text-slate-500 flex flex-col items-center gap-1 text-[9px] font-bold"><i class="fa-solid fa-crown text-lg"></i> Премиум</button>
+    <nav class="fixed bottom-0 w-full bg-[#0a0d14]/95 backdrop-blur-md border-t border-slate-800 p-3 flex justify-around z-50 safe-area">
+        <button id="nav-chat" onclick="switchTab('chat')" class="text-slate-500 flex flex-col items-center gap-1 text-[10px]"><i class="fa-solid fa-comments text-lg"></i> Общение</button>
+        <button id="nav-courses" onclick="switchTab('courses')" class="text-indigo-500 flex flex-col items-center gap-1 text-[10px]"><i class="fa-solid fa-book-open text-lg"></i> Курсы</button>
+        <button id="nav-profile" onclick="switchTab('profile')" class="text-slate-500 flex flex-col items-center gap-1 text-[10px]"><i class="fa-solid fa-user text-lg"></i> Профиль</button>
+        <button id="nav-premium" onclick="switchTab('premium')" class="text-slate-500 flex flex-col items-center gap-1 text-[10px]"><i class="fa-solid fa-crown text-lg"></i> Премиум</button>
     </nav>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
+        
+        const user = tg.initDataUnsafe.user;
+        if (user) {
+            document.getElementById('user-name').innerText = `${user.first_name} ${user.last_name || ''}`;
+        }
         
         function switchTab(id) {
             ['courses', 'chat', 'profile', 'premium'].forEach(s => document.getElementById('screen-' + s)?.classList.add('hidden'));
