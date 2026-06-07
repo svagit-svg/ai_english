@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.9</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.0</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -261,11 +261,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="it-sub">20 уроков</p>
       </div>
     </div>
-    <div class="card" onclick="alert('Требуется Premium')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(244,63,94,0.1);color:var(--rose);">🎬</div>
-        <div class="card-text"><h3>Movie English <span class="badge" style="background:rgba(244,63,94,0.15);color:var(--rose)">PRO</span></h3><p>Сленг из сериалов • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+    <div class="course-card" onclick="openCourse('travel')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(244,63,94,0.1);color:var(--rose);font-size:18px;">✈️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Travel English</h3>
+          <span id="travel-pct" style="font-size:11px;color:var(--rose);font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Путешествия, отели, рестораны</p>
+        <div class="progress-bar"><div class="progress-fill" id="travel-bar" style="width:0%;background:var(--rose)"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="travel-sub">20 уроков</p>
       </div>
     </div>
     </div><!-- /courses-main -->
@@ -3656,6 +3661,948 @@ We fine-tune the LLM on our dataset. — Дообучаем LLM на наших 
         ]
       }
     ]
+  },
+  travel:{
+    title:'Travel English',icon:'✈️',color:'var(--rose)',
+    lessons:[
+      {
+        id:1,title:'Аэропорт: регистрация и вылет',xp:30,
+        theory:`<div class="theory-block">
+<h3>Airport: Check-in & Departure — аэропорт</h3>
+<p>Аэропорт — первое место, где нужен английский. Знай ключевые слова и фразы.</p>
+<p style="margin-top:10px;font-weight:600">Регистрация (check-in):</p>
+<div class="rule">I'd like to check in for flight [number]. — Хочу зарегистрироваться на рейс [номер].<br>
+Window or aisle seat? — Место у окна или у прохода?<br>
+I'd prefer a window seat, please. — Предпочту у окна, пожалуйста.<br>
+Do you have any baggage to check in? — Есть ли багаж для сдачи?<br>
+Your baggage exceeds the limit. — Ваш багаж превышает лимит.<br>
+Here's your boarding pass. — Вот ваш посадочный талон.</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>boarding pass</b> — посадочный талон<br>
+<b>carry-on / hand luggage</b> — ручная кладь<br>
+<b>checked baggage</b> — сдаваемый багаж<br>
+<b>departure gate</b> — выход на посадку<br>
+<b>terminal</b> — терминал | <b>runway</b> — взлётно-посадочная полоса<br>
+<b>delayed / on time / cancelled</b> — задержан / вовремя / отменён<br>
+<b>security check</b> — досмотр | <b>passport control</b> — паспортный контроль</div>
+<p style="margin-top:10px;font-weight:600">У выхода на посадку:</p>
+<div class="rule">When does boarding start? — Когда начинается посадка?<br>
+Is the flight on time? — Рейс вовремя?<br>
+We are now boarding rows 20–30. — Объявляется посадка рядов 20–30.<br>
+Please have your boarding pass ready. — Приготовьте посадочный талон.</div>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ in for flight BA204.',blank:'check',opts:['check','sign','book','register']},
+          {q:'Would you prefer a window or ___ seat?',blank:'aisle',opts:['aisle','corridor','middle','side']},
+          {q:'Please place all liquids in your ___ baggage.',blank:'carry-on',opts:['carry-on','hand','personal','cabin']},
+          {q:'Your ___ pass is for gate B12.',blank:'boarding',opts:['boarding','departure','flight','travel']},
+          {q:'The flight has been ___ by 90 minutes.',blank:'delayed',opts:['delayed','late','slow','postponed']},
+          {q:'Boarding will start at the ___ gate.',blank:'departure',opts:['departure','exit','boarding','flight']},
+          {q:'Do you have any luggage to ___ in?',blank:'check',opts:['check','put','send','drop']},
+          {q:'Please remove your shoes at the ___ check.',blank:'security',opts:['security','customs','passport','baggage']},
+          {q:'How many bags are you ___?',blank:'checking',opts:['checking','packing','carrying','sending']},
+          {q:'The flight is ___ time — no delays.',blank:'on',opts:['on','in','at','by']},
+          {q:'We are now ___ all passengers.',blank:'boarding',opts:['boarding','loading','calling','inviting']},
+          {q:'Your baggage ___ the weight limit by 3kg.',blank:'exceeds',opts:['exceeds','is over','passes','tops']},
+          {q:'Please proceed to ___ control.',blank:'passport',opts:['passport','border','customs','ID']},
+          {q:'The flight has been ___. Please see the desk.',blank:'cancelled',opts:['cancelled','stopped','ended','removed']},
+          {q:'Which ___ is our flight departing from?',blank:'terminal',opts:['terminal','gate','hall','area']},
+          {q:'Please have your ___ ready to scan.',blank:'boarding pass',opts:['boarding pass','ticket','passport','ID']},
+          {q:'I\'d like a seat at the ___.',blank:'window',opts:['window','aisle','front','back']},
+          {q:'My ___ luggage weighs 7kg.',blank:'carry-on',opts:['carry-on','hand','cabin','personal']},
+          {q:'The ___ check required me to remove my laptop.',blank:'security',opts:['security','baggage','customs','passport']},
+          {q:'Boarding closes 20 minutes before ___.',blank:'departure',opts:['departure','takeoff','flight','leaving']}
+        ]
+      },
+      {
+        id:2,title:'На борту самолёта',xp:30,
+        theory:`<div class="theory-block">
+<h3>On the Plane — на борту</h3>
+<p>Уверенно общайтесь с экипажем и соседями на борту.</p>
+<p style="margin-top:10px;font-weight:600">С бортпроводником:</p>
+<div class="rule">Could I have a blanket / pillow, please? — Можно одеяло / подушку?<br>
+Could you help me with the overhead bin? — Помогите с верхней полкой?<br>
+What meals do you have? — Какие блюда есть?<br>
+Could I have some water, please? — Можно воды, пожалуйста?<br>
+Is there a vegetarian option? — Есть ли вегетарианское блюдо?<br>
+I'm not feeling well. — Мне нехорошо.</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>overhead bin</b> — верхняя полка для багажа<br>
+<b>tray table</b> — откидной столик<br>
+<b>seatbelt</b> — ремень безопасности<br>
+<b>life jacket</b> — спасательный жилет<br>
+<b>emergency exit</b> — аварийный выход<br>
+<b>turbulence</b> — турбулентность<br>
+<b>landing / takeoff</b> — посадка / взлёт<br>
+<b>flight attendant</b> — бортпроводник</div>
+<p style="margin-top:10px;font-weight:600">Объявления на борту:</p>
+<div class="rule">Please fasten your seatbelts. — Пристегните ремни.<br>
+We are experiencing some turbulence. — Мы попали в зону турбулентности.<br>
+We will be landing in approximately 20 minutes. — Посадка примерно через 20 минут.<br>
+Please return your tray tables to the upright position. — Поднимите столики.</div>
+</div>`,
+        exercises:[
+          {q:'Could I have a ___, please? I\'m cold.',blank:'blanket',opts:['blanket','cover','sheet','towel']},
+          {q:'Please ___ your seatbelt for takeoff.',blank:'fasten',opts:['fasten','buckle','attach','close']},
+          {q:'The overhead ___ is full — I can\'t fit my bag.',blank:'bin',opts:['bin','shelf','locker','compartment']},
+          {q:'We\'re experiencing ___ — please stay seated.',blank:'turbulence',opts:['turbulence','shaking','bumps','movement']},
+          {q:'Please fold your ___ table before landing.',blank:'tray',opts:['tray','fold-down','seat','arm']},
+          {q:'The ___ attendant brought me extra water.',blank:'flight',opts:['flight','cabin','air','plane']},
+          {q:'Please locate the nearest ___ exit.',blank:'emergency',opts:['emergency','safety','escape','fire']},
+          {q:'We will begin ___ in 15 minutes.',blank:'landing',opts:['landing','descent','arriving','dropping']},
+          {q:'Is there a ___ option? I don\'t eat meat.',blank:'vegetarian',opts:['vegetarian','vegan','meat-free','plant-based']},
+          {q:'Could you help me put my bag in the overhead ___?',blank:'bin',opts:['bin','shelf','space','locker']},
+          {q:'The ___ jacket is under your seat.',blank:'life',opts:['life','safety','flotation','emergency']},
+          {q:'Please turn off all ___ devices during takeoff.',blank:'electronic',opts:['electronic','personal','portable','digital']},
+          {q:'I\'m not feeling well — can I have a ___ bag?',blank:'sick',opts:['sick','vomit','paper','motion']},
+          {q:'The flight ___ is approximately 3 hours.',blank:'duration',opts:['duration','time','length','period']},
+          {q:'Could I ___ seats? The sun is in my eyes.',blank:'change',opts:['change','move','switch','swap']},
+          {q:'Please return your seat to the ___ position.',blank:'upright',opts:['upright','normal','straight','original']},
+          {q:'We\'re beginning our ___ into London Heathrow.',blank:'descent',opts:['descent','approach','landing','drop']},
+          {q:'The ___ will be served in about 30 minutes.',blank:'meal',opts:['meal','food','lunch','dinner']},
+          {q:'Could I have an ___ seat? I need more leg room.',blank:'aisle',opts:['aisle','exit row','window','extra']},
+          {q:'Please fasten your ___ — we\'re hitting rough air.',blank:'seatbelt',opts:['seatbelt','belt','strap','harness']}
+        ]
+      },
+      {
+        id:3,title:'Прилёт: таможня и паспортный контроль',xp:35,
+        theory:`<div class="theory-block">
+<h3>Arrival: Immigration & Customs — прилёт</h3>
+<p>Паспортный контроль и таможня — важные этапы. Знай, что говорить офицеру.</p>
+<p style="margin-top:10px;font-weight:600">Паспортный контроль (Immigration):</p>
+<div class="rule">What is the purpose of your visit? — Цель вашего визита?<br>
+I'm here on holiday / for tourism. — Я здесь в отпуске / туристической поездке.<br>
+I'm on a business trip. — Я в командировке.<br>
+How long are you planning to stay? — Как долго вы планируете остаться?<br>
+About two weeks. — Около двух недель.<br>
+Where will you be staying? — Где вы будете останавливаться?<br>
+At the [hotel name] hotel. — В отеле [название].</div>
+<p style="margin-top:10px;font-weight:600">Таможня (Customs):</p>
+<div class="rule">Do you have anything to declare? — Есть ли что-то для декларирования?<br>
+Nothing to declare. — Нечего декларировать.<br>
+Please open your bag. — Откройте сумку, пожалуйста.<br>
+I have some gifts. — У меня есть подарки.<br>
+Do you have a return ticket? — У вас есть обратный билет?</div>
+<p style="margin-top:10px;font-weight:600">Получение багажа:</p>
+<div class="rule"><b>baggage claim</b> — выдача багажа | <b>carousel</b> — лента выдачи<br>
+My luggage hasn't arrived. — Мой багаж не прибыл.<br>
+My bag is damaged. — Моя сумка повреждена.<br>
+I need to file a lost luggage report. — Нужно подать заявку о потере багажа.</div>
+</div>`,
+        exercises:[
+          {q:'What is the ___ of your visit?',blank:'purpose',opts:['purpose','reason','goal','cause']},
+          {q:'I\'m here for ___. I\'m visiting tourist sites.',blank:'tourism',opts:['tourism','holiday','vacation','leisure']},
+          {q:'How long are you ___ to stay?',blank:'planning',opts:['planning','going','wanting','intending']},
+          {q:'Do you have anything to ___?',blank:'declare',opts:['declare','show','report','bring']},
+          {q:'Please collect your bags at ___ claim.',blank:'baggage',opts:['baggage','luggage','bag','cargo']},
+          {q:'My luggage hasn\'t ___ yet — it may be lost.',blank:'arrived',opts:['arrived','come','appeared','shown']},
+          {q:'I need to ___ a lost luggage report.',blank:'file',opts:['file','make','write','submit']},
+          {q:'Do you have a ___ ticket?',blank:'return',opts:['return','back','round-trip','home']},
+          {q:'Where will you be ___ during your stay?',blank:'staying',opts:['staying','living','sleeping','residing']},
+          {q:'Please ___ your bag for inspection.',blank:'open',opts:['open','show','present','display']},
+          {q:'I have ___ to declare — just personal items.',blank:'nothing',opts:['nothing','no','not anything','none']},
+          {q:'Please proceed to the ___ control desk.',blank:'passport',opts:['passport','border','customs','immigration']},
+          {q:'My bag arrived ___ — the zipper is broken.',blank:'damaged',opts:['damaged','broken','destroyed','ruined']},
+          {q:'I\'m staying for ___ days.',blank:'ten',opts:['ten','about ten','nearly ten','around ten']},
+          {q:'Your baggage is on ___ 3.',blank:'carousel',opts:['carousel','belt','lane','track']},
+          {q:'Are you travelling ___ or with family?',blank:'alone',opts:['alone','solo','by yourself','individually']},
+          {q:'Do you have more than €10,000 in ___?',blank:'cash',opts:['cash','money','currency','funds']},
+          {q:'I\'m visiting ___ in London.',blank:'friends',opts:['friends','relatives','family','people']},
+          {q:'Please fill in the ___ card.',blank:'arrival',opts:['arrival','customs','entry','landing']},
+          {q:'I have a ___ visa for 30 days.',blank:'tourist',opts:['tourist','travel','visitor','entry']}
+        ]
+      },
+      {
+        id:4,title:'Отель: заезд и проблемы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Hotel: Check-in, Requests & Problems — отель</h3>
+<p>Уверенное общение в отеле — от заезда до решения проблем.</p>
+<p style="margin-top:10px;font-weight:600">Заезд (check-in):</p>
+<div class="rule">I have a reservation under [name]. — У меня бронь на имя [...].<br>
+I booked a double room for 3 nights. — Забронировал двухместный номер на 3 ночи.<br>
+Could I have a room with a sea / city view? — Можно номер с видом на море / город?<br>
+What time is check-out? — В какое время выезд?<br>
+Is breakfast included? — Завтрак включён?<br>
+Could I have a late check-out? — Можно поздний выезд?</div>
+<p style="margin-top:10px;font-weight:600">Запросы:</p>
+<div class="rule">Could I have extra towels? — Можно дополнительные полотенца?<br>
+The air conditioning isn't working. — Кондиционер не работает.<br>
+Could you send someone to fix it? — Можете прислать кого-нибудь починить?<br>
+Could I have a wake-up call at 7am? — Разбудите меня в 7 утра.<br>
+Could you store my luggage until 3pm? — Можете хранить багаж до 15:00?</div>
+<p style="margin-top:10px;font-weight:600">Типы номеров:</p>
+<div class="rule"><b>single room</b> — одноместный | <b>double room</b> — двухместный (1 кровать)<br>
+<b>twin room</b> — двухместный (2 кровати) | <b>suite</b> — люкс<br>
+<b>en-suite</b> — с собственной ванной | <b>half board</b> — полупансион<br>
+<b>full board</b> — полный пансион | <b>all-inclusive</b> — всё включено</div>
+</div>`,
+        exercises:[
+          {q:'I have a ___ under the name Smith.',blank:'reservation',opts:['reservation','booking','room','order']},
+          {q:'Is ___ included in the room price?',blank:'breakfast',opts:['breakfast','food','meals','dining']},
+          {q:'Could I have a room with a sea ___?',blank:'view',opts:['view','side','facing','outlook']},
+          {q:'What time is ___?',blank:'check-out',opts:['check-out','leaving','departure','exit']},
+          {q:'The ___ conditioning isn\'t working properly.',blank:'air',opts:['air','AC','room','climate']},
+          {q:'Could I have extra ___? I need two more.',blank:'towels',opts:['towels','linens','sheets','blankets']},
+          {q:'Could I ___ my check-out until noon?',blank:'extend',opts:['extend','delay','push','move']},
+          {q:'Could you ___ my luggage until my flight?',blank:'store',opts:['store','keep','hold','guard']},
+          {q:'I\'d like a ___ room — two separate beds.',blank:'twin',opts:['twin','double','two-bed','separate']},
+          {q:'Could I get a ___ call at 6am?',blank:'wake-up',opts:['wake-up','morning','alarm','early']},
+          {q:'The toilet is ___. Can someone fix it?',blank:'blocked',opts:['blocked','broken','clogged','not working']},
+          {q:'I\'d like to ___ my stay by two more nights.',blank:'extend',opts:['extend','prolong','add','continue']},
+          {q:'Is there a ___ in the room?',blank:'safe',opts:['safe','locker','vault','box']},
+          {q:'Could I ___ to a quieter room? There\'s noise from the street.',blank:'move',opts:['move','switch','change','upgrade']},
+          {q:'Does the hotel have a ___? I\'d like to swim.',blank:'pool',opts:['pool','swimming pool','gym','spa']},
+          {q:'I\'m ___ a double room for two nights.',blank:'booking',opts:['booking','reserving','ordering','requesting']},
+          {q:'The room hasn\'t been ___ yet.',blank:'cleaned',opts:['cleaned','tidied','made up','serviced']},
+          {q:'What floor is my room on? I need the ___.',blank:'lift',opts:['lift','elevator','stairs','floor']},
+          {q:'Can I pay by ___?',blank:'card',opts:['card','credit card','cashless','bank card']},
+          {q:'Full board means all ___ are included.',blank:'meals',opts:['meals','food','drinks','services']}
+        ]
+      },
+      {
+        id:5,title:'Ресторан и кафе',xp:35,
+        theory:`<div class="theory-block">
+<h3>Restaurant & Café — ресторан и кафе</h3>
+<p>Заказ еды — одна из самых частых ситуаций в путешествии.</p>
+<p style="margin-top:10px;font-weight:600">Бронирование и размещение:</p>
+<div class="rule">I'd like to book a table for two, please. — Хочу забронировать столик на двоих.<br>
+Do you have a table available? — Есть ли свободный столик?<br>
+We have a reservation under [name]. — У нас бронь на имя [...].<br>
+Could we sit by the window? — Можем сесть у окна?<br>
+How long is the wait? — Сколько ждать?</div>
+<p style="margin-top:10px;font-weight:600">Заказ:</p>
+<div class="rule">Can I see the menu, please? — Можно меню, пожалуйста?<br>
+Are you ready to order? — Готовы заказать?<br>
+I'll have the [dish], please. — Я возьму [блюдо], пожалуйста.<br>
+What do you recommend? — Что вы рекомендуете?<br>
+What's the dish of the day? — Что сегодня в меню дня?<br>
+Could I have it without onions? — Можно без лука?</div>
+<p style="margin-top:10px;font-weight:600">Счёт и оплата:</p>
+<div class="rule">Could we have the bill, please? — Счёт, пожалуйста.<br>
+Is service included? — Обслуживание включено?<br>
+We'd like to pay separately. — Хотим платить раздельно.<br>
+Keep the change. — Сдачи не нужно.</div>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ a table for four at 7pm.',blank:'book',opts:['book','reserve','make','get']},
+          {q:'Can I see the ___, please?',blank:'menu',opts:['menu','list','card','options']},
+          {q:'What do you ___? I can\'t decide.',blank:'recommend',opts:['recommend','suggest','prefer','advise']},
+          {q:'I\'ll ___ the grilled salmon, please.',blank:'have',opts:['have','take','order','get']},
+          {q:'Could we have the ___, please?',blank:'bill',opts:['bill','check','receipt','total']},
+          {q:'Is ___ charge included?',blank:'service',opts:['service','tip','gratuity','staff']},
+          {q:'We\'d like to pay ___.',blank:'separately',opts:['separately','apart','split','divided']},
+          {q:'Could I have it ___ garlic?',blank:'without',opts:['without','no','minus','not with']},
+          {q:'Are you ___ to order?',blank:'ready',opts:['ready','set','prepared','wanting']},
+          {q:'What\'s the ___ of the day?',blank:'dish',opts:['dish','special','meal','food']},
+          {q:'Could we sit ___ the window?',blank:'by',opts:['by','near','at','next to']},
+          {q:'How long is the ___? We don\'t have a reservation.',blank:'wait',opts:['wait','queue','delay','time']},
+          {q:'Keep the ___.',blank:'change',opts:['change','rest','remaining','difference']},
+          {q:'Is this ___ for vegetarians?',blank:'suitable',opts:['suitable','ok','good','right']},
+          {q:'Could you bring us some water? Still or ___?',blank:'sparkling',opts:['sparkling','fizzy','bubbly','carbonated']},
+          {q:'I\'m ___ to gluten. Do you have gluten-free options?',blank:'allergic',opts:['allergic','intolerant','sensitive','reactive']},
+          {q:'Could I ___ the pasta instead of rice?',blank:'have',opts:['have','swap','exchange','replace']},
+          {q:'The food was ___. Compliments to the chef.',blank:'excellent',opts:['excellent','great','amazing','wonderful']},
+          {q:'Could we get a ___ for one more person?',blank:'chair',opts:['chair','seat','place','table']},
+          {q:'I\'ll ___ a glass of the house white wine.',blank:'have',opts:['have','order','take','get']}
+        ]
+      },
+      {
+        id:6,title:'Общественный транспорт',xp:35,
+        theory:`<div class="theory-block">
+<h3>Public Transport — общественный транспорт</h3>
+<p>Метро, автобус, поезд — базовая лексика для любого путешественника.</p>
+<p style="margin-top:10px;font-weight:600">Метро и автобус:</p>
+<div class="rule">Where is the nearest tube / metro station? — Где ближайшая станция метро?<br>
+Which line goes to [place]? — Какая линия идёт до [места]?<br>
+I need a single / return ticket. — Мне нужен билет в одну сторону / туда-обратно.<br>
+How many stops is it? — Сколько остановок?<br>
+Which platform does it leave from? — С какой платформы отправляется?<br>
+Do I need to change? — Нужно ли делать пересадку?</div>
+<p style="margin-top:10px;font-weight:600">Поезд (train):</p>
+<div class="rule">What time is the next train to [city]? — В какое время следующий поезд до [города]?<br>
+Is this seat taken? — Это место занято?<br>
+I'd like a first / second class ticket. — Хочу билет первого / второго класса.<br>
+The train is running late. — Поезд опаздывает.</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>single</b> — в одну сторону | <b>return</b> — туда-обратно<br>
+<b>platform</b> — платформа | <b>timetable</b> — расписание<br>
+<b>validate</b> — валидировать (билет) | <b>fare</b> — стоимость проезда<br>
+<b>rush hour</b> — час пик | <b>oyster card</b> — транспортная карта (Лондон)</div>
+</div>`,
+        exercises:[
+          {q:'Where is the nearest ___ station?',blank:'tube',opts:['tube','metro','subway','underground']},
+          {q:'I\'d like a ___ ticket to Oxford Street.',blank:'single',opts:['single','one-way','solo','direct']},
+          {q:'Do I need to ___ trains?',blank:'change',opts:['change','transfer','switch','swap']},
+          {q:'Which ___ does it leave from?',blank:'platform',opts:['platform','track','lane','bay']},
+          {q:'How many ___ until the city centre?',blank:'stops',opts:['stops','stations','steps','ways']},
+          {q:'What time is the ___ train to Manchester?',blank:'next',opts:['next','following','upcoming','nearest']},
+          {q:'Is this ___ taken?',blank:'seat',opts:['seat','place','spot','chair']},
+          {q:'Please ___ your ticket before boarding.',blank:'validate',opts:['validate','stamp','scan','punch']},
+          {q:'The ___ shows trains every 10 minutes.',blank:'timetable',opts:['timetable','schedule','board','list']},
+          {q:'The train is running ___.',blank:'late',opts:['late','slow','behind','delayed']},
+          {q:'I need a ___ ticket — I\'m coming back tonight.',blank:'return',opts:['return','round-trip','two-way','back']},
+          {q:'What\'s the ___ to Heathrow by tube?',blank:'fare',opts:['fare','price','cost','fee']},
+          {q:'You need to ___ at King\'s Cross.',blank:'change',opts:['change','transfer','switch','get off']},
+          {q:'Avoid the tube during ___ hour — it\'s packed.',blank:'rush',opts:['rush','peak','busy','crowded']},
+          {q:'This train is ___ to Edinburgh.',blank:'bound',opts:['bound','going','heading','travelling']},
+          {q:'Can I top up my ___ card here?',blank:'Oyster',opts:['Oyster','travel','transport','tube']},
+          {q:'Which ___ should I take for the airport?',blank:'line',opts:['line','route','track','direction']},
+          {q:'The bus ___ is number 42.',blank:'route',opts:['route','number','line','service']},
+          {q:'Please ___ up so others can get on.',blank:'move',opts:['move','step','shift','go']},
+          {q:'Excuse me, does this bus ___ at Victoria?',blank:'stop',opts:['stop','go to','serve','reach']}
+        ]
+      },
+      {
+        id:7,title:'Такси и аренда автомобиля',xp:35,
+        theory:`<div class="theory-block">
+<h3>Taxi & Car Rental — такси и аренда авто</h3>
+<p style="margin-top:10px;font-weight:600">Такси:</p>
+<div class="rule">Could you take me to [address], please? — Отвезите меня по адресу [...].<br>
+How long will it take? — Сколько времени займёт дорога?<br>
+How much will it cost? — Сколько будет стоить?<br>
+Could you put the meter on? — Включите счётчик, пожалуйста.<br>
+Please drop me off here. — Высадите меня здесь.<br>
+Keep the change. — Сдачи не нужно.<br>
+Could you give me a receipt? — Дайте чек, пожалуйста.</div>
+<p style="margin-top:10px;font-weight:600">Аренда автомобиля:</p>
+<div class="rule">I'd like to rent a car for 3 days. — Хочу арендовать машину на 3 дня.<br>
+What's included in the price? — Что включено в цену?<br>
+Is insurance included? — Страховка включена?<br>
+What's the fuel policy? — Какова политика по топливу?<br>
+Is there a mileage limit? — Есть ли ограничение пробега?<br>
+I'd like a manual / automatic. — Хочу механику / автомат.</div>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>excess</b> — франшиза | <b>full coverage</b> — полное КАСКО<br>
+<b>drop-off</b> — возврат авто | <b>pick-up</b> — получение авто</div>
+</div>`,
+        exercises:[
+          {q:'Could you take me to the ___, please?',blank:'airport',opts:['airport','station','centre','hotel']},
+          {q:'How ___ will it take to get there?',blank:'long',opts:['long','much','far','many']},
+          {q:'Please ___ me off at the corner.',blank:'drop',opts:['drop','leave','put','let']},
+          {q:'Could you put the ___ on?',blank:'meter',opts:['meter','clock','counter','timer']},
+          {q:'I\'d like to ___ a car for a week.',blank:'rent',opts:['rent','hire','book','get']},
+          {q:'Is ___ included in the rental price?',blank:'insurance',opts:['insurance','coverage','protection','warranty']},
+          {q:'I\'d prefer an ___ transmission.',blank:'automatic',opts:['automatic','auto','easy','self-driving']},
+          {q:'What\'s the ___ policy — full or empty tank?',blank:'fuel',opts:['fuel','petrol','gas','tank']},
+          {q:'Is there a ___ limit on the kilometres?',blank:'mileage',opts:['mileage','distance','km','driving']},
+          {q:'Could I get a ___? I need it for expenses.',blank:'receipt',opts:['receipt','bill','invoice','ticket']},
+          {q:'How much is the ___? The extra charge if I damage it.',blank:'excess',opts:['excess','deductible','deposit','insurance']},
+          {q:'The driver went the ___ way — I was overcharged.',blank:'wrong',opts:['wrong','long','different','extra']},
+          {q:'I\'d like to ___ the car at a different location.',blank:'drop off',opts:['drop off','return','leave','give back']},
+          {q:'Can I pay by ___ card?',blank:'credit',opts:['credit','bank','debit','payment']},
+          {q:'The ___ GPS isn\'t working. Can you help?',blank:'car',opts:['car','rental','vehicle','navigation']},
+          {q:'What ___ of car do you have available?',blank:'types',opts:['types','models','options','cars']},
+          {q:'Is there a ___ if I return the car early?',blank:'refund',opts:['refund','discount','credit','reduction']},
+          {q:'The car has a ___ — I got a puncture.',blank:'flat tyre',opts:['flat tyre','flat tire','puncture','burst tyre']},
+          {q:'I\'d like ___ coverage — I want to be fully protected.',blank:'full',opts:['full','complete','total','maximum']},
+          {q:'Please ___ the car with a full tank.',blank:'return',opts:['return','bring back','give back','hand back']}
+        ]
+      },
+      {
+        id:8,title:'Ориентация в городе: спрашивать дорогу',xp:30,
+        theory:`<div class="theory-block">
+<h3>Asking for Directions — спрашивать дорогу</h3>
+<p>Умение объяснить и понять дорогу — must-have для любого путешественника.</p>
+<p style="margin-top:10px;font-weight:600">Как спросить:</p>
+<div class="rule">Excuse me, could you help me? — Извините, вы не поможете?<br>
+How do I get to [place]? — Как добраться до [места]?<br>
+Is it far from here? — Это далеко отсюда?<br>
+Can I walk there? — Можно дойти пешком?<br>
+Could you show me on the map? — Покажете на карте?</div>
+<p style="margin-top:10px;font-weight:600">Как объяснить дорогу:</p>
+<div class="rule">Go straight ahead. — Идите прямо.<br>
+Turn left / right at the traffic lights. — Поверните налево / направо на светофоре.<br>
+It's on your left / right. — Это слева / справа от вас.<br>
+Take the second turning on the right. — Второй поворот направо.<br>
+Cross the bridge / road. — Перейдите мост / дорогу.<br>
+It's opposite the church / next to the bank. — Напротив церкви / рядом с банком.<br>
+You can't miss it. — Вы не ошибётесь (не пропустите).</div>
+<p style="margin-top:10px;font-weight:600">Расстояние и время:</p>
+<div class="rule">It's about 5 minutes on foot. — Около 5 минут пешком.<br>
+It's quite far — you should take a bus. — Довольно далеко — лучше автобус.</div>
+</div>`,
+        exercises:[
+          {q:'Excuse me, how do I ___ to the museum?',blank:'get',opts:['get','go','reach','find']},
+          {q:'Go ___ ahead for two blocks.',blank:'straight',opts:['straight','directly','forward','ahead']},
+          {q:'Turn ___ at the traffic lights.',blank:'left',opts:['left','right','around','back']},
+          {q:'It\'s on your ___ — you can\'t miss it.',blank:'right',opts:['right','left','side','hand']},
+          {q:'Is it ___ from here?',blank:'far',opts:['far','distant','away','remote']},
+          {q:'Take the ___ turning on the right.',blank:'second',opts:['second','next','first','third']},
+          {q:'It\'s ___ the post office.',blank:'opposite',opts:['opposite','across','facing','behind']},
+          {q:'Could you ___ me on the map?',blank:'show',opts:['show','point','mark','indicate']},
+          {q:'Cross the ___ and it\'s on your left.',blank:'road',opts:['road','street','bridge','lights']},
+          {q:'It\'s about 10 minutes on ___.',blank:'foot',opts:['foot','walk','feet','legs']},
+          {q:'It\'s quite far — you ___ take the tube.',blank:'should',opts:['should','must','need to','better']},
+          {q:'___ the bridge and you\'ll see it.',blank:'Cross',opts:['Cross','Pass','Go over','Walk over']},
+          {q:'It\'s ___ to the supermarket.',blank:'next',opts:['next','beside','near','close']},
+          {q:'Go ___ this road until you reach the square.',blank:'along',opts:['along','down','through','across']},
+          {q:'You\'re going the ___ way — turn around.',blank:'wrong',opts:['wrong','other','opposite','bad']},
+          {q:'The hotel is ___ the corner from here.',blank:'around',opts:['around','behind','past','near']},
+          {q:'At the ___ lights, turn right.',blank:'traffic',opts:['traffic','red','signal','road']},
+          {q:'You ___ miss it — it\'s very big.',blank:'can\'t',opts:['can\'t','won\'t','don\'t','shouldn\'t']},
+          {q:'Is there a ___ station nearby?',blank:'metro',opts:['metro','tube','underground','subway']},
+          {q:'Head ___ towards the river.',blank:'north',opts:['north','south','east','west']}
+        ]
+      },
+      {
+        id:9,title:'Шопинг и покупки',xp:35,
+        theory:`<div class="theory-block">
+<h3>Shopping — шопинг</h3>
+<p>Покупки — неотъемлемая часть путешествия. Знай нужные фразы.</p>
+<p style="margin-top:10px;font-weight:600">В магазине:</p>
+<div class="rule">Can I help you? — Могу помочь? (продавец)<br>
+I'm just browsing, thanks. — Просто смотрю, спасибо.<br>
+I'm looking for... — Я ищу...<br>
+Do you have this in a bigger / smaller size? — Есть ли это в большем / меньшем размере?<br>
+Do you have this in another colour? — Есть ли это в другом цвете?<br>
+Can I try it on? — Можно примерить?<br>
+Where are the fitting rooms? — Где примерочные?</div>
+<p style="margin-top:10px;font-weight:600">Цена и оплата:</p>
+<div class="rule">How much is this? — Сколько это стоит?<br>
+That's too expensive. — Это слишком дорого.<br>
+Do you have anything cheaper? — Есть ли что-то подешевле?<br>
+Is there a discount? — Есть ли скидка?<br>
+I'll take it. — Возьму это.<br>
+Can I pay by card? — Можно оплатить картой?</div>
+<p style="margin-top:10px;font-weight:600">Возврат:</p>
+<div class="rule">I'd like to return this. — Хочу вернуть это.<br>
+It doesn't fit. — Не подходит по размеру.<br>
+Do you offer refunds? — Делаете возврат денег?</div>
+</div>`,
+        exercises:[
+          {q:'I\'m just ___, thanks — I don\'t need help.',blank:'browsing',opts:['browsing','looking','shopping','viewing']},
+          {q:'Do you have this in a ___ size?',blank:'larger',opts:['larger','bigger','wider','longer']},
+          {q:'Can I ___ it on?',blank:'try',opts:['try','wear','test','fit']},
+          {q:'How ___ is this jacket?',blank:'much',opts:['much','expensive','many','costly']},
+          {q:'That\'s too ___. Is there a discount?',blank:'expensive',opts:['expensive','costly','pricey','dear']},
+          {q:'Where are the ___ rooms?',blank:'fitting',opts:['fitting','changing','dressing','try-on']},
+          {q:'I\'ll ___ it — can you wrap it as a gift?',blank:'take',opts:['take','buy','have','get']},
+          {q:'Do you have this in another ___?',blank:'colour',opts:['colour','shade','style','option']},
+          {q:'Can I pay by ___?',blank:'card',opts:['card','credit card','cash','phone']},
+          {q:'I\'d like to ___ this — it doesn\'t fit.',blank:'return',opts:['return','exchange','refund','give back']},
+          {q:'Do you have anything a bit ___?',blank:'cheaper',opts:['cheaper','less expensive','lower','reduced']},
+          {q:'Is this item on ___?',blank:'sale',opts:['sale','discount','offer','reduction']},
+          {q:'Do you have a ___ card for regular customers?',blank:'loyalty',opts:['loyalty','reward','member','club']},
+          {q:'I\'m looking for a ___ for my friend.',blank:'gift',opts:['gift','souvenir','present','item']},
+          {q:'Does this come with a ___?',blank:'receipt',opts:['receipt','warranty','guarantee','box']},
+          {q:'The zip is ___. I\'d like a refund.',blank:'broken',opts:['broken','faulty','damaged','not working']},
+          {q:'Do you offer ___? I bought this yesterday.',blank:'refunds',opts:['refunds','returns','exchanges','replacements']},
+          {q:'What size is this ___?',blank:'shirt',opts:['shirt','item','piece','product']},
+          {q:'Is VAT ___ in the price?',blank:'included',opts:['included','added','extra','part of']},
+          {q:'Can I get a ___ discount? I\'m buying three.',blank:'bulk',opts:['bulk','volume','multi-buy','quantity']}
+        ]
+      },
+      {
+        id:10,title:'Деньги и обмен валюты',xp:30,
+        theory:`<div class="theory-block">
+<h3>Money & Currency Exchange — деньги и обмен валюты</h3>
+<p style="margin-top:10px;font-weight:600">В обменном пункте / банке:</p>
+<div class="rule">I'd like to exchange [amount] of [currency]. — Хочу обменять [сумму] [валюты].<br>
+What's the exchange rate? — Какой курс обмена?<br>
+Is there a commission? — Есть ли комиссия?<br>
+Could I have small notes, please? — Можно купюрами помельче?<br>
+Could I have some coins as well? — Можно также немного монет?</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>exchange rate</b> — курс обмена<br>
+<b>commission / fee</b> — комиссия<br>
+<b>bureau de change</b> — обменный пункт<br>
+<b>ATM / cashpoint</b> — банкомат<br>
+<b>withdraw</b> — снять (деньги) | <b>deposit</b> — положить<br>
+<b>foreign transaction fee</b> — комиссия за иностранные операции<br>
+<b>contactless</b> — бесконтактная оплата | <b>PIN</b> — пин-код</div>
+<p style="margin-top:10px;font-weight:600">Проблемы:</p>
+<div class="rule">My card isn't working. — Моя карта не работает.<br>
+The ATM swallowed my card. — Банкомат забрал мою карту.<br>
+I've been charged twice. — С меня списали дважды.<br>
+I need to dispute this charge. — Нужно оспорить этот платёж.</div>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ some euros into pounds.',blank:'exchange',opts:['exchange','convert','change','swap']},
+          {q:'What\'s the ___ rate today?',blank:'exchange',opts:['exchange','conversion','currency','money']},
+          {q:'Is there a ___ for this transaction?',blank:'commission',opts:['commission','fee','charge','cost']},
+          {q:'Could I have ___ notes? I need change.',blank:'small',opts:['small','smaller','lower','little']},
+          {q:'Where is the nearest ___?',blank:'ATM',opts:['ATM','cashpoint','cash machine','bank machine']},
+          {q:'My card was ___ by the ATM.',blank:'swallowed',opts:['swallowed','taken','eaten','kept']},
+          {q:'I need to ___ cash from the ATM.',blank:'withdraw',opts:['withdraw','take','get','pull']},
+          {q:'The payment failed — I think my card was ___.',blank:'declined',opts:['declined','rejected','refused','blocked']},
+          {q:'Does this shop accept ___? I don\'t have cash.',blank:'cards',opts:['cards','credit cards','payment cards','contactless']},
+          {q:'I was ___ twice for the same item.',blank:'charged',opts:['charged','billed','debited','taken']},
+          {q:'What\'s the ___ de change near here?',blank:'bureau',opts:['bureau','office','exchange','currency']},
+          {q:'The exchange rate is ___ — I\'ll wait.',blank:'bad',opts:['bad','poor','low','unfavourable']},
+          {q:'Could I have some ___ coins for the bus?',blank:'change',opts:['change','coins','small','loose']},
+          {q:'I need to ___ this charge — I didn\'t make it.',blank:'dispute',opts:['dispute','contest','report','question']},
+          {q:'Does your card have a ___ transaction fee abroad?',blank:'foreign',opts:['foreign','overseas','international','abroad']},
+          {q:'I\'d like to ___ $500 into my account.',blank:'deposit',opts:['deposit','put','add','place']},
+          {q:'Can I pay ___? I just tap my card.',blank:'contactless',opts:['contactless','touchless','wireless','tap']},
+          {q:'I forgot my ___. I can\'t use the ATM.',blank:'PIN',opts:['PIN','code','password','number']},
+          {q:'The exchange office charges no ___ — good deal.',blank:'commission',opts:['commission','fee','extra','hidden costs']},
+          {q:'I need to call my bank — my card was ___.',blank:'blocked',opts:['blocked','frozen','cancelled','stopped']}
+        ]
+      },
+      {
+        id:11,title:'Достопримечательности и экскурсии',xp:35,
+        theory:`<div class="theory-block">
+<h3>Sightseeing & Tours — достопримечательности</h3>
+<p style="margin-top:10px;font-weight:600">Билеты и информация:</p>
+<div class="rule">Two adults, please. — Два билета для взрослых, пожалуйста.<br>
+Is there a student / senior discount? — Есть ли скидка для студентов / пенсионеров?<br>
+What time does it open / close? — Во сколько открывается / закрывается?<br>
+How long does the tour take? — Сколько длится экскурсия?<br>
+Is photography allowed? — Разрешена ли фотосъёмка?<br>
+Do I need to book in advance? — Нужно ли бронировать заранее?</div>
+<p style="margin-top:10px;font-weight:600">На экскурсии:</p>
+<div class="rule">Could you take a photo of us? — Не могли бы вы нас сфотографировать?<br>
+Could you repeat that? I didn't catch it. — Повторите, пожалуйста? Не расслышал.<br>
+What is this building? — Что это за здание?<br>
+When was it built? — Когда оно было построено?<br>
+Is this included in the price? — Это включено в цену?</div>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>guided tour</b> — экскурсия с гидом<br>
+<b>audio guide</b> — аудиогид | <b>exhibition</b> — выставка<br>
+<b>landmark</b> — достопримечательность<br>
+<b>heritage site</b> — объект культурного наследия<br>
+<b>admission / entry fee</b> — входная плата</div>
+</div>`,
+        exercises:[
+          {q:'Two ___, please — one child and one adult.',blank:'tickets',opts:['tickets','entries','admissions','passes']},
+          {q:'Is there a ___ discount for students?',blank:'price',opts:['price','ticket','entry','admission']},
+          {q:'What time does the museum ___?',blank:'open',opts:['open','start','begin','unlock']},
+          {q:'How ___ does the guided tour take?',blank:'long',opts:['long','much time','many hours','far']},
+          {q:'Is ___ allowed inside?',blank:'photography',opts:['photography','photos','pictures','filming']},
+          {q:'Could you ___ a photo of us?',blank:'take',opts:['take','make','shoot','snap']},
+          {q:'Do I need to book ___?',blank:'in advance',opts:['in advance','early','before','ahead']},
+          {q:'The ___ guide tells you about each exhibit.',blank:'audio',opts:['audio','sound','recorded','digital']},
+          {q:'When was this ___ built?',blank:'building',opts:['building','structure','monument','castle']},
+          {q:'Is this ___ in the tour price?',blank:'included',opts:['included','covered','part','free']},
+          {q:'The Eiffel Tower is a famous ___.',blank:'landmark',opts:['landmark','monument','tourist spot','attraction']},
+          {q:'The entry ___ is €15 per adult.',blank:'fee',opts:['fee','price','cost','ticket']},
+          {q:'This is a UNESCO World ___ site.',blank:'Heritage',opts:['Heritage','Cultural','Historic','Protected']},
+          {q:'The exhibition ___ until the end of June.',blank:'runs',opts:['runs','lasts','goes','continues']},
+          {q:'Could you repeat that? I didn\'t ___ it.',blank:'catch',opts:['catch','hear','understand','get']},
+          {q:'Children under 12 get in for ___.',blank:'free',opts:['free','nothing','no charge','zero']},
+          {q:'The tour starts at the ___ entrance.',blank:'main',opts:['main','front','primary','central']},
+          {q:'We need to ___ tickets online — it\'s sold out otherwise.',blank:'book',opts:['book','buy','reserve','get']},
+          {q:'The gallery is ___ on Mondays.',blank:'closed',opts:['closed','shut','not open','unavailable']},
+          {q:'The ___ takes about two hours on foot.',blank:'tour',opts:['tour','walk','route','visit']}
+        ]
+      },
+      {
+        id:12,title:'Диета и аллергии',xp:30,
+        theory:`<div class="theory-block">
+<h3>Dietary Needs & Allergies — диетические предпочтения</h3>
+<p>Важно уметь сообщить о своих диетических ограничениях. Это вопрос здоровья.</p>
+<p style="margin-top:10px;font-weight:600">Типы диет:</p>
+<div class="rule"><b>vegetarian</b> — вегетарианец (нет мяса)<br>
+<b>vegan</b> — веган (нет мяса, молока, яиц)<br>
+<b>pescatarian</b> — ест рыбу, но не мясо<br>
+<b>gluten-free</b> — без глютена<br>
+<b>lactose-free / dairy-free</b> — без лактозы / молочного<br>
+<b>nut-free</b> — без орехов<br>
+<b>halal / kosher</b> — халяль / кошерное</div>
+<p style="margin-top:10px;font-weight:600">Как сообщить об аллергии:</p>
+<div class="rule">I'm allergic to nuts / shellfish / gluten. — У меня аллергия на орехи / морепродукты / глютен.<br>
+Does this contain...? — Содержит ли это...?<br>
+I can't eat... — Я не могу есть...<br>
+Is it made with...? — Приготовлено ли это с...?<br>
+I have a severe allergy — it's very important. — У меня серьёзная аллергия — это очень важно.<br>
+Could you check with the chef? — Могли бы вы уточнить у повара?</div>
+<p style="margin-top:10px;font-weight:600">Метки в меню:</p>
+<div class="rule"><b>V</b> — vegetarian | <b>VE</b> — vegan | <b>GF</b> — gluten-free<br>
+<b>contains nuts</b> — содержит орехи | <b>may contain traces of...</b> — может содержать следы...</div>
+</div>`,
+        exercises:[
+          {q:'I\'m ___ to peanuts — it\'s very serious.',blank:'allergic',opts:['allergic','intolerant','sensitive','reactive']},
+          {q:'Does this dish ___ any dairy?',blank:'contain',opts:['contain','have','include','use']},
+          {q:'I\'m ___ — I don\'t eat any meat or fish.',blank:'vegan',opts:['vegan','vegetarian','pescatarian','plant-based']},
+          {q:'Do you have a ___ option? I can\'t eat gluten.',blank:'gluten-free',opts:['gluten-free','wheat-free','GF','special']},
+          {q:'Could you ___ with the chef about the ingredients?',blank:'check',opts:['check','ask','confirm','verify']},
+          {q:'I\'m lactose ___ — no milk products please.',blank:'intolerant',opts:['intolerant','allergic','sensitive','reactive']},
+          {q:'Is this ___ food? I follow halal.',blank:'halal',opts:['halal','certified','religious','approved']},
+          {q:'The dish may ___ traces of nuts.',blank:'contain',opts:['contain','have','include','trace']},
+          {q:'I\'m a ___. I eat fish but no meat.',blank:'pescatarian',opts:['pescatarian','vegetarian','flexitarian','fish-eater']},
+          {q:'Could you make it ___ nuts?',blank:'without',opts:['without','no','nut-free','minus']},
+          {q:'Is this ___ suitable? I\'m vegan.',blank:'dish',opts:['dish','option','meal','food']},
+          {q:'I have a ___ allergy — I carry an EpiPen.',blank:'severe',opts:['severe','serious','dangerous','life-threatening']},
+          {q:'Does this have any hidden ___?',blank:'allergens',opts:['allergens','ingredients','additives','chemicals']},
+          {q:'I\'m trying to ___ gluten — do you have alternatives?',blank:'avoid',opts:['avoid','not eat','cut out','reduce']},
+          {q:'Could you leave out the ___? I\'m allergic.',blank:'shellfish',opts:['shellfish','prawns','shrimp','seafood']},
+          {q:'I eat everything ___ pork.',blank:'except',opts:['except','but','apart from','excluding']},
+          {q:'Is it ___ in butter? I\'m dairy-free.',blank:'cooked',opts:['cooked','made','fried','prepared']},
+          {q:'Do you have a ___ menu for dietary requirements?',blank:'special',opts:['special','dietary','allergy','restricted']},
+          {q:'The label says it ___ contain soy.',blank:'may',opts:['may','might','could','can']},
+          {q:'I\'d like to know the ___ in this dish.',blank:'ingredients',opts:['ingredients','contents','components','recipe']}
+        ]
+      },
+      {
+        id:13,title:'Медицина: врач и аптека',xp:40,
+        theory:`<div class="theory-block">
+<h3>Medical English: Doctor & Pharmacy — медицина</h3>
+<p>Умение описать симптомы и понять врача — важнейший travel-навык.</p>
+<p style="margin-top:10px;font-weight:600">У врача:</p>
+<div class="rule">I'm not feeling well. — Я плохо себя чувствую.<br>
+I have a headache / stomachache / fever. — У меня болит голова / живот / температура.<br>
+I've been feeling like this for two days. — Чувствую себя так уже два дня.<br>
+I think I have food poisoning. — Думаю, у меня отравление.<br>
+I'm allergic to penicillin. — У меня аллергия на пенициллин.<br>
+Could you prescribe something? — Можете выписать что-нибудь?</div>
+<p style="margin-top:10px;font-weight:600">Ключевые симптомы:</p>
+<div class="rule"><b>headache</b> — головная боль | <b>fever</b> — температура<br>
+<b>sore throat</b> — больное горло | <b>rash</b> — сыпь<br>
+<b>nausea</b> — тошнота | <b>vomiting</b> — рвота<br>
+<b>diarrhoea</b> — диарея | <b>dizziness</b> — головокружение<br>
+<b>swelling</b> — отёк | <b>sprain</b> — растяжение</div>
+<p style="margin-top:10px;font-weight:600">В аптеке:</p>
+<div class="rule">Could I have something for a cold? — Что-нибудь от простуды?<br>
+I need pain relief / antacid. — Нужно обезболивающее / антацид.<br>
+How often should I take it? — Как часто принимать?<br>
+Are there any side effects? — Есть ли побочные эффекты?</div>
+</div>`,
+        exercises:[
+          {q:'I\'m not ___ well. I need to see a doctor.',blank:'feeling',opts:['feeling','doing','being','looking']},
+          {q:'I have a ___. My temperature is 39°.',blank:'fever',opts:['fever','temperature','heat','warmth']},
+          {q:'My ___ throat makes it hard to swallow.',blank:'sore',opts:['sore','painful','hurting','aching']},
+          {q:'I\'ve been feeling sick for ___ days.',blank:'three',opts:['three','a few','two','several']},
+          {q:'I think I have food ___.',blank:'poisoning',opts:['poisoning','allergy','infection','sickness']},
+          {q:'Could you ___ something for the pain?',blank:'prescribe',opts:['prescribe','give','write','suggest']},
+          {q:'I have ___ and feel like vomiting.',blank:'nausea',opts:['nausea','sickness','dizziness','weakness']},
+          {q:'I ___ my ankle — it\'s swollen.',blank:'sprained',opts:['sprained','twisted','hurt','injured']},
+          {q:'I\'m ___ to aspirin. Can you suggest an alternative?',blank:'allergic',opts:['allergic','intolerant','sensitive','reactive']},
+          {q:'How ___ should I take this medicine?',blank:'often',opts:['often','much','many','frequently']},
+          {q:'Could I have something for a ___?',blank:'headache',opts:['headache','head pain','migraine','head']},
+          {q:'The doctor ___ me antibiotics.',blank:'prescribed',opts:['prescribed','gave','recommended','suggested']},
+          {q:'I have a ___ — red spots on my arm.',blank:'rash',opts:['rash','redness','spots','marks']},
+          {q:'I feel ___. The room is spinning.',blank:'dizzy',opts:['dizzy','faint','unsteady','wobbly']},
+          {q:'Are there any ___ effects with this medication?',blank:'side',opts:['side','adverse','secondary','negative']},
+          {q:'Take one tablet ___ with food.',blank:'daily',opts:['daily','a day','each day','per day']},
+          {q:'Do I need a ___ for this medicine?',blank:'prescription',opts:['prescription','receipt','form','doctor\'s note']},
+          {q:'I have ___ — I need to use the bathroom urgently.',blank:'diarrhoea',opts:['diarrhoea','stomach problems','food poisoning','cramps']},
+          {q:'My knee is ___ — I can\'t walk properly.',blank:'swollen',opts:['swollen','puffy','enlarged','inflamed']},
+          {q:'Is this medication available ___ the counter?',blank:'over',opts:['over','without','from','at']}
+        ]
+      },
+      {
+        id:14,title:'Экстренные ситуации',xp:40,
+        theory:`<div class="theory-block">
+<h3>Emergencies — экстренные ситуации</h3>
+<p>В чрезвычайной ситуации нужно говорить чётко и быстро. Знай ключевые фразы.</p>
+<p style="margin-top:10px;font-weight:600">Звонок в экстренные службы:</p>
+<div class="rule">Help! / Emergency! — Помогите! / Экстренная ситуация!<br>
+Please call an ambulance / the police / the fire brigade. — Вызовите скорую / полицию / пожарных.<br>
+There's been an accident. — Произошла авария.<br>
+Someone is injured. — Кто-то получил травму.<br>
+The address is... — Адрес...<br>
+Please hurry! — Пожалуйста, поторопитесь!</div>
+<p style="margin-top:10px;font-weight:600">Кража и потеря:</p>
+<div class="rule">I've been robbed / mugged. — Меня ограбили.<br>
+My wallet / passport has been stolen. — У меня украли кошелёк / паспорт.<br>
+I need to report a theft. — Нужно сообщить о краже.<br>
+I've lost my bag. — Я потерял сумку.<br>
+I need a police report for my insurance. — Нужен полицейский протокол для страховки.</div>
+<p style="margin-top:10px;font-weight:600">Экстренные контакты:</p>
+<div class="rule"><b>999</b> (UK) / <b>112</b> (EU) / <b>911</b> (USA) — номера экстренных служб<br>
+<b>embassy</b> — посольство | <b>consulate</b> — консульство</div>
+</div>`,
+        exercises:[
+          {q:'Please call an ___! Someone has been hurt.',blank:'ambulance',opts:['ambulance','doctor','paramedic','hospital']},
+          {q:'There\'s been an ___. A car has hit a pedestrian.',blank:'accident',opts:['accident','incident','crash','collision']},
+          {q:'I\'ve been ___. Someone took my bag.',blank:'robbed',opts:['robbed','stolen','mugged','attacked']},
+          {q:'My ___ has been stolen — I can\'t leave the country.',blank:'passport',opts:['passport','document','ID','visa']},
+          {q:'I need to ___ a theft to the police.',blank:'report',opts:['report','file','make','register']},
+          {q:'Please ___! It\'s urgent.',blank:'hurry',opts:['hurry','rush','come','go']},
+          {q:'I need a police ___ for my travel insurance.',blank:'report',opts:['report','document','letter','certificate']},
+          {q:'Someone is ___. Send help immediately.',blank:'injured',opts:['injured','hurt','wounded','unconscious']},
+          {q:'The emergency ___ in Europe is 112.',blank:'number',opts:['number','line','service','contact']},
+          {q:'I\'ve ___ my bag — I think it was stolen.',blank:'lost',opts:['lost','misplaced','had stolen','lost track of']},
+          {q:'There\'s a ___ in my room. Call the fire brigade!',blank:'fire',opts:['fire','smoke','flames','blaze']},
+          {q:'I need to contact my country\'s ___.',blank:'embassy',opts:['embassy','consulate','government','office']},
+          {q:'Please call the ___ — there\'s a fight outside.',blank:'police',opts:['police','cops','security','officers']},
+          {q:'I was ___ at knifepoint.',blank:'mugged',opts:['mugged','robbed','attacked','threatened']},
+          {q:'The address is 25 Baker Street. Please ___!',blank:'hurry',opts:['hurry','come','respond','rush']},
+          {q:'I need to ___ my lost card immediately.',blank:'cancel',opts:['cancel','block','stop','freeze']},
+          {q:'My travel insurance ___ medical emergencies.',blank:'covers',opts:['covers','includes','pays for','handles']},
+          {q:'There\'s been a ___. I need the police.',blank:'theft',opts:['theft','robbery','stealing','burglary']},
+          {q:'I was ___ on the street — they took my phone.',blank:'mugged',opts:['mugged','pickpocketed','robbed','attacked']},
+          {q:'Please send help to this ___.',blank:'location',opts:['location','address','place','spot']}
+        ]
+      },
+      {
+        id:15,title:'Бронирование онлайн и туры',xp:35,
+        theory:`<div class="theory-block">
+<h3>Online Booking & Tours — онлайн-бронирование</h3>
+<p>Большинство путешественников бронируют всё онлайн — на английском.</p>
+<p style="margin-top:10px;font-weight:600">Бронирование отеля:</p>
+<div class="rule">I'd like to book a room for [dates]. — Хочу забронировать номер на [даты].<br>
+What are the cancellation terms? — Каковы условия отмены?<br>
+Is it refundable? — Возврат возможен?<br>
+What's included in the price? — Что включено в цену?<br>
+Is there free Wi-Fi? — Есть ли бесплатный Wi-Fi?</div>
+<p style="margin-top:10px;font-weight:600">Покупка билетов:</p>
+<div class="rule">I'd like two economy class tickets. — Два билета эконом-класс.<br>
+Are there any direct flights? — Есть ли прямые рейсы?<br>
+How many stopovers are there? — Сколько пересадок?<br>
+Is the baggage allowance included? — Норма провоза багажа включена?</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>non-refundable</b> — невозвратный<br>
+<b>flexible booking</b> — гибкое бронирование<br>
+<b>stopover / layover</b> — пересадка<br>
+<b>baggage allowance</b> — норма провоза багажа<br>
+<b>confirmation number</b> — номер подтверждения</div>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ a hotel room for three nights.',blank:'book',opts:['book','reserve','rent','order']},
+          {q:'What are the ___ terms? Can I cancel for free?',blank:'cancellation',opts:['cancellation','refund','booking','change']},
+          {q:'Is the rate ___? I might need to cancel.',blank:'refundable',opts:['refundable','flexible','cancellable','returnable']},
+          {q:'Are there any ___ flights or do I need to connect?',blank:'direct',opts:['direct','non-stop','straight','through']},
+          {q:'How many ___ does the flight have?',blank:'stopovers',opts:['stopovers','connections','stops','layovers']},
+          {q:'Is ___ included or do I pay extra?',blank:'baggage',opts:['baggage','luggage','bags','suitcase']},
+          {q:'My ___ number is ABC123.',blank:'confirmation',opts:['confirmation','booking','reference','reservation']},
+          {q:'I\'d like to ___ my booking.',blank:'modify',opts:['modify','change','update','edit']},
+          {q:'The rate is ___ — no changes or cancellations.',blank:'non-refundable',opts:['non-refundable','fixed','locked','strict']},
+          {q:'Is there free ___ in the room?',blank:'Wi-Fi',opts:['Wi-Fi','internet','broadband','wireless']},
+          {q:'We have a 4-hour ___ in Dubai.',blank:'layover',opts:['layover','stopover','connection','wait']},
+          {q:'I need to ___ my flight to the next day.',blank:'change',opts:['change','move','reschedule','postpone']},
+          {q:'The hotel has a ___ cancellation policy — free up to 24h.',blank:'flexible',opts:['flexible','free','open','easy']},
+          {q:'Two ___ class tickets to New York, please.',blank:'economy',opts:['economy','coach','standard','budget']},
+          {q:'What\'s the ___ allowance for hold luggage?',blank:'baggage',opts:['baggage','weight','luggage','bag']},
+          {q:'I\'d like to ___ to business class.',blank:'upgrade',opts:['upgrade','move','switch','change']},
+          {q:'Can I add an extra ___ to my booking?',blank:'bag',opts:['bag','luggage','suitcase','baggage']},
+          {q:'The tour is ___ — no refunds after booking.',blank:'non-refundable',opts:['non-refundable','final','fixed','non-cancellable']},
+          {q:'Please enter your ___ details to complete the booking.',blank:'payment',opts:['payment','card','billing','credit']},
+          {q:'I\'ll receive a ___ email with all details.',blank:'confirmation',opts:['confirmation','booking','receipt','summary']}
+        ]
+      },
+      {
+        id:16,title:'Погода и природа',xp:30,
+        theory:`<div class="theory-block">
+<h3>Weather & Nature — погода и природа</h3>
+<p>Погода — одна из самых частых тем в small talk. Знание природной лексики украсит любой рассказ о путешествии.</p>
+<p style="margin-top:10px;font-weight:600">Описание погоды:</p>
+<div class="rule"><b>sunny / cloudy / foggy / windy / rainy / snowy</b><br>
+<b>humid</b> — влажный | <b>freezing</b> — морозный | <b>boiling</b> — знойный<br>
+It's pouring. — Льёт как из ведра.<br>
+There's a heatwave. — Аномальная жара.<br>
+A storm is coming. — Приближается шторм.<br>
+The forecast says it'll clear up. — По прогнозу прояснится.</div>
+<p style="margin-top:10px;font-weight:600">Природные объекты:</p>
+<div class="rule"><b>mountain</b> — гора | <b>valley</b> — долина | <b>cliff</b> — скала<br>
+<b>waterfall</b> — водопад | <b>lake</b> — озеро | <b>bay</b> — залив<br>
+<b>forest</b> — лес | <b>desert</b> — пустыня | <b>glacier</b> — ледник</div>
+<p style="margin-top:10px;font-weight:600">Активный отдых:</p>
+<div class="rule">We went hiking in the mountains. — Мы ходили в поход в горах.<br>
+The view from the top was breathtaking. — Вид сверху захватывал дух.<br>
+We saw dolphins near the shore. — Видели дельфинов у берега.</div>
+</div>`,
+        exercises:[
+          {q:'It\'s ___ — I can\'t see anything in the fog.',blank:'foggy',opts:['foggy','misty','cloudy','grey']},
+          {q:'It\'s ___ outside! I need sunscreen.',blank:'boiling',opts:['boiling','hot','sunny','warm']},
+          {q:'A ___ is forecast for the weekend.',blank:'storm',opts:['storm','hurricane','rain','thunder']},
+          {q:'The ___ says it will rain tomorrow.',blank:'forecast',opts:['forecast','weather','report','prediction']},
+          {q:'We went ___ in the Alps — amazing views.',blank:'hiking',opts:['hiking','walking','trekking','climbing']},
+          {q:'The view from the top was ___.',blank:'breathtaking',opts:['breathtaking','stunning','amazing','incredible']},
+          {q:'The waterfall ___ into the valley below.',blank:'drops',opts:['drops','falls','flows','plunges']},
+          {q:'It\'s ___ outside — I need my winter coat.',blank:'freezing',opts:['freezing','cold','icy','chilly']},
+          {q:'There\'s a ___ — temperatures are over 40°C.',blank:'heatwave',opts:['heatwave','heat spell','hot spell','warm front']},
+          {q:'The city is built on the ___ of the bay.',blank:'shore',opts:['shore','edge','bank','coast']},
+          {q:'It\'s ___ outside — bring an umbrella.',blank:'pouring',opts:['pouring','raining heavily','bucketing','stormy']},
+          {q:'The ___ is surrounded by dense jungle.',blank:'waterfall',opts:['waterfall','lake','river','stream']},
+          {q:'The ___ air made breathing difficult at altitude.',blank:'thin',opts:['thin','rare','light','cold']},
+          {q:'We saw a ___ from the boat trip.',blank:'whale',opts:['whale','dolphin','shark','fish']},
+          {q:'The sky is ___ — it\'ll clear up this afternoon.',blank:'overcast',opts:['overcast','cloudy','grey','dark']},
+          {q:'The ___ was covered in snow year-round.',blank:'glacier',opts:['glacier','mountain','valley','peak']},
+          {q:'The ___ through the forest was marked in red.',blank:'trail',opts:['trail','path','route','track']},
+          {q:'It\'s very ___ — my hair goes curly in this weather.',blank:'humid',opts:['humid','wet','damp','sticky']},
+          {q:'The ___ stretched endlessly into the distance.',blank:'desert',opts:['desert','plain','savanna','landscape']},
+          {q:'The sunset over the ___ was unforgettable.',blank:'ocean',opts:['ocean','sea','water','horizon']}
+        ]
+      },
+      {
+        id:17,title:'Развлечения и ночная жизнь',xp:35,
+        theory:`<div class="theory-block">
+<h3>Entertainment & Nightlife — развлечения</h3>
+<p style="margin-top:10px;font-weight:600">Виды развлечений:</p>
+<div class="rule"><b>cinema / movie theatre</b> — кино<br>
+<b>theatre / musical</b> — театр / мюзикл<br>
+<b>live music / gig / concert</b> — живая музыка / концерт<br>
+<b>nightclub / bar / pub</b> — ночной клуб / бар / паб<br>
+<b>comedy club / stand-up</b> — клуб стендапа<br>
+<b>casino</b> — казино | <b>escape room</b> — квест-комната</div>
+<p style="margin-top:10px;font-weight:600">Фразы:</p>
+<div class="rule">What's on tonight? — Что идёт сегодня вечером?<br>
+Could I book two tickets for the show? — Можно два билета на шоу?<br>
+Is it sold out? — Всё распродано?<br>
+What's the dress code? — Каков дресс-код?<br>
+What time does it start / finish? — Во сколько начинается / заканчивается?<br>
+Is there a cover charge? — Есть ли плата за вход?<br>
+Table for two, by the stage. — Столик на двоих, у сцены.</div>
+<p style="margin-top:10px;font-weight:600">В баре:</p>
+<div class="rule">What's on tap? — Что есть разливного?<br>
+I'll have a pint of lager. — Пинту лагера, пожалуйста.<br>
+Could I see your ID? — Могу увидеть ваш документ?<br>
+It's my round. — Моя очередь угощать.</div>
+</div>`,
+        exercises:[
+          {q:'What\'s ___ at the theatre this week?',blank:'on',opts:['on','playing','showing','running']},
+          {q:'Is the concert ___? Can I still get tickets?',blank:'sold out',opts:['sold out','full','finished','closed']},
+          {q:'Is there a ___ charge to enter the club?',blank:'cover',opts:['cover','entry','door','admission']},
+          {q:'What\'s the ___ code? Smart casual or formal?',blank:'dress',opts:['dress','clothing','wear','outfit']},
+          {q:'I\'ll have a ___ of lager, please.',blank:'pint',opts:['pint','glass','bottle','mug']},
+          {q:'What\'s on ___ tonight?',blank:'tap',opts:['tap','draught','draft','the bar']},
+          {q:'What time does the ___ start?',blank:'show',opts:['show','performance','concert','event']},
+          {q:'Could I ___ two tickets for Saturday night?',blank:'book',opts:['book','buy','reserve','get']},
+          {q:'It\'s my ___. What are you having?',blank:'round',opts:['round','turn','go','treat']},
+          {q:'Could I ___ your ID? You look under 18.',blank:'see',opts:['see','check','have','look at']},
+          {q:'We\'d like a ___ near the stage, please.',blank:'table',opts:['table','seat','spot','place']},
+          {q:'The band ___ live every Friday night.',blank:'plays',opts:['plays','performs','gigs','appears']},
+          {q:'Can we get in without a ___?',blank:'reservation',opts:['reservation','booking','ticket','queue']},
+          {q:'The nightclub has a strict ___ policy.',blank:'dress',opts:['dress','door','entry','membership']},
+          {q:'The ___ was hilarious — I laughed the whole time.',blank:'stand-up',opts:['stand-up','comedy','show','performer']},
+          {q:'We watched a West End ___ — amazing singing.',blank:'musical',opts:['musical','show','play','performance']},
+          {q:'The DJ ___ until 4am.',blank:'played',opts:['played','went','performed','mixed']},
+          {q:'The bar is ___. We can\'t get in.',blank:'full',opts:['full','packed','at capacity','sold out']},
+          {q:'Last ___ for drinks — the bar closes at midnight.',blank:'orders',opts:['orders','call','chance','round']},
+          {q:'We stayed ___ late — the music was incredible.',blank:'up',opts:['up','out','on','awake']}
+        ]
+      },
+      {
+        id:18,title:'Общение с местными',xp:30,
+        theory:`<div class="theory-block">
+<h3>Talking to Locals — общение с местными</h3>
+<p>Умение начать разговор с местным жителем делает путешествие богаче.</p>
+<p style="margin-top:10px;font-weight:600">Начало разговора:</p>
+<div class="rule">Excuse me, do you have a moment? — Извините, у вас есть минута?<br>
+This is my first time in [city]. — Я первый раз в [городе].<br>
+I'm visiting from [country]. — Я приехал из [страны].<br>
+What do locals recommend? — Что рекомендуют местные жители?<br>
+Is this the best time of year to visit? — Это лучшее время для визита?</div>
+<p style="margin-top:10px;font-weight:600">Рекомендации:</p>
+<div class="rule">What's your favourite restaurant here? — Какой у вас любимый ресторан?<br>
+Where do locals go to eat? — Куда ходят есть местные?<br>
+Is there anywhere to avoid? — Есть ли места, которых стоит избегать?<br>
+What's worth seeing that tourists miss? — Что стоит посмотреть из того, что туристы пропускают?</div>
+<p style="margin-top:10px;font-weight:600">Культурные различия:</p>
+<div class="rule">Is it customary to tip here? — Здесь принято давать чаевые?<br>
+Are there any customs I should know about? — Есть ли обычаи, о которых стоит знать?<br>
+I don't want to be rude. — Не хочу показаться грубым.</div>
+</div>`,
+        exercises:[
+          {q:'This is my ___ time visiting your city.',blank:'first',opts:['first','initial','debut','early']},
+          {q:'What do ___ recommend for dinner?',blank:'locals',opts:['locals','people','residents','natives']},
+          {q:'Is it ___ to tip in restaurants here?',blank:'customary',opts:['customary','normal','usual','expected']},
+          {q:'Where do ___ go to avoid tourists?',blank:'locals',opts:['locals','people','residents','citizens']},
+          {q:'What\'s ___ seeing that tourists often miss?',blank:'worth',opts:['worth','good','best','recommended']},
+          {q:'I\'m ___ from Russia — it\'s my first time in London.',blank:'visiting',opts:['visiting','coming','travelling','here']},
+          {q:'Are there any ___ I should know about?',blank:'customs',opts:['customs','traditions','rules','etiquette']},
+          {q:'I don\'t want to ___ rude — is this normal here?',blank:'seem',opts:['seem','appear','be','come across as']},
+          {q:'Is there any area I should ___?',blank:'avoid',opts:['avoid','skip','miss','not go to']},
+          {q:'What\'s the ___ dish here?',blank:'local',opts:['local','traditional','typical','regional']},
+          {q:'Could you ___ a good place for live music?',blank:'recommend',opts:['recommend','suggest','advise','point out']},
+          {q:'Is the market ___ visiting?',blank:'worth',opts:['worth','good for','worth a','suitable for']},
+          {q:'Excuse me — do you have a ___? I have a quick question.',blank:'moment',opts:['moment','minute','second','time']},
+          {q:'What\'s the best time of year to ___?',blank:'visit',opts:['visit','come','travel','be here']},
+          {q:'Is this area ___ safe at night?',blank:'generally',opts:['generally','usually','typically','mostly']},
+          {q:'I\'m looking for something off the ___ track.',blank:'beaten',opts:['beaten','tourist','main','regular']},
+          {q:'What should I ___ before leaving the country?',blank:'try',opts:['try','eat','experience','do']},
+          {q:'Are there any ___ festivals this week?',blank:'local',opts:['local','traditional','cultural','annual']},
+          {q:'The people here are so ___.',blank:'friendly',opts:['friendly','welcoming','kind','warm']},
+          {q:'I\'d love to ___ the language. Any tips?',blank:'learn',opts:['learn','pick up','practise','study']}
+        ]
+      },
+      {
+        id:19,title:'Жалобы и проблемы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Complaints & Problems — жалобы и проблемы</h3>
+<p>Уметь вежливо, но твёрдо решить проблему — ключевой навык путешественника.</p>
+<p style="margin-top:10px;font-weight:600">Формулировка жалобы:</p>
+<div class="rule">I'm afraid there's a problem with... — Боюсь, есть проблема с...<br>
+I'm not happy with... — Я недоволен...<br>
+This isn't what I ordered / booked. — Это не то, что я заказал / забронировал.<br>
+The room is not as described. — Номер не соответствует описанию.<br>
+I've been waiting for over an hour. — Я жду уже больше часа.</div>
+<p style="margin-top:10px;font-weight:600">Требование решения:</p>
+<div class="rule">I'd like a refund. — Хочу возврат средств.<br>
+Could you upgrade us? — Можете сделать апгрейд?<br>
+I'd like to speak to the manager. — Хочу поговорить с менеджером.<br>
+Could you resolve this as soon as possible? — Решите это как можно скорее?<br>
+I'd like a written apology. — Хочу письменные извинения.</div>
+<p style="margin-top:10px;font-weight:600">Когда проблема решается:</p>
+<div class="rule">Thank you for sorting this out. — Спасибо за решение вопроса.<br>
+I appreciate your help. — Ценю вашу помощь.<br>
+That's acceptable, thank you. — Это приемлемо, спасибо.</div>
+</div>`,
+        exercises:[
+          {q:'I\'m afraid there\'s a ___ with my room.',blank:'problem',opts:['problem','issue','mistake','error']},
+          {q:'This isn\'t what I ___. I ordered the pasta.',blank:'ordered',opts:['ordered','asked for','requested','wanted']},
+          {q:'I\'m not ___ with the service.',blank:'happy',opts:['happy','satisfied','pleased','content']},
+          {q:'I\'d like to ___ to the manager, please.',blank:'speak',opts:['speak','talk','complain','report']},
+          {q:'The room is not as ___. The photos looked different.',blank:'described',opts:['described','advertised','shown','pictured']},
+          {q:'I\'ve been ___ for over 40 minutes.',blank:'waiting',opts:['waiting','sitting','here','stood']},
+          {q:'I\'d like a full ___, please.',blank:'refund',opts:['refund','return','reimbursement','repayment']},
+          {q:'Could you ___ us to a better room?',blank:'upgrade',opts:['upgrade','move','change','improve']},
+          {q:'Could you ___ this as soon as possible?',blank:'resolve',opts:['resolve','fix','sort out','deal with']},
+          {q:'The food was ___. I can\'t eat this.',blank:'undercooked',opts:['undercooked','raw','uncooked','cold']},
+          {q:'I\'d like a ___ apology for the inconvenience.',blank:'written',opts:['written','formal','official','signed']},
+          {q:'The noise from the street made it ___ to sleep.',blank:'impossible',opts:['impossible','hard','difficult','unable']},
+          {q:'Thank you for ___ this out so quickly.',blank:'sorting',opts:['sorting','resolving','fixing','dealing']},
+          {q:'I ___ your help in resolving this matter.',blank:'appreciate',opts:['appreciate','thank','value','recognise']},
+          {q:'This is the ___ time this has happened.',blank:'third',opts:['third','second','first','latest']},
+          {q:'I booked a double room, not a ___.',blank:'single',opts:['single','twin','small','standard']},
+          {q:'The Wi-Fi hasn\'t ___ since I arrived.',blank:'worked',opts:['worked','been available','connected','functioned']},
+          {q:'That\'s ___ — I accept your offer.',blank:'acceptable',opts:['acceptable','fine','good','ok']},
+          {q:'Could you ___ the charge from my bill?',blank:'remove',opts:['remove','take off','deduct','delete']},
+          {q:'I\'ll need to leave a ___ review if this isn\'t resolved.',blank:'negative',opts:['negative','bad','poor','critical']}
+        ]
+      },
+      {
+        id:20,title:'Итоговый тест Travel English',xp:50,
+        theory:`<div class="theory-block">
+<h3>🏆 Итоговый урок — Travel English</h3>
+<p>Поздравляем! Ты прошёл полный курс Travel English — 20 уроков туристического английского.</p>
+<p style="margin-top:10px;font-weight:600">Что ты изучил:</p>
+<div class="rule">✅ Аэропорт — регистрация, досмотр, посадка<br>
+✅ На борту — экипаж, еда, объявления<br>
+✅ Прилёт — паспортный контроль, таможня, багаж<br>
+✅ Отель — заезд, запросы, типы номеров<br>
+✅ Ресторан — бронирование, заказ, оплата<br>
+✅ Транспорт — метро, автобус, поезд<br>
+✅ Такси и аренда авто<br>
+✅ Дорога — спрашивать и объяснять<br>
+✅ Шопинг — примерка, цены, возврат<br>
+✅ Деньги — обмен, банкоматы, проблемы<br>
+✅ Достопримечательности и экскурсии<br>
+✅ Диета и аллергии — говорить с официантом<br>
+✅ Медицина — врач, аптека, симптомы<br>
+✅ Экстренные ситуации — кража, авария<br>
+✅ Онлайн-бронирование — условия, отмена<br>
+✅ Погода и природа<br>
+✅ Развлечения — театр, клуб, бар<br>
+✅ Общение с местными<br>
+✅ Жалобы — как вежливо добиться решения</div>
+<p style="margin-top:12px;font-weight:600">✈️ Финальный тест — 20 вопросов по всем темам. Удачи!</p>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ in for flight LH456.',blank:'check',opts:['check','sign','book','register']},
+          {q:'What is the ___ of your visit — holiday or business?',blank:'purpose',opts:['purpose','reason','type','nature']},
+          {q:'I have a ___ under the name Jones.',blank:'reservation',opts:['reservation','booking','room','order']},
+          {q:'Could I have the ___, please? We\'d like to pay.',blank:'bill',opts:['bill','check','receipt','total']},
+          {q:'How do I ___ to the city centre?',blank:'get',opts:['get','go','travel','reach']},
+          {q:'Is there a ___ charge to get into the club?',blank:'cover',opts:['cover','entry','door','admission']},
+          {q:'I\'m ___ to shellfish — it\'s very serious.',blank:'allergic',opts:['allergic','intolerant','sensitive','reactive']},
+          {q:'My ___ was stolen. I need to contact the embassy.',blank:'passport',opts:['passport','wallet','bag','phone']},
+          {q:'The flight has been ___. Please go to desk 12.',blank:'cancelled',opts:['cancelled','delayed','moved','changed']},
+          {q:'Could I have a room with a sea ___?',blank:'view',opts:['view','side','outlook','facing']},
+          {q:'What\'s the ___ rate? I want to exchange dollars.',blank:'exchange',opts:['exchange','conversion','currency','money']},
+          {q:'Please ___ your seatbelt — we\'re expecting turbulence.',blank:'fasten',opts:['fasten','buckle','attach','close']},
+          {q:'The tour is ___ — no refunds if you cancel.',blank:'non-refundable',opts:['non-refundable','fixed','final','strict']},
+          {q:'Turn left at the traffic ___.',blank:'lights',opts:['lights','signals','crossing','junction']},
+          {q:'I need a police ___ for my insurance claim.',blank:'report',opts:['report','document','certificate','letter']},
+          {q:'Is there a ___ option? I can\'t eat gluten.',blank:'gluten-free',opts:['gluten-free','wheat-free','special','dietary']},
+          {q:'I\'d like to ___ a car for three days.',blank:'rent',opts:['rent','hire','book','get']},
+          {q:'I\'m not ___ with this room — it\'s not as advertised.',blank:'happy',opts:['happy','satisfied','pleased','ok']},
+          {q:'What do ___ recommend? I want authentic food.',blank:'locals',opts:['locals','residents','people','citizens']},
+          {q:'Take the ___ turning on the left after the bridge.',blank:'second',opts:['second','next','first','third']}
+        ]
+      }
+    ]
   }
 };
 
@@ -3673,7 +4620,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it'].forEach(id=>{
+  ['basic','business','it','travel'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
