@@ -108,6 +108,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .nav-btn i{font-size:17px;}
 .nav-btn.active{color:var(--accent);}
 .nav-btn.active::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--accent);border-radius:0 0 2px 2px;}
+/* PAYWALL */
+.paywall-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);z-index:600;display:flex;align-items:flex-end;justify-content:center;}
+.paywall-overlay.hidden{display:none;}
+.paywall-box{background:var(--surface);border:1px solid var(--border);border-radius:24px 24px 0 0;padding:28px 20px 36px;width:100%;max-width:480px;text-align:center;}
+.paywall-emoji{font-size:44px;margin-bottom:12px;}
+.paywall-box h2{font-family:var(--font-head);font-size:20px;font-weight:800;margin-bottom:8px;}
+.paywall-box p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
+.paywall-btn{display:block;width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;}
+.paywall-btn:active{opacity:0.85;}
+.paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
+.msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
+.msg-counter span{color:var(--amber);font-weight:700;}
 </style>
 </head>
 <body>
@@ -116,7 +128,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.6</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.7</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -159,6 +171,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         </div>
       </div>
       <div class="messages" id="messages"></div>
+      <div class="msg-counter" id="msg-counter"></div>
       <div class="chat-input-row">
         <textarea class="chat-input" id="chat-input" rows="1" placeholder="Напиши по-английски..." oninput="autoResize(this)" onkeydown="handleKey(event)"></textarea>
         <button class="send-btn" id="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -313,6 +326,19 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 </main>
 
+<!-- PAYWALL -->
+<div class="paywall-overlay hidden" id="paywall">
+  <div class="paywall-box">
+    <div class="paywall-emoji">🚀</div>
+    <h2>Лимит исчерпан</h2>
+    <p>Ты использовал все <strong>10 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.</p>
+    <button class="paywall-btn" onclick="switchTab('premium');closePaywall()">
+      <i class="fa-solid fa-crown"></i> Получить Premium
+    </button>
+    <div class="paywall-skip" onclick="closePaywall()">Напомни завтра</div>
+  </div>
+</div>
+
 <nav class="bottom-nav">
   <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-comments"></i>Обучение</button>
   <button class="nav-btn" id="nav-courses" onclick="switchTab('courses')"><i class="fa-solid fa-book-open"></i>Курсы</button>
@@ -326,6 +352,33 @@ if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
 const MISTRAL_KEY='1rM5EHYxtwouCc0zqfpL5u9Wp3QswgHa';
+const FREE_LIMIT=10;
+
+// ── MESSAGE LIMIT ─────────────────────────────────────────
+function getDailyUsage(){
+  try{
+    const d=JSON.parse(localStorage.getItem('smart_daily')||'{}');
+    if(d.date!==new Date().toDateString())return{date:new Date().toDateString(),count:0};
+    return d;
+  }catch{return{date:new Date().toDateString(),count:0};}
+}
+function incrementDaily(){
+  const d=getDailyUsage();d.count++;
+  localStorage.setItem('smart_daily',JSON.stringify(d));
+  updateCounter();
+}
+function getRemainingMsgs(){return Math.max(0,FREE_LIMIT-getDailyUsage().count);}
+function isLimitReached(){return getDailyUsage().count>=FREE_LIMIT;}
+function updateCounter(){
+  const el=document.getElementById('msg-counter');
+  if(!el)return;
+  const rem=getRemainingMsgs();
+  if(rem<=3&&rem>0)el.innerHTML=`Осталось бесплатных сообщений сегодня: <span>${rem}</span>`;
+  else if(rem===0)el.innerHTML=`<span style="color:var(--rose)">Лимит исчерпан</span>`;
+  else el.innerHTML='';
+}
+function showPaywall(){document.getElementById('paywall').classList.remove('hidden');}
+function closePaywall(){document.getElementById('paywall').classList.add('hidden');}
 
 // ── STATS ────────────────────────────────────────────────
 const LEVELS=[
@@ -448,6 +501,7 @@ function startChat(key,sysPrompt,icon,label){
   document.getElementById('chat-input').value='';
   // count dialog
   const s=getStats();s.dialogs++;saveStats(s);
+  updateCounter();
   addAiMessage('...',true);
   callClaude(null,true);
 }
@@ -483,6 +537,7 @@ function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrol
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 
 async function sendMessage(){
+  if(isLimitReached()){showPaywall();return;}
   const input=document.getElementById('chat-input');
   const text=input.value.trim();
   if(!text||isLoading)return;
@@ -492,6 +547,7 @@ async function sendMessage(){
   const typingDiv=addAiMessage('...',true);
   isLoading=true;
   document.getElementById('send-btn').disabled=true;
+  incrementDaily();
   await callClaude(text,false,typingDiv);
 }
 
