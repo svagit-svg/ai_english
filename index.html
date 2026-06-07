@@ -672,22 +672,40 @@ function renderAnalytics(){
   document.getElementById('xp-chart-container').innerHTML=
     `<svg width="100%" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">${bars}</svg>`;
 
-  // ── 28-day activity dots ─────────────────────────────────
-  const dots=[];
-  for(let i=27;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);
-    const key=d.toISOString().slice(0,10);
-    const xp=(da[key]||{}).xp||0;
-    let color='rgba(255,255,255,0.07)';
-    if(xp>0&&xp<20)color='rgba(99,102,241,0.3)';
-    else if(xp>=20&&xp<60)color='rgba(99,102,241,0.6)';
-    else if(xp>=60)color='var(--accent)';
-    const isToday=i===0;
-    dots.push(`<div title="${key}: ${xp} XP" style="aspect-ratio:1;border-radius:3px;background:${color};${isToday?'outline:1.5px solid var(--accent);outline-offset:1px':''}"></div>`);
-  }
-  document.getElementById('activity-dots').innerHTML=dots.join('');
+  const pro=isPro();
 
-  // ── Course progress breakdown ────────────────────────────
+  // ── 28-day activity dots (Premium only) ──────────────────
+  const dotsEl=document.getElementById('activity-dots');
+  const dotsWrap=dotsEl?.parentElement;
+  if(!pro){
+    if(dotsWrap)dotsWrap.innerHTML=`
+      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Активность (28 дней)</p>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+        <div style="display:grid;grid-template-columns:repeat(28,1fr);gap:3px;flex:1;filter:blur(3px);pointer-events:none">
+          ${Array.from({length:28},()=>`<div style="aspect-ratio:1;border-radius:3px;background:rgba(99,102,241,${(Math.random()*0.6+0.1).toFixed(2)})"></div>`).join('')}
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:4px">
+        <span style="font-size:11px;color:var(--muted)">🔒 Доступно в </span>
+        <button onclick="switchTab('premium')" style="background:none;border:none;color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;padding:0">Premium →</button>
+      </div>`;
+  } else {
+    const dots=[];
+    for(let i=27;i>=0;i--){
+      const d=new Date();d.setDate(d.getDate()-i);
+      const key=d.toISOString().slice(0,10);
+      const xp=(da[key]||{}).xp||0;
+      let color='rgba(255,255,255,0.07)';
+      if(xp>0&&xp<20)color='rgba(99,102,241,0.3)';
+      else if(xp>=20&&xp<60)color='rgba(99,102,241,0.6)';
+      else if(xp>=60)color='var(--accent)';
+      const isToday=i===0;
+      dots.push(`<div title="${key}: ${xp} XP" style="aspect-ratio:1;border-radius:3px;background:${color};${isToday?'outline:1.5px solid var(--accent);outline-offset:1px':''}"></div>`);
+    }
+    if(dotsEl)dotsEl.innerHTML=dots.join('');
+  }
+
+  // ── Course progress breakdown (Premium only) ─────────────
   const courseList=[
     {id:'basic',name:'Basic English',color:'var(--accent)'},
     {id:'business',name:'Business English',color:'var(--green)'},
@@ -696,22 +714,43 @@ function renderAnalytics(){
     {id:'everyday',name:'Everyday English',color:'var(--amber)'},
     {id:'dating',name:'Dating English',color:'#ec4899'},
   ];
-  const rows=courseList.map(c=>{
-    const p=getCourseProgress(c.id);
-    const total=COURSES[c.id]?.lessons?.length||20;
-    const done=Object.keys(p).length;
-    const pct=Math.round(done/total*100);
-    return `<div style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-        <span style="font-size:12px;color:var(--text)">${c.name}</span>
-        <span style="font-size:11px;color:var(--muted)">${done}/${total} уроков</span>
+  const courseEl=document.getElementById('course-analytics');
+  const courseWrap=courseEl?.parentElement;
+  if(!pro){
+    if(courseWrap)courseWrap.innerHTML=`
+      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Прогресс по курсам</p>
+      <div style="filter:blur(4px);pointer-events:none">
+        ${courseList.map(c=>`<div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+            <span style="font-size:12px;color:var(--text)">${c.name}</span>
+            <span style="font-size:11px;color:var(--muted)">??/20 уроков</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:10px">
+            <div style="height:100%;width:${Math.round(Math.random()*80+10)}%;background:${c.color};border-radius:10px"></div>
+          </div></div>`).join('')}
       </div>
-      <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:10px">
-        <div style="height:100%;width:${pct}%;background:${c.color};border-radius:10px;transition:width 0.4s"></div>
-      </div>
-    </div>`;
-  }).join('');
-  document.getElementById('course-analytics').innerHTML=rows||'<p style="font-size:12px;color:var(--muted)">Начни проходить курсы!</p>';
+      <div style="text-align:center;margin-top:8px">
+        <span style="font-size:11px;color:var(--muted)">🔒 Доступно в </span>
+        <button onclick="switchTab('premium')" style="background:none;border:none;color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;padding:0">Premium →</button>
+      </div>`;
+  } else {
+    const rows=courseList.map(c=>{
+      const p=getCourseProgress(c.id);
+      const total=COURSES[c.id]?.lessons?.length||20;
+      const done=Object.keys(p).length;
+      const pct=Math.round(done/total*100);
+      return `<div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+          <span style="font-size:12px;color:var(--text)">${c.name}</span>
+          <span style="font-size:11px;color:var(--muted)">${done}/${total} уроков</span>
+        </div>
+        <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:10px">
+          <div style="height:100%;width:${pct}%;background:${c.color};border-radius:10px;transition:width 0.4s"></div>
+        </div>
+      </div>`;
+    }).join('');
+    document.getElementById('course-analytics').innerHTML=rows||'<p style="font-size:12px;color:var(--muted)">Начни проходить курсы!</p>';
+  }
 }
 
 function renderAvatar(){
