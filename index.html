@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.1</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.2</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -274,6 +274,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Идиомы, фразовые глаголы, разговорный</p>
         <div class="progress-bar"><div class="progress-fill" id="everyday-bar" style="width:0%;background:var(--amber)"></div></div>
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="everyday-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('dating')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">💕</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Dating English</h3>
+          <span id="dating-pct" style="font-size:11px;color:#ec4899;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Флирт, свидания, отношения</p>
+        <div class="progress-bar"><div class="progress-fill" id="dating-bar" style="width:0%;background:#ec4899"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="dating-sub">20 уроков</p>
       </div>
     </div>
     <div class="divider"></div>
@@ -5532,6 +5544,883 @@ BrE: The team are winning. | AmE: The team is winning.</div>
         ]
       }
     ]
+  },
+  dating:{
+    title:'Dating English',icon:'💕',color:'#ec4899',
+    lessons:[
+      {
+        id:1,title:'Первое знакомство',xp:25,
+        theory:`<div class="theory-block">
+<h3>Meeting Someone New — первое знакомство</h3>
+<p>Первые слова — самые важные. Как начать разговор и не звучать странно.</p>
+<p style="margin-top:10px;font-weight:600">Начать разговор:</p>
+<div class="rule">Haven\'t we met somewhere before? — Мы раньше не встречались?<br>
+You look familiar — do I know you? — Ты мне знаком. Мы знакомы?<br>
+I couldn\'t help noticing you. — Я не мог не заметить тебя.<br>
+I\'m sorry to interrupt, but... — Прости, что прерываю, но...<br>
+Is this seat taken? — Это место занято?</div>
+<p style="margin-top:10px;font-weight:600">Флирт без давления:</p>
+<div class="rule">You have a great smile. — У тебя отличная улыбка.<br>
+I really like your style. — Мне очень нравится твой стиль.<br>
+You seem really interesting. — Ты кажешься очень интересным человеком.<br>
+I\'d love to get to know you better. — Я бы хотел узнать тебя получше.</div>
+<p style="margin-top:10px;font-weight:600">Обмен контактами:</p>
+<div class="rule">Can I get your number? — Можно твой номер?<br>
+Would you like to exchange numbers? — Хочешь обменяемся номерами?<br>
+Are you on Instagram? — Ты есть в Instagram?<br>
+I\'d love to see you again. — Я бы с удовольствием увиделся снова.</div>
+</div>`,
+        exercises:[
+          {q:'Haven\'t we ___ somewhere before?',blank:'met',opts:['met','seen','talked','been']},
+          {q:'I couldn\'t help ___ you.',blank:'noticing',opts:['noticing','seeing','watching','finding']},
+          {q:'You ___ really interesting.',blank:'seem',opts:['seem','look','appear','sound']},
+          {q:'I\'d love to ___ you better.',blank:'know',opts:['know','meet','see','find']},
+          {q:'Can I ___ your number?',blank:'get',opts:['get','have','take','ask for']},
+          {q:'Is this ___ taken?',blank:'seat',opts:['seat','place','spot','chair']},
+          {q:'You have a great ___.',blank:'smile',opts:['smile','face','look','style']},
+          {q:'I\'d love to ___ you again.',blank:'see',opts:['see','meet','find','call']},
+          {q:'Are you ___ Instagram?',blank:'on',opts:['on','in','at','using']},
+          {q:'I\'m sorry to ___, but could I ask your name?',blank:'interrupt',opts:['interrupt','bother','disturb','stop']},
+          {q:'I really like your ___.',blank:'style',opts:['style','look','vibe','outfit']},
+          {q:'Would you like to ___ numbers?',blank:'exchange',opts:['exchange','swap','share','trade']},
+          {q:'You ___ familiar — have we met?',blank:'look',opts:['look','seem','feel','sound']},
+          {q:'I\'d love to get to ___ you.',blank:'know',opts:['know','meet','talk to','see']},
+          {q:'Could I buy you a ___?',blank:'drink',opts:['drink','coffee','glass','something']},
+          {q:'You have such a ___ laugh.',blank:'great',opts:['great','nice','lovely','good']},
+          {q:'I ___ noticing you from across the room.',blank:'kept',opts:['kept','was','couldn\'t stop','started']},
+          {q:'I don\'t usually do this but — can I have your ___?',blank:'number',opts:['number','contact','Instagram','details']},
+          {q:'What are you ___ to tonight?',blank:'up',opts:['up','doing','going','planning']},
+          {q:'I\'d really like to ___ you around here sometime.',blank:'show',opts:['show','take','bring','walk']}
+        ]
+      },
+      {
+        id:2,title:'Флирт и комплименты',xp:30,
+        theory:`<div class="theory-block">
+<h3>Flirting & Compliments — флирт и комплименты</h3>
+<p style="margin-top:10px;font-weight:600">Прямые комплименты:</p>
+<div class="rule">You look amazing. — Ты выглядишь потрясающе.<br>
+You\'re really attractive. — Ты очень привлекательный.<br>
+That colour really suits you. — Этот цвет тебе очень идёт.<br>
+You have beautiful eyes. — У тебя красивые глаза.</div>
+<p style="margin-top:10px;font-weight:600">Характер и личность:</p>
+<div class="rule">You\'re so easy to talk to. — С тобой так легко общаться.<br>
+You\'re really funny. — Ты очень смешной.<br>
+I love the way you think. — Мне нравится, как ты мыслишь.<br>
+You\'re so passionate about everything. — Ты такой увлечённый.</div>
+<p style="margin-top:10px;font-weight:600">Лёгкий флирт:</p>
+<div class="rule">Are you always this charming? — Ты всегда такой очаровательный?<br>
+Stop making me smile so much. — Хватит меня так улыбать.<br>
+I could talk to you all night. — Я мог бы говорить с тобой всю ночь.<br>
+You\'re trouble, I can tell. — Ты опасный человек, я чувствую.</div>
+<p style="margin-top:10px;font-weight:600">Ответ на комплимент:</p>
+<div class="rule">That\'s so sweet of you! — Это так мило с твоей стороны!<br>
+You\'re making me blush. — Ты меня смущаешь.<br>
+Thank you — that means a lot. — Спасибо, это очень приятно.</div>
+</div>`,
+        exercises:[
+          {q:'You look ___. That dress is perfect.',blank:'amazing',opts:['amazing','great','nice','good']},
+          {q:'That colour really ___ you.',blank:'suits',opts:['suits','fits','goes with','matches']},
+          {q:'You\'re so easy to ___ to.',blank:'talk',opts:['talk','speak','chat','open up']},
+          {q:'Are you always this ___?',blank:'charming',opts:['charming','funny','sweet','flirty']},
+          {q:'Stop making me ___ so much.',blank:'smile',opts:['smile','laugh','blush','feel']},
+          {q:'I could ___ to you all night.',blank:'talk',opts:['talk','speak','listen','chat']},
+          {q:'You\'re making me ___.',blank:'blush',opts:['blush','smile','shy','nervous']},
+          {q:'That\'s so ___ of you!',blank:'sweet',opts:['sweet','kind','nice','lovely']},
+          {q:'I love the way you ___.',blank:'think',opts:['think','laugh','talk','move']},
+          {q:'You\'re really ___. You had me laughing all evening.',blank:'funny',opts:['funny','witty','hilarious','humorous']},
+          {q:'You have ___ eyes.',blank:'beautiful',opts:['beautiful','amazing','gorgeous','lovely']},
+          {q:'You\'re so ___ about everything.',blank:'passionate',opts:['passionate','enthusiastic','excited','into']},
+          {q:'Thank you — that ___ a lot.',blank:'means',opts:['means','does','is','helps']},
+          {q:'You\'re ___. I can tell.',blank:'trouble',opts:['trouble','dangerous','bad for me','something else']},
+          {q:'You\'re really ___.',blank:'attractive',opts:['attractive','cute','good-looking','pretty']},
+          {q:'I ___ your sense of humour.',blank:'love',opts:['love','like','enjoy','adore']},
+          {q:'You look ___ in that.',blank:'great',opts:['great','amazing','good','fantastic']},
+          {q:'I\'ve never met anyone quite ___ you.',blank:'like',opts:['like','as','similar to','resembling']},
+          {q:'You\'re the ___ interesting person here.',blank:'most',opts:['most','very','really','by far']},
+          {q:'Every time I see you, you ___ better.',blank:'look',opts:['look','get','seem','appear']}
+        ]
+      },
+      {
+        id:3,title:'Приглашение на свидание',xp:30,
+        theory:`<div class="theory-block">
+<h3>Asking Someone Out — приглашение на свидание</h3>
+<p style="margin-top:10px;font-weight:600">Прямые приглашения:</p>
+<div class="rule">Would you like to go out with me? — Ты бы хотел(а) со мной куда-нибудь сходить?<br>
+Are you free this weekend? — Ты свободен(а) в эти выходные?<br>
+I\'d love to take you to dinner. — Я бы хотел пригласить тебя на ужин.<br>
+Would you like to grab a coffee sometime? — Как насчёт кофе как-нибудь?</div>
+<p style="margin-top:10px;font-weight:600">Предложения:</p>
+<div class="rule">How about we go see a movie? — Как насчёт кино?<br>
+There\'s a great new restaurant I\'d like to try. — Есть отличный новый ресторан, который я хочу попробовать.<br>
+Fancy a walk along the river? — Хочешь прогуляться вдоль реки?<br>
+I know a great little bar. — Я знаю отличный небольшой бар.</div>
+<p style="margin-top:10px;font-weight:600">Принятие / отказ:</p>
+<div class="rule">I\'d love to! — С удовольствием!<br>
+That sounds perfect. — Звучит отлично.<br>
+I\'m flattered, but I\'m seeing someone. — Мне приятно, но я с кем-то встречаюсь.<br>
+I\'m not really looking for anything right now. — Сейчас я ни с кем не ищу отношений.</div>
+</div>`,
+        exercises:[
+          {q:'Would you like to go ___ with me this weekend?',blank:'out',opts:['out','somewhere','away','on a date']},
+          {q:'Are you ___ on Saturday evening?',blank:'free',opts:['free','available','busy','around']},
+          {q:'I\'d love to ___ you to dinner.',blank:'take',opts:['take','bring','invite','treat']},
+          {q:'How about we ___ see a movie?',blank:'go',opts:['go','go to','watch','catch']},
+          {q:'Would you like to ___ a coffee sometime?',blank:'grab',opts:['grab','get','have','meet for']},
+          {q:'That sounds ___! I\'d love that.',blank:'perfect',opts:['perfect','great','amazing','wonderful']},
+          {q:'I\'m ___, but I\'m already seeing someone.',blank:'flattered',opts:['flattered','honoured','touched','pleased']},
+          {q:'I\'m not really ___ for anything right now.',blank:'looking',opts:['looking','ready','searching','hoping']},
+          {q:'There\'s a great ___ restaurant I\'d like to try.',blank:'new',opts:['new','little','lovely','amazing']},
+          {q:'Fancy a ___ along the river on Sunday?',blank:'walk',opts:['walk','stroll','wander','run']},
+          {q:'I know a great ___ bar near here.',blank:'little',opts:['little','small','nice','cosy']},
+          {q:'I\'d ___ to! What time were you thinking?',blank:'love',opts:['love','like','enjoy','be happy']},
+          {q:'Would you like to ___ out for dinner?',blank:'go',opts:['go','come','meet','head']},
+          {q:'Are you ___ doing anything on Friday?',blank:'doing',opts:['doing','up to','planning','free']},
+          {q:'Let me ___ you dinner — you choose the place.',blank:'buy',opts:['buy','treat you to','take you for','get you']},
+          {q:'I was wondering if you\'d like to ___ drinks.',blank:'get',opts:['get','have','grab','meet for']},
+          {q:'I ___ seeing you again.',blank:'loved',opts:['loved','enjoyed','really liked','had fun']},
+          {q:'How does ___ for a picnic in the park sound?',blank:'Saturday',opts:['Saturday','this weekend','Sunday','tomorrow']},
+          {q:'___ I take you somewhere special this weekend?',blank:'Can',opts:['Can','May','Could','Should']},
+          {q:'I was thinking we could ___ something fun.',blank:'do',opts:['do','try','plan','organise']}
+        ]
+      },
+      {
+        id:4,title:'Переписка в dating-приложениях',xp:30,
+        theory:`<div class="theory-block">
+<h3>Dating App Conversations — переписка</h3>
+<p>Tinder, Bumble, Hinge — как начать переписку и поддержать её.</p>
+<p style="margin-top:10px;font-weight:600">Начало переписки:</p>
+<div class="rule">Your profile really caught my eye. — Твой профиль сразу привлёк внимание.<br>
+I loved your answer to that prompt. — Мне понравился твой ответ на этот вопрос.<br>
+We seem to have a lot in common. — У нас, кажется, много общего.<br>
+Your dog is adorable — what\'s their name? — Твоя собака просто прелесть — как её зовут?</div>
+<p style="margin-top:10px;font-weight:600">Поддержание разговора:</p>
+<div class="rule">What do you do for fun? — Что делаешь для развлечения?<br>
+What are you passionate about? — Чем ты увлечён?<br>
+I can\'t believe we both love [X]! — Не могу поверить, что мы оба любим [X]!<br>
+Tell me more about that. — Расскажи мне об этом подробнее.</div>
+<p style="margin-top:10px;font-weight:600">Переход в реальное общение:</p>
+<div class="rule">Should we take this off the app? — Может перейдём в другой мессенджер?<br>
+I\'d love to meet in person. — Я бы хотел встретиться вживую.<br>
+Are you as funny in real life? — Ты такой же смешной в жизни?</div>
+</div>`,
+        exercises:[
+          {q:'Your profile really caught my ___.',blank:'eye',opts:['eye','attention','heart','interest']},
+          {q:'We seem to have a lot ___.',blank:'in common',opts:['in common','to talk about','to share','alike']},
+          {q:'I can\'t believe we ___ love hiking!',blank:'both',opts:['both','also','equally','mutually']},
+          {q:'What do you do for ___?',blank:'fun',opts:['fun','entertainment','joy','pleasure']},
+          {q:'Tell me ___ about that.',blank:'more',opts:['more','all','everything','something']},
+          {q:'Should we take this ___ the app?',blank:'off',opts:['off','outside','away from','beyond']},
+          {q:'I\'d love to meet ___ person.',blank:'in',opts:['in','in real','face to','in actual']},
+          {q:'What are you ___ about?',blank:'passionate',opts:['passionate','excited','mad','crazy']},
+          {q:'I loved your ___ to that question.',blank:'answer',opts:['answer','response','reply','take']},
+          {q:'Are you as funny ___ real life?',blank:'in',opts:['in','in','during','at']},
+          {q:'Your ___ is adorable — what\'s their name?',blank:'dog',opts:['dog','puppy','cat','pet']},
+          {q:'I feel like we\'d really ___ off.',blank:'hit',opts:['hit','get','click','vibe']},
+          {q:'What\'s the ___ interesting thing about you?',blank:'most',opts:['most','more','very','quite']},
+          {q:'I can see from your photos you love ___.',blank:'travelling',opts:['travelling','travel','adventures','the outdoors']},
+          {q:'Are you looking for something ___ or casual?',blank:'serious',opts:['serious','long-term','committed','real']},
+          {q:'I\'ve been ___ your messages all day.',blank:'looking forward to',opts:['looking forward to','waiting for','expecting','enjoying']},
+          {q:'We should ___ a chance and meet up.',blank:'take',opts:['take','give it','try','make']},
+          {q:'I never know what to ___ in the first message.',blank:'write',opts:['write','say','type','send']},
+          {q:'You\'re the first person on here who\'s made me ___.',blank:'laugh',opts:['laugh','smile','excited','interested']},
+          {q:'I think we\'d have a lot to ___ about.',blank:'talk',opts:['talk','say','chat','share']}
+        ]
+      },
+      {
+        id:5,title:'Первое свидание',xp:35,
+        theory:`<div class="theory-block">
+<h3>The First Date — первое свидание</h3>
+<p style="margin-top:10px;font-weight:600">Начало свидания:</p>
+<div class="rule">You look even better in person! — Вживую ты выглядишь даже лучше!<br>
+I was a little nervous coming here. — Я немного волновался, идя сюда.<br>
+I\'m so glad we finally did this. — Я так рад, что мы наконец это сделали.<br>
+You\'re just as I imagined. — Ты именно такой, каким я тебя представлял.</div>
+<p style="margin-top:10px;font-weight:600">Разговор на первом свидании:</p>
+<div class="rule">What do you like to do at weekends? — Что ты любишь делать в выходные?<br>
+Do you have any siblings? — У тебя есть братья или сёстры?<br>
+Where did you grow up? — Где ты вырос?<br>
+What\'s your favourite place you\'ve travelled to? — Какое любимое место из путешествий?<br>
+What do you do outside of work? — Чем занимаешься помимо работы?</div>
+<p style="margin-top:10px;font-weight:600">Конец свидания:</p>
+<div class="rule">I had a really great time. — Я отлично провёл время.<br>
+I\'d love to do this again. — Хотел бы повторить.<br>
+Can I walk you home? — Можно я провожу тебя домой?<br>
+I\'ll text you when I get home. — Напишу, когда доберусь домой.</div>
+</div>`,
+        exercises:[
+          {q:'You look even ___ in person!',blank:'better',opts:['better','nicer','prettier','more']},
+          {q:'I was a little ___ coming here.',blank:'nervous',opts:['nervous','excited','scared','anxious']},
+          {q:'I\'m so glad we finally ___ this.',blank:'did',opts:['did','made','planned','organised']},
+          {q:'I had a really ___ time.',blank:'great',opts:['great','good','wonderful','lovely']},
+          {q:'I\'d love to ___ this again.',blank:'do',opts:['do','repeat','have','try']},
+          {q:'Can I ___ you home?',blank:'walk',opts:['walk','take','drive','escort']},
+          {q:'I\'ll ___ you when I get home.',blank:'text',opts:['text','message','call','ring']},
+          {q:'Where did you ___ up?',blank:'grow',opts:['grow','come','move','end']},
+          {q:'What\'s your favourite ___ you\'ve travelled to?',blank:'place',opts:['place','country','city','destination']},
+          {q:'You\'re just as I ___.',blank:'imagined',opts:['imagined','expected','pictured','thought']},
+          {q:'What do you ___ outside of work?',blank:'do',opts:['do','enjoy','like','get up to']},
+          {q:'Do you have any ___?',blank:'siblings',opts:['siblings','brothers or sisters','family','relatives']},
+          {q:'This place is ___! Good choice.',blank:'amazing',opts:['amazing','lovely','great','perfect']},
+          {q:'I feel like I\'ve ___ you for years.',blank:'known',opts:['known','met','seen','talked to']},
+          {q:'The time just ___ when I\'m with you.',blank:'flies',opts:['flies','goes','passes','speeds']},
+          {q:'I love that you\'re so ___ about your work.',blank:'passionate',opts:['passionate','excited','serious','dedicated']},
+          {q:'What would you say is your biggest ___?',blank:'passion',opts:['passion','hobby','interest','love']},
+          {q:'Should we ___ for another drink somewhere?',blank:'go',opts:['go','head','move','walk']},
+          {q:'I ___ forward to seeing you again.',blank:'look',opts:['look','am looking','can\'t wait','really look']},
+          {q:'Thanks for ___ the time to meet.',blank:'taking',opts:['taking','making','giving','finding']}
+        ]
+      },
+      {
+        id:6,title:'Свидание в ресторане',xp:30,
+        theory:`<div class="theory-block">
+<h3>Dinner Date — свидание в ресторане</h3>
+<p style="margin-top:10px;font-weight:600">За столиком:</p>
+<div class="rule">Should we share a starter? — Возьмём одну закуску на двоих?<br>
+What are you going to have? — Что ты будешь заказывать?<br>
+You have to try this — it\'s incredible. — Тебе обязательно надо это попробовать — это невероятно.<br>
+Would you like to order wine? — Закажем вино?</div>
+<p style="margin-top:10px;font-weight:600">Оплата счёта:</p>
+<div class="rule">Dinner\'s on me tonight. — Сегодня ужин за мной.<br>
+Let me get this. — Позволь мне заплатить.<br>
+Are you sure? I\'m happy to split. — Ты уверен? Я готов разделить.<br>
+Next time it\'s on me. — В следующий раз плачу я.<br>
+Shall we go Dutch? — Заплатим каждый за себя?</div>
+<p style="margin-top:10px;font-weight:600">Разговор за едой:</p>
+<div class="rule">How\'s your food? — Как твоя еда?<br>
+This is absolutely delicious. — Это просто восхитительно вкусно.<br>
+Can I try a bit of yours? — Можно попробовать немного твоего?<br>
+You have great taste. — У тебя отличный вкус.</div>
+</div>`,
+        exercises:[
+          {q:'Should we ___ a starter?',blank:'share',opts:['share','split','get','order']},
+          {q:'What are you going to ___?',blank:'have',opts:['have','order','get','eat']},
+          {q:'Dinner\'s ___ me tonight.',blank:'on',opts:['on','by','for','from']},
+          {q:'Let me ___ this.',blank:'get',opts:['get','pay','take care of','handle']},
+          {q:'___ we go Dutch tonight?',blank:'Shall',opts:['Shall','Should','Will','Do']},
+          {q:'How\'s your ___?',blank:'food',opts:['food','meal','dish','dinner']},
+          {q:'This is absolutely ___.',blank:'delicious',opts:['delicious','amazing','incredible','beautiful']},
+          {q:'Can I ___ a bit of yours?',blank:'try',opts:['try','taste','have','steal']},
+          {q:'Would you like to ___ wine?',blank:'order',opts:['order','get','have','choose']},
+          {q:'Next time it\'s ___ me.',blank:'on',opts:['on','by','for','from']},
+          {q:'Are you ___? I\'m happy to split.',blank:'sure',opts:['sure','certain','ok','positive']},
+          {q:'You have to ___ this — it\'s incredible.',blank:'try',opts:['try','taste','eat','have']},
+          {q:'You have great ___.',blank:'taste',opts:['taste','style','choice','eyes']},
+          {q:'I\'m ___ — this is my favourite restaurant.',blank:'glad you like it',opts:['glad you like it','pleased','happy','relieved']},
+          {q:'Shall we ___ dessert?',blank:'get',opts:['get','order','share','have']},
+          {q:'The ambiance here is ___.',blank:'lovely',opts:['lovely','great','perfect','amazing']},
+          {q:'Could we get the ___, please?',blank:'bill',opts:['bill','check','receipt','tab']},
+          {q:'I\'ll leave a ___. The service was great.',blank:'tip',opts:['tip','review','note','comment']},
+          {q:'This place was a great ___.',blank:'choice',opts:['choice','pick','idea','suggestion']},
+          {q:'We should ___ here again.',blank:'come',opts:['come','eat','visit','return']}
+        ]
+      },
+      {
+        id:7,title:'Поход в кино',xp:25,
+        theory:`<div class="theory-block">
+<h3>Cinema Date — поход в кино</h3>
+<p style="margin-top:10px;font-weight:600">До фильма:</p>
+<div class="rule">What do you fancy seeing? — Что хочешь посмотреть?<br>
+I\'m not really into horror. — Я не очень люблю ужасы.<br>
+I\'ve heard great things about that one. — Я много слышал хорошего об этом фильме.<br>
+Should we get popcorn? — Возьмём попкорн?<br>
+Do you prefer sweet or salted? — Ты предпочитаешь сладкий или солёный?</div>
+<p style="margin-top:10px;font-weight:600">Во время и после фильма:</p>
+<div class="rule">Did you enjoy it? — Тебе понравилось?<br>
+I didn\'t see that twist coming! — Я не ожидал такого поворота!<br>
+That ending was so unexpected. — Концовка была такой неожиданной.<br>
+The acting was incredible. — Игра актёров была невероятной.<br>
+I cried at that scene. — Я расплакался на той сцене.</div>
+<p style="margin-top:10px;font-weight:600">Обсуждение фильма:</p>
+<div class="rule">What did you think? — Что ты думаешь?<br>
+Who was your favourite character? — Кто твой любимый персонаж?<br>
+I thought it was overrated. — Я думаю, его переоценили.<br>
+I could watch that again tomorrow. — Я бы посмотрел это снова завтра.</div>
+</div>`,
+        exercises:[
+          {q:'What do you ___ seeing tonight?',blank:'fancy',opts:['fancy','want','feel like','think about']},
+          {q:'I\'m not really ___ horror films.',blank:'into',opts:['into','for','about','a fan of']},
+          {q:'Should we ___ popcorn?',blank:'get',opts:['get','buy','grab','share']},
+          {q:'Do you prefer ___ or salted?',blank:'sweet',opts:['sweet','sugar','syrup','caramel']},
+          {q:'I didn\'t ___ that twist coming!',blank:'see',opts:['see','expect','predict','notice']},
+          {q:'That ___ was so unexpected.',blank:'ending',opts:['ending','finale','twist','conclusion']},
+          {q:'The ___ was incredible — especially the lead.',blank:'acting',opts:['acting','performance','cast','direction']},
+          {q:'What did you ___?',blank:'think',opts:['think','feel','say','reckon']},
+          {q:'I ___ at that scene.',blank:'cried',opts:['cried','wept','sobbed','teared up']},
+          {q:'Who was your favourite ___?',blank:'character',opts:['character','actor','person','role']},
+          {q:'I thought it was ___. Too much hype.',blank:'overrated',opts:['overrated','overhyped','disappointing','boring']},
+          {q:'I could ___ that again tomorrow.',blank:'watch',opts:['watch','see','go','do']},
+          {q:'I\'ve ___ great things about that one.',blank:'heard',opts:['heard','read','seen','been told']},
+          {q:'Shall we sit in the ___ or near the back?',blank:'middle',opts:['middle','front','centre','side']},
+          {q:'The ___ effects were unbelievable.',blank:'special',opts:['special','visual','CGI','sound']},
+          {q:'Did you enjoy ___?',blank:'it',opts:['it','the film','yourself','the movie']},
+          {q:'The ___ was a bit slow but the ending made up for it.',blank:'beginning',opts:['beginning','start','first half','opening']},
+          {q:'I thought the ___ was the best part.',blank:'soundtrack',opts:['soundtrack','music','score','sound']},
+          {q:'Should we grab something to ___ after?',blank:'eat',opts:['eat','drink','do','see']},
+          {q:'We should do this ___.',blank:'again',opts:['again','more often','next week','another time']}
+        ]
+      },
+      {
+        id:8,title:'Прогулка по городу',xp:25,
+        theory:`<div class="theory-block">
+<h3>City Walk Date — прогулка по городу</h3>
+<p style="margin-top:10px;font-weight:600">Предложения куда пойти:</p>
+<div class="rule">There\'s a great viewpoint up there. — Там наверху отличная смотровая площадка.<br>
+Have you been to this part of the city before? — Ты был в этой части города раньше?<br>
+Let\'s just wander and see where we end up. — Давай просто побродим и посмотрим куда придём.<br>
+There\'s a lovely little café down that street. — На той улице есть милое кафе.</div>
+<p style="margin-top:10px;font-weight:600">Во время прогулки:</p>
+<div class="rule">I love discovering new parts of the city. — Я люблю открывать новые части города.<br>
+The weather is perfect for this. — Погода идеальная для этого.<br>
+I could walk with you for hours. — Я мог бы гулять с тобой часами.<br>
+Look at that view! — Посмотри на этот вид!</div>
+<p style="margin-top:10px;font-weight:600">Лёгкий контакт:</p>
+<div class="rule">Can I hold your hand? — Можно я возьму тебя за руку?<br>
+You look cold — take my jacket. — Ты выглядишь замёрзшим — возьми мою куртку.<br>
+Mind the step! — Осторожно, ступенька!</div>
+</div>`,
+        exercises:[
+          {q:'Let\'s just ___ and see where we end up.',blank:'wander',opts:['wander','walk','go','explore']},
+          {q:'Have you been to this ___ of the city before?',blank:'part',opts:['part','area','side','section']},
+          {q:'There\'s a great ___ up there.',blank:'viewpoint',opts:['viewpoint','view','spot','place']},
+          {q:'I love ___ new parts of the city.',blank:'discovering',opts:['discovering','exploring','finding','visiting']},
+          {q:'The ___ is perfect for a walk.',blank:'weather',opts:['weather','day','evening','night']},
+          {q:'I could ___ with you for hours.',blank:'walk',opts:['walk','talk','stay','be']},
+          {q:'Can I ___ your hand?',blank:'hold',opts:['hold','take','grab','have']},
+          {q:'Look at that ___!',blank:'view',opts:['view','sight','place','building']},
+          {q:'You look ___. Take my jacket.',blank:'cold',opts:['cold','freezing','chilly','shivering']},
+          {q:'There\'s a lovely little ___ down that street.',blank:'café',opts:['café','coffee shop','bar','place']},
+          {q:'___ the step!',blank:'Mind',opts:['Mind','Watch','Careful','Avoid']},
+          {q:'I love how ___ this neighbourhood is.',blank:'charming',opts:['charming','cute','nice','unique']},
+          {q:'Should we ___ a break at that bench?',blank:'take',opts:['take','have','rest','stop for']},
+          {q:'This city is so much ___ with you.',blank:'better',opts:['better','nicer','more fun','different']},
+          {q:'Where shall we ___ to next?',blank:'head',opts:['head','go','walk','wander']},
+          {q:'I know a ___ shortcut through the park.',blank:'great',opts:['great','nice','lovely','quick']},
+          {q:'It\'s getting dark — shall we ___ somewhere?',blank:'go inside',opts:['go inside','head in','find a bar','stop somewhere']},
+          {q:'I didn\'t realise how much I\'d ___ this.',blank:'enjoy',opts:['enjoy','love','like','appreciate']},
+          {q:'We\'ve been walking for ___ and I haven\'t noticed.',blank:'hours',opts:['hours','ages','a while','so long']},
+          {q:'Can we ___ here for a second? The view is stunning.',blank:'stop',opts:['stop','pause','stay','stand']}
+        ]
+      },
+      {
+        id:9,title:'Романтический вечер дома',xp:30,
+        theory:`<div class="theory-block">
+<h3>A Night In — романтический вечер дома</h3>
+<p style="margin-top:10px;font-weight:600">Приглашение:</p>
+<div class="rule">Would you like to come over? — Хочешь зайти ко мне?<br>
+I\'ll cook dinner — you just bring yourself. — Я приготовлю ужин — тебе нужно просто прийти.<br>
+We could watch something and order in. — Можем что-нибудь посмотреть и заказать еду.<br>
+I make a pretty good pasta, if I say so myself. — Я готовлю очень неплохую пасту, скромно говоря.</div>
+<p style="margin-top:10px;font-weight:600">Вечер вместе:</p>
+<div class="rule">Make yourself at home. — Чувствуй себя как дома.<br>
+Can I get you anything to drink? — Налить тебе что-нибудь?<br>
+What are you in the mood for? — Что тебе сейчас хочется?<br>
+I love just being like this with you. — Мне нравится просто быть вот так с тобой.</div>
+<p style="margin-top:10px;font-weight:600">Хорошая атмосфера:</p>
+<div class="rule">Should I put some music on? — Включить музыку?<br>
+I could stay here all evening. — Я мог бы провести здесь весь вечер.<br>
+This feels so natural. — Это ощущается так естественно.<br>
+I don\'t want this evening to end. — Я не хочу, чтобы этот вечер заканчивался.</div>
+</div>`,
+        exercises:[
+          {q:'Would you like to come ___?',blank:'over',opts:['over','around','by','in']},
+          {q:'Make yourself at ___.',blank:'home',opts:['home','ease','comfort','welcome']},
+          {q:'Can I ___ you anything to drink?',blank:'get',opts:['get','offer','pour','bring']},
+          {q:'I\'ll ___ dinner — you just bring yourself.',blank:'cook',opts:['cook','make','prepare','do']},
+          {q:'What are you in the ___ for?',blank:'mood',opts:['mood','feeling','mind','head']},
+          {q:'Should I put some ___ on?',blank:'music',opts:['music','tunes','background music','something']},
+          {q:'I don\'t want this evening to ___.',blank:'end',opts:['end','finish','stop','be over']},
+          {q:'This ___ so natural.',blank:'feels',opts:['feels','seems','is','looks']},
+          {q:'We could ___ something and order in.',blank:'watch',opts:['watch','put on','find','stream']},
+          {q:'I love just ___ like this with you.',blank:'being',opts:['being','sitting','staying','spending time']},
+          {q:'I could ___ here all evening.',blank:'stay',opts:['stay','sit','be','remain']},
+          {q:'I make a pretty ___ pasta.',blank:'good',opts:['good','great','decent','solid']},
+          {q:'Help ___ — the kitchen is just through there.',blank:'yourself',opts:['yourself','yourself to food','yourself to a seat','yourself at home']},
+          {q:'Shall we move ___ to the sofa?',blank:'over',opts:['over','through','on','along']},
+          {q:'I\'ve ___ some candles. Hope that\'s OK.',blank:'lit',opts:['lit','put out','set up','placed']},
+          {q:'You ___ so comfortable to be around.',blank:'are',opts:['are','feel','seem','make me feel']},
+          {q:'I didn\'t expect to feel this ___.',blank:'comfortable',opts:['comfortable','relaxed','at ease','good']},
+          {q:'Let me ___ you a glass of wine.',blank:'pour',opts:['pour','get','fetch','bring']},
+          {q:'Time always ___ when I\'m with you.',blank:'flies',opts:['flies','goes fast','speeds up','passes']},
+          {q:'Thank you for a ___  evening.',blank:'wonderful',opts:['wonderful','lovely','perfect','beautiful']}
+        ]
+      },
+      {
+        id:10,title:'Описание идеального партнёра',xp:30,
+        theory:`<div class="theory-block">
+<h3>Describing Your Ideal Partner — идеальный партнёр</h3>
+<p style="margin-top:10px;font-weight:600">Внешность:</p>
+<div class="rule">I go for... — Мне нравятся...<br>
+I\'m usually attracted to... — Меня обычно привлекают...<br>
+Looks aren\'t everything to me. — Внешность для меня не главное.<br>
+I find [tall / dark hair / blue eyes] attractive. — Меня привлекают [высокие / тёмные волосы / голубые глаза].</div>
+<p style="margin-top:10px;font-weight:600">Характер:</p>
+<div class="rule">The most important thing for me is... — Самое важное для меня — это...<br>
+I need someone who makes me laugh. — Мне нужен человек, который меня смешит.<br>
+I\'m looking for someone kind and genuine. — Ищу доброго и настоящего человека.<br>
+Ambition is really attractive to me. — Амбициозность мне очень нравится.<br>
+I want someone who challenges me. — Хочу человека, который будет меня развивать.</div>
+<p style="margin-top:10px;font-weight:600">Образ жизни:</p>
+<div class="rule">I want someone who shares my values. — Хочу человека, который разделяет мои ценности.<br>
+It\'s important that we have the same goals. — Важно, чтобы у нас были одинаковые цели.<br>
+I need someone who gives me space. — Мне нужен человек, который даёт мне пространство.</div>
+</div>`,
+        exercises:[
+          {q:'I\'m usually ___ to people with a sense of humour.',blank:'attracted',opts:['attracted','drawn','into','interested']},
+          {q:'Looks ___ everything to me — personality matters more.',blank:'aren\'t',opts:["aren't",'aren\'t','aren\'t everything','don\'t matter']},
+          {q:'The most important ___ for me is kindness.',blank:'thing',opts:['thing','quality','trait','factor']},
+          {q:'I need someone who makes me ___.',blank:'laugh',opts:['laugh','smile','happy','feel good']},
+          {q:'I\'m looking for someone ___ and genuine.',blank:'kind',opts:['kind','nice','sweet','lovely']},
+          {q:'I want someone who ___ me.',blank:'challenges',opts:['challenges','motivates','pushes','inspires']},
+          {q:'___ is really attractive to me.',blank:'Ambition',opts:['Ambition','Intelligence','Humour','Kindness']},
+          {q:'I need someone who gives me ___.',blank:'space',opts:['space','freedom','time','room']},
+          {q:'I want someone who ___ my values.',blank:'shares',opts:['shares','has','respects','understands']},
+          {q:'It\'s important that we have the same ___.',blank:'goals',opts:['goals','values','interests','dreams']},
+          {q:'I go ___ people who are adventurous.',blank:'for',opts:['for','with','after','towards']},
+          {q:'I find confidence really ___.',blank:'attractive',opts:['attractive','appealing','sexy','charming']},
+          {q:'I want someone I can really ___ on.',blank:'rely',opts:['rely','count','depend','lean']},
+          {q:'Physical ___ matters, but it\'s not everything.',blank:'attraction',opts:['attraction','appearance','looks','chemistry']},
+          {q:'I need someone who ___ me for who I am.',blank:'accepts',opts:['accepts','loves','likes','appreciates']},
+          {q:'We need to be on the same ___ about kids and family.',blank:'page',opts:['page','level','line','wavelength']},
+          {q:'I want a partner who\'s ___ me, not dependent.',blank:'independent from',opts:['independent from','their own person from','separate from','different from']},
+          {q:'I\'m ___ for someone with similar energy.',blank:'looking',opts:['looking','searching','hoping','wishing']},
+          {q:'Someone who makes me a ___ version of myself.',blank:'better',opts:['better','best','great','stronger']},
+          {q:'I think ___ is more important than chemistry.',blank:'compatibility',opts:['compatibility','trust','honesty','respect']}
+        ]
+      },
+      {
+        id:11,title:'Признание в чувствах',xp:35,
+        theory:`<div class="theory-block">
+<h3>Expressing Feelings — признание в чувствах</h3>
+<p style="margin-top:10px;font-weight:600">Нарастающие чувства:</p>
+<div class="rule">I really like you. — Ты мне очень нравишься.<br>
+I can\'t stop thinking about you. — Я не могу перестать думать о тебе.<br>
+I\'ve never felt like this before. — Я никогда раньше так не чувствовал.<br>
+I have feelings for you. — Я испытываю к тебе чувства.<br>
+Every time I see you I feel...different. — Каждый раз когда я тебя вижу, я чувствую что-то особенное.</div>
+<p style="margin-top:10px;font-weight:600">Признание в любви:</p>
+<div class="rule">I think I\'m falling for you. — Кажется, я влюбляюсь в тебя.<br>
+I\'ve fallen for you. — Я влюбился в тебя.<br>
+I love you. — Я люблю тебя.<br>
+You mean everything to me. — Ты для меня всё.<br>
+I can\'t imagine my life without you. — Я не могу представить жизнь без тебя.</div>
+<p style="margin-top:10px;font-weight:600">Реакция:</p>
+<div class="rule">I feel the same way. — Я чувствую то же самое.<br>
+I\'ve been waiting to hear that. — Я ждал этого.<br>
+I\'m not quite there yet, but... — Я ещё не совсем там, но...<br>
+That means so much to me. — Это для меня очень много значит.</div>
+</div>`,
+        exercises:[
+          {q:'I can\'t stop ___ about you.',blank:'thinking',opts:['thinking','dreaming','talking','caring']},
+          {q:'I think I\'m ___ for you.',blank:'falling',opts:['falling','going','coming','heading']},
+          {q:'I have ___ for you.',blank:'feelings',opts:['feelings','emotions','thoughts','care']},
+          {q:'I\'ve ___ felt like this before.',blank:'never',opts:['never','rarely','hardly ever','not often']},
+          {q:'You ___ everything to me.',blank:'mean',opts:['mean','are','represent','matter']},
+          {q:'I can\'t ___ my life without you.',blank:'imagine',opts:['imagine','picture','see','think of']},
+          {q:'I feel the ___ way.',blank:'same',opts:['same','exact same','very','similar']},
+          {q:'That ___ so much to me.',blank:'means',opts:['means','does','is','matters']},
+          {q:'I\'m not quite ___ yet, but I\'m getting there.',blank:'there',opts:['there','ready','feeling it','at that point']},
+          {q:'I\'ve been ___ to hear that.',blank:'waiting',opts:['waiting','hoping','wanting','dying']},
+          {q:'I ___ for you the moment I saw you.',blank:'fell',opts:['fell','fell hard','fell completely','fell totally']},
+          {q:'I really like ___.',blank:'you',opts:['you','being with you','us','this']},
+          {q:'Every time I see you I feel ___.',blank:'different',opts:['different','something','amazing','special']},
+          {q:'I ___ you.',blank:'love',opts:['love','adore','care about','cherish']},
+          {q:'You make me feel ___.',blank:'complete',opts:['complete','whole','alive','amazing']},
+          {q:'I\'ve never ___ anyone like you.',blank:'met',opts:['met','known','felt about','cared for']},
+          {q:'You ___ my heart race every time.',blank:'make',opts:['make','get','set','have']},
+          {q:'I don\'t want to ___ you.',blank:'lose',opts:['lose','hurt','let go of','leave']},
+          {q:'Being with you just feels ___.',blank:'right',opts:['right','perfect','natural','real']},
+          {q:'I think I\'ve ___.',blank:'fallen for you',opts:['fallen for you','fallen in love','got feelings','caught feelings']}
+        ]
+      },
+      {
+        id:12,title:'DTR — определение отношений',xp:35,
+        theory:`<div class="theory-block">
+<h3>DTR: Define the Relationship — что у нас?</h3>
+<p><b>DTR</b> (Define The Relationship) — важный разговор о статусе отношений.</p>
+<p style="margin-top:10px;font-weight:600">Начало разговора:</p>
+<div class="rule">I think we need to talk about where this is going. — Думаю, нам нужно поговорить, куда это движется.<br>
+I really like what we have, but I need to know... — Мне очень нравится то, что у нас есть, но мне нужно знать...<br>
+Are we exclusive? — Мы встречаемся только друг с другом?<br>
+What are we exactly? — Кем мы друг другу приходимся?</div>
+<p style="margin-top:10px;font-weight:600">Предложение стать парой:</p>
+<div class="rule">I\'d like us to be official. — Я бы хотел, чтобы мы стали официальной парой.<br>
+Will you be my girlfriend / boyfriend? — Ты будешь моей девушкой / парнем?<br>
+I don\'t want to see anyone else. — Я не хочу встречаться с кем-то ещё.<br>
+I want you to be mine. — Я хочу, чтобы ты был(а) моей(им).</div>
+<p style="margin-top:10px;font-weight:600">Ответы:</p>
+<div class="rule">I\'d like that a lot. — Мне это очень нравится.<br>
+I\'m not ready for that yet. — Я ещё не готов(а) к этому.<br>
+I feel the same — let\'s make it official. — Я чувствую то же самое — сделаем это официально.</div>
+</div>`,
+        exercises:[
+          {q:'I think we need to ___ about where this is going.',blank:'talk',opts:['talk','speak','chat','be honest']},
+          {q:'Are we ___?',blank:'exclusive',opts:['exclusive','official','together','dating only']},
+          {q:'What are we ___?',blank:'exactly',opts:['exactly','actually','really','even']},
+          {q:'I don\'t want to ___ anyone else.',blank:'see',opts:['see','date','meet','be with']},
+          {q:'I\'d like us to be ___.',blank:'official',opts:['official','exclusive','together','a couple']},
+          {q:'Will you be my ___?',blank:'girlfriend',opts:['girlfriend','partner','girl','person']},
+          {q:'I\'m not ___ for that yet.',blank:'ready',opts:['ready','quite there','prepared','sure']},
+          {q:'I feel the ___. Let\'s make it official.',blank:'same',opts:['same','same way','exact same','very same']},
+          {q:'I really like ___ we have.',blank:'what',opts:['what','everything','all','the thing']},
+          {q:'I want you to be ___.',blank:'mine',opts:['mine','my person','with only me','exclusive']},
+          {q:'I\'d like ___ a lot.',blank:'that',opts:['that','us to be official','to be your boyfriend','that idea']},
+          {q:'I need to ___ where I stand.',blank:'know',opts:['know','understand','find out','be sure of']},
+          {q:'I\'ve been ___ about this for a while.',blank:'thinking',opts:['thinking','feeling','worried','unsure']},
+          {q:'Can we put a ___ on things?',blank:'label',opts:['label','name','title','definition']},
+          {q:'Are you ___ to other people?',blank:'talking to',opts:['talking to','dating','seeing','meeting']},
+          {q:'I want the same things ___.',blank:'you do',opts:['you do','as you','that you want','you want']},
+          {q:'I\'m ___ looking for something casual.',blank:'not',opts:['not','no longer','not really','definitely not']},
+          {q:'I care about you ___ much to keep things undefined.',blank:'too',opts:['too','so','really','very']},
+          {q:'I think we\'re ___ than just friends.',blank:'more',opts:['more','better','further','deeper']},
+          {q:'Let\'s ___ it official.',blank:'make',opts:['make','call it','be','go']}
+        ]
+      },
+      {
+        id:13,title:'Ссора и примирение',xp:35,
+        theory:`<div class="theory-block">
+<h3>Arguments & Making Up — ссора и примирение</h3>
+<p style="margin-top:10px;font-weight:600">Во время ссоры:</p>
+<div class="rule">That\'s not what I meant. — Я не это имел в виду.<br>
+You\'re not listening to me. — Ты меня не слушаешь.<br>
+Can you let me finish? — Дашь мне закончить?<br>
+I feel like you never understand me. — Мне кажется, ты меня никогда не понимаешь.<br>
+Don\'t put words in my mouth. — Не вкладывай слова в мои уста.</div>
+<p style="margin-top:10px;font-weight:600">Остывание:</p>
+<div class="rule">I need some space right now. — Мне нужно немного пространства прямо сейчас.<br>
+Can we talk about this later? — Можем поговорить об этом позже?<br>
+Let\'s both calm down first. — Давайте оба сначала успокоимся.<br>
+I don\'t want to say something I\'ll regret. — Не хочу сказать что-то, о чём буду сожалеть.</div>
+<p style="margin-top:10px;font-weight:600">Примирение:</p>
+<div class="rule">I\'m sorry — I was wrong. — Прости — я был неправ.<br>
+I shouldn\'t have said that. — Мне не следовало этого говорить.<br>
+I understand why you\'re upset. — Я понимаю, почему ты расстроен.<br>
+Can we start over? — Можем начать заново?<br>
+I love you and I hate fighting with you. — Я люблю тебя и ненавижу с тобой ссориться.</div>
+</div>`,
+        exercises:[
+          {q:'That\'s not what I ___.',blank:'meant',opts:['meant','said','intended','wanted']},
+          {q:'You\'re not ___ to me.',blank:'listening',opts:['listening','hearing','paying attention','understanding']},
+          {q:'Can you let me ___?',blank:'finish',opts:['finish','speak','talk','complete']},
+          {q:'I need some ___ right now.',blank:'space',opts:['space','time','air','distance']},
+          {q:'Let\'s both ___ down first.',blank:'calm',opts:['calm','cool','settle','quiet']},
+          {q:'I\'m ___ — I was wrong.',blank:'sorry',opts:['sorry','apologising','really sorry','so sorry']},
+          {q:'I ___ have said that.',blank:'shouldn\'t',opts:["shouldn't",'shouldn\'t','should never have','didn\'t mean to']},
+          {q:'Can we ___ over?',blank:'start',opts:['start','begin','try','go']},
+          {q:'I understand why you\'re ___.',blank:'upset',opts:['upset','angry','hurt','bothered']},
+          {q:'Don\'t put ___ in my mouth.',blank:'words',opts:['words','things','statements','ideas']},
+          {q:'Can we ___ about this later?',blank:'talk',opts:['talk','speak','discuss','chat']},
+          {q:'I don\'t want to say something I\'ll ___.',blank:'regret',opts:['regret','be sorry for','take back','hate']},
+          {q:'I love you and I ___ fighting with you.',blank:'hate',opts:['hate','don\'t like','dislike','can\'t stand']},
+          {q:'I feel like you ___ understand me.',blank:'never',opts:['never','don\'t','rarely','hardly']},
+          {q:'I\'m sorry for ___ like that.',blank:'reacting',opts:['reacting','acting','behaving','responding']},
+          {q:'Can I ___ and say something?',blank:'just jump in',opts:['just jump in','interrupt','cut in','say something']},
+          {q:'I think we both need to ___ down.',blank:'cool',opts:['cool','calm','settle','step']},
+          {q:'I ___ want this to turn into a big thing.',blank:'don\'t',opts:["don't",'don\'t','never wanted to','didn\'t mean to']},
+          {q:'You know I care about you, ___?',blank:'right',opts:['right','don\'t you','yes','don\'t I']},
+          {q:'Let\'s put this ___ us.',blank:'behind',opts:['behind','past','behind us now','away']}
+        ]
+      },
+      {
+        id:14,title:'Ревность и доверие',xp:30,
+        theory:`<div class="theory-block">
+<h3>Jealousy & Trust — ревность и доверие</h3>
+<p style="margin-top:10px;font-weight:600">Выражение ревности (мягко):</p>
+<div class="rule">I\'m not going to lie — I felt a little jealous. — Не буду врать — я почувствовал лёгкую ревность.<br>
+Who was that you were talking to? — Кто это был, с кем ты разговаривал?<br>
+I just need some reassurance. — Мне просто нужно немного уверенности.<br>
+Am I overthinking this? — Я слишком много думаю об этом?</div>
+<p style="margin-top:10px;font-weight:600">Установка доверия:</p>
+<div class="rule">I trust you completely. — Я полностью тебе доверяю.<br>
+You don\'t need to explain yourself. — Тебе не нужно объясняться.<br>
+I know you\'d never do anything to hurt me. — Я знаю, что ты никогда не сделаешь мне больно.<br>
+Trust is everything in a relationship. — Доверие — это всё в отношениях.</div>
+<p style="margin-top:10px;font-weight:600">Границы:</p>
+<div class="rule">I need us to be honest with each other. — Мне нужно, чтобы мы были честны друг с другом.<br>
+Can you let me know when you\'re going to be late? — Можешь предупреждать, когда будешь задерживаться?<br>
+I\'m not trying to control you — I just worry. — Я не пытаюсь тебя контролировать — я просто беспокоюсь.</div>
+</div>`,
+        exercises:[
+          {q:'I\'m not going to ___ — I felt a little jealous.',blank:'lie',opts:['lie','pretend','hide it','be honest']},
+          {q:'Am I ___ this?',blank:'overthinking',opts:['overthinking','imagining','wrong about','being silly about']},
+          {q:'I ___ you completely.',blank:'trust',opts:['trust','believe','know','rely on']},
+          {q:'I just need some ___.',blank:'reassurance',opts:['reassurance','comfort','answers','honesty']},
+          {q:'You don\'t need to ___ yourself.',blank:'explain',opts:['explain','justify','defend','prove']},
+          {q:'___ is everything in a relationship.',blank:'Trust',opts:['Trust','Honesty','Love','Loyalty']},
+          {q:'I\'m not trying to ___ you — I just worry.',blank:'control',opts:['control','check up on','spy on','manage']},
+          {q:'I need us to be ___ with each other.',blank:'honest',opts:['honest','open','transparent','truthful']},
+          {q:'Can you let me know when you\'re going to be ___?',blank:'late',opts:['late','out','busy','away']},
+          {q:'I know you\'d ___ do anything to hurt me.',blank:'never',opts:['never','not','never intentionally','never want to']},
+          {q:'Who was that you were ___ to?',blank:'talking',opts:['talking','speaking','chatting','texting']},
+          {q:'I think my ___ is showing.',blank:'jealousy',opts:['jealousy','insecurity','fear','worry']},
+          {q:'I ___ totally sure why I felt that way.',blank:'\'m not',opts:["'m not",'\'m not','don\'t know','can\'t explain']},
+          {q:'Can we be ___ transparent with each other?',blank:'more',opts:['more','fully','completely','totally']},
+          {q:'I don\'t want ___ to be an issue between us.',blank:'trust',opts:['trust','jealousy','insecurity','honesty']},
+          {q:'I believe you — I was just feeling ___.',blank:'insecure',opts:['insecure','jealous','paranoid','uncertain']},
+          {q:'We need to ___ up some boundaries.',blank:'set',opts:['set','put','draw','create']},
+          {q:'I\'d rather you be ___ with me, even if it hurts.',blank:'honest',opts:['honest','upfront','real','direct']},
+          {q:'___ makes everything easier.',blank:'Communication',opts:['Communication','Honesty','Trust','Openness']},
+          {q:'I promise I\'ll always be ___ with you.',blank:'honest',opts:['honest','open','loyal','true']}
+        ]
+      },
+      {
+        id:15,title:'Знакомство с друзьями',xp:25,
+        theory:`<div class="theory-block">
+<h3>Meeting the Friends — знакомство с друзьями</h3>
+<p>Встреча с друзьями партнёра — важный шаг в отношениях.</p>
+<p style="margin-top:10px;font-weight:600">До встречи:</p>
+<div class="rule">I\'m nervous about meeting your friends. — Я волнуюсь, встречаясь с твоими друзьями.<br>
+Tell me a bit about them. — Расскажи мне немного о них.<br>
+What should I know? — Что мне нужно знать?<br>
+I really want them to like me. — Я очень хочу, чтобы они меня полюбили.</div>
+<p style="margin-top:10px;font-weight:600">При встрече:</p>
+<div class="rule">I\'ve heard so much about you! — Я столько о тебе слышал!<br>
+[Name] talks about you all the time. — [Имя] постоянно о тебе говорит.<br>
+It\'s great to finally put a face to the name. — Наконец-то вижу тебя вживую.<br>
+I feel like I already know you. — Такое ощущение, что я тебя уже знаю.</div>
+<p style="margin-top:10px;font-weight:600">После встречи:</p>
+<div class="rule">Your friends are amazing. — Твои друзья потрясающие.<br>
+I think they liked me! — Кажется, я им понравился!<br>
+Did they say anything about me? — Они что-нибудь обо мне говорили?<br>
+I hope I made a good impression. — Надеюсь, я произвёл хорошее впечатление.</div>
+</div>`,
+        exercises:[
+          {q:'I\'m ___ about meeting your friends.',blank:'nervous',opts:['nervous','scared','anxious','worried']},
+          {q:'I\'ve ___ so much about you!',blank:'heard',opts:['heard','read','seen','learnt']},
+          {q:'Tell me a ___ about them.',blank:'bit',opts:['bit','little','something','more']},
+          {q:'I really want them to ___ me.',blank:'like',opts:['like','love','accept','approve of']},
+          {q:'It\'s great to finally put a ___ to the name.',blank:'face',opts:['face','name to','person','voice']},
+          {q:'I feel like I ___ know you.',blank:'already',opts:['already','kind of','basically','almost']},
+          {q:'Your friends are ___.',blank:'amazing',opts:['amazing','great','lovely','awesome']},
+          {q:'Did they say anything ___ me?',blank:'about',opts:['about','of','regarding','on']},
+          {q:'I hope I made a good ___.',blank:'impression',opts:['impression','impact','start','entrance']},
+          {q:'[Name] ___ about you all the time.',blank:'talks',opts:['talks','speaks','says','raves']},
+          {q:'I think they ___ me.',blank:'liked',opts:['liked','loved','accepted','approved of']},
+          {q:'I was so ___ I said something embarrassing.',blank:'worried',opts:['worried','scared','afraid','certain']},
+          {q:'They were ___ welcoming.',blank:'really',opts:['really','so','incredibly','very']},
+          {q:'I can see why you love ___ so much.',blank:'them',opts:['them','your friends','those guys','your people']},
+          {q:'I felt so ___ around them.',blank:'comfortable',opts:['comfortable','at ease','relaxed','welcomed']},
+          {q:'What ___ they think of me?',blank:'did',opts:['did','do','would','might']},
+          {q:'I\'m glad we ___ that done.',blank:'got',opts:['got','have','finally','managed to get']},
+          {q:'Your best friend is ___ funny.',blank:'so',opts:['so','really','incredibly','absolutely']},
+          {q:'Can we ___ with them again soon?',blank:'hang out',opts:['hang out','meet up','see','spend time']},
+          {q:'I think we all really ___ off.',blank:'hit it',opts:['hit it','got','clicked','connected']}
+        ]
+      },
+      {
+        id:16,title:'Длительные отношения',xp:30,
+        theory:`<div class="theory-block">
+<h3>Long-term Relationships — серьёзные отношения</h3>
+<p style="margin-top:10px;font-weight:600">Рутина и быт вместе:</p>
+<div class="rule">We\'ve settled into a nice routine. — Мы устроились в хорошей рутине.<br>
+Living together is an adjustment. — Жить вместе — это адаптация.<br>
+We\'ve grown so much together. — Мы так много выросли вместе.<br>
+We know each other inside out. — Мы знаем друг друга вдоль и поперёк.</div>
+<p style="margin-top:10px;font-weight:600">Поддержка:</p>
+<div class="rule">You\'re my rock. — Ты моя опора.<br>
+I couldn\'t have done it without you. — Я бы не справился без тебя.<br>
+You always know what to say. — Ты всегда знаешь, что сказать.<br>
+I\'m your biggest fan. — Я твой самый большой поклонник.</div>
+<p style="margin-top:10px;font-weight:600">Будущее:</p>
+<div class="rule">Have you thought about where you see us in 5 years? — Думал ли ты о том, где мы будем через 5 лет?<br>
+I want to build a life with you. — Я хочу строить жизнь вместе с тобой.<br>
+What are your thoughts on moving in together? — Что думаешь насчёт переезда вместе?<br>
+I\'d love to travel more together. — Я бы хотел больше путешествовать вместе.</div>
+</div>`,
+        exercises:[
+          {q:'We\'ve ___ into a nice routine.',blank:'settled',opts:['settled','fallen','got','moved']},
+          {q:'We know each other ___ out.',blank:'inside',opts:['inside','all the way','completely','fully']},
+          {q:'You\'re my ___.',blank:'rock',opts:['rock','everything','support','strength']},
+          {q:'I couldn\'t have done it ___ you.',blank:'without',opts:['without','minus','except for','but for']},
+          {q:'I\'m your biggest ___.',blank:'fan',opts:['fan','supporter','admirer','cheerleader']},
+          {q:'I want to ___ a life with you.',blank:'build',opts:['build','create','share','make']},
+          {q:'Have you ___ about where you see us in 5 years?',blank:'thought',opts:['thought','ever thought','thought much','thought at all']},
+          {q:'What are your thoughts on moving ___ together?',blank:'in',opts:['in','out','away','forward']},
+          {q:'Living ___ is an adjustment.',blank:'together',opts:['together','with someone','with you','as one']},
+          {q:'We\'ve ___ so much together.',blank:'grown',opts:['grown','changed','developed','been through']},
+          {q:'You always know what to ___.',blank:'say',opts:['say','do','think','feel']},
+          {q:'I love that we ___ even need to talk sometimes.',blank:'don\'t',opts:["don't",'don\'t always','never','barely']},
+          {q:'I want us to ___ through everything together.',blank:'go',opts:['go','get','work','push']},
+          {q:'You make every ___ feel special.',blank:'day',opts:['day','moment','ordinary day','part of life']},
+          {q:'I can\'t ___ my future without you.',blank:'picture',opts:['picture','see','imagine','think of']},
+          {q:'Let\'s ___ away somewhere just the two of us.',blank:'go',opts:['go','get','run','escape']},
+          {q:'We should ___ a date night more often.',blank:'plan',opts:['plan','have','make','book']},
+          {q:'I appreciate ___ you do for us.',blank:'everything',opts:['everything','all that','so much of what','what']},
+          {q:'We ___ through the hard times.',blank:'got',opts:['got','pushed','worked','stayed']},
+          {q:'I choose you, every ___, every time.',blank:'day',opts:['day','moment','time','chance']}
+        ]
+      },
+      {
+        id:17,title:'Особые даты и сюрпризы',xp:25,
+        theory:`<div class="theory-block">
+<h3>Special Occasions & Surprises — особые даты</h3>
+<p style="margin-top:10px;font-weight:600">Годовщина:</p>
+<div class="rule">Happy anniversary! — С годовщиной!<br>
+I can\'t believe it\'s been a year already. — Не верю, что уже прошёл год.<br>
+I got you something. — Я кое-что тебе купил.<br>
+Every day with you is a gift. — Каждый день с тобой — это подарок.</div>
+<p style="margin-top:10px;font-weight:600">Сюрприз:</p>
+<div class="rule">Close your eyes. — Закрой глаза.<br>
+I planned something special for tonight. — Я кое-что спланировал на сегодня.<br>
+I wanted to do something to show you how I feel. — Я хотел что-то сделать, чтобы показать, что чувствую.<br>
+Surprise! — Сюрприз!</div>
+<p style="margin-top:10px;font-weight:600">День Святого Валентина:</p>
+<div class="rule">Will you be my Valentine? — Ты будешь моим Валентином?<br>
+I got you chocolates and flowers — classic, I know. — Я купил тебе шоколад и цветы — классика, я знаю.<br>
+You\'re all I need. — Ты — всё, что мне нужно.</div>
+</div>`,
+        exercises:[
+          {q:'Happy ___! One year already!',blank:'anniversary',opts:['anniversary','birthday','Valentine\'s','celebration']},
+          {q:'I can\'t ___ it\'s been a year.',blank:'believe',opts:['believe','think','say','imagine']},
+          {q:'Close your ___.',blank:'eyes',opts:['eyes','hands','mind','fists']},
+          {q:'I planned something ___ for tonight.',blank:'special',opts:['special','nice','great','surprising']},
+          {q:'I ___ you something.',blank:'got',opts:['got','bought','have','made']},
+          {q:'Will you be my ___?',blank:'Valentine',opts:['Valentine','date','love','person']},
+          {q:'Every ___ with you is a gift.',blank:'day',opts:['day','moment','hour','second']},
+          {q:'I wanted to do something to ___ how I feel.',blank:'show',opts:['show','express','prove','tell']},
+          {q:'You\'re ___ I need.',blank:'all',opts:['all','everything','all that','the only thing']},
+          {q:'I thought we could ___ the evening somewhere special.',blank:'spend',opts:['spend','celebrate','do','pass']},
+          {q:'I ___ something special, just for us.',blank:'arranged',opts:['arranged','planned','booked','organised']},
+          {q:'You\'ve made this past year the ___ of my life.',blank:'best',opts:['best','greatest','happiest','most amazing']},
+          {q:'I can\'t wait to ___ many more years with you.',blank:'share',opts:['share','have','spend','celebrate']},
+          {q:'Here\'s to another ___ together.',blank:'year',opts:['year','chapter','adventure','journey']},
+          {q:'I wanted to ___ this moment special.',blank:'make',opts:['make','keep','hold','celebrate']},
+          {q:'You mean the ___ to me.',blank:'world',opts:['world','everything','most','all']},
+          {q:'I got you ___ and flowers — a bit cliché, I know.',blank:'chocolates',opts:['chocolates','roses','a present','a card']},
+          {q:'I\'ve been looking ___ to this all week.',blank:'forward',opts:['forward','ahead','towards','to getting here']},
+          {q:'You ___ me speechless — this is beautiful.',blank:'leave',opts:['leave','make','render','get']},
+          {q:'Thank you for ___ with me.',blank:'being',opts:['being','staying','sharing this','spending it']}
+        ]
+      },
+      {
+        id:18,title:'Отношения на расстоянии',xp:30,
+        theory:`<div class="theory-block">
+<h3>Long-Distance Relationships — отношения на расстоянии</h3>
+<p style="margin-top:10px;font-weight:600">Сложности LDR:</p>
+<div class="rule">The distance is really hard. — Расстояние очень тяжело.<br>
+I miss you so much it hurts. — Я так сильно скучаю по тебе, что больно.<br>
+I hate being apart. — Ненавижу быть вдали от тебя.<br>
+I wish you were here right now. — Хочу, чтобы ты был здесь прямо сейчас.<br>
+The time zones make it so hard to connect. — Разница в часовых поясах очень усложняет общение.</div>
+<p style="margin-top:10px;font-weight:600">Поддержка:</p>
+<div class="rule">We\'ll make it work. — Мы справимся с этим.<br>
+It\'s temporary — we have a plan. — Это временно — у нас есть план.<br>
+Every call makes me fall for you more. — После каждого звонка я влюбляюсь в тебя ещё больше.<br>
+Counting the days until I see you. — Считаю дни до встречи с тобой.</div>
+<p style="margin-top:10px;font-weight:600">Встреча после разлуки:</p>
+<div class="rule">I\'ve been counting down to this. — Я ждал этого с нетерпением.<br>
+You look even better than I remembered. — Ты выглядишь ещё лучше, чем я помнил.<br>
+Let\'s never be apart this long again. — Давай никогда больше не разлучаться на так долго.</div>
+</div>`,
+        exercises:[
+          {q:'I ___ you so much it hurts.',blank:'miss',opts:['miss','need','want','love']},
+          {q:'I hate being ___.',blank:'apart',opts:['apart','away','separated','so far']},
+          {q:'We\'ll ___ it work.',blank:'make',opts:['make','get','keep','have']},
+          {q:'I wish you were ___ right now.',blank:'here',opts:['here','with me','closer','nearby']},
+          {q:'It\'s ___ — we have a plan.',blank:'temporary',opts:['temporary','short-term','just for now','not forever']},
+          {q:'The time ___ make it so hard to connect.',blank:'zones',opts:['zones','difference','hours','gap']},
+          {q:'Counting the ___ until I see you.',blank:'days',opts:['days','hours','minutes','moments']},
+          {q:'You look even ___ than I remembered.',blank:'better',opts:['better','more beautiful','nicer','more amazing']},
+          {q:'Let\'s never be ___ this long again.',blank:'apart',opts:['apart','separated','away','so far']},
+          {q:'I\'ve been counting ___ to this.',blank:'down',opts:['down','towards','up','forward']},
+          {q:'Every ___ makes me fall for you more.',blank:'call',opts:['call','message','photo','text']},
+          {q:'The distance is ___. I won\'t pretend it\'s not.',blank:'hard',opts:['hard','difficult','tough','real']},
+          {q:'I think about you ___ single day.',blank:'every',opts:['every','each','every single','any']},
+          {q:'Our next visit can\'t come soon ___.',blank:'enough',opts:['enough','enough','soon enough','at all']},
+          {q:'I love that we make it ___ despite the distance.',blank:'work',opts:['work','happen','last','count']},
+          {q:'Your ___ always lights up my day.',blank:'message',opts:['message','name','call','text']},
+          {q:'I\'ll ___ the days until I\'m with you again.',blank:'count',opts:['count','mark','spend','tick off']},
+          {q:'You\'re worth ___ distance.',blank:'every',opts:['every','the','any','all the']},
+          {q:'The ___ we\'ll be together makes it easier.',blank:'thought',opts:['thought','idea','plan','hope']},
+          {q:'Being apart has only made me ___ you more.',blank:'love',opts:['love','miss','appreciate','need']}
+        ]
+      },
+      {
+        id:19,title:'Расставание',xp:35,
+        theory:`<div class="theory-block">
+<h3>Breaking Up — расставание</h3>
+<p>Самая сложная тема. Важно уметь говорить об этом уважительно.</p>
+<p style="margin-top:10px;font-weight:600">Инициирование расставания:</p>
+<div class="rule">We need to talk. — Нам нужно поговорить.<br>
+I don\'t think this is working. — Я не думаю, что это работает.<br>
+I think we want different things. — Думаю, мы хотим разного.<br>
+I care about you, but I\'m not in love with you. — Ты мне дорог, но я не влюблён в тебя.<br>
+I think we\'ve grown apart. — Думаю, мы отдалились друг от друга.</div>
+<p style="margin-top:10px;font-weight:600">Реакция:</p>
+<div class="rule">Is there someone else? — Есть кто-то другой?<br>
+Can we work through this? — Мы можем через это пройти?<br>
+I didn\'t see this coming. — Я не ожидал этого.<br>
+I need some time to process this. — Мне нужно время, чтобы это принять.</div>
+<p style="margin-top:10px;font-weight:600">Завершение:</p>
+<div class="rule">I hope we can stay friends. — Надеюсь, мы можем остаться друзьями.<br>
+Thank you for everything. — Спасибо за всё.<br>
+I wish you nothing but happiness. — Я желаю тебе только счастья.<br>
+I\'ll always care about you. — Я всегда буду заботиться о тебе.</div>
+</div>`,
+        exercises:[
+          {q:'We need to ___.',blank:'talk',opts:['talk','speak','discuss','chat']},
+          {q:'I don\'t think this is ___.',blank:'working',opts:['working','right','fair','good']},
+          {q:'I think we want ___ things.',blank:'different',opts:['different','separate','opposite','incompatible']},
+          {q:'I think we\'ve ___ apart.',blank:'grown',opts:['grown','drifted','moved','fallen']},
+          {q:'I didn\'t ___ this coming.',blank:'see',opts:['see','expect','think','predict']},
+          {q:'Is there someone ___?',blank:'else',opts:['else','new','other','different']},
+          {q:'Can we ___ through this?',blank:'work',opts:['work','get','talk','push']},
+          {q:'I need some time to ___ this.',blank:'process',opts:['process','accept','understand','deal with']},
+          {q:'I hope we can ___ friends.',blank:'stay',opts:['stay','remain','be','keep being']},
+          {q:'Thank you for ___.',blank:'everything',opts:['everything','it all','the memories','being you']},
+          {q:'I wish you ___ but happiness.',blank:'nothing',opts:['nothing','no one','only','all']},
+          {q:'I care about you, but I\'m not ___ love with you.',blank:'in',opts:['in','falling in','deeply in','in real']},
+          {q:'I\'ll always ___ about you.',blank:'care',opts:['care','think','know','remember']},
+          {q:'It\'s not you, it\'s ___. I know that\'s a cliché.',blank:'me',opts:['me','us','the timing','everything']},
+          {q:'I think we both know this isn\'t ___.',blank:'working',opts:['working','right','good','going anywhere']},
+          {q:'I ___ you deserve better than what I can give.',blank:'think',opts:['think','feel','believe','know']},
+          {q:'This is the ___ decision I\'ve ever had to make.',blank:'hardest',opts:['hardest','most difficult','toughest','worst']},
+          {q:'I hope you find what you\'re ___ for.',blank:'looking',opts:['looking','searching','hoping','waiting']},
+          {q:'You\'ll always have a ___ place in my heart.',blank:'special',opts:['special','warm','certain','permanent']},
+          {q:'I\'m ___ it didn\'t work out.',blank:'sorry',opts:['sorry','sad','upset','disappointed']}
+        ]
+      },
+      {
+        id:20,title:'Итоговый тест Dating English',xp:50,
+        theory:`<div class="theory-block">
+<h3>🏆 Итоговый урок — Dating English</h3>
+<p>Поздравляем! Ты прошёл полный курс Dating English — 20 уроков о любви, свиданиях и отношениях на английском.</p>
+<p style="margin-top:10px;font-weight:600">Что ты изучил:</p>
+<div class="rule">💕 Первое знакомство и флирт<br>
+💕 Приглашение на свидание<br>
+💕 Переписка в dating-приложениях<br>
+💕 Первое свидание и ресторан<br>
+💕 Кино, прогулки, вечер дома<br>
+💕 Признание в чувствах и DTR<br>
+💕 Ссоры, примирения, ревность<br>
+💕 Знакомство с друзьями<br>
+💕 Долгосрочные отношения и LDR<br>
+💕 Особые даты и расставание</div>
+<p style="margin-top:12px;font-weight:600">💕 Финальный тест — 20 вопросов по всем темам. Удачи!</p>
+</div>`,
+        exercises:[
+          {q:'You look even ___ in person!',blank:'better',opts:['better','nicer','prettier','great']},
+          {q:'I couldn\'t help ___ you across the room.',blank:'noticing',opts:['noticing','seeing','watching','finding']},
+          {q:'Are you always this ___?',blank:'charming',opts:['charming','funny','cute','sweet']},
+          {q:'I\'d love to ___ you to dinner.',blank:'take',opts:['take','bring','invite','treat']},
+          {q:'Your profile really caught my ___.',blank:'eye',opts:['eye','attention','interest','heart']},
+          {q:'Dinner\'s ___ me tonight.',blank:'on',opts:['on','by','from','for']},
+          {q:'I think I\'m ___ for you.',blank:'falling',opts:['falling','coming','going','heading']},
+          {q:'Are we ___?',blank:'exclusive',opts:['exclusive','official','together','serious']},
+          {q:'That\'s not what I ___.',blank:'meant',opts:['meant','said','intended','wanted']},
+          {q:'I ___ you completely.',blank:'trust',opts:['trust','believe','know','rely on']},
+          {q:'I\'ve ___ so much about you!',blank:'heard',opts:['heard','read','learnt','been told']},
+          {q:'We\'ll ___ it work.',blank:'make',opts:['make','get','keep','find']},
+          {q:'I ___ you so much it hurts.',blank:'miss',opts:['miss','need','love','want']},
+          {q:'I wish you ___ but happiness.',blank:'nothing',opts:['nothing','only','all','no one']},
+          {q:'I couldn\'t have done it ___ you.',blank:'without',opts:['without','except for','minus','but for']},
+          {q:'Should we ___ a starter?',blank:'share',opts:['share','split','get','order']},
+          {q:'I\'d love to get to ___ you.',blank:'know',opts:['know','meet','see','talk to']},
+          {q:'Can I ___ your hand?',blank:'hold',opts:['hold','take','grab','have']},
+          {q:'I hope I made a good ___.',blank:'impression',opts:['impression','start','impact','entrance']},
+          {q:'Being with you just feels ___.',blank:'right',opts:['right','perfect','natural','amazing']}
+        ]
+      }
+    ]
   }
 };
 
@@ -5549,7 +6438,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
