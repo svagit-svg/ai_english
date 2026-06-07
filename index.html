@@ -290,10 +290,45 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
-    <div class="card" onclick="alert('Требуется Premium')">
+    <div class="card" onclick="showComingSoon('IELTS Intensive')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎓</div>
         <div class="card-text"><h3>IELTS Intensive <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">PRO</span></h3><p>Подготовка к экзамену • 30 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('Grammar Pro')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;">📝</div>
+        <div class="card-text"><h3>Grammar Pro <span class="badge" style="background:rgba(99,102,241,0.15);color:#6366f1">Скоро</span></h3><p>Грамматика без скуки • 20 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('American Slang')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(16,185,129,0.1);color:var(--green);">🇺🇸</div>
+        <div class="card-text"><h3>American Slang <span class="badge" style="background:rgba(16,185,129,0.15);color:var(--green)">Скоро</span></h3><p>Современный сленг • 15 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('English for Movies')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;">🎬</div>
+        <div class="card-text"><h3>English for Movies <span class="badge" style="background:rgba(239,68,68,0.15);color:#ef4444">Скоро</span></h3><p>Фразы из фильмов • 20 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('Medical English')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;">🏥</div>
+        <div class="card-text"><h3>Medical English <span class="badge" style="background:rgba(236,72,153,0.15);color:#ec4899">Скоро</span></h3><p>Английский для врачей • 20 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('Interview English')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">💼</div>
+        <div class="card-text"><h3>Interview English <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">Скоро</span></h3><p>Собеседование на английском • 15 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
@@ -378,6 +413,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <p class="section-label">История занятий</p>
     <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
       <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>
+    </div>
+
+    <div class="divider"></div>
+    <p class="section-label">Аналитика</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:10px">
+      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">XP за последние 7 дней</p>
+      <div id="xp-chart-container"></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:10px">
+      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Активность (28 дней)</p>
+      <div id="activity-dots" style="display:grid;grid-template-columns:repeat(28,1fr);gap:3px"></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px">
+      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Прогресс по курсам</p>
+      <div id="course-analytics"></div>
     </div>
   </section>
 
@@ -525,11 +575,20 @@ const LEVELS=[
   {name:'Proficiency',next:Infinity}
 ];
 function getStats(){
-  try{return Object.assign({xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[]},
+  try{return Object.assign({xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[],dailyActivity:{}},
     JSON.parse(localStorage.getItem('smart_stats')||'{}'));}
-  catch{return{xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[]};}
+  catch{return{xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[],dailyActivity:{}};}
 }
 function saveStats(s){localStorage.setItem('smart_stats',JSON.stringify(s));}
+function trackDaily(xp,lessons){
+  const s=getStats();
+  const key=new Date().toISOString().slice(0,10);
+  s.dailyActivity=s.dailyActivity||{};
+  if(!s.dailyActivity[key])s.dailyActivity[key]={xp:0,lessons:0};
+  s.dailyActivity[key].xp+=xp;
+  s.dailyActivity[key].lessons+=lessons;
+  saveStats(s);
+}
 
 function updateStreak(){
   const s=getStats();
@@ -583,6 +642,76 @@ function renderProfile(){
   }
   // avatar
   renderAvatar();
+  // analytics
+  renderAnalytics();
+}
+
+function renderAnalytics(){
+  const s=getStats();
+  const da=s.dailyActivity||{};
+
+  // ── 7-day XP bar chart ──────────────────────────────────
+  const days7=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=d.toISOString().slice(0,10);
+    const label=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'][d.getDay()];
+    days7.push({key,label,xp:(da[key]||{}).xp||0});
+  }
+  const maxXp=Math.max(...days7.map(d=>d.xp),1);
+  const barW=36,gap=6,svgW=(barW+gap)*7-gap,svgH=80;
+  const bars=days7.map((d,i)=>{
+    const bh=Math.max(3,Math.round((d.xp/maxXp)*(svgH-22)));
+    const x=i*(barW+gap),y=svgH-22-bh;
+    const isToday=i===6;
+    const fill=isToday?'var(--accent)':d.xp>0?'rgba(99,102,241,0.45)':'rgba(255,255,255,0.07)';
+    return `<rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="4" fill="${fill}"/>
+      <text x="${x+barW/2}" y="${svgH-6}" text-anchor="middle" font-size="9" fill="var(--muted)" font-family="system-ui">${d.label}</text>
+      ${d.xp>0?`<text x="${x+barW/2}" y="${y-4}" text-anchor="middle" font-size="9" fill="var(--accent)" font-family="system-ui">${d.xp}</text>`:''}`;
+  }).join('');
+  document.getElementById('xp-chart-container').innerHTML=
+    `<svg width="100%" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">${bars}</svg>`;
+
+  // ── 28-day activity dots ─────────────────────────────────
+  const dots=[];
+  for(let i=27;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=d.toISOString().slice(0,10);
+    const xp=(da[key]||{}).xp||0;
+    let color='rgba(255,255,255,0.07)';
+    if(xp>0&&xp<20)color='rgba(99,102,241,0.3)';
+    else if(xp>=20&&xp<60)color='rgba(99,102,241,0.6)';
+    else if(xp>=60)color='var(--accent)';
+    const isToday=i===0;
+    dots.push(`<div title="${key}: ${xp} XP" style="aspect-ratio:1;border-radius:3px;background:${color};${isToday?'outline:1.5px solid var(--accent);outline-offset:1px':''}"></div>`);
+  }
+  document.getElementById('activity-dots').innerHTML=dots.join('');
+
+  // ── Course progress breakdown ────────────────────────────
+  const courseList=[
+    {id:'basic',name:'Basic English',color:'var(--accent)'},
+    {id:'business',name:'Business English',color:'var(--green)'},
+    {id:'it',name:'IT English',color:'#6366f1'},
+    {id:'travel',name:'Travel English',color:'var(--rose)'},
+    {id:'everyday',name:'Everyday English',color:'var(--amber)'},
+    {id:'dating',name:'Dating English',color:'#ec4899'},
+  ];
+  const rows=courseList.map(c=>{
+    const p=getCourseProgress(c.id);
+    const total=COURSES[c.id]?.lessons?.length||20;
+    const done=Object.keys(p).length;
+    const pct=Math.round(done/total*100);
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+        <span style="font-size:12px;color:var(--text)">${c.name}</span>
+        <span style="font-size:11px;color:var(--muted)">${done}/${total} уроков</span>
+      </div>
+      <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:10px">
+        <div style="height:100%;width:${pct}%;background:${c.color};border-radius:10px;transition:width 0.4s"></div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('course-analytics').innerHTML=rows||'<p style="font-size:12px;color:var(--muted)">Начни проходить курсы!</p>';
 }
 
 function renderAvatar(){
@@ -6568,7 +6697,7 @@ function showResult(){
   // Save progress
   saveLessonDone(currentCourseId,lesson.id,exCorrect,xpEarned);
   // Add XP to stats
-  const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);
+  const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);trackDaily(xpEarned,1);
   document.getElementById('xp-count').textContent=s.xp;
   // Show result screen
   document.getElementById('lesson-exercises').style.display='none';
@@ -6614,6 +6743,11 @@ function selectPlan(id,btn){
   document.querySelectorAll('.plan-detail').forEach(d=>d.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('plan-'+id).classList.add('active');
+}
+function showComingSoon(name){
+  const tg=window.Telegram?.WebApp;
+  if(tg?.showAlert){tg.showAlert('🔒 '+name+'\n\nЭтот курс скоро появится. Следи за обновлениями!');}
+  else{alert('🔒 '+name+'\n\nЭтот курс скоро появится!');}
 }
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
@@ -6715,7 +6849,7 @@ async function callClaude(userText,isGreeting,existingDiv){
       s.xp+=5;
       // каждые 5 сообщений = 1 урок
       if(sessionMsgs%5===0)s.lessons++;
-      saveStats(s);
+      saveStats(s);trackDaily(5,0);
       document.getElementById('xp-count').textContent=s.xp;
     } else {
       chatHistory=[
