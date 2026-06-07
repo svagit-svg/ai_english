@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.9</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.0</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -568,7 +568,22 @@ const COURSES={
           {q:'She ___ very smart.',blank:'is',opts:['am','is','are','be']},
           {q:'They ___ my friends.',blank:'are',opts:['am','is','are','was']},
           {q:'___ you tired?',blank:'Are',opts:['Am','Is','Are','Be']},
-          {q:'He ___ not happy.',blank:'is',opts:['am','is','are','be']}
+          {q:'He ___ not happy.',blank:'is',opts:['am','is','are','be']},
+          {q:'We ___ students.',blank:'are',opts:['am','is','are','be']},
+          {q:'It ___ a good book.',blank:'is',opts:['am','is','are','be']},
+          {q:'I ___ not from Russia.',blank:'am',opts:['am','is','are','be']},
+          {q:'___ she at home?',blank:'Is',opts:['Am','Is','Are','Be']},
+          {q:'You ___ very kind.',blank:'are',opts:['am','is','are','be']},
+          {q:'My cat ___ black.',blank:'is',opts:['am','is','are','be']},
+          {q:'The children ___ in the park.',blank:'are',opts:['am','is','are','was']},
+          {q:'___ I right?',blank:'Am',opts:['Am','Is','Are','Be']},
+          {q:'The weather ___ great today.',blank:'is',opts:['am','is','are','be']},
+          {q:'My parents ___ teachers.',blank:'are',opts:['am','is','are','was']},
+          {q:'This ___ my phone.',blank:'is',opts:['am','is','are','be']},
+          {q:'We ___ not ready.',blank:'are',opts:['am','is','are','be']},
+          {q:'___ it cold outside?',blank:'Is',opts:['Am','Is','Are','Be']},
+          {q:'He and I ___ brothers.',blank:'are',opts:['am','is','are','be']},
+          {q:'You and she ___ late.',blank:'are',opts:['am','is','are','was']}
         ]
       },
       {
@@ -594,7 +609,22 @@ const COURSES={
           {q:'They ___ like pizza.',blank:"don't",opts:["don't","doesn't","isn't","aren't"]},
           {q:'___ he speak English?',blank:'Does',opts:['Do','Does','Is','Are']},
           {q:'I ___ tennis on Sundays. (play)',blank:'play',opts:['play','plays','playing','played']},
-          {q:'My cat ___ a lot. (sleep)',blank:'sleeps',opts:['sleep','sleeps','sleeping','slept']}
+          {q:'My cat ___ a lot. (sleep)',blank:'sleeps',opts:['sleep','sleeps','sleeping','slept']},
+          {q:'He ___ to school by bus. (go)',blank:'goes',opts:['go','goes','going','went']},
+          {q:'We ___ eat meat.',blank:"don't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'___ they live in Moscow?',blank:'Do',opts:['Do','Does','Is','Are']},
+          {q:'She ___ TV every evening. (watch)',blank:'watches',opts:['watch','watches','watching','watched']},
+          {q:'My father ___ newspapers. (read)',blank:'reads',opts:['read','reads','reading','readed']},
+          {q:'I ___ drink coffee.',blank:"don't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'___ your sister study at university?',blank:'Does',opts:['Do','Does','Is','Are']},
+          {q:'Birds ___ south in winter. (fly)',blank:'fly',opts:['fly','flies','flying','flew']},
+          {q:'He ___ like cold weather.',blank:"doesn't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'The shop ___ at 9am. (open)',blank:'opens',opts:['open','opens','opening','opened']},
+          {q:'She ___ maths at school. (teach)',blank:'teaches',opts:['teach','teaches','teaching','thought']},
+          {q:'___ you know the answer?',blank:'Do',opts:['Do','Does','Is','Are']},
+          {q:'It ___ a lot in London. (rain)',blank:'rains',opts:['rain','rains','raining','rained']},
+          {q:'They ___ speak French.',blank:"don't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'He ___ a car. (have)',blank:'has',opts:['have','has','having','had']}
         ]
       },
       {
@@ -616,7 +646,22 @@ const COURSES={
           {q:'___ sun is very bright.',blank:'The',opts:['A','An','The','-']},
           {q:'She is ___ doctor.',blank:'a',opts:['a','an','the','-']},
           {q:'I love ___ music.',blank:'-',opts:['a','an','the','-']},
-          {q:'He lives in ___ United States.',blank:'the',opts:['a','an','the','-']}
+          {q:'He lives in ___ United States.',blank:'the',opts:['a','an','the','-']},
+          {q:'I need ___ umbrella.',blank:'an',opts:['a','an','the','-']},
+          {q:'___ moon is full tonight.',blank:'The',opts:['A','An','The','-']},
+          {q:'He is ___ honest man.',blank:'an',opts:['a','an','the','-']},
+          {q:'I drink ___ coffee every morning.',blank:'-',opts:['a','an','the','-']},
+          {q:'She plays ___ piano.',blank:'the',opts:['a','an','the','-']},
+          {q:'___ Eiffel Tower is in Paris.',blank:'The',opts:['A','An','The','-']},
+          {q:'He wants to be ___ engineer.',blank:'an',opts:['a','an','the','-']},
+          {q:'I go to ___ school every day.',blank:'-',opts:['a','an','the','-']},
+          {q:'This is ___ interesting book.',blank:'an',opts:['a','an','the','-']},
+          {q:'___ Amazon is the longest river.',blank:'The',opts:['A','An','The','-']},
+          {q:'She bought ___ new dress.',blank:'a',opts:['a','an','the','-']},
+          {q:'I speak ___ English and French.',blank:'-',opts:['a','an','the','-']},
+          {q:'___ Pacific Ocean is very deep.',blank:'The',opts:['A','An','The','-']},
+          {q:'He is ___ university student.',blank:'a',opts:['a','an','the','-']},
+          {q:'We saw ___ elephant at the zoo.',blank:'an',opts:['a','an','the','-']}
         ]
       },
       {
@@ -640,7 +685,22 @@ const COURSES={
           {q:'4:30 = It\'s ___ four.',blank:'half past',opts:['half past','quarter past','quarter to','half to']},
           {q:'25 = ___',blank:'twenty-five',opts:['twenty-five','two-five','twenty fifth','five-twenty']},
           {q:'5:45 = It\'s quarter ___ six.',blank:'to',opts:['to','past','after','before']},
-          {q:'100 = ___',blank:'a hundred',opts:['a hundred','hundred','one hundreds','the hundred']}
+          {q:'100 = ___',blank:'a hundred',opts:['a hundred','hundred','one hundreds','the hundred']},
+          {q:'13 = ___',blank:'thirteen',opts:['thirteen','thirty','three','thirdteen']},
+          {q:'3:15 = It\'s quarter ___ three.',blank:'past',opts:['to','past','after','before']},
+          {q:'50 = ___',blank:'fifty',opts:['fifteen','fifty','five','fivety']},
+          {q:'7:00 = It\'s seven ___.',blank:"o'clock",opts:["o'clock","clock","hours","time"]},
+          {q:'40 = ___',blank:'forty',opts:['fourteen','forty','four','fourty']},
+          {q:'3:30 = It\'s ___ past three.',blank:'half',opts:['half','quarter','full','double']},
+          {q:'19 = ___',blank:'nineteen',opts:['nineteen','ninety','ninth','ninteen']},
+          {q:'2:45 = It\'s quarter to ___.',blank:'three',opts:['two','three','four','twelve']},
+          {q:'60 = ___',blank:'sixty',opts:['sixteen','sixty','six','sixtieth']},
+          {q:'11:15 = It\'s quarter past ___.',blank:'eleven',opts:['ten','eleven','twelve','nine']},
+          {q:'1000 = ___',blank:'a thousand',opts:['a thousand','thousand','a million','ten hundred']},
+          {q:'8:30 = It\'s half past ___.',blank:'eight',opts:['seven','eight','nine','six']},
+          {q:'17 = ___',blank:'seventeen',opts:['seventeen','seventy','seventh','seveteen']},
+          {q:'6:45 = It\'s quarter to ___.',blank:'seven',opts:['six','seven','eight','five']},
+          {q:'30 = ___',blank:'thirty',opts:['thirteen','thirty','three','thirtieth']}
         ]
       },
       {
@@ -660,7 +720,22 @@ const COURSES={
           {q:'«Меня зовут Анна» = ___',blank:'My name is Anna',opts:['My name is Anna','I am name Anna','Name me Anna','I call Anna']},
           {q:'«Приятно познакомиться» = ___',blank:'Nice to meet you',opts:['Nice to meet you','Good to see you','Happy to know you','Glad to find you']},
           {q:'«Как дела?» = ___',blank:'How are you?',opts:['How are you?','What are you?','Where are you?','Who are you?']},
-          {q:'«Брат» = ___',blank:'brother',opts:['brother','sister','father','mother']}
+          {q:'«Брат» = ___',blank:'brother',opts:['brother','sister','father','mother']},
+          {q:'«Добрый вечер» = ___',blank:'Good evening',opts:['Good morning','Good night','Good evening','Good afternoon']},
+          {q:'«Пока / До свидания» = ___',blank:'Goodbye',opts:['Goodbye','Good night','See later','Go away']},
+          {q:'«Спасибо» = ___',blank:'Thank you',opts:['Thank you','Sorry','Please','Excuse me']},
+          {q:'«Пожалуйста» (ответ на спасибо) = ___',blank:"You're welcome",opts:["You're welcome","Thank you","Please","Of course not"]},
+          {q:'«Сестра» = ___',blank:'sister',opts:['brother','sister','father','mother']},
+          {q:'«Отец» = ___',blank:'father',opts:['brother','sister','father','mother']},
+          {q:'«Мать» = ___',blank:'mother',opts:['brother','sister','father','mother']},
+          {q:'«Я из России» = ___',blank:"I'm from Russia",opts:["I'm from Russia","I am Russia","From Russia I","I go from Russia"]},
+          {q:'«Сколько тебе лет?» = ___',blank:'How old are you?',opts:['How old are you?','How are you old?','What is your age have?','How many years you?']},
+          {q:'«Где ты живёшь?» = ___',blank:'Where do you live?',opts:['Where do you live?','Where are you live?','Where you living?','What place you live?']},
+          {q:'«Сын» = ___',blank:'son',opts:['son','daughter','husband','wife']},
+          {q:'«Дочь» = ___',blank:'daughter',opts:['son','daughter','husband','wife']},
+          {q:'«Муж» = ___',blank:'husband',opts:['son','daughter','husband','wife']},
+          {q:'«Извините» = ___',blank:'Excuse me',opts:['Excuse me','Thank you','Goodbye','You\'re welcome']},
+          {q:'«Я не понимаю» = ___',blank:"I don't understand",opts:["I don't understand","I not understand","I no understand","I understand not"]}
         ]
       }
     ]
