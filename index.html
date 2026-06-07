@@ -780,7 +780,7 @@ function openCourse(id){
     return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'':'openLesson('+i+')'}">
       <div class="lesson-num">${done?'✓':l.id}</div>
       <div class="lesson-info"><h4>${l.title}</h4>
-      <p>${done?'Пройдено • +'+l.xp+' XP':'5 упражнений • +'+l.xp+' XP'}</p></div>
+      <p>${done?'Пройдено • +'+l.xp+' XP':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
       ${locked?'<i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>':'<i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:11px;margin-left:auto"></i>'}
     </div>`;
   }).join('');
