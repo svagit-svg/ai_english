@@ -116,6 +116,32 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 @keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
 @keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px)}}
 .ach-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.5);animation:slideDown 0.3s ease;min-width:220px;max-width:300px;}
+/* ONBOARDING */
+.ob-overlay{position:fixed;inset:0;background:var(--bg);z-index:10000;display:flex;flex-direction:column;padding:24px 20px 32px;overflow-y:auto;}
+.ob-dots{display:flex;gap:6px;justify-content:center;margin-bottom:28px;}
+.ob-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all 0.3s;}
+.ob-dot.active{background:var(--accent);width:22px;border-radius:4px;}
+.ob-step{display:none;flex-direction:column;flex:1;animation:fadeIn 0.3s ease;}
+.ob-step.show{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.ob-emoji{font-size:56px;text-align:center;margin-bottom:16px;}
+.ob-title{font-family:var(--font-head);font-size:22px;font-weight:800;text-align:center;margin-bottom:8px;color:var(--text);}
+.ob-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:28px;line-height:1.5;}
+.ob-options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.ob-option{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;}
+.ob-option:active{transform:scale(0.98);}
+.ob-option.selected{border-color:var(--accent);background:rgba(99,102,241,0.1);}
+.ob-option-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0;}
+.ob-option-text{flex:1;}
+.ob-option-title{font-size:14px;font-weight:700;color:var(--text);}
+.ob-option-desc{font-size:11px;color:var(--muted);margin-top:2px;}
+.ob-btn{width:100%;padding:15px;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);margin-top:auto;}
+.ob-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.ob-skip{text-align:center;margin-top:12px;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;}
+.ob-rec-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.ob-rec-icon{font-size:32px;}
+.ob-rec-text h3{font-size:15px;font-weight:700;color:var(--text);}
+.ob-rec-text p{font-size:12px;color:var(--muted);margin-top:3px;}
 .nav-btn{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 0;color:var(--muted);font-family:var(--font-body);font-size:10px;font-weight:500;transition:color 0.2s;position:relative;}
 .nav-btn i{font-size:17px;}
 .nav-btn.active{color:var(--accent);}
@@ -178,6 +204,121 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 </style>
 </head>
 <body>
+
+<!-- ONBOARDING OVERLAY -->
+<div class="ob-overlay" id="onboarding" style="display:none">
+  <div class="ob-dots">
+    <div class="ob-dot active" id="ob-dot-0"></div>
+    <div class="ob-dot" id="ob-dot-1"></div>
+    <div class="ob-dot" id="ob-dot-2"></div>
+  </div>
+
+  <!-- Step 0: Welcome -->
+  <div class="ob-step show" id="ob-step-0">
+    <div class="ob-emoji">🧠</div>
+    <div class="ob-title">Добро пожаловать в<br>SmartAI English!</div>
+    <div class="ob-sub">Учи английский с помощью AI-тьютора, курсов и живых диалогов. Быстро, эффективно и весело.</div>
+    <div style="flex:1"></div>
+    <div style="background:var(--surface);border-radius:16px;padding:16px 14px;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <span style="font-size:20px">📚</span><span style="font-size:13px;color:var(--text)">6 курсов на любой случай жизни</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <span style="font-size:20px">💬</span><span style="font-size:13px;color:var(--text)">AI-тьютор исправляет ошибки в реальном времени</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px">🏆</span><span style="font-size:13px;color:var(--text)">Ачивки, XP и статистика прогресса</span>
+      </div>
+    </div>
+    <button class="ob-btn" onclick="obGoToStep(1)">Начать →</button>
+  </div>
+
+  <!-- Step 1: Level -->
+  <div class="ob-step" id="ob-step-1">
+    <div class="ob-emoji">📊</div>
+    <div class="ob-title">Твой уровень<br>английского?</div>
+    <div class="ob-sub">Это поможет подобрать подходящие материалы</div>
+    <div class="ob-options" id="ob-levels">
+      <div class="ob-option" onclick="obSelectOption(this,'level','beginner')" data-val="beginner">
+        <div class="ob-option-icon">🌱</div>
+        <div>
+          <div class="ob-option-title">Начинающий (A1–A2)</div>
+          <div class="ob-option-desc">Знаю базовые слова, строю простые фразы</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'level','elementary')" data-val="elementary">
+        <div class="ob-option-icon">📘</div>
+        <div>
+          <div class="ob-option-title">Элементарный (A2–B1)</div>
+          <div class="ob-option-desc">Понимаю простые тексты, могу объясниться</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'level','intermediate')" data-val="intermediate">
+        <div class="ob-option-icon">🚀</div>
+        <div>
+          <div class="ob-option-title">Средний (B1–B2)</div>
+          <div class="ob-option-desc">Читаю статьи, смотрю сериалы с субтитрами</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'level','upper')" data-val="upper">
+        <div class="ob-option-icon">⭐</div>
+        <div>
+          <div class="ob-option-title">Выше среднего (B2–C1)</div>
+          <div class="ob-option-desc">Свободно общаюсь, хочу отшлифовать язык</div>
+        </div>
+      </div>
+    </div>
+    <button class="ob-btn" id="ob-btn-1" onclick="obGoToStep(2)" disabled>Далее →</button>
+    <div class="ob-skip" onclick="obGoToStep(2)">Пропустить</div>
+  </div>
+
+  <!-- Step 2: Goal + Recommendation -->
+  <div class="ob-step" id="ob-step-2">
+    <div class="ob-emoji">🎯</div>
+    <div class="ob-title">Зачем тебе<br>английский?</div>
+    <div class="ob-sub">Выберем курс специально для тебя</div>
+    <div class="ob-options" id="ob-goals">
+      <div class="ob-option" onclick="obSelectOption(this,'goal','travel')" data-val="travel">
+        <div class="ob-option-icon">✈️</div>
+        <div>
+          <div class="ob-option-title">Путешествия</div>
+          <div class="ob-option-desc">Общаться за границей, в отеле, кафе</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'goal','business')" data-val="business">
+        <div class="ob-option-icon">💼</div>
+        <div>
+          <div class="ob-option-title">Работа и карьера</div>
+          <div class="ob-option-desc">Переговоры, презентации, деловые письма</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'goal','it')" data-val="it">
+        <div class="ob-option-icon">💻</div>
+        <div>
+          <div class="ob-option-title">IT и технологии</div>
+          <div class="ob-option-desc">Читать документацию, работать в команде</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'goal','everyday')" data-val="everyday">
+        <div class="ob-option-icon">🗣️</div>
+        <div>
+          <div class="ob-option-title">Повседневное общение</div>
+          <div class="ob-option-desc">Магазин, погода, друзья, соцсети</div>
+        </div>
+      </div>
+    </div>
+    <div class="ob-rec-card" id="ob-rec" style="display:none">
+      <div style="font-size:32px" id="ob-rec-icon"></div>
+      <div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Рекомендуем курс:</div>
+        <div style="font-size:15px;font-weight:800;color:var(--text)" id="ob-rec-title"></div>
+        <div style="font-size:11px;color:var(--muted)" id="ob-rec-desc"></div>
+      </div>
+    </div>
+    <button class="ob-btn" id="ob-btn-2" onclick="finishOnboarding()" disabled>Начать учиться 🎉</button>
+    <div class="ob-skip" onclick="finishOnboarding()">Пропустить</div>
+  </div>
+</div>
 
 <header class="header">
   <div class="logo">
@@ -6900,10 +7041,70 @@ function showResult(){
   document.getElementById('main-scroll').scrollTop=0;
 }
 
+// ── ONBOARDING ──────────────────────────────────────────
+const OB_COURSE_MAP={travel:'travel',business:'business',it:'it',everyday:'everyday',dating:'dating'};
+const OB_REC={
+  travel:{icon:'✈️',title:'Travel English',desc:'15 уроков для путешественников',course:'travel'},
+  business:{icon:'💼',title:'Business English',desc:'20 уроков делового общения',course:'business'},
+  it:{icon:'💻',title:'IT English',desc:'20 уроков для разработчиков',course:'it'},
+  everyday:{icon:'🗣️',title:'Everyday English',desc:'20 уроков повседневной жизни',course:'everyday'},
+  dating:{icon:'💕',title:'Dating English',desc:'20 уроков романтики и знакомств',course:'dating'},
+};
+let obLevel=null, obGoal=null;
+
+function checkOnboarding(){
+  if(!localStorage.getItem('smart_onboarded')){
+    document.getElementById('onboarding').style.display='flex';
+  }
+}
+
+function obGoToStep(n){
+  for(let i=0;i<3;i++){
+    document.getElementById('ob-step-'+i).classList.remove('show');
+    document.getElementById('ob-dot-'+i).classList.remove('active');
+  }
+  document.getElementById('ob-step-'+n).classList.add('show');
+  document.getElementById('ob-dot-'+n).classList.add('active');
+}
+
+function obSelectOption(el, group, val){
+  const container=el.closest('.ob-options');
+  container.querySelectorAll('.ob-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  if(group==='level'){
+    obLevel=val;
+    document.getElementById('ob-btn-1').disabled=false;
+  } else if(group==='goal'){
+    obGoal=val;
+    document.getElementById('ob-btn-2').disabled=false;
+    const rec=OB_REC[val];
+    if(rec){
+      document.getElementById('ob-rec-icon').textContent=rec.icon;
+      document.getElementById('ob-rec-title').textContent=rec.title;
+      document.getElementById('ob-rec-desc').textContent=rec.desc;
+      document.getElementById('ob-rec').style.display='flex';
+    }
+  }
+}
+
+function finishOnboarding(){
+  localStorage.setItem('smart_onboarded','1');
+  if(obLevel) localStorage.setItem('smart_level',obLevel);
+  if(obGoal)  localStorage.setItem('smart_goal',obGoal);
+  document.getElementById('onboarding').style.display='none';
+  // If goal chosen, open that course
+  if(obGoal && OB_REC[obGoal]){
+    switchTab('courses');
+    setTimeout(()=>openCourse(OB_REC[obGoal].course),200);
+  }
+}
+// ── END ONBOARDING ───────────────────────────────────────
+
 // Init
 updateStreak();
 renderProfile();
 renderCourseProgress();
+checkOnboarding();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
 
