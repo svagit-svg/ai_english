@@ -766,6 +766,537 @@ const COURSES={
           {q:'«Извините» = ___',blank:'Excuse me',opts:['Excuse me','Thank you','Goodbye','You\'re welcome']},
           {q:'«Я не понимаю» = ___',blank:"I don't understand",opts:["I don't understand","I not understand","I no understand","I understand not"]}
         ]
+      },
+      {
+        id:6,title:'Числа и время',xp:35,
+        theory:`<div class="theory-block">
+<h3>Числа</h3>
+<div class="rule">1 one &nbsp; 2 two &nbsp; 3 three &nbsp; 4 four &nbsp; 5 five<br>6 six &nbsp; 7 seven &nbsp; 8 eight &nbsp; 9 nine &nbsp; 10 ten<br>11 eleven &nbsp; 12 twelve &nbsp; 13 thirteen &nbsp; 20 twenty<br>30 thirty &nbsp; 100 a hundred &nbsp; 1000 a thousand</div>
+<p style="margin-top:12px;font-weight:600">Время:</p>
+<div class="rule">What time is it? — Который час?<br>It's 3 o'clock. — Три часа.<br>half past two — половина третьего (2:30)<br>quarter to five — без четверти пять (4:45)<br>quarter past one — четверть второго (1:15)</div>
+<p class="example">✦ It's half past seven. — Половина восьмого.</p>
+<p class="example">✦ The meeting is at nine o'clock. — Встреча в девять часов.</p>
+</div>`,
+        exercises:[
+          {q:'«Семь» = ___',blank:'seven',opts:['six','seven','eight','nine']},
+          {q:'«Двенадцать» = ___',blank:'twelve',opts:['eleven','twelve','thirteen','twenty']},
+          {q:'«Который час?» = ___',blank:'What time is it?',opts:['What time is it?','When is the time?','What is time?','How much time?']},
+          {q:'«Три часа» = ___',blank:"It's 3 o'clock",opts:["It's 3 o'clock","It's 3 time","Time is 3","Clock is 3"]},
+          {q:'«Двадцать» = ___',blank:'twenty',opts:['twelve','twenty','thirty','thirteen']},
+          {q:'«Половина восьмого» = ___',blank:'half past seven',opts:['half past seven','seven and half','half to eight','half seven o\'clock']},
+          {q:'«Сто» = ___',blank:'a hundred',opts:['a hundred','a thousand','a million','a dozen']},
+          {q:'«Без четверти пять» = ___',blank:'quarter to five',opts:['quarter to five','quarter past five','half to five','five quarter']},
+          {q:'«Тысяча» = ___',blank:'a thousand',opts:['a hundred','a thousand','a million','a dozen']},
+          {q:'«Пятнадцать» = ___',blank:'fifteen',opts:['thirteen','fourteen','fifteen','sixteen']},
+          {q:'«Четверть второго» = ___',blank:'quarter past one',opts:['quarter past one','quarter to one','half past one','one quarter']},
+          {q:'«Восемь» = ___',blank:'eight',opts:['six','seven','eight','nine']},
+          {q:'«Тридцать» = ___',blank:'thirty',opts:['thirteen','twenty','thirty','forty']},
+          {q:'«Встреча в три часа» = ___',blank:'The meeting is at three o\'clock',opts:['The meeting is at three o\'clock','The meeting at three clock','Meeting is three o\'clock','At three meeting is']},
+          {q:'«Одиннадцать» = ___',blank:'eleven',opts:['ten','eleven','twelve','thirteen']},
+          {q:'«Шесть» = ___',blank:'six',opts:['five','six','seven','eight']},
+          {q:'«Девять» = ___',blank:'nine',opts:['seven','eight','nine','ten']},
+          {q:'«Пять» = ___',blank:'five',opts:['four','five','six','seven']},
+          {q:'«Четыре» = ___',blank:'four',opts:['three','four','five','six']},
+          {q:'«Который час?» (вежливо) = ___',blank:'Could you tell me the time?',opts:['Could you tell me the time?','What time?','Give me time please','Tell time to me']}
+        ]
+      },
+      {
+        id:7,title:'Дни недели и месяцы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Дни недели</h3>
+<div class="rule">Monday — понедельник &nbsp; Tuesday — вторник<br>Wednesday — среда &nbsp; Thursday — четверг<br>Friday — пятница &nbsp; Saturday — суббота &nbsp; Sunday — воскресенье</div>
+<p style="margin-top:10px;font-weight:600">Месяцы:</p>
+<div class="rule">January February March April May June<br>July August September October November December</div>
+<p style="margin-top:10px;font-weight:600">Полезные фразы:</p>
+<p class="example">✦ Today is Monday. — Сегодня понедельник.</p>
+<p class="example">✦ My birthday is in July. — Мой день рождения в июле.</p>
+<p class="example">✦ See you on Friday! — До пятницы!</p>
+</div>`,
+        exercises:[
+          {q:'«Понедельник» = ___',blank:'Monday',opts:['Monday','Tuesday','Wednesday','Thursday']},
+          {q:'«Пятница» = ___',blank:'Friday',opts:['Thursday','Friday','Saturday','Sunday']},
+          {q:'«Январь» = ___',blank:'January',opts:['January','February','March','April']},
+          {q:'«Июль» = ___',blank:'July',opts:['June','July','August','September']},
+          {q:'«Сегодня среда» = ___',blank:'Today is Wednesday',opts:['Today is Wednesday','Now is Wednesday','Wednesday today','It Wednesday today']},
+          {q:'«Суббота» = ___',blank:'Saturday',opts:['Thursday','Friday','Saturday','Sunday']},
+          {q:'«Декабрь» = ___',blank:'December',opts:['October','November','December','September']},
+          {q:'«До пятницы!» = ___',blank:'See you on Friday!',opts:['See you on Friday!','See Friday!','Until Friday!','Meet Friday!']},
+          {q:'«Четверг» = ___',blank:'Thursday',opts:['Monday','Tuesday','Wednesday','Thursday']},
+          {q:'«Март» = ___',blank:'March',opts:['January','February','March','April']},
+          {q:'«Воскресенье» = ___',blank:'Sunday',opts:['Friday','Saturday','Sunday','Monday']},
+          {q:'«Август» = ___',blank:'August',opts:['June','July','August','September']},
+          {q:'«Вторник» = ___',blank:'Tuesday',opts:['Monday','Tuesday','Wednesday','Thursday']},
+          {q:'«Октябрь» = ___',blank:'October',opts:['August','September','October','November']},
+          {q:'«Мой день рождения в мае» = ___',blank:'My birthday is in May',opts:['My birthday is in May','My birthday in May is','Birthday my is May','I born in May']},
+          {q:'«Июнь» = ___',blank:'June',opts:['April','May','June','July']},
+          {q:'«Ноябрь» = ___',blank:'November',opts:['September','October','November','December']},
+          {q:'«Февраль» = ___',blank:'February',opts:['January','February','March','April']},
+          {q:'«Апрель» = ___',blank:'April',opts:['February','March','April','May']},
+          {q:'«Какой сегодня день?» = ___',blank:'What day is today?',opts:['What day is today?','What is today?','Which day today?','Today what day?']}
+        ]
+      },
+      {
+        id:8,title:'Present Simple',xp:40,
+        theory:`<div class="theory-block">
+<h3>Present Simple — настоящее простое время</h3>
+<p>Используется для регулярных действий, фактов и привычек.</p>
+<div class="rule">I / You / We / They + глагол (базовая форма)<br>He / She / It + глагол + <b>s / es</b></div>
+<p class="example">✦ I work every day. — Я работаю каждый день.</p>
+<p class="example">✦ She works in an office. — Она работает в офисе.</p>
+<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<div class="rule">I / You / We / They + <b>don't</b> + глагол<br>He / She / It + <b>doesn't</b> + глагол</div>
+<p class="example">✦ He doesn't like coffee. — Он не любит кофе.</p>
+<p style="margin-top:12px;font-weight:600">Вопрос:</p>
+<div class="rule"><b>Do</b> + I/you/we/they + глагол?<br><b>Does</b> + he/she/it + глагол?</div>
+<p class="example">✦ Do you speak English? — Ты говоришь по-английски?</p>
+</div>`,
+        exercises:[
+          {q:'She ___ to school every day.',blank:'goes',opts:['go','goes','going','went']},
+          {q:'They ___ football on weekends.',blank:'play',opts:['play','plays','playing','played']},
+          {q:'He ___ like vegetables.',blank:"doesn't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'___ you speak French?',blank:'Do',opts:['Do','Does','Is','Are']},
+          {q:'I ___ coffee every morning.',blank:'drink',opts:['drink','drinks','drinking','drank']},
+          {q:'___ she live in Moscow?',blank:'Does',opts:['Do','Does','Is','Has']},
+          {q:'We ___ go to the gym on Sundays.',blank:"don't",opts:["don't","doesn't","aren't","isn't"]},
+          {q:'He ___ three languages.',blank:'speaks',opts:['speak','speaks','speaking','spoke']},
+          {q:'The sun ___ in the east.',blank:'rises',opts:['rise','rises','rising','rose']},
+          {q:'___ they work here?',blank:'Do',opts:['Do','Does','Are','Have']},
+          {q:'My cat ___ fish.',blank:'likes',opts:['like','likes','liking','liked']},
+          {q:'I ___ understand this.',blank:"don't",opts:["don't","doesn't","not","no"]},
+          {q:'She ___ yoga every morning.',blank:'does',opts:['do','does','doing','did']},
+          {q:'Water ___ at 100°C.',blank:'boils',opts:['boil','boils','boiling','boiled']},
+          {q:'They ___ meat.',blank:"don't eat",opts:["don't eat","doesn't eat","not eat","no eat"]},
+          {q:'He ___ to music every evening.',blank:'listens',opts:['listen','listens','listening','listened']},
+          {q:'___ your brother study English?',blank:'Does',opts:['Do','Does','Is','Are']},
+          {q:'I ___ in a big city.',blank:'live',opts:['live','lives','living','lived']},
+          {q:'She ___ her teeth twice a day.',blank:'brushes',opts:['brush','brushes','brushing','brushed']},
+          {q:'We ___ have a car.',blank:"don't",opts:["don't","doesn't","haven't","isn't"]}
+        ]
+      },
+      {
+        id:9,title:'Past Simple',xp:40,
+        theory:`<div class="theory-block">
+<h3>Past Simple — прошедшее простое время</h3>
+<p>Используется для завершённых действий в прошлом.</p>
+<div class="rule">Правильные глаголы: + <b>ed</b><br>work → worked &nbsp; play → played &nbsp; visit → visited</div>
+<p class="example">✦ I worked yesterday. — Я работал вчера.</p>
+<p style="margin-top:10px;font-weight:600">Неправильные глаголы (учить наизусть):</p>
+<div class="rule">go → went &nbsp; see → saw &nbsp; come → came<br>take → took &nbsp; make → made &nbsp; have → had<br>say → said &nbsp; get → got &nbsp; do → did</div>
+<p style="margin-top:10px;font-weight:600">Отрицание и вопрос:</p>
+<div class="rule">I <b>didn't</b> go. — Я не ходил.<br><b>Did</b> you go? — Ты ходил?</div>
+</div>`,
+        exercises:[
+          {q:'She ___ to Paris last year.',blank:'went',opts:['go','goes','went','gone']},
+          {q:'I ___ a great film yesterday.',blank:'watched',opts:['watch','watches','watched','watching']},
+          {q:'He ___ come to the party.',blank:"didn't",opts:["didn't","doesn't","wasn't","hadn't"]},
+          {q:'___ you see that movie?',blank:'Did',opts:['Did','Do','Does','Was']},
+          {q:'They ___ football on Saturday.',blank:'played',opts:['play','plays','played','playing']},
+          {q:'She ___ a new dress for the event.',blank:'bought',opts:['buy','buys','bought','buying']},
+          {q:'I ___ my keys at home.',blank:'left',opts:['leave','leaves','left','leaved']},
+          {q:'He ___ very tired after work.',blank:'was',opts:['is','was','were','been']},
+          {q:'We ___ to the beach last summer.',blank:'went',opts:['go','went','gone','goes']},
+          {q:'___ she call you last night?',blank:'Did',opts:['Did','Does','Was','Had']},
+          {q:'They ___ not enjoy the food.',blank:'did',opts:['did','does','were','had']},
+          {q:'I ___ up at 7 this morning.',blank:'woke',opts:['wake','wakes','woke','waked']},
+          {q:'The meeting ___ two hours.',blank:'lasted',opts:['last','lasts','lasted','lasting']},
+          {q:'She ___ a letter to her friend.',blank:'wrote',opts:['write','writes','wrote','written']},
+          {q:'We ___ a lovely dinner.',blank:'had',opts:['have','has','had','having']},
+          {q:'He ___ the door and left.',blank:'opened',opts:['open','opens','opened','opening']},
+          {q:'I ___ speak Spanish when I was young.',blank:'could',opts:['can','could','would','should']},
+          {q:'___ they arrive on time?',blank:'Did',opts:['Did','Were','Had','Do']},
+          {q:'She ___ the answer immediately.',blank:'knew',opts:['know','knows','knew','known']},
+          {q:'We ___ at the hotel for three days.',blank:'stayed',opts:['stay','stays','stayed','staying']}
+        ]
+      },
+      {
+        id:10,title:'Future Simple',xp:40,
+        theory:`<div class="theory-block">
+<h3>Future Simple — будущее время</h3>
+<p>Используется для планов, предсказаний и спонтанных решений.</p>
+<div class="rule">Subject + <b>will</b> + глагол (базовая форма)</div>
+<p class="example">✦ I will call you tomorrow. — Я позвоню тебе завтра.</p>
+<p class="example">✦ It will rain today. — Сегодня будет дождь.</p>
+<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<div class="rule">Subject + <b>won't</b> (will not) + глагол</div>
+<p class="example">✦ She won't be late. — Она не опоздает.</p>
+<p style="margin-top:12px;font-weight:600">Вопрос:</p>
+<div class="rule"><b>Will</b> + subject + глагол?</div>
+<p class="example">✦ Will you help me? — Ты поможешь мне?</p>
+<p style="margin-top:10px;font-weight:600">Going to — запланированные действия:</p>
+<p class="example">✦ I'm going to study English. — Я собираюсь учить английский.</p>
+</div>`,
+        exercises:[
+          {q:'I ___ call you tonight.',blank:'will',opts:['will','would','shall','going to']},
+          {q:'She ___ be late for the meeting.',blank:"won't",opts:["won't","doesn't","isn't","can't"]},
+          {q:'___ you help me with this?',blank:'Will',opts:['Will','Do','Would','Should']},
+          {q:'They ___ travel to Japan next year.',blank:'will',opts:['will','are','do','going']},
+          {q:'It ___ snow tomorrow.',blank:'will',opts:['will','is','does','has']},
+          {q:'I\'m ___ to visit my parents this weekend.',blank:'going',opts:['going','will','shall','about']},
+          {q:'He ___ finish the project by Friday.',blank:'will',opts:['will','is','does','can']},
+          {q:'___ she come to the party?',blank:'Will',opts:['Will','Does','Is','Has']},
+          {q:'We ___ need more time.',blank:"won't",opts:["won't","don't","aren't","haven't"]},
+          {q:'I think it ___ be a great film.',blank:'will',opts:['will','is','was','would']},
+          {q:'She is ___ to buy a new car.',blank:'going',opts:['going','will','about','planning']},
+          {q:'___ they arrive before dinner?',blank:'Will',opts:['Will','Do','Are','Have']},
+          {q:'I ___ not forget your birthday.',blank:'will',opts:['will','do','am','shall']},
+          {q:'He ___ probably get the job.',blank:'will',opts:['will','is','does','can']},
+          {q:'What ___ you do after school?',blank:'will',opts:['will','do','are','shall']},
+          {q:'We\'re ___ to open a new office.',blank:'going',opts:['going','will','about','planning']},
+          {q:'The weather ___ be warm next week.',blank:'will',opts:['will','is','was','can']},
+          {q:'I ___ be there at 8 o\'clock.',blank:"'ll",opts:["'ll","'m","'ve","'d"]},
+          {q:'She ___ not agree with that.',blank:'will',opts:['will','does','is','has']},
+          {q:'___ we meet at the café?',blank:'Shall',opts:['Shall','Will','Do','Are']}
+        ]
+      },
+      {
+        id:11,title:'Модальные глаголы',xp:40,
+        theory:`<div class="theory-block">
+<h3>Модальные глаголы</h3>
+<p>Модальные глаголы добавляют значение возможности, разрешения или обязанности.</p>
+<div class="rule"><b>can</b> — могу / умею<br><b>can't</b> — не могу / не умею<br><b>must</b> — должен (обязанность)<br><b>mustn't</b> — нельзя<br><b>should</b> — следует / советую<br><b>may / might</b> — возможно</div>
+<p class="example">✦ I can swim. — Я умею плавать.</p>
+<p class="example">✦ You must wear a seatbelt. — Ты должен пристегнуться.</p>
+<p class="example">✦ You should see a doctor. — Тебе следует сходить к врачу.</p>
+<p class="example">✦ She might be late. — Она, возможно, опоздает.</p>
+<p style="margin-top:10px">После модальных глаголов всегда <b>базовая форма</b> глагола!</p>
+</div>`,
+        exercises:[
+          {q:'I ___ speak three languages.',blank:'can',opts:['can','must','should','might']},
+          {q:'You ___ smoke here. It\'s forbidden.',blank:"mustn't",opts:["mustn't","shouldn't","can't","mightn't"]},
+          {q:'She ___ see a doctor — she looks ill.',blank:'should',opts:['should','must','can','will']},
+          {q:'He ___ be at home — the lights are on.',blank:'might',opts:['might','must','can','should']},
+          {q:'___ I use your phone?',blank:'Can',opts:['Can','Must','Should','Might']},
+          {q:'You ___ be quiet in the library.',blank:'must',opts:['must','can','might','would']},
+          {q:'I ___ find my keys anywhere.',blank:"can't",opts:["can't","mustn't","shouldn't","mightn't"]},
+          {q:'We ___ leave now or we\'ll be late.',blank:'should',opts:['should','can','might','may']},
+          {q:'___ you help me, please?',blank:'Could',opts:['Could','Must','Should','Might']},
+          {q:'Children ___ play near the road.',blank:"mustn't",opts:["mustn't","shouldn't","can't","won't"]},
+          {q:'It ___ rain tomorrow — check the forecast.',blank:'might',opts:['might','must','should','can']},
+          {q:'You ___ eat more vegetables.',blank:'should',opts:['should','must','can','might']},
+          {q:'___ she drive a car?',blank:'Can',opts:['Can','Must','Should','Would']},
+          {q:'I ___ lift this — it\'s too heavy.',blank:"can't",opts:["can't","mustn't","shouldn't","won't"]},
+          {q:'You ___ submit the report by Monday.',blank:'must',opts:['must','can','might','would']},
+          {q:'He ___ know the answer — he\'s an expert.',blank:'should',opts:['should','might','must','can']},
+          {q:'___ I open the window?',blank:'May',opts:['May','Must','Should','Will']},
+          {q:'She ___ be tired after such a long trip.',blank:'must',opts:['must','can','should','might']},
+          {q:'You ___ worry — everything is fine.',blank:"shouldn't",opts:["shouldn't","mustn't","can't","won't"]},
+          {q:'They ___ arrive any minute now.',blank:'might',opts:['might','must','should','can']}
+        ]
+      },
+      {
+        id:12,title:'Вопросительные слова',xp:35,
+        theory:`<div class="theory-block">
+<h3>Вопросительные слова (Wh- questions)</h3>
+<div class="rule"><b>What</b> — что / какой<br><b>Where</b> — где / куда<br><b>When</b> — когда<br><b>Who</b> — кто<br><b>Why</b> — почему<br><b>How</b> — как<br><b>Which</b> — который / какой из<br><b>Whose</b> — чей<br><b>How much/many</b> — сколько</div>
+<p class="example">✦ What is your name? — Как тебя зовут?</p>
+<p class="example">✦ Where do you live? — Где ты живёшь?</p>
+<p class="example">✦ Why are you late? — Почему ты опоздал?</p>
+<p class="example">✦ How many books do you have? — Сколько у тебя книг?</p>
+</div>`,
+        exercises:[
+          {q:'___ is your name?',blank:'What',opts:['What','Where','Who','Why']},
+          {q:'___ do you live?',blank:'Where',opts:['What','Where','When','Who']},
+          {q:'___ are you crying?',blank:'Why',opts:['What','When','Why','How']},
+          {q:'___ is your teacher?',blank:'Who',opts:['What','Where','Who','Which']},
+          {q:'___ does the train leave?',blank:'When',opts:['What','When','Where','Why']},
+          {q:'___ do you feel today?',blank:'How',opts:['What','How','Where','Why']},
+          {q:'___ bag is this?',blank:'Whose',opts:['Who','Whose','Which','What']},
+          {q:'___ colour do you prefer?',blank:'Which',opts:['What','Which','Who','How']},
+          {q:'___ much does it cost?',blank:'How',opts:['What','How','Which','Who']},
+          {q:'___ did you go last night?',blank:'Where',opts:['When','What','Where','Why']},
+          {q:'___ many students are in the class?',blank:'How',opts:['What','How','Which','Who']},
+          {q:'___ did you say?',blank:'What',opts:['What','How','Why','When']},
+          {q:'___ is the post office?',blank:'Where',opts:['What','Where','When','Who']},
+          {q:'___ did you wake up today?',blank:'When',opts:['Why','When','Where','How']},
+          {q:'___ is knocking at the door?',blank:'Who',opts:['What','Who','Which','Whose']},
+          {q:'___ long does the film last?',blank:'How',opts:['What','How','Which','Why']},
+          {q:'___ don\'t you like onions?',blank:'Why',opts:['When','Why','How','What']},
+          {q:'___ phone is newer?',blank:'Which',opts:['What','Whose','Which','Who']},
+          {q:'___ often do you go to the gym?',blank:'How',opts:['What','How','When','Which']},
+          {q:'___ is your birthday?',blank:'When',opts:['What','Where','When','How']}
+        ]
+      },
+      {
+        id:13,title:'Предлоги места и времени',xp:35,
+        theory:`<div class="theory-block">
+<h3>Предлоги места</h3>
+<div class="rule"><b>in</b> — в (внутри) &nbsp; <b>on</b> — на (поверхность) &nbsp; <b>at</b> — у / в (точка)<br><b>under</b> — под &nbsp; <b>above</b> — над &nbsp; <b>next to</b> — рядом<br><b>between</b> — между &nbsp; <b>behind</b> — за &nbsp; <b>in front of</b> — перед</div>
+<p class="example">✦ The cat is under the table. — Кот под столом.</p>
+<p class="example">✦ She is at the bus stop. — Она на автобусной остановке.</p>
+<p style="margin-top:12px;font-weight:600">Предлоги времени:</p>
+<div class="rule"><b>in</b> — в (месяц, год, время суток)<br><b>on</b> — в (день недели, дата)<br><b>at</b> — в (конкретное время)</div>
+<p class="example">✦ in July, in 2025, in the morning</p>
+<p class="example">✦ on Monday, on 5th June</p>
+<p class="example">✦ at 3 o'clock, at night, at Christmas</p>
+</div>`,
+        exercises:[
+          {q:'The book is ___ the table.',blank:'on',opts:['in','on','at','under']},
+          {q:'She lives ___ Moscow.',blank:'in',opts:['in','on','at','by']},
+          {q:'I\'ll see you ___ 5 o\'clock.',blank:'at',opts:['in','on','at','by']},
+          {q:'The dog is ___ the bed.',blank:'under',opts:['on','under','above','behind']},
+          {q:'My birthday is ___ July.',blank:'in',opts:['in','on','at','by']},
+          {q:'We meet ___ Mondays.',blank:'on',opts:['in','on','at','by']},
+          {q:'The keys are ___ the drawer.',blank:'in',opts:['in','on','at','under']},
+          {q:'He is standing ___ the door.',blank:'at',opts:['in','on','at','by']},
+          {q:'The picture is ___ the wall.',blank:'on',opts:['in','on','at','under']},
+          {q:'I wake up ___ 7 in the morning.',blank:'at',opts:['in','on','at','by']},
+          {q:'The cat is ___ the sofa.',blank:'behind',opts:['in front of','behind','above','between']},
+          {q:'I was born ___ 1990.',blank:'in',opts:['in','on','at','by']},
+          {q:'The shop is ___ the bank and the café.',blank:'between',opts:['between','behind','above','next to']},
+          {q:'Put your phone ___ the desk.',blank:'on',opts:['in','on','at','under']},
+          {q:'She is ___ the office right now.',blank:'at',opts:['in','on','at','by']},
+          {q:'The flight is ___ Friday morning.',blank:'on',opts:['in','on','at','by']},
+          {q:'The supermarket is ___ the school.',blank:'next to',opts:['next to','between','above','behind']},
+          {q:'There is a lamp ___ the table.',blank:'above',opts:['above','under','behind','between']},
+          {q:'I study English ___ the evenings.',blank:'in',opts:['in','on','at','by']},
+          {q:'He is waiting ___ the station.',blank:'at',opts:['in','on','at','by']}
+        ]
+      },
+      {
+        id:14,title:'Степени сравнения прилагательных',xp:40,
+        theory:`<div class="theory-block">
+<h3>Сравнительная и превосходная степени</h3>
+<p style="font-weight:600">Короткие прилагательные (1 слог):</p>
+<div class="rule">big → <b>bigger</b> → <b>the biggest</b><br>fast → <b>faster</b> → <b>the fastest</b><br>hot → <b>hotter</b> → <b>the hottest</b></div>
+<p style="margin-top:10px;font-weight:600">Длинные прилагательные (2+ слога):</p>
+<div class="rule">beautiful → <b>more beautiful</b> → <b>the most beautiful</b><br>expensive → <b>more expensive</b> → <b>the most expensive</b></div>
+<p style="margin-top:10px;font-weight:600">Исключения:</p>
+<div class="rule">good → better → the best<br>bad → worse → the worst<br>far → farther → the farthest</div>
+<p class="example">✦ She is taller than me. — Она выше меня.</p>
+<p class="example">✦ This is the best film I've seen. — Это лучший фильм, который я видел.</p>
+</div>`,
+        exercises:[
+          {q:'She is ___ than her sister. (tall)',blank:'taller',opts:['tall','taller','tallest','most tall']},
+          {q:'This is ___ restaurant in the city. (expensive)',blank:'the most expensive',opts:['the most expensive','more expensive','most expensive','the expensive']},
+          {q:'Today is ___ than yesterday. (hot)',blank:'hotter',opts:['hot','hotter','hottest','more hot']},
+          {q:'He is the ___ student in class. (good)',blank:'best',opts:['good','better','best','most good']},
+          {q:'My car is ___ than yours. (fast)',blank:'faster',opts:['fast','faster','fastest','more fast']},
+          {q:'This film is ___ than the book. (interesting)',blank:'more interesting',opts:['more interesting','interestinger','most interesting','the most interesting']},
+          {q:'She speaks English ___ than I do. (good)',blank:'better',opts:['good','better','best','more good']},
+          {q:'That was the ___ day of my life. (bad)',blank:'worst',opts:['bad','worse','worst','most bad']},
+          {q:'He is ___ than his brother. (young)',blank:'younger',opts:['young','younger','youngest','more young']},
+          {q:'This is the ___ beach I\'ve ever seen. (beautiful)',blank:'most beautiful',opts:['more beautiful','most beautiful','beautifulest','the more beautiful']},
+          {q:'The new phone is ___ than the old one. (expensive)',blank:'more expensive',opts:['more expensive','expensiver','most expensive','expensivest']},
+          {q:'Moscow is ___ than my home town. (big)',blank:'bigger',opts:['big','bigger','biggest','more big']},
+          {q:'I feel ___ today than yesterday. (bad)',blank:'worse',opts:['bad','worse','worst','more bad']},
+          {q:'She is the ___ girl in the group. (tall)',blank:'tallest',opts:['tall','taller','tallest','most tall']},
+          {q:'The second task is ___ than the first. (easy)',blank:'easier',opts:['easy','easier','easiest','more easy']},
+          {q:'This is the ___ book I have. (old)',blank:'oldest',opts:['old','older','oldest','most old']},
+          {q:'He drives ___ than his wife. (careful)',blank:'more carefully',opts:['more carefully','carefullier','most carefully','carefuller']},
+          {q:'Our team played ___ than the other team. (good)',blank:'better',opts:['good','better','best','more good']},
+          {q:'Winter is ___ than autumn. (cold)',blank:'colder',opts:['cold','colder','coldest','more cold']},
+          {q:'She is ___ person I know. (kind)',blank:'the kindest',opts:['the kindest','more kind','kinder','the more kind']}
+        ]
+      },
+      {
+        id:15,title:'Present Continuous',xp:40,
+        theory:`<div class="theory-block">
+<h3>Present Continuous — настоящее длительное время</h3>
+<p>Используется для действий, происходящих прямо сейчас или в данный период.</p>
+<div class="rule">Subject + <b>am / is / are</b> + глагол<b>-ing</b></div>
+<p class="example">✦ I am reading a book. — Я читаю книгу (сейчас).</p>
+<p class="example">✦ She is cooking dinner. — Она готовит ужин.</p>
+<p class="example">✦ They are watching TV. — Они смотрят телевизор.</p>
+<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<p class="example">✦ He is not (isn't) sleeping. — Он не спит.</p>
+<p style="margin-top:10px;font-weight:600">Вопрос:</p>
+<p class="example">✦ Are you listening? — Ты слушаешь?</p>
+<p style="margin-top:10px;font-weight:600">Маркеры: now, right now, at the moment, look!, listen!</p>
+</div>`,
+        exercises:[
+          {q:'She ___ a letter right now.',blank:'is writing',opts:['is writing','writes','wrote','has written']},
+          {q:'They ___ football at the moment.',blank:'are playing',opts:['are playing','play','played','have played']},
+          {q:'I ___ to music now.',blank:'am listening',opts:['am listening','listen','listened','have listened']},
+          {q:'___ you working from home today?',blank:'Are',opts:['Are','Do','Is','Have']},
+          {q:'He ___ sleep — he is watching TV.',blank:"isn't",opts:["isn't","doesn't","wasn't","hasn't"]},
+          {q:'Look! The baby ___!',blank:'is smiling',opts:['is smiling','smiles','smiled','has smiled']},
+          {q:'We ___ for the bus.',blank:'are waiting',opts:['are waiting','wait','waited','have waited']},
+          {q:'___ she studying for the exam?',blank:'Is',opts:['Is','Does','Has','Are']},
+          {q:'The children ___ in the garden.',blank:'are playing',opts:['are playing','play','played','plays']},
+          {q:'It ___ outside — take an umbrella.',blank:'is raining',opts:['is raining','rains','rained','has rained']},
+          {q:'I ___ a new project this week.',blank:'am working on',opts:['am working on','work on','worked on','works on']},
+          {q:'Why ___ you laughing?',blank:'are',opts:['are','do','is','have']},
+          {q:'She ___ to her friend on the phone.',blank:'is talking',opts:['is talking','talks','talked','has talked']},
+          {q:'They ___ a new house at the moment.',blank:'are building',opts:['are building','build','built','builds']},
+          {q:'He ___ his homework right now.',blank:'is doing',opts:['is doing','does','did','has done']},
+          {q:'___ the dog sleeping on the sofa?',blank:'Is',opts:['Is','Does','Are','Has']},
+          {q:'I ___ trying to concentrate!',blank:'am',opts:['am','is','are','be']},
+          {q:'She ___ not coming to the party.',blank:'is',opts:['is','are','am','does']},
+          {q:'What ___ you doing tonight?',blank:'are',opts:['are','do','is','have']},
+          {q:'The sun ___ — put on sunscreen!',blank:'is shining',opts:['is shining','shines','shone','has shined']}
+        ]
+      },
+      {
+        id:16,title:'Существительные: единственное и множественное число',xp:35,
+        theory:`<div class="theory-block">
+<h3>Множественное число существительных</h3>
+<div class="rule">Обычно: + <b>s</b> → book → books, car → cars<br>После s, x, ch, sh: + <b>es</b> → box → boxes, watch → watches<br>Согласная + y → <b>ies</b> → city → cities<br>Некоторые на -f → <b>ves</b> → leaf → leaves, wife → wives</div>
+<p style="margin-top:10px;font-weight:600">Исключения (неправильные):</p>
+<div class="rule">man → men &nbsp; woman → women &nbsp; child → children<br>tooth → teeth &nbsp; foot → feet &nbsp; mouse → mice<br>person → people &nbsp; sheep → sheep &nbsp; fish → fish</div>
+<p class="example">✦ There are three children in the room. — В комнате три ребёнка.</p>
+</div>`,
+        exercises:[
+          {q:'Множественное число от «box»',blank:'boxes',opts:['boxs','boxes','boxies','boxi']},
+          {q:'Множественное число от «child»',blank:'children',opts:['childs','childes','children','childrens']},
+          {q:'Множественное число от «city»',blank:'cities',opts:['citys','cities','cityes','cityes']},
+          {q:'Множественное число от «woman»',blank:'women',opts:['womans','womens','women','womanies']},
+          {q:'Множественное число от «tooth»',blank:'teeth',opts:['tooths','teeth','teeths','toothes']},
+          {q:'Множественное число от «leaf»',blank:'leaves',opts:['leafs','leaves','leafes','leafies']},
+          {q:'Множественное число от «person»',blank:'people',opts:['persons','peoples','people','personals']},
+          {q:'Множественное число от «watch»',blank:'watches',opts:['watchs','watches','watchies','watchs']},
+          {q:'Множественное число от «mouse»',blank:'mice',opts:['mouses','mices','mice','mousi']},
+          {q:'Множественное число от «foot»',blank:'feet',opts:['foots','feet','feets','footies']},
+          {q:'Множественное число от «book»',blank:'books',opts:['books','bookes','bookies','boks']},
+          {q:'Множественное число от «sheep»',blank:'sheep',opts:['sheeps','sheep','sheepies','sheepes']},
+          {q:'Множественное число от «dish»',blank:'dishes',opts:['dishs','dishes','dishies','dishis']},
+          {q:'Множественное число от «man»',blank:'men',opts:['mans','mens','men','manes']},
+          {q:'Множественное число от «potato»',blank:'potatoes',opts:['potatos','potatoes','potatoies','potatoi']},
+          {q:'Множественное число от «wife»',blank:'wives',opts:['wifes','wives','wifes','wivis']},
+          {q:'Множественное число от «fish»',blank:'fish',opts:['fishs','fish','fishes','fishies']},
+          {q:'Множественное число от «class»',blank:'classes',opts:['classs','classes','classies','classis']},
+          {q:'Множественное число от «knife»',blank:'knives',opts:['knifes','knives','knifes','knivis']},
+          {q:'Множественное число от «story»',blank:'stories',opts:['storys','stories','storyes','storis']}
+        ]
+      },
+      {
+        id:17,title:'Артикли a / an / the',xp:40,
+        theory:`<div class="theory-block">
+<h3>Артикли: a, an, the</h3>
+<p style="font-weight:600">Неопределённый артикль a / an:</p>
+<div class="rule"><b>a</b> — перед согласным звуком: a cat, a book, a university<br><b>an</b> — перед гласным звуком: an apple, an hour, an egg</div>
+<p>Используем a/an когда говорим о предмете <b>впервые</b> или он <b>один из многих</b>.</p>
+<p class="example">✦ I saw a dog. — Я видел (какую-то) собаку.</p>
+<p style="margin-top:10px;font-weight:600">Определённый артикль the:</p>
+<p>Используем <b>the</b> когда говорим о <b>конкретном</b> предмете или он <b>единственный</b> в своём роде.</p>
+<p class="example">✦ The dog was brown. — Та (конкретная) собака была коричневой.</p>
+<p class="example">✦ the sun, the moon, the Earth — единственные в своём роде</p>
+<p style="margin-top:10px;font-weight:600">Без артикля: имена, страны, языки, профессии (в общем смысле).</p>
+</div>`,
+        exercises:[
+          {q:'She is ___ doctor.',blank:'a',opts:['a','an','the','—']},
+          {q:'I have ___ apple.',blank:'an',opts:['a','an','the','—']},
+          {q:'___ sun rises in the east.',blank:'The',opts:['A','An','The','—']},
+          {q:'He lives on ___ third floor.',blank:'the',opts:['a','an','the','—']},
+          {q:'I want to be ___ engineer.',blank:'an',opts:['a','an','the','—']},
+          {q:'___ cat I saw was white.',blank:'The',opts:['A','An','The','—']},
+          {q:'She speaks ___ English very well.',blank:'—',opts:['a','an','the','—']},
+          {q:'There is ___ university near my house.',blank:'a',opts:['a','an','the','—']},
+          {q:'Turn off ___ light, please.',blank:'the',opts:['a','an','the','—']},
+          {q:'He is ___ honest man.',blank:'an',opts:['a','an','the','—']},
+          {q:'I visited ___ France last year.',blank:'—',opts:['a','an','the','—']},
+          {q:'___ moon looks beautiful tonight.',blank:'The',opts:['A','An','The','—']},
+          {q:'We need ___ new computer.',blank:'a',opts:['a','an','the','—']},
+          {q:'She plays ___ piano.',blank:'the',opts:['a','an','the','—']},
+          {q:'I bought ___ umbrella.',blank:'an',opts:['a','an','the','—']},
+          {q:'___ water in this bottle is cold.',blank:'The',opts:['A','An','The','—']},
+          {q:'He is ___ only child.',blank:'an',opts:['a','an','the','—']},
+          {q:'I love ___ chocolate.',blank:'—',opts:['a','an','the','—']},
+          {q:'Open ___ window, please.',blank:'the',opts:['a','an','the','—']},
+          {q:'She is ___ actress.',blank:'an',opts:['a','an','the','—']}
+        ]
+      },
+      {
+        id:18,title:'Исчисляемые и неисчисляемые существительные',xp:35,
+        theory:`<div class="theory-block">
+<h3>Исчисляемые и неисчисляемые</h3>
+<p><b>Исчисляемые</b> — можно посчитать: one book, two books, three cars</p>
+<p><b>Неисчисляемые</b> — нельзя посчитать: water, money, information, advice</p>
+<div class="rule">some / any / much / little — для неисчисляемых<br>some / any / many / few — для исчисляемых во мн.ч.</div>
+<p class="example">✦ I need some water. — Мне нужно немного воды.</p>
+<p class="example">✦ How many books do you have? — Сколько у тебя книг?</p>
+<p class="example">✦ How much money do you need? — Сколько денег тебе нужно?</p>
+<p class="example">✦ There isn't any milk. — Молока нет.</p>
+<p style="margin-top:10px">There is / There are: <b>There is</b> + ед.ч. или неисч. &nbsp; <b>There are</b> + мн.ч.</p>
+</div>`,
+        exercises:[
+          {q:'How ___ milk do you need?',blank:'much',opts:['many','much','few','little']},
+          {q:'I have ___ friends in this city.',blank:'few',opts:['much','little','few','less']},
+          {q:'There ___ some bread on the table.',blank:'is',opts:['is','are','be','am']},
+          {q:'How ___ people came to the party?',blank:'many',opts:['many','much','few','little']},
+          {q:'She doesn\'t have ___ money.',blank:'much',opts:['many','much','few','little']},
+          {q:'___ any coffee left?',blank:'Is there',opts:['Is there','Are there','There is','There are']},
+          {q:'There are ___ students absent today.',blank:'a few',opts:['a few','a little','much','many a']},
+          {q:'I need ___ information about the course.',blank:'some',opts:['some','any','many','few']},
+          {q:'There ___ many cars in the parking lot.',blank:'are',opts:['is','are','be','am']},
+          {q:'He has ___ experience in this field.',blank:'little',opts:['few','little','many','much a']},
+          {q:'Do you have ___ questions?',blank:'any',opts:['any','some','many a','much']},
+          {q:'___ are three bedrooms in the house.',blank:'There',opts:['There','It','They','Here']},
+          {q:'I only have ___ minutes.',blank:'a few',opts:['a few','a little','much','fewer']},
+          {q:'We don\'t need ___ sugar.',blank:'much',opts:['many','much','few','little']},
+          {q:'___ there any vegetables in the fridge?',blank:'Are',opts:['Is','Are','Be','Have']},
+          {q:'She gave me ___ good advice.',blank:'some',opts:['some','any','a','many']},
+          {q:'I have ___ homework to do tonight.',blank:'a lot of',opts:['a lot of','many','few','a few']},
+          {q:'How ___ sugar do you take in your coffee?',blank:'much',opts:['much','many','few','little']},
+          {q:'There is ___ time before the meeting.',blank:'little',opts:['few','little','many','much a']},
+          {q:'We need ___ more chairs.',blank:'a few',opts:['a few','a little','much','many a']}
+        ]
+      },
+      {
+        id:19,title:'Разговорные фразы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Разговорные фразы — Everyday English</h3>
+<p style="font-weight:600">Согласие / несогласие:</p>
+<div class="rule">I agree. — Согласен. &nbsp; I disagree. — Не согласен.<br>Exactly! — Именно! &nbsp; That's right. — Верно.<br>I'm not sure. — Я не уверен.</div>
+<p style="margin-top:10px;font-weight:600">Просьбы:</p>
+<div class="rule">Could you...? / Would you mind...? — Не могли бы вы...?<br>Can I...? — Можно мне...? &nbsp; I'd like... — Я бы хотел...</div>
+<p style="margin-top:10px;font-weight:600">В магазине / кафе:</p>
+<div class="rule">I'll have... — Я возьму... &nbsp; How much is it? — Сколько стоит?<br>Can I pay by card? — Можно платить картой?<br>Where is the...? — Где находится...?</div>
+<p style="margin-top:10px;font-weight:600">Эмоции:</p>
+<div class="rule">That's amazing! — Это удивительно! &nbsp; What a pity! — Как жаль!<br>No way! — Не может быть! &nbsp; I can't believe it! — Не верю!</div>
+</div>`,
+        exercises:[
+          {q:'«Согласен» = ___',blank:'I agree',opts:['I agree','I accept','I confirm','I allow']},
+          {q:'«Не могли бы вы помочь?» = ___',blank:'Could you help me?',opts:['Could you help me?','Can help me you?','You could help?','Help could you?']},
+          {q:'«Сколько стоит?» = ___',blank:'How much is it?',opts:['How much is it?','What is the cost?','How many costs?','What price is?']},
+          {q:'«Я бы хотел кофе» = ___',blank:"I'd like a coffee",opts:["I'd like a coffee","I would coffee","I want have coffee","Give me coffee please"]},
+          {q:'«Не может быть!» = ___',blank:'No way!',opts:['No way!','Not possible!','Cannot be!','Impossible say!']},
+          {q:'«Как жаль!» = ___',blank:'What a pity!',opts:['What a pity!','How sad thing!','Very pity!','What shame thing!']},
+          {q:'«Можно платить картой?» = ___',blank:'Can I pay by card?',opts:['Can I pay by card?','Card payment possible?','I pay card?','May card pay?']},
+          {q:'«Именно!» = ___',blank:'Exactly!',opts:['Exactly!','Correctly!','Precisely you!','That exact!']},
+          {q:'«Я возьму стейк» = ___',blank:"I'll have the steak",opts:["I'll have the steak","I take steak","Give me steak","I want to eat steak"]},
+          {q:'«Не согласен» = ___',blank:'I disagree',opts:['I disagree','I not agree','I refuse agree','Not I agree']},
+          {q:'«Не верю!» = ___',blank:"I can't believe it!",opts:["I can't believe it!","I not believe!","Unbelievable to me!","I refuse believe!"]},
+          {q:'«Это удивительно!» = ___',blank:"That's amazing!",opts:["That's amazing!","How much amazing!","Very the amazing!","What amazing thing!"]},
+          {q:'«Где находится банк?» = ___',blank:'Where is the bank?',opts:['Where is the bank?','Where bank is?','Bank where?','How find bank?']},
+          {q:'«Я не уверен» = ___',blank:"I'm not sure",opts:["I'm not sure","I don't know maybe","Not certain I am","I unsure"]},
+          {q:'«Верно» = ___',blank:"That's right",opts:["That's right","You correct","Right it is","That correct"]},
+          {q:'«Не могли бы вы повторить?» = ___',blank:'Could you repeat that?',opts:['Could you repeat that?','Can say again?','Please repeat you?','Say again could?']},
+          {q:'«Можно мне меню?» = ___',blank:'Can I have the menu?',opts:['Can I have the menu?','Give me menu please?','Menu I want?','May menu have I?']},
+          {q:'«Извините, я опоздал» = ___',blank:"Sorry I'm late",opts:["Sorry I'm late","Excuse my lateness","I apologise delay","Forgive I am late"]},
+          {q:'«Удачи!» = ___',blank:'Good luck!',opts:['Good luck!','Have luck!','Be lucky!','Luck to you!']},
+          {q:'«Приятного аппетита!» = ___',blank:'Enjoy your meal!',opts:['Enjoy your meal!','Good eating!','Have nice food!','Eat with pleasure!']}
+        ]
+      },
+      {
+        id:20,title:'Повторение и итоговый тест',xp:50,
+        theory:`<div class="theory-block">
+<h3>🎓 Итоговый урок — Basic English</h3>
+<p>Поздравляем! Ты прошёл курс Basic English. Давай повторим всё, что изучили:</p>
+<div class="rule">✅ Глагол to be (am/is/are)<br>✅ Present Simple, Past Simple, Future Simple<br>✅ Present Continuous<br>✅ Модальные глаголы (can, must, should)<br>✅ Вопросительные слова<br>✅ Предлоги места и времени<br>✅ Степени сравнения<br>✅ Артикли (a/an/the)<br>✅ Множественное число<br>✅ Разговорные фразы</div>
+<p style="margin-top:12px">Этот итоговый тест проверяет все темы курса. Ты готов? 💪</p>
+</div>`,
+        exercises:[
+          {q:'She ___ a doctor. (to be)',blank:'is',opts:['am','is','are','be']},
+          {q:'I ___ go to school every day.',blank:'don\'t',opts:["don't","doesn't","isn't","won't"]},
+          {q:'They ___ football yesterday.',blank:'played',opts:['play','plays','played','playing']},
+          {q:'___ you help me tomorrow?',blank:'Will',opts:['Will','Do','Did','Are']},
+          {q:'She ___ English right now.',blank:'is studying',opts:['is studying','studies','studied','was studying']},
+          {q:'You ___ smoke here — it\'s forbidden.',blank:"mustn't",opts:["mustn't","shouldn't","can't","won't"]},
+          {q:'___ is your name?',blank:'What',opts:['What','Where','Who','Why']},
+          {q:'The cat is ___ the table.',blank:'under',opts:['in','on','under','at']},
+          {q:'She is ___ than her sister. (tall)',blank:'taller',opts:['tall','taller','tallest','more tall']},
+          {q:'I have ___ apple.',blank:'an',opts:['a','an','the','—']},
+          {q:'Множественное число от «child»',blank:'children',opts:['childs','children','childes','childrens']},
+          {q:'How ___ water do you drink a day?',blank:'much',opts:['many','much','few','little']},
+          {q:'___ Monday. — Понедельник = ___',blank:'Monday',opts:['Monday','Tuesday','Wednesday','Sunday']},
+          {q:'It\'s half past ___. (2:30)',blank:'two',opts:['one','two','three','four']},
+          {q:'This is ___ best film I\'ve seen.',blank:'the',opts:['a','an','the','—']},
+          {q:'«Сколько стоит?» = ___',blank:'How much is it?',opts:['How much is it?','What is the price?','How many costs?','What price?']},
+          {q:'He ___ to Paris last week.',blank:'went',opts:['go','goes','went','gone']},
+          {q:'___ there any milk in the fridge?',blank:'Is',opts:['Is','Are','Be','Have']},
+          {q:'I ___ speak French when I was young.',blank:'could',opts:['can','could','should','might']},
+          {q:'«Удачи!» = ___',blank:'Good luck!',opts:['Good luck!','Have luck!','Be lucky!','Luck you!']}
+        ]
       }
     ]
   },
