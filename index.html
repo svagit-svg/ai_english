@@ -400,7 +400,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
             <li><i class="fa-solid fa-check"></i>Базовые курсы</li>
           </ul>
         </div>
-        <button class="plan-btn" style="background:var(--rose);color:white;flex-shrink:0">Начать</button>
+        <button class="plan-btn" style="background:var(--rose);color:white;flex-shrink:0">Купить</button>
       </div>
     </div>
     <div class="plan-detail popular-plan active" id="plan-month">
@@ -460,7 +460,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 </div>
 
 <nav class="bottom-nav">
-  <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-comments"></i>Обучение</button>
+  <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-robot"></i>AI Тьютор</button>
   <button class="nav-btn" id="nav-courses" onclick="switchTab('courses')"><i class="fa-solid fa-book-open"></i>Курсы</button>
   <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i>Профиль</button>
   <button class="nav-btn" id="nav-premium" onclick="switchTab('premium')"><i class="fa-solid fa-crown"></i>Премиум</button>
@@ -6591,6 +6591,16 @@ renderCourseProgress();
 setTimeout(renderAvatar, 500);
 
 function switchTab(id){
+  // save chat history if leaving chat mid-session
+  if(id!=='chat' && sessionMsgs>0 && currentTopic){
+    const s=getStats();
+    const now=new Date();
+    const dateStr=now.toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
+    s.history=s.history||[];
+    s.history.push({topic:currentTopic,date:dateStr,msgs:sessionMsgs,xp:sessionXp});
+    saveStats(s);
+    sessionMsgs=0;sessionXp=0;
+  }
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
