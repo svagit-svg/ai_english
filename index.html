@@ -154,6 +154,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .choice-btn.wrong{background:rgba(244,63,94,0.15);border-color:var(--rose);color:var(--rose);}
 .choice-btn:disabled{cursor:default;}
 .ex-feedback{margin-top:10px;font-size:12px;padding:8px 12px;border-radius:8px;display:none;}
+.ai-correction{margin-top:8px;padding:8px 11px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;font-size:12px;color:var(--text);line-height:1.5;}
+.ai-correction strong{color:var(--amber);}
+.correction-toggle{font-size:10px;color:var(--muted);margin-left:6px;cursor:pointer;text-decoration:underline;}
 .ex-feedback.show{display:block;}
 .ex-feedback.ok{background:rgba(16,217,138,0.1);color:var(--green);}
 .ex-feedback.err{background:rgba(244,63,94,0.1);color:var(--rose);}
@@ -7000,7 +7003,8 @@ async function sendMessage(){
 }
 
 async function callClaude(userText,isGreeting,existingDiv){
-  const sysMsg={role:'system',content:currentSystemPrompt+'\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question.'};
+  const correctionInstr=`\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question to keep the conversation going.\n\nIMPORTANT — Error correction: If the user made any English grammar, vocabulary or spelling mistakes in their message, add a correction block at the very end of your reply using EXACTLY this format (on a new line):\n💡CORRECTION: [explain the mistake briefly in Russian, format: «написал X» → правильно «Y» + short reason]\nOnly correct the single most important mistake. If there are no mistakes at all, do NOT add the correction block.`;
+  const sysMsg={role:'system',content:currentSystemPrompt+correctionInstr};
   const messages=isGreeting
     ?[sysMsg,{role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'}]
     :[sysMsg,...chatHistory];
@@ -7025,8 +7029,18 @@ async function callClaude(userText,isGreeting,existingDiv){
     }
     const reply=data.choices?.[0]?.message?.content||'Something went wrong. Try again.';
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
-    if(target)target.innerHTML=reply.replace(/\n/g,'<br>');
-    else addAiMessage(reply,false);
+    // Parse correction block
+    const corrMarker='💡CORRECTION:';
+    let mainReply=reply,correctionText=null;
+    if(reply.includes(corrMarker)){
+      const parts=reply.split(corrMarker);
+      mainReply=parts[0].trim();
+      correctionText=parts[1].trim();
+    }
+    const corrHTML=correctionText
+      ?`<div class="ai-correction"><strong>💡 Исправление:</strong> ${correctionText}</div>`:'';
+    if(target)target.innerHTML=mainReply.replace(/\n/g,'<br>')+corrHTML;
+    else addAiMessage(mainReply,false);
     if(!isGreeting){
       chatHistory.push({role:'assistant',content:reply});
       sessionMsgs++;sessionXp+=5;
