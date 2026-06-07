@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.8</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.9</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -249,11 +249,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
-    <div class="card" onclick="alert('Требуется Premium')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(124,58,237,0.1);color:var(--accent2);">💻</div>
-        <div class="card-text"><h3>IT Development <span class="badge" style="background:rgba(124,58,237,0.15);color:var(--accent2)">PRO</span></h3><p>Разработка на английском • 28 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+    <div class="course-card" onclick="openCourse('it')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(124,58,237,0.1);color:var(--accent2);font-size:18px;">💻</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">IT English</h3>
+          <span id="it-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Программирование, DevOps, команды</p>
+        <div class="progress-bar"><div class="progress-fill" id="it-bar" style="width:0%;background:var(--accent2)"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="it-sub">20 уроков</p>
       </div>
     </div>
     <div class="card" onclick="alert('Требуется Premium')">
@@ -2707,6 +2712,950 @@ Overall, we can conclude that... — В целом, вывод такой:</div>
         ]
       }
     ]
+  },
+  it:{
+    title:'IT English',icon:'💻',color:'var(--accent2)',
+    lessons:[
+      {
+        id:1,title:'Основы программирования',xp:30,
+        theory:`<div class="theory-block">
+<h3>Programming Basics — основы программирования</h3>
+<p>Базовый словарь разработчика — фундамент для любого IT-специалиста.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>variable</b> — переменная | <b>function</b> — функция<br>
+<b>loop</b> — цикл | <b>condition / if-else</b> — условие<br>
+<b>array</b> — массив | <b>object</b> — объект<br>
+<b>string</b> — строка | <b>integer / float</b> — целое / дробное число<br>
+<b>boolean</b> — булево значение (true/false)<br>
+<b>null / undefined</b> — нет значения / не определено<br>
+<b>return</b> — вернуть значение | <b>call a function</b> — вызвать функцию</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">The function returns a boolean. — Функция возвращает булево значение.<br>
+We iterate over the array. — Перебираем элементы массива.<br>
+This variable is declared but not initialized. — Переменная объявлена, но не инициализирована.<br>
+The condition evaluates to true. — Условие вычисляется как true.<br>
+We pass the value as an argument. — Передаём значение как аргумент.</div>
+<p style="margin-top:10px;font-weight:600">Ошибки и отладка:</p>
+<div class="rule"><b>bug</b> — ошибка в коде | <b>debug</b> — отлаживать<br>
+<b>error / exception</b> — ошибка / исключение<br>
+<b>stack trace</b> — трассировка стека<br>
+The code throws an error. — Код бросает ошибку.<br>
+I need to debug this function. — Нужно отладить эту функцию.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ stores a value in memory.',blank:'variable',opts:['variable','function','object','method']},
+          {q:'We use a ___ to repeat code multiple times.',blank:'loop',opts:['loop','cycle','repeat','condition']},
+          {q:'The function ___ the result to the caller.',blank:'returns',opts:['returns','gives','sends','passes']},
+          {q:'An ___ is an ordered collection of values.',blank:'array',opts:['array','list','object','set']},
+          {q:'A ___ value is either true or false.',blank:'boolean',opts:['boolean','binary','logical','string']},
+          {q:'We ___ a function to execute its code.',blank:'call',opts:['call','run','execute','invoke']},
+          {q:'An ___ is thrown when something goes wrong.',blank:'exception',opts:['exception','error','bug','fault']},
+          {q:'We pass data to a function as ___.',blank:'arguments',opts:['arguments','inputs','values','parameters']},
+          {q:'A ___ is a named block of reusable code.',blank:'function',opts:['function','method','block','module']},
+          {q:'We use ___ to find and fix bugs.',blank:'debugging',opts:['debugging','testing','logging','tracing']},
+          {q:'An ___ stores key-value pairs.',blank:'object',opts:['object','array','map','dictionary']},
+          {q:'The ___ condition checks if a value is true.',blank:'if',opts:['if','when','check','boolean']},
+          {q:'A ___ is a sequence of characters.',blank:'string',opts:['string','text','char','word']},
+          {q:'___ means the variable has no value assigned.',blank:'null',opts:['null','empty','void','nothing']},
+          {q:'We ___ over an array to process each item.',blank:'iterate',opts:['iterate','loop','cycle','pass']},
+          {q:'A ___ is used to organize related functions.',blank:'module',opts:['module','file','class','package']},
+          {q:'The code ___ an error on line 42.',blank:'throws',opts:['throws','returns','raises','gives']},
+          {q:'We ___ the variable before using it.',blank:'declare',opts:['declare','define','create','make']},
+          {q:'An ___ number has no decimal part.',blank:'integer',opts:['integer','whole','round','natural']},
+          {q:'We use ___ to print values for debugging.',blank:'console.log',opts:['console.log','print','output','display']}
+        ]
+      },
+      {
+        id:2,title:'Git и контроль версий',xp:35,
+        theory:`<div class="theory-block">
+<h3>Git & Version Control — контроль версий</h3>
+<p>Git — стандарт для работы с кодом в любой команде.</p>
+<p style="margin-top:10px;font-weight:600">Основные команды:</p>
+<div class="rule"><b>git init</b> — инициализировать репозиторий<br>
+<b>git clone [url]</b> — клонировать репозиторий<br>
+<b>git add .</b> — добавить все изменения<br>
+<b>git commit -m "message"</b> — зафиксировать изменения<br>
+<b>git push</b> — отправить на сервер<br>
+<b>git pull</b> — получить изменения с сервера<br>
+<b>git branch</b> — работа с ветками<br>
+<b>git merge</b> — слить ветки<br>
+<b>git status</b> — статус рабочей директории<br>
+<b>git log</b> — история коммитов</div>
+<p style="margin-top:10px;font-weight:600">Ключевые понятия:</p>
+<div class="rule"><b>repository (repo)</b> — репозиторий<br>
+<b>branch</b> — ветка | <b>main / master</b> — основная ветка<br>
+<b>commit</b> — коммит (снимок состояния)<br>
+<b>merge</b> — слияние | <b>conflict</b> — конфликт<br>
+<b>pull request (PR)</b> — запрос на слияние кода<br>
+<b>fork</b> — форк | <b>clone</b> — клон</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы в команде:</p>
+<div class="rule">I'll push my changes and open a PR. — Запушу изменения и открою PR.<br>
+There's a merge conflict — can you help? — Конфликт слияния — поможешь?<br>
+Please review my pull request. — Проверь мой пул-реквест.<br>
+I'll branch off from main. — Создам ветку от main.<br>
+Your commit message should be descriptive. — Сообщение коммита должно быть понятным.</div>
+</div>`,
+        exercises:[
+          {q:'We use ___ to track changes in our codebase.',blank:'Git',opts:['Git','SVN','GitHub','source control']},
+          {q:'A ___ is a snapshot of your code at a point in time.',blank:'commit',opts:['commit','save','push','snapshot']},
+          {q:'I need to ___ my changes to the remote server.',blank:'push',opts:['push','send','upload','commit']},
+          {q:'We create a ___ to work on a new feature.',blank:'branch',opts:['branch','copy','version','fork']},
+          {q:'A ___ request is opened to review and merge code.',blank:'pull',opts:['pull','merge','code','push']},
+          {q:'I\'ll ___ the repository to my local machine.',blank:'clone',opts:['clone','copy','download','get']},
+          {q:'Please ___ your code before pushing.',blank:'commit',opts:['commit','save','add','push']},
+          {q:'There\'s a merge ___ that needs to be resolved.',blank:'conflict',opts:['conflict','error','issue','problem']},
+          {q:'I need to ___ the latest changes from main.',blank:'pull',opts:['pull','get','fetch','download']},
+          {q:'The ___ branch is where the stable code lives.',blank:'main',opts:['main','master','primary','base']},
+          {q:'Use ___ to see which files have been modified.',blank:'git status',opts:['git status','git log','git diff','git info']},
+          {q:'A ___ is a personal copy of someone else\'s repository.',blank:'fork',opts:['fork','clone','branch','copy']},
+          {q:'We ___ two branches to combine their changes.',blank:'merge',opts:['merge','join','combine','mix']},
+          {q:'Write a clear ___ message for every commit.',blank:'commit',opts:['commit','push','log','message']},
+          {q:'Run ___ to see the history of commits.',blank:'git log',opts:['git log','git history','git commits','git show']},
+          {q:'I\'ll ___ off from main to start the new feature.',blank:'branch',opts:['branch','fork','split','cut']},
+          {q:'We use GitHub to host our ___.',blank:'repositories',opts:['repositories','code','projects','files']},
+          {q:'Please ___ my pull request when you have time.',blank:'review',opts:['review','check','read','approve']},
+          {q:'A ___ is when two commits modify the same line differently.',blank:'conflict',opts:['conflict','clash','error','difference']},
+          {q:'I need to ___ the feature branch into main.',blank:'merge',opts:['merge','push','pull','combine']}
+        ]
+      },
+      {
+        id:3,title:'Agile и Scrum',xp:35,
+        theory:`<div class="theory-block">
+<h3>Agile & Scrum — гибкая разработка</h3>
+<p>Agile — методология гибкой разработки. Scrum — самый популярный Agile-фреймворк.</p>
+<p style="margin-top:10px;font-weight:600">Основные понятия Scrum:</p>
+<div class="rule"><b>sprint</b> — итерация (обычно 2 недели)<br>
+<b>backlog</b> — список задач | <b>product backlog</b> — продуктовый бэклог<br>
+<b>sprint planning</b> — планирование спринта<br>
+<b>daily standup / daily scrum</b> — ежедневная встреча<br>
+<b>sprint review</b> — демо по итогам спринта<br>
+<b>retrospective (retro)</b> — ретроспектива<br>
+<b>story points</b> — очки сложности задачи<br>
+<b>velocity</b> — скорость команды<br>
+<b>user story</b> — пользовательская история</div>
+<p style="margin-top:10px;font-weight:600">Роли:</p>
+<div class="rule"><b>Product Owner (PO)</b> — владелец продукта<br>
+<b>Scrum Master</b> — фасилитатор команды<br>
+<b>Development Team</b> — команда разработки</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">What's your blocker? — Что тебя блокирует?<br>
+I'll pick up this ticket. — Возьму эту задачу.<br>
+Let's add it to the next sprint. — Добавим в следующий спринт.<br>
+We need to groom the backlog. — Нужно почистить бэклог.<br>
+The sprint goal is to... — Цель спринта — ...<br>
+This story is 5 points. — Эта история — 5 очков.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ is a short iteration of work, usually 2 weeks.',blank:'sprint',opts:['sprint','iteration','cycle','phase']},
+          {q:'The ___ contains all tasks to be done.',blank:'backlog',opts:['backlog','list','queue','board']},
+          {q:'We estimate tasks using ___ points.',blank:'story',opts:['story','effort','work','task']},
+          {q:'What\'s your ___ — what\'s blocking you?',blank:'blocker',opts:['blocker','issue','problem','concern']},
+          {q:'The ___ facilitates the Scrum process.',blank:'Scrum Master',opts:['Scrum Master','Product Owner','Tech Lead','Manager']},
+          {q:'We hold a ___ every morning to sync the team.',blank:'daily standup',opts:['daily standup','meeting','sync','standup']},
+          {q:'I\'ll ___ this ticket — it\'s assigned to me now.',blank:'pick up',opts:['pick up','take','grab','get']},
+          {q:'The ___ decides what gets built and in what order.',blank:'Product Owner',opts:['Product Owner','Scrum Master','Dev Lead','Manager']},
+          {q:'A ___ story describes a feature from the user\'s view.',blank:'user',opts:['user','product','dev','feature']},
+          {q:'Let\'s ___ the backlog before sprint planning.',blank:'groom',opts:['groom','clean','sort','review']},
+          {q:'The sprint ___ shows what we delivered this sprint.',blank:'review',opts:['review','demo','report','presentation']},
+          {q:'In the ___, we discuss what went well and what to improve.',blank:'retrospective',opts:['retrospective','review','standup','planning']},
+          {q:'Our team\'s ___ is around 40 story points per sprint.',blank:'velocity',opts:['velocity','speed','capacity','output']},
+          {q:'Let\'s ___ that feature to the next sprint.',blank:'move',opts:['move','push','delay','shift']},
+          {q:'The sprint ___ defines what we aim to achieve this sprint.',blank:'goal',opts:['goal','target','objective','plan']},
+          {q:'We use a ___ board to track tasks.',blank:'Kanban',opts:['Kanban','task','Scrum','agile']},
+          {q:'Let\'s ___ this story — it\'s too large for one sprint.',blank:'split',opts:['split','break','divide','separate']},
+          {q:'Can you ___ this ticket by Friday?',blank:'close',opts:['close','finish','complete','resolve']},
+          {q:'The ___ owns the product vision and roadmap.',blank:'Product Owner',opts:['Product Owner','Scrum Master','CTO','Manager']},
+          {q:'Agile promotes ___ over following a plan.',blank:'responding to change',opts:['responding to change','planning ahead','documentation','processes']}
+        ]
+      },
+      {
+        id:4,title:'Code Review — ревью кода',xp:35,
+        theory:`<div class="theory-block">
+<h3>Code Review Language — язык ревью кода</h3>
+<p>Code review — неотъемлемая часть работы в команде. Важно давать и принимать обратную связь профессионально.</p>
+<p style="margin-top:10px;font-weight:600">Комментарии при ревью:</p>
+<div class="rule"><b>LGTM</b> — Looks Good To Me (одобрено)<br>
+<b>nit</b> — мелкое замечание (nitpick)<br>
+<b>blocking</b> — блокирующее замечание (нельзя мержить)<br>
+<b>optional</b> — необязательное предложение<br>
+<b>suggestion</b> — предложение по улучшению</div>
+<p style="margin-top:10px;font-weight:600">Полезные фразы:</p>
+<div class="rule">This looks good to me. — Выглядит хорошо.<br>
+Can you explain why you chose this approach? — Поясни, почему выбрал такой подход?<br>
+I think this could be simplified. — Думаю, можно упростить.<br>
+Nit: you might want to rename this variable. — Мелочь: переименуй переменную.<br>
+This is a blocking issue — please fix before merging. — Блокирующее — исправь перед мержем.<br>
+Great solution! — Отличное решение!<br>
+Have you considered using...? — Рассматривал ли ты использование...?</div>
+<p style="margin-top:10px;font-weight:600">Принятие фидбека:</p>
+<div class="rule">Thanks for the feedback — I'll update it. — Спасибо, исправлю.<br>
+Good point — I hadn't thought of that. — Хорошая мысль, не подумал.<br>
+I chose this approach because... — Выбрал этот подход, потому что...<br>
+I disagree — here's my reasoning. — Не согласен — вот почему.</div>
+</div>`,
+        exercises:[
+          {q:'___ — this PR looks good, I approve it.',blank:'LGTM',opts:['LGTM','OK','Good','Approved']},
+          {q:'This is a ___ issue — we can\'t merge until it\'s fixed.',blank:'blocking',opts:['blocking','critical','major','serious']},
+          {q:'Just a ___ — the variable name could be clearer.',blank:'nit',opts:['nit','note','comment','suggestion']},
+          {q:'Can you ___ why you used this pattern here?',blank:'explain',opts:['explain','describe','tell','say']},
+          {q:'I think this function could be ___.',blank:'simplified',opts:['simplified','improved','refactored','changed']},
+          {q:'Have you ___ using a helper function here?',blank:'considered',opts:['considered','thought','tried','checked']},
+          {q:'This is an ___ suggestion — feel free to ignore.',blank:'optional',opts:['optional','minor','small','nit']},
+          {q:'Please ___ these changes before we merge.',blank:'address',opts:['address','fix','resolve','handle']},
+          {q:'Thanks for the ___. I\'ll update the code.',blank:'feedback',opts:['feedback','review','comments','notes']},
+          {q:'I chose this ___ because it\'s more readable.',blank:'approach',opts:['approach','method','way','solution']},
+          {q:'Good ___! I hadn\'t thought of that edge case.',blank:'catch',opts:['catch','point','find','note']},
+          {q:'This logic is hard to ___. Can we add comments?',blank:'follow',opts:['follow','read','understand','parse']},
+          {q:'___ — you might want to extract this into a function.',blank:'Suggestion',opts:['Suggestion','Note','Nit','Comment']},
+          {q:'The ___ is getting too long — please split it.',blank:'function',opts:['function','method','code','file']},
+          {q:'This will ___ a null pointer exception.',blank:'cause',opts:['cause','throw','raise','create']},
+          {q:'Can you ___ a test for this edge case?',blank:'add',opts:['add','write','create','include']},
+          {q:'I ___ with this approach — here\'s why.',blank:'disagree',opts:['disagree','disagree with','oppose','reject']},
+          {q:'The code ___ but isn\'t very readable.',blank:'works',opts:['works','runs','executes','functions']},
+          {q:'Please ___ the PR description with context.',blank:'update',opts:['update','add to','improve','fix']},
+          {q:'Approved — ___ to merge when ready.',blank:'free',opts:['free','ready','good','okay']}
+        ]
+      },
+      {
+        id:5,title:'Базы данных и SQL',xp:40,
+        theory:`<div class="theory-block">
+<h3>Databases & SQL — базы данных</h3>
+<p>SQL — язык запросов к реляционным базам данных. Знать его нужно каждому разработчику.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>database</b> — база данных | <b>table</b> — таблица<br>
+<b>row / record</b> — строка / запись | <b>column / field</b> — столбец / поле<br>
+<b>primary key</b> — первичный ключ | <b>foreign key</b> — внешний ключ<br>
+<b>index</b> — индекс | <b>query</b> — запрос<br>
+<b>schema</b> — схема | <b>migration</b> — миграция</div>
+<p style="margin-top:10px;font-weight:600">Основные SQL-команды:</p>
+<div class="rule"><b>SELECT</b> — выбрать данные<br>
+<b>INSERT INTO</b> — вставить запись<br>
+<b>UPDATE ... SET</b> — обновить данные<br>
+<b>DELETE FROM</b> — удалить записи<br>
+<b>WHERE</b> — условие | <b>JOIN</b> — объединить таблицы<br>
+<b>GROUP BY</b> — группировка | <b>ORDER BY</b> — сортировка</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">We need to run a migration. — Нужно выполнить миграцию.<br>
+The query is too slow — let\'s add an index. — Запрос медленный — добавим индекс.<br>
+This table has a foreign key to users. — Таблица ссылается на users через внешний ключ.<br>
+We're doing a JOIN on two tables. — Делаем JOIN двух таблиц.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ stores structured data in tables.',blank:'database',opts:['database','file','storage','server']},
+          {q:'We use ___ to retrieve data from a table.',blank:'SELECT',opts:['SELECT','GET','FETCH','READ']},
+          {q:'Each ___ in a table represents one record.',blank:'row',opts:['row','line','entry','field']},
+          {q:'A ___ key uniquely identifies each row.',blank:'primary',opts:['primary','unique','main','index']},
+          {q:'We use ___ to combine rows from two tables.',blank:'JOIN',opts:['JOIN','MERGE','COMBINE','LINK']},
+          {q:'The ___ defines the structure of the database.',blank:'schema',opts:['schema','design','plan','structure']},
+          {q:'We need to ___ the database after adding a new column.',blank:'migrate',opts:['migrate','update','change','alter']},
+          {q:'An ___ speeds up query performance.',blank:'index',opts:['index','cache','key','reference']},
+          {q:'We use ___ to add a new record to a table.',blank:'INSERT INTO',opts:['INSERT INTO','ADD TO','PUT INTO','WRITE TO']},
+          {q:'The ___ clause filters the results.',blank:'WHERE',opts:['WHERE','IF','FILTER','WHEN']},
+          {q:'Use ___ to sort results alphabetically.',blank:'ORDER BY',opts:['ORDER BY','SORT BY','GROUP BY','ARRANGE BY']},
+          {q:'A ___ key references a primary key in another table.',blank:'foreign',opts:['foreign','linked','reference','external']},
+          {q:'We ___ a query to find performance issues.',blank:'optimise',opts:['optimise','fix','debug','analyse']},
+          {q:'Use ___ to remove records from a table.',blank:'DELETE FROM',opts:['DELETE FROM','REMOVE FROM','DROP FROM','ERASE']},
+          {q:'___ BY groups rows with the same value together.',blank:'GROUP',opts:['GROUP','SORT','ARRANGE','CLUSTER']},
+          {q:'A ___ is a set of SQL changes applied to the database.',blank:'migration',opts:['migration','update','script','change']},
+          {q:'We ___ the query to improve its performance.',blank:'optimise',opts:['optimise','rewrite','fix','improve']},
+          {q:'A ___ query reads data without modifying it.',blank:'SELECT',opts:['SELECT','READ','GET','FETCH']},
+          {q:'The table has 5 ___ and 10,000 rows.',blank:'columns',opts:['columns','fields','rows','entries']},
+          {q:'We need to ___ the old data before adding new constraints.',blank:'clean up',opts:['clean up','delete','remove','fix']}
+        ]
+      },
+      {
+        id:6,title:'Frontend разработка',xp:40,
+        theory:`<div class="theory-block">
+<h3>Frontend Development — фронтенд</h3>
+<p>Словарь фронтенд-разработчика: HTML, CSS, JavaScript и фреймворки.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые понятия:</p>
+<div class="rule"><b>HTML</b> — структура страницы | <b>CSS</b> — стили<br>
+<b>JavaScript (JS)</b> — логика | <b>DOM</b> — объектная модель документа<br>
+<b>component</b> — компонент UI | <b>props</b> — параметры компонента<br>
+<b>state</b> — состояние | <b>render</b> — отрисовка<br>
+<b>responsive design</b> — адаптивный дизайн<br>
+<b>breakpoint</b> — точка перелома | <b>viewport</b> — область просмотра<br>
+<b>bundle</b> — сборка | <b>minify</b> — минификация</div>
+<p style="margin-top:10px;font-weight:600">Фреймворки и инструменты:</p>
+<div class="rule"><b>React / Vue / Angular</b> — JS-фреймворки<br>
+<b>npm / yarn</b> — менеджеры пакетов<br>
+<b>Webpack / Vite</b> — сборщики<br>
+<b>TypeScript</b> — типизированный JS</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">The component re-renders when the state changes. — Компонент перерисовывается при изменении состояния.<br>
+We need to make this responsive. — Нужно сделать адаптивным.<br>
+This prop is required. — Этот проп обязателен.<br>
+Let\'s lazy-load this component. — Загрузим компонент по требованию.</div>
+</div>`,
+        exercises:[
+          {q:'___ defines the structure of a web page.',blank:'HTML',opts:['HTML','CSS','JS','DOM']},
+          {q:'We use ___ to style the layout and colours.',blank:'CSS',opts:['CSS','HTML','JS','SCSS']},
+          {q:'A ___ is a reusable piece of UI.',blank:'component',opts:['component','element','widget','block']},
+          {q:'The ___ holds data that can change over time.',blank:'state',opts:['state','data','props','store']},
+          {q:'___ are read-only values passed to a component.',blank:'Props',opts:['Props','State','Data','Attributes']},
+          {q:'We use ___ to make the layout work on all screen sizes.',blank:'responsive design',opts:['responsive design','media queries','flexbox','CSS']},
+          {q:'The ___ re-renders when its state changes.',blank:'component',opts:['component','page','app','element']},
+          {q:'We install packages using ___ or yarn.',blank:'npm',opts:['npm','pip','gradle','composer']},
+          {q:'The ___ is the browser\'s representation of the HTML.',blank:'DOM',opts:['DOM','tree','structure','HTML']},
+          {q:'We ___ the bundle to reduce file size.',blank:'minify',opts:['minify','compress','shrink','reduce']},
+          {q:'A ___ point defines where the layout changes.',blank:'break',opts:['break','switch','change','media']},
+          {q:'We ___ data from the API when the component mounts.',blank:'fetch',opts:['fetch','get','load','request']},
+          {q:'___ adds static typing to JavaScript.',blank:'TypeScript',opts:['TypeScript','JSDoc','Flow','PropTypes']},
+          {q:'The ___ tool compiles and bundles our code.',blank:'Webpack',opts:['Webpack','compiler','builder','bundler']},
+          {q:'We ___ the component to display it on screen.',blank:'render',opts:['render','show','draw','display']},
+          {q:'This hook runs ___ after the component renders.',blank:'after',opts:['after','before','during','while']},
+          {q:'We use ___ to manage complex global state.',blank:'Redux',opts:['Redux','Context','Props','State']},
+          {q:'The page ___ is slow — let\'s optimise assets.',blank:'load time',opts:['load time','speed','render','performance']},
+          {q:'We ___ the image to improve performance.',blank:'lazy-load',opts:['lazy-load','cache','compress','defer']},
+          {q:'A ___ is the visible area of the browser window.',blank:'viewport',opts:['viewport','screen','window','frame']}
+        ]
+      },
+      {
+        id:7,title:'Backend и API',xp:40,
+        theory:`<div class="theory-block">
+<h3>Backend & API Development — бэкенд и API</h3>
+<p>Бэкенд — серверная логика, API — интерфейс между системами.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>API</b> (Application Programming Interface) — интерфейс взаимодействия<br>
+<b>REST API</b> — архитектурный стиль API<br>
+<b>endpoint</b> — точка доступа | <b>request / response</b> — запрос / ответ<br>
+<b>GET / POST / PUT / DELETE</b> — HTTP-методы<br>
+<b>status code</b> — код ответа: 200 OK, 404 Not Found, 500 Server Error<br>
+<b>authentication</b> — аутентификация | <b>authorization</b> — авторизация<br>
+<b>JWT</b> — JSON Web Token | <b>OAuth</b> — протокол авторизации<br>
+<b>middleware</b> — промежуточный слой | <b>payload</b> — тело запроса</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">The endpoint returns a list of users. — Эндпоинт возвращает список пользователей.<br>
+We need to authenticate the request. — Нужно аутентифицировать запрос.<br>
+The API returns a 404 — the resource wasn\'t found. — API вернул 404 — ресурс не найден.<br>
+We send the data in the request body. — Данные отправляем в теле запроса.<br>
+This route is protected — you need a valid token. — Роут защищён — нужен токен.</div>
+</div>`,
+        exercises:[
+          {q:'An ___ allows two systems to communicate.',blank:'API',opts:['API','SDK','interface','protocol']},
+          {q:'We use a ___ request to retrieve data.',blank:'GET',opts:['GET','POST','FETCH','READ']},
+          {q:'Use ___ to send new data to the server.',blank:'POST',opts:['POST','GET','PUT','SEND']},
+          {q:'A 404 code means the resource was not ___.',blank:'found',opts:['found','available','created','loaded']},
+          {q:'Each API ___ handles a specific request.',blank:'endpoint',opts:['endpoint','route','path','function']},
+          {q:'___ verifies who you are.',blank:'Authentication',opts:['Authentication','Authorization','Validation','Verification']},
+          {q:'___ determines what you\'re allowed to do.',blank:'Authorization',opts:['Authorization','Authentication','Permission','Access']},
+          {q:'The ___ is the data sent in the request body.',blank:'payload',opts:['payload','body','data','content']},
+          {q:'A 200 status means the request was ___.',blank:'successful',opts:['successful','OK','valid','processed']},
+          {q:'___ is a secure way to pass identity between systems.',blank:'JWT',opts:['JWT','token','cookie','session']},
+          {q:'The ___ runs before the main request handler.',blank:'middleware',opts:['middleware','handler','function','filter']},
+          {q:'We use ___ to update an existing resource.',blank:'PUT',opts:['PUT','UPDATE','PATCH','POST']},
+          {q:'A 500 error means something went wrong on the ___.',blank:'server',opts:['server','client','network','database']},
+          {q:'REST API uses ___ as the data format.',blank:'JSON',opts:['JSON','XML','HTML','CSV']},
+          {q:'This route requires a valid ___ to access.',blank:'token',opts:['token','key','password','header']},
+          {q:'We ___ the response before sending it to the client.',blank:'serialize',opts:['serialize','format','convert','encode']},
+          {q:'The API has a ___ limit of 100 requests per minute.',blank:'rate',opts:['rate','request','call','query']},
+          {q:'We use ___ to handle cross-origin requests.',blank:'CORS',opts:['CORS','headers','proxy','firewall']},
+          {q:'The ___ handles the business logic on the server.',blank:'backend',opts:['backend','server','API','service']},
+          {q:'We ___ the API to check it works correctly.',blank:'test',opts:['test','check','verify','debug']}
+        ]
+      },
+      {
+        id:8,title:'DevOps и деплой',xp:40,
+        theory:`<div class="theory-block">
+<h3>DevOps & Deployment — DevOps и развёртывание</h3>
+<p>DevOps объединяет разработку и операции. Цель — быстрые, надёжные релизы.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые понятия:</p>
+<div class="rule"><b>CI/CD</b> — непрерывная интеграция / доставка<br>
+<b>pipeline</b> — конвейер автоматизации<br>
+<b>deploy / deployment</b> — развёртывание<br>
+<b>environment</b> — окружение: dev / staging / production<br>
+<b>container</b> — контейнер | <b>Docker</b> — инструмент контейнеризации<br>
+<b>Kubernetes (K8s)</b> — оркестрация контейнеров<br>
+<b>rollback</b> — откат | <b>downtime</b> — время простоя<br>
+<b>monitoring</b> — мониторинг | <b>alert</b> — уведомление</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">We\'re deploying to production tonight. — Деплоим в прод сегодня ночью.<br>
+The pipeline failed — check the logs. — Пайплайн упал — проверь логи.<br>
+We need to rollback — something broke in prod. — Нужен откат — что-то сломалось в проде.<br>
+The staging environment mirrors production. — Staging — копия прода.<br>
+Set up an alert if CPU exceeds 80%. — Настрой алерт при CPU > 80%.</div>
+</div>`,
+        exercises:[
+          {q:'We ___ the app to production every Friday.',blank:'deploy',opts:['deploy','push','release','ship']},
+          {q:'The ___ failed at the test stage.',blank:'pipeline',opts:['pipeline','build','process','workflow']},
+          {q:'We need to ___ — the new version has a critical bug.',blank:'rollback',opts:['rollback','revert','undo','restore']},
+          {q:'___ automates building, testing and deploying code.',blank:'CI/CD',opts:['CI/CD','DevOps','automation','pipeline']},
+          {q:'We test on ___ before deploying to production.',blank:'staging',opts:['staging','testing','dev','pre-prod']},
+          {q:'A ___ packages the app and all its dependencies.',blank:'container',opts:['container','image','box','package']},
+          {q:'We use ___ to manage containers at scale.',blank:'Kubernetes',opts:['Kubernetes','Docker','container','orchestrator']},
+          {q:'The server is ___ — users can\'t access the app.',blank:'down',opts:['down','broken','offline','failed']},
+          {q:'Set up a ___ to notify us if errors spike.',blank:'alert',opts:['alert','alarm','notification','warning']},
+          {q:'We use ___ to track performance over time.',blank:'monitoring',opts:['monitoring','logging','tracking','analytics']},
+          {q:'The ___ environment is where developers work locally.',blank:'dev',opts:['dev','local','development','sandbox']},
+          {q:'We write a ___ file to define the container setup.',blank:'Dockerfile',opts:['Dockerfile','config','setup','manifest']},
+          {q:'The build ___ shows each step of the process.',blank:'log',opts:['log','output','trace','history']},
+          {q:'We ___ the image to Docker Hub.',blank:'push',opts:['push','upload','deploy','send']},
+          {q:'The deployment caused ___ of 5 minutes.',blank:'downtime',opts:['downtime','outage','delay','pause']},
+          {q:'We use ___ to automate infrastructure provisioning.',blank:'Terraform',opts:['Terraform','Ansible','Puppet','Chef']},
+          {q:'The app ___ to the new version automatically.',blank:'updates',opts:['updates','migrates','upgrades','switches']},
+          {q:'We check ___ after every deployment.',blank:'metrics',opts:['metrics','stats','data','numbers']},
+          {q:'The ___ step runs all unit tests automatically.',blank:'CI',opts:['CI','test','build','check']},
+          {q:'We use ___ manifests to define deployments.',blank:'YAML',opts:['YAML','JSON','XML','config']}
+        ]
+      },
+      {
+        id:9,title:'Облака и инфраструктура',xp:40,
+        theory:`<div class="theory-block">
+<h3>Cloud & Infrastructure — облака и инфраструктура</h3>
+<p>Облачные технологии стали стандартом для хостинга и масштабирования приложений.</p>
+<p style="margin-top:10px;font-weight:600">Облачные провайдеры и сервисы:</p>
+<div class="rule"><b>AWS / Azure / GCP</b> — крупнейшие облачные провайдеры<br>
+<b>EC2 / VM</b> — виртуальная машина<br>
+<b>S3 / Blob Storage</b> — объектное хранилище<br>
+<b>Lambda / Cloud Functions</b> — бессерверные функции<br>
+<b>RDS / Cloud SQL</b> — управляемые базы данных<br>
+<b>CDN</b> — сеть доставки контента</div>
+<p style="margin-top:10px;font-weight:600">Ключевые концепции:</p>
+<div class="rule"><b>serverless</b> — бессерверная архитектура<br>
+<b>auto-scaling</b> — автомасштабирование<br>
+<b>load balancer</b> — балансировщик нагрузки<br>
+<b>availability zone</b> — зона доступности<br>
+<b>SLA</b> — соглашение об уровне сервиса<br>
+<b>uptime</b> — доступность | <b>99.9%</b> — три девятки</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">We host on AWS in the eu-west-1 region. — Хостимся на AWS в регионе eu-west-1.<br>
+The load balancer distributes traffic. — Балансировщик распределяет трафик.<br>
+We use serverless for event-driven tasks. — Serverless для задач по событиям.<br>
+Auto-scaling kicks in under heavy load. — Автомасштабирование включается при нагрузке.</div>
+</div>`,
+        exercises:[
+          {q:'We store static files in ___ on AWS.',blank:'S3',opts:['S3','EC2','RDS','Lambda']},
+          {q:'A ___ distributes traffic across multiple servers.',blank:'load balancer',opts:['load balancer','router','proxy','firewall']},
+          {q:'___ automatically adds more servers under high load.',blank:'Auto-scaling',opts:['Auto-scaling','Scaling','Expansion','Load balancing']},
+          {q:'We use ___ for short functions that run on demand.',blank:'Lambda',opts:['Lambda','EC2','serverless','functions']},
+          {q:'Our app is hosted in the AWS ___ region.',blank:'eu-west-1',opts:['eu-west-1','Europe','server','zone']},
+          {q:'A ___ is a virtual server in the cloud.',blank:'VM',opts:['VM','container','instance','server']},
+          {q:'The SLA guarantees ___ uptime per month.',blank:'99.9%',opts:['99.9%','100%','95%','99%']},
+          {q:'___ is an architecture where you don\'t manage servers.',blank:'Serverless',opts:['Serverless','PaaS','IaaS','SaaS']},
+          {q:'We deploy across multiple ___ zones for redundancy.',blank:'availability',opts:['availability','data','server','cloud']},
+          {q:'A ___ delivers content from the closest server to the user.',blank:'CDN',opts:['CDN','cache','proxy','server']},
+          {q:'We use a managed ___ service instead of self-hosting.',blank:'database',opts:['database','RDS','server','storage']},
+          {q:'The ___ monitors resource usage in real time.',blank:'dashboard',opts:['dashboard','console','panel','monitor']},
+          {q:'We ___ our infrastructure as code using Terraform.',blank:'provision',opts:['provision','create','build','setup']},
+          {q:'The app was ___ to a new region for better latency.',blank:'migrated',opts:['migrated','moved','deployed','shifted']},
+          {q:'A ___ environment has multiple servers for redundancy.',blank:'high-availability',opts:['high-availability','clustered','scalable','distributed']},
+          {q:'We use ___ to store and version container images.',blank:'ECR',opts:['ECR','S3','registry','Docker Hub']},
+          {q:'Cloud costs are ___ — we only pay for what we use.',blank:'flexible',opts:['flexible','variable','dynamic','scalable']},
+          {q:'The outage affected our ___ — 15 minutes of downtime.',blank:'SLA',opts:['SLA','uptime','agreement','metrics']},
+          {q:'We set up ___ to back up data across regions.',blank:'replication',opts:['replication','backup','copy','sync']},
+          {q:'The ___ helps us estimate monthly cloud costs.',blank:'calculator',opts:['calculator','estimator','tool','pricing']}
+        ]
+      },
+      {
+        id:10,title:'Безопасность и кибербезопасность',xp:40,
+        theory:`<div class="theory-block">
+<h3>Cybersecurity — кибербезопасность</h3>
+<p>Безопасность — обязательная часть работы любого разработчика и IT-специалиста.</p>
+<p style="margin-top:10px;font-weight:600">Основные угрозы:</p>
+<div class="rule"><b>phishing</b> — фишинг (поддельные письма/сайты)<br>
+<b>malware</b> — вредоносное ПО | <b>ransomware</b> — шифровальщик<br>
+<b>DDoS attack</b> — атака отказа в обслуживании<br>
+<b>SQL injection</b> — внедрение SQL-кода<br>
+<b>XSS</b> (Cross-Site Scripting) — межсайтовый скриптинг<br>
+<b>man-in-the-middle</b> — атака посредника<br>
+<b>data breach</b> — утечка данных</div>
+<p style="margin-top:10px;font-weight:600">Защитные меры:</p>
+<div class="rule"><b>encryption</b> — шифрование | <b>firewall</b> — брандмауэр<br>
+<b>2FA / MFA</b> — двухфакторная аутентификация<br>
+<b>SSL/TLS</b> — протоколы шифрования трафика<br>
+<b>penetration testing</b> — тестирование на проникновение<br>
+<b>patch</b> — патч (обновление безопасности)<br>
+<b>vulnerability</b> — уязвимость | <b>CVE</b> — база уязвимостей</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">We discovered a critical vulnerability. — Обнаружили критическую уязвимость.<br>
+Please enable MFA on your account. — Включи MFA на аккаунте.<br>
+The data was encrypted at rest. — Данные зашифрованы в покое.<br>
+We need to patch this immediately. — Нужно срочно закрыть эту уязвимость.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ email tries to steal your credentials.',blank:'phishing',opts:['phishing','spam','malware','virus']},
+          {q:'We use ___ to encode data so only authorised parties can read it.',blank:'encryption',opts:['encryption','hashing','masking','protection']},
+          {q:'A ___ is a piece of software that harms your system.',blank:'malware',opts:['malware','virus','ransomware','spyware']},
+          {q:'We need to ___ this vulnerability immediately.',blank:'patch',opts:['patch','fix','resolve','close']},
+          {q:'Enable ___ to add a second layer of security.',blank:'MFA',opts:['MFA','2FA','OTP','security']},
+          {q:'A DDoS attack ___ the server with traffic.',blank:'floods',opts:['floods','crashes','breaks','overloads']},
+          {q:'___ encrypts traffic between the browser and server.',blank:'TLS',opts:['TLS','SSL','HTTPS','VPN']},
+          {q:'A ___ attack injects malicious code into a database query.',blank:'SQL injection',opts:['SQL injection','XSS','CSRF','code injection']},
+          {q:'Our systems were ___ — customer data was exposed.',blank:'breached',opts:['breached','hacked','attacked','compromised']},
+          {q:'The firewall ___ suspicious incoming traffic.',blank:'blocks',opts:['blocks','filters','stops','prevents']},
+          {q:'We conduct annual ___ tests to find vulnerabilities.',blank:'penetration',opts:['penetration','security','vulnerability','audit']},
+          {q:'___ encrypts files and demands payment.',blank:'Ransomware',opts:['Ransomware','Malware','Spyware','Virus']},
+          {q:'We store passwords as ___, never plain text.',blank:'hashes',opts:['hashes','tokens','encrypted','coded']},
+          {q:'An ___ audit identifies security weaknesses.',blank:'internal',opts:['internal','security','code','system']},
+          {q:'The ___ principle means giving only the minimum access needed.',blank:'least privilege',opts:['least privilege','minimal access','zero trust','need-to-know']},
+          {q:'XSS allows attackers to ___ malicious scripts into web pages.',blank:'inject',opts:['inject','insert','add','embed']},
+          {q:'We use a ___ to monitor and log network activity.',blank:'SIEM',opts:['SIEM','firewall','monitor','IDS']},
+          {q:'Keep your ___ up to date to protect against known vulnerabilities.',blank:'software',opts:['software','systems','apps','tools']},
+          {q:'A ___ in the middle attack intercepts communication.',blank:'man',opts:['man','person','attacker','third-party']},
+          {q:'We follow ___ best practices to secure the codebase.',blank:'security',opts:['security','coding','development','engineering']}
+        ]
+      },
+      {
+        id:11,title:'Архитектура ПО',xp:45,
+        theory:`<div class="theory-block">
+<h3>Software Architecture — архитектура ПО</h3>
+<p>Архитектурные решения определяют масштабируемость, надёжность и поддерживаемость системы.</p>
+<p style="margin-top:10px;font-weight:600">Паттерны архитектуры:</p>
+<div class="rule"><b>monolith</b> — монолит (всё в одном приложении)<br>
+<b>microservices</b> — микросервисы (независимые сервисы)<br>
+<b>event-driven</b> — событийная архитектура<br>
+<b>serverless</b> — бессерверная | <b>MVC</b> — Model-View-Controller<br>
+<b>layered architecture</b> — слоистая архитектура</div>
+<p style="margin-top:10px;font-weight:600">Принципы проектирования:</p>
+<div class="rule"><b>SOLID</b> — 5 принципов ОО-дизайна<br>
+<b>DRY</b> (Don\'t Repeat Yourself) — не повторяйся<br>
+<b>KISS</b> (Keep It Simple, Stupid) — не усложняй<br>
+<b>separation of concerns</b> — разделение ответственности<br>
+<b>scalability</b> — масштабируемость<br>
+<b>fault tolerance</b> — отказоустойчивость</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">We\'re migrating from a monolith to microservices. — Переходим с монолита на микросервисы.<br>
+This violates the DRY principle. — Это нарушает принцип DRY.<br>
+The system needs to scale horizontally. — Система должна масштабироваться горизонтально.<br>
+This service is a single point of failure. — Этот сервис — единая точка отказа.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ is a single large application with all components combined.',blank:'monolith',opts:['monolith','legacy','big app','single system']},
+          {q:'___ architecture splits the app into small, independent services.',blank:'Microservices',opts:['Microservices','Serverless','SOA','Distributed']},
+          {q:'___ means don\'t write the same logic in two places.',blank:'DRY',opts:['DRY','KISS','SOLID','WET']},
+          {q:'Good ___ means the system can handle more load.',blank:'scalability',opts:['scalability','performance','availability','reliability']},
+          {q:'MVC stands for Model-View-___.',blank:'Controller',opts:['Controller','Component','Creator','Connector']},
+          {q:'___ means each module should have one reason to change.',blank:'SRP',opts:['SRP','SOLID','DRY','OCP']},
+          {q:'We need to ___ the service — add more instances.',blank:'scale',opts:['scale','expand','replicate','multiply']},
+          {q:'This is a ___ point of failure — we need redundancy.',blank:'single',opts:['single','critical','major','key']},
+          {q:'___ architecture reacts to events rather than requests.',blank:'Event-driven',opts:['Event-driven','Reactive','Async','Queue-based']},
+          {q:'___ means keeping things as simple as possible.',blank:'KISS',opts:['KISS','DRY','SOLID','YAGNI']},
+          {q:'We use ___ to separate business logic from the database.',blank:'layers',opts:['layers','modules','services','components']},
+          {q:'The system has strong ___ — it recovers from failures automatically.',blank:'fault tolerance',opts:['fault tolerance','resilience','redundancy','availability']},
+          {q:'We apply the ___ principle to keep components loosely coupled.',blank:'separation of concerns',opts:['separation of concerns','SRP','DRY','KISS']},
+          {q:'Horizontal ___ means adding more servers rather than bigger ones.',blank:'scaling',opts:['scaling','expansion','growth','distribution']},
+          {q:'We use a ___ to communicate between microservices.',blank:'message queue',opts:['message queue','API','event bus','broker']},
+          {q:'___ means software entities should be open for extension.',blank:'OCP',opts:['OCP','SRP','DRY','LSP']},
+          {q:'This class has too many ___. It violates SRP.',blank:'responsibilities',opts:['responsibilities','methods','lines','functions']},
+          {q:'We ___ the database to handle more queries.',blank:'shard',opts:['shard','split','partition','divide']},
+          {q:'The system ___ under heavy load — it needs optimisation.',blank:'degrades',opts:['degrades','slows','fails','breaks']},
+          {q:'We write ___ tests to verify the architecture holds.',blank:'integration',opts:['integration','unit','system','architecture']}
+        ]
+      },
+      {
+        id:12,title:'Тестирование ПО',xp:40,
+        theory:`<div class="theory-block">
+<h3>Software Testing — тестирование программного обеспечения</h3>
+<p>Качество кода определяется тестами. Знание терминологии testing — обязательно для разработчика.</p>
+<p style="margin-top:10px;font-weight:600">Виды тестов:</p>
+<div class="rule"><b>unit test</b> — тест отдельной функции/метода<br>
+<b>integration test</b> — тест взаимодействия компонентов<br>
+<b>end-to-end test (E2E)</b> — тест всего пути пользователя<br>
+<b>regression test</b> — тест на отсутствие новых поломок<br>
+<b>smoke test</b> — быстрая проверка работоспособности<br>
+<b>load test</b> — тест под нагрузкой</div>
+<p style="margin-top:10px;font-weight:600">Концепции:</p>
+<div class="rule"><b>TDD</b> (Test-Driven Development) — сначала тест, потом код<br>
+<b>coverage</b> — покрытие тестами<br>
+<b>mock / stub</b> — заглушка для зависимостей<br>
+<b>assertion</b> — утверждение в тесте<br>
+<b>test suite</b> — набор тестов | <b>CI</b> — запуск тестов в пайплайне</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">All tests passed. — Все тесты прошли.<br>
+The test is flaky — it fails randomly. — Тест нестабильный — падает случайно.<br>
+We need 80% code coverage. — Нужно 80% покрытия кода.<br>
+Write a test for this edge case. — Напиши тест для этого крайнего случая.</div>
+</div>`,
+        exercises:[
+          {q:'A ___ test verifies a single function in isolation.',blank:'unit',opts:['unit','single','isolated','function']},
+          {q:'We mock the database to ___ external dependencies.',blank:'isolate',opts:['isolate','remove','hide','avoid']},
+          {q:'All tests ___ — we\'re good to deploy.',blank:'passed',opts:['passed','succeeded','ran','completed']},
+          {q:'The test is ___ — it sometimes passes and sometimes fails.',blank:'flaky',opts:['flaky','unstable','broken','random']},
+          {q:'We need 80% ___ to ensure the code is well tested.',blank:'coverage',opts:['coverage','testing','quality','verification']},
+          {q:'In TDD you write the ___ before writing the code.',blank:'test',opts:['test','spec','requirement','assertion']},
+          {q:'An ___ test verifies how components work together.',blank:'integration',opts:['integration','combined','system','joint']},
+          {q:'We use a ___ to replace a real dependency in tests.',blank:'mock',opts:['mock','fake','stub','dummy']},
+          {q:'The regression test checks that old ___ still works.',blank:'functionality',opts:['functionality','code','features','logic']},
+          {q:'An ___ is a check in the test that verifies the result.',blank:'assertion',opts:['assertion','check','expect','verify']},
+          {q:'E2E tests simulate real ___ workflows.',blank:'user',opts:['user','browser','frontend','customer']},
+          {q:'A smoke test quickly checks the app ___ basic functionality.',blank:'has',opts:['has','passes','runs','works']},
+          {q:'We run all tests in the ___ pipeline automatically.',blank:'CI',opts:['CI','CD','build','test']},
+          {q:'A ___ test ensures changes don\'t break existing features.',blank:'regression',opts:['regression','change','safety','existing']},
+          {q:'Load tests check how the app ___ under heavy traffic.',blank:'performs',opts:['performs','behaves','works','scales']},
+          {q:'We organised our tests into a ___ suite.',blank:'test',opts:['test','unit','full','spec']},
+          {q:'The test failed because of an ___ result.',blank:'unexpected',opts:['unexpected','wrong','incorrect','different']},
+          {q:'We ___ the test to make it pass first, then write the code.',blank:'write',opts:['write','create','define','add']},
+          {q:'A ___ replaces a function with a simpler version for testing.',blank:'stub',opts:['stub','mock','fake','replacement']},
+          {q:'Good test names describe what the function ___ do.',blank:'should',opts:['should','will','must','can']}
+        ]
+      },
+      {
+        id:13,title:'Технические интервью',xp:45,
+        theory:`<div class="theory-block">
+<h3>Technical Interviews — технические собеседования</h3>
+<p>Технические интервью в международных компаниях ведутся на английском. Знай язык — и алгоритмы, и общение.</p>
+<p style="margin-top:10px;font-weight:600">Этапы технического интервью:</p>
+<div class="rule"><b>phone screen</b> — первичный скрининг по телефону<br>
+<b>coding challenge</b> — практическое задание по коду<br>
+<b>system design</b> — проектирование систем<br>
+<b>behavioural interview</b> — поведенческое интервью<br>
+<b>take-home assignment</b> — домашнее задание<br>
+<b>onsite / final round</b> — финальный раунд</div>
+<p style="margin-top:10px;font-weight:600">Coding challenge — полезные фразы:</p>
+<div class="rule">Can I clarify the requirements? — Могу уточнить требования?<br>
+I\'ll start with a brute force solution. — Начну с грубой силы (простого решения).<br>
+The time complexity is O(n). — Временная сложность O(n).<br>
+Let me walk you through my approach. — Объясню свой подход.<br>
+Can I ask about edge cases? — Могу спросить о крайних случаях?</div>
+<p style="margin-top:10px;font-weight:600">Behavioural — STAR method:</p>
+<div class="rule"><b>Situation</b> — опишите ситуацию<br>
+<b>Task</b> — ваша задача<br>
+<b>Action</b> — что вы сделали<br>
+<b>Result</b> — результат<br>
+Example: "Tell me about a time you solved a difficult bug."</div>
+</div>`,
+        exercises:[
+          {q:'Can I ___ the requirements before I start?',blank:'clarify',opts:['clarify','ask','check','confirm']},
+          {q:'I\'ll ___ you through my thought process.',blank:'walk',opts:['walk','take','guide','show']},
+          {q:'Let\'s start with a ___ force solution.',blank:'brute',opts:['brute','simple','basic','naive']},
+          {q:'The ___ complexity of this algorithm is O(n²).',blank:'time',opts:['time','space','run','big-O']},
+          {q:'Could you tell me more about the ___ cases?',blank:'edge',opts:['edge','corner','special','boundary']},
+          {q:'I can ___ the solution to make it more efficient.',blank:'optimise',opts:['optimise','improve','refactor','change']},
+          {q:'In a system design interview, I\'d design for ___.',blank:'scalability',opts:['scalability','performance','speed','reliability']},
+          {q:'This approach has O(1) ___ complexity.',blank:'space',opts:['space','memory','storage','extra']},
+          {q:'I used the ___ method to answer the behavioural question.',blank:'STAR',opts:['STAR','CAR','PAR','SOAR']},
+          {q:'Can I use a ___ to trade memory for speed?',blank:'hashmap',opts:['hashmap','cache','set','dictionary']},
+          {q:'The ___ round typically involves coding problems.',blank:'technical',opts:['technical','coding','engineering','programming']},
+          {q:'Tell me about a time you ___ a difficult technical challenge.',blank:'solved',opts:['solved','faced','handled','overcame']},
+          {q:'I\'d use a ___ queue to process tasks in order.',blank:'priority',opts:['priority','FIFO','sorted','ordered']},
+          {q:'The brute force works but ___ complexity is too high.',blank:'time',opts:['time','space','runtime','Big-O']},
+          {q:'Let me ___ my solution on this test case.',blank:'verify',opts:['verify','test','check','run']},
+          {q:'I\'d start by ___ the problem into smaller parts.',blank:'breaking',opts:['breaking','splitting','dividing','decomposing']},
+          {q:'In a phone ___, they ask basic technical questions.',blank:'screen',opts:['screen','interview','call','test']},
+          {q:'For a sorted array, I\'d use ___ search.',blank:'binary',opts:['binary','linear','quick','sorted']},
+          {q:'What are the ___ offs of this design choice?',blank:'trade',opts:['trade','pros and','up and down','cost']},
+          {q:'I\'d use ___ programming for this optimisation problem.',blank:'dynamic',opts:['dynamic','recursive','iterative','greedy']}
+        ]
+      },
+      {
+        id:14,title:'Командная работа в IT',xp:35,
+        theory:`<div class="theory-block">
+<h3>Teamwork in IT — командная работа</h3>
+<p>IT-команды часто работают распределённо и на английском. Знание правильных фраз — залог эффективной коммуникации.</p>
+<p style="margin-top:10px;font-weight:600">Ежедневная коммуникация:</p>
+<div class="rule">I\'m working on... — Работаю над...<br>
+I\'m blocked by... — Заблокирован из-за...<br>
+I need help with... — Нужна помощь с...<br>
+Can you review this when you have time? — Можешь ревьюнуть, когда будет время?<br>
+I\'ll pick that up. — Возьму это на себя.</div>
+<p style="margin-top:10px;font-weight:600">Решение проблем вместе:</p>
+<div class="rule">Let\'s do a quick call. — Созвонимся быстро?<br>
+Can you share your screen? — Можешь поделиться экраном?<br>
+I think the issue is in... — Думаю, проблема в...<br>
+Let me check the logs. — Посмотрю логи.<br>
+I reproduced the bug locally. — Воспроизвёл баг локально.</div>
+<p style="margin-top:10px;font-weight:600">Асинхронная коммуникация (Slack / email):</p>
+<div class="rule">FYI — For Your Information (к сведению)<br>
+LGTM — Looks Good To Me (одобряю)<br>
+TL;DR — Too Long; Didn\'t Read (кратко)<br>
+ETA — Estimated Time of Arrival (ожидаемое время)<br>
+OOO — Out Of Office (не в офисе)</div>
+</div>`,
+        exercises:[
+          {q:'I\'m ___ on the login feature today.',blank:'working',opts:['working','focusing','doing','coding']},
+          {q:'I\'m ___ by a missing API key.',blank:'blocked',opts:['blocked','stopped','stuck','waiting']},
+          {q:'Can you ___ my PR when you have time?',blank:'review',opts:['review','check','look at','read']},
+          {q:'I\'ll ___ that ticket — it\'s not assigned yet.',blank:'pick up',opts:['pick up','take','grab','assign']},
+          {q:'Let\'s do a quick ___ to debug this together.',blank:'call',opts:['call','meeting','sync','chat']},
+          {q:'Can you ___ your screen so I can see the issue?',blank:'share',opts:['share','show','display','cast']},
+          {q:'What\'s your ___ on this task?',blank:'ETA',opts:['ETA','deadline','estimate','timeline']},
+          {q:'FYI — the database will be ___ tonight.',blank:'down',opts:['down','offline','unavailable','restarting']},
+          {q:'I ___ the bug locally — it\'s definitely in the auth module.',blank:'reproduced',opts:['reproduced','found','confirmed','tested']},
+          {q:'OOO means the person is ___ of office.',blank:'out',opts:['out','away','outside','not in']},
+          {q:'TL;DR — the fix is in ___ three lines.',blank:'just',opts:['just','only','under','about']},
+          {q:'I need ___ with this performance issue.',blank:'help',opts:['help','support','assistance','input']},
+          {q:'The ___ is in the API layer — not the frontend.',blank:'issue',opts:['issue','bug','error','problem']},
+          {q:'Can we ___ a time to pair on this?',blank:'find',opts:['find','set','book','schedule']},
+          {q:'I\'ll check the ___ and report back.',blank:'logs',opts:['logs','errors','console','output']},
+          {q:'Let me ___ you context on this codebase.',blank:'give',opts:['give','provide','share','send']},
+          {q:'The feature is ___ — just needs tests.',blank:'done',opts:['done','complete','ready','finished']},
+          {q:'I\'ll ___ the ticket when I push the fix.',blank:'close',opts:['close','update','mark','resolve']},
+          {q:'Can someone ___ on the API design? Need a second opinion.',blank:'weigh in',opts:['weigh in','help','comment','give feedback']},
+          {q:'LGTM — feel free to ___.',blank:'merge',opts:['merge','push','deploy','ship']}
+        ]
+      },
+      {
+        id:15,title:'Документация и README',xp:35,
+        theory:`<div class="theory-block">
+<h3>Technical Documentation & README</h3>
+<p>Хорошая документация — знак профессионализма. README — первое, что видит другой разработчик.</p>
+<p style="margin-top:10px;font-weight:600">Структура README:</p>
+<div class="rule"><b>Overview / Description</b> — что делает проект<br>
+<b>Installation</b> — как установить<br>
+<b>Usage</b> — как использовать<br>
+<b>Configuration</b> — настройка<br>
+<b>Contributing</b> — как участвовать<br>
+<b>License</b> — лицензия</div>
+<p style="margin-top:10px;font-weight:600">Фразы для документации:</p>
+<div class="rule">This library allows you to... — Эта библиотека позволяет...<br>
+To get started, run... — Для начала работы запустите...<br>
+Prerequisites: Node.js 18+ — Требования: Node.js 18+<br>
+See the API reference for details. — См. справочник API.<br>
+Contributions are welcome! — Участие приветствуется!</div>
+<p style="margin-top:10px;font-weight:600">Комментарии в коде:</p>
+<div class="rule">// TODO: refactor this — нужно переработать<br>
+// FIXME: this crashes on null — крашится на null<br>
+// NOTE: this is intentional — это намеренно<br>
+// HACK: temporary fix — временное решение<br>
+/** JSDoc comment */ — документационный комментарий</div>
+</div>`,
+        exercises:[
+          {q:'A good ___ file explains what the project does.',blank:'README',opts:['README','doc','manual','guide']},
+          {q:'The ___ section explains how to install the project.',blank:'Installation',opts:['Installation','Setup','Requirements','Getting Started']},
+          {q:'See the ___ reference for all available methods.',blank:'API',opts:['API','code','function','library']},
+          {q:'___ are welcome — please open a pull request.',blank:'Contributions',opts:['Contributions','PRs','Changes','Edits']},
+          {q:'// ___: this function needs to be refactored.',blank:'TODO',opts:['TODO','NOTE','FIXME','HACK']},
+          {q:'// ___: this crashes when input is null.',blank:'FIXME',opts:['FIXME','BUG','TODO','ISSUE']},
+          {q:'___ node.js 18+ to run this project.',blank:'Requires',opts:['Requires','Needs','Uses','Supports']},
+          {q:'To get ___, clone the repo and run npm install.',blank:'started',opts:['started','going','running','working']},
+          {q:'The code is ___ under the MIT License.',blank:'licensed',opts:['licensed','available','released','distributed']},
+          {q:'Good ___ helps other developers understand the code.',blank:'documentation',opts:['documentation','comments','notes','readme']},
+          {q:'// NOTE: this ___ is intentional.',blank:'behaviour',opts:['behaviour','result','output','logic']},
+          {q:'Write ___ comments to explain complex logic.',blank:'clear',opts:['clear','good','useful','inline']},
+          {q:'The ___ section describes environment variables.',blank:'Configuration',opts:['Configuration','Settings','Setup','Environment']},
+          {q:'We use JSDoc to ___ functions automatically.',blank:'document',opts:['document','annotate','describe','comment']},
+          {q:'The example ___ shows how to call the function.',blank:'code',opts:['code','snippet','usage','sample']},
+          {q:'___ the project with npm run build.',blank:'Build',opts:['Build','Compile','Run','Start']},
+          {q:'// ___: temporary fix — should be replaced.',blank:'HACK',opts:['HACK','TODO','TEMP','FIX']},
+          {q:'The ___ badge shows the current build status.',blank:'CI',opts:['CI','status','build','pipeline']},
+          {q:'We keep the ___ up to date after every release.',blank:'changelog',opts:['changelog','log','history','notes']},
+          {q:'A well-___ API is easier for other teams to use.',blank:'documented',opts:['documented','designed','built','written']}
+        ]
+      },
+      {
+        id:16,title:'Данные и аналитика',xp:40,
+        theory:`<div class="theory-block">
+<h3>Data & Analytics — данные и аналитика</h3>
+<p>Data-driven — подход, при котором решения принимаются на основе данных.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые термины:</p>
+<div class="rule"><b>dataset</b> — набор данных | <b>data pipeline</b> — конвейер данных<br>
+<b>ETL</b> (Extract, Transform, Load) — извлечение, преобразование, загрузка<br>
+<b>data warehouse</b> — хранилище данных<br>
+<b>dashboard</b> — дашборд | <b>KPI</b> — ключевые метрики<br>
+<b>A/B test</b> — сплит-тест | <b>cohort analysis</b> — когортный анализ<br>
+<b>outlier</b> — выброс | <b>correlation</b> — корреляция<br>
+<b>data cleaning</b> — очистка данных</div>
+<p style="margin-top:10px;font-weight:600">Работа с данными:</p>
+<div class="rule">The data is noisy — we need to clean it. — Данные зашумлены — нужна очистка.<br>
+We ran an A/B test on the new feature. — Провели A/B тест новой функции.<br>
+The correlation is strong. — Корреляция сильная.<br>
+Let\'s segment users by cohort. — Сегментируем пользователей по когортам.<br>
+The dashboard shows real-time metrics. — Дашборд показывает метрики в реальном времени.</div>
+</div>`,
+        exercises:[
+          {q:'We use ___ to visualise data in real time.',blank:'dashboards',opts:['dashboards','charts','graphs','reports']},
+          {q:'An A/B ___ compares two versions of a feature.',blank:'test',opts:['test','experiment','trial','comparison']},
+          {q:'ETL stands for Extract, ___, Load.',blank:'Transform',opts:['Transform','Transfer','Translate','Track']},
+          {q:'We store historical data in a data ___.',blank:'warehouse',opts:['warehouse','store','bank','lake']},
+          {q:'This data point looks like an ___ — it\'s far from the norm.',blank:'outlier',opts:['outlier','anomaly','exception','spike']},
+          {q:'We need to ___ the data before analysing it.',blank:'clean',opts:['clean','prepare','process','fix']},
+          {q:'The ___ shows a positive correlation between the two variables.',blank:'data',opts:['data','chart','graph','analysis']},
+          {q:'We run the ___ pipeline every night to refresh the warehouse.',blank:'data',opts:['data','ETL','batch','nightly']},
+          {q:'Users are ___ into cohorts based on sign-up date.',blank:'segmented',opts:['segmented','grouped','split','divided']},
+          {q:'The ___ analysis tracks user behaviour over time.',blank:'cohort',opts:['cohort','user','retention','growth']},
+          {q:'We track ___ like DAU and retention rate.',blank:'KPIs',opts:['KPIs','metrics','numbers','stats']},
+          {q:'The ___ test showed the new button increased clicks by 12%.',blank:'A/B',opts:['A/B','split','user','controlled']},
+          {q:'We use Python and ___ for data analysis.',blank:'pandas',opts:['pandas','Excel','SQL','numpy']},
+          {q:'The ___ is missing values — we need to impute them.',blank:'dataset',opts:['dataset','data','table','column']},
+          {q:'A ___ captures and moves data between systems.',blank:'pipeline',opts:['pipeline','workflow','connector','bridge']},
+          {q:'We use ___ to query the data warehouse.',blank:'SQL',opts:['SQL','Python','Excel','Tableau']},
+          {q:'High ___ doesn\'t mean causation.',blank:'correlation',opts:['correlation','similarity','connection','relationship']},
+          {q:'The ___ shows a sharp drop in retention after day 7.',blank:'chart',opts:['chart','data','dashboard','graph']},
+          {q:'We schedule the ETL job to run ___ at midnight.',blank:'daily',opts:['daily','every night','scheduled','automatically']},
+          {q:'Data-___ decisions are based on evidence, not opinions.',blank:'driven',opts:['driven','based','informed','backed']}
+        ]
+      },
+      {
+        id:17,title:'Стартапы и продукт',xp:40,
+        theory:`<div class="theory-block">
+<h3>Startups & Product — стартапы и продукт</h3>
+<p>Язык стартапов и продуктовой разработки активно используется в IT-индустрии.</p>
+<p style="margin-top:10px;font-weight:600">Продуктовый словарь:</p>
+<div class="rule"><b>MVP</b> (Minimum Viable Product) — минимально жизнеспособный продукт<br>
+<b>product-market fit</b> — соответствие продукта рынку<br>
+<b>pivot</b> — смена направления | <b>iterate</b> — итерировать<br>
+<b>roadmap</b> — дорожная карта | <b>feature flag</b> — флаг функции<br>
+<b>onboarding</b> — онбординг пользователя<br>
+<b>churn</b> — отток | <b>retention</b> — удержание<br>
+<b>NPS</b> (Net Promoter Score) — индекс лояльности</div>
+<p style="margin-top:10px;font-weight:600">Стартап-фразы:</p>
+<div class="rule">We\'re pre-product-market fit. — Ещё не нашли product-market fit.<br>
+We need to ship the MVP first. — Сначала нужно выпустить MVP.<br>
+Let\'s iterate based on user feedback. — Итерируем по фидбеку пользователей.<br>
+We\'re considering a pivot. — Рассматриваем смену направления.<br>
+Churn is too high — we need to fix onboarding. — Отток высокий — фиксим онбординг.</div>
+</div>`,
+        exercises:[
+          {q:'An ___ is the simplest version of the product you can ship.',blank:'MVP',opts:['MVP','prototype','beta','draft']},
+          {q:'We need to find ___ before scaling.',blank:'product-market fit',opts:['product-market fit','growth','traction','customers']},
+          {q:'If the idea doesn\'t work, we may need to ___.',blank:'pivot',opts:['pivot','change','restart','rebrand']},
+          {q:'We use a ___ flag to release features gradually.',blank:'feature',opts:['feature','rollout','beta','toggle']},
+          {q:'High ___ means users are leaving the product.',blank:'churn',opts:['churn','dropout','exit','loss']},
+          {q:'We ___ the product based on user feedback each week.',blank:'iterate',opts:['iterate','update','improve','release']},
+          {q:'The ___ maps out features for the next 6 months.',blank:'roadmap',opts:['roadmap','plan','backlog','timeline']},
+          {q:'NPS measures customer ___ on a scale from -100 to 100.',blank:'loyalty',opts:['loyalty','satisfaction','happiness','rating']},
+          {q:'Poor ___ causes users to drop off before getting value.',blank:'onboarding',opts:['onboarding','UX','setup','registration']},
+          {q:'We need to improve ___ — users aren\'t coming back.',blank:'retention',opts:['retention','engagement','loyalty','return rate']},
+          {q:'The team is ___ — moving fast with limited resources.',blank:'lean',opts:['lean','agile','small','fast']},
+          {q:'We got early ___ from 100 beta users.',blank:'feedback',opts:['feedback','input','data','responses']},
+          {q:'The product gained ___ — growth is accelerating.',blank:'traction',opts:['traction','momentum','growth','users']},
+          {q:'We\'ll do a ___ launch to a small group first.',blank:'soft',opts:['soft','beta','limited','closed']},
+          {q:'A good ___ flow reduces churn in the first week.',blank:'onboarding',opts:['onboarding','setup','tutorial','guide']},
+          {q:'We ___ the feature behind a flag for testing.',blank:'hide',opts:['hide','put','keep','wrap']},
+          {q:'The product ___ is clear — we know who we\'re building for.',blank:'vision',opts:['vision','strategy','plan','goal']},
+          {q:'B2B means selling to ___ rather than individuals.',blank:'businesses',opts:['businesses','companies','teams','enterprises']},
+          {q:'We\'re ___ — no revenue yet, but strong growth.',blank:'pre-revenue',opts:['pre-revenue','pre-launch','early stage','bootstrapped']},
+          {q:'Ship ___, get feedback, and iterate.',blank:'early',opts:['early','fast','often','now']}
+        ]
+      },
+      {
+        id:18,title:'Сети и протоколы',xp:40,
+        theory:`<div class="theory-block">
+<h3>Networks & Protocols — сети и протоколы</h3>
+<p>Понимание сетей необходимо бэкенд-разработчикам, DevOps и всем, кто работает с инфраструктурой.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые протоколы и термины:</p>
+<div class="rule"><b>HTTP / HTTPS</b> — протокол передачи данных<br>
+<b>TCP/IP</b> — базовый сетевой стек<br>
+<b>DNS</b> — система доменных имён<br>
+<b>IP address</b> — адрес устройства в сети<br>
+<b>port</b> — порт | <b>socket</b> — сокет<br>
+<b>latency</b> — задержка | <b>bandwidth</b> — пропускная способность<br>
+<b>firewall</b> — межсетевой экран | <b>VPN</b> — виртуальная частная сеть<br>
+<b>proxy</b> — прокси | <b>CDN</b> — сеть доставки контента<br>
+<b>WebSocket</b> — двусторонний протокол реального времени</div>
+<p style="margin-top:10px;font-weight:600">Типичные фразы:</p>
+<div class="rule">The request times out after 30 seconds. — Запрос истекает через 30 секунд.<br>
+High latency is causing slow responses. — Высокая задержка вызывает медленные ответы.<br>
+We use WebSockets for real-time communication. — WebSocket для связи в реальном времени.<br>
+The firewall blocks traffic on port 8080. — Файрволл блокирует порт 8080.</div>
+</div>`,
+        exercises:[
+          {q:'HTTPS adds ___ to HTTP communication.',blank:'encryption',opts:['encryption','security','safety','protection']},
+          {q:'DNS translates domain names to ___ addresses.',blank:'IP',opts:['IP','server','machine','network']},
+          {q:'High ___ means slow response times for users.',blank:'latency',opts:['latency','delay','lag','timeout']},
+          {q:'We connect to the server on ___ 443.',blank:'port',opts:['port','channel','socket','endpoint']},
+          {q:'The ___ blocks incoming traffic from unknown sources.',blank:'firewall',opts:['firewall','router','proxy','filter']},
+          {q:'We use a ___ for secure remote access.',blank:'VPN',opts:['VPN','proxy','tunnel','SSH']},
+          {q:'The CDN reduces ___ by serving content from nearby servers.',blank:'latency',opts:['latency','cost','load','bandwidth']},
+          {q:'A ___ is a persistent connection for real-time data.',blank:'WebSocket',opts:['WebSocket','socket','connection','stream']},
+          {q:'The request ___ out — the server didn\'t respond in time.',blank:'timed',opts:['timed','ran','dropped','failed']},
+          {q:'TCP ensures data is delivered ___ and in order.',blank:'reliably',opts:['reliably','safely','securely','completely']},
+          {q:'We use a ___ to forward requests to the backend.',blank:'proxy',opts:['proxy','relay','router','gateway']},
+          {q:'The server listens on ___ 8080.',blank:'port',opts:['port','socket','channel','address']},
+          {q:'DNS resolution ___ the domain name to an IP address.',blank:'maps',opts:['maps','converts','translates','links']},
+          {q:'We set the request ___ to 30 seconds.',blank:'timeout',opts:['timeout','limit','wait','delay']},
+          {q:'The ___ is too low — large files take too long.',blank:'bandwidth',opts:['bandwidth','speed','throughput','capacity']},
+          {q:'HTTP ___ codes indicate the result of a request.',blank:'status',opts:['status','response','error','result']},
+          {q:'We use ___ to load-balance across multiple servers.',blank:'a proxy',opts:['a proxy','DNS','CDN','a gateway']},
+          {q:'The server ___ all incoming connections on port 80.',blank:'listens for',opts:['listens for','accepts','handles','receives']},
+          {q:'A ___ attack floods the server with fake requests.',blank:'DDoS',opts:['DDoS','DoS','SYN flood','brute force']},
+          {q:'We cache static assets at the ___ level.',blank:'CDN',opts:['CDN','proxy','server','edge']}
+        ]
+      },
+      {
+        id:19,title:'AI и машинное обучение',xp:45,
+        theory:`<div class="theory-block">
+<h3>AI & Machine Learning — ИИ и машинное обучение</h3>
+<p>ИИ меняет IT-индустрию. Базовый словарь ML нужен каждому современному разработчику.</p>
+<p style="margin-top:10px;font-weight:600">Ключевые термины ML:</p>
+<div class="rule"><b>model</b> — модель | <b>training</b> — обучение<br>
+<b>dataset</b> — набор данных | <b>feature</b> — признак<br>
+<b>label</b> — метка | <b>prediction</b> — предсказание<br>
+<b>overfitting</b> — переобучение | <b>underfitting</b> — недообучение<br>
+<b>accuracy / precision / recall</b> — метрики качества<br>
+<b>neural network</b> — нейронная сеть<br>
+<b>LLM</b> (Large Language Model) — большая языковая модель<br>
+<b>prompt</b> — подсказка для ИИ | <b>inference</b> — применение модели</div>
+<p style="margin-top:10px;font-weight:600">Процесс ML:</p>
+<div class="rule">We train the model on labelled data. — Обучаем модель на размеченных данных.<br>
+The model overfits — it memorises training data. — Модель переобучена — запоминает данные.<br>
+We evaluate the model on the test set. — Оцениваем на тестовом наборе.<br>
+We fine-tune the LLM on our dataset. — Дообучаем LLM на наших данных.</div>
+</div>`,
+        exercises:[
+          {q:'We ___ the model on a large dataset.',blank:'train',opts:['train','teach','fit','build']},
+          {q:'A ___ network is inspired by the human brain.',blank:'neural',opts:['neural','deep','learning','AI']},
+          {q:'The model ___ the next word based on context.',blank:'predicts',opts:['predicts','generates','outputs','returns']},
+          {q:'___ means the model performs well on training but not test data.',blank:'Overfitting',opts:['Overfitting','Memorisation','Overfitting','Bias']},
+          {q:'We split data into training, ___, and test sets.',blank:'validation',opts:['validation','dev','check','eval']},
+          {q:'A ___ is a single measurable property of the data.',blank:'feature',opts:['feature','column','input','attribute']},
+          {q:'We use ___ to measure how often the model is correct.',blank:'accuracy',opts:['accuracy','precision','score','recall']},
+          {q:'We ___ the model to our specific use case.',blank:'fine-tune',opts:['fine-tune','adjust','train','customise']},
+          {q:'An LLM generates text based on a ___.',blank:'prompt',opts:['prompt','input','command','query']},
+          {q:'___ is when the model is too simple to capture patterns.',blank:'Underfitting',opts:['Underfitting','Overfitting','Bias','Variance']},
+          {q:'We ___ the model to make predictions on new data.',blank:'deploy',opts:['deploy','use','run','release']},
+          {q:'The ___ process applies the trained model to new inputs.',blank:'inference',opts:['inference','prediction','evaluation','application']},
+          {q:'We label the data before ___ the model.',blank:'training',opts:['training','feeding','running','building']},
+          {q:'A ___ dataset has both inputs and correct outputs.',blank:'labelled',opts:['labelled','annotated','supervised','training']},
+          {q:'The model\'s ___ on the test set was 94%.',blank:'accuracy',opts:['accuracy','score','performance','result']},
+          {q:'We use ___ learning when we don\'t have labelled data.',blank:'unsupervised',opts:['unsupervised','self-supervised','unlabelled','clustering']},
+          {q:'The ___ processes sequences and is used in NLP.',blank:'transformer',opts:['transformer','RNN','LSTM','network']},
+          {q:'We ___ the output to make it human-readable.',blank:'decode',opts:['decode','convert','parse','format']},
+          {q:'We monitor model ___ in production over time.',blank:'drift',opts:['drift','decay','change','degradation']},
+          {q:'LLMs are ___ on massive text corpora.',blank:'pre-trained',opts:['pre-trained','trained','built','developed']}
+        ]
+      },
+      {
+        id:20,title:'Итоговый тест IT English',xp:50,
+        theory:`<div class="theory-block">
+<h3>🏆 Итоговый урок — IT English</h3>
+<p>Поздравляем! Ты прошёл полный курс IT English — 20 уроков профессионального технического английского.</p>
+<p style="margin-top:10px;font-weight:600">Что ты изучил:</p>
+<div class="rule">✅ Основы программирования — переменные, функции, циклы<br>
+✅ Git и контроль версий — коммиты, ветки, PR<br>
+✅ Agile и Scrum — спринты, бэклог, ретро<br>
+✅ Code Review — LGTM, blocking, nit, feedback<br>
+✅ Базы данных и SQL — SELECT, JOIN, миграции<br>
+✅ Frontend — HTML/CSS/JS, React, компоненты<br>
+✅ Backend и API — REST, endpoints, статус-коды<br>
+✅ DevOps — CI/CD, Docker, деплой, откат<br>
+✅ Облака — AWS, serverless, auto-scaling<br>
+✅ Кибербезопасность — уязвимости, шифрование, патчи<br>
+✅ Архитектура ПО — monolith, microservices, SOLID<br>
+✅ Тестирование — unit, integration, TDD, coverage<br>
+✅ Технические интервью — coding challenge, STAR<br>
+✅ Командная работа — Slack-лексика, совместная отладка<br>
+✅ Документация — README, комментарии, JSDoc<br>
+✅ Данные и аналитика — ETL, A/B tests, KPI<br>
+✅ Стартапы и продукт — MVP, pivot, churn, retention<br>
+✅ Сети и протоколы — HTTP, DNS, WebSocket<br>
+✅ AI и ML — модели, обучение, LLM, inference</div>
+<p style="margin-top:12px;font-weight:600">💻 Финальный тест — 20 вопросов по всем темам. Удачи!</p>
+</div>`,
+        exercises:[
+          {q:'A ___ test verifies a single function in isolation.',blank:'unit',opts:['unit','integration','E2E','regression']},
+          {q:'We use ___ to track and merge code changes.',blank:'Git',opts:['Git','GitHub','SVN','version control']},
+          {q:'An ___ is a specific URL that handles API requests.',blank:'endpoint',opts:['endpoint','route','path','URL']},
+          {q:'In Scrum, work is done in short iterations called ___.',blank:'sprints',opts:['sprints','cycles','phases','iterations']},
+          {q:'The CI/CD ___ automates building and deploying.',blank:'pipeline',opts:['pipeline','process','workflow','chain']},
+          {q:'We ___ the model on labelled training data.',blank:'train',opts:['train','teach','build','fit']},
+          {q:'A PR is short for ___ request.',blank:'pull',opts:['pull','push','patch','production']},
+          {q:'LGTM means the code reviewer ___.',blank:'approves',opts:['approves','agrees','accepts','passes']},
+          {q:'We store objects and files in ___ on AWS.',blank:'S3',opts:['S3','EC2','RDS','Lambda']},
+          {q:'A 404 HTTP code means the resource was not ___.',blank:'found',opts:['found','available','accessible','loaded']},
+          {q:'DRY stands for Don\'t ___ Yourself.',blank:'Repeat',opts:['Repeat','Rewrite','Redo','Rebuild']},
+          {q:'We ___ the app when something breaks in production.',blank:'roll back',opts:['roll back','revert','undo','restore']},
+          {q:'___ attacks inject malicious SQL into database queries.',blank:'SQL injection',opts:['SQL injection','XSS','CSRF','DDoS']},
+          {q:'An MVP is the ___ viable product you can ship.',blank:'minimum',opts:['minimum','simplest','basic','initial']},
+          {q:'We query data using a ___ statement.',blank:'SELECT',opts:['SELECT','GET','FETCH','READ']},
+          {q:'A sprint ___ reflects on what went well and what to improve.',blank:'retrospective',opts:['retrospective','review','demo','planning']},
+          {q:'WebSockets provide ___ two-way communication.',blank:'real-time',opts:['real-time','live','instant','continuous']},
+          {q:'We use ___ to containerise and deploy applications.',blank:'Docker',opts:['Docker','Kubernetes','VM','container']},
+          {q:'High ___ means users stop using the product.',blank:'churn',opts:['churn','dropout','exit','abandonment']},
+          {q:'LLMs are trained on massive ___ to generate text.',blank:'datasets',opts:['datasets','corpora','text','data']}
+        ]
+      }
+    ]
   }
 };
 
@@ -2724,7 +3673,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business'].forEach(id=>{
+  ['basic','business','it'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
