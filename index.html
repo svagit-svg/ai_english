@@ -128,7 +128,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.7</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.8</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -351,7 +351,7 @@ const tg = window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
-const MISTRAL_KEY='1rM5EHYxtwouCc0zqfpL5u9Wp3QswgHa';
+const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=10;
 
 // ── MESSAGE LIMIT ─────────────────────────────────────────
@@ -559,9 +559,8 @@ async function callClaude(userText,isGreeting,existingDiv){
   try{
     const data=await new Promise((resolve,reject)=>{
       const xhr=new XMLHttpRequest();
-      xhr.open('POST','https://api.mistral.ai/v1/chat/completions');
+      xhr.open('POST',WORKER_URL);
       xhr.setRequestHeader('Content-Type','application/json');
-      xhr.setRequestHeader('Authorization','Bearer '+MISTRAL_KEY);
       xhr.timeout=30000;
       xhr.onload=()=>{try{resolve(JSON.parse(xhr.responseText));}catch(e){reject(e);}};
       xhr.onerror=()=>reject(new Error('XHR network error'));
