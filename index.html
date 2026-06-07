@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.1</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.7</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -579,18 +579,33 @@ const COURSES={
       {
         id:1,title:'Глагол to be',xp:30,
         theory:`<div class="theory-block">
-<h3>Глагол to be — «быть»</h3>
-<p>Это самый важный глагол в английском. Он меняется в зависимости от подлежащего:</p>
-<div class="rule">I → <b>am</b> &nbsp;|&nbsp; He / She / It → <b>is</b> &nbsp;|&nbsp; You / We / They → <b>are</b></div>
-<p class="example">✦ I am a student. — Я студент.</p>
-<p class="example">✦ She is beautiful. — Она красивая.</p>
-<p class="example">✦ They are my friends. — Они мои друзья.</p>
-<p style="margin-top:12px;font-weight:600">Отрицание:</p>
-<div class="rule">am not &nbsp;|&nbsp; is not (isn't) &nbsp;|&nbsp; are not (aren't)</div>
-<p class="example">✦ He isn't tired. — Он не устал.</p>
-<p style="margin-top:12px;font-weight:600">Вопрос — переставь глагол вперёд:</p>
-<p class="example">✦ Are you ready? — Ты готов?</p>
-<p class="example">✦ Is she at home? — Она дома?</p>
+<h3>Глагол to be — «быть / являться»</h3>
+<p>Это самый важный глагол в английском. Он используется для описания <b>состояния, профессии, характеристик и местонахождения</b>. В отличие от русского, в английском его нельзя пропускать!</p>
+<div class="rule"><b>Утвердительная форма:</b><br>
+I <b>am</b> (= I'm) — я есть<br>
+He / She / It <b>is</b> (= He's / She's / It's) — он/она/оно есть<br>
+You / We / They <b>are</b> (= You're / We're / They're) — ты/мы/они есть</div>
+<p class="example">✦ I'm a student. — Я студент.</p>
+<p class="example">✦ She's very smart. — Она очень умная.</p>
+<p class="example">✦ They're my best friends. — Они мои лучшие друзья.</p>
+<p class="example">✦ It's cold outside. — На улице холодно.</p>
+<p class="example">✦ We're from Russia. — Мы из России.</p>
+<p style="margin-top:12px;font-weight:600">Отрицательная форма:</p>
+<div class="rule">I <b>am not</b> (I'm not)<br>
+He / She / It <b>is not</b> = <b>isn't</b><br>
+You / We / They <b>are not</b> = <b>aren't</b></div>
+<p class="example">✦ I'm not tired. — Я не устал(а).</p>
+<p class="example">✦ He isn't at home. — Его нет дома.</p>
+<p class="example">✦ They aren't ready. — Они не готовы.</p>
+<p style="margin-top:12px;font-weight:600">Вопросительная форма — глагол ставится ПЕРЕД подлежащим:</p>
+<div class="rule"><b>Am</b> I...? &nbsp;|&nbsp; <b>Is</b> he/she/it...? &nbsp;|&nbsp; <b>Are</b> you/we/they...?</div>
+<p class="example">✦ Are you ready? — Ты готов? → Yes, I am. / No, I'm not.</p>
+<p class="example">✦ Is she a doctor? — Она врач? → Yes, she is. / No, she isn't.</p>
+<p class="example">✦ Is it expensive? — Это дорого? → Yes, it is. / No, it isn't.</p>
+<p style="margin-top:12px;font-weight:600">⚠️ Типичные ошибки русскоязычных:</p>
+<div class="rule">❌ I from Russia. → ✅ I <b>am</b> from Russia.<br>
+❌ She very beautiful. → ✅ She <b>is</b> very beautiful.<br>
+❌ Are he happy? → ✅ <b>Is</b> he happy?</div>
 </div>`,
         exercises:[
           {q:'I ___ a doctor.',blank:'am',opts:['am','is','are','be']},
@@ -618,20 +633,33 @@ const COURSES={
       {
         id:2,title:'Present Simple',xp:35,
         theory:`<div class="theory-block">
-<h3>Present Simple — настоящее время</h3>
-<p>Используется для регулярных действий, фактов и привычек.</p>
-<div class="rule">I / You / We / They + глагол<br>He / She / It + глагол<b>+s</b></div>
+<h3>Present Simple — настоящее простое время</h3>
+<p>Используется для <b>регулярных действий, привычек, фактов и расписаний</b>. Отвечает на вопрос «что происходит обычно?»</p>
+<div class="rule"><b>Утверждение:</b><br>
+I / You / We / They + <b>глагол</b> (базовая форма)<br>
+He / She / It + <b>глагол + s / es</b></div>
 <p class="example">✦ I work every day. — Я работаю каждый день.</p>
 <p class="example">✦ She works at Google. — Она работает в Google.</p>
-<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<p class="example">✦ The train leaves at 8. — Поезд отправляется в 8.</p>
+<p style="margin-top:10px;font-weight:600">Правила добавления -s / -es:</p>
+<div class="rule">Обычно: + <b>s</b> → work→works, play→plays<br>
+После s, sh, ch, x, o: + <b>es</b> → go→goes, watch→watches<br>
+Согласная + y → <b>ies</b> → study→studies, fly→flies<br>
+Исключения: have→<b>has</b></div>
+<p style="margin-top:10px;font-weight:600">Отрицание:</p>
 <div class="rule">I/You/We/They + <b>don't</b> + глагол<br>He/She/It + <b>doesn't</b> + глагол</div>
 <p class="example">✦ I don't like coffee. — Я не люблю кофе.</p>
 <p class="example">✦ He doesn't play football. — Он не играет в футбол.</p>
-<p style="margin-top:12px;font-weight:600">Вопрос:</p>
-<div class="rule"><b>Do</b> I/you/we/they...? &nbsp;|&nbsp; <b>Does</b> he/she/it...?</div>
-<p class="example">✦ Do you speak English? — Ты говоришь по-английски?</p>
-<p class="example">✦ Does he live here? — Он живёт здесь?</p>
-<p style="margin-top:10px;font-size:11px;color:var(--muted)">Наречия: always, usually, often, sometimes, never</p>
+<p style="margin-top:10px;font-weight:600">Вопрос:</p>
+<div class="rule"><b>Do</b> + I/you/we/they + глагол?<br><b>Does</b> + he/she/it + глагол?</div>
+<p class="example">✦ Do you speak English? → Yes, I do. / No, I don't.</p>
+<p class="example">✦ Does she live here? → Yes, she does. / No, she doesn't.</p>
+<p style="margin-top:10px;font-weight:600">📅 Слова-маркеры Present Simple:</p>
+<div class="rule">always — всегда &nbsp;|&nbsp; usually — обычно<br>often — часто &nbsp;|&nbsp; sometimes — иногда<br>rarely — редко &nbsp;|&nbsp; never — никогда<br>every day/week/year — каждый день/неделю/год</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ She work every day. → ✅ She <b>works</b> every day.<br>
+❌ He don't like it. → ✅ He <b>doesn't</b> like it.<br>
+❌ Does she works here? → ✅ Does she <b>work</b> here?</div>
 </div>`,
         exercises:[
           {q:'She ___ every day. (work)',blank:'works',opts:['work','works','working','worked']},
@@ -660,15 +688,32 @@ const COURSES={
         id:3,title:'Артикли a / an / the',xp:35,
         theory:`<div class="theory-block">
 <h3>Артикли: a, an, the</h3>
-<p><b style="color:var(--accent)">a / an</b> — неопределённый артикль. Используется когда говорим о чём-то впервые или о одном из многих.</p>
-<div class="rule"><b>a</b> — перед согласными: a cat, a book, a car<br><b>an</b> — перед гласными (a,e,i,o,u): an apple, an hour</div>
-<p class="example">✦ I have a dog. — У меня есть собака (какая-то).</p>
+<p>В английском три артикля. В русском их нет — это одна из главных трудностей для русскоязычных.</p>
+<p style="margin-top:10px;font-weight:600;color:var(--accent)">A / AN — неопределённый артикль</p>
+<p>Используем когда говорим о предмете <b>впервые</b> или он <b>один из многих</b> (= «какой-то», «один»).</p>
+<div class="rule"><b>a</b> — перед согласным <b>звуком</b>: a cat, a book, a university (ю-), a European<br>
+<b>an</b> — перед гласным <b>звуком</b>: an apple, an hour (ч-), an honest man, an egg</div>
+<p class="example">✦ I saw a dog. — Я видел собаку (какую-то).</p>
 <p class="example">✦ She is an engineer. — Она инженер.</p>
-<p style="margin-top:12px"><b style="color:var(--accent)">the</b> — определённый артикль. Когда оба знают о чём речь, единственный в своём роде.</p>
-<p class="example">✦ The sun is bright today. — Солнце яркое сегодня.</p>
-<p class="example">✦ Close the door, please. — Закрой дверь (ту самую).</p>
-<p style="margin-top:12px"><b style="color:var(--rose)">Без артикля</b> — имена, страны, языки, еда в общем смысле:</p>
-<p class="example">✦ I love music. I speak Russian. She is from Russia.</p>
+<p class="example">✦ He waited for an hour. — Он ждал час.</p>
+<p style="margin-top:12px;font-weight:600;color:var(--accent)">THE — определённый артикль</p>
+<p>Используем когда говорим о <b>конкретном</b> предмете или он <b>единственный в своём роде</b>.</p>
+<div class="rule">• Уже упоминался раньше: I have a cat. <b>The</b> cat is black.<br>
+• Единственный: the sun, the moon, the Earth, the sky<br>
+• Оба знают о чём речь: Please close <b>the</b> door.<br>
+• Реки, океаны, горные цепи: the Amazon, the Pacific</div>
+<p class="example">✦ The book I bought is great. — Книга, которую я купил, отличная.</p>
+<p class="example">✦ She plays the piano. — Она играет на пианино.</p>
+<p style="margin-top:12px;font-weight:600;color:var(--rose)">Без артикля (—):</p>
+<div class="rule">• Имена: <b>Anna</b> is my friend.<br>
+• Страны: She is from <b>Russia</b>. (но: the USA, the UK)<br>
+• Языки: I speak <b>English</b> and <b>French</b>.<br>
+• Еда/напитки в общем смысле: I love <b>coffee</b>.<br>
+• Профессии с be: He is <b>a</b> doctor. (с артиклем!)</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ I am teacher. → ✅ I am <b>a</b> teacher.<br>
+❌ The life is beautiful. → ✅ <b>Life</b> is beautiful.<br>
+❌ a honest man → ✅ <b>an</b> honest man (h не произносится)</div>
 </div>`,
         exercises:[
           {q:'I have ___ apple.',blank:'an',opts:['a','an','the','-']},
@@ -696,18 +741,32 @@ const COURSES={
       {
         id:4,title:'Числа и время',xp:30,
         theory:`<div class="theory-block">
-<h3>Числа</h3>
-<div class="rule">1–12: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve<br>
-13–19: thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen<br>
-20, 30, 40...: twenty, thirty, forty, fifty, sixty<br>
-21, 35...: twenty-one, thirty-five</div>
-<p style="margin-top:12px;font-weight:600">Время:</p>
-<div class="rule">5:00 → It's five o'clock<br>
-5:15 → It's quarter past five<br>
-5:30 → It's half past five<br>
-5:45 → It's quarter to six</div>
+<h3>Числа — Numbers</h3>
+<div class="rule"><b>1–10:</b> one, two, three, four, five, six, seven, eight, nine, ten<br>
+<b>11–20:</b> eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty<br>
+<b>Десятки:</b> 20 twenty, 30 thirty, 40 forty, 50 fifty, 60 sixty, 70 seventy, 80 eighty, 90 ninety<br>
+<b>Составные:</b> 21 twenty-one, 35 thirty-five, 99 ninety-nine<br>
+<b>100:</b> a hundred &nbsp;|&nbsp; <b>1000:</b> a thousand &nbsp;|&nbsp; <b>1 000 000:</b> a million</div>
+<p style="margin-top:4px;font-size:11px;color:var(--muted)">⚠️ forty (не fourty!), twelve (не twelf!), fifteen (не fiveteen!)</p>
+<p style="margin-top:12px;font-weight:600">Время — What time is it?</p>
+<div class="rule"><b>Точное время:</b><br>
+5:00 → It's <b>five o'clock</b><br>
+9:00 → It's <b>nine o'clock</b><br>
+<b>Минуты после часа (past):</b><br>
+5:10 → It's <b>ten past five</b><br>
+5:15 → It's <b>(a) quarter past five</b><br>
+5:30 → It's <b>half past five</b><br>
+<b>Минуты до следующего часа (to):</b><br>
+5:45 → It's <b>(a) quarter to six</b><br>
+5:50 → It's <b>ten to six</b></div>
 <p class="example">✦ What time is it? — Который час?</p>
-<p class="example">✦ It's half past three. — Половина четвёртого.</p>
+<p class="example">✦ It's half past three. (3:30) — Половина четвёртого.</p>
+<p class="example">✦ It's quarter to eight. (7:45) — Без четверти восемь.</p>
+<p class="example">✦ The train leaves at 7:15. → at quarter past seven.</p>
+<p style="margin-top:10px;font-weight:600">Предлоги со временем:</p>
+<div class="rule"><b>at</b> — с конкретным временем: at 5 o'clock, at noon, at midnight<br>
+<b>in</b> — утро/день/вечер: in the morning, in the afternoon, in the evening<br>
+<b>at night</b> — ночью (исключение!)</div>
 </div>`,
         exercises:[
           {q:'15 = ___',blank:'fifteen',opts:['fifteen','fifty','fifth','fiveteen']},
@@ -735,14 +794,19 @@ const COURSES={
       {
         id:5,title:'Базовая лексика',xp:40,
         theory:`<div class="theory-block">
-<h3>Приветствия и знакомство</h3>
-<div class="rule">Hello / Hi — Привет<br>Good morning — Доброе утро<br>Good afternoon — Добрый день<br>Good evening — Добрый вечер</div>
-<p class="example">✦ How are you? — Как дела?</p>
-<p class="example">✦ Fine, thanks! / Not bad. / Great! — Хорошо, спасибо! / Неплохо. / Отлично!</p>
-<p style="margin-top:12px;font-weight:600">Знакомство:</p>
-<div class="rule">My name is... — Меня зовут...<br>I'm from Russia. — Я из России.<br>Nice to meet you! — Приятно познакомиться!</div>
-<p style="margin-top:12px;font-weight:600">Семья:</p>
-<div class="rule">mother / father — мать / отец<br>brother / sister — брат / сестра<br>son / daughter — сын / дочь<br>husband / wife — муж / жена</div>
+<h3>Базовая лексика — Essential Vocabulary</h3>
+<p style="font-weight:600">Приветствия:</p>
+<div class="rule">Hello / Hi — Привет &nbsp;|&nbsp; Good morning — Доброе утро<br>Good afternoon — Добрый день &nbsp;|&nbsp; Good evening — Добрый вечер<br>Good night — Спокойной ночи &nbsp;|&nbsp; Goodbye / Bye — До свидания</div>
+<p class="example">✦ How are you? — Как дела? → Fine, thanks! / Not bad. / Great!</p>
+<p class="example">✦ How do you do? — Рад познакомиться (формально)</p>
+<p style="margin-top:10px;font-weight:600">Знакомство:</p>
+<div class="rule">My name is... / I'm... — Меня зовут...<br>I'm from Russia. — Я из России.<br>Nice to meet you! — Приятно познакомиться!<br>Where are you from? — Откуда вы?<br>How old are you? — Сколько вам лет?<br>I'm 25 (years old). — Мне 25 лет.</div>
+<p style="margin-top:10px;font-weight:600">Семья — Family:</p>
+<div class="rule">mother / father — мать / отец<br>brother / sister — брат / сестра<br>son / daughter — сын / дочь<br>husband / wife — муж / жена<br>grandma / grandpa — бабушка / дедушка<br>aunt / uncle — тётя / дядя &nbsp;|&nbsp; cousin — двоюродный брат/сестра</div>
+<p style="margin-top:10px;font-weight:600">Вежливые фразы:</p>
+<div class="rule">Thank you / Thanks — Спасибо<br>You're welcome — Пожалуйста (ответ)<br>Please — Пожалуйста (просьба)<br>Excuse me — Извините (привлечь внимание)<br>Sorry / I'm sorry — Извините (за ошибку)<br>No problem — Не проблема<br>I don't understand — Я не понимаю<br>Could you repeat? — Повторите, пожалуйста</div>
+<p style="margin-top:10px;font-weight:600">Профессии:</p>
+<div class="rule">doctor — врач &nbsp;|&nbsp; teacher — учитель &nbsp;|&nbsp; engineer — инженер<br>student — студент &nbsp;|&nbsp; manager — менеджер &nbsp;|&nbsp; programmer — программист</div>
 </div>`,
         exercises:[
           {q:'«Доброе утро» = ___',blank:'Good morning',opts:['Good morning','Good night','Good evening','Good afternoon']},
@@ -768,14 +832,35 @@ const COURSES={
         ]
       },
       {
-        id:6,title:'Числа и время',xp:35,
+        id:6,title:'Порядковые числа и даты',xp:35,
         theory:`<div class="theory-block">
-<h3>Числа</h3>
-<div class="rule">1 one &nbsp; 2 two &nbsp; 3 three &nbsp; 4 four &nbsp; 5 five<br>6 six &nbsp; 7 seven &nbsp; 8 eight &nbsp; 9 nine &nbsp; 10 ten<br>11 eleven &nbsp; 12 twelve &nbsp; 13 thirteen &nbsp; 20 twenty<br>30 thirty &nbsp; 100 a hundred &nbsp; 1000 a thousand</div>
-<p style="margin-top:12px;font-weight:600">Время:</p>
-<div class="rule">What time is it? — Который час?<br>It's 3 o'clock. — Три часа.<br>half past two — половина третьего (2:30)<br>quarter to five — без четверти пять (4:45)<br>quarter past one — четверть второго (1:15)</div>
-<p class="example">✦ It's half past seven. — Половина восьмого.</p>
-<p class="example">✦ The meeting is at nine o'clock. — Встреча в девять часов.</p>
+<h3>Порядковые числа — Ordinal Numbers</h3>
+<p>Порядковые числа отвечают на вопрос «который по счёту?» и используются в датах, этажах, местах.</p>
+<div class="rule"><b>Особые формы (учить отдельно):</b><br>
+1st — <b>first</b> (первый)<br>
+2nd — <b>second</b> (второй)<br>
+3rd — <b>third</b> (третий)<br>
+<b>Остальные: добавь -th</b><br>
+4th — fourth &nbsp;|&nbsp; 5th — fifth &nbsp;|&nbsp; 6th — sixth<br>
+7th — seventh &nbsp;|&nbsp; 8th — eighth &nbsp;|&nbsp; 9th — ninth<br>
+10th — tenth &nbsp;|&nbsp; 11th — eleventh &nbsp;|&nbsp; 12th — twelfth<br>
+20th — twentieth &nbsp;|&nbsp; 21st — twenty-first &nbsp;|&nbsp; 30th — thirtieth</div>
+<p style="margin-top:12px;font-weight:600">Даты — Dates:</p>
+<div class="rule"><b>Как писать:</b> 5th June / June 5th<br>
+<b>Как читать:</b> the fifth of June / June the fifth<br>
+<b>Годы:</b><br>
+1990 → nineteen ninety<br>
+2000 → two thousand<br>
+2005 → two thousand and five<br>
+2024 → twenty twenty-four</div>
+<p class="example">✦ My birthday is on the 15th of March. — Мой день рождения 15 марта.</p>
+<p class="example">✦ She was born in 1995. → nineteen ninety-five.</p>
+<p class="example">✦ He lives on the 3rd floor. — Он живёт на третьем этаже.</p>
+<p class="example">✦ This is my first trip abroad. — Это моя первая поездка за границу.</p>
+<p style="margin-top:10px;font-weight:600">Предлог с датами:</p>
+<div class="rule"><b>on</b> — с датой: on the 5th of June, on Monday<br>
+<b>in</b> — с месяцем/годом: in June, in 2024<br>
+<b>at</b> — с конкретным временем: at 3 o'clock</div>
 </div>`,
         exercises:[
           {q:'«Семь» = ___',blank:'seven',opts:['six','seven','eight','nine']},
@@ -803,14 +888,28 @@ const COURSES={
       {
         id:7,title:'Дни недели и месяцы',xp:35,
         theory:`<div class="theory-block">
-<h3>Дни недели</h3>
-<div class="rule">Monday — понедельник &nbsp; Tuesday — вторник<br>Wednesday — среда &nbsp; Thursday — четверг<br>Friday — пятница &nbsp; Saturday — суббота &nbsp; Sunday — воскресенье</div>
-<p style="margin-top:10px;font-weight:600">Месяцы:</p>
-<div class="rule">January February March April May June<br>July August September October November December</div>
-<p style="margin-top:10px;font-weight:600">Полезные фразы:</p>
-<p class="example">✦ Today is Monday. — Сегодня понедельник.</p>
+<h3>Дни недели — Days of the Week</h3>
+<div class="rule">Monday — понедельник<br>Tuesday — вторник<br>Wednesday — среда (сложное написание!)<br>Thursday — четверг<br>Friday — пятница<br>Saturday — суббота<br>Sunday — воскресенье</div>
+<p style="margin-top:6px;font-size:11px;color:var(--muted)">💡 В английском неделя начинается с воскресенья (Sunday). Все дни пишутся с <b>заглавной буквы</b>!</p>
+<p style="margin-top:10px;font-weight:600">Предлоги с днями:</p>
+<div class="rule"><b>on</b> + день недели: on Monday, on Friday<br>
+<b>this / last / next</b>: this Monday, last Friday, next Sunday<br>
+<b>every</b>: every Wednesday — каждую среду</div>
+<p class="example">✦ I have a meeting on Thursday. — У меня встреча в четверг.</p>
+<p class="example">✦ See you next Monday! — До следующего понедельника!</p>
+<p style="margin-top:12px;font-weight:600">Месяцы — Months of the Year:</p>
+<div class="rule">January — январь &nbsp;|&nbsp; February — февраль &nbsp;|&nbsp; March — март<br>
+April — апрель &nbsp;|&nbsp; May — май &nbsp;|&nbsp; June — июнь<br>
+July — июль &nbsp;|&nbsp; August — август &nbsp;|&nbsp; September — сентябрь<br>
+October — октябрь &nbsp;|&nbsp; November — ноябрь &nbsp;|&nbsp; December — декабрь</div>
+<p style="margin-top:6px;font-size:11px;color:var(--muted)">💡 Все месяцы пишутся с <b>заглавной буквы</b>!</p>
+<p style="margin-top:10px;font-weight:600">Предлоги с месяцами и сезонами:</p>
+<div class="rule"><b>in</b> + месяц: in January, in July<br>
+<b>in</b> + сезон: in spring, in summer, in autumn, in winter<br>
+<b>in</b> + год: in 2024, in 1990</div>
 <p class="example">✦ My birthday is in July. — Мой день рождения в июле.</p>
-<p class="example">✦ See you on Friday! — До пятницы!</p>
+<p class="example">✦ School starts in September. — Школа начинается в сентябре.</p>
+<p class="example">✦ What month is it? — Какой сейчас месяц?</p>
 </div>`,
         exercises:[
           {q:'«Понедельник» = ___',blank:'Monday',opts:['Monday','Tuesday','Wednesday','Thursday']},
@@ -836,19 +935,35 @@ const COURSES={
         ]
       },
       {
-        id:8,title:'Present Simple',xp:40,
+        id:8,title:'Глаголы и частота действий',xp:40,
         theory:`<div class="theory-block">
-<h3>Present Simple — настоящее простое время</h3>
-<p>Используется для регулярных действий, фактов и привычек.</p>
-<div class="rule">I / You / We / They + глагол (базовая форма)<br>He / She / It + глагол + <b>s / es</b></div>
-<p class="example">✦ I work every day. — Я работаю каждый день.</p>
-<p class="example">✦ She works in an office. — Она работает в офисе.</p>
-<p style="margin-top:12px;font-weight:600">Отрицание:</p>
-<div class="rule">I / You / We / They + <b>don't</b> + глагол<br>He / She / It + <b>doesn't</b> + глагол</div>
-<p class="example">✦ He doesn't like coffee. — Он не любит кофе.</p>
-<p style="margin-top:12px;font-weight:600">Вопрос:</p>
-<div class="rule"><b>Do</b> + I/you/we/they + глагол?<br><b>Does</b> + he/she/it + глагол?</div>
-<p class="example">✦ Do you speak English? — Ты говоришь по-английски?</p>
+<h3>Глаголы действия и наречия частоты</h3>
+<p style="font-weight:600">Базовые глаголы действия — Action Verbs:</p>
+<div class="rule">go — идти/ехать &nbsp;|&nbsp; come — приходить &nbsp;|&nbsp; work — работать<br>
+study — учиться &nbsp;|&nbsp; play — играть &nbsp;|&nbsp; live — жить<br>
+eat — есть &nbsp;|&nbsp; drink — пить &nbsp;|&nbsp; sleep — спать<br>
+read — читать &nbsp;|&nbsp; write — писать &nbsp;|&nbsp; speak — говорить<br>
+watch — смотреть &nbsp;|&nbsp; listen — слушать &nbsp;|&nbsp; travel — путешествовать<br>
+buy — покупать &nbsp;|&nbsp; know — знать &nbsp;|&nbsp; like — нравиться / любить</div>
+<p style="margin-top:12px;font-weight:600">Наречия частоты — Frequency Adverbs:</p>
+<div class="rule">100% — <b>always</b> (всегда): I always brush my teeth.<br>
+80% — <b>usually</b> (обычно): She usually drinks coffee.<br>
+60% — <b>often</b> (часто): We often go to the gym.<br>
+40% — <b>sometimes</b> (иногда): He sometimes watches films.<br>
+20% — <b>rarely / seldom</b> (редко): I rarely eat fast food.<br>
+0% — <b>never</b> (никогда): They never smoke.</div>
+<p style="margin-top:10px;font-weight:600">Место наречия в предложении:</p>
+<div class="rule">• <b>До</b> основного глагола: I <b>always</b> wake up early.<br>
+• <b>После</b> глагола to be: She <b>is</b> <b>always</b> late.<br>
+• В начале/конце: <b>Sometimes</b> I cook at home. / I cook at home <b>sometimes</b>.</div>
+<p class="example">✦ He often travels for work. — Он часто ездит в командировки.</p>
+<p class="example">✦ Do you always eat breakfast? — Ты всегда завтракаешь?</p>
+<p class="example">✦ She never drinks alcohol. — Она никогда не пьёт алкоголь.</p>
+<p style="margin-top:10px;font-weight:600">Выражения времени с Present Simple:</p>
+<div class="rule">every day/week/month/year — каждый день/неделю/месяц/год<br>
+on Mondays — по понедельникам<br>
+in the morning/evening — по утрам/вечерам<br>
+twice a week — дважды в неделю &nbsp;|&nbsp; once a month — раз в месяц</div>
 </div>`,
         exercises:[
           {q:'She ___ to school every day.',blank:'goes',opts:['go','goes','going','went']},
@@ -877,13 +992,34 @@ const COURSES={
         id:9,title:'Past Simple',xp:40,
         theory:`<div class="theory-block">
 <h3>Past Simple — прошедшее простое время</h3>
-<p>Используется для завершённых действий в прошлом.</p>
-<div class="rule">Правильные глаголы: + <b>ed</b><br>work → worked &nbsp; play → played &nbsp; visit → visited</div>
-<p class="example">✦ I worked yesterday. — Я работал вчера.</p>
-<p style="margin-top:10px;font-weight:600">Неправильные глаголы (учить наизусть):</p>
-<div class="rule">go → went &nbsp; see → saw &nbsp; come → came<br>take → took &nbsp; make → made &nbsp; have → had<br>say → said &nbsp; get → got &nbsp; do → did</div>
-<p style="margin-top:10px;font-weight:600">Отрицание и вопрос:</p>
-<div class="rule">I <b>didn't</b> go. — Я не ходил.<br><b>Did</b> you go? — Ты ходил?</div>
+<p>Используется для <b>завершённых действий в прошлом</b>. Отвечает на вопрос «что произошло?» Время действия указано или понятно из контекста.</p>
+<p style="margin-top:10px;font-weight:600">Правильные глаголы — добавляем -ed:</p>
+<div class="rule">work → <b>worked</b> &nbsp;|&nbsp; play → <b>played</b> &nbsp;|&nbsp; visit → <b>visited</b><br>
+love → <b>loved</b> (e+d) &nbsp;|&nbsp; study → <b>studied</b> (y→ied)<br>
+stop → <b>stopped</b> (удвоение согласной)</div>
+<p style="margin-top:10px;font-weight:600">Неправильные глаголы — учить наизусть (топ-20):</p>
+<div class="rule">be → <b>was/were</b> &nbsp;|&nbsp; go → <b>went</b> &nbsp;|&nbsp; come → <b>came</b><br>
+see → <b>saw</b> &nbsp;|&nbsp; take → <b>took</b> &nbsp;|&nbsp; make → <b>made</b><br>
+have → <b>had</b> &nbsp;|&nbsp; say → <b>said</b> &nbsp;|&nbsp; get → <b>got</b><br>
+do → <b>did</b> &nbsp;|&nbsp; know → <b>knew</b> &nbsp;|&nbsp; think → <b>thought</b><br>
+buy → <b>bought</b> &nbsp;|&nbsp; give → <b>gave</b> &nbsp;|&nbsp; tell → <b>told</b><br>
+find → <b>found</b> &nbsp;|&nbsp; leave → <b>left</b> &nbsp;|&nbsp; write → <b>wrote</b></div>
+<p style="margin-top:10px;font-weight:600">Отрицание — для ВСЕХ глаголов (кроме to be):</p>
+<div class="rule">Subject + <b>didn't</b> + глагол (базовая форма)</div>
+<p class="example">✦ I didn't go to school. — Я не ходил в школу.</p>
+<p class="example">✦ She didn't see him. — Она его не видела.</p>
+<p style="margin-top:10px;font-weight:600">Вопрос:</p>
+<div class="rule"><b>Did</b> + subject + глагол (базовая форма)?</div>
+<p class="example">✦ Did you call him? → Yes, I did. / No, I didn't.</p>
+<p class="example">✦ Did she pass the exam? — Она сдала экзамен?</p>
+<p style="margin-top:10px;font-weight:600">📅 Слова-маркеры Past Simple:</p>
+<div class="rule">yesterday — вчера &nbsp;|&nbsp; last week/month/year — прошлая неделя...<br>
+ago: 2 days ago, a year ago — 2 дня назад, год назад<br>
+in 2020, in January — в 2020-м, в январе</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ She goed home. → ✅ She <b>went</b> home.<br>
+❌ Did she went? → ✅ Did she <b>go</b>?<br>
+❌ I didn't went. → ✅ I didn't <b>go</b>.</div>
 </div>`,
         exercises:[
           {q:'She ___ to Paris last year.',blank:'went',opts:['go','goes','went','gone']},
@@ -912,18 +1048,30 @@ const COURSES={
         id:10,title:'Future Simple',xp:40,
         theory:`<div class="theory-block">
 <h3>Future Simple — будущее время</h3>
-<p>Используется для планов, предсказаний и спонтанных решений.</p>
-<div class="rule">Subject + <b>will</b> + глагол (базовая форма)</div>
-<p class="example">✦ I will call you tomorrow. — Я позвоню тебе завтра.</p>
-<p class="example">✦ It will rain today. — Сегодня будет дождь.</p>
-<p style="margin-top:12px;font-weight:600">Отрицание:</p>
-<div class="rule">Subject + <b>won't</b> (will not) + глагол</div>
+<p>В английском два основных способа говорить о будущем: <b>will</b> и <b>going to</b>.</p>
+<p style="margin-top:10px;font-weight:600">WILL — спонтанные решения, предсказания, обещания:</p>
+<div class="rule">Subject + <b>will ('ll)</b> + глагол (базовая форма)</div>
+<p class="example">✦ I'll call you tomorrow. — Я позвоню тебе завтра. (обещание)</p>
+<p class="example">✦ It will rain today. — Сегодня будет дождь. (предсказание)</p>
+<p class="example">✦ Wait — I'll help you! — Подожди, я помогу! (спонтанное решение)</p>
+<p style="margin-top:10px;font-weight:600">Отрицание и вопрос с WILL:</p>
+<div class="rule">Subject + <b>won't</b> (= will not) + глагол<br>
+<b>Will</b> + subject + глагол?</div>
 <p class="example">✦ She won't be late. — Она не опоздает.</p>
-<p style="margin-top:12px;font-weight:600">Вопрос:</p>
-<div class="rule"><b>Will</b> + subject + глагол?</div>
-<p class="example">✦ Will you help me? — Ты поможешь мне?</p>
-<p style="margin-top:10px;font-weight:600">Going to — запланированные действия:</p>
-<p class="example">✦ I'm going to study English. — Я собираюсь учить английский.</p>
+<p class="example">✦ Will you help me? → Yes, I will. / No, I won't.</p>
+<p style="margin-top:12px;font-weight:600">GOING TO — заранее запланированные действия, очевидные намерения:</p>
+<div class="rule">Subject + <b>am/is/are going to</b> + глагол</div>
+<p class="example">✦ I'm going to study English this year. — Я собираюсь учить английский в этом году. (план)</p>
+<p class="example">✦ Look at those clouds — it's going to rain! — (очевидно из ситуации)</p>
+<p class="example">✦ She's going to have a baby. — Она ожидает ребёнка.</p>
+<p style="margin-top:12px;font-weight:600">📅 Слова-маркеры будущего:</p>
+<div class="rule">tomorrow — завтра &nbsp;|&nbsp; next week/month/year — следующая...<br>
+soon — скоро &nbsp;|&nbsp; in 2 days — через 2 дня<br>
+this evening/weekend — сегодня вечером / в эти выходные</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ I will to go. → ✅ I will <b>go</b>.<br>
+❌ She wills come. → ✅ She <b>will</b> come.<br>
+❌ Will you going? → ✅ <b>Will</b> you go?</div>
 </div>`,
         exercises:[
           {q:'I ___ call you tonight.',blank:'will',opts:['will','would','shall','going to']},
@@ -951,14 +1099,31 @@ const COURSES={
       {
         id:11,title:'Модальные глаголы',xp:40,
         theory:`<div class="theory-block">
-<h3>Модальные глаголы</h3>
-<p>Модальные глаголы добавляют значение возможности, разрешения или обязанности.</p>
-<div class="rule"><b>can</b> — могу / умею<br><b>can't</b> — не могу / не умею<br><b>must</b> — должен (обязанность)<br><b>mustn't</b> — нельзя<br><b>should</b> — следует / советую<br><b>may / might</b> — возможно</div>
+<h3>Модальные глаголы — Modal Verbs</h3>
+<p>Модальные глаголы <b>не изменяются</b> (нет -s для he/she/it!) и после них всегда стоит <b>базовая форма</b> глагола.</p>
+<div class="rule"><b>can / could</b> — умею / мог, смог (способность, просьба)<br>
+<b>must</b> — должен (внутренняя обязанность)<br>
+<b>have to</b> — должен (внешняя необходимость)<br>
+<b>mustn't</b> — нельзя (запрет)<br>
+<b>don't have to</b> — не обязан (нет необходимости)<br>
+<b>should / shouldn't</b> — следует / не следует (совет)<br>
+<b>may / might</b> — возможно (вероятность)</div>
+<p style="margin-top:10px;font-weight:600">CAN — умею, могу, разрешение:</p>
 <p class="example">✦ I can swim. — Я умею плавать.</p>
-<p class="example">✦ You must wear a seatbelt. — Ты должен пристегнуться.</p>
-<p class="example">✦ You should see a doctor. — Тебе следует сходить к врачу.</p>
-<p class="example">✦ She might be late. — Она, возможно, опоздает.</p>
-<p style="margin-top:10px">После модальных глаголов всегда <b>базовая форма</b> глагола!</p>
+<p class="example">✦ Can I use your phone? — Можно воспользоваться твоим телефоном?</p>
+<p class="example">✦ Could you help me? — Не мог бы ты помочь? (вежливее)</p>
+<p style="margin-top:10px;font-weight:600">MUST vs HAVE TO — обязанность:</p>
+<p class="example">✦ I must finish this. — Я должен это закончить. (сам так считаю)</p>
+<p class="example">✦ I have to work on Sundays. — Мне приходится работать по воскресеньям. (правило)</p>
+<p style="margin-top:10px;font-weight:600">MUSTN'T vs DON'T HAVE TO:</p>
+<div class="rule">❗ <b>mustn't</b> — нельзя (запрет): You mustn't smoke here.<br>
+✅ <b>don't have to</b> — не обязан: You don't have to come. (но можешь)</div>
+<p style="margin-top:10px;font-weight:600">SHOULD — совет, рекомендация:</p>
+<p class="example">✦ You should see a doctor. — Тебе стоит сходить к врачу.</p>
+<p class="example">✦ You shouldn't eat so much sugar. — Тебе не стоит есть столько сахара.</p>
+<p style="margin-top:10px;font-weight:600">MAY / MIGHT — вероятность:</p>
+<p class="example">✦ It might rain. — Возможно, пойдёт дождь. (50%)</p>
+<p class="example">✦ She may be late. — Она, возможно, опоздает. (40-50%)</p>
 </div>`,
         exercises:[
           {q:'I ___ speak three languages.',blank:'can',opts:['can','must','should','might']},
@@ -986,12 +1151,33 @@ const COURSES={
       {
         id:12,title:'Вопросительные слова',xp:35,
         theory:`<div class="theory-block">
-<h3>Вопросительные слова (Wh- questions)</h3>
-<div class="rule"><b>What</b> — что / какой<br><b>Where</b> — где / куда<br><b>When</b> — когда<br><b>Who</b> — кто<br><b>Why</b> — почему<br><b>How</b> — как<br><b>Which</b> — который / какой из<br><b>Whose</b> — чей<br><b>How much/many</b> — сколько</div>
-<p class="example">✦ What is your name? — Как тебя зовут?</p>
-<p class="example">✦ Where do you live? — Где ты живёшь?</p>
-<p class="example">✦ Why are you late? — Почему ты опоздал?</p>
-<p class="example">✦ How many books do you have? — Сколько у тебя книг?</p>
+<h3>Вопросительные слова — Question Words (Wh-)</h3>
+<div class="rule"><b>What</b> — что, какой: What is this? What colour?<br>
+<b>Where</b> — где, куда: Where do you live? Where are you going?<br>
+<b>When</b> — когда: When does it start? When were you born?<br>
+<b>Who</b> — кто: Who is that? Who called you?<br>
+<b>Why</b> — почему: Why are you late? Why did you leave?<br>
+<b>How</b> — как: How are you? How do I get there?<br>
+<b>Which</b> — который (выбор из нескольких): Which bag is yours?<br>
+<b>Whose</b> — чей: Whose phone is this?<br>
+<b>What kind of</b> — какого рода: What kind of music do you like?</div>
+<p style="margin-top:10px;font-weight:600">Производные от HOW:</p>
+<div class="rule"><b>How much</b> — сколько (неисчисляемое): How much does it cost?<br>
+<b>How many</b> — сколько (исчисляемое): How many books do you have?<br>
+<b>How long</b> — как долго: How long does it take?<br>
+<b>How far</b> — как далеко: How far is the station?<br>
+<b>How often</b> — как часто: How often do you exercise?<br>
+<b>How old</b> — сколько лет: How old are you?</div>
+<p style="margin-top:10px;font-weight:600">Структура вопроса:</p>
+<div class="rule">Wh- + <b>вспомогательный глагол</b> + подлежащее + глагол?<br>
+What <b>do</b> you <b>do</b>? — Чем ты занимаешься?<br>
+Where <b>does</b> she <b>live</b>? — Где она живёт?<br>
+When <b>did</b> they <b>arrive</b>? — Когда они приехали?</div>
+<p class="example">✦ What time does the train leave? — В котором часу отходит поезд?</p>
+<p class="example">✦ How often do you go to the gym? — Как часто ты ходишь в зал?</p>
+<p style="margin-top:10px;font-weight:600">⚠️ WHO — субъектный вопрос (без do/does):</p>
+<p class="example">✦ Who <b>called</b> you? — Кто тебе звонил? (Who — подлежащее)</p>
+<p class="example">✦ Who <b>do</b> you call? — Кому ты звонишь? (Who — дополнение)</p>
 </div>`,
         exercises:[
           {q:'___ is your name?',blank:'What',opts:['What','Where','Who','Why']},
@@ -1019,15 +1205,35 @@ const COURSES={
       {
         id:13,title:'Предлоги места и времени',xp:35,
         theory:`<div class="theory-block">
-<h3>Предлоги места</h3>
-<div class="rule"><b>in</b> — в (внутри) &nbsp; <b>on</b> — на (поверхность) &nbsp; <b>at</b> — у / в (точка)<br><b>under</b> — под &nbsp; <b>above</b> — над &nbsp; <b>next to</b> — рядом<br><b>between</b> — между &nbsp; <b>behind</b> — за &nbsp; <b>in front of</b> — перед</div>
-<p class="example">✦ The cat is under the table. — Кот под столом.</p>
-<p class="example">✦ She is at the bus stop. — Она на автобусной остановке.</p>
-<p style="margin-top:12px;font-weight:600">Предлоги времени:</p>
-<div class="rule"><b>in</b> — в (месяц, год, время суток)<br><b>on</b> — в (день недели, дата)<br><b>at</b> — в (конкретное время)</div>
-<p class="example">✦ in July, in 2025, in the morning</p>
-<p class="example">✦ on Monday, on 5th June</p>
-<p class="example">✦ at 3 o'clock, at night, at Christmas</p>
+<h3>Предлоги места — Prepositions of Place</h3>
+<div class="rule"><b>in</b> — внутри чего-то: in a box, in Moscow, in a room<br>
+<b>on</b> — на поверхности: on the table, on the wall, on the floor<br>
+<b>at</b> — в конкретной точке: at the bus stop, at school, at home<br>
+<b>under</b> — под: under the bed, under the table<br>
+<b>above / over</b> — над: above the clouds, over the bridge<br>
+<b>next to / beside</b> — рядом: next to the window<br>
+<b>between</b> — между двумя: between the bank and the café<br>
+<b>among</b> — среди нескольких: among the trees<br>
+<b>behind</b> — позади: behind the door<br>
+<b>in front of</b> — перед: in front of the building<br>
+<b>opposite</b> — напротив: opposite the station<br>
+<b>near</b> — неподалёку: near the school</div>
+<p class="example">✦ The keys are on the table. — Ключи на столе.</p>
+<p class="example">✦ The supermarket is between the bank and the café.</p>
+<p class="example">✦ She is waiting at the bus stop. — Она ждёт на остановке.</p>
+<p style="margin-top:12px;font-weight:600">Предлоги времени — Prepositions of Time:</p>
+<div class="rule"><b>at</b> — точное время, праздники:<br>
+at 5 o'clock, at noon, at midnight, at Christmas, at Easter<br>
+<b>on</b> — дни недели, даты:<br>
+on Monday, on 5th June, on my birthday, on New Year's Day<br>
+<b>in</b> — месяцы, годы, сезоны, части суток:<br>
+in July, in 2024, in spring, in the morning / afternoon / evening<br>
+⚠️ Исключение: <b>at night</b> (не «in the night»)</div>
+<p class="example">✦ I was born in 1995, on the 3rd of March, at 7 in the morning.</p>
+<p style="margin-top:10px;font-weight:600">⚠️ in / on / at — частые ошибки:</p>
+<div class="rule">❌ on the morning → ✅ <b>in</b> the morning<br>
+❌ in Monday → ✅ <b>on</b> Monday<br>
+❌ in 5 o'clock → ✅ <b>at</b> 5 o'clock</div>
 </div>`,
         exercises:[
           {q:'The book is ___ the table.',blank:'on',opts:['in','on','at','under']},
@@ -1055,15 +1261,32 @@ const COURSES={
       {
         id:14,title:'Степени сравнения прилагательных',xp:40,
         theory:`<div class="theory-block">
-<h3>Сравнительная и превосходная степени</h3>
-<p style="font-weight:600">Короткие прилагательные (1 слог):</p>
-<div class="rule">big → <b>bigger</b> → <b>the biggest</b><br>fast → <b>faster</b> → <b>the fastest</b><br>hot → <b>hotter</b> → <b>the hottest</b></div>
-<p style="margin-top:10px;font-weight:600">Длинные прилагательные (2+ слога):</p>
-<div class="rule">beautiful → <b>more beautiful</b> → <b>the most beautiful</b><br>expensive → <b>more expensive</b> → <b>the most expensive</b></div>
-<p style="margin-top:10px;font-weight:600">Исключения:</p>
-<div class="rule">good → better → the best<br>bad → worse → the worst<br>far → farther → the farthest</div>
-<p class="example">✦ She is taller than me. — Она выше меня.</p>
-<p class="example">✦ This is the best film I've seen. — Это лучший фильм, который я видел.</p>
+<h3>Степени сравнения прилагательных</h3>
+<p>В английском три степени: положительная (big), сравнительная (bigger) и превосходная (the biggest).</p>
+<p style="margin-top:10px;font-weight:600">Короткие прилагательные (1 слог) — добавляем -er / -est:</p>
+<div class="rule">tall → <b>taller</b> → <b>the tallest</b><br>
+fast → <b>faster</b> → <b>the fastest</b><br>
+old → <b>older</b> → <b>the oldest</b><br>
+⚠️ Удвоение согласной: big → <b>bigger</b>, hot → <b>hotter</b>, thin → <b>thinner</b><br>
+⚠️ Согласная + y → ier: easy → <b>easier</b>, happy → <b>happier</b></div>
+<p style="margin-top:10px;font-weight:600">Длинные прилагательные (2+ слога) — more / the most:</p>
+<div class="rule">beautiful → <b>more beautiful</b> → <b>the most beautiful</b><br>
+interesting → <b>more interesting</b> → <b>the most interesting</b><br>
+expensive → <b>more expensive</b> → <b>the most expensive</b><br>
+⚠️ 2-сложные на -er, -le, -ow — часто с -er: clever→cleverer, simple→simpler</div>
+<p style="margin-top:10px;font-weight:600">Исключения — учить наизусть:</p>
+<div class="rule">good → <b>better</b> → <b>the best</b><br>
+bad → <b>worse</b> → <b>the worst</b><br>
+far → <b>farther/further</b> → <b>the farthest/furthest</b><br>
+little → <b>less</b> → <b>the least</b><br>
+many/much → <b>more</b> → <b>the most</b></div>
+<p style="margin-top:10px;font-weight:600">Структура предложений сравнения:</p>
+<div class="rule">Сравнительная + <b>than</b>: She is taller <b>than</b> me.<br>
+<b>as ... as</b> — такой же как: He is <b>as</b> tall <b>as</b> his brother.<br>
+<b>not as ... as</b> — не такой как: It's not <b>as</b> cold <b>as</b> yesterday.</div>
+<p class="example">✦ Moscow is bigger than St. Petersburg. — Москва больше Санкт-Петербурга.</p>
+<p class="example">✦ This is the most expensive hotel in the city.</p>
+<p class="example">✦ She speaks English better than I do. — Она говорит по-английски лучше меня.</p>
 </div>`,
         exercises:[
           {q:'She is ___ than her sister. (tall)',blank:'taller',opts:['tall','taller','tallest','most tall']},
@@ -1092,16 +1315,28 @@ const COURSES={
         id:15,title:'Present Continuous',xp:40,
         theory:`<div class="theory-block">
 <h3>Present Continuous — настоящее длительное время</h3>
-<p>Используется для действий, происходящих прямо сейчас или в данный период.</p>
-<div class="rule">Subject + <b>am / is / are</b> + глагол<b>-ing</b></div>
-<p class="example">✦ I am reading a book. — Я читаю книгу (сейчас).</p>
-<p class="example">✦ She is cooking dinner. — Она готовит ужин.</p>
-<p class="example">✦ They are watching TV. — Они смотрят телевизор.</p>
-<p style="margin-top:12px;font-weight:600">Отрицание:</p>
-<p class="example">✦ He is not (isn't) sleeping. — Он не спит.</p>
-<p style="margin-top:10px;font-weight:600">Вопрос:</p>
-<p class="example">✦ Are you listening? — Ты слушаешь?</p>
-<p style="margin-top:10px;font-weight:600">Маркеры: now, right now, at the moment, look!, listen!</p>
+<p>Используется для действий, происходящих <b>прямо сейчас</b> или <b>в этот период жизни</b>. В русском аналога нет — переводится как настоящее время.</p>
+<div class="rule"><b>Образование:</b> Subject + <b>am/is/are</b> + глагол<b>-ing</b><br>
+I <b>am</b> working &nbsp;|&nbsp; He/She/It <b>is</b> working &nbsp;|&nbsp; You/We/They <b>are</b> working</div>
+<p style="margin-top:10px;font-weight:600">Правила добавления -ing:</p>
+<div class="rule">Обычно просто + ing: work→<b>working</b>, play→<b>playing</b><br>
+Немое «e» убираем: come→<b>coming</b>, write→<b>writing</b>, make→<b>making</b><br>
+Удвоение согласной (краткий гласный): run→<b>running</b>, sit→<b>sitting</b>, swim→<b>swimming</b><br>
+ie → y+ing: lie→<b>lying</b>, die→<b>dying</b></div>
+<p style="margin-top:10px;font-weight:600">Когда использовать:</p>
+<div class="rule">1️⃣ Прямо сейчас: I <b>am reading</b> a book. — Я читаю (сейчас).<br>
+2️⃣ В этот период: She <b>is studying</b> medicine. — Она учится на медика.<br>
+3️⃣ Запланированное будущее: We <b>are meeting</b> tomorrow. — Мы встречаемся завтра.<br>
+4️⃣ С look!, listen!: Look! He <b>is running!</b></div>
+<p style="margin-top:10px;font-weight:600">Отрицание и вопрос:</p>
+<div class="rule">He <b>isn't</b> sleeping. — Он не спит.<br>
+<b>Are</b> you listening? → Yes, I am. / No, I'm not.</div>
+<p style="margin-top:10px;font-weight:600">📅 Маркеры времени:</p>
+<div class="rule">now, right now, at the moment, currently, today, this week/year</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Глаголы НЕ используемые в Continuous:</p>
+<div class="rule">know, understand, believe, want, need, love, hate, like, see, hear, smell<br>
+❌ I am knowing. → ✅ I <b>know</b>.<br>
+❌ She is wanting. → ✅ She <b>wants</b>.</div>
 </div>`,
         exercises:[
           {q:'She ___ a letter right now.',blank:'is writing',opts:['is writing','writes','wrote','has written']},
@@ -1129,11 +1364,30 @@ const COURSES={
       {
         id:16,title:'Существительные: единственное и множественное число',xp:35,
         theory:`<div class="theory-block">
-<h3>Множественное число существительных</h3>
-<div class="rule">Обычно: + <b>s</b> → book → books, car → cars<br>После s, x, ch, sh: + <b>es</b> → box → boxes, watch → watches<br>Согласная + y → <b>ies</b> → city → cities<br>Некоторые на -f → <b>ves</b> → leaf → leaves, wife → wives</div>
-<p style="margin-top:10px;font-weight:600">Исключения (неправильные):</p>
-<div class="rule">man → men &nbsp; woman → women &nbsp; child → children<br>tooth → teeth &nbsp; foot → feet &nbsp; mouse → mice<br>person → people &nbsp; sheep → sheep &nbsp; fish → fish</div>
+<h3>Множественное число существительных — Plural Nouns</h3>
+<p>В английском множественное число образуется по правилам, но есть много исключений.</p>
+<p style="margin-top:10px;font-weight:600">Основные правила:</p>
+<div class="rule">Обычно + <b>s</b>: book→books, car→cars, table→tables<br>
+После s, ss, x, z, ch, sh + <b>es</b>: box→boxes, watch→watches, bus→buses<br>
+Согласная + y → <b>ies</b>: city→cities, baby→babies, country→countries<br>
+Гласная + y → <b>+s</b>: day→days, boy→boys, key→keys<br>
+Некоторые на -f/-fe → <b>ves</b>: leaf→leaves, wife→wives, knife→knives, half→halves<br>
+Некоторые на -o + <b>es</b>: potato→potatoes, tomato→tomatoes<br>
+Некоторые на -o + <b>s</b>: photo→photos, piano→pianos</div>
+<p style="margin-top:10px;font-weight:600">Неправильные (учить наизусть):</p>
+<div class="rule">man → <b>men</b> &nbsp;|&nbsp; woman → <b>women</b> &nbsp;|&nbsp; child → <b>children</b><br>
+tooth → <b>teeth</b> &nbsp;|&nbsp; foot → <b>feet</b> &nbsp;|&nbsp; mouse → <b>mice</b> &nbsp;|&nbsp; goose → <b>geese</b><br>
+person → <b>people</b> &nbsp;|&nbsp; ox → <b>oxen</b></div>
+<p style="margin-top:10px;font-weight:600">Одинаковые в ед. и мн. числе:</p>
+<div class="rule">sheep, fish, deer, species, aircraft, means</div>
+<p style="margin-top:10px;font-weight:600">Всегда во множественном числе:</p>
+<div class="rule">trousers, jeans, glasses, scissors, news (но: «The news is...»)<br>
+stairs, clothes, goods, thanks</div>
 <p class="example">✦ There are three children in the room. — В комнате три ребёнка.</p>
+<p class="example">✦ She has two pairs of trousers. — У неё двое брюк.</p>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ informations, advices, furnitures → ✅ неисчисляемые!<br>
+❌ childs → ✅ children &nbsp;|&nbsp; ❌ mouses → ✅ mice</div>
 </div>`,
         exercises:[
           {q:'Множественное число от «box»',blank:'boxes',opts:['boxs','boxes','boxies','boxi']},
@@ -1159,18 +1413,33 @@ const COURSES={
         ]
       },
       {
-        id:17,title:'Артикли a / an / the',xp:40,
+        id:17,title:'Местоимения и притяжательные формы',xp:40,
         theory:`<div class="theory-block">
-<h3>Артикли: a, an, the</h3>
-<p style="font-weight:600">Неопределённый артикль a / an:</p>
-<div class="rule"><b>a</b> — перед согласным звуком: a cat, a book, a university<br><b>an</b> — перед гласным звуком: an apple, an hour, an egg</div>
-<p>Используем a/an когда говорим о предмете <b>впервые</b> или он <b>один из многих</b>.</p>
-<p class="example">✦ I saw a dog. — Я видел (какую-то) собаку.</p>
-<p style="margin-top:10px;font-weight:600">Определённый артикль the:</p>
-<p>Используем <b>the</b> когда говорим о <b>конкретном</b> предмете или он <b>единственный</b> в своём роде.</p>
-<p class="example">✦ The dog was brown. — Та (конкретная) собака была коричневой.</p>
-<p class="example">✦ the sun, the moon, the Earth — единственные в своём роде</p>
-<p style="margin-top:10px;font-weight:600">Без артикля: имена, страны, языки, профессии (в общем смысле).</p>
+<h3>Местоимения — Pronouns</h3>
+<p style="font-weight:600">Личные местоимения:</p>
+<div class="rule">I — я &nbsp;|&nbsp; you — ты/вы &nbsp;|&nbsp; he — он &nbsp;|&nbsp; she — она<br>
+it — оно/это &nbsp;|&nbsp; we — мы &nbsp;|&nbsp; they — они</div>
+<p style="margin-top:10px;font-weight:600">Объектные местоимения (кого? кому?):</p>
+<div class="rule">me — меня/мне &nbsp;|&nbsp; you — тебя/тебе &nbsp;|&nbsp; him — его/ему<br>
+her — её/ей &nbsp;|&nbsp; it — его/ей &nbsp;|&nbsp; us — нас/нам &nbsp;|&nbsp; them — их/им</div>
+<p class="example">✦ She loves him. — Она любит его.</p>
+<p class="example">✦ Give it to me. — Дай это мне.</p>
+<p style="margin-top:10px;font-weight:600">Притяжательные прилагательные (чей? — перед существительным):</p>
+<div class="rule">my — мой &nbsp;|&nbsp; your — твой/ваш &nbsp;|&nbsp; his — его<br>
+her — её &nbsp;|&nbsp; its — его/её (для предметов) &nbsp;|&nbsp; our — наш &nbsp;|&nbsp; their — их</div>
+<p class="example">✦ This is my book. — Это моя книга.</p>
+<p class="example">✦ Her name is Anna. — Её зовут Анна.</p>
+<p style="margin-top:10px;font-weight:600">Притяжательные местоимения (без существительного):</p>
+<div class="rule">mine — мой &nbsp;|&nbsp; yours — твой &nbsp;|&nbsp; his — его &nbsp;|&nbsp; hers — её<br>
+ours — наш &nbsp;|&nbsp; theirs — их</div>
+<p class="example">✦ This book is mine. — Эта книга моя. (без существительного)</p>
+<p class="example">✦ Is this yours? — Это твоё?</p>
+<p style="margin-top:10px;font-weight:600">Возвратные местоимения:</p>
+<div class="rule">myself, yourself, himself, herself, itself, ourselves, themselves<br>
+I did it <b>myself</b>. — Я сделал это сам.</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ Me and my friend went... → ✅ <b>My friend and I</b> went...<br>
+❌ It's her book → чья? → ✅ It's <b>hers</b>. (без существительного)</div>
 </div>`,
         exercises:[
           {q:'She is ___ doctor.',blank:'a',opts:['a','an','the','—']},
@@ -1198,15 +1467,34 @@ const COURSES={
       {
         id:18,title:'Исчисляемые и неисчисляемые существительные',xp:35,
         theory:`<div class="theory-block">
-<h3>Исчисляемые и неисчисляемые</h3>
-<p><b>Исчисляемые</b> — можно посчитать: one book, two books, three cars</p>
-<p><b>Неисчисляемые</b> — нельзя посчитать: water, money, information, advice</p>
-<div class="rule">some / any / much / little — для неисчисляемых<br>some / any / many / few — для исчисляемых во мн.ч.</div>
-<p class="example">✦ I need some water. — Мне нужно немного воды.</p>
-<p class="example">✦ How many books do you have? — Сколько у тебя книг?</p>
-<p class="example">✦ How much money do you need? — Сколько денег тебе нужно?</p>
-<p class="example">✦ There isn't any milk. — Молока нет.</p>
-<p style="margin-top:10px">There is / There are: <b>There is</b> + ед.ч. или неисч. &nbsp; <b>There are</b> + мн.ч.</p>
+<h3>Исчисляемые и неисчисляемые существительные</h3>
+<p><b>Исчисляемые (countable)</b> — можно посчитать, есть единственное и множественное число: book/books, car/cars, idea/ideas</p>
+<p><b>Неисчисляемые (uncountable)</b> — нельзя посчитать, нет множественного числа: water, milk, money, information, advice, furniture, news, weather, music</p>
+<p style="margin-top:10px;font-weight:600">SOME и ANY:</p>
+<div class="rule"><b>some</b> — утверждения и вежливые просьбы:<br>
+I have some milk. Could I have some water?<br>
+<b>any</b> — вопросы и отрицания:<br>
+Do you have any milk? I don't have any money.</div>
+<p style="margin-top:10px;font-weight:600">Количество:</p>
+<div class="rule"><b>Для исчисляемых:</b><br>
+<b>many</b> — много: many books, many people<br>
+<b>a few</b> — несколько (достаточно): a few minutes, a few friends<br>
+<b>few</b> — мало (недостаточно): few friends = почти нет друзей<br>
+<b>Для неисчисляемых:</b><br>
+<b>much</b> — много: much time, much money (в отрицаниях/вопросах)<br>
+<b>a little</b> — немного (достаточно): a little time, a little money<br>
+<b>little</b> — мало (недостаточно): little hope = почти нет надежды<br>
+<b>Для обоих:</b><br>
+<b>a lot of / lots of</b> — много: a lot of books, a lot of money</div>
+<p style="margin-top:10px;font-weight:600">There is / There are:</p>
+<div class="rule"><b>There is</b> + ед.ч. или неисч.: There is a cat. There is some milk.<br>
+<b>There are</b> + мн.ч.: There are three books on the table.</div>
+<p class="example">✦ How much time do we have? — Сколько у нас времени?</p>
+<p class="example">✦ How many people are coming? — Сколько человек придёт?</p>
+<p style="margin-top:10px;font-weight:600">⚠️ Типичные ошибки:</p>
+<div class="rule">❌ an information, a furniture, a news → ✅ не имеют артикля!<br>
+❌ many money → ✅ <b>much</b> money<br>
+❌ much books → ✅ <b>many</b> books</div>
 </div>`,
         exercises:[
           {q:'How ___ milk do you need?',blank:'much',opts:['many','much','few','little']},
@@ -1235,14 +1523,38 @@ const COURSES={
         id:19,title:'Разговорные фразы',xp:35,
         theory:`<div class="theory-block">
 <h3>Разговорные фразы — Everyday English</h3>
-<p style="font-weight:600">Согласие / несогласие:</p>
-<div class="rule">I agree. — Согласен. &nbsp; I disagree. — Не согласен.<br>Exactly! — Именно! &nbsp; That's right. — Верно.<br>I'm not sure. — Я не уверен.</div>
-<p style="margin-top:10px;font-weight:600">Просьбы:</p>
-<div class="rule">Could you...? / Would you mind...? — Не могли бы вы...?<br>Can I...? — Можно мне...? &nbsp; I'd like... — Я бы хотел...</div>
-<p style="margin-top:10px;font-weight:600">В магазине / кафе:</p>
-<div class="rule">I'll have... — Я возьму... &nbsp; How much is it? — Сколько стоит?<br>Can I pay by card? — Можно платить картой?<br>Where is the...? — Где находится...?</div>
-<p style="margin-top:10px;font-weight:600">Эмоции:</p>
-<div class="rule">That's amazing! — Это удивительно! &nbsp; What a pity! — Как жаль!<br>No way! — Не может быть! &nbsp; I can't believe it! — Не верю!</div>
+<p style="font-weight:600">Согласие и несогласие:</p>
+<div class="rule">I agree. / You're right. — Согласен. / Ты прав.<br>
+Exactly! / Absolutely! / That's right. — Именно! / Совершенно верно!<br>
+I disagree. / I don't think so. — Не согласен. / Я так не думаю.<br>
+I'm not sure about that. — Я в этом не уверен.<br>
+That's a good point. — Хорошее замечание.</div>
+<p style="margin-top:10px;font-weight:600">Просьбы (от неформальной к формальной):</p>
+<div class="rule">Can you help me? — Ты можешь помочь? (неформально)<br>
+Could you help me? — Не мог бы ты помочь? (вежливо)<br>
+Would you mind helping me? — Не возражаешь помочь? (формально)<br>
+I'd like to... — Я бы хотел...<br>
+Do you mind if I...? — Ты не против, если я...?</div>
+<p style="margin-top:10px;font-weight:600">В магазине и кафе:</p>
+<div class="rule">Can/Could I have...? — Можно мне...?<br>
+I'll have... — Я возьму... (в кафе/ресторане)<br>
+How much is it? / What's the price? — Сколько стоит?<br>
+Can I pay by card / in cash? — Можно картой / наличными?<br>
+Do you have this in a different size? — Есть другой размер?<br>
+I'd like to return this. — Я хочу вернуть это.</div>
+<p style="margin-top:10px;font-weight:600">Реакции и эмоции:</p>
+<div class="rule">That's amazing / incredible / fantastic! — Это удивительно!<br>
+What a pity! / What a shame! — Как жаль!<br>
+No way! — Не может быть!<br>
+I can't believe it! — Не верю! / Не могу поверить!<br>
+That's funny! / That's hilarious! — Это смешно! / Это уморительно!<br>
+Well done! / Good job! — Молодец! / Хорошая работа!</div>
+<p style="margin-top:10px;font-weight:600">Если не понял:</p>
+<div class="rule">Sorry? / Pardon? — Простите? (переспросить)<br>
+Could you repeat that? — Не могли бы вы повторить?<br>
+Could you speak more slowly? — Говорите помедленнее.<br>
+What does ... mean? — Что значит ...?<br>
+How do you spell it? — Как это пишется?</div>
 </div>`,
         exercises:[
           {q:'«Согласен» = ___',blank:'I agree',opts:['I agree','I accept','I confirm','I allow']},
@@ -1271,9 +1583,29 @@ const COURSES={
         id:20,title:'Повторение и итоговый тест',xp:50,
         theory:`<div class="theory-block">
 <h3>🎓 Итоговый урок — Basic English</h3>
-<p>Поздравляем! Ты прошёл курс Basic English. Давай повторим всё, что изучили:</p>
-<div class="rule">✅ Глагол to be (am/is/are)<br>✅ Present Simple, Past Simple, Future Simple<br>✅ Present Continuous<br>✅ Модальные глаголы (can, must, should)<br>✅ Вопросительные слова<br>✅ Предлоги места и времени<br>✅ Степени сравнения<br>✅ Артикли (a/an/the)<br>✅ Множественное число<br>✅ Разговорные фразы</div>
-<p style="margin-top:12px">Этот итоговый тест проверяет все темы курса. Ты готов? 💪</p>
+<p>Поздравляем! Ты прошёл курс Basic English. Это серьёзное достижение — давай вспомним всё, что изучили.</p>
+<p style="margin-top:10px;font-weight:600">Грамматика — что ты теперь знаешь:</p>
+<div class="rule">✅ Глагол to be (am/is/are) — описание и состояние<br>
+✅ Present Simple — регулярные действия и факты<br>
+✅ Past Simple — завершённые действия в прошлом<br>
+✅ Future Simple (will / going to) — будущее время<br>
+✅ Present Continuous — действия прямо сейчас<br>
+✅ Модальные глаголы (can, must, should, might)<br>
+✅ Вопросительные слова (what, where, when, how...)<br>
+✅ Предлоги места и времени (in/on/at)<br>
+✅ Степени сравнения прилагательных<br>
+✅ Артикли (a/an/the/—)<br>
+✅ Множественное число существительных<br>
+✅ Исчисляемые и неисчисляемые (many/much/some/any)<br>
+✅ Личные и притяжательные местоимения<br>
+✅ Порядковые числа и даты<br>
+✅ Дни недели и месяцы</div>
+<p style="margin-top:10px;font-weight:600">Что дальше?</p>
+<div class="rule">После Basic English рекомендуем:<br>
+📘 Elementary English — новый уровень, новые времена<br>
+💼 Business English — английский для работы<br>
+💬 Не забывай практиковаться в AI-чате!</div>
+<p style="margin-top:12px">Финальный тест проверяет все темы курса. Ты готов? 💪</p>
 </div>`,
         exercises:[
           {q:'She ___ a doctor. (to be)',blank:'is',opts:['am','is','are','be']},
