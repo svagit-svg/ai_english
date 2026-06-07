@@ -120,6 +120,37 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
+/* LESSONS */
+.lesson-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:13px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;}
+.lesson-item:active{border-color:var(--accent);}
+.lesson-item.locked{opacity:0.5;cursor:default;}
+.lesson-item.done .lesson-num{background:var(--green);color:#000;}
+.lesson-num{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:12px;font-weight:700;flex-shrink:0;}
+.lesson-info h4{font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:2px;}
+.lesson-info p{font-size:11px;color:var(--muted);}
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;line-height:1.7;font-size:13px;}
+.theory-block h3{font-family:var(--font-head);font-size:15px;font-weight:800;margin-bottom:10px;color:var(--accent);}
+.theory-block .rule{background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:8px 12px;margin:8px 0;font-size:12px;}
+.theory-block .example{color:var(--green);font-style:italic;margin:4px 0;}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;}
+.ex-card .ex-q{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+.ex-card .ex-q span{color:var(--accent);}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.choice-btn{padding:10px 8px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:var(--font-body);font-size:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.choice-btn:active{transform:scale(0.97);}
+.choice-btn.correct{background:rgba(16,217,138,0.15);border-color:var(--green);color:var(--green);}
+.choice-btn.wrong{background:rgba(244,63,94,0.15);border-color:var(--rose);color:var(--rose);}
+.choice-btn:disabled{cursor:default;}
+.ex-feedback{margin-top:10px;font-size:12px;padding:8px 12px;border-radius:8px;display:none;}
+.ex-feedback.show{display:block;}
+.ex-feedback.ok{background:rgba(16,217,138,0.1);color:var(--green);}
+.ex-feedback.err{background:rgba(244,63,94,0.1);color:var(--rose);}
+.lesson-btn{display:block;width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;}
+.lesson-btn:active{opacity:0.85;}
+.result-box{text-align:center;padding:24px 16px;}
+.result-box .r-emoji{font-size:52px;margin-bottom:12px;}
+.result-box h2{font-family:var(--font-head);font-size:20px;font-weight:800;margin-bottom:6px;}
+.result-box p{font-size:13px;color:var(--muted);margin-bottom:20px;}
 </style>
 </head>
 <body>
@@ -128,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.8</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v0.9</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -181,34 +212,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
   <!-- COURSES -->
   <section id="screen-courses" class="screen">
+    <!-- Список курсов -->
+    <div id="courses-main">
     <p class="screen-title">Программы</p>
-    <p class="section-label">Активные курсы</p>
-    <div class="course-card">
+    <p class="section-label">Доступные курсы</p>
+    <div class="course-card" onclick="openCourse('basic')" style="cursor:pointer">
       <div class="card-icon" style="background:rgba(16,217,138,0.1);color:var(--green);font-size:18px;">📗</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Basic English</h3>
-          <span style="font-size:11px;color:var(--green);font-weight:600">68%</span>
+          <span id="basic-pct" style="font-size:11px;color:var(--green);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Грамматика, базовая лексика</p>
-        <div class="progress-bar"><div class="progress-fill" style="width:68%;background:var(--green)"></div></div>
-        <p style="font-size:10px;color:var(--muted);margin-top:3px">Урок 17 из 25</p>
-      </div>
-    </div>
-    <div class="course-card">
-      <div class="card-icon" style="background:rgba(79,110,247,0.1);color:var(--accent);font-size:18px;">💼</div>
-      <div style="flex:1">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Business English</h3>
-          <span style="font-size:11px;color:var(--accent);font-weight:600">34%</span>
-        </div>
-        <p style="font-size:11px;color:var(--muted);margin:2px 0">Переговоры, деловые email</p>
-        <div class="progress-bar"><div class="progress-fill" style="width:34%;background:var(--accent)"></div></div>
-        <p style="font-size:10px;color:var(--muted);margin-top:3px">Урок 8 из 24</p>
+        <div class="progress-bar"><div class="progress-fill" id="basic-bar" style="width:0%;background:var(--green)"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="basic-sub">5 уроков</p>
       </div>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Доступные курсы</p>
+    <p class="section-label">Скоро</p>
     <div class="card" onclick="alert('Требуется Premium')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎓</div>
@@ -228,6 +249,59 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="card-icon" style="background:rgba(244,63,94,0.1);color:var(--rose);">🎬</div>
         <div class="card-text"><h3>Movie English <span class="badge" style="background:rgba(244,63,94,0.15);color:var(--rose)">PRO</span></h3><p>Сленг из сериалов • 20 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
+    </div>
+    </div><!-- /courses-main -->
+
+    <!-- Список уроков курса -->
+    <div id="lesson-list-view" style="display:none">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="back-btn" onclick="closeCourse()"><i class="fa-solid fa-arrow-left"></i></div>
+        <div>
+          <p class="screen-title" style="margin:0" id="course-title-view">Basic English</p>
+          <p style="font-size:11px;color:var(--muted)" id="course-sub-view">5 уроков</p>
+        </div>
+      </div>
+      <div id="lesson-items"></div>
+    </div>
+  </section>
+
+  <!-- LESSON SCREEN -->
+  <section id="screen-lesson" class="screen">
+    <div id="lesson-theory">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="back-btn" onclick="closeLesson()"><i class="fa-solid fa-arrow-left"></i></div>
+        <div style="flex:1">
+          <p style="font-family:var(--font-head);font-size:14px;font-weight:800;margin:0" id="lesson-title-view"></p>
+          <p style="font-size:10px;color:var(--muted)" id="lesson-step-view">Теория</p>
+        </div>
+      </div>
+      <div id="lesson-content"></div>
+      <button class="lesson-btn" id="lesson-next-btn" onclick="startExercises()">Начать упражнения →</button>
+    </div>
+    <div id="lesson-exercises" style="display:none">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="back-btn" onclick="showTheory()"><i class="fa-solid fa-arrow-left"></i></div>
+        <div style="flex:1">
+          <p style="font-family:var(--font-head);font-size:13px;font-weight:700;margin:0" id="ex-title"></p>
+          <p style="font-size:10px;color:var(--muted)" id="ex-progress"></p>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--surface2);border-radius:2px;margin-bottom:14px;overflow:hidden">
+        <div id="ex-progress-bar" style="height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width 0.3s;width:0%"></div>
+      </div>
+      <div id="ex-content"></div>
+    </div>
+    <div id="lesson-result" style="display:none">
+      <div class="result-box">
+        <div class="r-emoji" id="result-emoji">🎉</div>
+        <h2 id="result-title">Урок завершён!</h2>
+        <p id="result-text"></p>
+        <div class="stats-grid" style="margin-bottom:16px">
+          <div class="stat-box"><div class="val" id="result-score" style="color:var(--green)">5/5</div><div class="lbl">Правильных</div></div>
+          <div class="stat-box"><div class="val" id="result-xp" style="color:var(--amber)">+30</div><div class="lbl">XP получено</div></div>
+        </div>
+        <button class="lesson-btn" onclick="closeLesson()">К списку уроков</button>
       </div>
     </div>
   </section>
@@ -466,9 +540,294 @@ function renderAvatar(){
   }
 }
 
+// ── COURSE DATA ──────────────────────────────────────────
+const COURSES={
+  basic:{
+    title:'Basic English',
+    icon:'📗',
+    color:'var(--green)',
+    lessons:[
+      {
+        id:1,title:'Глагол to be',xp:30,
+        theory:`<div class="theory-block">
+<h3>Глагол to be — «быть»</h3>
+<p>Это самый важный глагол в английском. Он меняется в зависимости от подлежащего:</p>
+<div class="rule">I → <b>am</b> &nbsp;|&nbsp; He / She / It → <b>is</b> &nbsp;|&nbsp; You / We / They → <b>are</b></div>
+<p class="example">✦ I am a student. — Я студент.</p>
+<p class="example">✦ She is beautiful. — Она красивая.</p>
+<p class="example">✦ They are my friends. — Они мои друзья.</p>
+<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<div class="rule">am not &nbsp;|&nbsp; is not (isn't) &nbsp;|&nbsp; are not (aren't)</div>
+<p class="example">✦ He isn't tired. — Он не устал.</p>
+<p style="margin-top:12px;font-weight:600">Вопрос — переставь глагол вперёд:</p>
+<p class="example">✦ Are you ready? — Ты готов?</p>
+<p class="example">✦ Is she at home? — Она дома?</p>
+</div>`,
+        exercises:[
+          {q:'I ___ a doctor.',blank:'am',opts:['am','is','are','be']},
+          {q:'She ___ very smart.',blank:'is',opts:['am','is','are','be']},
+          {q:'They ___ my friends.',blank:'are',opts:['am','is','are','was']},
+          {q:'___ you tired?',blank:'Are',opts:['Am','Is','Are','Be']},
+          {q:'He ___ not happy.',blank:'is',opts:['am','is','are','be']}
+        ]
+      },
+      {
+        id:2,title:'Present Simple',xp:35,
+        theory:`<div class="theory-block">
+<h3>Present Simple — настоящее время</h3>
+<p>Используется для регулярных действий, фактов и привычек.</p>
+<div class="rule">I / You / We / They + глагол<br>He / She / It + глагол<b>+s</b></div>
+<p class="example">✦ I work every day. — Я работаю каждый день.</p>
+<p class="example">✦ She works at Google. — Она работает в Google.</p>
+<p style="margin-top:12px;font-weight:600">Отрицание:</p>
+<div class="rule">I/You/We/They + <b>don't</b> + глагол<br>He/She/It + <b>doesn't</b> + глагол</div>
+<p class="example">✦ I don't like coffee. — Я не люблю кофе.</p>
+<p class="example">✦ He doesn't play football. — Он не играет в футбол.</p>
+<p style="margin-top:12px;font-weight:600">Вопрос:</p>
+<div class="rule"><b>Do</b> I/you/we/they...? &nbsp;|&nbsp; <b>Does</b> he/she/it...?</div>
+<p class="example">✦ Do you speak English? — Ты говоришь по-английски?</p>
+<p class="example">✦ Does he live here? — Он живёт здесь?</p>
+<p style="margin-top:10px;font-size:11px;color:var(--muted)">Наречия: always, usually, often, sometimes, never</p>
+</div>`,
+        exercises:[
+          {q:'She ___ every day. (work)',blank:'works',opts:['work','works','working','worked']},
+          {q:'They ___ like pizza.',blank:"don't",opts:["don't","doesn't","isn't","aren't"]},
+          {q:'___ he speak English?',blank:'Does',opts:['Do','Does','Is','Are']},
+          {q:'I ___ tennis on Sundays. (play)',blank:'play',opts:['play','plays','playing','played']},
+          {q:'My cat ___ a lot. (sleep)',blank:'sleeps',opts:['sleep','sleeps','sleeping','slept']}
+        ]
+      },
+      {
+        id:3,title:'Артикли a / an / the',xp:35,
+        theory:`<div class="theory-block">
+<h3>Артикли: a, an, the</h3>
+<p><b style="color:var(--accent)">a / an</b> — неопределённый артикль. Используется когда говорим о чём-то впервые или о одном из многих.</p>
+<div class="rule"><b>a</b> — перед согласными: a cat, a book, a car<br><b>an</b> — перед гласными (a,e,i,o,u): an apple, an hour</div>
+<p class="example">✦ I have a dog. — У меня есть собака (какая-то).</p>
+<p class="example">✦ She is an engineer. — Она инженер.</p>
+<p style="margin-top:12px"><b style="color:var(--accent)">the</b> — определённый артикль. Когда оба знают о чём речь, единственный в своём роде.</p>
+<p class="example">✦ The sun is bright today. — Солнце яркое сегодня.</p>
+<p class="example">✦ Close the door, please. — Закрой дверь (ту самую).</p>
+<p style="margin-top:12px"><b style="color:var(--rose)">Без артикля</b> — имена, страны, языки, еда в общем смысле:</p>
+<p class="example">✦ I love music. I speak Russian. She is from Russia.</p>
+</div>`,
+        exercises:[
+          {q:'I have ___ apple.',blank:'an',opts:['a','an','the','-']},
+          {q:'___ sun is very bright.',blank:'The',opts:['A','An','The','-']},
+          {q:'She is ___ doctor.',blank:'a',opts:['a','an','the','-']},
+          {q:'I love ___ music.',blank:'-',opts:['a','an','the','-']},
+          {q:'He lives in ___ United States.',blank:'the',opts:['a','an','the','-']}
+        ]
+      },
+      {
+        id:4,title:'Числа и время',xp:30,
+        theory:`<div class="theory-block">
+<h3>Числа</h3>
+<div class="rule">1–12: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve<br>
+13–19: thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen<br>
+20, 30, 40...: twenty, thirty, forty, fifty, sixty<br>
+21, 35...: twenty-one, thirty-five</div>
+<p style="margin-top:12px;font-weight:600">Время:</p>
+<div class="rule">5:00 → It's five o'clock<br>
+5:15 → It's quarter past five<br>
+5:30 → It's half past five<br>
+5:45 → It's quarter to six</div>
+<p class="example">✦ What time is it? — Который час?</p>
+<p class="example">✦ It's half past three. — Половина четвёртого.</p>
+</div>`,
+        exercises:[
+          {q:'15 = ___',blank:'fifteen',opts:['fifteen','fifty','fifth','fiveteen']},
+          {q:'4:30 = It\'s ___ four.',blank:'half past',opts:['half past','quarter past','quarter to','half to']},
+          {q:'25 = ___',blank:'twenty-five',opts:['twenty-five','two-five','twenty fifth','five-twenty']},
+          {q:'5:45 = It\'s quarter ___ six.',blank:'to',opts:['to','past','after','before']},
+          {q:'100 = ___',blank:'a hundred',opts:['a hundred','hundred','one hundreds','the hundred']}
+        ]
+      },
+      {
+        id:5,title:'Базовая лексика',xp:40,
+        theory:`<div class="theory-block">
+<h3>Приветствия и знакомство</h3>
+<div class="rule">Hello / Hi — Привет<br>Good morning — Доброе утро<br>Good afternoon — Добрый день<br>Good evening — Добрый вечер</div>
+<p class="example">✦ How are you? — Как дела?</p>
+<p class="example">✦ Fine, thanks! / Not bad. / Great! — Хорошо, спасибо! / Неплохо. / Отлично!</p>
+<p style="margin-top:12px;font-weight:600">Знакомство:</p>
+<div class="rule">My name is... — Меня зовут...<br>I'm from Russia. — Я из России.<br>Nice to meet you! — Приятно познакомиться!</div>
+<p style="margin-top:12px;font-weight:600">Семья:</p>
+<div class="rule">mother / father — мать / отец<br>brother / sister — брат / сестра<br>son / daughter — сын / дочь<br>husband / wife — муж / жена</div>
+</div>`,
+        exercises:[
+          {q:'«Доброе утро» = ___',blank:'Good morning',opts:['Good morning','Good night','Good evening','Good afternoon']},
+          {q:'«Меня зовут Анна» = ___',blank:'My name is Anna',opts:['My name is Anna','I am name Anna','Name me Anna','I call Anna']},
+          {q:'«Приятно познакомиться» = ___',blank:'Nice to meet you',opts:['Nice to meet you','Good to see you','Happy to know you','Glad to find you']},
+          {q:'«Как дела?» = ___',blank:'How are you?',opts:['How are you?','What are you?','Where are you?','Who are you?']},
+          {q:'«Брат» = ___',blank:'brother',opts:['brother','sister','father','mother']}
+        ]
+      }
+    ]
+  }
+};
+
+// ── COURSE UI ─────────────────────────────────────────────
+let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0;
+
+function getCourseProgress(courseId){
+  try{return JSON.parse(localStorage.getItem('course_'+courseId)||'{}');}
+  catch{return{};}
+}
+function saveLessonDone(courseId,lessonId,score,xp){
+  const p=getCourseProgress(courseId);
+  p[lessonId]={score,xp,done:true};
+  localStorage.setItem('course_'+courseId,JSON.stringify(p));
+}
+
+function renderCourseProgress(){
+  const p=getCourseProgress('basic');
+  const total=COURSES.basic.lessons.length;
+  const done=Object.keys(p).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('basic-pct').textContent=pct+'%';
+  document.getElementById('basic-bar').style.width=pct+'%';
+  document.getElementById('basic-sub').textContent=done+' из '+total+' уроков пройдено';
+}
+
+function openCourse(id){
+  currentCourseId=id;
+  const course=COURSES[id];
+  const progress=getCourseProgress(id);
+  document.getElementById('courses-main').style.display='none';
+  document.getElementById('lesson-list-view').style.display='block';
+  document.getElementById('course-title-view').textContent=course.title;
+  document.getElementById('course-sub-view').textContent=course.lessons.length+' уроков';
+  const container=document.getElementById('lesson-items');
+  container.innerHTML=course.lessons.map((l,i)=>{
+    const done=progress[l.id]?.done;
+    const locked=i>0&&!progress[course.lessons[i-1].id]?.done;
+    return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'':'openLesson('+i+')'}">
+      <div class="lesson-num">${done?'✓':l.id}</div>
+      <div class="lesson-info"><h4>${l.title}</h4>
+      <p>${done?'Пройдено • +'+l.xp+' XP':'5 упражнений • +'+l.xp+' XP'}</p></div>
+      ${locked?'<i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>':'<i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:11px;margin-left:auto"></i>'}
+    </div>`;
+  }).join('');
+}
+
+function closeCourse(){
+  document.getElementById('courses-main').style.display='block';
+  document.getElementById('lesson-list-view').style.display='none';
+  renderCourseProgress();
+}
+
+function openLesson(idx){
+  currentLessonIdx=idx;
+  const lesson=COURSES[currentCourseId].lessons[idx];
+  // switch to lesson screen
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-lesson').classList.add('active');
+  // show theory
+  document.getElementById('lesson-theory').style.display='block';
+  document.getElementById('lesson-exercises').style.display='none';
+  document.getElementById('lesson-result').style.display='none';
+  document.getElementById('lesson-title-view').textContent=lesson.title;
+  document.getElementById('lesson-step-view').textContent='Теория • Урок '+lesson.id+' из '+COURSES[currentCourseId].lessons.length;
+  document.getElementById('lesson-content').innerHTML=lesson.theory;
+  document.getElementById('main-scroll').scrollTop=0;
+}
+
+function showTheory(){
+  document.getElementById('lesson-theory').style.display='block';
+  document.getElementById('lesson-exercises').style.display='none';
+  document.getElementById('main-scroll').scrollTop=0;
+}
+
+function closeLesson(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-courses').classList.add('active');
+  document.getElementById('courses-main').style.display='none';
+  document.getElementById('lesson-list-view').style.display='block';
+  openCourse(currentCourseId);
+}
+
+function startExercises(){
+  currentExIdx=0;exCorrect=0;
+  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  document.getElementById('lesson-theory').style.display='none';
+  document.getElementById('lesson-exercises').style.display='block';
+  document.getElementById('ex-title').textContent=lesson.title;
+  document.getElementById('main-scroll').scrollTop=0;
+  renderExercise();
+}
+
+function renderExercise(){
+  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  const ex=lesson.exercises[currentExIdx];
+  const total=lesson.exercises.length;
+  document.getElementById('ex-progress').textContent='Упражнение '+(currentExIdx+1)+' из '+total;
+  document.getElementById('ex-progress-bar').style.width=((currentExIdx/total)*100)+'%';
+  document.getElementById('ex-content').innerHTML=`
+    <div class="ex-card">
+      <div class="ex-q">${ex.q.replace('___','<span>___</span>')}</div>
+      <div class="choice-grid">
+        ${ex.opts.map(o=>`<button class="choice-btn" onclick="checkAnswer(this,'${o}','${ex.blank}')">${o}</button>`).join('')}
+      </div>
+      <div class="ex-feedback" id="ex-fb"></div>
+    </div>`;
+}
+
+function checkAnswer(btn,selected,correct){
+  const btns=document.querySelectorAll('.choice-btn');
+  btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('ex-fb');
+  if(selected===correct){
+    btn.classList.add('correct');
+    fb.className='ex-feedback show ok';
+    fb.textContent='✓ Правильно!';
+    exCorrect++;
+  } else {
+    btn.classList.add('wrong');
+    btns.forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
+    fb.className='ex-feedback show err';
+    fb.textContent='✗ Неверно. Правильный ответ: '+correct;
+  }
+  setTimeout(nextExercise,1200);
+}
+
+function nextExercise(){
+  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  currentExIdx++;
+  if(currentExIdx>=lesson.exercises.length){
+    showResult();
+  } else {
+    renderExercise();
+    document.getElementById('main-scroll').scrollTop=0;
+  }
+}
+
+function showResult(){
+  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  const total=lesson.exercises.length;
+  const xpEarned=Math.round(lesson.xp*(exCorrect/total));
+  // Save progress
+  saveLessonDone(currentCourseId,lesson.id,exCorrect,xpEarned);
+  // Add XP to stats
+  const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);
+  document.getElementById('xp-count').textContent=s.xp;
+  // Show result screen
+  document.getElementById('lesson-exercises').style.display='none';
+  document.getElementById('lesson-result').style.display='block';
+  document.getElementById('ex-progress-bar').style.width='100%';
+  const pct=Math.round(exCorrect/total*100);
+  document.getElementById('result-emoji').textContent=pct>=80?'🎉':pct>=50?'💪':'📚';
+  document.getElementById('result-title').textContent=pct>=80?'Отлично!':pct>=50?'Хороший результат!':'Попробуй ещё раз';
+  document.getElementById('result-text').textContent='Урок «'+lesson.title+'» пройден. Продолжай учиться!';
+  document.getElementById('result-score').textContent=exCorrect+'/'+total;
+  document.getElementById('result-xp').textContent='+'+xpEarned;
+  document.getElementById('main-scroll').scrollTop=0;
+}
+
 // Init
 updateStreak();
 renderProfile();
+renderCourseProgress();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
 
@@ -479,6 +838,7 @@ function switchTab(id){
   document.getElementById('nav-'+id).classList.add('active');
   document.getElementById('main-scroll').scrollTop=0;
   if(id==='profile')renderProfile();
+  if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';}
 }
 function selectPlan(id,btn){
   document.querySelectorAll('.plan-tab').forEach(t=>t.classList.remove('active'));
