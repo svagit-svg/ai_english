@@ -741,8 +741,8 @@ function renderAchievements(){
       ${isEarned?'<span class="ach-check">✓</span>':''}
       <div class="ach-icon">${isEarned?a.icon:(isLocked?'🔒':a.icon)}</div>
       <div class="ach-name">${a.name}</div>
-      <div class="ach-desc">${isLocked?'Premium':'${a.desc}'}</div>
-    </div>`.replace("'${a.desc}'",a.desc);
+      <div class="ach-desc">${isLocked?'Premium':a.desc}</div>
+    </div>`;
   }).join('');
   const earnedCount=earned.length;
   const totalAvail=ACHIEVEMENTS.filter(a=>!a.pro||pro).length;
