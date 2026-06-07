@@ -325,7 +325,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.2</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.9</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -829,6 +829,14 @@ function renderProfile(){
   renderAnalytics();
   renderAchievements();
 }
+
+// ── ENGLISH LEVELS CONST ──────────────────────────────────
+const ENG_LEVELS=[
+  {val:'beginner',   name:'Начинающий',   sub:'A1–A2', emoji:'🌱'},
+  {val:'elementary', name:'Элементарный', sub:'A2–B1', emoji:'📘'},
+  {val:'intermediate',name:'Средний',     sub:'B1–B2', emoji:'🚀'},
+  {val:'upper',      name:'Выше среднего',sub:'B2–C1', emoji:'⭐'},
+];
 
 // ── ACHIEVEMENTS ──────────────────────────────────────────
 const ACHIEVEMENTS=[
@@ -7294,12 +7302,6 @@ async function callClaude(userText,isGreeting,existingDiv){
 }
 
 // ── ENGLISH LEVEL MANAGEMENT ─────────────────────────────
-const ENG_LEVELS=[
-  {val:'beginner',   name:'Начинающий',       sub:'A1–A2', emoji:'🌱'},
-  {val:'elementary', name:'Элементарный',      sub:'A2–B1', emoji:'📘'},
-  {val:'intermediate',name:'Средний',          sub:'B1–B2', emoji:'🚀'},
-  {val:'upper',      name:'Выше среднего',     sub:'B2–C1', emoji:'⭐'},
-];
 
 function renderEngLevel(){
   const cur=localStorage.getItem('smart_level')||'intermediate';
