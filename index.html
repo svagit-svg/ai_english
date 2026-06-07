@@ -104,6 +104,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .perk{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
 /* NAV */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(8,11,18,0.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:7px 0 10px;z-index:100;}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
+.ach-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;position:relative;transition:border-color 0.2s;}
+.ach-card.earned{border-color:var(--accent);background:rgba(99,102,241,0.08);}
+.ach-card.locked-pro{filter:blur(2px);pointer-events:none;opacity:0.6;}
+.ach-icon{font-size:24px;margin-bottom:4px;}
+.ach-name{font-size:10px;font-weight:700;color:var(--text);line-height:1.2;}
+.ach-desc{font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;}
+.ach-check{position:absolute;top:5px;right:5px;font-size:10px;color:var(--accent);}
+.ach-pro-badge{position:absolute;top:4px;left:4px;font-size:7px;font-weight:700;background:var(--amber);color:#000;padding:1px 4px;border-radius:4px;}
+@keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+.ach-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.5);animation:slideDown 0.3s ease;min-width:220px;max-width:300px;}
 .nav-btn{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 0;color:var(--muted);font-family:var(--font-body);font-size:10px;font-weight:500;transition:color 0.2s;position:relative;}
 .nav-btn i{font-size:17px;}
 .nav-btn.active{color:var(--accent);}
@@ -429,6 +441,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Прогресс по курсам</p>
       <div id="course-analytics"></div>
     </div>
+
+    <div class="divider"></div>
+    <p class="section-label">Достижения</p>
+    <div id="achievements-section"></div>
   </section>
 
   <!-- PREMIUM -->
@@ -644,6 +660,98 @@ function renderProfile(){
   renderAvatar();
   // analytics
   renderAnalytics();
+  renderAchievements();
+}
+
+// ── ACHIEVEMENTS ──────────────────────────────────────────
+const ACHIEVEMENTS=[
+  // FREE
+  {id:'first_step',  icon:'🌟', name:'Первый шаг',    desc:'Пройди первый урок',         pro:false, check:(s,cp)=>s.lessons>=1},
+  {id:'streak3',     icon:'🔥', name:'3 дня подряд',  desc:'Занимайся 3 дня без пропусков', pro:false, check:(s,cp)=>s.streak>=3},
+  {id:'lessons10',   icon:'📚', name:'Книгочей',      desc:'Пройди 10 уроков',            pro:false, check:(s,cp)=>s.lessons>=10},
+  {id:'xp100',       icon:'⭐', name:'Первая сотня',  desc:'Набери 100 XP',               pro:false, check:(s,cp)=>s.xp>=100},
+  {id:'first_chat',  icon:'💬', name:'Разговорился',  desc:'Начни первый AI-диалог',      pro:false, check:(s,cp)=>s.dialogs>=1},
+  // PREMIUM
+  {id:'streak7',     icon:'🔥', name:'Неделя огня',   desc:'7 дней занятий подряд',       pro:true,  check:(s,cp)=>s.streak>=7},
+  {id:'streak30',    icon:'💎', name:'Месяц силы',    desc:'30 дней занятий подряд',      pro:true,  check:(s,cp)=>s.streak>=30},
+  {id:'xp500',       icon:'⚡', name:'Энергия',       desc:'Набери 500 XP',               pro:true,  check:(s,cp)=>s.xp>=500},
+  {id:'xp1000',      icon:'🧠', name:'Эрудит',        desc:'Набери 1000 XP',              pro:true,  check:(s,cp)=>s.xp>=1000},
+  {id:'lessons50',   icon:'📖', name:'Учёный',        desc:'Пройди 50 уроков',            pro:true,  check:(s,cp)=>s.lessons>=50},
+  {id:'course1',     icon:'🏆', name:'Мастер курса',  desc:'Заверши любой курс полностью',pro:true,  check:(s,cp)=>Object.values(cp).some(v=>v>=100)},
+  {id:'business_d',  icon:'💼', name:'Профессионал',  desc:'Заверши Business English',    pro:true,  check:(s,cp)=>cp.business>=100},
+  {id:'dating_d',    icon:'💕', name:'Романтик',      desc:'Заверши Dating English',      pro:true,  check:(s,cp)=>cp.dating>=100},
+  {id:'chat_pro',    icon:'🎤', name:'Оратор',        desc:'Проведи 20 AI-диалогов',      pro:true,  check:(s,cp)=>s.dialogs>=20},
+  {id:'all_courses', icon:'👑', name:'Легенда',       desc:'Заверши все 6 курсов',        pro:true,  check:(s,cp)=>Object.values(cp).filter(v=>v>=100).length>=6},
+];
+
+function getCoursePercents(){
+  const ids=['basic','business','it','travel','everyday','dating'];
+  const r={};
+  ids.forEach(id=>{
+    const p=getCourseProgress(id);
+    const total=COURSES[id]?.lessons?.length||20;
+    r[id]=Math.round(Object.keys(p).length/total*100);
+  });
+  return r;
+}
+
+function getEarnedAchievements(){
+  try{return JSON.parse(localStorage.getItem('smart_ach')||'[]');}
+  catch{return[];}
+}
+
+function checkAchievements(){
+  const s=getStats();
+  const cp=getCoursePercents();
+  const pro=isPro();
+  const earned=getEarnedAchievements();
+  const newOnes=[];
+  ACHIEVEMENTS.forEach(a=>{
+    if(earned.includes(a.id))return;
+    if(a.pro&&!pro)return; // premium ачивки только pro-пользователям
+    if(a.check(s,cp)){earned.push(a.id);newOnes.push(a);}
+  });
+  if(newOnes.length){
+    localStorage.setItem('smart_ach',JSON.stringify(earned));
+    newOnes.forEach((a,i)=>setTimeout(()=>showAchievementToast(a),i*800));
+  }
+}
+
+function showAchievementToast(a){
+  const t=document.createElement('div');
+  t.className='ach-toast';
+  t.innerHTML=`<span style="font-size:28px">${a.icon}</span>
+    <div><p style="font-size:12px;font-weight:700;color:var(--accent)">Ачивка получена!</p>
+    <p style="font-size:13px;font-weight:700;color:var(--text)">${a.name}</p>
+    <p style="font-size:11px;color:var(--muted)">${a.desc}</p></div>`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.animation='fadeOut 0.4s ease forwards';setTimeout(()=>t.remove(),400);},3200);
+}
+
+function renderAchievements(){
+  const earned=getEarnedAchievements();
+  const pro=isPro();
+  const el=document.getElementById('achievements-section');
+  if(!el)return;
+  const cards=ACHIEVEMENTS.map(a=>{
+    const isEarned=earned.includes(a.id);
+    const isLocked=a.pro&&!pro;
+    return `<div class="ach-card${isEarned?' earned':''}${isLocked?' locked-pro':''}" title="${a.desc}">
+      ${a.pro?'<span class="ach-pro-badge">PRO</span>':''}
+      ${isEarned?'<span class="ach-check">✓</span>':''}
+      <div class="ach-icon">${isEarned?a.icon:(isLocked?'🔒':a.icon)}</div>
+      <div class="ach-name">${a.name}</div>
+      <div class="ach-desc">${isLocked?'Premium':'${a.desc}'}</div>
+    </div>`.replace("'${a.desc}'",a.desc);
+  }).join('');
+  const earnedCount=earned.length;
+  const totalAvail=ACHIEVEMENTS.filter(a=>!a.pro||pro).length;
+  el.innerHTML=`
+    <p style="font-size:11px;color:var(--muted);margin-bottom:10px">
+      Получено: <strong style="color:var(--accent)">${earnedCount}</strong> из <strong>${ACHIEVEMENTS.length}</strong>
+      ${!pro?'<button onclick="switchTab(\'premium\')" style="background:none;border:none;color:var(--amber);font-size:11px;font-weight:700;cursor:pointer;margin-left:4px">— открыть все →</button>':''}
+    </p>
+    <div class="ach-grid">${cards}</div>`;
 }
 
 function renderAnalytics(){
@@ -6736,7 +6844,7 @@ function showResult(){
   // Save progress
   saveLessonDone(currentCourseId,lesson.id,exCorrect,xpEarned);
   // Add XP to stats
-  const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);trackDaily(xpEarned,1);
+  const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);trackDaily(xpEarned,1);checkAchievements();
   document.getElementById('xp-count').textContent=s.xp;
   // Show result screen
   document.getElementById('lesson-exercises').style.display='none';
@@ -6888,7 +6996,7 @@ async function callClaude(userText,isGreeting,existingDiv){
       s.xp+=5;
       // каждые 5 сообщений = 1 урок
       if(sessionMsgs%5===0)s.lessons++;
-      saveStats(s);trackDaily(5,0);
+      saveStats(s);trackDaily(5,0);checkAchievements();
       document.getElementById('xp-count').textContent=s.xp;
     } else {
       chatHistory=[
