@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.0</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v1.1</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -226,6 +226,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Грамматика, базовая лексика</p>
         <div class="progress-bar"><div class="progress-fill" id="basic-bar" style="width:0%;background:var(--green)"></div></div>
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="basic-sub">5 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('business')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(79,110,247,0.1);color:var(--accent);font-size:18px;">💼</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Business English</h3>
+          <span id="business-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Переговоры, митинги, переписка</p>
+        <div class="progress-bar"><div class="progress-fill" id="business-bar" style="width:0%;background:var(--accent)"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="business-sub">5 уроков</p>
       </div>
     </div>
     <div class="divider"></div>
@@ -739,6 +751,200 @@ const COURSES={
         ]
       }
     ]
+  },
+  business:{
+    title:'Business English',
+    icon:'💼',
+    color:'var(--accent)',
+    lessons:[
+      {
+        id:1,title:'Деловая переписка',xp:40,
+        theory:`<div class="theory-block">
+<h3>Деловые письма и email</h3>
+<p>Деловое письмо имеет чёткую структуру. Важно звучать профессионально и вежливо.</p>
+<p style="margin-top:10px;font-weight:600">Начало письма:</p>
+<div class="rule">Dear Mr/Ms [Фамилия], — официально<br>Hi [Имя], — полуофициально<br>To whom it may concern, — если не знаете имени</div>
+<p class="example">✦ I am writing to enquire about... — Пишу, чтобы узнать о...</p>
+<p class="example">✦ I am writing with regard to... — Пишу по поводу...</p>
+<p style="margin-top:10px;font-weight:600">Просьбы и запросы:</p>
+<div class="rule">Could you please...? — Не могли бы вы...?<br>I would appreciate it if... — Был бы признателен, если...<br>Please find attached... — Во вложении...</div>
+<p class="example">✦ Could you please send me the report? — Не могли бы выслать отчёт?</p>
+<p style="margin-top:10px;font-weight:600">Завершение письма:</p>
+<div class="rule">Best regards, — С уважением (нейтрально)<br>Kind regards, — С уважением (тепло)<br>Yours sincerely, — Искренне ваш (официально)</div>
+</div>`,
+        exercises:[
+          {q:'___ Mr Johnson, I am writing to enquire...',blank:'Dear',opts:['Dear','Hello','Hi','Hey']},
+          {q:'___ find attached the requested documents.',blank:'Please',opts:['Please','Kindly do','You can','Here']},
+          {q:'I am writing ___ regard to your proposal.',blank:'with',opts:['with','in','on','at']},
+          {q:'Could you ___ send me the invoice?',blank:'please',opts:['please','kindly do','maybe','possibly']},
+          {q:'Best ___, John Smith',blank:'regards',opts:['regards','wishes','feelings','greetings']},
+          {q:'I would ___ it if you could confirm receipt.',blank:'appreciate',opts:['appreciate','be happy','like','want']},
+          {q:'___ you please review the attached file?',blank:'Could',opts:['Could','Would','Should','Can']},
+          {q:'I am ___ to inform you that the project is complete.',blank:'pleased',opts:['pleased','happy','glad','writing']},
+          {q:'Please do not ___ to contact me.',blank:'hesitate',opts:['hesitate','worry','think','wait']},
+          {q:'I look ___ to hearing from you.',blank:'forward',opts:['forward','ahead','towards','up']},
+          {q:'___ to whom it may concern,',blank:'Dear',opts:['Dear','Hello','Hi','To']},
+          {q:'Thank you for your ___ reply.',blank:'prompt',opts:['prompt','fast','quick','early']},
+          {q:'I am ___ in your job offer.',blank:'interested',opts:['interested','curious','looking','thinking']},
+          {q:'Please ___ me know your availability.',blank:'let',opts:['let','make','have','give']},
+          {q:'I am writing to ___ for the position of manager.',blank:'apply',opts:['apply','ask','write','send']},
+          {q:'___ regards, Anna Petrova',blank:'Kind',opts:['Kind','Best','Good','Warm']},
+          {q:'I will ___ your message to my colleague.',blank:'forward',opts:['forward','send again','pass','redirect']},
+          {q:'Thank you for ___ time.',blank:'your',opts:['your','the','a','our']},
+          {q:'I ___ to the meeting scheduled for Monday.',blank:'confirm',opts:['confirm','agree','accept','allow']},
+          {q:'Please ___ us your decision by Friday.',blank:'inform',opts:['inform','tell','say','speak']}
+        ]
+      },
+      {
+        id:2,title:'Встречи и митинги',xp:40,
+        theory:`<div class="theory-block">
+<h3>Meeting phrases — фразы для встреч</h3>
+<p>На деловых встречах важно уметь открывать обсуждение, брать слово и подводить итоги.</p>
+<p style="margin-top:10px;font-weight:600">Открытие встречи:</p>
+<div class="rule">Let's get started. — Давайте начнём.<br>Shall we begin? — Начнём?<br>The purpose of today's meeting is... — Цель сегодняшней встречи...</div>
+<p class="example">✦ Let's go over the agenda. — Давайте пройдёмся по повестке.</p>
+<p style="margin-top:10px;font-weight:600">Взять слово / высказаться:</p>
+<div class="rule">I'd like to add... — Хотел бы добавить...<br>If I may... — Если можно...<br>Could I just say...? — Можно я скажу...?</div>
+<p class="example">✦ That's a good point. — Хорошее замечание.</p>
+<p class="example">✦ I agree with you on that. — Согласен с вами в этом.</p>
+<p style="margin-top:10px;font-weight:600">Подведение итогов:</p>
+<div class="rule">To sum up... — Подводя итог...<br>Let's wrap up. — Давайте закончим.<br>The next steps are... — Следующие шаги...</div>
+</div>`,
+        exercises:[
+          {q:"Let's get ___. We have a lot to cover.",blank:'started',opts:['started','going','moving','beginning']},
+          {q:'The ___ of today\'s meeting is to review Q3 results.',blank:'purpose',opts:['purpose','goal','point','reason']},
+          {q:"Let's go ___ the agenda.",blank:'over',opts:['over','through','across','by']},
+          {q:"I'd like to ___. Can I say something?",blank:'add',opts:['add','speak','say','tell']},
+          {q:"That's a good ___. I hadn't thought of that.",blank:'point',opts:['point','idea','thought','word']},
+          {q:'I ___ with you on that completely.',blank:'agree',opts:['agree','think','feel','see']},
+          {q:'To ___ up, we have three action items.',blank:'sum',opts:['sum','wrap','add','bring']},
+          {q:'The next ___ are to prepare the report.',blank:'steps',opts:['steps','things','tasks','moves']},
+          {q:'___ we move on to the next topic?',blank:'Shall',opts:['Shall','Will','Should','Can']},
+          {q:'Could I just ___ something quickly?',blank:'add',opts:['add','say','tell','speak']},
+          {q:'Let\'s ___ up. We\'re running out of time.',blank:'wrap',opts:['wrap','sum','close','end']},
+          {q:'I\'d like to ___ a point about the budget.',blank:'raise',opts:['raise','make','say','tell']},
+          {q:'Does anyone have any ___ before we finish?',blank:'questions',opts:['questions','ideas','thoughts','problems']},
+          {q:'Let\'s ___ to the main topic.',blank:'return',opts:['return','go','come','move']},
+          {q:'Can you ___ what you mean by that?',blank:'clarify',opts:['clarify','explain again','say more','tell us']},
+          {q:'I ___ take the minutes of this meeting.',blank:'will',opts:['will','can','should','must']},
+          {q:'We are ___ of time, so let\'s wrap up.',blank:'running out',opts:['running out','missing','losing','ending']},
+          {q:'This ___ be discussed at the next meeting.',blank:'will',opts:['will','can','should','must']},
+          {q:'I\'d like to ___ the floor to Anna.',blank:'give',opts:['give','pass','hand','offer']},
+          {q:'Are we all ___ on the next steps?',blank:'clear',opts:['clear','good','fine','set']}
+        ]
+      },
+      {
+        id:3,title:'Переговоры',xp:45,
+        theory:`<div class="theory-block">
+<h3>Negotiation English — язык переговоров</h3>
+<p>В переговорах важно звучать уверенно, но гибко. Умей предлагать, возражать и идти на компромисс.</p>
+<p style="margin-top:10px;font-weight:600">Предложения и условия:</p>
+<div class="rule">We propose... — Мы предлагаем...<br>Our offer is... — Наше предложение...<br>We are prepared to... — Мы готовы...</div>
+<p class="example">✦ We propose a 10% discount for bulk orders. — Предлагаем 10% скидку при оптовых заказах.</p>
+<p style="margin-top:10px;font-weight:600">Возражения и компромисс:</p>
+<div class="rule">That's not quite what we had in mind. — Это не совсем то, что мы имели в виду.<br>Could we meet in the middle? — Можем ли мы найти компромисс?<br>We can be flexible on... — Мы можем быть гибкими в...</div>
+<p class="example">✦ If you can lower the price, we'll increase the order. — Если снизите цену, увеличим заказ.</p>
+<p style="margin-top:10px;font-weight:600">Согласие и завершение:</p>
+<div class="rule">We have a deal. — Договорились.<br>Let's shake on it. — Ударим по рукам.<br>We'll draw up a contract. — Составим контракт.</div>
+</div>`,
+        exercises:[
+          {q:'We ___ a 15% discount for orders over $10,000.',blank:'propose',opts:['propose','suggest','offer','give']},
+          {q:'Our ___ is $50 per unit, including delivery.',blank:'offer',opts:['offer','price','deal','proposal']},
+          {q:'We are ___ to extend the deadline by two weeks.',blank:'prepared',opts:['prepared','ready','able','willing']},
+          {q:"That's not quite what we had in ___.",blank:'mind',opts:['mind','head','thought','plan']},
+          {q:'Could we meet in the ___?',blank:'middle',opts:['middle','center','half','between']},
+          {q:'We can be ___ on the payment terms.',blank:'flexible',opts:['flexible','open','easy','free']},
+          {q:'We have a ___. Let\'s sign the contract.',blank:'deal',opts:['deal','contract','plan','agreement']},
+          {q:'If you ___ the price, we\'ll place a larger order.',blank:'lower',opts:['lower','reduce','drop','cut']},
+          {q:'We\'ll ___ up a contract by the end of the week.',blank:'draw',opts:['draw','write','make','prepare']},
+          {q:'I\'m afraid that\'s ___ our budget.',blank:'beyond',opts:['beyond','over','above','outside']},
+          {q:'Let\'s find a solution that works for ___ sides.',blank:'both',opts:['both','all','two','each']},
+          {q:'We ___ on the delivery time being 30 days.',blank:'insist',opts:['insist','need','require','must']},
+          {q:'Could you ___ us a better price on this order?',blank:'offer',opts:['offer','give','make','provide']},
+          {q:'We\'re willing to ___ on the warranty period.',blank:'negotiate',opts:['negotiate','talk','discuss','argue']},
+          {q:'This is our final ___. We cannot go lower.',blank:'offer',opts:['offer','price','deal','number']},
+          {q:'We appreciate your ___ but need to decline.',blank:'offer',opts:['offer','proposal','deal','idea']},
+          {q:'Can we ___ on a 60-day payment term?',blank:'agree',opts:['agree','settle','decide','confirm']},
+          {q:'We propose to ___ the contract for another year.',blank:'extend',opts:['extend','continue','renew','expand']},
+          {q:'Let\'s ___ on it. We have a deal.',blank:'shake',opts:['shake','agree','sign','seal']},
+          {q:'We need to ___ the terms with our legal team.',blank:'review',opts:['review','check','read','see']}
+        ]
+      },
+      {
+        id:4,title:'Презентации',xp:45,
+        theory:`<div class="theory-block">
+<h3>Presentation English — язык презентаций</h3>
+<p>Хорошая презентация — это чёткая структура и уверенный язык.</p>
+<p style="margin-top:10px;font-weight:600">Начало:</p>
+<div class="rule">Good morning, everyone. — Доброе утро, все.<br>Today I\'m going to talk about... — Сегодня я расскажу о...<br>My presentation is divided into three parts. — Моя презентация состоит из трёх частей.</div>
+<p class="example">✦ I\'ll start with an overview and then move on to... — Начну с обзора, затем перейду к...</p>
+<p style="margin-top:10px;font-weight:600">Переходы:</p>
+<div class="rule">Moving on to... — Переходя к...<br>Let\'s turn to... — Обратимся к...<br>As you can see in this slide... — Как видно на этом слайде...</div>
+<p class="example">✦ This graph shows that sales increased by 20%. — Этот график показывает рост продаж на 20%.</p>
+<p style="margin-top:10px;font-weight:600">Завершение:</p>
+<div class="rule">To conclude... — В заключение...<br>Thank you for your attention. — Спасибо за внимание.<br>I\'m happy to take any questions. — Готов ответить на вопросы.</div>
+</div>`,
+        exercises:[
+          {q:"Today I'm going to ___ about our Q4 results.",blank:'talk',opts:['talk','speak','tell','say']},
+          {q:'My presentation is ___ into four sections.',blank:'divided',opts:['divided','split','broken','cut']},
+          {q:"As you can ___ in this slide, sales have grown.",blank:'see',opts:['see','look','notice','view']},
+          {q:'___ on to our next point — customer feedback.',blank:'Moving',opts:['Moving','Going','Turning','Passing']},
+          {q:"To ___, our main findings are as follows.",blank:'conclude',opts:['conclude','finish','end','close']},
+          {q:"I'm happy to ___ any questions you may have.",blank:'take',opts:['take','answer','handle','address']},
+          {q:'This ___ shows that revenue increased by 30%.',blank:'graph',opts:['graph','chart','slide','image']},
+          {q:"Let's ___ to the financial highlights.",blank:'turn',opts:['turn','go','move','look']},
+          {q:"I'll ___ with a brief introduction.",blank:'start',opts:['start','begin','open','kick']},
+          {q:'Thank you for your ___. Any questions?',blank:'attention',opts:['attention','time','patience','listening']},
+          {q:'The ___ of my talk is digital transformation.',blank:'topic',opts:['topic','subject','point','theme']},
+          {q:'I\'d like to ___ your attention to this chart.',blank:'draw',opts:['draw','bring','call','get']},
+          {q:'In ___, we achieved all our targets this year.',blank:'summary',opts:['summary','conclusion','total','short']},
+          {q:'Let me ___ a quick overview of our strategy.',blank:'give',opts:['give','make','present','show']},
+          {q:'This ___ to say that we need to invest more.',blank:'goes',opts:['goes','means','shows','proves']},
+          {q:'Please ___ free to interrupt if you have questions.',blank:'feel',opts:['feel','be','stay','remain']},
+          {q:'I\'ll be ___ about what we need to improve.',blank:'honest',opts:['honest','clear','direct','open']},
+          {q:'The data ___ that our strategy is working.',blank:'shows',opts:['shows','tells','says','proves']},
+          {q:'I\'d like to ___ with a success story.',blank:'open',opts:['open','start','begin','kick off']},
+          {q:'Are there any ___ before I continue?',blank:'questions',opts:['questions','comments','thoughts','ideas']}
+        ]
+      },
+      {
+        id:5,title:'Small Talk',xp:35,
+        theory:`<div class="theory-block">
+<h3>Small Talk — светские разговоры</h3>
+<p>Small talk — короткие неформальные разговоры с коллегами и партнёрами. Важны для построения отношений.</p>
+<p style="margin-top:10px;font-weight:600">Начало разговора:</p>
+<div class="rule">How's everything going? — Как всё идёт?<br>Have you been busy lately? — Вы были заняты последнее время?<br>How was your weekend? — Как прошли выходные?</div>
+<p class="example">✦ Did you catch the game last night? — Смотрел игру вчера?</p>
+<p style="margin-top:10px;font-weight:600">Ответы и продолжение:</p>
+<div class="rule">Not bad, thanks. How about you? — Неплохо, спасибо. А вы?<br>Pretty busy, actually. — Довольно занят, честно говоря.<br>It was great! We should do it again. — Было отлично! Надо повторить.</div>
+<p class="example">✦ By the way, have you heard about...? — Кстати, вы слышали о...?</p>
+<p style="margin-top:10px;font-weight:600">Завершение:</p>
+<div class="rule">It was nice chatting with you. — Приятно было поговорить.<br>Let's catch up soon. — Давайте пообщаемся ближе.<br>I'll let you get back to work. — Не буду вас задерживать.</div>
+</div>`,
+        exercises:[
+          {q:"How's everything ___?",blank:'going',opts:['going','doing','working','running']},
+          {q:'How ___ your weekend?',blank:'was',opts:['was','were','is','did']},
+          {q:'Have you been ___ lately?',blank:'busy',opts:['busy','working','tired','active']},
+          {q:'Not bad, ___. How about you?',blank:'thanks',opts:['thanks','really','actually','honestly']},
+          {q:'It was nice ___ with you.',blank:'chatting',opts:['chatting','talking','speaking','meeting']},
+          {q:"Let's catch ___ soon over coffee.",blank:'up',opts:['up','on','out','in']},
+          {q:"I'll let you get ___ to work.",blank:'back',opts:['back','on','in','down']},
+          {q:'By the ___, have you heard about the new office?',blank:'way',opts:['way','time','chance','fact']},
+          {q:'Pretty ___, actually. It\'s been a hectic week.',blank:'busy',opts:['busy','bad','tough','hard']},
+          {q:'We should ___ this again sometime.',blank:'do',opts:['do','make','have','try']},
+          {q:'How are you ___ up to the conference?',blank:'looking',opts:['looking','getting','heading','going']},
+          {q:'It ___ like you\'ve been really productive.',blank:'looks',opts:['looks','seems','sounds','feels']},
+          {q:'I ___ your presentation was excellent.',blank:'heard',opts:['heard','think','know','saw']},
+          {q:'Are you ___ to the company event on Friday?',blank:'coming',opts:['coming','going','attending','joining']},
+          {q:'Have you ___ the new project manager yet?',blank:'met',opts:['met','seen','talked','known']},
+          {q:'The weather has been ___ lately, hasn\'t it?',blank:'great',opts:['great','good','nice','fine']},
+          {q:'___ you enjoy the team lunch yesterday?',blank:'Did',opts:['Did','Do','Have','Were']},
+          {q:'I\'m really ___ forward to the holidays.',blank:'looking',opts:['looking','waiting','thinking','going']},
+          {q:'What do you usually ___ at the weekends?',blank:'do',opts:['do','make','have','go']},
+          {q:'It was great ___ up with you!',blank:'catching',opts:['catching','meeting','talking','chatting']}
+        ]
+      }
+    ]
   }
 };
 
@@ -756,13 +962,15 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  const p=getCourseProgress('basic');
-  const total=COURSES.basic.lessons.length;
-  const done=Object.keys(p).length;
-  const pct=Math.round(done/total*100);
-  document.getElementById('basic-pct').textContent=pct+'%';
-  document.getElementById('basic-bar').style.width=pct+'%';
-  document.getElementById('basic-sub').textContent=done+' из '+total+' уроков пройдено';
+  ['basic','business'].forEach(id=>{
+    const p=getCourseProgress(id);
+    const total=COURSES[id].lessons.length;
+    const done=Object.keys(p).length;
+    const pct=Math.round(done/total*100);
+    document.getElementById(id+'-pct').textContent=pct+'%';
+    document.getElementById(id+'-bar').style.width=pct+'%';
+    document.getElementById(id+'-sub').textContent=done>0?done+' из '+total+' уроков пройдено':total+' уроков';
+  });
 }
 
 function openCourse(id){
