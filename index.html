@@ -161,6 +161,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .lesson-btn:active{opacity:0.85;}
 .result-box{text-align:center;padding:24px 16px;}
 .result-box .r-emoji{font-size:52px;margin-bottom:12px;}
+.mistakes-section{text-align:left;margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
+.mistake-item{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:10px 12px;margin-bottom:8px;}
+.mistake-q{font-size:12px;color:var(--muted);margin-bottom:5px;line-height:1.5;}
+.mistake-q .blank-wrong{color:var(--rose);font-weight:700;text-decoration:line-through;}
+.mistake-q .blank-correct{color:var(--green);font-weight:700;}
+.mistake-ans{font-size:11px;display:flex;gap:10px;flex-wrap:wrap;}
+.mistake-ans span{padding:3px 8px;border-radius:6px;font-weight:600;}
+.mistake-wrong-tag{background:rgba(239,68,68,0.15);color:var(--rose);}
+.mistake-right-tag{background:rgba(16,185,129,0.15);color:var(--green);}
 .result-box h2{font-family:var(--font-head);font-size:20px;font-weight:800;margin-bottom:6px;}
 .result-box p{font-size:13px;color:var(--muted);margin-bottom:20px;}
 </style>
@@ -395,6 +404,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="stat-box"><div class="val" id="result-xp" style="color:var(--amber)">+30</div><div class="lbl">XP получено</div></div>
         </div>
         <button class="lesson-btn" onclick="closeLesson()">К списку уроков</button>
+        <div id="mistakes-block"></div>
       </div>
     </div>
   </section>
@@ -6701,7 +6711,7 @@ I\'ll always care about you. — Я всегда буду заботиться �
 };
 
 // ── COURSE UI ─────────────────────────────────────────────
-let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0;
+let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
 
 function getCourseProgress(courseId){
   try{return JSON.parse(localStorage.getItem('course_'+courseId)||'{}');}
@@ -6783,7 +6793,7 @@ function closeLesson(){
 }
 
 function startExercises(){
-  currentExIdx=0;exCorrect=0;
+  currentExIdx=0;exCorrect=0;exMistakes=[];
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
   document.getElementById('lesson-theory').style.display='none';
   document.getElementById('lesson-exercises').style.display='block';
@@ -6812,6 +6822,8 @@ function checkAnswer(btn,selected,correct){
   const btns=document.querySelectorAll('.choice-btn');
   btns.forEach(b=>b.disabled=true);
   const fb=document.getElementById('ex-fb');
+  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  const ex=lesson.exercises[currentExIdx];
   if(selected===correct){
     btn.classList.add('correct');
     fb.className='ex-feedback show ok';
@@ -6822,6 +6834,7 @@ function checkAnswer(btn,selected,correct){
     btns.forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
     fb.className='ex-feedback show err';
     fb.textContent='✗ Неверно. Правильный ответ: '+correct;
+    exMistakes.push({q:ex.q,blank:ex.blank,selected,correct});
   }
   setTimeout(nextExercise,1200);
 }
@@ -6856,6 +6869,31 @@ function showResult(){
   document.getElementById('result-text').textContent='Урок «'+lesson.title+'» пройден. Продолжай учиться!';
   document.getElementById('result-score').textContent=exCorrect+'/'+total;
   document.getElementById('result-xp').textContent='+'+xpEarned;
+  // Mistakes block
+  const mb=document.getElementById('mistakes-block');
+  if(exMistakes.length===0){
+    mb.innerHTML='<p style="margin-top:16px;font-size:13px;color:var(--green);font-weight:600">🎯 Ни одной ошибки — идеально!</p>';
+  } else {
+    const items=exMistakes.map(m=>{
+      // Highlight the blank in the question
+      const highlighted=m.q.replace('___',
+        `<span class="blank-wrong">${m.selected}</span> <span class="blank-correct">${m.correct}</span>`);
+      return `<div class="mistake-item">
+        <div class="mistake-q">${highlighted}</div>
+        <div class="mistake-ans">
+          <span class="mistake-wrong-tag">✗ ${m.selected}</span>
+          <span class="mistake-right-tag">✓ ${m.correct}</span>
+        </div>
+      </div>`;
+    }).join('');
+    mb.innerHTML=`<div class="mistakes-section">
+      <p style="font-size:12px;font-weight:700;color:var(--rose);margin-bottom:10px">
+        ✗ Ошибки (${exMistakes.length})</p>
+      ${items}
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">
+        Повтори эти выражения — они запомнятся!</p>
+    </div>`;
+  }
   document.getElementById('main-scroll').scrollTop=0;
 }
 
