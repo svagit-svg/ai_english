@@ -131,6 +131,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ob-option{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;}
 .ob-option:active{transform:scale(0.98);}
 .ob-option.selected{border-color:var(--accent);background:rgba(99,102,241,0.1);}
+.lm-option.selected{border-color:var(--accent)!important;background:rgba(99,102,241,0.1);}
 .ob-option-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0;}
 .ob-option-text{flex:1;}
 .ob-option-title{font-size:14px;font-weight:700;color:var(--text);}
@@ -576,6 +577,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="stat-box"><div class="val" id="stat-dialogs" style="color:var(--rose)">0</div><div class="lbl">AI-диалогов</div></div>
     </div>
     <div class="divider"></div>
+    <p class="section-label">Уровень английского</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div id="eng-level-name" style="font-size:14px;font-weight:700;color:var(--text)">Intermediate</div>
+        <div id="eng-level-desc" style="font-size:11px;color:var(--muted);margin-top:2px">B1–B2</div>
+      </div>
+      <button onclick="openLevelModal()" style="border:none;background:rgba(99,102,241,0.12);color:var(--accent);border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Изменить</button>
+    </div>
+
+    <div class="divider"></div>
     <p class="section-label">История занятий</p>
     <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
       <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>
@@ -812,6 +823,8 @@ function renderProfile(){
   }
   // avatar
   renderAvatar();
+  // eng level
+  renderEngLevel();
   // analytics
   renderAnalytics();
   renderAchievements();
@@ -7002,6 +7015,8 @@ function showResult(){
   saveLessonDone(currentCourseId,lesson.id,exCorrect,xpEarned);
   // Add XP to stats
   const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);trackDaily(xpEarned,1);checkAchievements();
+  // Suggest level up after every 5 lessons (only lower levels)
+  if(s.lessons>0 && s.lessons%5===0){const lvl=localStorage.getItem('smart_level')||'intermediate';if(lvl==='beginner'||lvl==='elementary')setTimeout(suggestLevelUp,1500);}
   document.getElementById('xp-count').textContent=s.xp;
   // Show result screen
   document.getElementById('lesson-exercises').style.display='none';
@@ -7277,6 +7292,128 @@ async function callClaude(userText,isGreeting,existingDiv){
     document.getElementById('send-btn').disabled=false;
   }
 }
+
+// ── ENGLISH LEVEL MANAGEMENT ─────────────────────────────
+const ENG_LEVELS=[
+  {val:'beginner',   name:'Начинающий',       sub:'A1–A2', emoji:'🌱'},
+  {val:'elementary', name:'Элементарный',      sub:'A2–B1', emoji:'📘'},
+  {val:'intermediate',name:'Средний',          sub:'B1–B2', emoji:'🚀'},
+  {val:'upper',      name:'Выше среднего',     sub:'B2–C1', emoji:'⭐'},
+];
+
+function renderEngLevel(){
+  const cur=localStorage.getItem('smart_level')||'intermediate';
+  const lv=ENG_LEVELS.find(l=>l.val===cur)||ENG_LEVELS[2];
+  const el=document.getElementById('eng-level-name');
+  const ds=document.getElementById('eng-level-desc');
+  if(el) el.textContent=lv.emoji+' '+lv.name;
+  if(ds) ds.textContent=lv.sub;
+}
+
+function openLevelModal(){
+  const cur=localStorage.getItem('smart_level')||'intermediate';
+  const modal=document.getElementById('level-modal');
+  modal.querySelectorAll('.lm-option').forEach(o=>{
+    o.classList.toggle('selected', o.dataset.val===cur);
+  });
+  modal.style.display='flex';
+}
+
+function closeLevelModal(){
+  document.getElementById('level-modal').style.display='none';
+}
+
+function selectEngLevel(val){
+  document.querySelectorAll('.lm-option').forEach(o=>{
+    o.classList.toggle('selected', o.dataset.val===val);
+  });
+}
+
+function saveEngLevel(){
+  const sel=document.querySelector('.lm-option.selected');
+  if(!sel) return;
+  localStorage.setItem('smart_level', sel.dataset.val);
+  localStorage.removeItem('smart_level_suggested');
+  closeLevelModal();
+  renderEngLevel();
+}
+
+function suggestLevelUp(){
+  const cur=localStorage.getItem('smart_level')||'intermediate';
+  const suggested=localStorage.getItem('smart_level_suggested');
+  if(suggested) return;
+  const idx=ENG_LEVELS.findIndex(l=>l.val===cur);
+  if(idx>=ENG_LEVELS.length-1) return; // already max
+  const next=ENG_LEVELS[idx+1];
+  localStorage.setItem('smart_level_suggested','1');
+  // show toast-style suggestion
+  const toast=document.createElement('div');
+  toast.id='level-suggest-toast';
+  toast.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:12px 16px;z-index:9000;width:calc(100% - 40px);max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.3)';
+  toast.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:22px">📈</span>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:700;color:var(--text)">Ты здорово продвигаешься!</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Попробуй уровень <strong style="color:var(--accent)">${next.name} (${next.sub})</strong>?</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button onclick="applyLevelSuggestion('${next.val}')" style="flex:1;padding:8px;background:var(--accent);color:white;border:none;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повысить</button>
+      <button onclick="dismissLevelSuggestion()" style="flex:1;padding:8px;background:var(--border);color:var(--muted);border:none;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Пока нет</button>
+    </div>`;
+  document.body.appendChild(toast);
+  setTimeout(()=>{ if(document.getElementById('level-suggest-toast')) dismissLevelSuggestion(); }, 10000);
+}
+
+function applyLevelSuggestion(val){
+  localStorage.setItem('smart_level', val);
+  dismissLevelSuggestion();
+  renderEngLevel();
+  // brief confirmation
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:white;border-radius:12px;padding:10px 20px;z-index:9001;font-size:13px;font-weight:700;';
+  t.textContent='✓ Уровень обновлён!';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2000);
+}
+
+function dismissLevelSuggestion(){
+  const t=document.getElementById('level-suggest-toast');
+  if(t) t.remove();
+}
+// ── END LEVEL MANAGEMENT ──────────────────────────────────
 </script>
+
+<!-- LEVEL MODAL -->
+<div id="level-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9500;align-items:flex-end;justify-content:center">
+  <div style="background:var(--bg);border-radius:20px 20px 0 0;padding:20px 16px 32px;width:100%;max-width:480px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <p style="font-size:15px;font-weight:800;font-family:var(--font-head);color:var(--text)">Уровень английского</p>
+      <button onclick="closeLevelModal()" style="background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer">✕</button>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Изменение уровня не сбрасывает прогресс по курсам</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div class="lm-option" data-val="beginner" onclick="selectEngLevel('beginner')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+        <span style="font-size:22px">🌱</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text)">Начинающий</div><div style="font-size:11px;color:var(--muted)">A1–A2 · Базовые фразы и слова</div></div>
+      </div>
+      <div class="lm-option" data-val="elementary" onclick="selectEngLevel('elementary')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+        <span style="font-size:22px">📘</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text)">Элементарный</div><div style="font-size:11px;color:var(--muted)">A2–B1 · Простые тексты и диалоги</div></div>
+      </div>
+      <div class="lm-option" data-val="intermediate" onclick="selectEngLevel('intermediate')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+        <span style="font-size:22px">🚀</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text)">Средний</div><div style="font-size:11px;color:var(--muted)">B1–B2 · Сериалы, статьи, разговоры</div></div>
+      </div>
+      <div class="lm-option" data-val="upper" onclick="selectEngLevel('upper')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+        <span style="font-size:22px">⭐</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--text)">Выше среднего</div><div style="font-size:11px;color:var(--muted)">B2–C1 · Свободное общение</div></div>
+      </div>
+    </div>
+    <button onclick="saveEngLevel()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Сохранить</button>
+  </div>
+</div>
+
 </body>
 </html>
