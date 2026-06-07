@@ -159,7 +159,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.0</span></h1>
+      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v2.1</span></h1>
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
@@ -240,15 +240,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="business-sub">5 уроков</p>
       </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Скоро</p>
-    <div class="card" onclick="alert('Требуется Premium')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎓</div>
-        <div class="card-text"><h3>IELTS Intensive <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">PRO</span></h3><p>Подготовка к экзамену • 30 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
     <div class="course-card" onclick="openCourse('it')" style="cursor:pointer">
       <div class="card-icon" style="background:rgba(124,58,237,0.1);color:var(--accent2);font-size:18px;">💻</div>
       <div style="flex:1">
@@ -271,6 +262,27 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Путешествия, отели, рестораны</p>
         <div class="progress-bar"><div class="progress-fill" id="travel-bar" style="width:0%;background:var(--rose)"></div></div>
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="travel-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('everyday')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);font-size:18px;">🗣️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Everyday English</h3>
+          <span id="everyday-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Идиомы, фразовые глаголы, разговорный</p>
+        <div class="progress-bar"><div class="progress-fill" id="everyday-bar" style="width:0%;background:var(--amber)"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="everyday-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="section-label">Скоро</p>
+    <div class="card" onclick="alert('Требуется Premium')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎓</div>
+        <div class="card-text"><h3>IELTS Intensive <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">PRO</span></h3><p>Подготовка к экзамену • 30 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
     </div><!-- /courses-main -->
@@ -4603,6 +4615,923 @@ That's acceptable, thank you. — Это приемлемо, спасибо.</di
         ]
       }
     ]
+  },
+  everyday:{
+    title:'Everyday English',icon:'🗣️',color:'var(--amber)',
+    lessons:[
+      {
+        id:1,title:'Приветствия и знакомство',xp:25,
+        theory:`<div class="theory-block">
+<h3>Greetings & Meeting People — приветствия</h3>
+<p>Первые слова задают тон всему разговору. Выучи разные уровни формальности.</p>
+<p style="margin-top:10px;font-weight:600">Неформальные приветствия:</p>
+<div class="rule">Hey! / Hi! / What's up? — Привет! / Как дела?<br>
+How's it going? — Как идут дела?<br>
+How are you doing? — Как ты?<br>
+Long time no see! — Давно не виделись!<br>
+Good to see you! — Рад тебя видеть!</div>
+<p style="margin-top:10px;font-weight:600">Формальные приветствия:</p>
+<div class="rule">Good morning / afternoon / evening. — Доброе утро / день / вечер.<br>
+How do you do? — Приятно познакомиться. (очень формально)<br>
+It's a pleasure to meet you. — Очень рад познакомиться.</div>
+<p style="margin-top:10px;font-weight:600">Прощание:</p>
+<div class="rule">See you later / around. — Увидимся.<br>
+Take care! — Береги себя!<br>
+Catch you later. — Ещё поговорим.<br>
+Have a good one! — Хорошего дня!<br>
+It was great seeing you! — Здорово было повидаться!</div>
+<p style="margin-top:10px;font-weight:600">Знакомство:</p>
+<div class="rule">I don't think we've met. I'm [name]. — Кажется, мы не знакомы. Я [имя].<br>
+What do you do? — Чем ты занимаешься?<br>
+Where are you from originally? — Откуда ты родом?<br>
+Are you new here? — Ты здесь новенький?</div>
+</div>`,
+        exercises:[
+          {q:'___ up? How have you been?',blank:'What\'s',opts:['What\'s','How\'s','Whats','What is']},
+          {q:'Long time no ___! You look great.',blank:'see',opts:['see','meet','speak','talk']},
+          {q:'It was great ___ you! Let\'s do it again.',blank:'seeing',opts:['seeing','meeting','having','catching']},
+          {q:'Take ___! Drive safely.',blank:'care',opts:['care','it easy','it slow','your time']},
+          {q:'I don\'t think we\'ve ___. I\'m Maria.',blank:'met',opts:['met','talked','spoken','seen']},
+          {q:'What do you ___? I\'m a software engineer.',blank:'do',opts:['do','work','study','make']},
+          {q:'___ you later — I\'ve got to run.',blank:'Catch',opts:['Catch','See','Talk','Call']},
+          {q:'How\'s it ___? Good to see you!',blank:'going',opts:['going','been','doing','happening']},
+          {q:'Have a good ___!',blank:'one',opts:['one','day','time','rest']},
+          {q:'Where are you ___ originally?',blank:'from',opts:['from','based','living','at']},
+          {q:'Good to ___ you! It\'s been ages.',blank:'see',opts:['see','meet','find','catch']},
+          {q:'Are you ___ here? I haven\'t seen you before.',blank:'new',opts:['new','fresh','just arrived','a newcomer']},
+          {q:'It\'s a ___ to meet you, Mr. Park.',blank:'pleasure',opts:['pleasure','joy','honour','delight']},
+          {q:'How are you ___? Everything OK?',blank:'doing',opts:['doing','going','being','getting']},
+          {q:'___ morning! Beautiful day, isn\'t it?',blank:'Good',opts:['Good','Great','Fine','Nice']},
+          {q:'I\'ll ___ you around. Come and meet the team.',blank:'introduce',opts:['introduce','show','take','bring']},
+          {q:'Nice to finally put a face to the ___.',blank:'name',opts:['name','voice','email','profile']},
+          {q:'We ___ at the conference last year, right?',blank:'met',opts:['met','saw','spoke','talked']},
+          {q:'I\'ve heard a lot about you — all good ___!',blank:'things',opts:['things','stuff','words','bits']},
+          {q:'___ evening, everyone! Thanks for coming.',blank:'Good',opts:['Good','Great','Nice','Fine']}
+        ]
+      },
+      {
+        id:2,title:'Фразовые глаголы: базовые',xp:35,
+        theory:`<div class="theory-block">
+<h3>Core Phrasal Verbs — базовые фразовые глаголы</h3>
+<p>Фразовые глаголы — основа разговорного английского. Без них речь звучит формально.</p>
+<p style="margin-top:10px;font-weight:600">Самые частые:</p>
+<div class="rule"><b>give up</b> — сдаться, бросить | <b>give in</b> — уступить<br>
+<b>take off</b> — снять (одежду); взлететь; стать популярным<br>
+<b>put off</b> — откладывать | <b>put up with</b> — терпеть<br>
+<b>get on</b> — ладить | <b>get over</b> — оправиться, пережить<br>
+<b>look after</b> — заботиться | <b>look forward to</b> — ждать с нетерпением<br>
+<b>run out of</b> — закончиться | <b>come across</b> — наткнуться<br>
+<b>bring up</b> — поднять тему; воспитать<br>
+<b>fall out</b> — поссориться | <b>make up</b> — помириться; выдумать<br>
+<b>turn out</b> — оказаться | <b>figure out</b> — разобраться</div>
+<p style="margin-top:10px;font-weight:600">Примеры:</p>
+<div class="rule">Don't give up — you're almost there! — Не сдавайся — ты почти у цели!<br>
+I ran out of milk. — У меня закончилось молоко.<br>
+It turned out she was right. — Оказалось, она была права.<br>
+I'm looking forward to the weekend. — Жду выходных с нетерпением.</div>
+</div>`,
+        exercises:[
+          {q:'Don\'t ___ up! You can do this.',blank:'give',opts:['give','take','put','make']},
+          {q:'She ___ off her jacket when she came inside.',blank:'took',opts:['took','pulled','removed','got']},
+          {q:'I ___ out of coffee — I need to buy more.',blank:'ran',opts:['ran','went','got','came']},
+          {q:'Can you ___ after the cat while I\'m away?',blank:'look',opts:['look','take','care','watch']},
+          {q:'It ___ out he was lying the whole time.',blank:'turned',opts:['turned','came','found','showed']},
+          {q:'I\'m ___ forward to meeting you.',blank:'looking',opts:['looking','waiting','hoping','thinking']},
+          {q:'Stop ___ it off — do it now.',blank:'putting',opts:['putting','pushing','delaying','leaving']},
+          {q:'They ___ out over money and stopped talking.',blank:'fell',opts:['fell','fell out','broke','split']},
+          {q:'I can\'t ___ up with his constant complaining.',blank:'put',opts:['put','deal','cope','live']},
+          {q:'How do you ___ on with your flatmates?',blank:'get',opts:['get','live','deal','manage']},
+          {q:'She ___ across an old photo while cleaning.',blank:'came',opts:['came','found','stumbled','ran']},
+          {q:'He ___ up a really good excuse.',blank:'made',opts:['made','came','thought','brought']},
+          {q:'It took her months to ___ over the breakup.',blank:'get',opts:['get','come','move','recover']},
+          {q:'I finally ___ out how to fix the problem.',blank:'figured',opts:['figured','worked','sorted','found']},
+          {q:'She ___ up her children to be kind.',blank:'brought',opts:['brought','raised','grew','taught']},
+          {q:'After the argument, they ___ up and hugged.',blank:'made',opts:['made','patched','sorted','fixed']},
+          {q:'The app really ___ off — millions of downloads!',blank:'took',opts:['took','blew','went','shot']},
+          {q:'He always ___ in when she argues with him.',blank:'gives',opts:['gives','backs','caves','falls']},
+          {q:'She ___ up the issue of the missing money.',blank:'brought',opts:['brought','raised','mentioned','pulled']},
+          {q:'The story ___ out to be completely false.',blank:'turned',opts:['turned','proved','ended','came']}
+        ]
+      },
+      {
+        id:3,title:'Идиомы: тело и эмоции',xp:35,
+        theory:`<div class="theory-block">
+<h3>Body & Emotion Idioms — идиомы о теле и эмоциях</h3>
+<p>Идиомы с частями тела — одни из самых частых в разговорном английском.</p>
+<p style="margin-top:10px;font-weight:600">Голова и мозг:</p>
+<div class="rule"><b>get it into your head</b> — понять / принять<br>
+<b>off the top of my head</b> — навскидку, не думая<br>
+<b>keep your head</b> — сохранять спокойствие<br>
+<b>use your head</b> — подумай головой<br>
+<b>out of your mind</b> — сумасшедший, не в себе</div>
+<p style="margin-top:10px;font-weight:600">Руки и ноги:</p>
+<div class="rule"><b>give someone a hand</b> — помочь кому-то<br>
+<b>have your hands full</b> — быть очень занятым<br>
+<b>cost an arm and a leg</b> — стоить очень дорого<br>
+<b>put your foot in it</b> — ляпнуть, попасть впросак<br>
+<b>stand on your own two feet</b> — стоять на своих ногах</div>
+<p style="margin-top:10px;font-weight:600">Сердце и чувства:</p>
+<div class="rule"><b>have a heart of gold</b> — иметь золотое сердце<br>
+<b>cross my heart</b> — клянусь<br>
+<b>break someone's heart</b> — разбить сердце<br>
+<b>get cold feet</b> — испугаться в последний момент<br>
+<b>bite off more than you can chew</b> — взять на себя слишком много</div>
+</div>`,
+        exercises:[
+          {q:'That car ___ an arm and a leg — way too expensive.',blank:'cost',opts:['cost','was','took','required']},
+          {q:'Could you give me a ___? This box is heavy.',blank:'hand',opts:['hand','help','arm','lift']},
+          {q:'I have my ___ full — three kids and a new job.',blank:'hands',opts:['hands','plate','schedule','time']},
+          {q:'She ___ cold feet before the wedding.',blank:'got',opts:['got','had','felt','experienced']},
+          {q:'Off the top of my ___, I'd say around 50 people.',blank:'head',opts:['head','mind','memory','brain']},
+          {q:'He ___ his foot in it by mentioning her ex.',blank:'put',opts:['put','got','stuck','landed']},
+          {q:'She has a heart of ___. Always helping others.',blank:'gold',opts:['gold','pure','kind','good']},
+          {q:'Just ___ your head — don't panic.',blank:'keep',opts:['keep','use','hold','clear']},
+          {q:'I bit off more than I could ___ with all those deadlines.',blank:'chew',opts:['chew','handle','manage','eat']},
+          {q:'He ___ her heart when he broke up over text.',blank:'broke',opts:['broke','crushed','hurt','shattered']},
+          {q:'It\'s time to stand on your own two ___.',blank:'feet',opts:['feet','legs','hands','shoes']},
+          {q:'Are you out of your ___? That\'s so risky!',blank:'mind',opts:['mind','head','brain','senses']},
+          {q:'Cross my ___ — I didn\'t tell anyone.',blank:'heart',opts:['heart','soul','word','life']},
+          {q:'___ your head! Think before you speak.',blank:'Use',opts:['Use','Keep','Clear','Get']},
+          {q:'She ___ into her head that everyone hates her.',blank:'got',opts:['got','put','convinced','stuck']},
+          {q:'He took on ___ more than he could chew.',blank:'way',opts:['way','much','too','far']},
+          {q:'He\'s got a heart of gold — always ___ others.',blank:'helping',opts:['helping','caring','supporting','giving']},
+          {q:'She finally stood on her own two feet after the ___.',blank:'divorce',opts:['divorce','break-up','move','change']},
+          {q:'I put my foot in it when I mentioned her ___.',blank:'weight',opts:['weight','age','salary','past']},
+          {q:'Just give me a ___ — I need some help here.',blank:'hand',opts:['hand','minute','moment','break']}
+        ]
+      },
+      {
+        id:4,title:'Разговор по телефону (личный)',xp:30,
+        theory:`<div class="theory-block">
+<h3>Personal Phone Calls — личные разговоры по телефону</h3>
+<p>Не деловые звонки — звонки друзьям, в кафе, в клинику, в интернет-поддержку.</p>
+<p style="margin-top:10px;font-weight:600">Начало звонка:</p>
+<div class="rule">Hey, it's [name]. Is this a good time? — Привет, это [имя]. Тебе удобно?<br>
+Sorry to bother you — do you have a minute? — Извини за беспокойство — есть минутка?<br>
+I'll call you back later — is that OK? — Перезвоню позже — нормально?<br>
+I'm just calling to check in. — Звоню просто узнать как ты.</div>
+<p style="margin-top:10px;font-weight:600">Проблемы со связью:</p>
+<div class="rule">You're breaking up — I can't hear you. — Ты прерываешься — не слышу тебя.<br>
+Could you speak up? — Говори громче?<br>
+I think we got cut off. — Думаю, нас прервали.<br>
+Sorry, I missed that — could you repeat? — Извини, пропустил — можешь повторить?</div>
+<p style="margin-top:10px;font-weight:600">Заказ и бронирование:</p>
+<div class="rule">I'd like to make a reservation for two. — Хочу забронировать на двоих.<br>
+Could I book an appointment for Thursday? — Можно записаться на четверг?<br>
+What time slots do you have available? — Какое время доступно?</div>
+<p style="margin-top:10px;font-weight:600">Завершение:</p>
+<div class="rule">I'll let you go — talk soon! — Не буду задерживать — поговорим скоро!<br>
+Speak later! / Call me back when you're free. — Поговорим позже / Перезвони, когда будешь свободен.</div>
+</div>`,
+        exercises:[
+          {q:'Is this a good ___? I can call back.',blank:'time',opts:['time','moment','point','chance']},
+          {q:'You\'re ___ up — I can barely hear you.',blank:'breaking',opts:['breaking','cutting','breaking up','going']},
+          {q:'I\'ll ___ you back in five minutes.',blank:'call',opts:['call','ring','phone','get']},
+          {q:'Sorry to ___. Do you have a quick minute?',blank:'bother',opts:['bother','disturb','interrupt','trouble']},
+          {q:'I think we got ___ off. Let me call again.',blank:'cut',opts:['cut','broken','dropped','disconnected']},
+          {q:'Could you ___ up? It\'s really noisy here.',blank:'speak',opts:['speak','talk','be','shout']},
+          {q:'I\'m just calling to ___ in. How are things?',blank:'check',opts:['check','see','touch','find']},
+          {q:'I\'ll let you ___ — I know you\'re busy.',blank:'go',opts:['go','off','be','leave']},
+          {q:'I missed that — could you ___?',blank:'repeat',opts:['repeat','say again','go back','clarify']},
+          {q:'Could I book an ___ for Friday morning?',blank:'appointment',opts:['appointment','slot','time','booking']},
+          {q:'What time ___ do you have available?',blank:'slots',opts:['slots','times','options','spaces']},
+          {q:'Speak ___! Call me when you\'re free.',blank:'later',opts:['later','soon','then','next']},
+          {q:'The signal is terrible — you\'re ___ out.',blank:'cutting',opts:['cutting','breaking','dropping','going']},
+          {q:'I\'ll try you again in a ___.',blank:'bit',opts:['bit','moment','while','second']},
+          {q:'I\'m calling to ___ a reservation for Saturday.',blank:'make',opts:['make','book','place','confirm']},
+          {q:'Is it OK if I ___ you back later tonight?',blank:'call',opts:['call','ring','phone','text']},
+          {q:'Could you ___ that — I didn\'t catch it.',blank:'repeat',opts:['repeat','say again','clarify','explain']},
+          {q:'Sorry for the ___ answer — my phone was on silent.',blank:'late',opts:['late','slow','delayed','missed']},
+          {q:'I have a quick question — it won\'t ___ long.',blank:'take',opts:['take','be','last','need']},
+          {q:'Thanks for ___ — let\'s catch up properly soon.',blank:'calling',opts:['calling','ringing','phoning','checking in']}
+        ]
+      },
+      {
+        id:5,title:'Дом и быт',xp:30,
+        theory:`<div class="theory-block">
+<h3>Home & Daily Life — дом и повседневная жизнь</h3>
+<p>Словарь для разговоров о доме, соседях, быте и распорядке дня.</p>
+<p style="margin-top:10px;font-weight:600">Жильё:</p>
+<div class="rule"><b>flat / apartment</b> — квартира | <b>bedsit / studio</b> — студия<br>
+<b>landlord / landlady</b> — хозяин / хозяйка жилья<br>
+<b>tenant</b> — арендатор | <b>rent</b> — аренда<br>
+<b>deposit</b> — залог | <b>utilities</b> — коммунальные услуги<br>
+<b>mortgage</b> — ипотека | <b>estate agent</b> — риэлтор</div>
+<p style="margin-top:10px;font-weight:600">Домашние дела:</p>
+<div class="rule"><b>do the washing up</b> — мыть посуду<br>
+<b>do the laundry</b> — стирать | <b>vacuum</b> — пылесосить<br>
+<b>tidy up</b> — убирать | <b>take out the bins</b> — выносить мусор<br>
+<b>DIY</b> (Do It Yourself) — сделать самому / ремонт своими руками</div>
+<p style="margin-top:10px;font-weight:600">Распорядок дня:</p>
+<div class="rule">I'm a morning person. — Я жаворонок.<br>
+I'm a night owl. — Я сова.<br>
+I have a packed schedule. — У меня плотный график.<br>
+I need to recharge. — Мне нужно восстановить силы.</div>
+</div>`,
+        exercises:[
+          {q:'The ___ won\'t fix the broken heating.',blank:'landlord',opts:['landlord','owner','manager','landlady']},
+          {q:'I need to ___ the laundry — we\'re out of clean clothes.',blank:'do',opts:['do','wash','run','put']},
+          {q:'The ___ is £1,500 a month, plus utilities.',blank:'rent',opts:['rent','price','cost','fee']},
+          {q:'Don\'t forget to ___ out the bins tonight.',blank:'take',opts:['take','put','bring','throw']},
+          {q:'I\'m a night ___. I never sleep before midnight.',blank:'owl',opts:['owl','person','bird','type']},
+          {q:'We paid a £500 ___ when we moved in.',blank:'deposit',opts:['deposit','fee','payment','advance']},
+          {q:'Could you ___ up the living room before they arrive?',blank:'tidy',opts:['tidy','clean','sort','fix']},
+          {q:'I have a ___ schedule today — no time to chat.',blank:'packed',opts:['packed','full','busy','tight']},
+          {q:'I\'ll ___ the washing up after dinner.',blank:'do',opts:['do','wash','clean','handle']},
+          {q:'The ___ are included — no extra bills.',blank:'utilities',opts:['utilities','bills','costs','services']},
+          {q:'She\'s a morning ___. Up at 5am every day.',blank:'person',opts:['person','type','riser','bird']},
+          {q:'I need to ___ — I\'ve been working non-stop.',blank:'recharge',opts:['recharge','rest','relax','recover']},
+          {q:'We use an ___ agent to find a flat.',blank:'estate',opts:['estate','property','letting','rental']},
+          {q:'I love doing ___ — painting, fixing things.',blank:'DIY',opts:['DIY','home work','repairs','projects']},
+          {q:'The ___ went up again — it\'s £200 more this year.',blank:'rent',opts:['rent','bill','mortgage','utilities']},
+          {q:'Could you ___ the floor while I do the dishes?',blank:'vacuum',opts:['vacuum','hoover','sweep','clean']},
+          {q:'We\'re ___ for a two-bedroom flat in the centre.',blank:'looking',opts:['looking','searching','hunting','finding']},
+          {q:'The ___ is £200,000 — 25 years to pay it off.',blank:'mortgage',opts:['mortgage','loan','payment','debt']},
+          {q:'She\'s my ___ — we share bills.',blank:'flatmate',opts:['flatmate','roommate','housemate','co-tenant']},
+          {q:'Let\'s ___ up before the guests arrive.',blank:'tidy',opts:['tidy','sort','clean','do']}
+        ]
+      },
+      {
+        id:6,title:'Семья и отношения',xp:30,
+        theory:`<div class="theory-block">
+<h3>Family & Relationships — семья и отношения</h3>
+<p style="margin-top:10px;font-weight:600">Члены семьи (расширенный словарь):</p>
+<div class="rule"><b>siblings</b> — братья и сёстры | <b>only child</b> — единственный ребёнок<br>
+<b>twins</b> — близнецы | <b>stepfather / stepmother</b> — отчим / мачеха<br>
+<b>in-laws</b> — родственники по браку | <b>mother-in-law</b> — тёща / свекровь<br>
+<b>nephew / niece</b> — племянник / племянница<br>
+<b>godfather / godmother</b> — крёстный / крёстная</div>
+<p style="margin-top:10px;font-weight:600">Отношения:</p>
+<div class="rule"><b>be in a relationship</b> — встречаться<br>
+<b>go out with</b> — встречаться | <b>break up</b> — расстаться<br>
+<b>get engaged</b> — обручиться | <b>get married</b> — пожениться<br>
+<b>get divorced</b> — развестись | <b>settle down</b> — остепениться<br>
+<b>get along</b> — ладить | <b>fall out</b> — поссориться</div>
+<p style="margin-top:10px;font-weight:600">Описание отношений:</p>
+<div class="rule">We're really close. — Мы очень близки.<br>
+We have our ups and downs. — У нас бывают взлёты и падения.<br>
+We're drifting apart. — Мы отдаляемся.<br>
+She means the world to me. — Она для меня всё.</div>
+</div>`,
+        exercises:[
+          {q:'I have two ___: an older brother and a younger sister.',blank:'siblings',opts:['siblings','brothers','relatives','family']},
+          {q:'They ___ up after five years together.',blank:'broke',opts:['broke','split','called','gave']},
+          {q:'My ___ are great — I get on well with her parents.',blank:'in-laws',opts:['in-laws','relatives','wife\'s family','partner\'s family']},
+          {q:'She\'s expecting ___ — two babies at once!',blank:'twins',opts:['twins','two babies','double','both']},
+          {q:'They ___ engaged last weekend — so exciting!',blank:'got',opts:['got','became','went','are']},
+          {q:'We ___ along really well — never argue.',blank:'get',opts:['get','go','do','live']},
+          {q:'I\'m an only ___. No brothers or sisters.',blank:'child',opts:['child','kid','one','person']},
+          {q:'They ___ out over money and stopped speaking.',blank:'fell',opts:['fell','broke','split','gave']},
+          {q:'He means the ___ to me.',blank:'world',opts:['world','everything','most','all']},
+          {q:'After years of dating, they finally ___ down.',blank:'settled',opts:['settled','calmed','grew','stopped']},
+          {q:'My ___ is coming to stay — my wife\'s mother.',blank:'mother-in-law',opts:['mother-in-law','mother in law','in-law','step-mum']},
+          {q:'They ___ married in a small ceremony abroad.',blank:'got',opts:['got','were','had','became']},
+          {q:'We have our ups and ___ but we love each other.',blank:'downs',opts:['downs','lows','falls','bads']},
+          {q:'She\'s my ___. We share the same birthday.',blank:'twin',opts:['twin','double','copy','sibling']},
+          {q:'I feel like we\'re ___ apart lately.',blank:'drifting',opts:['drifting','moving','going','pulling']},
+          {q:'My ___ is 8 — my brother\'s son.',blank:'nephew',opts:['nephew','niece','cousin','godson']},
+          {q:'They ___ divorced after 20 years.',blank:'got',opts:['got','went','became','had']},
+          {q:'She\'s ___ out with him for two years.',blank:'been going',opts:['been going','dated','been with','gone']},
+          {q:'We\'re really ___. We tell each other everything.',blank:'close',opts:['close','tight','near','bonded']},
+          {q:'My ___ spoils the children rotten.',blank:'stepfather',opts:['stepfather','step-dad','stepdad','new dad']}
+        ]
+      },
+      {
+        id:7,title:'Хобби и свободное время',xp:30,
+        theory:`<div class="theory-block">
+<h3>Hobbies & Free Time — хобби и досуг</h3>
+<p style="margin-top:10px;font-weight:600">Как говорить о хобби:</p>
+<div class="rule">I'm really into... — Я очень увлечён...<br>
+I'm a huge fan of... — Я большой поклонник...<br>
+I've recently got into... — Я недавно увлёкся...<br>
+I can't get enough of... — Не могу оторваться от...<br>
+It's my go-to hobby when I'm stressed. — Это моё хобби, когда я в стрессе.</div>
+<p style="margin-top:10px;font-weight:600">Виды хобби:</p>
+<div class="rule"><b>knitting / crocheting</b> — вязание | <b>sketching / drawing</b> — рисование<br>
+<b>bouldering / climbing</b> — боулдеринг / скалолазание<br>
+<b>hiking</b> — походы | <b>gaming</b> — игры<br>
+<b>photography</b> — фотография | <b>cooking / baking</b> — кулинария<br>
+<b>volunteering</b> — волонтёрство | <b>reading</b> — чтение</div>
+<p style="margin-top:10px;font-weight:600">Уровень увлечённости:</p>
+<div class="rule">I'm obsessed with it. — Я одержим этим.<br>
+I'm a casual fan. — Я умеренный поклонник.<br>
+I do it on and off. — Занимаюсь время от времени.<br>
+I used to do it but I got out of the habit. — Раньше занимался, но бросил.</div>
+</div>`,
+        exercises:[
+          {q:'I\'m really ___ photography lately.',blank:'into',opts:['into','about','for','on']},
+          {q:'I can\'t get enough ___ this podcast.',blank:'of',opts:['of','from','out of','about']},
+          {q:'It\'s my go-to hobby when I\'m ___.',blank:'stressed',opts:['stressed','bored','tired','free']},
+          {q:'I\'ve recently ___ into bouldering.',blank:'got',opts:['got','gotten','gone','come']},
+          {q:'I do it on and ___. Not every week.',blank:'off',opts:['off','on','again','out']},
+          {q:'I used to paint but I got ___ of the habit.',blank:'out',opts:['out','off','away','clear']},
+          {q:'I\'m ___ obsessed with this series.',blank:'absolutely',opts:['absolutely','totally','completely','really']},
+          {q:'I\'m a ___ fan — I watch when I can.',blank:'casual',opts:['casual','light','easy','moderate']},
+          {q:'I\'m a huge ___ of live music.',blank:'fan',opts:['fan','lover','admirer','follower']},
+          {q:'Gaming is my ___ hobby.',blank:'main',opts:['main','top','favourite','primary']},
+          {q:'I ___ volunteering at the animal shelter.',blank:'love',opts:['love','enjoy','do','like']},
+          {q:'I\'ve ___ into baking bread during lockdown.',blank:'gotten',opts:['gotten','got','come','fallen']},
+          {q:'___ is so meditative — I love the focus it requires.',blank:'Knitting',opts:['Knitting','Crocheting','Sewing','Weaving']},
+          {q:'I spend most of my free time ___.',blank:'reading',opts:['reading','with books','at the library','studying']},
+          {q:'I\'m not really ___ sports.',blank:'into',opts:['into','about','for','fond of']},
+          {q:'I started ___ this year and can\'t stop.',blank:'hiking',opts:['hiking','running','climbing','cycling']},
+          {q:'It\'s a great way to ___ your mind after work.',blank:'clear',opts:['clear','rest','empty','relax']},
+          {q:'I ___ to play guitar but I stopped years ago.',blank:'used',opts:['used','would','did','was going']},
+          {q:'I\'m ___ it. There\'s something new every week.',blank:'obsessed with',opts:['obsessed with','addicted to','in love with','hooked on']},
+          {q:'Photography is my ___. I take my camera everywhere.',blank:'passion',opts:['passion','hobby','thing','love']}
+        ]
+      },
+      {
+        id:8,title:'Эмоции и чувства',xp:30,
+        theory:`<div class="theory-block">
+<h3>Emotions & Feelings — эмоции и чувства</h3>
+<p>Богатый эмоциональный словарь делает речь живой и точной.</p>
+<p style="margin-top:10px;font-weight:600">Позитивные эмоции:</p>
+<div class="rule"><b>thrilled</b> — в восторге | <b>over the moon</b> — на седьмом небе<br>
+<b>content</b> — доволен, спокоен | <b>relieved</b> — облегчение<br>
+<b>pumped / hyped</b> — заряжен, воодушевлён<br>
+<b>grateful / touched</b> — благодарен / растроган</div>
+<p style="margin-top:10px;font-weight:600">Негативные эмоции:</p>
+<div class="rule"><b>frustrated</b> — раздражён | <b>fed up</b> — сыт по горло<br>
+<b>devastated</b> — убит горем | <b>anxious</b> — тревожный<br>
+<b>overwhelmed</b> — подавлен, не справляется<br>
+<b>gutted</b> (BrE) — убит, расстроен | <b>bummed out</b> (AmE) — расстроен</div>
+<p style="margin-top:10px;font-weight:600">Выражение эмоций:</p>
+<div class="rule">I'm over the moon about it! — Я на седьмом небе!<br>
+I'm gutted — I really wanted that job. — Я убит — так хотел эту работу.<br>
+I'm feeling a bit under the weather. — Чувствую себя не очень.<br>
+I've got butterflies in my stomach. — У меня бабочки в животе.</div>
+</div>`,
+        exercises:[
+          {q:'She was ___ the moon when she got the promotion.',blank:'over',opts:['over','on','at','above']},
+          {q:'I\'m ___ — this is taking forever!',blank:'frustrated',opts:['frustrated','annoyed','upset','irritated']},
+          {q:'He was ___ when his team lost in the final.',blank:'gutted',opts:['gutted','sad','upset','devastated']},
+          {q:'I\'m ___ up with the noise — I can\'t concentrate.',blank:'fed',opts:['fed','filled','had','done']},
+          {q:'I have ___ in my stomach before the exam.',blank:'butterflies',opts:['butterflies','nerves','fear','anxiety']},
+          {q:'She felt ___ when she heard the news.',blank:'relieved',opts:['relieved','happy','calm','ok']},
+          {q:'I\'m completely ___. I have too much to do.',blank:'overwhelmed',opts:['overwhelmed','busy','tired','stressed']},
+          {q:'I\'m ___ about the concert tonight!',blank:'pumped',opts:['pumped','excited','ready','happy']},
+          {q:'He was ___ when his dog died.',blank:'devastated',opts:['devastated','sad','upset','heartbroken']},
+          {q:'I feel a bit ___ the weather. Not great today.',blank:'under',opts:['under','below','off','not']},
+          {q:'I\'m so ___ for your help. It means a lot.',blank:'grateful',opts:['grateful','thankful','touched','moved']},
+          {q:'I felt really ___ by his kind words.',blank:'touched',opts:['touched','moved','affected','grateful']},
+          {q:'She was ___ when she found out she passed.',blank:'thrilled',opts:['thrilled','happy','excited','pleased']},
+          {q:'I\'m feeling ___ about the move. So many unknowns.',blank:'anxious',opts:['anxious','nervous','worried','scared']},
+          {q:'He was ___ out when he missed the flight.',blank:'bummed',opts:['bummed','gutted','sad','down']},
+          {q:'I\'m completely ___ — this is better than I imagined.',blank:'content',opts:['content','satisfied','pleased','happy']},
+          {q:'She was ___ — she couldn\'t believe it was real.',blank:'over the moon',opts:['over the moon','thrilled','excited','delighted']},
+          {q:'I\'m ___ up with the commute. I need to work remotely.',blank:'fed',opts:['fed','done','had','filled']},
+          {q:'I got ___ in my stomach before the big presentation.',blank:'butterflies',opts:['butterflies','nerves','knots','anxiety']},
+          {q:'He seems ___ lately — something\'s bothering him.',blank:'down',opts:['down','off','quiet','sad']}
+        ]
+      },
+      {
+        id:9,title:'Мнения и дискуссии',xp:35,
+        theory:`<div class="theory-block">
+<h3>Opinions & Discussions — мнения и обсуждения</h3>
+<p>Умение выражать, защищать и оспаривать мнения — ключевой разговорный навык.</p>
+<p style="margin-top:10px;font-weight:600">Выражение мнения:</p>
+<div class="rule">In my opinion / view... — По моему мнению...<br>
+As far as I'm concerned... — Насколько я понимаю...<br>
+Personally, I think... — Лично я думаю...<br>
+I reckon... — Я считаю... (разговорное)<br>
+If you ask me... — Если хочешь знать моё мнение...</div>
+<p style="margin-top:10px;font-weight:600">Согласие:</p>
+<div class="rule">Absolutely! / Exactly! / Totally! — Абсолютно!<br>
+I couldn't agree more. — Полностью согласен.<br>
+That's a fair point. — Это справедливое замечание.<br>
+You've got a point there. — В этом есть смысл.</div>
+<p style="margin-top:10px;font-weight:600">Несогласие (вежливо):</p>
+<div class="rule">I see where you're coming from, but... — Я понимаю твою позицию, но...<br>
+I'm not sure I agree... — Не уверен, что согласен...<br>
+That's one way of looking at it... — Это один из взглядов...<br>
+I take your point, but... — Принимаю аргумент, но...</div>
+</div>`,
+        exercises:[
+          {q:'In my ___, the film was too long.',blank:'opinion',opts:['opinion','view','mind','thought']},
+          {q:'I ___ agree more — you\'re absolutely right.',blank:'couldn\'t',opts:['couldn\'t','can\'t','don\'t','won\'t']},
+          {q:'I ___ it\'s going to rain today.',blank:'reckon',opts:['reckon','think','feel','say']},
+          {q:'You\'ve got a ___ there. I hadn\'t thought of that.',blank:'point',opts:['point','thought','idea','argument']},
+          {q:'I see ___ you\'re coming from, but I disagree.',blank:'where',opts:['where','what','why','how']},
+          {q:'___, I think we should try a different approach.',blank:'Personally',opts:['Personally','Honestly','Frankly','Actually']},
+          {q:'That\'s a ___ point. I agree completely.',blank:'fair',opts:['fair','good','strong','valid']},
+          {q:'I take your ___, but the data says otherwise.',blank:'point',opts:['point','argument','view','position']},
+          {q:'I\'m not ___ I agree with that approach.',blank:'sure',opts:['sure','certain','convinced','positive']},
+          {q:'That\'s ___ way of looking at it, I suppose.',blank:'one',opts:['one','a','another','a different']},
+          {q:'As far as I\'m ___, this is the best option.',blank:'concerned',opts:['concerned','aware','know','see']},
+          {q:'If you ask ___, we should just go for it.',blank:'me',opts:['me','us','him','anyone']},
+          {q:'___ ! I was just thinking the same thing.',blank:'Exactly',opts:['Exactly','Totally','Absolutely','Certainly']},
+          {q:'I\'m not really ___. It doesn\'t seem right.',blank:'convinced',opts:['convinced','sure','certain','sold']},
+          {q:'That said, there are ___ to your plan.',blank:'downsides',opts:['downsides','issues','problems','flaws']},
+          {q:'I ___ see your point, but I think there\'s more to it.',blank:'totally',opts:['totally','do','can','definitely']},
+          {q:'___ speaking, I think we made the wrong decision.',blank:'Honestly',opts:['Honestly','Frankly','Truthfully','Personally']},
+          {q:'I\'d argue the ___ — I think it\'s better this way.',blank:'opposite',opts:['opposite','contrary','reverse','other']},
+          {q:'Fair ___. You\'ve changed my mind.',blank:'enough',opts:['enough','point','call','play']},
+          {q:'I ___ beg to differ on that one.',blank:'would',opts:['would','must','do','have to']}
+        ]
+      },
+      {
+        id:10,title:'Планирование и предложения',xp:30,
+        theory:`<div class="theory-block">
+<h3>Making Plans & Suggestions — планирование</h3>
+<p style="margin-top:10px;font-weight:600">Предложения:</p>
+<div class="rule">Why don't we...? — Почему бы нам не...?<br>
+How about...? / What about...? — Как насчёт...?<br>
+Fancy doing...? — Хочешь...? (брит.)<br>
+We could always... — Мы всегда можем...<br>
+What if we...? — А что если мы...?</div>
+<p style="margin-top:10px;font-weight:600">Принятие предложения:</p>
+<div class="rule">Sounds great! / I'm in! — Звучит отлично! / Я в деле!<br>
+That works for me. — Мне подходит.<br>
+I'd love that! — Я бы с удовольствием!<br>
+Let's go for it! — Давайте!</div>
+<p style="margin-top:10px;font-weight:600">Отказ / поиск другого времени:</p>
+<div class="rule">I'm afraid I can't make it. — Боюсь, не смогу прийти.<br>
+I've already got plans. — У меня уже планы.<br>
+Could we rain check? — Перенесём на другой раз?<br>
+How does [day] work for you? — Тебе подходит [день]?<br>
+I'll have to get back to you on that. — Отвечу позже.</div>
+</div>`,
+        exercises:[
+          {q:'Why don\'t we ___ for a walk this afternoon?',blank:'go',opts:['go','take','have','do']},
+          {q:'___ doing something different tonight?',blank:'Fancy',opts:['Fancy','Feel like','Want to','How about']},
+          {q:'I\'m ___ — count me in!',blank:'in',opts:['in','on','there','coming']},
+          {q:'I\'m afraid I can\'t ___ it on Friday.',blank:'make',opts:['make','do','get','come']},
+          {q:'Could we ___ check? I have something on.',blank:'rain',opts:['rain','take a','get a','ask for a']},
+          {q:'How does Saturday ___ for you?',blank:'work',opts:['work','sound','suit','look']},
+          {q:'That ___ great — what time?',blank:'sounds',opts:['sounds','seems','looks','feels']},
+          {q:'I\'ve already ___ plans. Maybe next time?',blank:'got',opts:['got','made','have','booked']},
+          {q:'I\'ll have to ___ back to you on that.',blank:'get',opts:['get','come','circle','go']},
+          {q:'What ___ we meet at the café first?',blank:'if',opts:['if','about','say','when']},
+          {q:'I\'d ___ that — I haven\'t been to the cinema in ages.',blank:'love',opts:['love','like','enjoy','prefer']},
+          {q:'How ___ a weekend trip somewhere?',blank:'about',opts:['about','does','say','for']},
+          {q:'That ___ for me — I\'m free all day.',blank:'works',opts:['works','suits','sounds','is']},
+          {q:'We could ___ try somewhere new.',blank:'always',opts:['always','just','easily','maybe']},
+          {q:'Let\'s ___ for it — book the tickets now!',blank:'go',opts:['go','do','make','try']},
+          {q:'___ about meeting at 7 instead of 6?',blank:'What',opts:['What','How','Why','Is']},
+          {q:'I\'m ___ anything — you choose.',blank:'up for',opts:['up for','happy with','fine with','ok with']},
+          {q:'I need to check my ___ — can I let you know tomorrow?',blank:'calendar',opts:['calendar','diary','schedule','plans']},
+          {q:'Sounds ___! See you then.',blank:'perfect',opts:['perfect','great','good','awesome']},
+          {q:'I\'m not sure ___ works for everyone.',blank:'that',opts:['that','this','it','which']}
+        ]
+      },
+      {
+        id:11,title:'Идиомы: время и деньги',xp:35,
+        theory:`<div class="theory-block">
+<h3>Time & Money Idioms — идиомы о времени и деньгах</h3>
+<p style="margin-top:10px;font-weight:600">Идиомы о времени:</p>
+<div class="rule"><b>in the nick of time</b> — в самый последний момент<br>
+<b>once in a blue moon</b> — очень редко<br>
+<b>kill time</b> — убивать время<br>
+<b>behind the times</b> — отстать от времени<br>
+<b>against the clock</b> — против часов, под давлением времени<br>
+<b>it's about time</b> — давно пора<br>
+<b>time flies</b> — время летит</div>
+<p style="margin-top:10px;font-weight:600">Идиомы о деньгах:</p>
+<div class="rule"><b>break the bank</b> — разорить, стоить очень дорого<br>
+<b>on a shoestring</b> — на очень ограниченном бюджете<br>
+<b>in the red</b> — в долгах | <b>in the black</b> — в прибыли<br>
+<b>a penny saved is a penny earned</b> — копейка рубль бережёт<br>
+<b>go Dutch</b> — платить каждый за себя<br>
+<b>set you back</b> — обойтись вам в (сумму)<br>
+<b>money doesn't grow on trees</b> — деньги с неба не падают</div>
+</div>`,
+        exercises:[
+          {q:'We arrived in the ___ of time — the plane was boarding.',blank:'nick',opts:['nick','last','final','very']},
+          {q:'I only see him ___ in a blue moon.',blank:'once',opts:['once','rarely','hardly','seldom']},
+          {q:'I was ___ the clock to finish the report.',blank:'against',opts:['against','racing','beating','fighting']},
+          {q:'It\'s about ___ you apologised!',blank:'time',opts:['time','now','day','moment']},
+          {q:'Time ___ when you\'re having fun.',blank:'flies',opts:['flies','passes','runs','goes']},
+          {q:'That new phone must have ___ you back a lot.',blank:'set',opts:['set','cost','put','paid']},
+          {q:'We travelled through Asia on a ___.',blank:'shoestring',opts:['shoestring','budget','nothing','minimum']},
+          {q:'The company is in the ___ — they lost money last year.',blank:'red',opts:['red','black','negative','minus']},
+          {q:'She\'s a bit ___ the times with technology.',blank:'behind',opts:['behind','back in','out of','away from']},
+          {q:'Let\'s ___ Dutch — we\'ll each pay for ourselves.',blank:'go',opts:['go','be','do','pay']},
+          {q:'I\'m just ___ time until my next meeting.',blank:'killing',opts:['killing','passing','wasting','using']},
+          {q:'Don\'t ___ the bank — we\'re on a budget.',blank:'break',opts:['break','bust','empty','drain']},
+          {q:'They\'re finally in the ___. The business is profitable.',blank:'black',opts:['black','green','clear','profit']},
+          {q:'That holiday package won\'t ___ the bank — very affordable.',blank:'break',opts:['break','cost','drain','bust']},
+          {q:'Money doesn\'t ___ on trees, you know.',blank:'grow',opts:['grow','fall','come','drop']},
+          {q:'A penny ___ is a penny earned.',blank:'saved',opts:['saved','kept','held','stored']},
+          {q:'We did the whole trip on a ___ — hostels and buses.',blank:'shoestring',opts:['shoestring','budget','minimum','nothing']},
+          {q:'She\'s always ___ the clock to meet deadlines.',blank:'against',opts:['against','racing','beating','fighting']},
+          {q:'How much did that ___ you back?',blank:'set',opts:['set','cost','run','put']},
+          {q:'I only cook a big dinner ___ in a blue moon.',blank:'once',opts:['once','rarely','sometimes','occasionally']}
+        ]
+      },
+      {
+        id:12,title:'Фразовые глаголы: продвинутые',xp:40,
+        theory:`<div class="theory-block">
+<h3>Advanced Phrasal Verbs — продвинутые фразовые глаголы</h3>
+<p>Следующий уровень — менее очевидные, но очень частые фразовые глаголы.</p>
+<p style="margin-top:10px;font-weight:600">Общение и отношения:</p>
+<div class="rule"><b>open up</b> — открыться, раскрыться<br>
+<b>talk down to</b> — разговаривать свысока<br>
+<b>back someone up</b> — поддержать кого-то<br>
+<b>let someone down</b> — подвести кого-то<br>
+<b>cut off</b> — прервать, отрезать</div>
+<p style="margin-top:10px;font-weight:600">Работа и задачи:</p>
+<div class="rule"><b>take on</b> — брать на себя (задачу/сотрудника)<br>
+<b>pull off</b> — провернуть (сложное дело)<br>
+<b>follow through</b> — довести до конца<br>
+<b>burn out</b> — выгореть | <b>wind down</b> — расслабиться после работы<br>
+<b>catch up</b> — догнать; наверстать</div>
+<p style="margin-top:10px;font-weight:600">Мышление:</p>
+<div class="rule"><b>think over</b> — обдумать | <b>come up with</b> — придумать<br>
+<b>dwell on</b> — зацикливаться | <b>face up to</b> — смотреть в лицо (проблеме)<br>
+<b>talk out of</b> — отговорить | <b>talk into</b> — уговорить</div>
+</div>`,
+        exercises:[
+          {q:'She finally ___ up and told us how she really felt.',blank:'opened',opts:['opened','spoke','came','let']},
+          {q:'Don\'t ___ down to me — I understand the situation.',blank:'talk',opts:['talk','speak','look','come']},
+          {q:'I don\'t want to ___ you down — I\'ll try my best.',blank:'let',opts:['let','put','bring','set']},
+          {q:'He managed to ___ off the presentation despite the nerves.',blank:'pull',opts:['pull','carry','bring','pull']},
+          {q:'You should ___ up on everything you missed.',blank:'catch',opts:['catch','make','get','pick']},
+          {q:'She ___ me into buying the expensive version.',blank:'talked',opts:['talked','convinced','pushed','got']},
+          {q:'He ___ up with a brilliant solution.',blank:'came',opts:['came','thought','figured','worked']},
+          {q:'Don\'t ___ on your mistakes — learn and move on.',blank:'dwell',opts:['dwell','think','focus','dwell']},
+          {q:'I need to ___ down after that stressful day.',blank:'wind',opts:['wind','calm','cool','settle']},
+          {q:'He was starting to ___ out — too much work.',blank:'burn',opts:['burn','wear','break','run']},
+          {q:'I need to ___ this over before I decide.',blank:'think',opts:['think','mull','go','consider']},
+          {q:'Please ___ me up in the meeting — I think they\'re wrong.',blank:'back',opts:['back','support','help','stand']},
+          {q:'It\'s time to ___ up to the fact that things need to change.',blank:'face',opts:['face','own','admit','look']},
+          {q:'She ___ him out of resigning — good thing too.',blank:'talked',opts:['talked','convinced','persuaded','stopped']},
+          {q:'We need to ___ through on this plan.',blank:'follow',opts:['follow','carry','stick','go']},
+          {q:'The company decided to ___ on 20 new staff.',blank:'take',opts:['take','hire','bring','employ']},
+          {q:'She was ___ off mid-sentence — very rude.',blank:'cut',opts:['cut','shut','stopped','broken']},
+          {q:'He ___ her into trying the new restaurant.',blank:'talked',opts:['talked','pushed','got','convinced']},
+          {q:'I\'m ___ out — I need a proper holiday.',blank:'burned',opts:['burned','worn','run','broken']},
+          {q:'Let\'s ___ up — there\'s a lot to discuss.',blank:'catch',opts:['catch','meet','talk','get']}
+        ]
+      },
+      {
+        id:13,title:'Поздравления и пожелания',xp:25,
+        theory:`<div class="theory-block">
+<h3>Congratulations & Wishes — поздравления и пожелания</h3>
+<p style="margin-top:10px;font-weight:600">Поздравления:</p>
+<div class="rule">Congratulations! — Поздравляю!<br>
+Well done! / Nicely done! — Молодец! / Хорошая работа!<br>
+I'm so proud of you. — Я так горжусь тобой.<br>
+You deserve it! — Ты заслужил это!<br>
+I knew you could do it! — Я знал, что ты справишься!</div>
+<p style="margin-top:10px;font-weight:600">Пожелания:</p>
+<div class="rule">Best of luck! / Good luck! — Удачи!<br>
+Break a leg! — Ни пуха ни пера! (театральное)<br>
+Fingers crossed! — Держу кулачки!<br>
+I hope it goes well. — Надеюсь, всё пройдёт хорошо.<br>
+Wishing you all the best. — Желаю тебе всего наилучшего.</div>
+<p style="margin-top:10px;font-weight:600">Особые события:</p>
+<div class="rule">Happy birthday! / Many happy returns! — С днём рождения!<br>
+Happy anniversary! — С годовщиной!<br>
+Merry Christmas! / Happy New Year! — Счастливого Рождества! / С Новым годом!<br>
+Get well soon! — Поправляйся скорее!<br>
+Thinking of you. — Думаю о тебе (в трудное время).</div>
+</div>`,
+        exercises:[
+          {q:'___ ! I heard you got the promotion.',blank:'Congratulations',opts:['Congratulations','Well done','Bravo','Amazing']},
+          {q:'Break a ___! I\'ll be thinking of you.',blank:'leg',opts:['leg','foot','arm','luck']},
+          {q:'Fingers ___! I hope you get the job.',blank:'crossed',opts:['crossed','held','kept','up']},
+          {q:'I knew you ___ do it! So proud of you.',blank:'could',opts:['could','would','can','will']},
+          {q:'___ returns! Hope you have a wonderful day.',blank:'Many happy',opts:['Many happy','Best','Warmest','Happy']},
+          {q:'Get well ___! Sending you good vibes.',blank:'soon',opts:['soon','quickly','better','fast']},
+          {q:'You ___ it! All that hard work paid off.',blank:'deserved',opts:['deserved','earned','got','worked for']},
+          {q:'___ of luck with the interview tomorrow.',blank:'Best',opts:['Best','Good','Lots','All the']},
+          {q:'I\'m so ___ of you. You\'ve come so far.',blank:'proud',opts:['proud','happy','glad','impressed']},
+          {q:'Wishing you ___ the best in your new role.',blank:'all',opts:['all','nothing but','only','the very']},
+          {q:'I hope it all ___ well for you.',blank:'goes',opts:['goes','works','turns','ends']},
+          {q:'___ Christmas to you and your family!',blank:'Merry',opts:['Merry','Happy','Warm','Blessed']},
+          {q:'Well ___! That was a brilliant performance.',blank:'done',opts:['done','played','performed','achieved']},
+          {q:'___ of you — seriously impressive.',blank:'So proud',opts:['So proud','Well done','Congratulations','Amazing']},
+          {q:'Thinking ___ you during this difficult time.',blank:'of',opts:['of','about','for','with']},
+          {q:'Happy ___! Ten years is a long time.',blank:'anniversary',opts:['anniversary','birthday','milestone','celebration']},
+          {q:'___ a leg! You\'ve prepared so well.',blank:'Break',opts:['Break','Good','Best of','All the']},
+          {q:'I\'m keeping my ___ crossed for you.',blank:'fingers',opts:['fingers','thumbs','hands','toes']},
+          {q:'___ New Year! Hope it\'s a great one.',blank:'Happy',opts:['Happy','Merry','Great','Good']},
+          {q:'___ done on finishing the marathon!',blank:'Well',opts:['Well','Nicely','Great','Brilliant']}
+        ]
+      },
+      {
+        id:14,title:'Описание людей и характера',xp:30,
+        theory:`<div class="theory-block">
+<h3>Describing People & Personality — описание людей</h3>
+<p style="margin-top:10px;font-weight:600">Положительные черты характера:</p>
+<div class="rule"><b>outgoing</b> — общительный | <b>witty</b> — остроумный<br>
+<b>laid-back</b> — расслабленный, непринуждённый<br>
+<b>down-to-earth</b> — приземлённый, без понтов<br>
+<b>reliable</b> — надёжный | <b>warm-hearted</b> — сердечный<br>
+<b>driven</b> — целеустремлённый | <b>open-minded</b> — с открытым умом</div>
+<p style="margin-top:10px;font-weight:600">Отрицательные черты:</p>
+<div class="rule"><b>stubborn</b> — упрямый | <b>nosy</b> — любопытный не в меру<br>
+<b>two-faced</b> — двуличный | <b>clingy</b> — навязчивый<br>
+<b>uptight</b> — напряжённый, зажатый | <b>shallow</b> — поверхностный</div>
+<p style="margin-top:10px;font-weight:600">Полезные фразы:</p>
+<div class="rule">She's the life and soul of the party. — Она душа компании.<br>
+He grows on you. — Он начинает нравиться со временем.<br>
+She wears her heart on her sleeve. — Она не скрывает эмоций.<br>
+He's a bit of a dark horse. — Он тёмная лошадка.</div>
+</div>`,
+        exercises:[
+          {q:'She\'s really ___. She talks to everyone.',blank:'outgoing',opts:['outgoing','social','friendly','open']},
+          {q:'He\'s very ___. No ego at all — very genuine.',blank:'down-to-earth',opts:['down-to-earth','humble','simple','normal']},
+          {q:'She\'s the life and ___ of the party.',blank:'soul',opts:['soul','heart','spirit','centre']},
+          {q:'He\'s so ___. He never changes his mind.',blank:'stubborn',opts:['stubborn','rigid','fixed','hard']},
+          {q:'She wears her heart on her ___.',blank:'sleeve',opts:['sleeve','face','chest','arm']},
+          {q:'Don\'t be so ___! Relax a little.',blank:'uptight',opts:['uptight','tense','serious','stiff']},
+          {q:'He\'s a bit ___. Never shares anything about himself.',blank:'closed off',opts:['closed off','quiet','shy','introverted']},
+          {q:'He\'s so ___ — always texting and calling.',blank:'clingy',opts:['clingy','needy','attached','dependent']},
+          {q:'She\'s a dark ___. Nobody expected her to win.',blank:'horse',opts:['horse','card','shot','bet']},
+          {q:'He ___ on you after a while. Quite lovable really.',blank:'grows',opts:['grows','comes','opens','warms']},
+          {q:'I love how ___ she is — always makes me laugh.',blank:'witty',opts:['witty','funny','humorous','clever']},
+          {q:'He\'s very ___. You can trust him with anything.',blank:'reliable',opts:['reliable','trustworthy','dependable','loyal']},
+          {q:'She\'s really ___. No judgement — accepts everyone.',blank:'open-minded',opts:['open-minded','accepting','tolerant','flexible']},
+          {q:'He\'s so ___. He only cares about looks.',blank:'shallow',opts:['shallow','superficial','vain','materialistic']},
+          {q:'She\'s very ___ about her career — works 12-hour days.',blank:'driven',opts:['driven','motivated','ambitious','focused']},
+          {q:'He\'s quite ___ about other people\'s business.',blank:'nosy',opts:['nosy','curious','interested','intrusive']},
+          {q:'I hate ___ people. They say one thing to your face...',blank:'two-faced',opts:['two-faced','fake','dishonest','hypocritical']},
+          {q:'She\'s so ___ — always calm, never stressed.',blank:'laid-back',opts:['laid-back','relaxed','calm','easy-going']},
+          {q:'He\'s very ___. Would do anything for anyone.',blank:'warm-hearted',opts:['warm-hearted','kind','generous','caring']},
+          {q:'She\'s so ___ — it\'s refreshing to meet someone like that.',blank:'genuine',opts:['genuine','real','honest','authentic']}
+        ]
+      },
+      {
+        id:15,title:'Вежливость и такт',xp:30,
+        theory:`<div class="theory-block">
+<h3>Politeness & Tact — вежливость и такт</h3>
+<p>Вежливый английский — это не только «please» и «thank you». Это целый набор тактичных конструкций.</p>
+<p style="margin-top:10px;font-weight:600">Мягкие просьбы:</p>
+<div class="rule">Would you mind...? — Не возражаете ли вы...?<br>
+I was wondering if you could... — Хотел бы спросить, не могли бы вы...<br>
+Do you think it would be possible to...? — Как вы думаете, возможно ли...?<br>
+I don't suppose you could...? — Наверное, вы не могли бы...?</div>
+<p style="margin-top:10px;font-weight:600">Смягчение отказа или критики:</p>
+<div class="rule">I'm afraid that won't be possible. — Боюсь, это невозможно.<br>
+It's not quite what I had in mind. — Это не совсем то, что я имел в виду.<br>
+With respect, I think there might be a better way. — С уважением, думаю, есть лучший вариант.<br>
+Perhaps we could consider... — Возможно, мы могли бы рассмотреть...<br>
+That's an interesting approach, but... — Интересный подход, но...</div>
+<p style="margin-top:10px;font-weight:600">Вежливые отказы:</p>
+<div class="rule">I'd rather not, if you don't mind. — Предпочёл бы не, если вы не возражаете.<br>
+That's not really my thing. — Это не совсем моё.<br>
+I'll pass on that one, thanks. — Пожалуй, откажусь, спасибо.</div>
+</div>`,
+        exercises:[
+          {q:'Would you ___ opening the window?',blank:'mind',opts:['mind','like','want','consider']},
+          {q:'I was ___ if you could help me with this.',blank:'wondering',opts:['wondering','thinking','hoping','asking']},
+          {q:'I\'m ___ that won\'t be possible today.',blank:'afraid',opts:['afraid','sorry','worried','concerned']},
+          {q:'I\'d ___ not go, if that\'s OK.',blank:'rather',opts:['rather','prefer','instead','sooner']},
+          {q:'Perhaps we could ___ an alternative?',blank:'consider',opts:['consider','try','look at','think about']},
+          {q:'I don\'t ___ you could help me out?',blank:'suppose',opts:['suppose','think','imagine','expect']},
+          {q:'That\'s not ___ my thing, to be honest.',blank:'really',opts:['really','quite','very','exactly']},
+          {q:'With ___, I disagree with that approach.',blank:'respect',opts:['respect','due respect','all respect','consideration']},
+          {q:'It\'s not quite ___ I had in mind.',blank:'what',opts:['what','how','that','which']},
+          {q:'I\'ll ___ on that one, thanks.',blank:'pass',opts:['pass','skip','decline','go']},
+          {q:'Do you ___ it would be possible to reschedule?',blank:'think',opts:['think','feel','suppose','imagine']},
+          {q:'That\'s an ___ approach, but I\'m not convinced.',blank:'interesting',opts:['interesting','unusual','creative','different']},
+          {q:'I was ___ if you wouldn\'t mind taking a look.',blank:'wondering',opts:['wondering','hoping','thinking','wishing']},
+          {q:'Perhaps ___ could look at this differently.',blank:'we',opts:['we','you','someone','I']},
+          {q:'With the greatest of ___, I think you\'re wrong.',blank:'respect',opts:['respect','care','consideration','deference']},
+          {q:'I\'m afraid there\'s been a ___.',blank:'misunderstanding',opts:['misunderstanding','mistake','problem','mix-up']},
+          {q:'Would it be ___ to delay the deadline slightly?',blank:'possible',opts:['possible','ok','feasible','acceptable']},
+          {q:'I\'d rather ___ comment on that.',blank:'not',opts:['not','avoid','refrain','decline to']},
+          {q:'I was ___ if you\'d considered this option.',blank:'wondering',opts:['wondering','curious','thinking','asking']},
+          {q:'That\'s ___ I had in mind, but let\'s discuss it.',blank:'not quite what',opts:['not quite what','not exactly what','different from what','not really what']}
+        ]
+      },
+      {
+        id:16,title:'Социальные сети и интернет',xp:30,
+        theory:`<div class="theory-block">
+<h3>Social Media & Internet — соцсети и интернет</h3>
+<p>Язык интернета и соцсетей — неотъемлемая часть современного английского.</p>
+<p style="margin-top:10px;font-weight:600">Действия в соцсетях:</p>
+<div class="rule"><b>post</b> — публиковать | <b>share</b> — делиться<br>
+<b>like / react</b> — лайкать | <b>comment</b> — комментировать<br>
+<b>follow / unfollow</b> — подписаться / отписаться<br>
+<b>tag</b> — отметить | <b>DM</b> (direct message) — личное сообщение<br>
+<b>go viral</b> — стать вирусным | <b>trend</b> — тренд<br>
+<b>scroll</b> — листать | <b>doom-scroll</b> — листать плохие новости</div>
+<p style="margin-top:10px;font-weight:600">Контент:</p>
+<div class="rule"><b>reel / short</b> — короткое видео<br>
+<b>thread</b> — ветка обсуждения<br>
+<b>meme</b> — мем | <b>caption</b> — подпись<br>
+<b>hashtag</b> — хэштег | <b>algorithm</b> — алгоритм</div>
+<p style="margin-top:10px;font-weight:600">Поведение онлайн:</p>
+<div class="rule">I'm taking a digital detox. — Я делаю цифровой детокс.<br>
+Don't feed the trolls. — Не отвечайте троллям.<br>
+I got cancelled online. — Меня отменили онлайн.</div>
+</div>`,
+        exercises:[
+          {q:'The video ___ viral overnight — 10 million views!',blank:'went',opts:['went','got','became','turned']},
+          {q:'She ___ me in her photo without asking.',blank:'tagged',opts:['tagged','marked','mentioned','linked']},
+          {q:'I need a digital ___. Too much screen time.',blank:'detox',opts:['detox','break','holiday','rest']},
+          {q:'Don\'t ___ the trolls — just ignore them.',blank:'feed',opts:['feed','reply to','engage','answer']},
+          {q:'I sent her a ___ — didn\'t want to post publicly.',blank:'DM',opts:['DM','message','private note','direct message']},
+          {q:'I\'m going to ___ him. He posts too much.',blank:'unfollow',opts:['unfollow','unsubscribe','block','remove']},
+          {q:'His tweet is ___ right now. Everyone\'s talking about it.',blank:'trending',opts:['trending','viral','popular','spreading']},
+          {q:'The ___ keeps showing me the same type of content.',blank:'algorithm',opts:['algorithm','feed','app','platform']},
+          {q:'I spent an hour ___ through Instagram.',blank:'scrolling',opts:['scrolling','swiping','browsing','going']},
+          {q:'She wrote a long ___ on Twitter about the issue.',blank:'thread',opts:['thread','post','reply','comment']},
+          {q:'The ___ under her post was hilarious.',blank:'caption',opts:['caption','comment','text','quote']},
+          {q:'I ___ his post to my story.',blank:'shared',opts:['shared','reposted','forwarded','sent']},
+          {q:'I can\'t stop ___ scrolling before bed.',blank:'doom',opts:['doom','night','late','bad']},
+          {q:'Add some ___s so more people find the post.',blank:'hashtag',opts:['hashtag','tag','keyword','label']},
+          {q:'That ___ was so relatable — everyone sent it to me.',blank:'meme',opts:['meme','video','post','image']},
+          {q:'She ___ her following after the video blew up.',blank:'grew',opts:['grew','increased','built','gained']},
+          {q:'The reel got more views than any other ___ she\'d made.',blank:'content',opts:['content','video','post','reel']},
+          {q:'I\'m trying to be more ___ about my screen time.',blank:'mindful',opts:['mindful','careful','aware','conscious']},
+          {q:'He was ___ cancelled after the tweet went viral.',blank:'basically',opts:['basically','almost','nearly','completely']},
+          {q:'Could you ___ me in the photo when you upload it?',blank:'tag',opts:['tag','mention','include','link']}
+        ]
+      },
+      {
+        id:17,title:'Спорт и здоровый образ жизни',xp:30,
+        theory:`<div class="theory-block">
+<h3>Sport & Healthy Living — спорт и здоровье</h3>
+<p style="margin-top:10px;font-weight:600">Разговоры о спорте:</p>
+<div class="rule">I've taken up running. — Я начал бегать.<br>
+I work out three times a week. — Занимаюсь три раза в неделю.<br>
+I'm training for a marathon. — Готовлюсь к марафону.<br>
+I've been going to the gym regularly. — Регулярно хожу в спортзал.<br>
+I'm trying to get back in shape. — Стараюсь прийти в форму.</div>
+<p style="margin-top:10px;font-weight:600">Здоровый образ жизни:</p>
+<div class="rule"><b>cut down on</b> — сократить потребление<br>
+<b>give up</b> — бросить (курить, алкоголь)<br>
+<b>stay hydrated</b> — пить достаточно воды<br>
+<b>get enough sleep</b> — высыпаться<br>
+<b>meal prep</b> — готовить еду заранее</div>
+<p style="margin-top:10px;font-weight:600">Ключевая лексика:</p>
+<div class="rule"><b>cardio</b> — кардио | <b>strength training</b> — силовые тренировки<br>
+<b>stretch</b> — растяжка | <b>warm up</b> — разминка<br>
+<b>personal best (PB)</b> — личный рекорд<br>
+<b>cheat day</b> — день срыва в диете</div>
+</div>`,
+        exercises:[
+          {q:'I\'ve ___ up running. Three times a week.',blank:'taken',opts:['taken','started','picked','got']},
+          {q:'I need to ___ down on sugar.',blank:'cut',opts:['cut','reduce','lower','bring']},
+          {q:'I\'m ___ for a half-marathon in April.',blank:'training',opts:['training','preparing','running','practising']},
+          {q:'Make sure you ___ up before the workout.',blank:'warm',opts:['warm','heat','stretch','prepare']},
+          {q:'I got a new personal ___! 22 minutes for 5k.',blank:'best',opts:['best','record','time','achievement']},
+          {q:'I\'m trying to ___ in shape after the holidays.',blank:'get',opts:['get','come','go','stay']},
+          {q:'I ___ out five days a week.',blank:'work',opts:['work','train','exercise','go']},
+          {q:'Stay ___. Drink at least 2 litres a day.',blank:'hydrated',opts:['hydrated','watered','fluid','drinking']},
+          {q:'I do ___ prep every Sunday for the week.',blank:'meal',opts:['meal','food','weekly','batch']},
+          {q:'Don\'t forget to ___ after exercise.',blank:'stretch',opts:['stretch','cool down','rest','relax']},
+          {q:'I\'m trying to ___ enough sleep — at least 8 hours.',blank:'get',opts:['get','have','sleep','rest']},
+          {q:'Saturday is my ___ day. Pizza and no guilt.',blank:'cheat',opts:['cheat','rest','off','free']},
+          {q:'I do ___ training to build strength.',blank:'strength',opts:['strength','weight','resistance','muscle']},
+          {q:'I\'ve ___ up drinking. Feeling much better.',blank:'given',opts:['given','stopped','cut','quit']},
+          {q:'I try to do 10,000 ___ a day.',blank:'steps',opts:['steps','paces','walks','moves']},
+          {q:'___ is great for your heart and lungs.',blank:'Cardio',opts:['Cardio','Running','Swimming','Exercise']},
+          {q:'I do yoga for the ___ and the mindfulness.',blank:'flexibility',opts:['flexibility','stretch','balance','calm']},
+          {q:'I need to ___ more regularly. I keep skipping the gym.',blank:'exercise',opts:['exercise','work out','go','move']},
+          {q:'Good sleep is ___ as exercise — don\'t neglect it.',blank:'just as important',opts:['just as important','equally important','as vital','as key']},
+          {q:'I joined a ___ class at the gym.',blank:'spinning',opts:['spinning','cycling','spin','bike']}
+        ]
+      },
+      {
+        id:18,title:'Американский vs Британский английский',xp:35,
+        theory:`<div class="theory-block">
+<h3>American vs British English — AmE vs BrE</h3>
+<p>Один язык — два варианта. Важно понимать оба, чтобы не запутаться.</p>
+<p style="margin-top:10px;font-weight:600">Словарные различия:</p>
+<div class="rule" style="font-size:12px">
+<b>BrE → AmE</b><br>
+flat → apartment | lift → elevator<br>
+biscuit → cookie | chips → fries<br>
+pavement → sidewalk | post → mail<br>
+queue → line | rubbish → garbage/trash<br>
+autumn → fall | holiday → vacation<br>
+mobile → cell phone | lorry → truck<br>
+petrol → gas | football → soccer<br>
+shop → store | chemist → pharmacy/drugstore
+</div>
+<p style="margin-top:10px;font-weight:600">Различия в произношении:</p>
+<div class="rule">schedule: BrE = /ˈʃedjuːl/ | AmE = /ˈskedʒuːl/<br>
+advertisement: BrE = ad-VER-tis-ment | AmE = AD-ver-tize-ment<br>
+Z: BrE = "zed" | AmE = "zee"</div>
+<p style="margin-top:10px;font-weight:600">Грамматические различия:</p>
+<div class="rule">BrE: Have you got a pen? | AmE: Do you have a pen?<br>
+BrE: I've just eaten. | AmE: I just ate.<br>
+BrE: The team are winning. | AmE: The team is winning.</div>
+</div>`,
+        exercises:[
+          {q:'In British English, "flat" means ___ in American.',blank:'apartment',opts:['apartment','condo','studio','room']},
+          {q:'Americans say "elevator". British say ___.',blank:'lift',opts:['lift','escalator','ladder','stairs']},
+          {q:'In the US, you stand in ___. In the UK, you queue.',blank:'line',opts:['line','row','queue','order']},
+          {q:'"___ " in BrE = "garbage" or "trash" in AmE.',blank:'Rubbish',opts:['Rubbish','Waste','Refuse','Litter']},
+          {q:'American "fries" = British "___".',blank:'chips',opts:['chips','crisps','fries','potatoes']},
+          {q:'"___ " in BrE = "fall" in AmE.',blank:'Autumn',opts:['Autumn','Winter','Season','Harvest']},
+          {q:'In America, you get petrol at a ___ station.',blank:'gas',opts:['gas','petrol','fuel','energy']},
+          {q:'"___ " in BrE = "vacation" in AmE.',blank:'Holiday',opts:['Holiday','Vacation','Break','Leave']},
+          {q:'British "mobile phone" = American "___ phone".',blank:'cell',opts:['cell','mobile','pocket','hand']},
+          {q:'In the UK it\'s a "chemist". In the US it\'s a ___.',blank:'pharmacy',opts:['pharmacy','drugstore','chemist','medicine shop']},
+          {q:'BrE: "Have you ___ a car?" AmE: "Do you have a car?"',blank:'got',opts:['got','owned','had','bought']},
+          {q:'"Football" in the UK = "___ " in the US.',blank:'soccer',opts:['soccer','football','gridiron','ball']},
+          {q:'BrE: "I\'ve ___ eaten." AmE: "I just ate."',blank:'just',opts:['just','already','recently','yet']},
+          {q:'American "cookie" = British "___".',blank:'biscuit',opts:['biscuit','cracker','wafer','bun']},
+          {q:'The letter Z is called "___ " in British English.',blank:'zed',opts:['zed','zee','z','zeta']},
+          {q:'"Pavement" in the UK = "___ " in the US.',blank:'sidewalk',opts:['sidewalk','walkway','path','footpath']},
+          {q:'"___ " in AmE = "lorry" in BrE.',blank:'Truck',opts:['Truck','Van','Vehicle','Car']},
+          {q:'BrE: "The team ___ winning." AmE: "The team is winning."',blank:'are',opts:['are','is','were','was']},
+          {q:'BrE: "I\'ll ___ you." AmE: "I\'ll mail you."',blank:'post',opts:['post','send','write','text']},
+          {q:'"___ " in BrE = "store" in AmE.',blank:'Shop',opts:['Shop','Boutique','Market','Place']}
+        ]
+      },
+      {
+        id:19,title:'Разговорные выражения и сленг',xp:35,
+        theory:`<div class="theory-block">
+<h3>Colloquial Expressions & Slang — разговорные выражения</h3>
+<p>Без разговорных выражений речь звучит слишком формально и книжно.</p>
+<p style="margin-top:10px;font-weight:600">Повседневные выражения:</p>
+<div class="rule"><b>to be honest</b> (TBH) — честно говоря<br>
+<b>no biggie</b> — не страшно, не проблема<br>
+<b>go for it</b> — давай, не раздумывай<br>
+<b>hang on</b> — подожди | <b>no worries</b> — не беспокойся<br>
+<b>you're telling me</b> — ты мне говоришь! (согласие)<br>
+<b>fair enough</b> — ладно, понятно</div>
+<p style="margin-top:10px;font-weight:600">Усиление:</p>
+<div class="rule"><b>dead</b> (BrE) — очень (dead easy = очень легко)<br>
+<b>proper</b> (BrE) — настоящий, очень (proper good)<br>
+<b>pretty</b> — довольно | <b>kind of / sort of</b> — как бы<br>
+<b>absolutely / totally</b> — абсолютно</div>
+<p style="margin-top:10px;font-weight:600">Популярные фразы:</p>
+<div class="rule"><b>what's the deal?</b> — что происходит?<br>
+<b>that's a thing</b> — это вполне нормальное явление<br>
+<b>it is what it is</b> — ну и ладно, ничего не поделаешь<br>
+<b>I can't even</b> — у меня нет слов<br>
+<b>spill the tea</b> — расскажи сплетни</div>
+</div>`,
+        exercises:[
+          {q:'___ enough — I understand your point.',blank:'Fair',opts:['Fair','Good','Fair','OK']},
+          {q:'No ___. Don\'t worry about it.',blank:'biggie',opts:['biggie','problem','worry','issue']},
+          {q:'You\'re ___ me! The food was terrible.',blank:'telling',opts:['telling','showing','reminding','talking to']},
+          {q:'___ on — let me just check something.',blank:'Hang',opts:['Hang','Hold','Wait','Stay']},
+          {q:'That was ___ easy. I did it in five minutes.',blank:'dead',opts:['dead','really','so','very']},
+          {q:'Should I apply? Go ___ it!',blank:'for',opts:['for','at','with','ahead']},
+          {q:'It is ___ it is. Nothing we can do.',blank:'what',opts:['what','how','as','just']},
+          {q:'What\'s the ___? Why is everyone leaving?',blank:'deal',opts:['deal','situation','story','matter']},
+          {q:'I can\'t ___. That is the funniest thing I\'ve ever seen.',blank:'even',opts:['even','believe it','cope','handle it']},
+          {q:'No ___. You didn\'t know it was a problem.',blank:'worries',opts:['worries','problem','stress','drama']},
+          {q:'Spill the ___! What happened last night?',blank:'tea',opts:['tea','beans','gossip','story']},
+          {q:'That\'s ___ a thing now — everyone does it.',blank:'totally',opts:['totally','actually','really','kind of']},
+          {q:'To be ___, I didn\'t enjoy the film much.',blank:'honest',opts:['honest','fair','real','true']},
+          {q:'It was ___ good — really enjoyed myself.',blank:'proper',opts:['proper','dead','real','truly']},
+          {q:'I was ___ of hoping you\'d help.',blank:'sort',opts:['sort','kind','a bit','slightly']},
+          {q:'It\'s ___ cold today. Not very nice.',blank:'pretty',opts:['pretty','fairly','quite','rather']},
+          {q:'___ the tea — I heard something happened.',blank:'Spill',opts:['Spill','Share','Tell','Drop']},
+          {q:'I was ___. I thought she was joking.',blank:'like',opts:['like','just','basically','literally']},
+          {q:'She was ___ rude to me. Totally unnecessary.',blank:'dead',opts:['dead','proper','really','so']},
+          {q:'It is what it ___. We move on.',blank:'is',opts:['is','was','will be','has been']}
+        ]
+      },
+      {
+        id:20,title:'Итоговый тест Everyday English',xp:50,
+        theory:`<div class="theory-block">
+<h3>🏆 Итоговый урок — Everyday English</h3>
+<p>Поздравляем! Ты прошёл полный курс Everyday English — 20 уроков живого разговорного языка.</p>
+<p style="margin-top:10px;font-weight:600">Что ты изучил:</p>
+<div class="rule">✅ Приветствия и знакомство — формальные и неформальные<br>
+✅ Фразовые глаголы — базовые и продвинутые<br>
+✅ Идиомы — тело, время, деньги<br>
+✅ Телефонные разговоры — личные звонки<br>
+✅ Дом и быт — жильё, домашние дела<br>
+✅ Семья и отношения<br>
+✅ Хобби и свободное время<br>
+✅ Эмоции — богатый словарь чувств<br>
+✅ Мнения и дискуссии — согласие и несогласие<br>
+✅ Планирование — предложения и отказы<br>
+✅ Поздравления и пожелания<br>
+✅ Описание людей и характера<br>
+✅ Вежливость и такт<br>
+✅ Социальные сети и интернет<br>
+✅ Спорт и здоровье<br>
+✅ AmE vs BrE — ключевые различия<br>
+✅ Разговорные выражения и сленг</div>
+<p style="margin-top:12px;font-weight:600">🗣️ Финальный тест — 20 вопросов по всем темам. Удачи!</p>
+</div>`,
+        exercises:[
+          {q:'Long time no ___! You haven\'t changed a bit.',blank:'see',opts:['see','meet','talk','speak']},
+          {q:'She ___ over the moon when she got the news.',blank:'was',opts:['was','got','went','felt']},
+          {q:'Don\'t ___ up! You\'re nearly there.',blank:'give',opts:['give','back','slow','stop']},
+          {q:'That coat ___ an arm and a leg.',blank:'cost',opts:['cost','was','set me back','took']},
+          {q:'I\'m ___ forward to the weekend.',blank:'looking',opts:['looking','waiting','hoping','thinking']},
+          {q:'In British English, "flat" = American "___ ".',blank:'apartment',opts:['apartment','condo','room','studio']},
+          {q:'She ___ her heart on her sleeve — very emotional.',blank:'wears',opts:['wears','has','shows','puts']},
+          {q:'I\'m ___ up with the noise. I can\'t work.',blank:'fed',opts:['fed','done','filled','had']},
+          {q:'Fair ___. I see your point.',blank:'enough',opts:['enough','play','point','call']},
+          {q:'We ___ out every detail before presenting.',blank:'worked',opts:['worked','figured','sorted','thought']},
+          {q:'Would you ___ passing me the salt?',blank:'mind',opts:['mind','like','want','consider']},
+          {q:'She was ___ when she found out she\'d passed.',blank:'over the moon',opts:['over the moon','thrilled','excited','gutted']},
+          {q:'I\'m ___ into hiking lately.',blank:'really',opts:['really','very','absolutely','totally']},
+          {q:'It ___ out he was wrong after all.',blank:'turned',opts:['turned','came','found','showed']},
+          {q:'No ___. I can help anytime.',blank:'biggie',opts:['biggie','problem','worry','bother']},
+          {q:'I\'m a night ___. I do my best work after midnight.',blank:'owl',opts:['owl','person','bird','type']},
+          {q:'He ___ her into changing her mind.',blank:'talked',opts:['talked','convinced','pushed','got']},
+          {q:'Spill the ___! I want to know everything.',blank:'tea',opts:['tea','beans','gossip','story']},
+          {q:'She\'s so ___. No ego — very genuine.',blank:'down-to-earth',opts:['down-to-earth','humble','normal','real']},
+          {q:'We went ___ Dutch — each paid for themselves.',blank:'dutch',opts:['dutch','halves','split','separate']}
+        ]
+      }
+    ]
   }
 };
 
@@ -4620,7 +5549,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel'].forEach(id=>{
+  ['basic','business','it','travel','everyday'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
