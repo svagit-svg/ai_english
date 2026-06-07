@@ -454,6 +454,43 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="dating-sub">20 уроков</p>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('news')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;font-size:18px;">📰</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">News & Media English</h3><span style="font-size:9px;background:rgba(14,165,233,0.15);color:#0ea5e9;border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
+          <span id="news-pct" style="font-size:11px;color:#0ea5e9;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">СМИ, подкасты, медиаграмотность</p>
+        <div class="progress-bar"><div class="progress-fill" id="news-bar" style="width:0%;background:#0ea5e9"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="news-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('speaking')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">🎤</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Public Speaking</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B2-C1</span></div>
+          <span id="speaking-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Выступления, дебаты, убеждение</p>
+        <div class="progress-bar"><div class="progress-fill" id="speaking-bar" style="width:0%;background:#8b5cf6"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="speaking-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('adating')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(244,63,94,0.1);color:#f43f5e;font-size:18px;">💎</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Advanced Dating English</h3><span style="font-size:9px;background:rgba(244,63,94,0.15);color:#f43f5e;border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
+          <span id="adating-pct" style="font-size:11px;color:#f43f5e;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Глубокие диалоги, эмоции, отношения</p>
+        <div class="progress-bar"><div class="progress-fill" id="adating-bar" style="width:0%;background:#f43f5e"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="adating-sub">20 уроков</p>
+      </div>
+    </div>
+
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -860,7 +897,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -6872,6 +6909,627 @@ I\'ll always care about you. — Я всегда буду заботиться �
         ]
       }
     ]
+  },
+
+  // ── NEWS & MEDIA ─────────────────────────────────────────
+  news:{
+    title:'News & Media English',icon:'📰',color:'#0ea5e9',
+    lessons:[
+      {id:1,title:'Reading Headlines',xp:30,
+        theory:'<div class="rule"><b>Headline Language</b> — газетные заголовки<br>Headlines drop articles and use short words: <i>Talks</i> (instead of negotiations), <i>Bid</i> (attempt), <i>Vow</i> (promise), <i>Slam</i> (criticize sharply). Present tense describes past events: <b>PM Visits France</b> = the PM visited France.</div>',
+        exercises:[
+          {q:'The headline "Leader ___ new policy" means the leader promised it.',blank:'vows',opts:['vows','says','tells','speaks']},
+          {q:'In headlines, ___ are usually dropped.',blank:'articles',opts:['articles','verbs','nouns','adjectives']},
+          {q:'"Talks collapse" in a headline means negotiations ___.',blank:'failed',opts:['failed','paused','succeeded','started']},
+          {q:'The word ___ in headlines means "attempt".',blank:'bid',opts:['bid','try','shot','go']},
+          {q:'"Slam" in a headline means to ___ something strongly.',blank:'criticize',opts:['criticize','hit','close','approve']}
+        ]
+      },
+      {id:2,title:'Breaking News Vocabulary',xp:30,
+        theory:'<div class="rule"><b>Breaking News</b><br><i>Breaking news</i> — срочные новости. Key phrases: <b>sources say</b> (источники сообщают), <b>unconfirmed reports</b> (непроверенные данные), <b>officials announced</b> (официальные лица объявили), <b>eyewitnesses claim</b> (очевидцы утверждают).</div>',
+        exercises:[
+          {q:'___ news means a story just happened and is very important.',blank:'Breaking',opts:['Breaking','Hot','Fresh','New']},
+          {q:'"___ say the president will resign" — this means the information is not yet official.',blank:'Sources',opts:['Sources','Reports','Claims','Rumors']},
+          {q:'An ___ is someone who saw an event happen personally.',blank:'eyewitness',opts:['eyewitness','observer','viewer','watcher']},
+          {q:'"Unconfirmed ___" means the information has not been verified.',blank:'reports',opts:['reports','news','facts','data']},
+          {q:'"Officials ___" a new law means they made a public statement about it.',blank:'announced',opts:['announced','said','told','spoke']}
+        ]
+      },
+      {id:3,title:'Reporting Verbs',xp:35,
+        theory:'<div class="rule"><b>Reporting Verbs</b><br>Journalists use specific verbs to describe what people said:<br><b>claim</b> — утверждать (often unverified)<br><b>allege</b> — обвинять (without proof)<br><b>confirm</b> — подтверждать<br><b>deny</b> — отрицать<br><b>reveal</b> — раскрывать</div>',
+        exercises:[
+          {q:'The company ___ all wrongdoing, saying the accusations were false.',blank:'denied',opts:['denied','refused','rejected','dismissed']},
+          {q:'The whistleblower ___ secret documents to the press.',blank:'revealed',opts:['revealed','showed','gave','told']},
+          {q:'Police ___ that three arrests had been made.',blank:'confirmed',opts:['confirmed','said','told','spoke']},
+          {q:'The report ___ the CEO of fraud, though no charges were filed.',blank:'alleges',opts:['alleges','accuses','blames','claims']},
+          {q:'He ___ to have witnessed the crime but provided no evidence.',blank:'claims',opts:['claims','says','tells','alleges']}
+        ]
+      },
+      {id:4,title:'Media Bias & Perspective',xp:35,
+        theory:'<div class="rule"><b>Media Bias</b><br><b>Bias</b> — предвзятость. Types: <i>slant</i> (уклон), <i>spin</i> (подача информации в нужном свете), <i>framing</i> (как подаётся история). A <b>balanced</b> article presents multiple <b>perspectives</b>. <b>Propaganda</b> — намеренно искажённая информация.</div>',
+        exercises:[
+          {q:'A ___ article shows only one side of a story.',blank:'biased',opts:['biased','fair','balanced','neutral']},
+          {q:'___ means presenting facts in a way that favors one viewpoint.',blank:'Spin',opts:['Spin','News','Bias','Frame']},
+          {q:'Good journalism presents multiple ___.',blank:'perspectives',opts:['perspectives','opinions','stories','views']},
+          {q:'___ is information deliberately spread to influence public opinion.',blank:'Propaganda',opts:['Propaganda','Bias','Spin','News']},
+          {q:'A ___ report covers all sides of an issue fairly.',blank:'balanced',opts:['balanced','neutral','fair','honest']}
+        ]
+      },
+      {id:5,title:'Podcast & Audio News',xp:30,
+        theory:'<div class="rule"><b>Listening to News</b><br>Key podcast vocabulary: <b>host</b> (ведущий), <b>guest</b> (гость), <b>episode</b> (выпуск), <b>transcript</b> (расшифровка), <b>subscribe</b> (подписаться). Phrases: <i>In today\'s episode</i>, <i>Joining us now is</i>, <i>Let\'s dive in</i>.</div>',
+        exercises:[
+          {q:'The ___ of the podcast interviews guests each week.',blank:'host',opts:['host','presenter','anchor','speaker']},
+          {q:'"Let\'s ___ in" means let\'s start the topic.',blank:'dive',opts:['dive','get','go','jump']},
+          {q:'A ___ is a written version of spoken audio.',blank:'transcript',opts:['transcript','script','text','caption']},
+          {q:'"Joining us ___ is" introduces a guest on a show.',blank:'now',opts:['now','today','here','live']},
+          {q:'Each individual podcast recording is called an ___.',blank:'episode',opts:['episode','show','broadcast','segment']}
+        ]
+      },
+      {id:6,title:'Opinion & Editorial',xp:35,
+        theory:'<div class="rule"><b>Opinion Pieces</b><br>An <b>editorial</b> expresses the newspaper\'s view. An <b>op-ed</b> (opposite editorial page) is written by an outside contributor. Key phrases: <i>In my view</i>, <i>It could be argued that</i>, <i>The evidence suggests</i>, <i>Critics contend that</i>.</div>',
+        exercises:[
+          {q:'An ___ expresses the official position of a newspaper.',blank:'editorial',opts:['editorial','article','report','column']},
+          {q:'"___ be argued that" introduces a debatable point politely.',blank:'It could',opts:['It could','It should','There can','This can']},
+          {q:'"Critics ___ that the policy failed" means critics argue.',blank:'contend',opts:['contend','say','think','believe']},
+          {q:'An op-ed is written by a ___ contributor, not the newspaper.',blank:'guest',opts:['guest','outside','special','expert']},
+          {q:'"The evidence ___" means the facts point toward a conclusion.',blank:'suggests',opts:['suggests','shows','proves','indicates']}
+        ]
+      },
+      {id:7,title:'Social Media & Viral Content',xp:30,
+        theory:'<div class="rule"><b>Social Media Language</b><br><b>viral</b> — стало вирусным, <b>trending</b> — в тренде, <b>clickbait</b> — кликбейт, <b>thread</b> — цепочка постов, <b>algorithm</b> — алгоритм, <b>engagement</b> — вовлечённость, <b>influencer</b> — инфлюенсер.</div>',
+        exercises:[
+          {q:'A video that spreads very fast online has gone ___.',blank:'viral',opts:['viral','popular','famous','shared']},
+          {q:'___ is a misleading headline designed to make you click.',blank:'Clickbait',opts:['Clickbait','Spam','Fake news','Bait']},
+          {q:'A social media ___ is a series of connected posts.',blank:'thread',opts:['thread','chain','series','post']},
+          {q:'"This topic is ___ on Twitter" means many people are talking about it.',blank:'trending',opts:['trending','viral','popular','growing']},
+          {q:'___ measures how much users interact with content.',blank:'Engagement',opts:['Engagement','Reach','Traffic','Clicks']}
+        ]
+      },
+      {id:8,title:'Discussing Current Events',xp:35,
+        theory:'<div class="rule"><b>Discussing News</b><br>Useful phrases: <i>Have you heard about...?</i> <i>Apparently,</i> <i>According to reports,</i> <i>I read that...</i> <i>What\'s your take on...?</i> <i>It\'s hard to say without more context.</i></div>',
+        exercises:[
+          {q:'"What\'s your ___ on this?" asks for someone\'s opinion.',blank:'take',opts:['take','view','idea','opinion']},
+          {q:'"___ to reports, the deal fell through" cites a source.',blank:'According',opts:['According','Based','Referring','Per']},
+          {q:'"___, the president resigned" means someone told you informally.',blank:'Apparently',opts:['Apparently','Obviously','Clearly','Surely']},
+          {q:'"It\'s hard to say ___ more context" expresses uncertainty.',blank:'without',opts:['without','before','until','unless']},
+          {q:'"Have you ___ about the election?" starts a news discussion.',blank:'heard',opts:['heard','read','seen','known']}
+        ]
+      },
+      {id:9,title:'Fact-Checking Language',xp:35,
+        theory:'<div class="rule"><b>Fact-Checking</b><br><b>verify</b> — проверять, <b>misinformation</b> — дезинформация (непреднамеренная), <b>disinformation</b> — целенаправленная ложь, <b>debunk</b> — разоблачать, <b>source</b> — источник, <b>credible</b> — достоверный.</div>',
+        exercises:[
+          {q:'To ___ a claim means to prove it is false.',blank:'debunk',opts:['debunk','deny','refuse','reject']},
+          {q:'Always check whether a ___ is credible before sharing.',blank:'source',opts:['source','site','page','link']},
+          {q:'___ is false information spread without intention to deceive.',blank:'Misinformation',opts:['Misinformation','Disinformation','Propaganda','Spin']},
+          {q:'___ is deliberately false information spread to harm.',blank:'Disinformation',opts:['Disinformation','Misinformation','Rumor','Bias']},
+          {q:'A journalist must ___ facts before publishing a story.',blank:'verify',opts:['verify','check','confirm','test']}
+        ]
+      },
+      {id:10,title:'Interview & Press Conference',xp:35,
+        theory:'<div class="rule"><b>Press Conference Language</b><br><b>press conference</b> — пресс-конференция, <b>statement</b> — заявление, <b>no comment</b> — без комментариев, <b>off the record</b> — не для прессы, <b>embargo</b> — запрет на публикацию до определённого времени.</div>',
+        exercises:[
+          {q:'"___ the record" means the journalist cannot publish the information.',blank:'Off',opts:['Off','Under','Behind','Beyond']},
+          {q:'A ___ statement is an official public announcement.',blank:'press',opts:['press','public','formal','official']},
+          {q:'"No ___" means the person refuses to speak to the media.',blank:'comment',opts:['comment','words','answer','statement']},
+          {q:'An ___ holds a story until a specific release time.',blank:'embargo',opts:['embargo','hold','delay','freeze']},
+          {q:'The reporter asked a ___ question during the press conference.',blank:'follow-up',opts:['follow-up','next','second','later']}
+        ]
+      },
+      {id:11,title:'Climate & Environment News',xp:35,
+        theory:'<div class="rule"><b>Environment Vocabulary</b><br><b>climate change</b>, <b>emissions</b> (выбросы), <b>carbon footprint</b> (углеродный след), <b>renewable energy</b> (возобновляемая энергия), <b>sustainability</b> (устойчивое развитие), <b>net zero</b> (углеродная нейтральность).</div>',
+        exercises:[
+          {q:'Countries aim to reach ___ zero by reducing all carbon emissions.',blank:'net',opts:['net','carbon','climate','zero']},
+          {q:'___ energy comes from sources like solar and wind.',blank:'Renewable',opts:['Renewable','Clean','Green','Natural']},
+          {q:'Your ___ footprint is the amount of CO2 your activities produce.',blank:'carbon',opts:['carbon','eco','climate','green']},
+          {q:'___ means meeting current needs without harming future generations.',blank:'Sustainability',opts:['Sustainability','Conservation','Ecology','Balance']},
+          {q:'Greenhouse gas ___ must be reduced to slow climate change.',blank:'emissions',opts:['emissions','output','release','production']}
+        ]
+      },
+      {id:12,title:'Politics & Government News',xp:40,
+        theory:'<div class="rule"><b>Political Vocabulary</b><br><b>legislation</b> — законодательство, <b>bill</b> — законопроект, <b>veto</b> — вето, <b>coalition</b> — коалиция, <b>opposition</b> — оппозиция, <b>incumbent</b> — действующий (политик), <b>poll</b> — опрос/голосование.</div>',
+        exercises:[
+          {q:'The president used his ___ to block the new law.',blank:'veto',opts:['veto','power','right','authority']},
+          {q:'A ___ is a proposed law not yet passed by parliament.',blank:'bill',opts:['bill','law','act','rule']},
+          {q:'The ___ party currently holds power in government.',blank:'incumbent',opts:['incumbent','ruling','leading','top']},
+          {q:'Two parties formed a ___ to win the majority.',blank:'coalition',opts:['coalition','alliance','union','group']},
+          {q:'___ shows the incumbent leading by 5 points.',blank:'Polling',opts:['Polling','Voting','Survey','Data']}
+        ]
+      },
+      {id:13,title:'Economic News',xp:40,
+        theory:'<div class="rule"><b>Economics in the News</b><br><b>inflation</b> — инфляция, <b>recession</b> — рецессия, <b>GDP</b> — ВВП, <b>interest rate</b> — процентная ставка, <b>stimulus</b> — стимулирование экономики, <b>trade deficit</b> — торговый дефицит.</div>',
+        exercises:[
+          {q:'Rising ___ means prices are increasing across the economy.',blank:'inflation',opts:['inflation','prices','costs','rates']},
+          {q:'A ___ is two consecutive quarters of negative GDP growth.',blank:'recession',opts:['recession','downturn','crisis','slump']},
+          {q:'The central bank raised ___ rates to slow inflation.',blank:'interest',opts:['interest','lending','bank','financial']},
+          {q:'___ is the total value of all goods and services in a country.',blank:'GDP',opts:['GDP','GNP','GDP','Output']},
+          {q:'A government ___ package injects money to boost the economy.',blank:'stimulus',opts:['stimulus','aid','fund','grant']}
+        ]
+      },
+      {id:14,title:'Technology & Innovation News',xp:35,
+        theory:'<div class="rule"><b>Tech News Vocabulary</b><br><b>breakthrough</b> — прорыв, <b>disruption</b> — разрушение рынка, <b>startup</b> — стартап, <b>IPO</b> — IPO (первичное размещение акций), <b>acquisition</b> — поглощение компании, <b>patent</b> — патент.</div>',
+        exercises:[
+          {q:'Scientists announced a ___ in cancer treatment research.',blank:'breakthrough',opts:['breakthrough','discovery','finding','advance']},
+          {q:'Uber caused major ___ to the traditional taxi industry.',blank:'disruption',opts:['disruption','damage','harm','change']},
+          {q:'The company filed for an ___ to list shares on the stock exchange.',blank:'IPO',opts:['IPO','IPO','listing','offering']},
+          {q:'Google completed a $2 billion ___ of the AI company.',blank:'acquisition',opts:['acquisition','purchase','deal','buyout']},
+          {q:'Apple holds hundreds of ___ protecting its technology.',blank:'patents',opts:['patents','rights','licenses','trademarks']}
+        ]
+      },
+      {id:15,title:'Health & Science News',xp:35,
+        theory:'<div class="rule"><b>Health News</b><br><b>outbreak</b> — вспышка, <b>epidemic</b> — эпидемия, <b>trial</b> — клинические испытания, <b>peer-reviewed</b> — прошедший рецензирование, <b>mortality rate</b> — уровень смертности, <b>vaccine rollout</b> — развёртывание вакцинации.</div>',
+        exercises:[
+          {q:'A disease ___ is when cases suddenly increase in a region.',blank:'outbreak',opts:['outbreak','spread','surge','rise']},
+          {q:'A ___ study has been reviewed and approved by other scientists.',blank:'peer-reviewed',opts:['peer-reviewed','approved','verified','checked']},
+          {q:'The drug passed all three phases of clinical ___.',blank:'trials',opts:['trials','tests','studies','checks']},
+          {q:'The ___ rate measures how many people die from a disease.',blank:'mortality',opts:['mortality','death','fatality','survival']},
+          {q:'The government announced a vaccine ___ for all adults.',blank:'rollout',opts:['rollout','program','launch','drive']}
+        ]
+      },
+      {id:16,title:'Conflict & Geopolitics',xp:40,
+        theory:'<div class="rule"><b>Conflict Language</b><br><b>ceasefire</b> — прекращение огня, <b>sanctions</b> — санкции, <b>diplomacy</b> — дипломатия, <b>treaty</b> — договор, <b>humanitarian crisis</b> — гуманитарный кризис, <b>refugee</b> — беженец.</div>',
+        exercises:[
+          {q:'Both sides agreed to a ___ to stop the fighting temporarily.',blank:'ceasefire',opts:['ceasefire','truce','pause','stop']},
+          {q:'Economic ___ restrict trade and finance with a country.',blank:'sanctions',opts:['sanctions','penalties','bans','restrictions']},
+          {q:'A peace ___ is a formal agreement between nations.',blank:'treaty',opts:['treaty','deal','pact','accord']},
+          {q:'Millions became ___ after fleeing the conflict zone.',blank:'refugees',opts:['refugees','migrants','displaced','evacuees']},
+          {q:'___ involves peaceful negotiation between governments.',blank:'Diplomacy',opts:['Diplomacy','Politics','Talks','Negotiation']}
+        ]
+      },
+      {id:17,title:'Cultural News & Entertainment',xp:30,
+        theory:'<div class="rule"><b>Arts & Culture</b><br><b>premiere</b> — премьера, <b>critically acclaimed</b> — высоко оценённый критиками, <b>box office</b> — кассовые сборы, <b>chart-topping</b> — возглавляющий чарты, <b>retrospective</b> — ретроспектива.</div>',
+        exercises:[
+          {q:'The film\'s ___ was attended by A-list celebrities.',blank:'premiere',opts:['premiere','opening','launch','debut']},
+          {q:'A ___ acclaimed film is praised by professional reviewers.',blank:'critically',opts:['critically','widely','highly','greatly']},
+          {q:'The movie earned $200 million at the ___ office.',blank:'box',opts:['box','ticket','cinema','film']},
+          {q:'The album is ___, sitting at number one for three weeks.',blank:'chart-topping',opts:['chart-topping','number one','leading','top']},
+          {q:'A museum ___ presents an artist\'s career work together.',blank:'retrospective',opts:['retrospective','exhibition','show','collection']}
+        ]
+      },
+      {id:18,title:'Investigative Journalism',xp:40,
+        theory:'<div class="rule"><b>Investigative Reporting</b><br><b>whistleblower</b> — разоблачитель, <b>leak</b> — утечка информации, <b>cover-up</b> — сокрытие, <b>corruption</b> — коррупция, <b>accountability</b> — ответственность, <b>expose</b> — разоблачать.</div>',
+        exercises:[
+          {q:'A ___ shares secret information with journalists to reveal wrongdoing.',blank:'whistleblower',opts:['whistleblower','source','informant','spy']},
+          {q:'The newspaper ___ government corruption in a front-page story.',blank:'exposed',opts:['exposed','revealed','uncovered','showed']},
+          {q:'Officials tried to ___ the scandal by destroying evidence.',blank:'cover up',opts:['cover up','hide','bury','suppress']},
+          {q:'A document ___ gave journalists access to classified files.',blank:'leak',opts:['leak','release','breach','share']},
+          {q:'Investigative journalism holds power to ___.',blank:'account',opts:['account','answer','respond','reply']}
+        ]
+      },
+      {id:19,title:'Writing a News Summary',xp:40,
+        theory:'<div class="rule"><b>News Summary Structure</b><br>Use the <b>5 W\'s</b>: Who, What, When, Where, Why (+ How). Start with the most important fact (<b>inverted pyramid</b>). Use <b>attribution</b>: "According to...", "Officials say...". Keep sentences short and active voice.</div>',
+        exercises:[
+          {q:'Good news writing uses ___ voice: "Police arrested the man" not "The man was arrested".',blank:'active',opts:['active','passive','direct','clear']},
+          {q:'The ___ pyramid means the most important info comes first.',blank:'inverted',opts:['inverted','pyramid','reversed','top-down']},
+          {q:'The five W\'s are Who, What, When, Where, and ___.',blank:'Why',opts:['Why','Which','Whether','Whose']},
+          {q:'"___ to the mayor\'s office, construction will begin next year."',blank:'According',opts:['According','Based','Referring','As stated']},
+          {q:'Keeping ___ short and clear improves readability in news.',blank:'sentences',opts:['sentences','paragraphs','words','articles']}
+        ]
+      },
+      {id:20,title:'Advanced Media Analysis',xp:45,
+        theory:'<div class="rule"><b>Media Literacy</b><br><b>agenda-setting</b> — формирование повестки дня, <b>gatekeeping</b> — фильтрация информации редакцией, <b>echo chamber</b> — информационный пузырь, <b>algorithm bias</b> — алгоритмическая предвзятость, <b>media literacy</b> — медиаграмотность.</div>',
+        exercises:[
+          {q:'An ___ chamber exposes you only to views you already agree with.',blank:'echo',opts:['echo','information','filter','news']},
+          {q:'___ means editors deciding which stories reach the public.',blank:'Gatekeeping',opts:['Gatekeeping','Editing','Filtering','Curating']},
+          {q:'Media ___ is the ability to critically evaluate news sources.',blank:'literacy',opts:['literacy','knowledge','skills','awareness']},
+          {q:'___ theory says media shapes what topics people think are important.',blank:'Agenda-setting',opts:['Agenda-setting','Framing','Priming','Bias']},
+          {q:'___ bias occurs when algorithms show you content based on past behavior.',blank:'Algorithm',opts:['Algorithm','Filter','Tech','Data']}
+        ]
+      }
+    ]
+  },
+
+  // ── PUBLIC SPEAKING ───────────────────────────────────────
+  speaking:{
+    title:'Public Speaking',icon:'🎤',color:'#8b5cf6',
+    lessons:[
+      {id:1,title:'Overcoming Stage Fright',xp:30,
+        theory:'<div class="rule"><b>Stage Fright</b> — страх публичных выступлений<br>Tips: <b>breathe deeply</b>, <b>make eye contact</b>, <b>pause for effect</b>. Remember: the audience <i>wants you to succeed</i>. Adrenaline is your friend — it sharpens focus.</div>',
+        exercises:[
+          {q:'To calm nerves, speakers should ___ deeply before going on stage.',blank:'breathe',opts:['breathe','pause','relax','focus']},
+          {q:'Making eye ___ with the audience creates connection.',blank:'contact',opts:['contact','connection','look','engagement']},
+          {q:'A ___ pause gives the audience time to absorb important points.',blank:'deliberate',opts:['deliberate','long','silent','dramatic']},
+          {q:'Adrenaline can actually ___ your performance if managed well.',blank:'sharpen',opts:['sharpen','improve','boost','enhance']},
+          {q:'Stage ___ affects even experienced professional speakers.',blank:'fright',opts:['fright','fear','anxiety','nerves']}
+        ]
+      },
+      {id:2,title:'Opening Your Speech',xp:35,
+        theory:'<div class="rule"><b>Powerful Openings</b><br>Start with: <b>a hook</b> (question, quote, shocking stat), <b>a story</b>, or <b>humor</b>. Avoid: "Today I will talk about..." or "Sorry if I\'m nervous." Great openers: <i>"Imagine a world where..."</i> <i>"What if I told you..."</i></div>',
+        exercises:[
+          {q:'A speech ___ grabs attention in the first 30 seconds.',blank:'hook',opts:['hook','opener','start','intro']},
+          {q:'"___ a world where nobody goes hungry" creates vivid imagery.',blank:'Imagine',opts:['Imagine','Think of','Picture','Consider']},
+          {q:'Starting with a powerful ___ makes the audience lean in.',blank:'story',opts:['story','quote','question','fact']},
+          {q:'Saying "sorry if I\'m nervous" makes you seem less ___.',blank:'credible',opts:['credible','confident','strong','prepared']},
+          {q:'"What if I ___ you that everything you believe is wrong?"',blank:'told',opts:['told','said','showed','asked']}
+        ]
+      },
+      {id:3,title:'Speech Structure',xp:35,
+        theory:'<div class="rule"><b>Classic Structure</b><br>"Tell them what you\'ll say, say it, tell them what you said."<br><b>Introduction</b>: hook + thesis<br><b>Body</b>: 3 main points with evidence<br><b>Conclusion</b>: summary + call to action (CTA)</div>',
+        exercises:[
+          {q:'A ___ to action urges the audience to do something specific.',blank:'call',opts:['call','request','demand','appeal']},
+          {q:'Your ___ statement tells the audience what your speech is about.',blank:'thesis',opts:['thesis','main','central','key']},
+          {q:'The ___ restates main points and leaves a strong final impression.',blank:'conclusion',opts:['conclusion','ending','close','summary']},
+          {q:'Limit your speech body to ___ main points for clarity.',blank:'three',opts:['three','five','two','several']},
+          {q:'Supporting your points with ___ makes your argument convincing.',blank:'evidence',opts:['evidence','facts','data','examples']}
+        ]
+      },
+      {id:4,title:'Voice & Delivery',xp:35,
+        theory:'<div class="rule"><b>Voice Control</b><br><b>Pace</b> — скорость речи. <b>Pitch</b> — высота голоса. <b>Volume</b> — громкость. <b>Tone</b> — тон. <b>Pause</b> — пауза. Vary all four for impact. Slow down on key points. Use silence — it\'s powerful.</div>',
+        exercises:[
+          {q:'Speaking too fast reduces your ___. Slow down on key points.',blank:'clarity',opts:['clarity','impact','speed','power']},
+          {q:'Your voice ___ rises naturally at the end of a question.',blank:'pitch',opts:['pitch','tone','volume','level']},
+          {q:'A strategic ___ after a key point lets it sink in.',blank:'pause',opts:['pause','silence','stop','break']},
+          {q:'Vary your ___ — don\'t speak at the same pace the whole time.',blank:'pace',opts:['pace','speed','rate','timing']},
+          {q:'Increasing your ___ signals that something is very important.',blank:'volume',opts:['volume','voice','tone','pitch']}
+        ]
+      },
+      {id:5,title:'Body Language',xp:30,
+        theory:'<div class="rule"><b>Non-verbal Communication</b><br>55% of communication is body language. <b>Posture</b> — осанка, <b>gesture</b> — жест, <b>eye contact</b> — зрительный контакт, <b>facial expression</b> — выражение лица. Open gestures = confidence. Crossed arms = defensive.</div>',
+        exercises:[
+          {q:'Standing tall with good ___ signals confidence to the audience.',blank:'posture',opts:['posture','stance','position','poise']},
+          {q:'Open hand ___ make you appear more trustworthy.',blank:'gestures',opts:['gestures','movements','signals','actions']},
+          {q:'___ arms can make you appear defensive or closed off.',blank:'Crossed',opts:['Crossed','Folded','Closed','Locked']},
+          {q:'Scanning the room and making ___ contact connects you with all listeners.',blank:'eye',opts:['eye','visual','direct','personal']},
+          {q:'Your ___ expression should match the emotion of your words.',blank:'facial',opts:['facial','face','visual','physical']}
+        ]
+      },
+      {id:6,title:'Using Rhetoric',xp:40,
+        theory:'<div class="rule"><b>Rhetorical Devices</b><br><b>Tricolon</b>: "life, liberty, and happiness" (rule of three)<br><b>Anaphora</b>: repeating words at the start of sentences<br><b>Rhetorical question</b>: question not requiring an answer<br><b>Metaphor</b>: direct comparison</div>',
+        exercises:[
+          {q:'"I have a dream... I have a dream... I have a dream" is an example of ___.',blank:'anaphora',opts:['anaphora','repetition','tricolon','rhetoric']},
+          {q:'"We came, we saw, we conquered" uses the rule of ___ (tricolon).',blank:'three',opts:['three','repetition','rhythm','emphasis']},
+          {q:'"Are we going to let this happen?" is a ___ question.',blank:'rhetorical',opts:['rhetorical','leading','open','closed']},
+          {q:'"Life is a journey" is a ___ comparing life to travel.',blank:'metaphor',opts:['metaphor','simile','comparison','analogy']},
+          {q:'Rhetorical devices make speeches more ___ and memorable.',blank:'persuasive',opts:['persuasive','powerful','effective','compelling']}
+        ]
+      },
+      {id:7,title:'Handling Q&A',xp:35,
+        theory:'<div class="rule"><b>Q&A Sessions</b><br>Tips: <b>listen fully</b> before answering. If unsure, say "That\'s a great question — let me think." If you don\'t know: "I don\'t have that data right now, but I\'ll follow up." Never bluff. Paraphrase the question for the whole audience.</div>',
+        exercises:[
+          {q:'Always ___ the question before answering to make sure you understand.',blank:'paraphrase',opts:['paraphrase','repeat','restate','clarify']},
+          {q:'"I\'ll ___ up on that" is a professional way to say you don\'t know now.',blank:'follow',opts:['follow','get','circle','come']},
+          {q:'Never ___ an answer if you don\'t actually know the facts.',blank:'bluff',opts:['bluff','guess','fake','make up']},
+          {q:'"That\'s a great ___" buys you time to think of your answer.',blank:'question',opts:['question','point','thought','observation']},
+          {q:'Repeat the question ___ so the entire audience can hear it.',blank:'aloud',opts:['aloud','loudly','clearly','again']}
+        ]
+      },
+      {id:8,title:'Presentations with Slides',xp:35,
+        theory:'<div class="rule"><b>Slide Design Tips</b><br><b>Less is more</b> — max 6 words per slide. Don\'t read from slides. Use <b>visuals</b> over text. Key phrases: <i>"As you can see here"</i>, <i>"This chart shows"</i>, <i>"Let me draw your attention to"</i>.</div>',
+        exercises:[
+          {q:'"Let me draw your ___ to the bottom right chart."',blank:'attention',opts:['attention','eye','focus','notice']},
+          {q:'Good presenters ___ slides — they use them as visual support only.',blank:'don\'t read',opts:['don\'t read','minimize','ignore','avoid']},
+          {q:'"This ___ shows the growth over five years."',blank:'chart',opts:['chart','graph','slide','visual']},
+          {q:'Use ___ instead of text to make slides more engaging.',blank:'visuals',opts:['visuals','images','pictures','graphics']},
+          {q:'"As you can ___ here, sales doubled in Q3."',blank:'see',opts:['see','note','notice','observe']}
+        ]
+      },
+      {id:9,title:'Storytelling Techniques',xp:40,
+        theory:'<div class="rule"><b>Storytelling in Speeches</b><br>Great stories have: <b>a hero</b>, <b>a conflict</b>, <b>a resolution</b>. Use <b>sensory details</b>: sights, sounds, feelings. Start <i>in medias res</i> (in the middle of action). End with a lesson that links to your main point.</div>',
+        exercises:[
+          {q:'Starting a story ___ medias res means beginning in the middle of action.',blank:'in',opts:['in','at','from','with']},
+          {q:'A good story always has a ___, a conflict, and a resolution.',blank:'hero',opts:['hero','character','person','protagonist']},
+          {q:'___ details (sight, sound, touch) make stories vivid and real.',blank:'Sensory',opts:['Sensory','Descriptive','Emotional','Vivid']},
+          {q:'End your story with a ___ that connects to your speech message.',blank:'lesson',opts:['lesson','point','message','moral']},
+          {q:'Conflict creates ___ — the audience wants to know what happens next.',blank:'tension',opts:['tension','interest','drama','suspense']}
+        ]
+      },
+      {id:10,title:'Impromptu Speaking',xp:40,
+        theory:'<div class="rule"><b>Impromptu Framework: PREP</b><br><b>P</b>oint — your main idea<br><b>R</b>eason — why<br><b>E</b>xample — an example<br><b>P</b>oint — restate your conclusion<br>Use when asked to speak without preparation time.</div>',
+        exercises:[
+          {q:'PREP stands for Point, Reason, ___, Point.',blank:'Example',opts:['Example','Evidence','Explanation','Experience']},
+          {q:'___ speaking means talking without any preparation time.',blank:'Impromptu',opts:['Impromptu','Spontaneous','Instant','Cold']},
+          {q:'In PREP, you ___ your main point at both the beginning and end.',blank:'state',opts:['state','say','repeat','mention']},
+          {q:'A concrete ___ makes your point easier for the audience to understand.',blank:'example',opts:['example','story','case','illustration']},
+          {q:'Even without preparation, ___ for 3 seconds before speaking.',blank:'pause',opts:['pause','think','breathe','wait']}
+        ]
+      },
+      {id:11,title:'Persuasive Speaking',xp:40,
+        theory:'<div class="rule"><b>Aristotle\'s Persuasion (Ethos, Pathos, Logos)</b><br><b>Ethos</b> — credibility (why should they trust you?)<br><b>Pathos</b> — emotion (make them feel)<br><b>Logos</b> — logic (data and reasoning)<br>The most persuasive speeches use all three.</div>',
+        exercises:[
+          {q:'___ refers to appealing to the audience\'s emotions.',blank:'Pathos',opts:['Pathos','Ethos','Logos','Rhetoric']},
+          {q:'Citing research and statistics uses ___ (logical appeal).',blank:'logos',opts:['logos','ethos','pathos','reason']},
+          {q:'Establishing your ___ shows the audience why they should trust you.',blank:'credibility',opts:['credibility','authority','expertise','reputation']},
+          {q:'The most ___ speeches combine ethos, pathos, and logos.',blank:'persuasive',opts:['persuasive','effective','powerful','impactful']},
+          {q:'A personal story that moves people is an example of ___.',blank:'pathos',opts:['pathos','ethos','logos','emotion']}
+        ]
+      },
+      {id:12,title:'Debates & Arguments',xp:40,
+        theory:'<div class="rule"><b>Debate Structure</b><br><b>proposition</b> — утверждение, <b>rebuttal</b> — опровержение, <b>concession</b> — уступка (acknowledge a valid opposing point), <b>counterargument</b> — контраргумент. A concession actually strengthens your position.</div>',
+        exercises:[
+          {q:'A ___ acknowledges a point from the opposing side.',blank:'concession',opts:['concession','admission','agreement','yield']},
+          {q:'A ___ directly attacks the logic of an opponent\'s argument.',blank:'rebuttal',opts:['rebuttal','response','reply','answer']},
+          {q:'"While that may be true, the ___ argument is..." introduces your counter.',blank:'counter',opts:['counter','main','stronger','better']},
+          {q:'The ___ side argues in favor of the debate topic.',blank:'proposition',opts:['proposition','affirmative','for','supporting']},
+          {q:'A strong ___ provides evidence to disprove the opposing claim.',blank:'counterargument',opts:['counterargument','response','point','reply']}
+        ]
+      },
+      {id:13,title:'Speaking in Meetings',xp:35,
+        theory:'<div class="rule"><b>Meeting Language</b><br><b>Interrupting politely</b>: "If I could just add..." / "Sorry to jump in but..."<br><b>Agreeing</b>: "Absolutely" / "That\'s a valid point"<br><b>Disagreeing</b>: "I see it differently" / "With all due respect..."</div>',
+        exercises:[
+          {q:'"Sorry to ___ in, but I\'d like to add something here."',blank:'jump',opts:['jump','step','cut','break']},
+          {q:'"With all due ___, I disagree with that conclusion."',blank:'respect',opts:['respect','deference','regards','consideration']},
+          {q:'"If I could just ___ something here..." politely interrupts.',blank:'add',opts:['add','say','mention','include']},
+          {q:'"I see it ___" is a polite way to disagree.',blank:'differently',opts:['differently','otherwise','another way','not that way']},
+          {q:'"That\'s a ___ point" concedes value in someone\'s argument.',blank:'valid',opts:['valid','good','fair','interesting']}
+        ]
+      },
+      {id:14,title:'Humor in Public Speaking',xp:35,
+        theory:'<div class="rule"><b>Using Humor</b><br>Humor builds rapport and relaxes the audience. Self-deprecating humor (смеяться над собой) is safe. Avoid: controversial topics, stereotypes. Formula: setup → pause → punchline. If a joke fails, move on quickly.</div>',
+        exercises:[
+          {q:'___ humor makes fun of yourself — it\'s the safest type.',blank:'Self-deprecating',opts:['Self-deprecating','Dry','Dark','Ironic']},
+          {q:'The ___ is the funny payoff at the end of a joke.',blank:'punchline',opts:['punchline','ending','payoff','twist']},
+          {q:'If a joke fails, ___ on confidently — don\'t explain it.',blank:'move',opts:['move','carry','press','go']},
+          {q:'Humor builds ___ between the speaker and the audience.',blank:'rapport',opts:['rapport','connection','trust','bond']},
+          {q:'Avoid humor based on ___ — it can alienate or offend.',blank:'stereotypes',opts:['stereotypes','politics','religion','controversy']}
+        ]
+      },
+      {id:15,title:'TED Talk Style',xp:40,
+        theory:'<div class="rule"><b>What Makes TED Talks Great</b><br><b>One core idea</b> (the "idea worth spreading"). No podium — stand freely. Personal stories. 18 minutes max. Rehearse until natural. End memorably: callback to your opening.</div>',
+        exercises:[
+          {q:'Every TED talk centers on ___ core idea worth spreading.',blank:'one',opts:['one','a single','the','your']},
+          {q:'A ___ returns to your opening image or story at the end.',blank:'callback',opts:['callback','conclusion','summary','return']},
+          {q:'TED speakers stand ___ without hiding behind a podium.',blank:'freely',opts:['freely','openly','confidently','naturally']},
+          {q:'TED talks are strictly limited to ___ minutes maximum.',blank:'18',opts:['18','20','15','30']},
+          {q:'Rehearse your talk until it feels ___, not memorized.',blank:'natural',opts:['natural','smooth','effortless','automatic']}
+        ]
+      },
+      {id:16,title:'Virtual Presentations',xp:35,
+        theory:'<div class="rule"><b>Online Speaking Tips</b><br>Look at the <b>camera</b>, not the screen. Good <b>lighting</b> (light source in front). <b>Mute</b> when not speaking. Use <b>screen share</b> for visuals. Test tech before. Speak slightly slower — audio lag affects comprehension.</div>',
+        exercises:[
+          {q:'Look at the ___, not at the faces on your screen.',blank:'camera',opts:['camera','screen','lens','mic']},
+          {q:'Good ___ means light hits your face from the front, not behind.',blank:'lighting',opts:['lighting','light','brightness','setup']},
+          {q:'Speak slightly ___ online to compensate for audio delay.',blank:'slower',opts:['slower','louder','clearer','more clearly']},
+          {q:'Always ___ your microphone when others are presenting.',blank:'mute',opts:['mute','silence','turn off','disable']},
+          {q:'Test your ___ before the call: mic, camera, internet, slides.',blank:'tech',opts:['tech','equipment','setup','tools']}
+        ]
+      },
+      {id:17,title:'Audience Engagement',xp:35,
+        theory:'<div class="rule"><b>Engaging Your Audience</b><br>Techniques: <b>ask questions</b>, <b>polls</b>, <b>activities</b>, <b>think-pair-share</b>. Say "Raise your hand if..." or "Turn to the person next to you." Movement and interaction dramatically improve retention.</div>',
+        exercises:[
+          {q:'"Raise your ___ if you\'ve ever felt nervous before speaking."',blank:'hand',opts:['hand','voice','opinion','arm']},
+          {q:'___ your audience with polls, questions, and activities.',blank:'Engage',opts:['Engage','Involve','Include','Connect']},
+          {q:'"Turn to the person ___ to you and discuss for 60 seconds."',blank:'next',opts:['next','beside','near','close']},
+          {q:'Interaction dramatically improves audience ___ of information.',blank:'retention',opts:['retention','memory','recall','learning']},
+          {q:'A live ___ gives instant feedback on what the audience thinks.',blank:'poll',opts:['poll','vote','survey','question']}
+        ]
+      },
+      {id:18,title:'International Audiences',xp:40,
+        theory:'<div class="rule"><b>Cross-Cultural Speaking</b><br>Avoid idioms and slang. Speak clearly, not loudly. Be aware of <b>cultural references</b>. Use <b>universal examples</b>. Humor doesn\'t always translate. Show respect for local customs. Pace: 120 words/minute for non-native audiences.</div>',
+        exercises:[
+          {q:'Avoid ___ like "hit a home run" with international audiences.',blank:'idioms',opts:['idioms','slang','jokes','expressions']},
+          {q:'Use ___ examples that all cultures can relate to.',blank:'universal',opts:['universal','general','global','broad']},
+          {q:'Speak at about ___ words per minute for non-native listeners.',blank:'120',opts:['120','150','100','130']},
+          {q:'Speaking louder does NOT help when someone doesn\'t ___ English.',blank:'understand',opts:['understand','speak','know','follow']},
+          {q:'Humor often fails to ___ across cultural boundaries.',blank:'translate',opts:['translate','work','transfer','cross']}
+        ]
+      },
+      {id:19,title:'Leadership Communication',xp:40,
+        theory:'<div class="rule"><b>Speaking as a Leader</b><br>Leaders use <b>inclusive language</b>: "We" not "I". Show <b>vulnerability</b> — it builds trust. Give clear <b>direction</b>. Communicate <b>vision</b>. Acknowledge failure openly: "We didn\'t achieve this — here\'s what we\'ll do differently."</div>',
+        exercises:[
+          {q:'Leaders use "___ " instead of "I" to build team unity.',blank:'We',opts:['We','Our','The team','Everyone']},
+          {q:'Showing ___ by admitting mistakes actually builds trust.',blank:'vulnerability',opts:['vulnerability','weakness','honesty','openness']},
+          {q:'A leader must communicate a clear ___ of where the team is going.',blank:'vision',opts:['vision','goal','plan','direction']},
+          {q:'___ language like "everyone," "all of us" creates inclusion.',blank:'Inclusive',opts:['Inclusive','Collective','Team','Group']},
+          {q:'Acknowledging ___ openly and explaining next steps shows strong leadership.',blank:'failure',opts:['failure','mistakes','errors','problems']}
+        ]
+      },
+      {id:20,title:'Memorable Closings',xp:45,
+        theory:'<div class="rule"><b>Powerful Endings</b><br>Never end with "That\'s it" or "Any questions?". Instead: <b>callback</b> to your opening, <b>inspiring quote</b>, <b>clear CTA</b>, or <b>a challenge</b>. Your last sentence is what people remember most — make it land.</div>',
+        exercises:[
+          {q:'End with a ___ to your opening story to give the speech a full circle.',blank:'callback',opts:['callback','reference','return','connection']},
+          {q:'Ending with "that\'s ___ " is weak and forgettable.',blank:'it',opts:['it','all','done','everything']},
+          {q:'A ___ to action tells the audience exactly what to do next.',blank:'call',opts:['call','request','invite','encourage']},
+          {q:'Your ___ sentence is what the audience remembers most.',blank:'last',opts:['last','final','closing','ending']},
+          {q:'"Go out there and ___." is a classic challenge-style ending.',blank:'change the world',opts:['change the world','make a difference','do it','take action']}
+        ]
+      }
+    ]
+  },
+
+  // ── ADVANCED DATING ───────────────────────────────────────
+  adating:{
+    title:'Advanced Dating English',icon:'💎',color:'#f43f5e',
+    lessons:[
+      {id:1,title:'Deep Conversations',xp:35,
+        theory:'<div class="rule"><b>Going Beyond Small Talk</b><br>Deep questions: <i>"What drives you in life?"</i> <i>"What\'s something most people don\'t know about you?"</i> <i>"What would you do if you knew you couldn\'t fail?"</i> Active listening: reflect feelings, not just words.</div>',
+        exercises:[
+          {q:'"What ___ you in life?" asks about someone\'s core motivation.',blank:'drives',opts:['drives','motivates','pushes','inspires']},
+          {q:'Active ___ means reflecting feelings, not just the facts.',blank:'listening',opts:['listening','conversation','engagement','empathy']},
+          {q:'"What would you do if you knew you couldn\'t ___?"',blank:'fail',opts:['fail','lose','stop','miss']},
+          {q:'"What\'s something most people don\'t ___ about you?"',blank:'know',opts:['know','see','understand','realize']},
+          {q:'Deep conversations require ___ — the willingness to share genuinely.',blank:'vulnerability',opts:['vulnerability','honesty','courage','openness']}
+        ]
+      },
+      {id:2,title:'Expressing Feelings Precisely',xp:35,
+        theory:'<div class="rule"><b>Emotional Vocabulary</b><br>Move beyond "happy/sad". Use: <b>elated</b> (на седьмом небе), <b>melancholy</b> (грусть), <b>apprehensive</b> (тревожный), <b>smitten</b> (влюблённый), <b>conflicted</b> (раздираемый противоречиями).</div>',
+        exercises:[
+          {q:'I\'m completely ___ — I can\'t stop thinking about her.',blank:'smitten',opts:['smitten','infatuated','attracted','interested']},
+          {q:'I feel ___ — part of me wants to commit, part of me is scared.',blank:'conflicted',opts:['conflicted','confused','unsure','torn']},
+          {q:'I was ___ when she said yes — absolutely on top of the world.',blank:'elated',opts:['elated','happy','excited','thrilled']},
+          {q:'There\'s a ___ sadness when summer ends and you part ways.',blank:'melancholy',opts:['melancholy','sad','gloomy','wistful']},
+          {q:'I\'m a little ___ about meeting his parents for the first time.',blank:'apprehensive',opts:['apprehensive','nervous','worried','anxious']}
+        ]
+      },
+      {id:3,title:'Navigating Disagreements',xp:40,
+        theory:'<div class="rule"><b>Healthy Conflict Language</b><br>Use "I" statements: <i>"I feel hurt when..."</i> not <i>"You always..."</i><br>Phrases: <i>"I hear what you\'re saying"</i>, <i>"Can we come back to this when we\'ve both calmed down?"</i>, <i>"I need some time to process this."</i></div>',
+        exercises:[
+          {q:'"I ___ hurt when you cancel plans at the last minute."',blank:'feel',opts:['feel','am','get','become']},
+          {q:'"Can we come ___ to this when we\'ve both calmed down?"',blank:'back',opts:['back','return','get back','talk']},
+          {q:'"I ___ what you\'re saying, but I see it differently."',blank:'hear',opts:['hear','understand','get','know']},
+          {q:'"I need some time to ___ this before we continue."',blank:'process',opts:['process','think about','digest','consider']},
+          {q:'Starting sentences with "___ " rather than "You" reduces defensiveness.',blank:'I',opts:['I','We','My','The']}
+        ]
+      },
+      {id:4,title:'Talking About the Future',xp:40,
+        theory:'<div class="rule"><b>Discussing Relationship Goals</b><br>Key vocabulary: <b>commitment</b> (обязательства), <b>long-term</b>, <b>compatible</b> (совместимые), <b>dealbreaker</b> (то, с чем нельзя мириться), <b>shared values</b> (общие ценности).</div>',
+        exercises:[
+          {q:'We have different views on kids — that might be a ___ for us.',blank:'dealbreaker',opts:['dealbreaker','problem','issue','concern']},
+          {q:'I\'m looking for something ___ — not just casual dating.',blank:'long-term',opts:['long-term','serious','real','committed']},
+          {q:'We share the same ___ — family, honesty, and ambition.',blank:'values',opts:['values','beliefs','goals','ideas']},
+          {q:'I think we\'re ___ — our lifestyles and goals just fit.',blank:'compatible',opts:['compatible','suited','matched','aligned']},
+          {q:'___ means being ready to invest in the relationship seriously.',blank:'Commitment',opts:['Commitment','Dedication','Investment','Effort']}
+        ]
+      },
+      {id:5,title:'Compliments Beyond the Basics',xp:35,
+        theory:'<div class="rule"><b>Meaningful Compliments</b><br>Go beyond "You\'re beautiful." Try: <i>"The way you think about things is unlike anyone I\'ve met"</i>, <i>"Your passion for ___ is genuinely inspiring"</i>, <i>"I love the way you make everyone around you feel at ease."</i></div>',
+        exercises:[
+          {q:'"The way you ___ about things is unlike anyone I\'ve met."',blank:'think',opts:['think','talk','see','look']},
+          {q:'"Your ___ for music is genuinely inspiring."',blank:'passion',opts:['passion','love','interest','enthusiasm']},
+          {q:'"I love the way you make everyone around you feel at ___."',blank:'ease',opts:['ease','home','comfortable','peace']},
+          {q:'Compliments about ___ mean more than those about appearance.',blank:'character',opts:['character','personality','mind','values']},
+          {q:'"You have this ___ of making difficult things seem simple."',blank:'gift',opts:['gift','talent','skill','ability']}
+        ]
+      },
+      {id:6,title:'Saying No & Setting Boundaries',xp:40,
+        theory:'<div class="rule"><b>Polite but Firm Language</b><br><i>"I\'m not comfortable with that."</i><br><i>"I appreciate you asking, but that\'s not something I want."</i><br><i>"I need you to respect my space here."</i><br>You don\'t owe an explanation — a boundary is a boundary.</div>',
+        exercises:[
+          {q:'"I\'m not ___ with that" is a complete, valid boundary.',blank:'comfortable',opts:['comfortable','okay','fine','happy']},
+          {q:'"I ___ you asking, but that\'s not for me."',blank:'appreciate',opts:['appreciate','thank','understand','respect']},
+          {q:'"I need you to ___ my decision on this."',blank:'respect',opts:['respect','accept','understand','honor']},
+          {q:'You don\'t ___ an explanation when setting a boundary.',blank:'owe',opts:['owe','need','have to give','must give']},
+          {q:'"That\'s a ___ for me" clearly communicates a non-negotiable limit.',blank:'boundary',opts:['boundary','limit','line','rule']}
+        ]
+      },
+      {id:7,title:'Long-Distance Relationships',xp:35,
+        theory:'<div class="rule"><b>LDR Vocabulary</b><br><b>time difference</b> — разница во времени, <b>visit</b> — приехать, <b>countdown</b> — обратный отсчёт, <b>routine calls</b> — регулярные звонки, <b>trust</b> — доверие, <b>close the distance</b> — сократить расстояние (переехать вместе).</div>',
+        exercises:[
+          {q:'We\'re planning to ___ the distance next year when she moves here.',blank:'close',opts:['close','end','fix','bridge']},
+          {q:'The ___ difference makes it hard to find time to call.',blank:'time',opts:['time','hour','clock','zone']},
+          {q:'I have a ___ going for his next visit — 12 days to go!',blank:'countdown',opts:['countdown','timer','count','calendar']},
+          {q:'___ calls every evening keep us feeling connected.',blank:'Routine',opts:['Routine','Regular','Scheduled','Daily']},
+          {q:'LDRs require a lot of ___ — you have to believe in each other.',blank:'trust',opts:['trust','faith','confidence','belief']}
+        ]
+      },
+      {id:8,title:'Meeting the Family',xp:40,
+        theory:'<div class="rule"><b>Family Introduction</b><br>Key phrases: <i>"It\'s so lovely to finally meet you"</i>, <i>"I\'ve heard so much about you"</i>, <i>"You\'ve raised an incredible person"</i>. Bring a small gift. Ask questions about them. Avoid: controversial topics, complaining.</div>',
+        exercises:[
+          {q:'"It\'s so ___ to finally meet you" — warm and genuine greeting.',blank:'lovely',opts:['lovely','great','nice','good']},
+          {q:'"I\'ve heard so ___ about you" shows you listen when they talk.',blank:'much',opts:['much','many things','a lot','plenty']},
+          {q:'"You\'ve ___ an incredible person" compliments the parents directly.',blank:'raised',opts:['raised','brought up','raised','grown']},
+          {q:'Bring a small ___ — flowers, wine, or chocolates are safe choices.',blank:'gift',opts:['gift','present','thing','token']},
+          {q:'Ask ___ about them — people love talking about themselves.',blank:'questions',opts:['questions','things','details','stories']}
+        ]
+      },
+      {id:9,title:'Breakups & Closure',xp:40,
+        theory:'<div class="rule"><b>Ending Relationships Respectfully</b><br>Be <b>direct but kind</b>: <i>"I think we want different things."</i> Avoid ghosting. Give <b>closure</b> — explain your reasons. Don\'t give false hope. Phrases: <i>"I care about you, but this isn\'t working for me."</i></div>',
+        exercises:[
+          {q:'"I care about you, but this isn\'t ___ for me."',blank:'working',opts:['working','right','good','fair']},
+          {q:'"I think we want ___ things" is honest and non-blaming.',blank:'different',opts:['different','other','separate','various']},
+          {q:'___ means disappearing without explanation — deeply hurtful.',blank:'Ghosting',opts:['Ghosting','Avoiding','Leaving','Ignoring']},
+          {q:'"I don\'t want to give you false ___" means being clear there\'s no future.',blank:'hope',opts:['hope','ideas','impressions','signals']},
+          {q:'Good ___ gives both people the understanding they need to move on.',blank:'closure',opts:['closure','ending','goodbye','resolution']}
+        ]
+      },
+      {id:10,title:'Cultural Differences in Dating',xp:40,
+        theory:'<div class="rule"><b>Cross-Cultural Romance</b><br>Dating norms vary wildly: <b>who pays</b>, <b>physical affection in public</b>, <b>meeting family</b> timelines, <b>directness</b> vs <b>subtlety</b>. Ask rather than assume. Phrase: <i>"In my culture, we usually... what about yours?"</i></div>',
+        exercises:[
+          {q:'"In my ___, we usually wait before introducing a partner to family."',blank:'culture',opts:['culture','country','tradition','background']},
+          {q:'It\'s better to ___ than assume your partner shares your dating norms.',blank:'ask',opts:['ask','talk','discuss','check']},
+          {q:'Different cultures have different norms around ___ affection in public.',blank:'physical',opts:['physical','public','romantic','open']},
+          {q:'"What about ___?" after sharing your custom invites them to share.',blank:'yours',opts:['yours','you','your culture','your tradition']},
+          {q:'Cross-cultural couples need extra ___ and open communication.',blank:'patience',opts:['patience','effort','work','understanding']}
+        ]
+      },
+      {id:11,title:'Romantic Texting',xp:35,
+        theory:'<div class="rule"><b>Texting in Relationships</b><br><b>good morning/night texts</b>, <b>inside jokes</b>, <b>voice notes</b>, <b>read receipts</b> (синие галочки). Avoid: double texting constantly, one-word replies, texting serious conversations. Rule: match their energy.</div>',
+        exercises:[
+          {q:'Match their ___ — if they write a lot, write a lot back.',blank:'energy',opts:['energy','effort','style','vibe']},
+          {q:'___ jokes make a couple feel like they have their own private world.',blank:'Inside',opts:['Inside','Private','Secret','Personal']},
+          {q:'Have serious conversations ___, not over text.',blank:'in person',opts:['in person','face to face','directly','verbally']},
+          {q:'A ___ note is more personal and warm than a typed message.',blank:'voice',opts:['voice','audio','spoken','recorded']},
+          {q:'"___ texting" means sending multiple messages before they reply.',blank:'Double',opts:['Double','Multiple','Repeat','Back-to-back']}
+        ]
+      },
+      {id:12,title:'Jealousy & Trust',xp:40,
+        theory:'<div class="rule"><b>Navigating Jealousy</b><br>Jealousy is normal — acting on it destructively is not. Key phrases: <i>"I feel insecure when..."</i> <i>"Can we talk about boundaries?"</i> <i>"I trust you, but I\'m struggling with this situation."</i></div>',
+        exercises:[
+          {q:'"I feel ___ when you don\'t respond for hours" — honest, not accusatory.',blank:'insecure',opts:['insecure','jealous','hurt','worried']},
+          {q:'"I ___ you, but I\'m struggling with this situation."',blank:'trust',opts:['trust','believe','know','respect']},
+          {q:'Jealousy is a normal ___; destructive behavior is not.',blank:'feeling',opts:['feeling','emotion','reaction','response']},
+          {q:'"Can we talk about ___ so we\'re both comfortable?"',blank:'boundaries',opts:['boundaries','rules','limits','expectations']},
+          {q:'Addressing jealousy ___ prevents it from becoming resentment.',blank:'early',opts:['early','quickly','soon','immediately']}
+        ]
+      },
+      {id:13,title:'Apologies & Forgiveness',xp:40,
+        theory:'<div class="rule"><b>Real Apologies</b><br>A genuine apology has three parts: <b>acknowledge</b> what you did, <b>take responsibility</b> (no "but"), <b>commit to change</b>. "I\'m sorry you felt that way" is NOT an apology. "I\'m sorry I said that — it was wrong and I\'ll do better" IS.</div>',
+        exercises:[
+          {q:'"I\'m sorry you ___ that way" is not a real apology.',blank:'felt',opts:['felt','feel','think','believe']},
+          {q:'A real apology takes full ___ without adding "but".',blank:'responsibility',opts:['responsibility','blame','fault','accountability']},
+          {q:'"I\'m sorry I said that — it was ___ and I\'ll do better."',blank:'wrong',opts:['wrong','hurtful','bad','unfair']},
+          {q:'After apologizing, ___ to a specific change in behavior.',blank:'commit',opts:['commit','promise','agree','pledge']},
+          {q:'Forgiveness doesn\'t mean ___ what happened — it means letting go.',blank:'forgetting',opts:['forgetting','ignoring','excusing','denying']}
+        ]
+      },
+      {id:14,title:'Intimacy & Emotional Connection',xp:40,
+        theory:'<div class="rule"><b>Building Deeper Connection</b><br><b>emotional intimacy</b> — эмоциональная близость, <b>vulnerability</b> — уязвимость, <b>attachment</b> — привязанность, <b>presence</b> — присутствие. Being fully present (no phone!) is one of the greatest gifts in a relationship.</div>',
+        exercises:[
+          {q:'___ intimacy is built through shared vulnerability and deep communication.',blank:'Emotional',opts:['Emotional','True','Deep','Real']},
+          {q:'Being fully ___ — phone away, eyes on them — shows you care.',blank:'present',opts:['present','attentive','focused','there']},
+          {q:'Sharing fears and dreams builds ___ between partners.',blank:'attachment',opts:['attachment','connection','trust','closeness']},
+          {q:'___ — being willing to be seen fully — deepens relationships.',blank:'Vulnerability',opts:['Vulnerability','Openness','Honesty','Courage']},
+          {q:'Small daily ___ of attention matter more than grand gestures.',blank:'acts',opts:['acts','moments','signs','gestures']}
+        ]
+      },
+      {id:15,title:'Love Languages',xp:35,
+        theory:'<div class="rule"><b>Gary Chapman\'s 5 Love Languages</b><br>1. <b>Words of Affirmation</b> — verbal praise<br>2. <b>Acts of Service</b> — doing things for them<br>3. <b>Receiving Gifts</b> — tokens of love<br>4. <b>Quality Time</b> — undivided attention<br>5. <b>Physical Touch</b> — hugs, holding hands</div>',
+        exercises:[
+          {q:'"I feel most loved when you say kind things" describes ___ of Affirmation.',blank:'Words',opts:['Words','Acts','Language','Signs']},
+          {q:'"When you cook for me without being asked, I feel so cared for" is ___ of Service.',blank:'Acts',opts:['Acts','Words','Quality','Physical']},
+          {q:'"Let\'s put phones away and just be together" values ___ Time.',blank:'Quality',opts:['Quality','Undivided','Shared','Together']},
+          {q:'A hug when you\'re stressed shows love through ___ Touch.',blank:'Physical',opts:['Physical','Warm','Loving','Gentle']},
+          {q:'Knowing your partner\'s love language helps you love them ___.',blank:'effectively',opts:['effectively','better','properly','correctly']}
+        ]
+      },
+      {id:16,title:'Romantic Weekend Planning',xp:35,
+        theory:'<div class="rule"><b>Planning Romance</b><br>Phrases: <i>"I\'ve been planning something special for us"</i>, <i>"Pack a bag — I\'m taking you somewhere"</i>, <i>"Leave the weekend free"</i>. Elements: surprise, effort, personalization (their favorite things).</div>',
+        exercises:[
+          {q:'"Pack a ___ — I\'m taking you somewhere special this weekend."',blank:'bag',opts:['bag','suitcase','things','stuff']},
+          {q:'"Leave the weekend ___ — I have something planned."',blank:'free',opts:['free','open','clear','available']},
+          {q:'The best romantic ___ is something tailored to their interests.',blank:'gesture',opts:['gesture','surprise','plan','date']},
+          {q:'"I\'ve ___ planning something special for us."',blank:'been',opts:['been','just','already','actually']},
+          {q:'Good planning shows ___ — and effort is romantic.',blank:'thought',opts:['thought','care','love','effort']}
+        ]
+      },
+      {id:17,title:'Navigating Social Media in Relationships',xp:35,
+        theory:'<div class="rule"><b>Social Media & Relationships</b><br>Topics: <b>going public</b> (posting about the relationship), <b>following exes</b>, <b>tagging</b>, <b>digital boundaries</b>. Ask, don\'t assume: <i>"Are you comfortable if I post this?"</i></div>',
+        exercises:[
+          {q:'"Are you ___ if I tag you in this photo?"',blank:'comfortable',opts:['comfortable','okay','fine','happy']},
+          {q:'"Going ___" means posting about the relationship on social media.',blank:'public',opts:['public','official','live','online']},
+          {q:'It\'s important to discuss ___ boundaries around social media.',blank:'digital',opts:['digital','online','social','virtual']},
+          {q:'Some people prefer to keep relationships ___ from social media.',blank:'separate',opts:['separate','private','away','off']},
+          {q:'"Following ___" can cause insecurity — it\'s worth discussing.',blank:'exes',opts:['exes','others','old partners','previous partners']}
+        ]
+      },
+      {id:18,title:'Moving In Together',xp:40,
+        theory:'<div class="rule"><b>Cohabitation Conversations</b><br><b>household chores</b> — домашние обязанности, <b>split expenses</b> — делить расходы, <b>personal space</b> — личное пространство, <b>house rules</b> — правила в доме. Discuss everything before moving in.</div>',
+        exercises:[
+          {q:'We need to ___ expenses fairly — maybe 50/50.',blank:'split',opts:['split','divide','share','split']},
+          {q:'Even living together, everyone needs their own ___ space.',blank:'personal',opts:['personal','private','own','individual']},
+          {q:'Dividing ___ chores fairly prevents a lot of resentment.',blank:'household',opts:['household','house','home','domestic']},
+          {q:'Let\'s set some ___ rules before we move in together.',blank:'house',opts:['house','home','living','basic']},
+          {q:'Moving in is a big ___ — discuss expectations beforehand.',blank:'step',opts:['step','decision','move','commitment']}
+        ]
+      },
+      {id:19,title:'Proposing & Big Moments',xp:45,
+        theory:'<div class="rule"><b>Proposal Language</b><br><i>"Will you marry me?"</i> / <i>"I want to spend the rest of my life with you."</i> / <i>"You\'re my person."</i> / <i>"I knew from the moment I met you."</i> Personalization is everything — reference your shared story.</div>',
+        exercises:[
+          {q:'"You\'re my ___" — a modern, intimate way to say someone is your soulmate.',blank:'person',opts:['person','one','everything','world']},
+          {q:'"I ___ from the moment I met you that you were special."',blank:'knew',opts:['knew','felt','sensed','realized']},
+          {q:'"I want to spend the rest of my ___ with you."',blank:'life',opts:['life','days','years','time']},
+          {q:'Reference your ___ story to make the proposal deeply personal.',blank:'shared',opts:['shared','own','love','together']},
+          {q:'"___ you marry me?" — the four most important words.',blank:'Will',opts:['Will','Would','Can','Shall']}
+        ]
+      },
+      {id:20,title:'Long-Term Relationship Mastery',xp:50,
+        theory:'<div class="rule"><b>Keeping Love Alive</b><br>Key habits: <b>date nights</b>, <b>appreciation</b> (say thank you), <b>curiosity</b> (keep learning about your partner), <b>repair attempts</b> (Gottman: de-escalate conflict). <i>"Never stop dating your partner."</i></div>',
+        exercises:[
+          {q:'Regular ___ nights keep the spark alive even after years together.',blank:'date',opts:['date','romantic','special','weekly']},
+          {q:'Show ___ daily — "thank you for making coffee" matters.',blank:'appreciation',opts:['appreciation','gratitude','thankfulness','recognition']},
+          {q:'Stay ___ about your partner — people always keep growing.',blank:'curious',opts:['curious','interested','engaged','inquisitive']},
+          {q:'A ___ attempt de-escalates conflict before it gets out of hand.',blank:'repair',opts:['repair','recovery','reset','peace']},
+          {q:'"Never stop ___ your partner" means keep putting in romantic effort.',blank:'dating',opts:['dating','pursuing','wooing','romancing']}
+        ]
+      }
+    ]
   }
 };
 
@@ -6889,7 +7547,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
