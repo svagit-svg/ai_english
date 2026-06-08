@@ -781,7 +781,7 @@ const tg = window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
-const MISTRAL_KEY='1rM5EHYxtwouCc0zqfpL5u9Wp3QswgHa';
+const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=10;
 
 // ── MESSAGE LIMIT ─────────────────────────────────────────
@@ -8358,9 +8358,9 @@ async function translateMistake(btn, sentence){
   btn.style.pointerEvents='none';
   try{
     const clean=sentence.replace('___','[пропуск]');
-    const resp=await fetch('https://api.mistral.ai/v1/chat/completions',{
+    const resp=await fetch(WORKER_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer 1rM5EHYxtwouCc0zqfpL5u9Wp3QswgHa'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'mistral-small-latest',max_tokens:80,
         messages:[{role:'user',content:'Переведи на русский язык одним предложением, без пояснений: "'+clean+'"'}]})
     });
@@ -8562,9 +8562,9 @@ async function callClaude(userText,isGreeting,existingDiv){
     const timer=setTimeout(()=>controller.abort(),30000);
     let resp;
     try{
-      resp=await fetch('https://api.mistral.ai/v1/chat/completions',{
+      resp=await fetch(WORKER_URL,{
         method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+MISTRAL_KEY},
+        headers:{'Content-Type':'application/json'},
         body:JSON.stringify({model:'mistral-small-latest',max_tokens:1000,messages}),
         signal:controller.signal
       });
