@@ -533,6 +533,45 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
     </div>
 
+    <div class="course-card" onclick="openCourse('social')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">📱</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Social Media & Internet</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B1</span></div>
+          <span id="social-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Соцсети, интернет, технологии</p>
+        <div class="progress-bar"><div class="progress-fill" id="social-bar" style="width:0%;background:#8b5cf6"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="social-sub">20 уроков</p>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="openCourse('movies')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;font-size:18px;">🎬</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Movies & Pop Culture</h3><span style="font-size:9px;background:rgba(239,68,68,0.15);color:#ef4444;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
+          <span id="movies-pct" style="font-size:11px;color:#ef4444;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Фильмы, музыка, поп-культура</p>
+        <div class="progress-bar"><div class="progress-fill" id="movies-bar" style="width:0%;background:#ef4444"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="movies-sub">20 уроков</p>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="openCourse('grammar')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;font-size:18px;">📝</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Grammar Deep Dive</h3><span style="font-size:9px;background:rgba(99,102,241,0.15);color:#6366f1;border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
+          <span id="grammar-pct" style="font-size:11px;color:#6366f1;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Грамматика без скуки — с нуля до B2</p>
+        <div class="progress-bar"><div class="progress-fill" id="grammar-bar" style="width:0%;background:#6366f1"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="grammar-sub">20 уроков</p>
+      </div>
+    </div>
+
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -542,24 +581,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
-    <div class="card" onclick="showComingSoon('Grammar Pro')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;">📝</div>
-        <div class="card-text"><h3>Grammar Pro <span class="badge" style="background:rgba(99,102,241,0.15);color:#6366f1">Скоро</span></h3><p>Грамматика без скуки • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
     <div class="card" onclick="showComingSoon('American Slang')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(16,185,129,0.1);color:var(--green);">🇺🇸</div>
         <div class="card-text"><h3>American Slang <span class="badge" style="background:rgba(16,185,129,0.15);color:var(--green)">Скоро</span></h3><p>Современный сленг • 15 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
-    <div class="card" onclick="showComingSoon('English for Movies')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;">🎬</div>
-        <div class="card-text"><h3>English for Movies <span class="badge" style="background:rgba(239,68,68,0.15);color:#ef4444">Скоро</span></h3><p>Фразы из фильмов • 20 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
@@ -939,7 +964,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -1075,6 +1100,15 @@ function renderAnalytics(){
     {id:'travel',name:'Travel English',color:'var(--rose)'},
     {id:'everyday',name:'Everyday English',color:'var(--amber)'},
     {id:'dating',name:'Dating English',color:'#ec4899'},
+    {id:'news',name:'News English',color:'#0ea5e9'},
+    {id:'speaking',name:'Speaking Club',color:'#f97316'},
+    {id:'adating',name:'Advanced Dating',color:'#db2777'},
+    {id:'food',name:'Food & Restaurants',color:'#f97316'},
+    {id:'health',name:'Health & Body',color:'#22c55e'},
+    {id:'expat',name:'Expat Life',color:'#06b6d4'},
+    {id:'social',name:'Social Media & Internet',color:'#8b5cf6'},
+    {id:'movies',name:'Movies & Pop Culture',color:'#ef4444'},
+    {id:'grammar',name:'Grammar Deep Dive',color:'#6366f1'},
   ];
   const courseEl=document.getElementById('course-analytics');
   const courseWrap=courseEl?.parentElement;
@@ -8158,6 +8192,630 @@ I\'ll always care about you. — Я всегда буду заботиться �
       }
     ]
   },
+
+  social:{
+    title:'Social Media & Internet',
+    icon:'📱',
+    color:'#8b5cf6',
+    lessons:[
+      {id:1,title:'Платформы соцсетей',xp:30,
+        theory:'<b>Social media platforms</b> — социальные сети.<br><br><b>Основные платформы:</b><br>&bull; <b>Instagram</b> — фото, reels, stories<br>&bull; <b>TikTok</b> — короткие видео, FYP<br>&bull; <b>X (Twitter)</b> — короткие посты, новости<br>&bull; <b>LinkedIn</b> — профессиональная сеть<br>&bull; <b>Reddit</b> — форумы по темам<br>&bull; <b>Snapchat</b> — исчезающие фото и видео<br><br><b>Ключевые слова:</b><br>&bull; <b>to scroll</b> — листать ленту<br>&bull; <b>feed</b> — лента<br>&bull; <b>followers / following</b> — подписчики / подписки<br>&bull; <b>bio</b> — краткое описание профиля<br>&bull; <b>verified account</b> — верифицированный аккаунт (галочка)',
+        exercises:[
+          {q:'I spend hours ___ through Instagram every day.',blank:'scrolling',opts:['scrolling','looking','swiping','going']},
+          {q:'She has 200,000 ___ on TikTok.',blank:'followers',opts:['followers','fans','friends','subscribers']},
+          {q:'His account has a blue ___, so it\'s the real one.',blank:'tick',opts:['tick','check','mark','badge']},
+          {q:'I\'m ___ her on LinkedIn — she posts great career tips.',blank:'following',opts:['following','watching','liking','tracking']},
+          {q:'Write a short ___ for your profile — say who you are.',blank:'bio',opts:['bio','description','text','about']}
+        ]
+      },
+      {id:2,title:'Публикации и контент',xp:30,
+        theory:'<b>Posting & content</b> — публикации.<br><br><b>Типы публикаций:</b><br>&bull; <b>post</b> — публикация<br>&bull; <b>story</b> — история (исчезает через 24 часа)<br>&bull; <b>reel</b> — короткое видео<br>&bull; <b>thread</b> — цепочка постов<br>&bull; <b>live</b> — прямой эфир<br><br><b>Действия:</b><br>&bull; <b>to post / upload</b> — опубликовать / загрузить<br>&bull; <b>to share / repost</b> — поделиться / репостить<br>&bull; <b>to tag someone</b> — отметить кого-то<br>&bull; <b>to go live</b> — выйти в эфир<br>&bull; <b>to pin</b> — закрепить пост<br><br><b>Метрики:</b><br>&bull; <b>reach</b> — охват<br>&bull; <b>engagement</b> — вовлечённость',
+        exercises:[
+          {q:'She ___ a photo of her holiday on Instagram.',blank:'posted',opts:['posted','shared','uploaded','put']},
+          {q:'Don\'t forget to ___ me in the photo!',blank:'tag',opts:['tag','mark','mention','add']},
+          {q:'He went ___ on Instagram to answer fans\' questions.',blank:'live',opts:['live','online','public','real']},
+          {q:'The post has great ___: thousands of likes and comments.',blank:'engagement',opts:['engagement','reaction','activity','response']},
+          {q:'I ___ my best photo to the top of my profile.',blank:'pinned',opts:['pinned','saved','fixed','placed']}
+        ]
+      },
+      {id:3,title:'Лайки и комментарии',xp:30,
+        theory:'<b>Likes, comments & reactions</b> — реакции и комментарии.<br><br><b>Реакции:</b><br>&bull; <b>to like / to heart</b> — лайкнуть<br>&bull; <b>to react</b> — отреагировать эмодзи<br>&bull; <b>to dislike</b> — дизлайкнуть (YouTube)<br><br><b>Комментарии:</b><br>&bull; <b>to comment / to reply</b> — комментировать / ответить<br>&bull; <b>to mention (@)</b> — упомянуть пользователя<br><br><b>Тёмная сторона:</b><br>&bull; <b>troll</b> — тролль<br>&bull; <b>hate comment</b> — оскорбительный комментарий<br>&bull; <b>to block</b> — заблокировать<br>&bull; <b>to report</b> — пожаловаться<br>&bull; <b>to mute</b> — заглушить<br>&bull; <b>spam / bot</b> — спам / бот',
+        exercises:[
+          {q:'This video has 5 million ___!',blank:'likes',opts:['likes','hearts','thumbs','stars']},
+          {q:'I ___ that account immediately — too many hate comments.',blank:'blocked',opts:['blocked','removed','deleted','banned']},
+          {q:'She left a really mean ___. I\'m going to report it.',blank:'comment',opts:['comment','post','reply','message']},
+          {q:'Stop feeding the ___. Just ignore them.',blank:'troll',opts:['troll','bot','hater','spammer']},
+          {q:'I ___ her in the post so she\'d see it.',blank:'mentioned',opts:['mentioned','tagged','added','noted']}
+        ]
+      },
+      {id:4,title:'Личные сообщения',xp:30,
+        theory:'<b>Direct messages (DMs)</b> — личные сообщения.<br><br><b>Основные термины:</b><br>&bull; <b>DM</b> — личное сообщение<br>&bull; <b>inbox</b> — входящие<br>&bull; <b>read receipt</b> — подтверждение прочтения<br>&bull; <b>seen / delivered / pending</b> — прочитано / доставлено / ожидает<br><br><b>Действия:</b><br>&bull; <b>to DM someone</b> — написать в личку<br>&bull; <b>to leave on read</b> — прочитать и не ответить<br>&bull; <b>to ghost</b> — внезапно перестать отвечать<br><br><b>Форматы:</b><br>&bull; <b>voice message</b> — голосовое сообщение<br>&bull; <b>video call</b> — видеозвонок<br>&bull; <b>to forward</b> — переслать',
+        exercises:[
+          {q:'She ___ me on Instagram to ask about the event.',blank:'DMed',opts:['DMed','messaged','texted','wrote']},
+          {q:'He left me on ___. He saw it but didn\'t reply.',blank:'read',opts:['read','seen','delivered','ignored']},
+          {q:'Don\'t ___ me — just say if you\'re not interested.',blank:'ghost',opts:['ghost','ignore','avoid','hide']},
+          {q:'I sent a ___ message — faster than typing.',blank:'voice',opts:['voice','audio','spoken','recorded']},
+          {q:'My message is still ___. She hasn\'t accepted my follow request.',blank:'pending',opts:['pending','waiting','unseen','held']}
+        ]
+      },
+      {id:5,title:'Хэштеги и тренды',xp:30,
+        theory:'<b>Hashtags & trends</b> — хэштеги и тренды.<br><br><b>Хэштеги:</b><br>&bull; <b>hashtag (#)</b> — ключевое слово со знаком #<br>&bull; <b>trending hashtag</b> — хэштег в тренде<br>&bull; <b>niche hashtag</b> — узкотематический хэштег<br><br><b>Тренды и алгоритм:</b><br>&bull; <b>trending</b> — в тренде<br>&bull; <b>viral / to go viral</b> — вирусный / стать вирусным<br>&bull; <b>algorithm</b> — алгоритм<br>&bull; <b>For You Page (FYP)</b> — страница рекомендаций TikTok<br>&bull; <b>challenge</b> — челлендж<br>&bull; <b>sound</b> — трендовая аудиодорожка',
+        exercises:[
+          {q:'Her video ___ viral — 10 million views in one day!',blank:'went',opts:['went','got','became','turned']},
+          {q:'Use the right ___ so more people find your post.',blank:'hashtags',opts:['hashtags','tags','keywords','labels']},
+          {q:'This song is ___ on TikTok this week.',blank:'trending',opts:['trending','popular','viral','hot']},
+          {q:'The ___ keeps showing me cooking videos. It knows me well.',blank:'algorithm',opts:['algorithm','app','system','feed']},
+          {q:'She joined the dance ___ and got 50K views.',blank:'challenge',opts:['challenge','trend','game','task']}
+        ]
+      },
+      {id:6,title:'YouTube и видеоконтент',xp:30,
+        theory:'<b>YouTube & video content</b> — YouTube и видео.<br><br><b>YouTube-словарь:</b><br>&bull; <b>channel</b> — канал<br>&bull; <b>to subscribe</b> — подписаться<br>&bull; <b>notification bell</b> — колокольчик уведомлений<br>&bull; <b>thumbnail</b> — обложка видео<br>&bull; <b>playlist</b> — плейлист<br><br><b>Форматы:</b><br>&bull; <b>vlog</b> — видеодневник<br>&bull; <b>tutorial / how-to</b> — обучающее видео<br>&bull; <b>unboxing</b> — распаковка<br>&bull; <b>reaction video</b> — видео-реакция<br>&bull; <b>Shorts</b> — короткие видео (до 60 с)<br><br><b>Монетизация:</b><br>&bull; <b>sponsored video</b> — рекламная интеграция<br>&bull; <b>clickbait</b> — кликбейт',
+        exercises:[
+          {q:'Subscribe and hit the ___ bell for notifications!',blank:'notification',opts:['notification','alert','subscribe','like']},
+          {q:'That ___ is so misleading — nothing like what the video is about.',blank:'thumbnail',opts:['thumbnail','preview','cover','title']},
+          {q:'She films ___ videos where she opens new products.',blank:'unboxing',opts:['unboxing','opening','unwrapping','revealing']},
+          {q:'He earns money through ___ — brands pay him to review products.',blank:'sponsorships',opts:['sponsorships','ads','deals','revenue']},
+          {q:'I watch cooking ___ on YouTube every weekend.',blank:'tutorials',opts:['tutorials','videos','lessons','guides']}
+        ]
+      },
+      {id:7,title:'Интернет-сленг',xp:30,
+        theory:'<b>Internet slang & abbreviations</b> — интернет-сленг.<br><br><b>Классические сокращения:</b><br>&bull; <b>LOL</b> — laughing out loud<br>&bull; <b>OMG</b> — oh my God<br>&bull; <b>BRB</b> — be right back<br>&bull; <b>TBH</b> — to be honest<br>&bull; <b>NGL</b> — not gonna lie<br>&bull; <b>LMK</b> — let me know<br>&bull; <b>FYI</b> — for your information<br>&bull; <b>ASAP</b> — as soon as possible<br><br><b>Современный сленг:</b><br>&bull; <b>lowkey</b> — немного / тихо<br>&bull; <b>no cap</b> — серьёзно, без шуток<br>&bull; <b>slay</b> — выглядеть потрясающе<br>&bull; <b>vibe</b> — атмосфера, ощущение<br>&bull; <b>mid</b> — посредственный<br>&bull; <b>W / L</b> — win / loss',
+        exercises:[
+          {q:'___ — I\'ll be back in five minutes.',blank:'BRB',opts:['BRB','AFK','GTG','BBL']},
+          {q:'___, that coffee shop is amazing.',blank:'NGL',opts:['NGL','TBH','IMO','FYI']},
+          {q:'She ___ slayed that presentation.',blank:'lowkey',opts:['lowkey','highkey','totally','really']},
+          {q:'The movie was pretty ___. Nothing special.',blank:'mid',opts:['mid','basic','meh','low']},
+          {q:'That outfit is such a ___! You look incredible.',blank:'slay',opts:['slay','vibe','look','flex']}
+        ]
+      },
+      {id:8,title:'Онлайн-новости',xp:30,
+        theory:'<b>Online news & media literacy</b> — онлайн-новости.<br><br><b>Типы медиа:</b><br>&bull; <b>news website</b> — новостной сайт<br>&bull; <b>blog</b> — блог<br>&bull; <b>newsletter</b> — email-рассылка<br><br><b>Критическое мышление:</b><br>&bull; <b>source</b> — источник<br>&bull; <b>credible / reliable</b> — достоверный<br>&bull; <b>bias</b> — предвзятость<br>&bull; <b>clickbait</b> — кликбейтный заголовок<br>&bull; <b>fake news</b> — фейковые новости<br>&bull; <b>to fact-check</b> — проверять факты<br>&bull; <b>misinformation</b> — дезинформация<br>&bull; <b>paywall</b> — платный доступ',
+        exercises:[
+          {q:'Always check the ___ before sharing news online.',blank:'source',opts:['source','link','page','author']},
+          {q:'That headline is pure ___. The article says something different.',blank:'clickbait',opts:['clickbait','spam','hype','fake']},
+          {q:'You should ___ that story before you believe it.',blank:'fact-check',opts:['fact-check','verify','research','check']},
+          {q:'This article is behind a ___. You need to pay to read it.',blank:'paywall',opts:['paywall','wall','barrier','lock']},
+          {q:'The report shows clear ___ — only one side is presented.',blank:'bias',opts:['bias','opinion','view','slant']}
+        ]
+      },
+      {id:9,title:'Конфиденциальность в сети',xp:30,
+        theory:'<b>Privacy & online security</b> — безопасность в интернете.<br><br><b>Основные термины:</b><br>&bull; <b>password</b> — пароль<br>&bull; <b>two-factor authentication (2FA)</b> — двухфакторная аутентификация<br>&bull; <b>VPN</b> — виртуальная частная сеть<br>&bull; <b>encryption</b> — шифрование<br><br><b>Угрозы:</b><br>&bull; <b>phishing</b> — фишинг (мошеннические письма)<br>&bull; <b>scam</b> — мошенничество<br>&bull; <b>data breach</b> — утечка данных<br>&bull; <b>identity theft</b> — кража личных данных<br><br><b>Настройки:</b><br>&bull; <b>private account</b> — закрытый аккаунт<br>&bull; <b>cookies</b> — данные о посещениях<br>&bull; <b>to opt out</b> — отказаться от сбора данных',
+        exercises:[
+          {q:'Enable ___ to keep your account secure.',blank:'two-factor authentication',opts:['two-factor authentication','a strong password','a VPN','privacy mode']},
+          {q:'I got a ___ email pretending to be from my bank.',blank:'phishing',opts:['phishing','spam','scam','fake']},
+          {q:'There was a ___ and millions of passwords leaked.',blank:'data breach',opts:['data breach','hack','leak','attack']},
+          {q:'Set your profile to ___ so strangers can\'t see your posts.',blank:'private',opts:['private','hidden','locked','protected']},
+          {q:'You can ___ of data collection in the cookie settings.',blank:'opt out',opts:['opt out','sign out','step out','log out']}
+        ]
+      },
+      {id:10,title:'Онлайн-шопинг',xp:30,
+        theory:'<b>Online shopping</b> — онлайн-шопинг.<br><br><b>Процесс покупки:</b><br>&bull; <b>to browse</b> — просматривать товары<br>&bull; <b>to add to cart</b> — добавить в корзину<br>&bull; <b>wishlist</b> — список желаний<br>&bull; <b>to check out</b> — оформить заказ<br>&bull; <b>tracking number</b> — номер отслеживания<br><br><b>Цены:</b><br>&bull; <b>discount / sale</b> — скидка / распродажа<br>&bull; <b>promo code</b> — промокод<br>&bull; <b>free shipping</b> — бесплатная доставка<br><br><b>После покупки:</b><br>&bull; <b>review / rating</b> — отзыв / оценка<br>&bull; <b>return policy</b> — политика возврата<br>&bull; <b>refund</b> — возврат денег',
+        exercises:[
+          {q:'I ___ three items to my cart but didn\'t buy them.',blank:'added',opts:['added','put','placed','saved']},
+          {q:'Use this ___ code at checkout for 20% off.',blank:'promo',opts:['promo','discount','offer','deal']},
+          {q:'My order has a ___ number — I can track it live.',blank:'tracking',opts:['tracking','order','delivery','reference']},
+          {q:'The item was faulty, so I requested a full ___.',blank:'refund',opts:['refund','return','exchange','credit']},
+          {q:'Their ___ policy allows returns within 30 days.',blank:'return',opts:['return','refund','exchange','money-back']}
+        ]
+      },
+      {id:11,title:'Стриминг',xp:30,
+        theory:'<b>Streaming & entertainment</b> — стриминг.<br><br><b>Платформы:</b><br>&bull; <b>Netflix, Disney+, HBO Max</b> — видеостриминг<br>&bull; <b>Spotify, Apple Music</b> — музыкальный стриминг<br>&bull; <b>Twitch</b> — стриминг игр и контента<br><br><b>Действия:</b><br>&bull; <b>to stream</b> — смотреть онлайн<br>&bull; <b>to binge-watch</b> — смотреть серию за серией<br>&bull; <b>to download for offline</b> — скачать без интернета<br><br><b>Подписка:</b><br>&bull; <b>free trial</b> — бесплатный пробный период<br>&bull; <b>to cancel</b> — отменить подписку<br><br><b>Технические термины:</b><br>&bull; <b>buffering</b> — буферизация<br>&bull; <b>subtitles</b> — субтитры<br>&bull; <b>autoplay</b> — автовоспроизведение',
+        exercises:[
+          {q:'I ___ the entire season in one weekend.',blank:'binge-watched',opts:['binge-watched','watched','streamed','finished']},
+          {q:'The video keeps ___. My internet must be slow.',blank:'buffering',opts:['buffering','loading','pausing','freezing']},
+          {q:'They offer a 30-day free ___ before charging.',blank:'trial',opts:['trial','period','plan','test']},
+          {q:'I turned off ___. I like choosing what to watch next.',blank:'autoplay',opts:['autoplay','auto-next','continue','replay']},
+          {q:'Turn on ___ — I can\'t hear the dialogue clearly.',blank:'subtitles',opts:['subtitles','captions','text','translation']}
+        ]
+      },
+      {id:12,title:'Подкасты',xp:30,
+        theory:'<b>Podcasts</b> — подкасты.<br><br><b>Основная лексика:</b><br>&bull; <b>episode</b> — выпуск<br>&bull; <b>host</b> — ведущий<br>&bull; <b>guest</b> — гость<br>&bull; <b>to subscribe / follow</b> — подписаться<br>&bull; <b>transcript</b> — текстовая расшифровка<br>&bull; <b>show notes</b> — заметки к выпуску<br><br><b>Форматы:</b><br>&bull; <b>interview podcast</b> — интервью<br>&bull; <b>solo / monologue</b> — сольный подкаст<br>&bull; <b>narrative podcast</b> — сторителлинг<br><br><b>Для изучения английского:</b> BBC 6 Minute English, The English We Speak, All Ears English — отличные подкасты для языковой практики.',
+        exercises:[
+          {q:'The ___ interviewed three experts on AI.',blank:'host',opts:['host','presenter','speaker','journalist']},
+          {q:'I just released a new ___. It\'s about digital wellness.',blank:'episode',opts:['episode','chapter','part','show']},
+          {q:'You can read the ___ if you prefer text over audio.',blank:'transcript',opts:['transcript','notes','summary','script']},
+          {q:'He was invited as a ___ on a popular business podcast.',blank:'guest',opts:['guest','visitor','speaker','expert']},
+          {q:'Check the ___ notes for all the links mentioned.',blank:'show',opts:['show','episode','podcast','programme']}
+        ]
+      },
+      {id:13,title:'Онлайн-игры',xp:30,
+        theory:'<b>Online gaming</b> — онлайн-игры.<br><br><b>Основные термины:</b><br>&bull; <b>multiplayer</b> — многопользовательский режим<br>&bull; <b>avatar / character</b> — персонаж<br>&bull; <b>XP (experience points)</b> — очки опыта<br>&bull; <b>to level up</b> — повысить уровень<br>&bull; <b>leaderboard</b> — таблица лидеров<br>&bull; <b>respawn</b> — возрождение персонажа<br><br><b>Проблемы:</b><br>&bull; <b>lag</b> — задержка соединения<br>&bull; <b>to crash</b> — вылететь<br>&bull; <b>glitch / bug</b> — баг<br><br><b>Сообщество:</b><br>&bull; <b>clan / team</b> — клан / команда<br>&bull; <b>esports</b> — киберспорт<br>&bull; <b>streamer</b> — стример',
+        exercises:[
+          {q:'I keep dying because of the ___. My connection is terrible.',blank:'lag',opts:['lag','delay','ping','freeze']},
+          {q:'Collect enough XP to ___ up and unlock new skills.',blank:'level',opts:['level','power','rank','move']},
+          {q:'Our ___ won second place in the tournament.',blank:'team',opts:['team','clan','squad','group']},
+          {q:'He streams his ___ every evening on Twitch.',blank:'gameplay',opts:['gameplay','gaming','playing','game']},
+          {q:'The game ___ and I lost all my progress.',blank:'crashed',opts:['crashed','broke','stopped','died']}
+        ]
+      },
+      {id:14,title:'Мемы',xp:30,
+        theory:'<b>Memes & viral content</b> — мемы и вирусный контент.<br><br><b>Что такое мем:</b><br>Изображение, видео или текст, которые распространяются в интернете и часто изменяются пользователями.<br><br><b>Типы мемов:</b><br>&bull; <b>image macro</b> — картинка с текстом<br>&bull; <b>reaction meme</b> — мем-реакция<br>&bull; <b>GIF meme</b> — анимированный мем<br><br><b>Лексика:</b><br>&bull; <b>relatable</b> — с чем себя ассоциируешь<br>&bull; <b>caption</b> — подпись к мему<br>&bull; <b>dead meme</b> — устаревший мем<br>&bull; <b>format</b> — шаблон мема<br>&bull; <b>to go viral</b> — распространиться вирусно',
+        exercises:[
+          {q:'That video ___ viral and got 50 million views.',blank:'went',opts:['went','got','became','turned']},
+          {q:'This meme is so ___. It perfectly describes my Mondays.',blank:'relatable',opts:['relatable','accurate','funny','real']},
+          {q:'Write a clever ___ for the image.',blank:'caption',opts:['caption','text','title','label']},
+          {q:'That joke is a ___ meme. Nobody uses that format anymore.',blank:'dead',opts:['dead','old','tired','stale']},
+          {q:'The ___ is recognisable — everyone knows that photo.',blank:'format',opts:['format','template','style','type']}
+        ]
+      },
+      {id:15,title:'Инфлюенсеры',xp:30,
+        theory:'<b>Influencers & content creators</b> — инфлюенсеры.<br><br><b>Типы:</b><br>&bull; <b>influencer</b> — человек с большой аудиторией<br>&bull; <b>micro-influencer</b> — 10–100K подписчиков<br>&bull; <b>content creator</b> — создатель контента<br><br><b>Монетизация:</b><br>&bull; <b>brand deal / sponsorship</b> — рекламное партнёрство<br>&bull; <b>affiliate marketing</b> — партнёрский маркетинг<br>&bull; <b>merch</b> — фирменная продукция<br>&bull; <b>Patreon</b> — платная подписка от фанатов<br><br><b>Ключевые слова:</b><br>&bull; <b>niche</b> — ниша<br>&bull; <b>authentic</b> — аутентичный<br>&bull; <b>engagement rate</b> — процент вовлечённости<br>&bull; <b>to collab</b> — сотрудничать',
+        exercises:[
+          {q:'She has a small but very engaged ___.',blank:'following',opts:['following','fanbase','audience','community']},
+          {q:'He got a ___ deal with a sportswear brand.',blank:'brand',opts:['brand','sponsor','paid','ad']},
+          {q:'Always disclose when a post is ___.',blank:'sponsored',opts:['sponsored','paid','branded','commercial']},
+          {q:'They decided to ___ on a joint video together.',blank:'collab',opts:['collab','partner','work','create']},
+          {q:'Her ___ is sustainable fashion — only eco-friendly content.',blank:'niche',opts:['niche','topic','theme','area']}
+        ]
+      },
+      {id:16,title:'Цифровое благополучие',xp:30,
+        theory:'<b>Digital wellbeing</b> — цифровое благополучие.<br><br><b>Проблемы:</b><br>&bull; <b>screen time</b> — экранное время<br>&bull; <b>doomscrolling</b> — бесконечное листание плохих новостей<br>&bull; <b>FOMO</b> — Fear Of Missing Out (страх пропустить)<br>&bull; <b>notification overload</b> — перегрузка уведомлениями<br><br><b>Решения:</b><br>&bull; <b>digital detox</b> — цифровой детокс<br>&bull; <b>app limits</b> — ограничения по времени<br>&bull; <b>Do Not Disturb mode</b> — режим «не беспокоить»<br>&bull; <b>mindful use</b> — осознанное использование',
+        exercises:[
+          {q:'I\'ve been ___ for hours — only reading bad news.',blank:'doomscrolling',opts:['doomscrolling','scrolling','browsing','reading']},
+          {q:'I\'m doing a ___ detox this weekend — no phone at all.',blank:'digital',opts:['digital','social','phone','tech']},
+          {q:'Set ___ limits so you don\'t overuse Instagram.',blank:'app',opts:['app','screen','time','usage']},
+          {q:'She suffers from ___ and always feels she\'s missing out.',blank:'FOMO',opts:['FOMO','anxiety','addiction','stress']},
+          {q:'Turn on Do Not ___ during your work hours.',blank:'Disturb',opts:['Disturb','Notify','Interrupt','Alert']}
+        ]
+      },
+      {id:17,title:'Технические термины',xp:30,
+        theory:'<b>Technical internet terms</b> — технические термины.<br><br><b>Браузер:</b><br>&bull; <b>browser</b> — браузер<br>&bull; <b>URL</b> — адрес страницы<br>&bull; <b>tab</b> — вкладка<br>&bull; <b>bookmark</b> — закладка<br>&bull; <b>search engine</b> — поисковик<br><br><b>Данные:</b><br>&bull; <b>cloud storage</b> — облачное хранилище<br>&bull; <b>cache</b> — кэш<br>&bull; <b>cookies</b> — куки<br>&bull; <b>bandwidth</b> — пропускная способность<br><br><b>Действия:</b><br>&bull; <b>to log in / log out</b> — войти / выйти<br>&bull; <b>to update / install</b> — обновить / установить<br>&bull; <b>hotspot</b> — точка доступа Wi-Fi',
+        exercises:[
+          {q:'Clear the ___ if the website isn\'t loading properly.',blank:'cache',opts:['cache','cookies','history','data']},
+          {q:'Save the page as a ___ so you can find it easily.',blank:'bookmark',opts:['bookmark','favourite','save','link']},
+          {q:'I store all my photos in ___ storage.',blank:'cloud',opts:['cloud','online','remote','network']},
+          {q:'Enter the ___ into your browser to open the page.',blank:'URL',opts:['URL','link','address','code']},
+          {q:'My phone\'s ___ is on — you can connect to it.',blank:'hotspot',opts:['hotspot','Wi-Fi','network','data']}
+        ]
+      },
+      {id:18,title:'Email и деловая переписка',xp:30,
+        theory:'<b>Email & professional communication</b> — деловой email.<br><br><b>Части письма:</b><br>&bull; <b>subject line</b> — тема письма<br>&bull; <b>attachment</b> — вложение<br>&bull; <b>CC</b> — копия<br>&bull; <b>BCC</b> — скрытая копия<br>&bull; <b>thread</b> — цепочка писем<br><br><b>Функции:</b><br>&bull; <b>reply / reply all</b> — ответить / ответить всем<br>&bull; <b>forward</b> — переслать<br>&bull; <b>out of office reply</b> — автоответ об отсутствии<br><br><b>Фразы:</b><br>&bull; <b>Please find attached...</b> — Во вложении...<br>&bull; <b>I\'m writing regarding...</b> — Пишу по поводу...<br>&bull; <b>Looking forward to hearing from you.</b> — Жду ответа.',
+        exercises:[
+          {q:'Please ___ attached the document you requested.',blank:'find',opts:['find','see','check','look']},
+          {q:'I\'ve ___ him in the email so he\'s aware.',blank:'CC\'d',opts:['CC\'d','copied','added','included']},
+          {q:'Don\'t ___ all — only respond to the sender.',blank:'reply',opts:['reply','respond','send','write']},
+          {q:'She set an out of ___ reply while on holiday.',blank:'office',opts:['office','work','desk','reach']},
+          {q:'The email ___ should be clear and specific.',blank:'subject line',opts:['subject line','title','header','topic']}
+        ]
+      },
+      {id:19,title:'Форумы и сообщества',xp:30,
+        theory:'<b>Forums & online communities</b> — форумы.<br><br><b>Платформы:</b><br>&bull; <b>Reddit</b> — форумы по темам (subreddits)<br>&bull; <b>Discord</b> — серверы и каналы<br>&bull; <b>Quora</b> — вопросы и ответы<br><br><b>Reddit-словарь:</b><br>&bull; <b>subreddit (r/)</b> — тематический раздел<br>&bull; <b>upvote / downvote</b> — плюс / минус<br>&bull; <b>karma</b> — репутация пользователя<br>&bull; <b>AMA</b> — Ask Me Anything<br>&bull; <b>OP</b> — original poster (автор темы)<br>&bull; <b>TL;DR</b> — Too Long; Didn\'t Read (краткое резюме)<br>&bull; <b>moderator / mod</b> — модератор',
+        exercises:[
+          {q:'The post got thousands of ___. Everyone loved it.',blank:'upvotes',opts:['upvotes','likes','votes','hearts']},
+          {q:'The ___ removed the post for breaking the rules.',blank:'moderator',opts:['moderator','admin','owner','staff']},
+          {q:'___ — I\'m a NASA astronaut. Ask me anything!',blank:'AMA',opts:['AMA','QA','IRL','FYI']},
+          {q:'Check the ___ at the bottom for the quick summary.',blank:'TL;DR',opts:['TL;DR','summary','conclusion','short version']},
+          {q:'Which ___ should I join to practise English?',blank:'subreddit',opts:['subreddit','community','group','forum']}
+        ]
+      },
+      {id:20,title:'ИИ и будущее интернета',xp:30,
+        theory:'<b>AI & the future of the internet</b> — ИИ и интернет.<br><br><b>Ключевые термины:</b><br>&bull; <b>AI (Artificial Intelligence)</b> — искусственный интеллект<br>&bull; <b>machine learning</b> — машинное обучение<br>&bull; <b>chatbot</b> — чат-бот<br>&bull; <b>generative AI</b> — генеративный ИИ<br>&bull; <b>deep fake</b> — дипфейк<br>&bull; <b>prompt</b> — запрос к ИИ<br>&bull; <b>hallucination</b> — выдуманный ИИ-факт<br><br><b>Новый веб:</b><br>&bull; <b>Web3</b> — децентрализованный веб<br>&bull; <b>metaverse</b> — метавселенная<br>&bull; <b>automation</b> — автоматизация<br><br><b>Факт:</b> ChatGPT достиг 100 млн пользователей за 2 месяца — быстрее любого приложения в истории.',
+        exercises:[
+          {q:'The ___ gave me a completely wrong answer — AI hallucination.',blank:'chatbot',opts:['chatbot','AI','bot','system']},
+          {q:'Write a clear ___ to get the best results from AI.',blank:'prompt',opts:['prompt','request','command','question']},
+          {q:'That video is a ___! Her face was replaced by AI.',blank:'deepfake',opts:['deepfake','fake','edited','CGI']},
+          {q:'Many jobs will be affected by ___ in the next decade.',blank:'automation',opts:['automation','AI','robots','technology']},
+          {q:'The ___ AI created a realistic image from just text.',blank:'generative',opts:['generative','creative','smart','advanced']}
+        ]
+      }
+    ]
+  },
+
+  movies:{
+    title:'Movies & Pop Culture',
+    icon:'🎬',
+    color:'#ef4444',
+    lessons:[
+      {id:1,title:'Жанры фильмов',xp:30,
+        theory:'<b>Film genres</b> — жанры фильмов.<br><br><b>Основные жанры:</b><br>&bull; <b>action</b> — боевик<br>&bull; <b>comedy</b> — комедия<br>&bull; <b>drama</b> — драма<br>&bull; <b>thriller / suspense</b> — триллер<br>&bull; <b>horror</b> — ужасы<br>&bull; <b>sci-fi (science fiction)</b> — научная фантастика<br>&bull; <b>fantasy</b> — фэнтези<br>&bull; <b>romance</b> — мелодрама<br>&bull; <b>documentary</b> — документальный<br>&bull; <b>animation</b> — анимационный<br>&bull; <b>biopic</b> — байопик (о реальном человеке)<br>&bull; <b>indie</b> — независимое кино<br><br><b>Смешанные жанры:</b><br>&bull; <b>rom-com</b> — романтическая комедия<br>&bull; <b>action-comedy</b> — комедийный боевик<br>&bull; <b>dark comedy</b> — чёрная комедия',
+        exercises:[
+          {q:'I love ___ films — spaceships, aliens, and the future.',blank:'sci-fi',opts:['sci-fi','fantasy','action','thriller']},
+          {q:'It\'s a ___ — funny but also a love story.',blank:'rom-com',opts:['rom-com','comedy','romance','drama']},
+          {q:'I can\'t watch ___ films alone. They give me nightmares.',blank:'horror',opts:['horror','thriller','dark','scary']},
+          {q:'It\'s a ___ about Freddie Mercury — based on a true story.',blank:'biopic',opts:['biopic','biography','drama','documentary']},
+          {q:'The film is a ___ — it keeps you on the edge of your seat.',blank:'thriller',opts:['thriller','suspense','drama','mystery']}
+        ]
+      },
+      {id:2,title:'Обсуждение фильмов',xp:30,
+        theory:'<b>Talking about films</b> — обсуждение фильмов.<br><br><b>Основные слова:</b><br>&bull; <b>plot</b> — сюжет<br>&bull; <b>scene</b> — сцена<br>&bull; <b>character</b> — персонаж<br>&bull; <b>protagonist / hero</b> — главный герой<br>&bull; <b>villain / antagonist</b> — злодей<br>&bull; <b>twist</b> — неожиданный поворот сюжета<br>&bull; <b>cliffhanger</b> — захватывающая концовка без развязки<br>&bull; <b>ending</b> — концовка<br><br><b>Оценка:</b><br>&bull; <b>It was gripping / compelling.</b> — Захватывающий.<br>&bull; <b>It dragged a bit.</b> — Немного затянут.<br>&bull; <b>The acting was brilliant.</b> — Игра актёров была блестящей.<br>&bull; <b>The plot had so many twists.</b> — Много неожиданных поворотов.',
+        exercises:[
+          {q:'The ___ was so unexpected — I didn\'t see that coming!',blank:'twist',opts:['twist','ending','scene','turn']},
+          {q:'The ___ is complex: love, war, and betrayal.',blank:'plot',opts:['plot','story','theme','script']},
+          {q:'The ___ at the end left me desperate for the sequel.',blank:'cliffhanger',opts:['cliffhanger','ending','scene','cut']},
+          {q:'The ___ was weak — I didn\'t believe her character at all.',blank:'acting',opts:['acting','performance','script','direction']},
+          {q:'The ___ is the character you hate throughout the film.',blank:'villain',opts:['villain','antagonist','bad guy','enemy']}
+        ]
+      },
+      {id:3,title:'Кинотеатр',xp:30,
+        theory:'<b>At the cinema</b> — в кинотеатре.<br><br><b>Словарь:</b><br>&bull; <b>screening</b> — сеанс<br>&bull; <b>showing</b> — показ<br>&bull; <b>box office</b> — касса / коммерческий успех фильма<br>&bull; <b>trailer</b> — трейлер<br>&bull; <b>subtitles</b> — субтитры<br>&bull; <b>dubbed</b> — дублированный<br>&bull; <b>IMAX / 3D</b> — форматы просмотра<br>&bull; <b>row / seat</b> — ряд / место<br><br><b>Фразы:</b><br>&bull; <b>Shall we catch a film?</b> — Сходим в кино?<br>&bull; <b>What\'s on?</b> — Что показывают?<br>&bull; <b>It\'s a sell-out.</b> — Все билеты проданы.<br>&bull; <b>interval / intermission</b> — антракт',
+        exercises:[
+          {q:'The film broke ___ office records in its first week.',blank:'box',opts:['box','ticket','cinema','cash']},
+          {q:'What\'s ___ at the cinema this weekend?',blank:'on',opts:['on','showing','playing','screening']},
+          {q:'I prefer watching films in the original with ___.',blank:'subtitles',opts:['subtitles','captions','translation','text']},
+          {q:'The evening ___ is sold out. Let\'s try the afternoon one.',blank:'screening',opts:['screening','showing','session','time']},
+          {q:'We watched it in ___ — the picture was incredible.',blank:'IMAX',opts:['IMAX','3D','HD','widescreen']}
+        ]
+      },
+      {id:4,title:'Рецензии и рейтинги',xp:30,
+        theory:'<b>Film reviews & ratings</b> — рецензии и рейтинги.<br><br><b>Структура рецензии:</b><br>&bull; <b>plot summary</b> — краткое изложение сюжета<br>&bull; <b>critique</b> — критика<br>&bull; <b>recommendation</b> — рекомендация<br><br><b>Оценки и платформы:</b><br>&bull; <b>IMDb rating</b> — рейтинг на IMDb (1–10)<br>&bull; <b>Rotten Tomatoes</b> — критики (Tomatometer) + зрители<br>&bull; <b>Metacritic</b> — агрегатор рецензий<br><br><b>Полезные прилагательные:</b><br>&bull; <b>outstanding / masterpiece</b> — выдающийся / шедевр<br>&bull; <b>overrated</b> — переоценённый<br>&bull; <b>underrated</b> — недооценённый<br>&bull; <b>predictable</b> — предсказуемый<br>&bull; <b>thought-provoking</b> — заставляющий задуматься',
+        exercises:[
+          {q:'It\'s completely ___. Everyone said it was great but I was bored.',blank:'overrated',opts:['overrated','overhyped','disappointing','poor']},
+          {q:'In my opinion, it\'s a true ___ — one of the best films ever made.',blank:'masterpiece',opts:['masterpiece','classic','hit','gem']},
+          {q:'The ending was so ___. I knew exactly what would happen.',blank:'predictable',opts:['predictable','obvious','boring','simple']},
+          {q:'It\'s ___ — most people have never heard of it but it\'s brilliant.',blank:'underrated',opts:['underrated','unknown','hidden','obscure']},
+          {q:'The film is really ___. It makes you question everything.',blank:'thought-provoking',opts:['thought-provoking','deep','complex','philosophical']}
+        ]
+      },
+      {id:5,title:'Сериалы и бинджвотчинг',xp:30,
+        theory:'<b>TV series & binge-watching</b> — сериалы.<br><br><b>Словарь сериалов:</b><br>&bull; <b>series / show</b> — сериал<br>&bull; <b>season</b> — сезон<br>&bull; <b>episode</b> — серия<br>&bull; <b>pilot</b> — пилотная серия<br>&bull; <b>finale</b> — финал сезона/сериала<br>&bull; <b>spin-off</b> — дочерний сериал<br>&bull; <b>reboot</b> — перезапуск<br><br><b>Бинджвотчинг:</b><br>&bull; <b>to binge-watch</b> — смотреть серию за серией<br>&bull; <b>to catch up</b> — досмотреть пропущенные серии<br>&bull; <b>spoiler</b> — спойлер<br>&bull; <b>cliffhanger</b> — открытая концовка серии<br>&bull; <b>to cancel a show</b> — закрыть сериал',
+        exercises:[
+          {q:'I ___ the whole season in one night. I couldn\'t stop.',blank:'binge-watched',opts:['binge-watched','watched','streamed','finished']},
+          {q:'Don\'t give me any ___! I haven\'t finished season 3 yet.',blank:'spoilers',opts:['spoilers','hints','details','information']},
+          {q:'The season ___ ended on such a cliffhanger!',blank:'finale',opts:['finale','ending','last episode','conclusion']},
+          {q:'It\'s a ___ of Breaking Bad — follows the same character.',blank:'spin-off',opts:['spin-off','sequel','prequel','continuation']},
+          {q:'I need to ___ — I missed the last three episodes.',blank:'catch up',opts:['catch up','catch on','keep up','get up']}
+        ]
+      },
+      {id:6,title:'Классика кино и цитаты',xp:30,
+        theory:'<b>Classic films & famous quotes</b> — классика кино.<br><br><b>Культовые цитаты:</b><br>&bull; <b>"May the Force be with you."</b> — Star Wars<br>&bull; <b>"Here\'s looking at you, kid."</b> — Casablanca<br>&bull; <b>"I\'ll be back."</b> — The Terminator<br>&bull; <b>"You can\'t handle the truth!"</b> — A Few Good Men<br><br><b>Полезный словарь:</b><br>&bull; <b>iconic</b> — культовый, знаковый<br>&bull; <b>timeless</b> — вне времени, не стареющий<br>&bull; <b>cult classic</b> — культовый фильм<br>&bull; <b>blockbuster</b> — блокбастер<br>&bull; <b>box office hit</b> — кассовый успех<br>&bull; <b>remake</b> — ремейк<br>&bull; <b>sequel / prequel</b> — сиквел / приквел',
+        exercises:[
+          {q:'That line is so ___. Everyone knows it.',blank:'iconic',opts:['iconic','famous','known','classic']},
+          {q:'Casablanca is a ___ classic — it never gets old.',blank:'timeless',opts:['timeless','old','vintage','classic']},
+          {q:'The 2022 film is a ___ of the 1984 original.',blank:'remake',opts:['remake','reboot','copy','version']},
+          {q:'It\'s a ___ — not everyone loved it at first, but now it\'s adored.',blank:'cult classic',opts:['cult classic','hidden gem','blockbuster','art film']},
+          {q:'The ___ earned $2 billion worldwide.',blank:'sequel',opts:['sequel','prequel','remake','reboot']}
+        ]
+      },
+      {id:7,title:'Награды и фестивали',xp:30,
+        theory:'<b>Awards & film festivals</b> — награды и кинофестивали.<br><br><b>Главные премии:</b><br>&bull; <b>Oscar (Academy Award)</b> — Оскар<br>&bull; <b>BAFTA</b> — британская кинопремия<br>&bull; <b>Golden Globe</b> — Золотой глобус<br>&bull; <b>Emmy</b> — премия за телевизионные работы<br>&bull; <b>Grammy</b> — музыкальная премия<br><br><b>Фестивали:</b><br>&bull; <b>Cannes Film Festival</b> — Каннский кинофестиваль (Palme d\'Or)<br>&bull; <b>Sundance</b> — независимое кино (США)<br>&bull; <b>Venice Film Festival</b> — Венецианский кинофестиваль<br>&bull; <b>Berlin International Film Festival (Berlinale)</b><br><br><b>Словарь церемонии:</b><br>&bull; <b>nominee</b> — номинант<br>&bull; <b>winner</b> — победитель<br>&bull; <b>acceptance speech</b> — благодарственная речь',
+        exercises:[
+          {q:'She won the ___ for Best Actress last year.',blank:'Oscar',opts:['Oscar','BAFTA','Emmy','Globe']},
+          {q:'The film premiered at ___ and won the Palme d\'Or.',blank:'Cannes',opts:['Cannes','Sundance','Venice','Berlin']},
+          {q:'He\'s a ___ for Best Director — fingers crossed!',blank:'nominee',opts:['nominee','candidate','finalist','contender']},
+          {q:'Her ___ speech moved everyone to tears.',blank:'acceptance',opts:['acceptance','award','winner','thank-you']},
+          {q:'The ___ are announced in February each year.',blank:'Oscars',opts:['Oscars','BAFTAs','Emmys','Globes']}
+        ]
+      },
+      {id:8,title:'Актёры и режиссёры',xp:30,
+        theory:'<b>Actors, directors & crew</b> — актёры и съёмочная группа.<br><br><b>Должности:</b><br>&bull; <b>director</b> — режиссёр<br>&bull; <b>screenwriter</b> — сценарист<br>&bull; <b>producer</b> — продюсер<br>&bull; <b>cinematographer / DoP</b> — оператор<br>&bull; <b>editor</b> — монтажёр<br>&bull; <b>composer</b> — композитор<br>&bull; <b>stunt double</b> — каскадёр<br><br><b>Обсуждение актёрской игры:</b><br>&bull; <b>convincing / believable</b> — убедительный<br>&bull; <b>Oscar-worthy</b> — достойный Оскара<br>&bull; <b>to steal the show</b> — украсть шоу (выделиться среди всех)<br>&bull; <b>leading role / supporting role</b> — главная / второстепенная роль<br>&bull; <b>typecast</b> — всегда играющий одинаковые роли',
+        exercises:[
+          {q:'The ___ won praise for his realistic portrayal of the president.',blank:'actor',opts:['actor','director','star','performer']},
+          {q:'She played a ___ role but completely stole the show.',blank:'supporting',opts:['supporting','small','minor','secondary']},
+          {q:'The film\'s ___ is breathtaking — every shot is a work of art.',blank:'cinematography',opts:['cinematography','photography','direction','editing']},
+          {q:'He tends to get ___. He always plays the same tough-guy type.',blank:'typecast',opts:['typecast','stereotyped','repeated','cast']},
+          {q:'The child actor ___ the show — everyone was talking about her.',blank:'stole',opts:['stole','owned','won','took']}
+        ]
+      },
+      {id:9,title:'Музыка и саундтреки',xp:30,
+        theory:'<b>Music, soundtracks & pop music</b> — музыка и поп-культура.<br><br><b>Словарь музыки:</b><br>&bull; <b>soundtrack / OST</b> — саундтрек<br>&bull; <b>score</b> — оригинальная музыка к фильму<br>&bull; <b>theme song</b> — главная тема<br>&bull; <b>lyrics</b> — текст песни<br>&bull; <b>track / single / album</b> — трек / сингл / альбом<br><br><b>Жанры:</b><br>&bull; <b>pop / rock / hip-hop / R&B / indie / electronic</b><br><br><b>Описание музыки:</b><br>&bull; <b>catchy</b> — запоминающийся<br>&bull; <b>upbeat</b> — бодрый, позитивный<br>&bull; <b>haunting</b> — запоминающийся и грустный<br>&bull; <b>iconic</b> — культовый<br>&bull; <b>anthem</b> — гимн поколения',
+        exercises:[
+          {q:'The ___ is so catchy — I can\'t get it out of my head.',blank:'soundtrack',opts:['soundtrack','music','song','theme']},
+          {q:'That song is a generation ___. Everyone knows every word.',blank:'anthem',opts:['anthem','classic','hit','track']},
+          {q:'The melody is ___. It stays with you for days.',blank:'haunting',opts:['haunting','catchy','memorable','sad']},
+          {q:'I love the ___ to that film — John Williams is a genius.',blank:'score',opts:['score','soundtrack','music','OST']},
+          {q:'The song has such ___ ___. I love singing along.',blank:'catchy',opts:['catchy','great','simple','fun']}
+        ]
+      },
+      {id:10,title:'Культурные отсылки',xp:30,
+        theory:'<b>Cultural references & pop culture</b> — культурные отсылки.<br><br><b>Что такое культурная отсылка:</b><br>Упоминание фильма, книги, события, которое известно аудитории. Понимание отсылок — признак языковой зрелости.<br><br><b>Источники отсылок:</b><br>&bull; Цитаты из фильмов: "That\'s what she said" (The Office)<br>&bull; Крылатые выражения из книг<br>&bull; Исторические события<br>&bull; Рекламные слоганы<br><br><b>Полезные слова:</b><br>&bull; <b>reference</b> — отсылка<br>&bull; <b>allusion</b> — литературная/культурная аллюзия<br>&bull; <b>inside joke</b> — шутка понятная только посвящённым<br>&bull; <b>pop culture reference</b> — отсылка к поп-культуре<br>&bull; <b>to get a reference</b> — понять отсылку',
+        exercises:[
+          {q:'Did you get that ___ to The Office? So funny.',blank:'reference',opts:['reference','joke','quote','mention']},
+          {q:'That\'s an ___ to Shakespeare — "all the world\'s a stage".',blank:'allusion',opts:['allusion','quote','reference','phrase']},
+          {q:'It\'s an ___ joke. You only get it if you\'ve watched the show.',blank:'inside',opts:['inside','internal','private','hidden']},
+          {q:'I didn\'t ___ that reference. Which film is it from?',blank:'get',opts:['get','understand','catch','know']},
+          {q:'The ad is full of ___ culture references from the 80s.',blank:'pop',opts:['pop','popular','retro','old']}
+        ]
+      },
+      {id:11,title:'Анимация и мультфильмы',xp:30,
+        theory:'<b>Animation & cartoons</b> — анимация и мультфильмы.<br><br><b>Типы анимации:</b><br>&bull; <b>2D animation</b> — традиционная рисованная анимация<br>&bull; <b>3D / CGI animation</b> — трёхмерная компьютерная анимация<br>&bull; <b>stop-motion</b> — покадровая анимация<br>&bull; <b>anime</b> — японская анимация<br><br><b>Студии:</b><br>&bull; <b>Pixar</b> — Toy Story, Finding Nemo, Inside Out<br>&bull; <b>Disney</b> — The Lion King, Frozen<br>&bull; <b>Studio Ghibli</b> — Spirited Away, My Neighbour Totoro<br>&bull; <b>DreamWorks</b> — Shrek, Kung Fu Panda<br><br><b>Словарь:</b><br>&bull; <b>animated film</b> — анимационный фильм<br>&bull; <b>voice actor</b> — актёр озвучки<br>&bull; <b>feature film</b> — полнометражный фильм',
+        exercises:[
+          {q:'It\'s a ___ film — computer-generated, not hand-drawn.',blank:'CGI',opts:['CGI','3D','digital','animated']},
+          {q:'Studio ___ films always make me cry. Spirited Away is a masterpiece.',blank:'Ghibli',opts:['Ghibli','Pixar','Disney','DreamWorks']},
+          {q:'The ___ actor behind Woody is Tom Hanks.',blank:'voice',opts:['voice','lead','main','film']},
+          {q:'___ has a unique visual style — very different from American animation.',blank:'Anime',opts:['Anime','Manga','Animation','Cartoon']},
+          {q:'It was originally a short film, later developed into a full ___ film.',blank:'feature',opts:['feature','long','full','complete']}
+        ]
+      },
+      {id:12,title:'Документальное кино',xp:30,
+        theory:'<b>Documentary films</b> — документальное кино.<br><br><b>Типы:</b><br>&bull; <b>nature documentary</b> — природный документальный (Planet Earth)<br>&bull; <b>true crime documentary</b> — криминальный документальный<br>&bull; <b>biographical documentary</b> — биографический<br>&bull; <b>social issue documentary</b> — о социальных проблемах<br>&bull; <b>mockumentary</b> — псевдодокументальный фильм (The Office)<br><br><b>Словарь:</b><br>&bull; <b>narrator</b> — рассказчик<br>&bull; <b>footage</b> — видеоматериал<br>&bull; <b>interview / talking heads</b> — интервью<br>&bull; <b>archive footage</b> — архивные кадры<br>&bull; <b>investigative</b> — следственный, расследовательский',
+        exercises:[
+          {q:'David Attenborough is the ___ on most BBC nature documentaries.',blank:'narrator',opts:['narrator','host','presenter','voice']},
+          {q:'The film uses archive ___ from the 1960s.',blank:'footage',opts:['footage','video','film','material']},
+          {q:'It\'s a ___ — actors pretend it\'s a real documentary.',blank:'mockumentary',opts:['mockumentary','fake doc','parody','comedy']},
+          {q:'The ___ crime series kept me awake all night.',blank:'true',opts:['true','real','criminal','dark']},
+          {q:'The ___ documentary revealed serious problems in the food industry.',blank:'investigative',opts:['investigative','critical','shocking','social']}
+        ]
+      },
+      {id:13,title:'Блокбастеры и супергерои',xp:30,
+        theory:'<b>Blockbusters & superhero films</b> — блокбастеры.<br><br><b>Вселенные:</b><br>&bull; <b>MCU (Marvel Cinematic Universe)</b> — Marvel<br>&bull; <b>DCU (DC Universe)</b> — DC<br><br><b>Словарь:</b><br>&bull; <b>franchise</b> — кинофраншиза<br>&bull; <b>universe</b> — вселенная (связанные фильмы)<br>&bull; <b>origin story</b> — история происхождения героя<br>&bull; <b>superhero / villain / anti-hero</b> — супергерой / злодей / антигерой<br>&bull; <b>CGI effects</b> — спецэффекты<br>&bull; <b>post-credits scene</b> — сцена после титров<br>&bull; <b>crossover</b> — кроссовер (персонажи из разных фильмов)<br>&bull; <b>reboot</b> — перезапуск серии',
+        exercises:[
+          {q:'Stay for the ___ scene — it hints at the next film.',blank:'post-credits',opts:['post-credits','end','after','bonus']},
+          {q:'It\'s the ___ story of how he became Spider-Man.',blank:'origin',opts:['origin','first','back','start']},
+          {q:'The MCU ___ spans 30+ films over 15 years.',blank:'franchise',opts:['franchise','series','universe','collection']},
+          {q:'The CGI ___ were spectacular — it looked completely real.',blank:'effects',opts:['effects','graphics','visuals','scenes']},
+          {q:'It\'s a ___ — characters from three different films appear together.',blank:'crossover',opts:['crossover','team-up','reunion','mashup']}
+        ]
+      },
+      {id:14,title:'Британская и американская культура',xp:30,
+        theory:'<b>British vs American culture</b> — британская и американская культура.<br><br><b>В кино и ТВ:</b><br>&bull; Британское ТВ: короткие сезоны (6–8 серий), чёрный юмор, реализм<br>&bull; Американское ТВ: длинные сезоны (20–24 серии), масштабное производство<br><br><b>Различия в словаре:</b><br>&bull; <b>film (UK) / movie (US)</b><br>&bull; <b>cinema (UK) / movie theater (US)</b><br>&bull; <b>series (UK) / season (US)</b><br>&bull; <b>presenter (UK) / host (US)</b><br><br><b>Культурные различия:</b><br>&bull; Британский юмор: самоирония, dry humour, understatement<br>&bull; Американский юмор: позитивный, прямой, часто situational comedy<br>&bull; <b>dry humour</b> — сухой юмор (произносится с серьёзным лицом)',
+        exercises:[
+          {q:'In the US they say "movie theater"; in the UK it\'s the ___.',blank:'cinema',opts:['cinema','theatre','films','pictures']},
+          {q:'British comedies are known for their ___ humour — deadpan delivery.',blank:'dry',opts:['dry','dark','black','sarcastic']},
+          {q:'In the UK, we say "series"; in the US, they say ___.',blank:'season',opts:['season','series','part','round']},
+          {q:'The British show had only 6 ___. The American remake had 200.',blank:'episodes',opts:['episodes','parts','shows','scenes']},
+          {q:'British humour often involves ___. You have to read between the lines.',blank:'understatement',opts:['understatement','irony','sarcasm','modesty']}
+        ]
+      },
+      {id:15,title:'Экранизации книг',xp:30,
+        theory:'<b>Book-to-film adaptations</b> — экранизации книг.<br><br><b>Известные экранизации:</b><br>&bull; Harry Potter, The Lord of the Rings, The Hunger Games<br>&bull; Dune, 1984, Pride and Prejudice<br>&bull; Gone Girl, The Girl with the Dragon Tattoo<br><br><b>Полезные слова:</b><br>&bull; <b>adaptation</b> — экранизация<br>&bull; <b>faithful to the book</b> — близкий к оригиналу<br>&bull; <b>to deviate from</b> — отступать от (оригинала)<br>&bull; <b>the book was better</b> — книга лучше (классическое мнение)<br>&bull; <b>to bring to life</b> — воплотить в жизнь<br>&bull; <b>casting</b> — подбор актёров<br>&bull; <b>director\'s vision</b> — видение режиссёра',
+        exercises:[
+          {q:'The film is a brilliant ___ — very faithful to the book.',blank:'adaptation',opts:['adaptation','version','remake','translation']},
+          {q:'The director ___ from the original plot in several key scenes.',blank:'deviated',opts:['deviated','changed','edited','removed']},
+          {q:'The ___ was perfect — I imagined exactly those actors.',blank:'casting',opts:['casting','acting','choices','selection']},
+          {q:'The film really brought the characters to ___.',blank:'life',opts:['life','reality','screen','world']},
+          {q:'The film is surprisingly ___ to the book — almost word for word.',blank:'faithful',opts:['faithful','close','similar','true']}
+        ]
+      },
+      {id:16,title:'Реалити-шоу',xp:30,
+        theory:'<b>Reality TV</b> — реалити-шоу.<br><br><b>Форматы:</b><br>&bull; <b>talent show</b> — шоу талантов (X Factor, American Idol)<br>&bull; <b>dating show</b> — шоу знакомств (Love Island)<br>&bull; <b>competition show</b> — конкурс (Survivor, The Apprentice)<br>&bull; <b>cooking competition</b> — кулинарный конкурс (MasterChef)<br>&bull; <b>documentary series</b> — докьюсерия о реальных людях<br><br><b>Словарь:</b><br>&bull; <b>contestant / participant</b> — участник<br>&bull; <b>to vote off / eliminate</b> — проголосовать против / выбыть<br>&bull; <b>host / presenter</b> — ведущий<br>&bull; <b>judge / panel</b> — жюри<br>&bull; <b>to be evicted</b> — быть исключённым (Big Brother)<br>&bull; <b>scripted vs unscripted</b> — постановочное / непостановочное',
+        exercises:[
+          {q:'Three ___ were eliminated in last night\'s episode.',blank:'contestants',opts:['contestants','players','people','participants']},
+          {q:'The ___ gave her a standing ovation — a perfect score.',blank:'judges',opts:['judges','panel','jury','hosts']},
+          {q:'She was ___ from the house after the public vote.',blank:'evicted',opts:['evicted','eliminated','removed','voted out']},
+          {q:'Love Island is a popular ___ show — people look for romance.',blank:'dating',opts:['dating','romance','love','relationship']},
+          {q:'He won the cooking ___ with his final three-course menu.',blank:'competition',opts:['competition','show','contest','challenge']}
+        ]
+      },
+      {id:17,title:'Стендап-комедия',xp:30,
+        theory:'<b>Stand-up comedy</b> — стендап-комедия.<br><br><b>Словарь:</b><br>&bull; <b>comedian / comic</b> — комик<br>&bull; <b>stand-up set / routine</b> — выступление<br>&bull; <b>punchline</b> — кульминация шутки<br>&bull; <b>setup</b> — подводка к шутке<br>&bull; <b>bit</b> — отдельная история / тема в выступлении<br>&bull; <b>heckler</b> — зритель, мешающий выступлению<br>&bull; <b>crowd work</b> — импровизация с аудиторией<br>&bull; <b>bombing</b> — провальное выступление (когда никто не смеётся)<br>&bull; <b>killing it</b> — отличное выступление<br><br><b>Известные комики:</b><br>Ricky Gervais, John Mulaney, Hannah Gadsby, Dave Chappelle, Eddie Murphy, Billy Connolly',
+        exercises:[
+          {q:'Everyone waited for the ___ but it wasn\'t funny at all.',blank:'punchline',opts:['punchline','joke','ending','line']},
+          {q:'He was absolutely ___ it — the audience was in tears.',blank:'killing',opts:['killing','crushing','nailing','owning']},
+          {q:'The comedian completely ___. Nobody laughed once.',blank:'bombed',opts:['bombed','failed','flopped','died']},
+          {q:'She did a great ___ — just talking to random people in the crowd.',blank:'crowd work',opts:['crowd work','improvisation','audience bit','interaction']},
+          {q:'His best ___ is about growing up in New Jersey.',blank:'bit',opts:['bit','story','joke','routine']}
+        ]
+      },
+      {id:18,title:'Театр',xp:30,
+        theory:'<b>Theatre & stage</b> — театр.<br><br><b>Типы постановок:</b><br>&bull; <b>play</b> — пьеса<br>&bull; <b>musical</b> — мюзикл<br>&bull; <b>opera</b> — опера<br>&bull; <b>ballet</b> — балет<br>&bull; <b>comedy / tragedy</b> — комедия / трагедия<br><br><b>Словарь:</b><br>&bull; <b>stage</b> — сцена<br>&bull; <b>curtain call</b> — выход актёров на поклон<br>&bull; <b>standing ovation</b> — овация стоя<br>&bull; <b>matinée</b> — дневной спектакль<br>&bull; <b>West End / Broadway</b> — главные театральные районы Лондона / Нью-Йорка<br>&bull; <b>cast</b> — состав актёров<br>&bull; <b>understudy</b> — дублёр актёра<br>&bull; <b>interval</b> — антракт',
+        exercises:[
+          {q:'The cast received a ___ ovation at the end.',blank:'standing',opts:['standing','long','loud','full']},
+          {q:'We saw Hamilton on ___ in New York — incredible!',blank:'Broadway',opts:['Broadway','West End','stage','theatre']},
+          {q:'During the ___, we grabbed a drink and discussed the first act.',blank:'interval',opts:['interval','break','pause','rest']},
+          {q:'The lead actress was ill, so her ___ performed instead.',blank:'understudy',opts:['understudy','replacement','double','backup']},
+          {q:'The ___ call lasted five minutes — the audience loved it.',blank:'curtain',opts:['curtain','final','encore','bow']}
+        ]
+      },
+      {id:19,title:'Мода и поп-культура',xp:30,
+        theory:'<b>Fashion & pop culture</b> — мода и поп-культура.<br><br><b>Словарь моды:</b><br>&bull; <b>trend</b> — тренд<br>&bull; <b>in fashion / out of fashion</b> — в моде / вышедший из моды<br>&bull; <b>vintage</b> — винтаж (старая одежда, снова модная)<br>&bull; <b>streetwear</b> — уличная мода<br>&bull; <b>haute couture</b> — высокая мода<br>&bull; <b>fast fashion</b> — быстрая мода (дешёвая, быстро меняющаяся)<br>&bull; <b>sustainable fashion</b> — устойчивая мода<br><br><b>Мода в поп-культуре:</b><br>&bull; <b>red carpet</b> — красная ковровая дорожка<br>&bull; <b>outfit</b> — образ, наряд<br>&bull; <b>style icon</b> — икона стиля<br>&bull; <b>to set a trend</b> — задавать тренд',
+        exercises:[
+          {q:'Flared jeans are back ___ fashion — everyone\'s wearing them.',blank:'in',opts:['in','into','to','on']},
+          {q:'She\'s a real style ___ — everyone copies what she wears.',blank:'icon',opts:['icon','model','inspiration','queen']},
+          {q:'I try to avoid ___ fashion — too cheap and too damaging.',blank:'fast',opts:['fast','cheap','quick','low']},
+          {q:'Her ___ carpet look was talked about for weeks.',blank:'red',opts:['red','film','awards','premiere']},
+          {q:'He always ___ trends — this season\'s oversized look started with him.',blank:'sets',opts:['sets','starts','creates','makes']}
+        ]
+      },
+      {id:20,title:'Поп-культура и язык',xp:30,
+        theory:'<b>Pop culture & language</b> — поп-культура и язык.<br><br><b>Как поп-культура влияет на язык:</b><br>&bull; Новые слова: <b>selfie, photobomb, binge-watch</b> (появились в 2010-х)<br>&bull; Фразы из фильмов вошли в речь: "I\'ll be back", "Houston, we have a problem"<br>&bull; Мемы создают новые выражения<br><br><b>Культурные явления:</b><br>&bull; <b>phenomenon</b> — явление, феномен<br>&bull; <b>zeitgeist</b> — дух времени<br>&bull; <b>cult following</b> — преданная аудитория культового произведения<br>&bull; <b>mainstream</b> — мейнстрим (массовая культура)<br>&bull; <b>niche</b> — нишевый (для избранных)<br>&bull; <b>fandom</b> — сообщество фанатов',
+        exercises:[
+          {q:'"Selfie" became part of the mainstream ___ in 2013.',blank:'vocabulary',opts:['vocabulary','language','culture','slang']},
+          {q:'The show has a devoted ___ — fans who know every detail.',blank:'fandom',opts:['fandom','following','community','fanbase']},
+          {q:'It went from ___ to mainstream in just a few months.',blank:'niche',opts:['niche','unknown','indie','cult']},
+          {q:'The film became a cultural ___ — everyone was talking about it.',blank:'phenomenon',opts:['phenomenon','event','moment','sensation']},
+          {q:'That phrase became part of the cultural ___ of the 90s.',blank:'zeitgeist',opts:['zeitgeist','moment','era','identity']}
+        ]
+      }
+    ]
+  },
+
+  grammar:{
+    title:'Grammar Deep Dive',
+    icon:'📝',
+    color:'#6366f1',
+    lessons:[
+      {id:1,title:'Present Simple vs Continuous',xp:30,
+        theory:'<b>Present Simple vs Present Continuous</b><br><br><b>Present Simple</b> — привычки, факты, расписания:<br><div class="rule">I <b>work</b> every day. She <b>lives</b> in London. Water <b>boils</b> at 100°C.</div><b>Present Continuous</b> — действие прямо сейчас или временная ситуация:<br><div class="rule">I <b>am working</b> right now. She <b>is staying</b> with friends this week.</div><b>Глаголы-состояния</b> (НЕ используются в Continuous): <b>know, like, love, hate, want, need, believe, understand, remember, see, hear, smell, taste</b><br><br><b>Сигнальные слова:</b><br>&bull; Simple: always, usually, often, never, every day<br>&bull; Continuous: now, at the moment, currently, this week',
+        exercises:[
+          {q:'She ___ (work) at the moment — call her later.',blank:'is working',opts:['is working','works','worked','will work']},
+          {q:'I ___ (not understand) the question. Can you repeat it?',blank:'don\'t understand',opts:['don\'t understand','am not understanding','didn\'t understand','won\'t understand']},
+          {q:'He ___ (usually/take) the bus to work.',blank:'usually takes',opts:['usually takes','is usually taking','took','has taken']},
+          {q:'What ___ you ___ (do) this weekend?',blank:'are...doing',opts:['are...doing','do...do','did...do','have...done']},
+          {q:'Water ___ (boil) at 100°C.',blank:'boils',opts:['boils','is boiling','boiled','has boiled']}
+        ]
+      },
+      {id:2,title:'Past Simple vs Past Continuous',xp:30,
+        theory:'<b>Past Simple vs Past Continuous</b><br><br><b>Past Simple</b> — завершённое действие в прошлом:<br><div class="rule">I <b>visited</b> Paris last year. She <b>called</b> me yesterday.</div><b>Past Continuous</b> — действие в процессе в момент в прошлом:<br><div class="rule">I <b>was reading</b> when she called. They <b>were playing</b> football at 6pm.</div><b>Классическая комбинация:</b><br><div class="rule">I <b>was sleeping</b> when the phone <b>rang</b>.<br>(Continuous = фоновое; Simple = прерывающее)</div><b>Сигнальные слова:</b><br>&bull; Past Simple: yesterday, last year, in 2010, ago<br>&bull; Past Continuous: while, when, at 6pm, all morning',
+        exercises:[
+          {q:'I ___ (read) when she knocked on the door.',blank:'was reading',opts:['was reading','read','had read','reading']},
+          {q:'While they ___ (have) dinner, the lights went out.',blank:'were having',opts:['were having','had','have had','had had']},
+          {q:'She ___ (call) me three times yesterday.',blank:'called',opts:['called','was calling','had called','calls']},
+          {q:'What ___ you ___ (do) at midnight last night?',blank:'were...doing',opts:['were...doing','did...do','are...doing','had...done']},
+          {q:'I ___ (not sleep) well last night.',blank:'didn\'t sleep',opts:['didn\'t sleep','wasn\'t sleeping','hadn\'t slept','don\'t sleep']}
+        ]
+      },
+      {id:3,title:'Present Perfect',xp:30,
+        theory:'<b>Present Perfect vs Past Simple</b><br><br><b>Present Perfect</b> (have/has + V3) — связь с настоящим:<br><div class="rule">I <b>have visited</b> Paris. (= опыт в жизни, время не важно)<br>She <b>has just left</b>. (= только что)<br>I <b>haven\'t finished</b> yet. (= ещё не)</div><b>Past Simple</b> — завершённое действие, время известно:<br><div class="rule">I <b>visited</b> Paris <b>in 2018</b>.<br>She <b>left</b> <b>an hour ago</b>.</div><b>Правило:</b> С Yesterday, ago, last year, in [год] — ТОЛЬКО Past Simple.<br><b>Сигналы Present Perfect:</b> ever, never, already, yet, just, recently, since, for',
+        exercises:[
+          {q:'I ___ (never/be) to Japan. I\'d love to go.',blank:'have never been',opts:['have never been','never was','never went','had never been']},
+          {q:'She ___ (just/finish) the report.',blank:'has just finished',opts:['has just finished','just finished','is just finishing','had just finished']},
+          {q:'I ___ (see) that film last week.',blank:'saw',opts:['saw','have seen','had seen','was seeing']},
+          {q:'Have you ___ (eat) sushi before?',blank:'ever eaten',opts:['ever eaten','eaten ever','eat ever','ever eat']},
+          {q:'He ___ (live) here for ten years.',blank:'has lived',opts:['has lived','lived','is living','had lived']}
+        ]
+      },
+      {id:4,title:'Формы будущего времени',xp:30,
+        theory:'<b>Future forms</b> — будущее время.<br><br><b>will</b> — решение в момент речи, предсказания, обещания:<br><div class="rule">I <b>will help</b> you! (решил сейчас)<br>It <b>will rain</b> tomorrow. (предсказание)</div><b>going to</b> — планы, намерения, очевидное будущее:<br><div class="rule">I <b>am going to</b> study abroad. (план)<br>Look at those clouds — it <b>is going to</b> rain! (видно сейчас)</div><b>Present Continuous</b> — договорённости с другими людьми:<br><div class="rule">I <b>am meeting</b> her at 6. (уже договорились)</div><b>Present Simple</b> — расписания и расписания событий:<br><div class="rule">The train <b>leaves</b> at 8am.</div>',
+        exercises:[
+          {q:'I ___ (answer) the phone! (решил прямо сейчас)',blank:'will answer',opts:['will answer','am going to answer','am answering','answer']},
+          {q:'Watch out! That vase ___ (fall)! (очевидно сейчас)',blank:'is going to fall',opts:['is going to fall','will fall','falls','is falling']},
+          {q:'The film ___ (start) at 7pm. (расписание)',blank:'starts',opts:['starts','will start','is starting','is going to start']},
+          {q:'I ___ (meet) Jake for lunch tomorrow. We arranged it last week.',blank:'am meeting',opts:['am meeting','will meet','meet','am going to meet']},
+          {q:'I think she ___ (become) a great doctor one day.',blank:'will become',opts:['will become','is becoming','becomes','is going to become']}
+        ]
+      },
+      {id:5,title:'Модальные глаголы — обязанность',xp:30,
+        theory:'<b>Modal verbs — obligation & advice</b> — обязанность и совет.<br><br><b>must</b> — внутренняя обязанность, логический вывод:<br><div class="rule">I <b>must</b> call her. (я сам чувствую обязанность)<br>You <b>must</b> be tired. (это логично)</div><b>have to</b> — внешняя обязанность (правила, законы):<br><div class="rule">I <b>have to</b> wear a uniform. (требование работы)</div><b>should / ought to</b> — совет, рекомендация:<br><div class="rule">You <b>should</b> see a doctor. You <b>ought to</b> apologise.</div><b>mustn\'t</b> — запрет:<br><div class="rule">You <b>mustn\'t</b> smoke here. (категорически нельзя)</div><b>don\'t have to</b> — нет обязанности (но можно):<br><div class="rule">You <b>don\'t have to</b> come. (не обязательно)</div>',
+        exercises:[
+          {q:'You ___ wear a seatbelt. It\'s the law.',blank:'have to',opts:['have to','must','should','ought to']},
+          {q:'You ___ tell anyone. It\'s a secret.',blank:'mustn\'t',opts:['mustn\'t','don\'t have to','shouldn\'t','needn\'t']},
+          {q:'You look exhausted. You ___ get some rest.',blank:'should',opts:['should','must','have to','need']},
+          {q:'She ___ come to the party if she doesn\'t want to.',blank:'doesn\'t have to',opts:['doesn\'t have to','mustn\'t','shouldn\'t','can\'t']},
+          {q:'I ___ be at the airport by 5am. My flight is early.',blank:'must',opts:['must','should','have to','need to']}
+        ]
+      },
+      {id:6,title:'Модальные глаголы — возможность',xp:30,
+        theory:'<b>Modal verbs — possibility & ability</b> — возможность и умение.<br><br><b>can</b> — умение / разрешение в настоящем:<br><div class="rule">I <b>can</b> swim. <b>Can</b> I open the window?</div><b>could</b> — умение в прошлом / вежливая просьба / возможность:<br><div class="rule">I <b>could</b> swim at 5. <b>Could</b> you help me? She <b>could</b> be right.</div><b>may / might</b> — возможность (might = менее уверен):<br><div class="rule">It <b>may</b> rain. (50%) I <b>might</b> go. (30–40%)</div><b>would</b> — вежливые просьбы, условие, привычки в прошлом:<br><div class="rule"><b>Would</b> you like a drink? I <b>would</b> go if I had time.</div>',
+        exercises:[
+          {q:'___ you open the door for me, please? (вежливо)',blank:'Could',opts:['Could','Can','Would','Should']},
+          {q:'She ___ be at home — try calling her.',blank:'might',opts:['might','can','will','shall']},
+          {q:'He ___ speak three languages when he was ten.',blank:'could',opts:['could','was able to','can','would']},
+          {q:'___ I borrow your pen? (разрешение)',blank:'Can',opts:['Can','May','Should','Must']},
+          {q:'It ___ rain this afternoon. Bring an umbrella.',blank:'may',opts:['may','can','should','will']}
+        ]
+      },
+      {id:7,title:'Условные предложения 0 и 1',xp:30,
+        theory:'<b>Zero & First Conditional</b> — условные предложения.<br><br><b>Zero Conditional</b> — универсальные истины, законы природы:<br><div class="rule">If you <b>heat</b> water to 100°C, it <b>boils</b>.<br>If I <b>eat</b> too much, I <b>feel</b> sick.</div><b>First Conditional</b> — реальная ситуация в будущем:<br><div class="rule">If it <b>rains</b>, I <b>will take</b> an umbrella.<br>If you <b>study</b> hard, you <b>will pass</b>.</div><b>Важно:</b> После if НЕ используется will!<br><div class="rule">✗ If it <b>will rain</b>... ✓ If it <b>rains</b>...</div><b>Варианты вместо if:</b> unless (если не), as long as (при условии что), provided that',
+        exercises:[
+          {q:'If you ___ (heat) metal, it expands.',blank:'heat',opts:['heat','will heat','heated','are heating']},
+          {q:'If she ___ (call), I will answer immediately.',blank:'calls',opts:['calls','will call','called','is calling']},
+          {q:'I won\'t go ___ you come with me.',blank:'unless',opts:['unless','if','without','except']},
+          {q:'If it ___ (be) sunny tomorrow, we\'ll go to the beach.',blank:'is',opts:['is','will be','was','were']},
+          {q:'If you ___ (not study), you won\'t pass the exam.',blank:'don\'t study',opts:['don\'t study','won\'t study','didn\'t study','aren\'t studying']}
+        ]
+      },
+      {id:8,title:'Условные предложения 2 и 3',xp:30,
+        theory:'<b>Second & Third Conditional</b><br><br><b>Second Conditional</b> — нереальная ситуация в настоящем/будущем:<br><div class="rule">If I <b>had</b> more money, I <b>would travel</b> the world.<br>(Но у меня нет денег — это нереально)</div><b>Third Conditional</b> — нереальная ситуация в прошлом (сожаление):<br><div class="rule">If I <b>had studied</b> harder, I <b>would have passed</b>.<br>(Но я не учился — это уже в прошлом)</div><b>Mixed Conditional</b> — прошлое условие + настоящий результат:<br><div class="rule">If I <b>had taken</b> that job, I <b>would be</b> rich now.</div>',
+        exercises:[
+          {q:'If I ___ (be) you, I would apologise.',blank:'were',opts:['were','was','am','would be']},
+          {q:'If she ___ (study) harder, she would have passed.',blank:'had studied',opts:['had studied','studied','would study','has studied']},
+          {q:'I ___ (travel) more if I had the time.',blank:'would travel',opts:['would travel','will travel','travel','travelled']},
+          {q:'If you ___ (tell) me earlier, I could have helped.',blank:'had told',opts:['had told','told','would tell','have told']},
+          {q:'What ___ you do if you won the lottery?',blank:'would',opts:['would','will','could','should']}
+        ]
+      },
+      {id:9,title:'Пассивный залог',xp:30,
+        theory:'<b>Passive voice</b> — пассивный залог.<br><br><b>Образование:</b> to be + Past Participle (V3)<br><div class="rule">Active: They <b>built</b> the bridge in 1990.<br>Passive: The bridge <b>was built</b> in 1990.</div><b>Основные времена в пассиве:</b><br>&bull; Present: <b>is / are made</b><br>&bull; Past: <b>was / were made</b><br>&bull; Present Perfect: <b>has / have been made</b><br>&bull; Future: <b>will be made</b><br>&bull; Modal: <b>can / must / should be made</b><br><br><b>Когда использовать:</b><br>&bull; Действие важнее деятеля<br>&bull; Деятель неизвестен<br>&bull; Официальный / научный стиль',
+        exercises:[
+          {q:'The report ___ (write) by the manager yesterday.',blank:'was written',opts:['was written','is written','wrote','has been written']},
+          {q:'English ___ (speak) all over the world.',blank:'is spoken',opts:['is spoken','speaks','is speaking','has spoken']},
+          {q:'The new bridge ___ (build) by 2025.',blank:'will be built',opts:['will be built','is built','is being built','was built']},
+          {q:'My car ___ (steal) last night.',blank:'was stolen',opts:['was stolen','is stolen','stole','has stolen']},
+          {q:'The project ___ (complete) yet.',blank:'hasn\'t been completed',opts:['hasn\'t been completed','didn\'t complete','isn\'t completed','won\'t complete']}
+        ]
+      },
+      {id:10,title:'Косвенная речь',xp:30,
+        theory:'<b>Reported speech</b> — косвенная речь.<br><br><b>Главное правило — сдвиг времён:</b><br><div class="rule">Present → Past: "I <b>work</b> here" → He said he <b>worked</b> there.<br>Past → Past Perfect: "I <b>saw</b> her" → She said she <b>had seen</b> her.<br>will → would: "I <b>will call</b>" → He said he <b>would call</b>.</div><b>Изменения местоимений и обстоятельств:</b><br>&bull; I → he/she<br>&bull; here → there<br>&bull; now → then<br>&bull; today → that day<br>&bull; tomorrow → the next day<br><br><b>Глаголы:</b> said, told, asked, explained, promised, warned, admitted',
+        exercises:[
+          {q:'"I love this city." → She said she ___ that city.',blank:'loved',opts:['loved','loves','had loved','would love']},
+          {q:'"I will call you." → He promised he ___ me.',blank:'would call',opts:['would call','will call','called','had called']},
+          {q:'"Are you ready?" → She ___ if I was ready.',blank:'asked',opts:['asked','said','told','questioned']},
+          {q:'"I saw him yesterday." → He said he ___ him the day before.',blank:'had seen',opts:['had seen','saw','has seen','would see']},
+          {q:'"Don\'t touch that!" → She ___ me not to touch it.',blank:'told',opts:['told','said','warned','asked']}
+        ]
+      },
+      {id:11,title:'Артикли',xp:30,
+        theory:'<b>Articles: a / an / the / zero</b> — артикли.<br><br><b>A / AN</b> — неопределённый (впервые, один из многих):<br><div class="rule">I saw <b>a</b> dog. She\'s <b>an</b> engineer.</div><b>THE</b> — определённый (конкретный, уже упоминался, единственный):<br><div class="rule">The dog barked. <b>The</b> sun is bright. <b>The</b> Eiffel Tower.</div><b>Zero article</b> — без артикля:<br><div class="rule">with proper names, languages, subjects, meals, transport:<br>I speak <b>English</b>. She has <b>breakfast</b> at 8. I go by <b>bus</b>.</div><b>Помни:</b><br>&bull; AN перед гласным звуком: an hour, an MBA<br>&bull; THE с уникальными объектами: the moon, the internet',
+        exercises:[
+          {q:'I saw ___ accident on my way to work.',blank:'an',opts:['an','a','the','—']},
+          {q:'Could you pass me ___ salt, please?',blank:'the',opts:['the','a','an','—']},
+          {q:'She plays ___ piano beautifully.',blank:'the',opts:['the','a','an','—']},
+          {q:'I had ___ breakfast at 7am.',blank:'—',opts:['—','a','the','an']},
+          {q:'___ Amazon is the longest river in South America.',blank:'The',opts:['The','A','An','—']}
+        ]
+      },
+      {id:12,title:'Предлоги времени',xp:30,
+        theory:'<b>Prepositions of time: in / on / at</b> — предлоги времени.<br><br><b>IN</b> — месяцы, года, сезоны, части дня:<br><div class="rule"><b>in</b> January / 2020 / summer / the morning</div><b>ON</b> — конкретные дни, даты, особые случаи:<br><div class="rule"><b>on</b> Monday / 5 March / my birthday / Christmas Day</div><b>AT</b> — точное время, праздники, некоторые выражения:<br><div class="rule"><b>at</b> 3pm / midnight / Christmas / the weekend / night</div><b>Исключения:</b><br>&bull; at night (но: in the morning/evening)<br>&bull; at the weekend (UK) / on the weekend (US)<br>&bull; Без предлога: this, last, next, every + время',
+        exercises:[
+          {q:'I was born ___ 1995.',blank:'in',opts:['in','on','at','—']},
+          {q:'The meeting is ___ Monday at 9am.',blank:'on',opts:['on','in','at','—']},
+          {q:'She always calls me ___ night.',blank:'at',opts:['at','in','on','during']},
+          {q:'We go skiing ___ winter every year.',blank:'in',opts:['in','at','on','during']},
+          {q:'I\'ll see you ___ the weekend.',blank:'at',opts:['at','on','in','—']}
+        ]
+      },
+      {id:13,title:'Предлоги места',xp:30,
+        theory:'<b>Prepositions of place & movement</b> — предлоги места и движения.<br><br><b>Место:</b><br>&bull; <b>in</b> — внутри: in the box, in London<br>&bull; <b>on</b> — на поверхности: on the table, on the wall<br>&bull; <b>at</b> — конкретная точка: at the bus stop, at work<br>&bull; <b>above / below</b> — выше / ниже<br>&bull; <b>between / among</b> — между двумя / среди нескольких<br>&bull; <b>next to / beside / near</b> — рядом<br>&bull; <b>opposite</b> — напротив<br><br><b>Движение:</b><br>&bull; <b>to / towards</b> — к, в направлении<br>&bull; <b>through</b> — через, сквозь<br>&bull; <b>across</b> — поперёк, через (открытое пространство)<br>&bull; <b>into / out of</b> — внутрь / наружу<br>&bull; <b>along</b> — вдоль',
+        exercises:[
+          {q:'The keys are ___ the table.',blank:'on',opts:['on','in','at','above']},
+          {q:'She works ___ home on Fridays.',blank:'at',opts:['at','in','on','from']},
+          {q:'The bank is ___ the supermarket.',blank:'opposite',opts:['opposite','across','next','against']},
+          {q:'Walk ___ the park to get to the station.',blank:'through',opts:['through','across','along','into']},
+          {q:'He sat ___ his two friends.',blank:'between',opts:['between','among','in','across']}
+        ]
+      },
+      {id:14,title:'Придаточные определительные',xp:30,
+        theory:'<b>Relative clauses</b> — придаточные определительные.<br><br><b>Defining relative clauses</b> — без запятых, уточняют о ком/чём речь:<br><div class="rule">The woman <b>who</b> called me is my boss.<br>The book <b>that/which</b> I read was great.</div><b>Non-defining relative clauses</b> — с запятыми, добавляют информацию:<br><div class="rule">My sister, <b>who</b> lives in Paris, is visiting us.<br>(можно убрать — смысл сохранится)</div><b>Относительные местоимения:</b><br>&bull; <b>who</b> — для людей<br>&bull; <b>which</b> — для вещей<br>&bull; <b>that</b> — для людей и вещей (только в defining)<br>&bull; <b>whose</b> — притяжательное<br>&bull; <b>where</b> — место<br>&bull; <b>when</b> — время',
+        exercises:[
+          {q:'The man ___ called yesterday is my neighbour.',blank:'who',opts:['who','which','whose','where']},
+          {q:'This is the house ___ I grew up.',blank:'where',opts:['where','which','that','when']},
+          {q:'I love films ___ make me think.',blank:'that',opts:['that','who','which','what']},
+          {q:'She\'s the student ___ essay won first prize.',blank:'whose',opts:['whose','who','which','that']},
+          {q:'London, ___ is the capital of England, has 9 million people.',blank:'which',opts:['which','that','who','where']}
+        ]
+      },
+      {id:15,title:'Герундий и инфинитив',xp:30,
+        theory:'<b>Gerunds & infinitives</b> — герундий и инфинитив.<br><br><b>Инфинитив (to + V)</b> после: want, decide, plan, hope, agree, refuse, offer, manage, fail, choose, expect, promise<br><div class="rule">I <b>want to go</b>. She <b>decided to stay</b>.</div><b>Герундий (V+ing)</b> после: enjoy, finish, avoid, suggest, mind, keep, consider, miss, practise, recommend<br><div class="rule">I <b>enjoy swimming</b>. Stop <b>talking</b>!</div><b>Оба варианта:</b> like, love, hate, prefer, begin, start, continue (без изменения смысла)<br><b>С изменением смысла:</b><br><div class="rule">remember <b>to call</b> (не забыть позвонить) / remember <b>calling</b> (помнить, что звонил)<br>stop <b>to smoke</b> (остановился, чтобы покурить) / stop <b>smoking</b> (бросить курить)</div>',
+        exercises:[
+          {q:'I enjoy ___ (run) in the morning.',blank:'running',opts:['running','to run','run','ran']},
+          {q:'She decided ___ (study) medicine.',blank:'to study',opts:['to study','studying','study','studied']},
+          {q:'Please stop ___ (make) that noise!',blank:'making',opts:['making','to make','make','made']},
+          {q:'He managed ___ (fix) the car himself.',blank:'to fix',opts:['to fix','fixing','fix','fixed']},
+          {q:'I remember ___ (meet) her at a conference last year.',blank:'meeting',opts:['meeting','to meet','meet','met']}
+        ]
+      },
+      {id:16,title:'Сравнительные степени',xp:30,
+        theory:'<b>Comparatives & superlatives</b> — сравнительные и превосходные степени.<br><br><b>Короткие прилагательные (1–2 слога):</b><br><div class="rule">tall → <b>taller</b> → <b>the tallest</b><br>big → <b>bigger</b> → <b>the biggest</b></div><b>Длинные прилагательные (3+ слога):</b><br><div class="rule">beautiful → <b>more beautiful</b> → <b>the most beautiful</b><br>interesting → <b>more interesting</b> → <b>the most interesting</b></div><b>Неправильные формы:</b><br><div class="rule">good → <b>better</b> → <b>the best</b><br>bad → <b>worse</b> → <b>the worst</b><br>far → <b>further/farther</b> → <b>the furthest/farthest</b></div><b>Конструкции:</b><br>&bull; <b>as ... as</b> — такой же как: She\'s as tall as me.<br>&bull; <b>much / far / a lot + comparative</b>: much better, far worse',
+        exercises:[
+          {q:'This film is ___ (interesting) than the first one.',blank:'more interesting',opts:['more interesting','interestinger','most interesting','the most interesting']},
+          {q:'She\'s the ___ (good) student in the class.',blank:'best',opts:['best','better','most good','goodest']},
+          {q:'The weather today is ___ (bad) than yesterday.',blank:'worse',opts:['worse','more bad','badder','worst']},
+          {q:'He\'s not as ___ (tall) as his brother.',blank:'tall',opts:['tall','taller','tallest','more tall']},
+          {q:'This is ___ (far) I\'ve ever walked!',blank:'the furthest',opts:['the furthest','the farthest','further','more far']}
+        ]
+      },
+      {id:17,title:'Квантификаторы',xp:30,
+        theory:'<b>Quantifiers</b> — слова количества.<br><br><b>С исчисляемыми (countable):</b><br>&bull; <b>many</b>: How many apples? Not many.<br>&bull; <b>few / a few</b>: few = почти нет; a few = немного (но есть)<br>&bull; <b>a number of</b>, <b>several</b><br><br><b>С неисчисляемыми (uncountable):</b><br>&bull; <b>much</b>: How much water? Not much.<br>&bull; <b>little / a little</b>: little = почти нет; a little = немного<br>&bull; <b>a great deal of</b><br><br><b>С обоими:</b><br>&bull; <b>some</b> (утверждение) / <b>any</b> (вопрос, отрицание)<br>&bull; <b>a lot of / lots of / plenty of</b><br>&bull; <b>no / none of</b><br>&bull; <b>enough</b>',
+        exercises:[
+          {q:'I don\'t have ___ time. I\'m very busy.',blank:'much',opts:['much','many','lots','a lot']},
+          {q:'There are ___ students absent today — only two.',blank:'a few',opts:['a few','few','a little','little']},
+          {q:'Do you have ___ milk? I need some for my coffee.',blank:'any',opts:['any','some','a','many']},
+          {q:'I have ___ money left — just enough for a coffee.',blank:'a little',opts:['a little','little','a few','few']},
+          {q:'I\'ve been to ___ countries in Asia.',blank:'several',opts:['several','much','a little','plenty']]}
+        ]
+      },
+      {id:18,title:'Разделительные вопросы',xp:30,
+        theory:'<b>Question tags</b> — разделительные вопросы.<br><br><b>Правило:</b> утвердительное → отрицательный хвостик, отрицательное → утвердительный хвостик.<br><div class="rule">It\'s cold, <b>isn\'t it</b>?<br>You don\'t know her, <b>do you</b>?<br>He was here, <b>wasn\'t he</b>?<br>She can swim, <b>can\'t she</b>?<br>They\'ve finished, <b>haven\'t they</b>?</div><b>Особые случаи:</b><br><div class="rule">I am right, <b>aren\'t I</b>? (не am I)<br>Let\'s go, <b>shall we</b>?<br>Don\'t do that, <b>will you</b>?</div><b>Интонация:</b><br>&bull; Понижающая → действительно ожидаем подтверждения<br>&bull; Повышающая → реально спрашиваем',
+        exercises:[
+          {q:'It\'s a beautiful day, ___ it?',blank:'isn\'t',opts:['isn\'t','is','wasn\'t','aren\'t']},
+          {q:'You haven\'t met her before, ___ you?',blank:'have',opts:['have','haven\'t','had','did']},
+          {q:'She can speak French, ___ she?',blank:'can\'t',opts:['can\'t','cannot','can','couldn\'t']},
+          {q:'Let\'s take a break, ___ we?',blank:'shall',opts:['shall','will','should','can']},
+          {q:'They were late, ___ they?',blank:'weren\'t',opts:['weren\'t','wasn\'t','are','were']}
+        ]
+      },
+      {id:19,title:'Фразовые глаголы',xp:30,
+        theory:'<b>Phrasal verbs</b> — фразовые глаголы.<br><br>Фразовый глагол = глагол + предлог/наречие. Значение часто не совпадает с буквальным!<br><br><b>Самые важные:</b><br>&bull; <b>give up</b> — бросить, сдаться<br>&bull; <b>turn up</b> — появиться / увеличить громкость<br>&bull; <b>turn down</b> — отказать / уменьшить<br>&bull; <b>bring up</b> — воспитать / поднять тему<br>&bull; <b>look into</b> — расследовать<br>&bull; <b>put off</b> — откладывать<br>&bull; <b>get over</b> — пережить, оправиться<br>&bull; <b>work out</b> — тренироваться / выяснить<br>&bull; <b>run out of</b> — закончиться<br>&bull; <b>come across</b> — наткнуться случайно<br>&bull; <b>take off</b> — взлетать / снять одежду / стать успешным',
+        exercises:[
+          {q:'She ___ smoking five years ago. Never looked back.',blank:'gave up',opts:['gave up','stopped up','cut up','put off']},
+          {q:'I ___ an old photo while cleaning the attic.',blank:'came across',opts:['came across','found out','looked into','ran into']},
+          {q:'Don\'t ___ the meeting — we need to decide today.',blank:'put off',opts:['put off','delay','hold off','push back']},
+          {q:'He ___ the job offer because the salary was too low.',blank:'turned down',opts:['turned down','gave up','refused up','turned off']},
+          {q:'It took me months to ___ the breakup.',blank:'get over',opts:['get over','move on','get past','pass over']}
+        ]
+      },
+      {id:20,title:'Частые грамматические ошибки',xp:30,
+        theory:'<b>Common grammar mistakes</b> — частые ошибки.<br><br><b>10 главных ошибок русскоязычных учеников:</b><br><br>1. ✗ <b>I am agree</b> → ✓ I <b>agree</b><br>2. ✗ <b>She is very beauty</b> → ✓ She is very <b>beautiful</b><br>3. ✗ <b>I have 25 years</b> → ✓ I am 25 <b>years old</b><br>4. ✗ <b>He didn\'t came</b> → ✓ He didn\'t <b>come</b><br>5. ✗ <b>Since 3 years</b> → ✓ <b>For</b> 3 years<br>6. ✗ <b>I am boring</b> → ✓ I am <b>bored</b><br>7. ✗ <b>Yesterday I have seen</b> → ✓ Yesterday I <b>saw</b><br>8. ✗ <b>Make homework</b> → ✓ <b>Do</b> homework<br>9. ✗ <b>Depends of</b> → ✓ Depends <b>on</b><br>10. ✗ <b>Good luck in your exam</b> → ✓ Good luck <b>on / with</b> your exam',
+        exercises:[
+          {q:'I ___ agree with you completely.',blank:'totally',opts:['totally','am totally','do totally','am']},
+          {q:'He didn\'t ___ to the party last night.',blank:'come',opts:['come','came','coming','comes']},
+          {q:'I\'ve lived here ___ five years.',blank:'for',opts:['for','since','during','in']},
+          {q:'I was so ___ by the film — nothing happened!',blank:'bored',opts:['bored','boring','bore','board']},
+          {q:'It ___ on the weather. If it\'s nice, we\'ll go.',blank:'depends',opts:['depends','depends of','depends from','is depending']}
+        ]
+      }
+    ]
+  },
 };
 
 // ── COURSE UI ─────────────────────────────────────────────
@@ -8174,7 +8832,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
