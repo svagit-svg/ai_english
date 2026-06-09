@@ -147,6 +147,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .nav-btn i{font-size:17px;}
 .nav-btn.active{color:var(--accent);}
 .nav-btn.active::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--accent);border-radius:0 0 2px 2px;}
+/* CONFETTI */
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:900;}
+/* RESULT CELEBRATE */
+@keyframes resultPop{0%{transform:scale(0.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.result-celebrate{animation:resultPop 0.5s cubic-bezier(.34,1.56,.64,1) forwards;}
+/* PROFILE STAT CARDS */
+.stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.stat-card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.stat-card-val{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;}
+.stat-card-lbl{font-size:10px;color:var(--muted);margin-top:2px;}
+/* ACHIEVEMENT PROGRESS */
+.ach-card2{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;position:relative;overflow:hidden;}
+.ach-card2.earned2{border-color:rgba(99,102,241,0.4);background:linear-gradient(135deg,rgba(99,102,241,0.08),var(--surface));}
+.ach-card2.locked2{opacity:0.55;}
+.ach2-icon{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.ach2-body{flex:1;min-width:0;}
+.ach2-name{font-size:13px;font-weight:700;color:var(--text);}
+.ach2-desc{font-size:11px;color:var(--muted);margin-top:1px;}
+.ach2-bar{height:4px;border-radius:2px;background:var(--border);margin-top:6px;overflow:hidden;}
+.ach2-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
+.ach2-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;}
 /* PAYWALL */
 .paywall-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);z-index:600;display:flex;align-items:flex-end;justify-content:center;}
 .paywall-overlay.hidden{display:none;}
@@ -674,11 +696,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="level-bar"><div class="level-fill" id="level-fill-bar" style="width:0%"></div></div>
       </div>
     </div>
-    <div class="stats-grid">
-      <div class="stat-box"><div class="val" id="stat-lessons" style="color:var(--green)">0</div><div class="lbl">Уроков пройдено</div></div>
-      <div class="stat-box"><div class="val" id="stat-xp" style="color:var(--accent)">0</div><div class="lbl">Очков (XP)</div></div>
-      <div class="stat-box"><div class="val" id="stat-streak" style="color:var(--amber)">0</div><div class="lbl">Дней подряд 🔥</div></div>
-      <div class="stat-box"><div class="val" id="stat-dialogs" style="color:var(--rose)">0</div><div class="lbl">AI-диалогов</div></div>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-card-icon" style="background:rgba(34,197,94,0.12)">📚</div>
+        <div><div class="stat-card-val" id="stat-lessons" style="color:var(--green)">0</div><div class="stat-card-lbl">Уроков пройдено</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon" style="background:rgba(99,102,241,0.12)">⭐</div>
+        <div><div class="stat-card-val" id="stat-xp" style="color:var(--accent)">0</div><div class="stat-card-lbl">Очков XP</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon" style="background:rgba(245,158,11,0.12)">🔥</div>
+        <div><div class="stat-card-val" id="stat-streak" style="color:var(--amber)">0</div><div class="stat-card-lbl">Дней подряд</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon" style="background:rgba(244,63,94,0.12)">💬</div>
+        <div><div class="stat-card-val" id="stat-dialogs" style="color:var(--rose)">0</div><div class="stat-card-lbl">AI-диалогов</div></div>
+      </div>
     </div>
     <div class="divider"></div>
     <p class="section-label">Уровень английского</p>
@@ -1007,30 +1041,63 @@ function showAchievementToast(a){
   setTimeout(()=>{t.style.animation='fadeOut 0.4s ease forwards';setTimeout(()=>t.remove(),400);},3200);
 }
 
+function getAchievementProgress(a,s,cp){
+  // Return {cur, max} for progress bar
+  if(a.id==='first_step'||a.id==='course1')return{cur:s.lessons>=1?1:0,max:1};
+  if(a.id==='first_chat')return{cur:Math.min(s.dialogs,1),max:1};
+  if(a.id==='streak3')return{cur:Math.min(s.streak,3),max:3};
+  if(a.id==='streak7')return{cur:Math.min(s.streak,7),max:7};
+  if(a.id==='streak30')return{cur:Math.min(s.streak,30),max:30};
+  if(a.id==='xp100')return{cur:Math.min(s.xp,100),max:100};
+  if(a.id==='xp500')return{cur:Math.min(s.xp,500),max:500};
+  if(a.id==='xp1000')return{cur:Math.min(s.xp,1000),max:1000};
+  if(a.id==='lessons10')return{cur:Math.min(s.lessons,10),max:10};
+  if(a.id==='lessons50')return{cur:Math.min(s.lessons,50),max:50};
+  if(a.id==='chat_pro')return{cur:Math.min(s.dialogs,20),max:20};
+  if(a.id==='all_courses')return{cur:Object.values(cp).filter(v=>v>=100).length,max:6};
+  if(a.id==='business_d')return{cur:Math.min(cp.business||0,100),max:100};
+  return{cur:0,max:1};
+}
+
 function renderAchievements(){
   const earned=getEarnedAchievements();
   const pro=isPro();
+  const s=getStats();
+  const cp=getCoursePercents();
   const el=document.getElementById('achievements-section');
   if(!el)return;
-  const cards=ACHIEVEMENTS.map(a=>{
+  const earnedCount=earned.length;
+  // Separate: earned first, then in-progress, then locked
+  const sorted=[...ACHIEVEMENTS].sort((a,b)=>{
+    const ae=earned.includes(a.id),be=earned.includes(b.id);
+    if(ae&&!be)return -1;if(!ae&&be)return 1;return 0;
+  });
+  const cards=sorted.map(a=>{
     const isEarned=earned.includes(a.id);
     const isLocked=a.pro&&!pro;
-    return `<div class="ach-card${isEarned?' earned':''}${isLocked?' locked-pro':''}" title="${a.desc}">
-      ${a.pro?'<span class="ach-pro-badge">PRO</span>':''}
-      ${isEarned?'<span class="ach-check">✓</span>':''}
-      <div class="ach-icon">${isEarned?a.icon:(isLocked?'🔒':a.icon)}</div>
-      <div class="ach-name">${a.name}</div>
-      <div class="ach-desc">${isLocked?'Premium':a.desc}</div>
+    const prog=getAchievementProgress(a,s,cp);
+    const pct=isEarned?100:Math.round((prog.cur/prog.max)*100);
+    const iconBg=isEarned?'rgba(99,102,241,0.15)':isLocked?'rgba(255,255,255,0.04)':'rgba(255,255,255,0.06)';
+    const barColor=isEarned?'var(--accent)':isLocked?'var(--muted)':'var(--amber)';
+    const progText=isEarned?'✓ Получено':isLocked?'🔒 Premium':`${prog.cur} / ${prog.max}`;
+    return `<div class="ach-card2${isEarned?' earned2':''}${isLocked?' locked2':''}">
+      <div class="ach2-icon" style="background:${iconBg}">${isLocked?'🔒':a.icon}</div>
+      <div class="ach2-body">
+        <div class="ach2-name">${a.name}</div>
+        <div class="ach2-desc">${isLocked?'Доступно в Premium':a.desc}</div>
+        <div class="ach2-bar"><div class="ach2-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        <div style="font-size:10px;color:var(--muted);margin-top:3px">${progText}</div>
+      </div>
+      ${isEarned?`<span style="font-size:18px">🏅</span>`:''}
+      ${a.pro&&!isLocked?`<span class="ach2-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">PRO</span>`:''}
     </div>`;
   }).join('');
-  const earnedCount=earned.length;
-  const totalAvail=ACHIEVEMENTS.filter(a=>!a.pro||pro).length;
   el.innerHTML=`
-    <p style="font-size:11px;color:var(--muted);margin-bottom:10px">
-      Получено: <strong style="color:var(--accent)">${earnedCount}</strong> из <strong>${ACHIEVEMENTS.length}</strong>
-      ${!pro?'<button onclick="switchTab(\'premium\')" style="background:none;border:none;color:var(--amber);font-size:11px;font-weight:700;cursor:pointer;margin-left:4px">— открыть все →</button>':''}
-    </p>
-    <div class="ach-grid">${cards}</div>`;
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <p style="font-size:11px;color:var(--muted)">Получено: <strong style="color:var(--accent)">${earnedCount}</strong> из <strong>${ACHIEVEMENTS.length}</strong></p>
+      ${!pro?'<button onclick="switchTab(\'premium\')" style="background:none;border:none;color:var(--amber);font-size:11px;font-weight:700;cursor:pointer">Открыть все →</button>':''}
+    </div>
+    ${cards}`;
 }
 
 function renderAnalytics(){
@@ -1046,18 +1113,23 @@ function renderAnalytics(){
     days7.push({key,label,xp:(da[key]||{}).xp||0});
   }
   const maxXp=Math.max(...days7.map(d=>d.xp),1);
-  const barW=36,gap=6,svgW=(barW+gap)*7-gap,svgH=80;
+  const barW=36,gap=6,svgW=(barW+gap)*7-gap,svgH=90;
+  const totalWeekXp=days7.reduce((s,d)=>s+d.xp,0);
   const bars=days7.map((d,i)=>{
-    const bh=Math.max(3,Math.round((d.xp/maxXp)*(svgH-22)));
-    const x=i*(barW+gap),y=svgH-22-bh;
+    const bh=Math.max(4,Math.round((d.xp/maxXp)*(svgH-28)));
+    const x=i*(barW+gap),y=svgH-24-bh;
     const isToday=i===6;
-    const fill=isToday?'var(--accent)':d.xp>0?'rgba(99,102,241,0.45)':'rgba(255,255,255,0.07)';
-    return `<rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="4" fill="${fill}"/>
-      <text x="${x+barW/2}" y="${svgH-6}" text-anchor="middle" font-size="9" fill="var(--muted)" font-family="system-ui">${d.label}</text>
-      ${d.xp>0?`<text x="${x+barW/2}" y="${y-4}" text-anchor="middle" font-size="9" fill="var(--accent)" font-family="system-ui">${d.xp}</text>`:''}`;
+    const fill=isToday?'var(--accent)':d.xp>0?'rgba(99,102,241,0.5)':'rgba(255,255,255,0.06)';
+    return `<rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="5" fill="${fill}"/>
+      <text x="${x+barW/2}" y="${svgH-8}" text-anchor="middle" font-size="9" fill="${isToday?'var(--accent)':'var(--muted)'}" font-weight="${isToday?'700':'400'}" font-family="system-ui">${d.label}</text>
+      ${d.xp>0?`<text x="${x+barW/2}" y="${y-5}" text-anchor="middle" font-size="9" fill="${isToday?'var(--accent)':'rgba(99,102,241,0.8)'}" font-family="system-ui">${d.xp}</text>`:''}`;
   }).join('');
-  document.getElementById('xp-chart-container').innerHTML=
-    `<svg width="100%" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">${bars}</svg>`;
+  document.getElementById('xp-chart-container').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <span style="font-size:10px;color:var(--muted)">XP за 7 дней</span>
+      <span style="font-size:13px;font-weight:700;color:var(--accent)">${totalWeekXp} XP</span>
+    </div>
+    <svg width="100%" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">${bars}</svg>`;
 
   const pro=isPro();
 
@@ -1083,13 +1155,31 @@ function renderAnalytics(){
       const key=d.toISOString().slice(0,10);
       const xp=(da[key]||{}).xp||0;
       let color='rgba(255,255,255,0.07)';
-      if(xp>0&&xp<20)color='rgba(99,102,241,0.3)';
-      else if(xp>=20&&xp<60)color='rgba(99,102,241,0.6)';
-      else if(xp>=60)color='var(--accent)';
+      if(xp>0&&xp<20)color='rgba(99,102,241,0.25)';
+      else if(xp>=20&&xp<50)color='rgba(99,102,241,0.5)';
+      else if(xp>=50&&xp<100)color='rgba(99,102,241,0.75)';
+      else if(xp>=100)color='var(--accent)';
       const isToday=i===0;
-      dots.push(`<div title="${key}: ${xp} XP" style="aspect-ratio:1;border-radius:3px;background:${color};${isToday?'outline:1.5px solid var(--accent);outline-offset:1px':''}"></div>`);
+      const dayName=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'][d.getDay()];
+      dots.push(`<div title="${dayName} ${d.getDate()}: ${xp} XP" style="aspect-ratio:1;border-radius:3px;background:${color};${isToday?'outline:1.5px solid var(--accent);outline-offset:1px':''}"></div>`);
     }
-    if(dotsEl)dotsEl.innerHTML=dots.join('');
+    if(dotsEl){
+      dotsEl.innerHTML=dots.join('');
+      // Add legend
+      const legend=dotsEl.parentElement?.querySelector('.act-legend');
+      if(!legend){
+        const lg=document.createElement('div');
+        lg.className='act-legend';
+        lg.style.cssText='display:flex;align-items:center;gap:4px;margin-top:8px;justify-content:flex-end';
+        lg.innerHTML=`<span style="font-size:10px;color:var(--muted)">Мало</span>
+          <div style="width:10px;height:10px;border-radius:2px;background:rgba(99,102,241,0.25)"></div>
+          <div style="width:10px;height:10px;border-radius:2px;background:rgba(99,102,241,0.5)"></div>
+          <div style="width:10px;height:10px;border-radius:2px;background:rgba(99,102,241,0.75)"></div>
+          <div style="width:10px;height:10px;border-radius:2px;background:var(--accent)"></div>
+          <span style="font-size:10px;color:var(--muted)">Много</span>`;
+        dotsEl.parentElement?.appendChild(lg);
+      }
+    }
   }
 
   // ── Course progress breakdown (Premium only) ─────────────
@@ -8958,6 +9048,61 @@ function nextExercise(){
   }
 }
 
+// ── CONFETTI ─────────────────────────────────────────────
+function launchConfetti(){
+  const canvas=document.createElement('canvas');
+  canvas.id='confetti-canvas';
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext('2d');
+  const COLORS=['#6366f1','#f97316','#22c55e','#ef4444','#eab308','#ec4899','#06b6d4','#ffffff'];
+  const N=120;
+  const pieces=Array.from({length:N},()=>({
+    x:Math.random()*canvas.width,
+    y:-10-Math.random()*canvas.height*0.5,
+    r:Math.random()*5+3,
+    d:Math.random()*N,
+    color:COLORS[Math.floor(Math.random()*COLORS.length)],
+    tilt:Math.random()*10-10,
+    tiltAngle:0,
+    tiltAngleInc:Math.random()*0.07+0.05,
+    speedY:Math.random()*3+2,
+    speedX:(Math.random()-0.5)*2,
+    shape:Math.random()<0.5?'rect':'circle',
+    alpha:1
+  }));
+  let frame=0;
+  const maxFrames=180;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.save();
+      ctx.globalAlpha=p.alpha;
+      ctx.fillStyle=p.color;
+      ctx.beginPath();
+      if(p.shape==='circle'){
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      } else {
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.tilt);
+        ctx.rect(-p.r,-p.r/2,p.r*2,p.r);
+      }
+      ctx.fill();
+      ctx.restore();
+      p.y+=p.speedY;
+      p.x+=p.speedX;
+      p.tilt=Math.sin(p.tiltAngle)*12;
+      p.tiltAngle+=p.tiltAngleInc;
+      if(frame>maxFrames*0.6)p.alpha-=0.015;
+    });
+    frame++;
+    if(frame<maxFrames+20)requestAnimationFrame(draw);
+    else canvas.remove();
+  }
+  draw();
+}
+
 function showResult(){
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
   const total=lesson.exercises.length;
@@ -8974,6 +9119,15 @@ function showResult(){
   document.getElementById('lesson-result').style.display='block';
   document.getElementById('ex-progress-bar').style.width='100%';
   const pct=Math.round(exCorrect/total*100);
+  // 🎉 Confetti + haptic on good result
+  if(pct>=80){
+    launchConfetti();
+    try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');}catch(e){}
+  } else if(pct>=50){
+    try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('warning');}catch(e){}
+  }
+  // Animate result card
+  setTimeout(()=>{const rc=document.getElementById('lesson-result');if(rc)rc.classList.add('result-celebrate');},50);
   document.getElementById('result-emoji').textContent=pct>=80?'🎉':pct>=50?'💪':'📚';
   document.getElementById('result-title').textContent=pct>=80?'Отлично!':pct>=50?'Хороший результат!':'Попробуй ещё раз';
   document.getElementById('result-text').textContent='Урок «'+lesson.title+'» пройден. Продолжай учиться!';
