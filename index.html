@@ -603,11 +603,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
-    <div class="card" onclick="showComingSoon('American Slang')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(16,185,129,0.1);color:var(--green);">🇺🇸</div>
-        <div class="card-text"><h3>American Slang <span class="badge" style="background:rgba(16,185,129,0.15);color:var(--green)">Скоро</span></h3><p>Современный сленг • 15 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+    <div class="course-card" onclick="openCourse('slang')" style="cursor:pointer">
+      <div class="card-icon" style="background:rgba(16,185,129,0.1);color:#10b981;font-size:18px;">🇺🇸</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">American Slang</h3><span style="font-size:9px;background:rgba(16,185,129,0.15);color:#10b981;border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
+          <span id="slang-pct" style="font-size:11px;color:#10b981;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Сленг, идиомы, Gen Z, разговорный</p>
+        <div class="progress-bar"><div class="progress-fill" id="slang-bar" style="width:0%;background:#10b981"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="slang-sub">20 уроков</p>
       </div>
     </div>
     <div class="card" onclick="showComingSoon('Medical English')">
@@ -998,7 +1003,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -1199,6 +1204,7 @@ function renderAnalytics(){
     {id:'social',name:'Social Media & Internet',color:'#8b5cf6'},
     {id:'movies',name:'Movies & Pop Culture',color:'#ef4444'},
     {id:'grammar',name:'Grammar Deep Dive',color:'#6366f1'},
+    {id:'slang',name:'American Slang',color:'#10b981'},
   ];
   const courseEl=document.getElementById('course-analytics');
   const courseWrap=courseEl?.parentElement;
@@ -8906,6 +8912,214 @@ I\'ll always care about you. — Я всегда буду заботиться �
       }
     ]
   },
+
+  slang:{
+    title:'American Slang',
+    icon:'🇺🇸',
+    color:'#10b981',
+    lessons:[
+      {id:1,title:'Everyday Slang — Basics',xp:30,
+        theory:'<b>Everyday American Slang</b><br><br>Это слова и фразы, которые Americans используют каждый день в обычном разговоре:<br><br>&bull; <b>awesome</b> — потрясающий, крутой<br><div class="rule">"That concert was <b>awesome</b>!" — Концерт был крутым!</div>&bull; <b>cool</b> — круто (одобрение)<br><div class="rule">"That\'s so <b>cool</b>." — Это так круто.</div>&bull; <b>hang out</b> — тусоваться, проводить время<br><div class="rule">"Let\'s <b>hang out</b> this weekend." — Давай потусуемся в выходные.</div>&bull; <b>no worries</b> — не проблема, всё ок<br><div class="rule">"Thanks for helping!" — "No worries!"</div>&bull; <b>catch up</b> — поговорить после долгой паузы<br><div class="rule">"We need to <b>catch up</b>!" — Нам надо поговорить/встретиться.</div>',
+        exercises:[
+          {q:'That movie was ___ ! I loved every second.',blank:'awesome',opts:['awesome','awful','boring','plain']},
+          {q:'Let\'s ___ at my place tonight.',blank:'hang out',opts:['hang out','hang around','hang in','sit out']},
+          {q:'"Sorry I\'m late!" — "___, it happens!"',blank:'No worries',opts:['No worries','No way','Not cool','Don\'t mind']},
+          {q:'We haven\'t seen each other in months. We should ___.',blank:'catch up',opts:['catch up','catch on','catch out','catch off']},
+          {q:'Your new haircut looks really ___!',blank:'cool',opts:['cool','cold','icy','chill']}
+        ]
+      },
+      {id:2,title:'Реакции и согласие',xp:30,
+        theory:'<b>Reactions & Agreement Slang</b><br><br>Как Americans реагируют в разговоре:<br><br>&bull; <b>totally</b> — полностью согласен, точно<br><div class="rule">"I <b>totally</b> agree." — Я полностью согласен.</div>&bull; <b>for real</b> — серьёзно? / правда<br><div class="rule">"She quit her job!" — "For real?!" — Серьёзно?!</div>&bull; <b>no doubt</b> — без сомнений, конечно<br><div class="rule">"You\'ll pass the test." — "No doubt."</div>&bull; <b>absolutely</b> — абсолютно, конечно<br><div class="rule">"Can you help?" — "Absolutely!"</div>&bull; <b>I\'m down</b> — я за (согласен участвовать)<br><div class="rule">"Wanna grab pizza?" — "I\'m down!"</div>&bull; <b>word</b> — понял, согласен (неформально)<br><div class="rule">"See you at 8." — "Word."</div>',
+        exercises:[
+          {q:'"He won the championship!" — "___ ?! That\'s incredible!"',blank:'For real',opts:['For real','For sure','For good','For now']},
+          {q:'"Wanna go hiking?" — "I\'m ___, sounds fun!"',blank:'down',opts:['down','in','up','out']},
+          {q:'I ___ agree with you on that.',blank:'totally',opts:['totally','totally not','hardly','barely']},
+          {q:'"Will you be there tonight?" — "___ , wouldn\'t miss it!"',blank:'Absolutely',opts:['Absolutely','Possibly','Maybe','Likely']},
+          {q:'"Meet me at 6." — "___ , see you then."',blank:'Word',opts:['Word','Words','Heard','Done']}
+        ]
+      },
+      {id:3,title:'Деньги и работа',xp:30,
+        theory:'<b>Money & Work Slang</b><br><br>&bull; <b>buck</b> — доллар<br><div class="rule">"Can you lend me ten <b>bucks</b>?" — Можешь одолжить 10 долларов?</div>&bull; <b>bread / dough</b> — деньги (в общем)<br><div class="rule">"I need to make more <b>bread</b>." — Мне нужно больше зарабатывать.</div>&bull; <b>gig</b> — работа (часто временная)<br><div class="rule">"She has a <b>gig</b> as a freelance designer."</div>&bull; <b>hustle</b> — упорно работать / подработка<br><div class="rule">"Everyone\'s got a side <b>hustle</b> these days."</div>&bull; <b>broke</b> — без денег, на мели<br><div class="rule">"I can\'t go out — I\'m completely <b>broke</b>."</div>&bull; <b>loaded</b> — богатый, при деньгах<br><div class="rule">"His family is <b>loaded</b>." — Его семья очень богатая.</div>',
+        exercises:[
+          {q:'Can I borrow five ___? I\'ll pay you back.',blank:'bucks',opts:['bucks','breads','loads','doughs']},
+          {q:'I\'m totally ___ until payday. Can\'t spend anything.',blank:'broke',opts:['broke','loaded','rich','tapped']},
+          {q:'She has a new ___ — she\'s doing Uber on weekends.',blank:'gig',opts:['gig','jig','gag','job']},
+          {q:'His dad is absolutely ___ . He owns three hotels.',blank:'loaded',opts:['loaded','filled','packed','wealthy']},
+          {q:'He works a 9-to-5 and has a side ___ selling art online.',blank:'hustle',opts:['hustle','hassle','bustle','grind']}
+        ]
+      },
+      {id:4,title:'Еда и вечеринки',xp:30,
+        theory:'<b>Food, Drinks & Parties</b><br><br>&bull; <b>grub</b> — еда (неформально)<br><div class="rule">"Let\'s grab some <b>grub</b>." — Давай перекусим.</div>&bull; <b>chow down</b> — есть с аппетитом<br><div class="rule">"We <b>chowed down</b> on pizza." — Мы с аппетитом уплели пиццу.</div>&bull; <b>booze</b> — алкоголь<br><div class="rule">"Is there any <b>booze</b> at the party?" — На вечеринке будет выпивка?</div>&bull; <b>bash</b> — крутая вечеринка<br><div class="rule">"That was an epic <b>bash</b>!" — Это была эпичная вечеринка!</div>&bull; <b>pregame</b> — выпить перед вечеринкой<br><div class="rule">"We\'re <b>pregaming</b> at my place at 9."</div>&bull; <b>crash</b> — остаться ночевать / ввалиться на вечеринку<br><div class="rule">"Can I <b>crash</b> at your place tonight?"</div>',
+        exercises:[
+          {q:'I\'m starving. Let\'s grab some ___.',blank:'grub',opts:['grub','grabs','grit','glub']},
+          {q:'That party was such a great ___! Best night ever.',blank:'bash',opts:['bash','crash','smash','clash']},
+          {q:'Hey, can I ___ at your place tonight? Missed the last train.',blank:'crash',opts:['crash','sleep','drop','stay']},
+          {q:'We ___ on burgers after the game.',blank:'chowed down',opts:['chowed down','ate up','filled out','pigged']},
+          {q:'We\'re ___ at Jake\'s before the concert.',blank:'pregaming',opts:['pregaming','predrinking','getting ready','warming up']}
+        ]
+      },
+      {id:5,title:'Эмоции и состояния',xp:30,
+        theory:'<b>Emotions & States</b><br><br>&bull; <b>bummed (out)</b> — расстроен<br><div class="rule">"I\'m <b>bummed</b> the trip got cancelled." — Расстроен из-за отмены поездки.</div>&bull; <b>stoked</b> — очень взволнован, в восторге<br><div class="rule">"I\'m so <b>stoked</b> about the concert!"</div>&bull; <b>freaked out</b> — напуган / в панике<br><div class="rule">"She <b>freaked out</b> when she saw the spider."</div>&bull; <b>pumped (up)</b> — на подъёме, заряжен энергией<br><div class="rule">"I\'m so <b>pumped</b> for the game!"</div>&bull; <b>down in the dumps</b> — подавлен, в депрессии<br><div class="rule">"He\'s been <b>down in the dumps</b> lately."</div>&bull; <b>on cloud nine</b> — на седьмом небе от счастья<br><div class="rule">"She\'s been <b>on cloud nine</b> since the promotion."</div>',
+        exercises:[
+          {q:'I\'m so ___ about the festival — it\'s gonna be epic!',blank:'stoked',opts:['stoked','stroked','smoked','soaked']},
+          {q:'He completely ___ when the alarm went off at 3am.',blank:'freaked out',opts:['freaked out','broke out','flipped over','turned off']},
+          {q:'She\'s been ___ since she didn\'t get the job.',blank:'bummed',opts:['bummed','stunned','drummed','numbed']},
+          {q:'The team is so ___ for the championship game tonight.',blank:'pumped',opts:['pumped','jumped','lumped','dumped']},
+          {q:'She\'s been on ___ since he proposed.',blank:'cloud nine',opts:['cloud nine','top floor','high five','air seven']}
+        ]
+      },
+      {id:6,title:'Похвала и критика',xp:30,
+        theory:'<b>Compliments & Criticism Slang</b><br><br>&bull; <b>fire / lit</b> — крутой, огонь (восхищение)<br><div class="rule">"That outfit is <b>fire</b>!" — Этот образ — огонь!</div>&bull; <b>slaps</b> — (о музыке) бьёт, зажигает<br><div class="rule">"This song <b>slaps</b>!" — Эта песня зажигает!</div>&bull; <b>mid</b> — посредственный, так себе<br><div class="rule">"The movie was kinda <b>mid</b>." — Фильм был так себе.</div>&bull; <b>trash / garbage</b> — отстой<br><div class="rule">"That show is absolute <b>trash</b>."</div>&bull; <b>lowkey</b> — слегка, тихо, немного<br><div class="rule">"I <b>lowkey</b> love that cheesy song." — Тихо сам с собою признаю, мне нравится эта песня.</div>&bull; <b>highkey</b> — открыто, явно, очень<br><div class="rule">"I <b>highkey</b> need a vacation."</div>',
+        exercises:[
+          {q:'That new album is absolutely ___. Every track is a banger.',blank:'fire',opts:['fire','hot','warm','burning']},
+          {q:'The sequel was kinda ___. Nothing special.',blank:'mid',opts:['mid','bad','low','weak']},
+          {q:'This new track ___! Been playing it all day.',blank:'slaps',opts:['slaps','hits','beats','bangs']},
+          {q:'I ___ want to quit my job and travel the world.',blank:'lowkey',opts:['lowkey','lowly','quietly','secretly']},
+          {q:'That show is ___ — I can\'t believe anyone watches it.',blank:'trash',opts:['trash','bad','poor','mid']}
+        ]
+      },
+      {id:7,title:'Люди и характер',xp:30,
+        theory:'<b>People & Personality</b><br><br>&bull; <b>dude / bro</b> — чувак, брат (обращение)<br><div class="rule">"<b>Dude</b>, you won\'t believe what happened!"</div>&bull; <b>Karen</b> — скандальная женщина, которая требует менеджера<br><div class="rule">"She was being a total <b>Karen</b> at the restaurant."</div>&bull; <b>frenemy</b> — враг-друг (друг с элементами соперничества)<br><div class="rule">"She\'s kind of my <b>frenemy</b> — we compete but hang out."</div>&bull; <b>goat</b> — лучший из лучших (Greatest Of All Time)<br><div class="rule">"Michael Jordan is the <b>GOAT</b>."</div>&bull; <b>basic</b> — банальный, предсказуемый, без оригинальности<br><div class="rule">"Her taste is so <b>basic</b> — PSL and yoga pants."</div>&bull; <b>extra</b> — чрезмерный, слишком много всего<br><div class="rule">"He\'s so <b>extra</b> — he rented a limo for a school dance."</div>',
+        exercises:[
+          {q:'___ , you have to come to this party. It\'s gonna be insane.',blank:'Dude',opts:['Dude','Bro','Man','Mate']},
+          {q:'She complained to the manager twice. Total ___.',blank:'Karen',opts:['Karen','Carol','Nancy','Sharon']},
+          {q:'LeBron James might be the ___ of basketball.',blank:'GOAT',opts:['GOAT','best','king','ace']},
+          {q:'He hired a DJ for his birthday dinner. Isn\'t that a bit ___?',blank:'extra',opts:['extra','much','over','wild']},
+          {q:'Her playlist is so ___ — nothing but Taylor Swift and Starbucks vibes.',blank:'basic',opts:['basic','bland','plain','simple']}
+        ]
+      },
+      {id:8,title:'Интернет и Gen Z сленг',xp:30,
+        theory:'<b>Internet & Gen Z Slang</b><br><br>&bull; <b>vibe</b> — атмосфера, настрой / чувствовать что-то<br><div class="rule">"Good <b>vibes</b> only." / "I don\'t <b>vibe</b> with that idea."</div>&bull; <b>slay</b> — сделать что-то потрясающе<br><div class="rule">"She absolutely <b>slayed</b> that presentation."</div>&bull; <b>no cap</b> — без лжи, серьёзно (cap = ложь)<br><div class="rule">"That was the best meal I\'ve ever had, <b>no cap</b>."</div>&bull; <b>bussin\'</b> — очень вкусно<br><div class="rule">"This food is <b>bussin\'</b>!" — Эта еда просто бомба!</div>&bull; <b>bet</b> — окей, договорились, понял<br><div class="rule">"Meet me at 7." — "<b>Bet</b>."</div>&bull; <b>it\'s giving...</b> — это выглядит как / напоминает<br><div class="rule">"That outfit is <b>giving</b> main character energy."</div>',
+        exercises:[
+          {q:'This ramen place is absolutely ___. Best I\'ve ever had.',blank:'bussin\'',opts:['bussin\'','banging','hitting','slapping']},
+          {q:'She ___ that job interview. Got the offer same day.',blank:'slayed',opts:['slayed','slew','killed','crushed']},
+          {q:'"I\'ll pick you up at 8." — "___ , see you then."',blank:'Bet',opts:['Bet','Fine','Deal','Word']},
+          {q:'That\'s the best film this year, ___ . Not exaggerating.',blank:'no cap',opts:['no cap','no lie','for sure','trust me']},
+          {q:'The whole apartment ___ luxury without the price tag.',blank:'is giving',opts:['is giving','looks like','feels as','gives off']}
+        ]
+      },
+      {id:9,title:'Отношения',xp:30,
+        theory:'<b>Relationships Slang</b><br><br>&bull; <b>crush</b> — симпатия, влюблённость<br><div class="rule">"I have such a <b>crush</b> on him."</div>&bull; <b>ghosting</b> — внезапно перестать отвечать и исчезнуть<br><div class="rule">"He just started <b>ghosting</b> me after our third date."</div>&bull; <b>situationship</b> — отношения без официального статуса<br><div class="rule">"We\'re not dating, it\'s more of a <b>situationship</b>."</div>&bull; <b>catch feelings</b> — влюбиться, привязаться<br><div class="rule">"I wasn\'t supposed to <b>catch feelings</b>, but I did."</div>&bull; <b>DTR</b> — Define The Relationship (поговорить о статусе отношений)<br><div class="rule">"We need to <b>DTR</b> — I don\'t know what we are."</div>&bull; <b>talking</b> — общаться (неофициальный этап до dating)<br><div class="rule">"Are you two dating?" — "No, we\'re just <b>talking</b>."</div>',
+        exercises:[
+          {q:'I think I have a ___ on my coworker. I can\'t stop thinking about her.',blank:'crush',opts:['crush','fondness','liking','thing']},
+          {q:'He just started ___ me — won\'t reply to any of my messages.',blank:'ghosting',opts:['ghosting','ignoring','blocking','avoiding']},
+          {q:'We\'re not officially together, it\'s more like a ___.',blank:'situationship',opts:['situationship','friendship','partnership','relationship']},
+          {q:'I didn\'t mean to ___ , but spending so much time together changed things.',blank:'catch feelings',opts:['catch feelings','fall hard','get attached','grow fond']},
+          {q:'"Are they together?" — "Not yet, they\'re just ___."',blank:'talking',opts:['talking','dating','seeing','meeting']}
+        ]
+      },
+      {id:10,title:'Реакции на неожиданное',xp:30,
+        theory:'<b>Reactions to Unexpected Things</b><br><br>&bull; <b>say what?</b> / <b>come again?</b> — что? (не расслышал или удивлён)<br><div class="rule">"She\'s moving to Japan." — "<b>Say what?!</b>"</div>&bull; <b>no way!</b> — не может быть!<br><div class="rule">"He got a full scholarship." — "<b>No way!</b>"</div>&bull; <b>shut up!</b> — да ладно! (удивление, не команда)<br><div class="rule">"I won the contest!" — "<b>Shut up!</b> That\'s amazing!"</div>&bull; <b>mind blown</b> — сорвало крышу от удивления<br><div class="rule">"The twist at the end — my <b>mind was blown</b>."</div>&bull; <b>go off</b> — пусть говорит / продолжай / резко реагировать<br><div class="rule">"She really went off on him in front of everyone."</div>',
+        exercises:[
+          {q:'"She quit her six-figure job to become an artist." — "___ ! That takes guts."',blank:'No way',opts:['No way','No means','Not possible','Can\'t be']},
+          {q:'"He\'s only 19 and already has his own company." — "___ ! That\'s insane!"',blank:'Shut up',opts:['Shut up','Stop it','Come on','Give over']},
+          {q:'That documentary completely changed how I see things. Total ___ moment.',blank:'mind blown',opts:['mind blown','mind open','mind changed','brain melted']},
+          {q:'"They\'re giving away free tickets." — "___ ?! Where do I sign up?"',blank:'Say what',opts:['Say what','Come again','Excuse me','Pardon']},
+          {q:'She ___ on her boss at the meeting. It was intense.',blank:'went off',opts:['went off','went wild','blew up','lost it']}
+        ]
+      },
+      {id:11,title:'Школа и учёба',xp:30,
+        theory:'<b>School & Study Slang</b><br><br>&bull; <b>ace</b> — сдать отлично<br><div class="rule">"She <b>aced</b> the exam." — Она сдала экзамен на отлично.</div>&bull; <b>cram</b> — зубрить в последний момент<br><div class="rule">"I was up all night <b>cramming</b> for the test."</div>&bull; <b>flunk</b> — провалить (экзамен/предмет)<br><div class="rule">"He <b>flunked</b> chemistry twice."</div>&bull; <b>pull an all-nighter</b> — не спать всю ночь (за учёбой)<br><div class="rule">"I had to <b>pull an all-nighter</b> to finish the project."</div>&bull; <b>nerd / geek</b> — ботаник (nerd = задрот, geek = фанат темы)<br><div class="rule">"She\'s a total math <b>nerd</b>."</div>&bull; <b>skip</b> — прогулять (урок, пары)<br><div class="rule">"Don\'t <b>skip</b> class again — you\'re falling behind."</div>',
+        exercises:[
+          {q:'She ___ the SATs. Perfect score!',blank:'aced',opts:['aced','nailed','passed','killed']},
+          {q:'I ___ all last night for the biology exam.',blank:'crammed',opts:['crammed','stuffed','jammed','packed']},
+          {q:'He ___ the final and has to retake the whole semester.',blank:'flunked',opts:['flunked','failed','missed','bombed']},
+          {q:'I had to ___ to finish the essay. So tired.',blank:'pull an all-nighter',opts:['pull an all-nighter','stay up late','work overnight','burn midnight oil']},
+          {q:'Don\'t ___ practice — coach will notice.',blank:'skip',opts:['skip','miss','avoid','ditch']}
+        ]
+      },
+      {id:12,title:'Технологии и соцсети',xp:30,
+        theory:'<b>Tech & Social Media Slang</b><br><br>&bull; <b>viral</b> — вирусный (стал очень популярным)<br><div class="rule">"That video went <b>viral</b> overnight." — Видео стало вирусным за ночь.</div>&bull; <b>flex</b> — хвастаться<br><div class="rule">"He\'s always <b>flexing</b> his new car on Instagram."</div>&bull; <b>stan</b> — быть фанатом / обожатель<br><div class="rule">"I totally <b>stan</b> this artist." / "The <b>stans</b> went crazy."</div>&bull; <b>ratio</b> — когда ответов больше чем лайков (провал)<br><div class="rule">"That tweet got <b>ratioed</b> hard."</div>&bull; <b>fomo</b> — fear of missing out (страх что-то пропустить)<br><div class="rule">"I have serious <b>FOMO</b> about that festival."</div>&bull; <b>clout</b> — популярность, влияние в соцсетях<br><div class="rule">"He\'ll do anything for <b>clout</b>."</div>',
+        exercises:[
+          {q:'Her dance video ___ and now she has 2 million followers.',blank:'went viral',opts:['went viral','got famous','blew up','spread fast']},
+          {q:'He\'s always ___ his designer clothes online.',blank:'flexing',opts:['flexing','showing','posting','boasting']},
+          {q:'I <b>___</b> that band so hard — I\'ve seen them live 5 times.',blank:'stan',opts:['stan','love','follow','support']},
+          {q:'I have serious ___ — everyone\'s at that concert and I\'m not.',blank:'FOMO',opts:['FOMO','envy','regret','jealousy']},
+          {q:'He made that controversial post just for ___.',blank:'clout',opts:['clout','fame','views','likes']}
+        ]
+      },
+      {id:13,title:'Одежда и внешность',xp:30,
+        theory:'<b>Fashion & Appearance</b><br><br>&bull; <b>drip</b> — стиль, крутой образ<br><div class="rule">"His <b>drip</b> is impeccable." — Его стиль безупречен.</div>&bull; <b>outfit on point</b> — образ идеален<br><div class="rule">"Your <b>outfit is on point</b> today!"</div>&bull; <b>glow up</b> — заметно похорошеть / измениться к лучшему<br><div class="rule">"She had such a <b>glow up</b> after college."</div>&bull; <b>snatched</b> — выглядеть потрясающе<br><div class="rule">"Girl, you look <b>snatched</b>!" — Ты выглядишь потрясающе!</div>&bull; <b>swag</b> — уверенный стильный образ<br><div class="rule">"He walks in with so much <b>swag</b>."</div>',
+        exercises:[
+          {q:'His ___ is always on point — he knows how to dress.',blank:'drip',opts:['drip','style','fashion','look']},
+          {q:'She had such a ___ after her year abroad. Totally transformed.',blank:'glow up',opts:['glow up','change up','level up','grow up']},
+          {q:'You look absolutely ___ in that dress!',blank:'snatched',opts:['snatched','snatchy','matched','caught']},
+          {q:'Your outfit is completely ___ today. Love it.',blank:'on point',opts:['on point','on spot','in place','on track']},
+          {q:'He walked in with so much ___. Everyone noticed.',blank:'swag',opts:['swag','swag out','swaggy','swagged']}
+        ]
+      },
+      {id:14,title:'Транспорт и город',xp:30,
+        theory:'<b>Getting Around the City</b><br><br>&bull; <b>ride</b> — машина / поездка<br><div class="rule">"Nice <b>ride</b>!" — Красивая тачка! / "Can I get a <b>ride</b>?" — Подвезёшь?</div>&bull; <b>hail a cab</b> — поймать такси<br><div class="rule">"Let me <b>hail a cab</b>." — Давай поймаю такси.</div>&bull; <b>gridlock</b> — пробка (полная остановка)<br><div class="rule">"There\'s total <b>gridlock</b> downtown."</div>&bull; <b>shortcut</b> — короткий путь<br><div class="rule">"I know a <b>shortcut</b> through the park."</div>&bull; <b>bail</b> — уйти / слинять / отказаться в последний момент<br><div class="rule">"He <b>bailed</b> on us at the last minute."</div>',
+        exercises:[
+          {q:'Nice ___ ! Is that a new BMW?',blank:'ride',opts:['ride','car','vehicle','set of wheels']},
+          {q:'There\'s total ___ on the highway — we\'ll be late.',blank:'gridlock',opts:['gridlock','jam','block','freeze']},
+          {q:'He ___ on the plan at the last minute. So annoying.',blank:'bailed',opts:['bailed','left','quit','dropped']},
+          {q:'I know a ___ — follow me, it\'ll save 10 minutes.',blank:'shortcut',opts:['shortcut','quick route','fast way','bypass']},
+          {q:'Let me try to ___ on Fifth Avenue.',blank:'hail a cab',opts:['hail a cab','catch a taxi','grab a ride','stop a car']}
+        ]
+      },
+      {id:15,title:'Лень и усталость',xp:30,
+        theory:'<b>Laziness & Tiredness</b><br><br>&bull; <b>couch potato</b> — диванный лентяй<br><div class="rule">"Don\'t be a <b>couch potato</b> all weekend."</div>&bull; <b>crash</b> — вырубиться / рухнуть спать<br><div class="rule">"I crashed as soon as I got home."</div>&bull; <b>zone out</b> — отключиться, уйти в себя<br><div class="rule">"Sorry, I totally <b>zoned out</b> for a minute."</div>&bull; <b>drag</b> — скучное/тягостное занятие / тянуть<br><div class="rule">"This meeting is such a <b>drag</b>."</div>&bull; <b>wiped out</b> — полностью вымотан<br><div class="rule">"I\'m completely <b>wiped out</b> after that hike."</div>',
+        exercises:[
+          {q:'I was so tired I ___ the moment I hit the bed.',blank:'crashed',opts:['crashed','slept','dropped','fell']},
+          {q:'Sorry, I ___ — what were you saying?',blank:'zoned out',opts:['zoned out','checked out','spaced out','drifted off']},
+          {q:'Stop being a ___ and come for a walk!',blank:'couch potato',opts:['couch potato','lazy bone','home bird','sleepy head']},
+          {q:'This commute is such a ___ every single morning.',blank:'drag',opts:['drag','bore','waste','pain']},
+          {q:'I\'m completely ___ after working double shifts all week.',blank:'wiped out',opts:['wiped out','worn out','burned out','faded out']}
+        ]
+      },
+      {id:16,title:'Неприятности и проблемы',xp:30,
+        theory:'<b>Trouble & Problems</b><br><br>&bull; <b>in hot water</b> — в горячей воде / в неприятностях<br><div class="rule">"He\'s <b>in hot water</b> with his boss."</div>&bull; <b>mess up</b> — облажаться, напортачить<br><div class="rule">"I totally <b>messed up</b> the presentation."</div>&bull; <b>blow up</b> — взорваться (эмоционально) / стать вирусным<br><div class="rule">"She <b>blew up</b> at him in the meeting."</div>&bull; <b>screw up</b> — облажаться (сильнее чем mess up)<br><div class="rule">"I really <b>screwed up</b> this time."</div>&bull; <b>deal breaker</b> — то, что делает что-то невозможным<br><div class="rule">"Long distance is a <b>deal breaker</b> for me."</div>',
+        exercises:[
+          {q:'He\'s really in ___ after forgetting the client\'s name.',blank:'hot water',opts:['hot water','trouble','deep end','danger zone']},
+          {q:'I completely ___ the report — had to redo it from scratch.',blank:'messed up',opts:['messed up','screwed up','blew it','botched']},
+          {q:'She ___ at him for being late again.',blank:'blew up',opts:['blew up','broke out','went off','fired up']},
+          {q:'No weekends off? That\'s a total ___ for me.',blank:'deal breaker',opts:['deal breaker','red flag','no-go','line crosser']},
+          {q:'I really ___ this time — I sent the email to the wrong person.',blank:'screwed up',opts:['screwed up','messed up','fouled up','slipped up']}
+        ]
+      },
+      {id:17,title:'Хорошие времена',xp:30,
+        theory:'<b>Good Times & Fun</b><br><br>&bull; <b>a blast</b> — отличное время / весело<br><div class="rule">"We had <b>a blast</b> at the beach." — Мы отлично провели время.</div>&bull; <b>living it up</b> — жить на полную<br><div class="rule">"She\'s <b>living it up</b> in Miami."</div>&bull; <b>epic</b> — эпичный, невероятный<br><div class="rule">"That road trip was <b>epic</b>."</div>&bull; <b>on fire</b> — в ударе, горит<br><div class="rule">"She\'s <b>on fire</b> today — three sales before noon."</div>&bull; <b>kill it</b> — делать что-то блестяще<br><div class="rule">"You\'re really <b>killing it</b> at work lately."</div>',
+        exercises:[
+          {q:'We had ___ at the concert. Best night of the summer.',blank:'a blast',opts:['a blast','a ball','a bang','a boom']},
+          {q:'She\'s ___ in Barcelona — posts amazing food every day.',blank:'living it up',opts:['living it up','loving life','having it all','going big']},
+          {q:'That hiking trip was ___. Totally worth the early wake-up.',blank:'epic',opts:['epic','great','awesome','mad']},
+          {q:'You are absolutely ___ this semester. Top of the class!',blank:'killing it',opts:['killing it','nailing it','crushing it','smashing it']},
+          {q:'She was ___ at the open mic — everyone was cheering.',blank:'on fire',opts:['on fire','lit up','blazing','burning']}
+        ]
+      },
+      {id:18,title:'Спорт и соревнования',xp:30,
+        theory:'<b>Sports & Competition</b><br><br>&bull; <b>clutch</b> — решающий момент / под давлением<br><div class="rule">"That was a <b>clutch</b> shot!" — Это был решающий бросок!</div>&bull; <b>trash talk</b> — дразнить соперника словами<br><div class="rule">"He loves to <b>trash talk</b> before a game."</div>&bull; <b>underdog</b> — аутсайдер, которого не ждут<br><div class="rule">"Everyone loves an <b>underdog</b> story."</div>&bull; <b>bench</b> — посадить на скамейку запасных / игнорировать<br><div class="rule">"The coach <b>benched</b> him after the mistake."</div>&bull; <b>step up (one\'s game)</b> — повысить уровень<br><div class="rule">"You need to <b>step up your game</b> if you want to win."</div>',
+        exercises:[
+          {q:'That was so ___ — he scored with one second left!',blank:'clutch',opts:['clutch','lucky','great','bold']},
+          {q:'Nobody expected them to win. Classic ___ story.',blank:'underdog',opts:['underdog','dark horse','outsider','longshot']},
+          {q:'He loves to ___ before the match to mess with people\'s heads.',blank:'trash talk',opts:['trash talk','smack talk','big talk','mouth off']},
+          {q:'If you want to make the team, you\'ll need to ___ your ___.',blank:'step up...game',opts:['step up...game','raise...level','up...play','boost...skills']},
+          {q:'The coach ___ him for the second half after his performance.',blank:'benched',opts:['benched','replaced','rested','sidelined']}
+        ]
+      },
+      {id:19,title:'Американские идиомы',xp:30,
+        theory:'<b>American Idioms</b><br><br>&bull; <b>piece of cake</b> — проще простого<br><div class="rule">"The exam was a <b>piece of cake</b>."</div>&bull; <b>hit the nail on the head</b> — попасть в точку<br><div class="rule">"You <b>hit the nail on the head</b> with that analysis."</div>&bull; <b>bite off more than you can chew</b> — взяться за слишком много<br><div class="rule">"She <b>bit off more than she could chew</b> with that project."</div>&bull; <b>under the weather</b> — немного нездоровится<br><div class="rule">"I\'m feeling a bit <b>under the weather</b> today."</div>&bull; <b>break a leg</b> — ни пуха ни пера (пожелание удачи)<br><div class="rule">"You\'re going on stage soon. <b>Break a leg!</b>"</div>',
+        exercises:[
+          {q:'The driving test was a ___ — I passed first try.',blank:'piece of cake',opts:['piece of cake','walk in the park','no sweat','slam dunk']},
+          {q:'You ___ — that\'s exactly the problem.',blank:'hit the nail on the head',opts:['hit the nail on the head','got it right','nailed it','got the point']},
+          {q:'She\'s been ___ all week — probably a cold.',blank:'under the weather',opts:['under the weather','feeling bad','not well','a bit off']},
+          {q:'"Good luck tonight!" — "Thanks, you too — ___!"',blank:'break a leg',opts:['break a leg','good luck','all the best','fingers crossed']},
+          {q:'He ___ by taking on three jobs at once.',blank:'bit off more than he could chew',opts:['bit off more than he could chew','overextended himself','took too much','overdid it']}
+        ]
+      },
+      {id:20,title:'Смешанный сленг — Финал',xp:30,
+        theory:'<b>Mixed Slang — Final Round</b><br><br>Закрепляем всё пройденное! Вот краткий обзор ключевых слов из всех уроков:<br><br>&bull; <b>awesome / fire / lit</b> — что-то крутое<br>&bull; <b>bummed / stoked</b> — расстроен / в восторге<br>&bull; <b>ghosting</b> — исчезнуть без объяснений<br>&bull; <b>lowkey / highkey</b> — слегка / явно<br>&bull; <b>no cap</b> — без лжи<br>&bull; <b>slay / kill it</b> — делать что-то блестяще<br>&bull; <b>vibes</b> — атмосфера / настрой<br>&bull; <b>hustle</b> — работать усердно<br>&bull; <b>clutch</b> — в решающий момент<br>&bull; <b>bail</b> — слинять в последний момент',
+        exercises:[
+          {q:'I\'m so ___ about the trip. Can\'t wait!',blank:'stoked',opts:['stoked','pumped','fired','lit']},
+          {q:'He ___ on us again. Third time this month.',blank:'bailed',opts:['bailed','ditched','left','skipped']},
+          {q:'She ___ that pitch. Investors loved her.',blank:'slayed',opts:['slayed','killed','nailed','crushed']},
+          {q:'The café has amazing ___. I love going there to work.',blank:'vibes',opts:['vibes','energy','mood','feel']},
+          {q:'That comeback was so ___. Nobody expected them to win.',blank:'clutch',opts:['clutch','wild','epic','huge']}
+        ]
+      }
+    ]
+  },
 };
 
 // ── COURSE UI ─────────────────────────────────────────────
@@ -8922,7 +9136,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
