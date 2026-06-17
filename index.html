@@ -119,6 +119,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* ONBOARDING */
 .ob-overlay{position:fixed;inset:0;background:var(--bg);z-index:10000;display:flex;flex-direction:column;padding:24px 20px 32px;overflow-y:auto;}
 .ob-dots{display:flex;gap:6px;justify-content:center;margin-bottom:28px;}
+#courses-search-input::placeholder{color:var(--muted);}
+#courses-search-input:focus{border-color:var(--accent);}
+#courses-search-input::-webkit-search-cancel-button{display:none;}
 .ob-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all 0.3s;}
 .ob-dot.active{background:var(--accent);width:22px;border-radius:4px;}
 .ob-step{display:none;flex-direction:column;flex:1;animation:fadeIn 0.3s ease;}
@@ -237,6 +240,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div class="ob-dot active" id="ob-dot-0"></div>
     <div class="ob-dot" id="ob-dot-1"></div>
     <div class="ob-dot" id="ob-dot-2"></div>
+    <div class="ob-dot" id="ob-dot-3"></div>
   </div>
 
   <!-- Step 0: Welcome -->
@@ -332,6 +336,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="ob-option-desc">Магазин, погода, друзья, соцсети</div>
         </div>
       </div>
+      <div class="ob-option" onclick="obSelectOption(this,'goal','expat')" data-val="expat">
+        <div class="ob-option-icon">🌍</div>
+        <div>
+          <div class="ob-option-title">Переезд за рубеж</div>
+          <div class="ob-option-desc">Жизнь, работа и документы в другой стране</div>
+        </div>
+      </div>
+      <div class="ob-option" onclick="obSelectOption(this,'goal','general')" data-val="general">
+        <div class="ob-option-icon">🎯</div>
+        <div>
+          <div class="ob-option-title">Всё сразу</div>
+          <div class="ob-option-desc">Хочу учить язык всесторонне</div>
+        </div>
+      </div>
     </div>
     <div class="ob-rec-card" id="ob-rec" style="display:none">
       <div style="font-size:32px" id="ob-rec-icon"></div>
@@ -341,8 +359,30 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div style="font-size:11px;color:var(--muted)" id="ob-rec-desc"></div>
       </div>
     </div>
-    <button class="ob-btn" id="ob-btn-2" onclick="finishOnboarding()" disabled>Начать учиться 🎉</button>
+    <button class="ob-btn" id="ob-btn-2" onclick="obGoToStep(3)" disabled>Далее →</button>
     <div class="ob-skip" onclick="finishOnboarding()">Пропустить</div>
+  </div>
+
+  <!-- Step 3: Reminder -->
+  <div class="ob-step" id="ob-step-3">
+    <div class="ob-emoji">🔔</div>
+    <div class="ob-title">Напоминание<br>о занятии</div>
+    <div class="ob-sub">Telegram пришлёт тебе напоминание каждый день</div>
+    <div style="flex:1"></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px 20px;margin-bottom:16px;text-align:center">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Выбери время</div>
+      <input type="time" id="ob-reminder-time" value="09:00"
+        style="background:none;border:none;font-size:40px;font-weight:800;font-family:var(--font-head);color:var(--text);outline:none;width:160px;text-align:center;cursor:pointer">
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">Каждый день в это время</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px">
+      <button onclick="setReminderQuick('08:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">☀️ 8:00</button>
+      <button onclick="setReminderQuick('12:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌤 12:00</button>
+      <button onclick="setReminderQuick('19:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 19:00</button>
+      <button onclick="setReminderQuick('21:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 21:00</button>
+    </div>
+    <button class="ob-btn" onclick="finishOnboardingWithReminder()">Готово! Начинаем 🎉</button>
+    <div class="ob-skip" onclick="finishOnboarding()">Без напоминания</div>
   </div>
 </div>
 
@@ -406,6 +446,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <!-- Список курсов -->
     <div id="courses-main">
     <p class="screen-title">Программы</p>
+    <div style="position:relative;margin-bottom:12px">
+      <input type="search" id="courses-search-input" placeholder="🔍  Поиск курсов и уроков..."
+        oninput="searchCourses(this.value)"
+        style="width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:10px 38px 10px 14px;font-size:13px;color:var(--text);font-family:var(--font-body);outline:none;-webkit-appearance:none">
+      <button id="search-clear-btn" onclick="clearSearch()" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0">✕</button>
+    </div>
+    <div id="search-results-wrap" style="display:none">
+      <div id="search-results-list"></div>
+    </div>
+    <div id="courses-list-wrap">
     <p class="section-label">Доступные курсы</p>
     <div class="course-card" onclick="openCourse('basic')" style="cursor:pointer">
       <div class="card-icon" style="background:rgba(16,217,138,0.1);color:var(--green);font-size:18px;">📗</div>
@@ -677,6 +727,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
+    </div><!-- /courses-list-wrap -->
     </div><!-- /courses-main -->
 
     <!-- Список уроков курса -->
@@ -9967,11 +10018,13 @@ async function translateMistake(btn, sentence){
 // ── ONBOARDING ──────────────────────────────────────────
 const OB_COURSE_MAP={travel:'travel',business:'business',it:'it',everyday:'everyday',dating:'dating'};
 const OB_REC={
-  travel:{icon:'✈️',title:'Travel English',desc:'15 уроков для путешественников',course:'travel'},
+  travel:{icon:'✈️',title:'Travel English',desc:'20 уроков для путешественников',course:'travel'},
   business:{icon:'💼',title:'Business English',desc:'20 уроков делового общения',course:'business'},
   it:{icon:'💻',title:'IT English',desc:'20 уроков для разработчиков',course:'it'},
   everyday:{icon:'🗣️',title:'Everyday English',desc:'20 уроков повседневной жизни',course:'everyday'},
   dating:{icon:'💕',title:'Dating English',desc:'20 уроков романтики и знакомств',course:'dating'},
+  expat:{icon:'🌍',title:'Expat Life',desc:'20 уроков жизни за рубежом',course:'expat'},
+  general:{icon:'📚',title:'Basic English',desc:'Начни с основ английского',course:'basic'},
 };
 let obLevel=null, obGoal=null;
 
@@ -9982,12 +10035,17 @@ function checkOnboarding(){
 }
 
 function obGoToStep(n){
-  for(let i=0;i<3;i++){
-    document.getElementById('ob-step-'+i).classList.remove('show');
-    document.getElementById('ob-dot-'+i).classList.remove('active');
+  for(let i=0;i<4;i++){
+    const s=document.getElementById('ob-step-'+i);
+    const d=document.getElementById('ob-dot-'+i);
+    if(s)s.classList.remove('show');
+    if(d)d.classList.remove('active');
   }
   document.getElementById('ob-step-'+n).classList.add('show');
   document.getElementById('ob-dot-'+n).classList.add('active');
+}
+function setReminderQuick(t){
+  document.getElementById('ob-reminder-time').value=t;
 }
 
 function obSelectOption(el, group, val){
@@ -10015,13 +10073,100 @@ function finishOnboarding(){
   if(obLevel) localStorage.setItem('smart_level',obLevel);
   if(obGoal)  localStorage.setItem('smart_goal',obGoal);
   document.getElementById('onboarding').style.display='none';
-  // If goal chosen, open that course
   if(obGoal && OB_REC[obGoal]){
     switchTab('courses');
     setTimeout(()=>openCourse(OB_REC[obGoal].course),200);
   }
 }
+function finishOnboardingWithReminder(){
+  const timeVal=document.getElementById('ob-reminder-time').value||'09:00';
+  localStorage.setItem('smart_reminder_time',timeVal);
+  const chatId=tgUser?.id;
+  if(chatId){
+    subscribeReminder(chatId,timeVal).catch(()=>{});
+  }
+  finishOnboarding();
+}
+async function subscribeReminder(chatId,localTime){
+  const [h,m]=localTime.split(':').map(Number);
+  const now=new Date();
+  const utcOffset=now.getTimezoneOffset();
+  const utcH=((h*60+m+utcOffset+1440)%1440);
+  const utcHour=Math.floor(utcH/60);
+  const utcMin=utcH%60;
+  const utcTime=String(utcHour).padStart(2,'0')+':'+String(utcMin).padStart(2,'0');
+  await fetch(WORKER_URL+'/notify/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({chatId,utcTime,localTime})
+  });
+}
 // ── END ONBOARDING ───────────────────────────────────────
+// ── SEARCH ───────────────────────────────────────────────
+function searchCourses(query){
+  const q=query.trim().toLowerCase();
+  const clearBtn=document.getElementById('search-clear-btn');
+  const resultsWrap=document.getElementById('search-results-wrap');
+  const listWrap=document.getElementById('courses-list-wrap');
+  if(!q){
+    clearSearch();
+    return;
+  }
+  clearBtn.style.display='block';
+  resultsWrap.style.display='block';
+  if(listWrap)listWrap.style.display='none';
+  const results=[];
+  Object.entries(COURSES).forEach(([cid,course])=>{
+    const courseName=(course.title||cid).toLowerCase();
+    if(courseName.includes(q)){
+      results.push({type:'course',cid,title:course.title||cid,icon:course.icon||'📚',color:course.color||'var(--accent)'});
+    }
+    (course.lessons||[]).forEach((lesson,idx)=>{
+      const lt=(lesson.title||'').toLowerCase();
+      if(lt.includes(q)){
+        results.push({type:'lesson',cid,lessonIdx:idx+1,title:lesson.title,courseTitle:course.title||cid,icon:course.icon||'📚',color:course.color||'var(--accent)'});
+      }
+    });
+  });
+  const list=document.getElementById('search-results-list');
+  if(!results.length){
+    list.innerHTML='<div style="padding:24px;text-align:center;font-size:13px;color:var(--muted)">Ничего не найдено</div>';
+    return;
+  }
+  list.innerHTML=results.slice(0,30).map(r=>{
+    if(r.type==='course'){
+      return `<div class="course-card" onclick="clearSearch();openCourse('${r.cid}')" style="cursor:pointer">
+        <div class="card-icon" style="background:rgba(99,102,241,0.1);color:${r.color};font-size:18px">${r.icon}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--text)">${r.title}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Курс • все уроки</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:12px"></i>
+      </div>`;
+    } else {
+      return `<div class="course-card" onclick="clearSearch();openCourse('${r.cid}');setTimeout(()=>openLesson('${r.cid}',${r.lessonIdx-1}),300)" style="cursor:pointer">
+        <div class="card-icon" style="background:rgba(99,102,241,0.06);color:${r.color};font-size:18px">${r.icon}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--text)">${r.title}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">${r.courseTitle} • Урок ${r.lessonIdx}</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:12px"></i>
+      </div>`;
+    }
+  }).join('');
+}
+function clearSearch(){
+  const inp=document.getElementById('courses-search-input');
+  const clearBtn=document.getElementById('search-clear-btn');
+  const resultsWrap=document.getElementById('search-results-wrap');
+  const listWrap=document.getElementById('courses-list-wrap');
+  if(inp)inp.value='';
+  if(clearBtn)clearBtn.style.display='none';
+  if(resultsWrap)resultsWrap.style.display='none';
+  if(listWrap)listWrap.style.display='block';
+}
+// ── END SEARCH ───────────────────────────────────────────
+
 
 // Init
 updateStreak();
