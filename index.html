@@ -103,6 +103,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .perks-grid{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .perk{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
 /* NAV */
+/* ── Daily Challenge ── */
+.dc-card{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,179,8,0.06));border:1.5px solid rgba(245,158,11,0.35);border-radius:18px;padding:14px 16px;margin-bottom:16px;cursor:pointer;transition:opacity 0.2s;}
+.dc-card:active{opacity:0.8;}
+.dc-card.done{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.05));border-color:rgba(34,197,94,0.3);}
+.dc-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;overflow-y:auto;padding:20px 16px 100px;}
+.dc-choice-btn{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:13px;padding:13px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:border-color 0.15s,background 0.15s;}
+.dc-choice-btn:active{background:var(--surface2);}
+.dc-choice-btn.correct{background:rgba(34,197,94,0.15);border-color:var(--green);color:var(--green);}
+.dc-choice-btn.wrong{background:rgba(239,68,68,0.12);border-color:#ef4444;color:#ef4444;}
+.dc-streak-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:3px;}
+
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(8,11,18,0.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:7px 0 10px;z-index:100;}
 .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
 .ach-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;position:relative;transition:border-color 0.2s;}
@@ -401,6 +412,63 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
   <!-- CHAT -->
   <section id="screen-chat" class="screen active">
+
+    <!-- Daily Challenge Card -->
+    <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:26px" id="dc-card-icon">🔥</div>
+          <div>
+            <div style="font-size:13px;font-weight:800;color:var(--text)">Ежедневное задание</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:1px" id="dc-card-sub">5 вопросов из разных курсов</div>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:14px;font-weight:800;color:var(--amber)" id="dc-card-xp">+50 XP</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:1px" id="dc-card-badge">Новое!</div>
+        </div>
+      </div>
+      <div id="dc-streak-row" style="display:none;margin-top:10px;display:flex;align-items:center;gap:6px">
+        <span style="font-size:10px;color:var(--muted)">Серия:</span>
+        <div id="dc-streak-dots"></div>
+        <span id="dc-streak-label" style="font-size:11px;font-weight:700;color:var(--amber)"></span>
+      </div>
+    </div>
+
+    <!-- Daily Challenge Overlay -->
+    <div class="dc-overlay" id="dc-overlay" style="display:none">
+      <!-- Header -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+        <button onclick="closeDC()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted);line-height:1">✕</button>
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:800;color:var(--text)">🔥 Ежедневное задание</div>
+          <div style="font-size:11px;color:var(--muted)" id="dc-progress-text">Вопрос 1 из 5</div>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:var(--amber)">+50 XP</div>
+      </div>
+      <!-- Progress bar -->
+      <div style="height:5px;background:var(--surface2);border-radius:5px;margin-bottom:22px">
+        <div id="dc-progress-bar" style="height:100%;background:linear-gradient(90deg,var(--amber),#f97316);border-radius:5px;transition:width 0.35s;width:0%"></div>
+      </div>
+      <!-- Exercise -->
+      <div id="dc-ex-area"></div>
+      <!-- Result -->
+      <div id="dc-result-area" style="display:none;text-align:center;padding:10px 0">
+        <div style="font-size:64px;margin-bottom:14px" id="dc-r-emoji">🎉</div>
+        <div style="font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px" id="dc-r-title">Задание выполнено!</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:28px" id="dc-r-sub">Отличная работа!</div>
+        <div style="background:rgba(245,158,11,0.12);border:1.5px solid rgba(245,158,11,0.3);border-radius:20px;padding:20px 32px;display:inline-block;margin-bottom:28px">
+          <div style="font-size:36px;font-weight:800;color:var(--amber)" id="dc-r-xp">+50 XP</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Ежедневный бонус</div>
+        </div>
+        <div id="dc-r-streak" style="margin-bottom:28px;display:none">
+          <div style="font-size:13px;color:var(--amber);font-weight:700" id="dc-r-streak-text"></div>
+        </div>
+        <br>
+        <button onclick="closeDC()" style="background:linear-gradient(135deg,var(--amber),#f97316);color:white;border:none;border-radius:14px;padding:14px 40px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font-head);width:100%">Отлично! →</button>
+      </div>
+    </div>
+
     <div id="topic-picker">
       <p class="screen-title">Выбери тему</p>
       <div class="topic-grid">
@@ -10167,12 +10235,193 @@ function clearSearch(){
 }
 // ── END SEARCH ───────────────────────────────────────────
 
+// ── DAILY CHALLENGE ─────────────────────────────────────
+const DC_TOTAL = 5;
+const DC_XP = 50;
+let dcQuestions = [], dcIdx = 0, dcCorrect = 0;
+
+function dcDateKey() { return new Date().toISOString().slice(0,10); }
+function isDCDone() { return localStorage.getItem('smart_dc_' + dcDateKey()) === 'done'; }
+
+function dcSeededRng(seed) {
+  let s = seed >>> 0;
+  return function() {
+    s ^= s << 13; s ^= s >> 17; s ^= s << 5;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+function getDCQuestions() {
+  const all = [];
+  Object.entries(COURSES).forEach(([cid, course]) => {
+    (course.lessons || []).forEach(lesson => {
+      (lesson.exercises || []).forEach(ex => {
+        all.push({ ...ex, courseTitle: course.title || cid, lessonTitle: lesson.title || '', color: course.color || 'var(--accent)' });
+      });
+    });
+  });
+  const seed = parseInt(dcDateKey().replace(/-/g, ''));
+  const rng = dcSeededRng(seed);
+  const picked = [], used = new Set();
+  let attempts = 0;
+  while (picked.length < DC_TOTAL && attempts < 2000) {
+    const idx = Math.floor(rng() * all.length);
+    if (!used.has(idx)) { used.add(idx); picked.push(all[idx]); }
+    attempts++;
+  }
+  return picked;
+}
+
+function getDCStreak() {
+  try { return JSON.parse(localStorage.getItem('smart_dc_streak') || '{"count":0,"last":""}'); }
+  catch { return { count: 0, last: '' }; }
+}
+
+function updateDCStreak() {
+  const streak = getDCStreak();
+  const today = dcDateKey();
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+  streak.count = (streak.last === yesterday || streak.last === today) ? streak.count + (streak.last === yesterday ? 1 : 0) : 1;
+  streak.last = today;
+  localStorage.setItem('smart_dc_streak', JSON.stringify(streak));
+  return streak;
+}
+
+function renderDCCard() {
+  const done = isDCDone();
+  const streak = getDCStreak();
+  const card = document.getElementById('dc-card');
+  if (!card) return;
+  if (done) {
+    card.classList.add('done');
+    card.onclick = null;
+    document.getElementById('dc-card-icon').textContent = '✅';
+    document.getElementById('dc-card-sub').textContent = 'Выполнено сегодня!';
+    document.getElementById('dc-card-xp').textContent = '+50 XP';
+    document.getElementById('dc-card-xp').style.color = 'var(--green)';
+    document.getElementById('dc-card-badge').textContent = 'Завтра будет новое';
+  } else {
+    document.getElementById('dc-card-badge').textContent = 'Сегодня';
+  }
+  // Streak dots (last 7 days)
+  if (streak.count >= 2 || done) {
+    const row = document.getElementById('dc-streak-row');
+    if (row) { row.style.display = 'flex'; }
+    const dotsEl = document.getElementById('dc-streak-dots');
+    if (dotsEl) {
+      const dots = Array.from({length: Math.min(streak.count, 7)}, (_, i) =>
+        `<span class="dc-streak-dot" style="background:var(--amber);opacity:${0.4 + i * 0.1}"></span>`
+      ).join('');
+      dotsEl.innerHTML = dots;
+    }
+    const lbl = document.getElementById('dc-streak-label');
+    if (lbl) lbl.textContent = streak.count + ' ' + (streak.count === 1 ? 'день' : streak.count < 5 ? 'дня' : 'дней');
+  }
+}
+
+function startDailyChallenge() {
+  if (isDCDone()) return;
+  dcQuestions = getDCQuestions();
+  dcIdx = 0; dcCorrect = 0;
+  document.getElementById('dc-overlay').style.display = 'block';
+  document.getElementById('dc-result-area').style.display = 'none';
+  document.getElementById('dc-ex-area').style.display = 'block';
+  document.getElementById('main-scroll').scrollTop = 0;
+  renderDCExercise();
+}
+
+function closeDC() {
+  document.getElementById('dc-overlay').style.display = 'none';
+}
+
+function renderDCExercise() {
+  const ex = dcQuestions[dcIdx];
+  const pct = Math.round((dcIdx / DC_TOTAL) * 100);
+  document.getElementById('dc-progress-text').textContent = 'Вопрос ' + (dcIdx + 1) + ' из ' + DC_TOTAL;
+  document.getElementById('dc-progress-bar').style.width = pct + '%';
+  const qText = ex.q.replace('___', '<b style="color:var(--amber)">___</b>');
+  document.getElementById('dc-ex-area').innerHTML = `
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">${ex.courseTitle} · ${ex.lessonTitle}</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);line-height:1.5">${qText}</div>
+    </div>
+    <div id="dc-choices">
+      ${ex.opts.map(o => `<button class="dc-choice-btn" onclick="checkDCAnswer(this,'${o.replace(/'/g,"\'")}','${ex.blank.replace(/'/g,"\'")}','${ex.q.replace(/'/g,"\'")}')">${o}</button>`).join('')}
+    </div>
+    <div id="dc-fb" style="min-height:28px;text-align:center;font-size:13px;font-weight:600;margin-top:4px"></div>`;
+}
+
+function checkDCAnswer(btn, selected, correct, q) {
+  document.querySelectorAll('.dc-choice-btn').forEach(b => b.disabled = true);
+  const fb = document.getElementById('dc-fb');
+  if (selected === correct) {
+    btn.classList.add('correct');
+    fb.style.color = 'var(--green)';
+    fb.textContent = '✓ Правильно!';
+    dcCorrect++;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.dc-choice-btn').forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+    fb.style.color = '#ef4444';
+    fb.textContent = '✗ Правильный ответ: ' + correct;
+  }
+  setTimeout(nextDCQuestion, 1100);
+}
+
+function nextDCQuestion() {
+  dcIdx++;
+  if (dcIdx >= DC_TOTAL) {
+    completeDC();
+  } else {
+    renderDCExercise();
+    document.getElementById('dc-overlay').scrollTop = 0;
+  }
+}
+
+function completeDC() {
+  // Mark done
+  localStorage.setItem('smart_dc_' + dcDateKey(), 'done');
+  // Update streak
+  const streak = updateDCStreak();
+  // Award XP
+  const s = getStats();
+  const bonusXp = streak.count >= 7 ? DC_XP * 2 : streak.count >= 3 ? Math.round(DC_XP * 1.5) : DC_XP;
+  s.xp += bonusXp;
+  saveStats(s);
+  trackDaily(bonusXp, 0);
+  document.getElementById('xp-count').textContent = s.xp;
+  // Confetti + haptic
+  launchConfetti();
+  try { window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success'); } catch(e) {}
+  // Show result
+  document.getElementById('dc-ex-area').style.display = 'none';
+  document.getElementById('dc-result-area').style.display = 'block';
+  document.getElementById('dc-progress-bar').style.width = '100%';
+  const pct = Math.round(dcCorrect / DC_TOTAL * 100);
+  document.getElementById('dc-r-emoji').textContent = pct >= 80 ? '🎉' : pct >= 60 ? '💪' : '📚';
+  document.getElementById('dc-r-title').textContent = pct >= 80 ? 'Задание выполнено!' : pct >= 60 ? 'Хороший результат!' : 'Задание пройдено!';
+  document.getElementById('dc-r-sub').textContent = dcCorrect + ' из ' + DC_TOTAL + ' правильно';
+  document.getElementById('dc-r-xp').textContent = '+' + bonusXp + ' XP';
+  // Streak bonus message
+  const streakEl = document.getElementById('dc-r-streak');
+  if (streak.count >= 2) {
+    streakEl.style.display = 'block';
+    const bonus = bonusXp > DC_XP ? ' (+' + (bonusXp - DC_XP) + ' XP бонус за серию!)' : '';
+    document.getElementById('dc-r-streak-text').textContent = '🔥 Серия ' + streak.count + ' ' + (streak.count === 1 ? 'день' : streak.count < 5 ? 'дня' : 'дней') + ' подряд!' + bonus;
+  }
+  // Refresh card
+  renderDCCard();
+}
+// ── END DAILY CHALLENGE ──────────────────────────────────
+
+
 
 // Init
 updateStreak();
 renderProfile();
 renderCourseProgress();
 checkOnboarding();
+renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
 
