@@ -846,7 +846,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="stat-box"><div class="val" id="result-score" style="color:var(--green)">5/5</div><div class="lbl">Правильных</div></div>
           <div class="stat-box"><div class="val" id="result-xp" style="color:var(--amber)">+30</div><div class="lbl">XP получено</div></div>
         </div>
-        <button class="lesson-btn" onclick="closeLesson()">К списку уроков</button>
+        <div id="result-nav-btns"></div>
         <div id="mistakes-block"></div>
       </div>
     </div>
@@ -10024,6 +10024,31 @@ function showResult(){
   document.getElementById('result-emoji').textContent=pct>=80?'🎉':pct>=50?'💪':'📚';
   document.getElementById('result-title').textContent=pct>=80?'Отлично!':pct>=50?'Хороший результат!':'Попробуй ещё раз';
   document.getElementById('result-text').textContent='Урок «'+lesson.title+'» пройден. Продолжай учиться!';
+  // ── Next lesson / course complete buttons ──
+  const allLessons=COURSES[currentCourseId].lessons;
+  const isLastLesson=currentLessonIdx>=allLessons.length-1;
+  const navEl=document.getElementById('result-nav-btns');
+  if(isLastLesson){
+    navEl.innerHTML=`
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:18px;padding:18px;margin-bottom:14px;text-align:center">
+        <div style="font-size:36px;margin-bottom:6px">🏆</div>
+        <div style="font-size:16px;font-weight:800;color:var(--text)">Курс завершён!</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Ты прошёл все ${allLessons.length} уроков курса</div>
+      </div>
+      <button class="lesson-btn" onclick="closeLesson()" style="margin-bottom:0">К списку курсов →</button>`;
+  } else {
+    const nextL=allLessons[currentLessonIdx+1];
+    const nextTitle=nextL.title||('Урок '+(currentLessonIdx+2));
+    navEl.innerHTML=`
+      <button class="lesson-btn" id="next-lesson-btn" onclick="openLesson(${currentLessonIdx+1})"
+        style="background:var(--accent);color:#fff;border:none;margin-bottom:10px">
+        Следующий урок →<br><span style="font-size:11px;font-weight:500;opacity:0.85">${nextTitle}</span>
+      </button>
+      <button onclick="closeLesson()"
+        style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:8px;width:100%;font-family:var(--font-body)">
+        К списку уроков
+      </button>`;
+  }
   document.getElementById('result-score').textContent=exCorrect+'/'+total;
   document.getElementById('result-xp').textContent='+'+xpEarned;
   // Mistakes block
