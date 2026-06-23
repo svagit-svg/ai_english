@@ -761,22 +761,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
     <div class="card" onclick="showComingSoon('Interview English')">
       <div class="card-row">
-        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">💼</div>
-        <div class="card-text"><h3>Interview English <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">Скоро</span></h3><p>Собеседование на английском • 15 уроков</p></div>
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎤</div>
+        <div class="card-text"><h3>Interview English <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">Скоро</span></h3><p>Вопросы HR, самопрезентация, оффер • 20 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
     <div class="card" onclick="showComingSoon('Legal English')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;">⚖️</div>
-        <div class="card-text"><h3>Legal English <span class="badge" style="background:rgba(99,102,241,0.15);color:#6366f1">Скоро</span></h3><p>Право, контракты, суд • 20 уроков</p></div>
+        <div class="card-text"><h3>Legal English <span class="badge" style="background:rgba(99,102,241,0.15);color:#6366f1">Скоро</span></h3><p>Контракты, переговоры, юридические тексты • 20 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
     <div class="card" onclick="showComingSoon('Academic English')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;">🎓</div>
-        <div class="card-text"><h3>Academic English <span class="badge" style="background:rgba(14,165,233,0.15);color:#0ea5e9">Скоро</span></h3><p>Эссе, лекции, наука • 20 уроков</p></div>
+        <div class="card-text"><h3>Academic English <span class="badge" style="background:rgba(14,165,233,0.15);color:#0ea5e9">Скоро</span></h3><p>Эссе, дискуссии, академическое письмо • 20 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
@@ -920,6 +920,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div class="divider"></div>
     <p class="section-label">Достижения</p>
     <div id="achievements-section"></div>
+
+    <div class="divider"></div>
+    <div id="profile-premium-card"></div>
   </section>
 
   <!-- PREMIUM -->
@@ -1004,7 +1007,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-robot"></i>AI Тьютор</button>
   <button class="nav-btn" id="nav-courses" onclick="switchTab('courses')"><i class="fa-solid fa-book-open"></i>Курсы</button>
   <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i>Профиль</button>
-  <button class="nav-btn" id="nav-premium" onclick="switchTab('premium')"><i class="fa-solid fa-crown"></i>Премиум</button>
+  <!-- nav-premium hidden: Premium moved to Profile tab -->
+  <button class="nav-btn" id="nav-premium" onclick="switchTab('premium')" style="display:none"><i class="fa-solid fa-crown"></i>Премиум</button>
 </nav>
 
 <script>
@@ -1147,6 +1151,50 @@ function renderProfile(){
   // analytics
   renderAnalytics();
   renderAchievements();
+  renderProfilePremiumCard();
+}
+
+function renderProfilePremiumCard(){
+  const el=document.getElementById('profile-premium-card');
+  if(!el) return;
+  const paid=localStorage.getItem('smart_pro')==='1';
+  const t=getTrialInfo();
+  if(paid){
+    el.innerHTML=`
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:18px;padding:18px 16px;text-align:center">
+        <div style="font-size:28px;margin-bottom:6px">👑</div>
+        <div style="font-size:15px;font-weight:800;color:var(--text)">Premium активен</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">Все курсы и AI-функции открыты</div>
+      </div>`;
+  } else if(t.active){
+    el.innerHTML=`
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(245,158,11,0.06));border:1.5px solid var(--accent);border-radius:18px;padding:18px 16px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-size:28px">⏳</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--text)">Триал — осталось ${t.daysLeft} ${t.daysLeft===1?'день':t.daysLeft<5?'дня':'дней'}</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Все возможности Premium открыты</div>
+          </div>
+        </div>
+        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
+          Оформить подписку →
+        </button>
+      </div>`;
+  } else {
+    el.innerHTML=`
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.06));border:1.5px solid var(--amber);border-radius:18px;padding:18px 16px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-size:28px">🚀</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--text)">${t.expired?'Триал завершён':'Получи Premium'}</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Все курсы, безлимитный AI-тьютор</div>
+          </div>
+        </div>
+        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:13px;border:none;background:linear-gradient(135deg,#b45309,var(--amber));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
+          ${t.expired?'Восстановить Premium →':'Посмотреть планы →'}
+        </button>
+      </div>`;
+  }
 }
 
 // ── ENGLISH LEVELS CONST ──────────────────────────────────
@@ -10539,7 +10587,7 @@ function switchTab(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('nav-'+id).classList.add('active');
+  const _nb=document.getElementById('nav-'+id);if(_nb&&_nb.style.display!=='none')_nb.classList.add('active');
   document.getElementById('main-scroll').scrollTop=0;
   if(id==='profile')renderProfile();
   if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';}
