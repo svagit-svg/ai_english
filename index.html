@@ -1076,6 +1076,102 @@ const tg = window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
+// ── TELEGRAM CLOUD STORAGE SYNC ──────────────────────────────
+const CS = tg?.cloudStorage || null;
+
+// Keys we sync to cloud
+const CLOUD_KEYS = ['smart_pro','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time'];
+const CLOUD_STATS_KEY = 'ss_core';
+const CLOUD_ACTIVITY_KEY = 'ss_activity';
+const CLOUD_HISTORY_KEY = 'ss_history';
+
+// Debounce timer for cloud saves
+let _cloudTimer = null;
+
+function queueCloudSave(){
+  if(!CS) return;
+  if(_cloudTimer) clearTimeout(_cloudTimer);
+  _cloudTimer = setTimeout(_doCloudSave, 1500);
+}
+
+function _doCloudSave(){
+  if(!CS) return;
+  try {
+    const s = JSON.parse(localStorage.getItem('smart_stats') || '{}');
+    // Core — always tiny
+    const core = JSON.stringify({
+      xp: s.xp||0,
+      lessons: s.lessons||0,
+      dialogs: s.dialogs||0,
+      streak: s.streak||0,
+      lastDate: s.lastDate||''
+    });
+    CS.setItem(CLOUD_STATS_KEY, core, ()=>{});
+
+    // Daily activity — prune to last 60 days
+    if(s.dailyActivity){
+      const cutoff = new Date(Date.now() - 60*864e5).toISOString().slice(0,10);
+      const pruned = {};
+      Object.entries(s.dailyActivity).forEach(([k,v])=>{ if(k>=cutoff) pruned[k]=v; });
+      CS.setItem(CLOUD_ACTIVITY_KEY, JSON.stringify(pruned), ()=>{});
+    }
+
+    // History — last 20 entries, compact
+    if(s.history && s.history.length){
+      const compact = s.history.slice(-20).map(e=>({d:e.date,t:e.topic,m:e.msgs||0}));
+      const str = JSON.stringify(compact);
+      if(str.length <= 4096) CS.setItem(CLOUD_HISTORY_KEY, str, ()=>{});
+    }
+
+    // Simple keys
+    CLOUD_KEYS.forEach(k=>{
+      const v = localStorage.getItem(k);
+      if(v !== null) CS.setItem(k, v, ()=>{});
+    });
+  } catch(e) { console.warn('CloudSave error', e); }
+}
+
+function loadFromCloud(callback){
+  if(!CS){ callback(); return; }
+
+  const allKeys = [CLOUD_STATS_KEY, CLOUD_ACTIVITY_KEY, CLOUD_HISTORY_KEY, ...CLOUD_KEYS];
+  CS.getItems(allKeys, (err, vals) => {
+    if(err || !vals){ callback(); return; }
+    try {
+      // Merge stats
+      const localStats = JSON.parse(localStorage.getItem('smart_stats') || '{}');
+      const cloudCore = vals[CLOUD_STATS_KEY] ? JSON.parse(vals[CLOUD_STATS_KEY]) : null;
+
+      if(cloudCore && (cloudCore.xp||0) > (localStats.xp||0)){
+        // Cloud is ahead — use it as base
+        const merged = Object.assign({xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[],dailyActivity:{}}, localStats, cloudCore);
+
+        if(vals[CLOUD_ACTIVITY_KEY]){
+          const cloudAct = JSON.parse(vals[CLOUD_ACTIVITY_KEY]);
+          merged.dailyActivity = Object.assign({}, localStats.dailyActivity||{}, cloudAct);
+        }
+        if(vals[CLOUD_HISTORY_KEY]){
+          const cloudHist = JSON.parse(vals[CLOUD_HISTORY_KEY]).map(e=>({date:e.d, topic:e.t, msgs:e.m||0}));
+          // Deduplicate by date+topic
+          const seen = new Set();
+          const all = [...(localStats.history||[]), ...cloudHist];
+          merged.history = all.filter(e=>{ const k=e.date+'|'+e.topic; if(seen.has(k)) return false; seen.add(k); return true; }).slice(-50);
+        }
+        localStorage.setItem('smart_stats', JSON.stringify(merged));
+      }
+
+      // Merge simple keys: cloud wins if local is missing
+      CLOUD_KEYS.forEach(k=>{
+        if(vals[k] !== undefined && vals[k] !== null && !localStorage.getItem(k)){
+          localStorage.setItem(k, vals[k]);
+        }
+      });
+    } catch(e){ console.warn('CloudLoad error', e); }
+    callback();
+  });
+}
+// ──────────────────────────────────────────────────────────────
+
 const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=15;
 
@@ -1143,7 +1239,7 @@ function getStats(){
     JSON.parse(localStorage.getItem('smart_stats')||'{}'));}
   catch{return{xp:0,lessons:0,dialogs:0,streak:0,lastDate:'',history:[],dailyActivity:{}};}
 }
-function saveStats(s){localStorage.setItem('smart_stats',JSON.stringify(s));}
+function saveStats(s){localStorage.setItem('smart_stats',JSON.stringify(s));queueCloudSave();}
 function trackDaily(xp,lessons){
   const s=getStats();
   const key=new Date().toISOString().slice(0,10);
@@ -10287,6 +10383,7 @@ function finishOnboarding(){
   if(obLevel) localStorage.setItem('smart_level',obLevel);
   if(obGoal)  localStorage.setItem('smart_goal',obGoal);
   document.getElementById('onboarding').style.display='none';
+  queueCloudSave();
   if(obGoal && OB_REC[obGoal]){
     switchTab('courses');
     setTimeout(()=>openCourse(OB_REC[obGoal].course),200);
@@ -10566,7 +10663,7 @@ function completeDC() {
 updateStreak();
 renderProfile();
 renderCourseProgress();
-checkOnboarding();
+loadFromCloud(()=>{ checkOnboarding(); });
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
