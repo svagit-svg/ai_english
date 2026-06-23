@@ -500,22 +500,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div id="topic-picker">
       <p class="screen-title">Выбери тему</p>
       <div class="topic-grid">
-        <div class="topic-card" onclick="startChat('IT English','You are a strict technical interviewer at a US tech company. Ask about algorithms, OOP, and experience in English. After each answer, correct grammar mistakes.','💻','IT English')">
+        <div class="topic-card" onclick="startChat('IT English','You are a strict technical interviewer at a US tech company. Ask about algorithms, OOP, and experience in English. After each answer, correct grammar mistakes.','💻','IT English','Greet the candidate briefly, introduce yourself as the interviewer, then ask your first question — start with their background or a basic concept like &quot;Tell me about yourself and your tech stack.&quot;')">
           <div class="t-icon">💻</div><h3>IT English</h3><p>Техническое интервью</p>
         </div>
-        <div class="topic-card" onclick="startChat('Travel','You are a check-in desk employee at an airport. Speak only English. Help with real traveler phrases. Correct mistakes.','✈️','Travel')">
+        <div class="topic-card" onclick="startChat('Travel','You are a check-in desk employee at an airport. Speak only English. Help with real traveler phrases. Correct mistakes.','✈️','Travel','Welcome the passenger to the check-in desk in a professional but friendly tone and ask for their passport or booking reference to get started.')">
           <div class="t-icon">✈️</div><h3>Travel</h3><p>Аэропорт и отели</p>
         </div>
-        <div class="topic-card" onclick="startChat('HR Interview','You are an experienced Google HR manager. Ask STAR behavioral questions in English. Give feedback after each answer.','🎤','HR Interview')">
+        <div class="topic-card" onclick="startChat('HR Interview','You are an experienced Google HR manager. Ask STAR behavioral questions in English. Give feedback after each answer.','🎤','HR Interview','Welcome the candidate warmly, introduce yourself as an HR manager at Google, then ask them to briefly introduce themselves and what brought them to apply for this role.')">
           <div class="t-icon">🎤</div><h3>HR Interview</h3><p>Поведенческие вопросы</p>
         </div>
-        <div class="topic-card" onclick="startChat('Casual Talk','You are a friendly native English speaker. Chat on any topic, teach slang and idioms. Gently correct mistakes at the end of your message.','☕','Casual Talk')">
+        <div class="topic-card" onclick="startChat('Casual Talk','You are a friendly native English speaker. Chat on any topic, teach slang and idioms. Gently correct mistakes at the end of your message.','☕','Casual Talk','Say hi casually, introduce yourself with a fun detail about yourself, and kick off the chat with a light question — like what they did this weekend or what they&apos;re into lately.')">
           <div class="t-icon">☕</div><h3>Casual Talk</h3><p>Повседневное общение</p>
         </div>
-        <div class="topic-card" onclick="startChat('Business','You are a business partner in important negotiations. Help with business English: emails, meetings, presentations. Correct mistakes.','💼','Business')">
+        <div class="topic-card" onclick="startChat('Business','You are a business partner in important negotiations. Help with business English: emails, meetings, presentations. Correct mistakes.','💼','Business','Open the meeting professionally — greet your counterpart, set a brief agenda, and ask about their main priorities and expected outcomes for today&apos;s discussion.')">
           <div class="t-icon">💼</div><h3>Business</h3><p>Переговоры и email</p>
         </div>
-        <div class="topic-card" onclick="startChat('IELTS','You are an IELTS examiner. Conduct a Speaking test Part 1, 2, 3. Give a score on a 1–9 scale after each answer.','📝','IELTS Prep')">
+        <div class="topic-card" onclick="startChat('IELTS','You are an IELTS examiner. Conduct a Speaking test Part 1, 2, 3. Give a score on a 1–9 scale after each answer.','📝','IELTS Prep','Begin the IELTS Speaking test — introduce yourself as the examiner, confirm the candidate&apos;s name, then ask your first Part 1 question about their hometown or daily routine.')">
           <div class="t-icon">📝</div><h3>IELTS Prep</h3><p>Speaking test</p>
         </div>
       </div>
@@ -10685,9 +10685,11 @@ function getLevelInstruction(){
   return map[lvl]||map['intermediate'];
 }
 
-function startChat(key,sysPrompt,icon,label){
+let currentOpeningPrompt='';
+function startChat(key,sysPrompt,icon,label,openingPrompt){
   currentSystemPrompt=sysPrompt+'\n\nUser level context: '+getLevelInstruction();
   currentTopic=label;
+  currentOpeningPrompt=openingPrompt||'Start the session with a short friendly opening and your first question.';
   sessionMsgs=0;sessionXp=0;
   chatHistory=[];
   document.getElementById('topic-picker').style.display='none';
@@ -10751,7 +10753,7 @@ async function callClaude(userText,isGreeting,existingDiv){
   const correctionInstr=`\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question to keep the conversation going.\n\nIMPORTANT — Error correction: If the user made any English grammar, vocabulary or spelling mistakes in their message, add a correction block at the very end of your reply using EXACTLY this format (on a new line):\n💡CORRECTION: [explain the mistake briefly in Russian, format: «написал X» → правильно «Y» + short reason]\nOnly correct the single most important mistake. If there are no mistakes at all, do NOT add the correction block.`;
   const sysMsg={role:'system',content:currentSystemPrompt+correctionInstr};
   const messages=isGreeting
-    ?[sysMsg,{role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'}]
+    ?[sysMsg,{role:'user',content:currentOpeningPrompt||'Start the session with a short friendly opening and your first question.'}]
     :[sysMsg,...chatHistory];
   try{
     const controller=new AbortController();
