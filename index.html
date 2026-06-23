@@ -1035,7 +1035,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="paywall-box">
     <div class="paywall-emoji">🚀</div>
     <h2>Лимит исчерпан</h2>
-    <p>Ты использовал все <strong>10 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.</p>
+    <p>Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.</p>
     <button class="paywall-btn" onclick="switchTab('premium');closePaywall()">
       <i class="fa-solid fa-crown"></i> Получить Premium
     </button>
@@ -1057,7 +1057,7 @@ if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
 const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
-const FREE_LIMIT=10;
+const FREE_LIMIT=15;
 
 // ── MESSAGE LIMIT ─────────────────────────────────────────
 function getDailyUsage(){
@@ -1098,7 +1098,7 @@ function showCoursePaywall(){
   const box=document.getElementById('paywall');
   box.querySelector('.paywall-emoji').textContent='🔒';
   box.querySelector('h2').textContent='Только для Premium';
-  box.querySelector('p').innerHTML='Первый урок каждого курса — <strong>бесплатно</strong>.<br>Открой все уроки всех курсов с Premium подпиской.';
+  box.querySelector('p').innerHTML='Первые <strong>3 урока</strong> каждого курса — бесплатно.<br>Открой все уроки всех курсов с Premium подпиской.';
   box.querySelector('.paywall-skip').textContent='Закрыть';
   box.classList.remove('hidden');
 }
@@ -1106,7 +1106,7 @@ function closeCoursePaywall(){
   const box=document.getElementById('paywall');
   box.querySelector('.paywall-emoji').textContent='🚀';
   box.querySelector('h2').textContent='Лимит исчерпан';
-  box.querySelector('p').innerHTML='Ты использовал все <strong>10 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.';
+  box.querySelector('p').innerHTML='Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.';
   box.querySelector('.paywall-skip').textContent='Напомни завтра';
   closePaywall();
 }
@@ -9934,7 +9934,7 @@ function openCourse(id){
   const container=document.getElementById('lesson-items');
   container.innerHTML=course.lessons.map((l,i)=>{
     const done=progress[l.id]?.done;
-    const locked=i>0&&!isPro();
+    const locked=i>=3&&!isPro();
     return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'showCoursePaywall()':'openLesson('+i+')'}">
       <div class="lesson-num">${done?'✓':l.id}</div>
       <div class="lesson-info"><h4>${l.title}</h4>
