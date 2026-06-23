@@ -52,6 +52,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .section-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;font-family:var(--font-head);}
 .divider{height:1px;background:var(--border);margin:12px 0;}
 /* CATEGORY PILLS */
+.topic-recommended{border-color:var(--accent)!important;background:linear-gradient(135deg,rgba(79,110,247,0.08),rgba(124,58,237,0.05))!important;}
+.topic-rec-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;font-family:var(--font-head);}
 .cat-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:var(--font-head);transition:all 0.2s;flex-shrink:0;}
 .cat-pill.active{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#fff;}
 #cat-filter-wrap::-webkit-scrollbar{display:none;}
@@ -499,24 +501,42 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
     <div id="topic-picker">
       <p class="screen-title">Выбери тему</p>
-      <div class="topic-grid">
-        <div class="topic-card" onclick="startChat('IT English','You are a strict technical interviewer at a US tech company. Ask about algorithms, OOP, and experience in English. After each answer, correct grammar mistakes.','💻','IT English','Greet the candidate briefly, introduce yourself as the interviewer, then ask your first question — start with their background or a basic concept like &quot;Tell me about yourself and your tech stack.&quot;')">
+      <div class="topic-grid" id="topic-grid">
+        <div class="topic-card" data-goals="it,business" onclick="startChat('IT English','You are a strict technical interviewer at a US tech company. Ask about algorithms, OOP, and experience in English. After each answer, correct grammar mistakes.','💻','IT English','Greet the candidate briefly, introduce yourself as the interviewer, then ask your first question — start with their background or a basic concept like &quot;Tell me about yourself and your tech stack.&quot;')">
           <div class="t-icon">💻</div><h3>IT English</h3><p>Техническое интервью</p>
         </div>
-        <div class="topic-card" onclick="startChat('Travel','You are a check-in desk employee at an airport. Speak only English. Help with real traveler phrases. Correct mistakes.','✈️','Travel','Welcome the passenger to the check-in desk in a professional but friendly tone and ask for their passport or booking reference to get started.')">
+        <div class="topic-card" data-goals="travel,expat" onclick="startChat('Travel','You are a check-in desk employee at an airport. Speak only English. Help with real traveler phrases. Correct mistakes.','✈️','Travel','Welcome the passenger to the check-in desk in a professional but friendly tone and ask for their passport or booking reference to get started.')">
           <div class="t-icon">✈️</div><h3>Travel</h3><p>Аэропорт и отели</p>
         </div>
-        <div class="topic-card" onclick="startChat('HR Interview','You are an experienced Google HR manager. Ask STAR behavioral questions in English. Give feedback after each answer.','🎤','HR Interview','Welcome the candidate warmly, introduce yourself as an HR manager at Google, then ask them to briefly introduce themselves and what brought them to apply for this role.')">
+        <div class="topic-card" data-goals="business,it" onclick="startChat('HR Interview','You are an experienced Google HR manager. Ask STAR behavioral questions in English. Give feedback after each answer.','🎤','HR Interview','Welcome the candidate warmly, introduce yourself as an HR manager at Google, then ask them to briefly introduce themselves and what brought them to apply for this role.')">
           <div class="t-icon">🎤</div><h3>HR Interview</h3><p>Поведенческие вопросы</p>
         </div>
-        <div class="topic-card" onclick="startChat('Casual Talk','You are a friendly native English speaker. Chat on any topic, teach slang and idioms. Gently correct mistakes at the end of your message.','☕','Casual Talk','Say hi casually, introduce yourself with a fun detail about yourself, and kick off the chat with a light question — like what they did this weekend or what they&apos;re into lately.')">
+        <div class="topic-card" data-goals="everyday,general,dating" onclick="startChat('Casual Talk','You are a friendly native English speaker. Chat on any topic, teach slang and idioms. Gently correct mistakes at the end of your message.','☕','Casual Talk','Say hi casually, introduce yourself with a fun detail about yourself, and kick off the chat with a light question — like what they did this weekend or what they&apos;re into lately.')">
           <div class="t-icon">☕</div><h3>Casual Talk</h3><p>Повседневное общение</p>
         </div>
-        <div class="topic-card" onclick="startChat('Business','You are a business partner in important negotiations. Help with business English: emails, meetings, presentations. Correct mistakes.','💼','Business','Open the meeting professionally — greet your counterpart, set a brief agenda, and ask about their main priorities and expected outcomes for today&apos;s discussion.')">
+        <div class="topic-card" data-goals="business,it" onclick="startChat('Business','You are a business partner in important negotiations. Help with business English: emails, meetings, presentations. Correct mistakes.','💼','Business','Open the meeting professionally — greet your counterpart, set a brief agenda, and ask about their main priorities and expected outcomes for today&apos;s discussion.')">
           <div class="t-icon">💼</div><h3>Business</h3><p>Переговоры и email</p>
         </div>
-        <div class="topic-card" onclick="startChat('IELTS','You are an IELTS examiner. Conduct a Speaking test Part 1, 2, 3. Give a score on a 1–9 scale after each answer.','📝','IELTS Prep','Begin the IELTS Speaking test — introduce yourself as the examiner, confirm the candidate&apos;s name, then ask your first Part 1 question about their hometown or daily routine.')">
+        <div class="topic-card" data-goals="general" onclick="startChat('IELTS','You are an IELTS examiner. Conduct a Speaking test Part 1, 2, 3. Give a score on a 1–9 scale after each answer.','📝','IELTS Prep','Begin the IELTS Speaking test — introduce yourself as the examiner, confirm the candidate&apos;s name, then ask your first Part 1 question about their hometown or daily routine.')">
           <div class="t-icon">📝</div><h3>IELTS Prep</h3><p>Speaking test</p>
+        </div>
+        <div class="topic-card" data-goals="expat,everyday,general" onclick="startChat('Medical','You are a doctor at an English-speaking clinic. Help the patient describe symptoms, understand your advice, and navigate the appointment. Explain medical terms simply. Correct English mistakes.','🏥','At the Doctor','Welcome the patient to your clinic warmly, ask how they are feeling today and what brought them in — be reassuring and professional.')">
+          <div class="t-icon">🏥</div><h3>At the Doctor</h3><p>У врача</p>
+        </div>
+        <div class="topic-card" data-goals="dating,everyday" onclick="startChat('Dating','You are a friendly native English speaker at a social event or on a first date. Keep conversation fun, natural and engaging. Teach dating vocabulary and small talk. Correct mistakes gently.','💕','Dating & Social','Start a natural first-meeting conversation — introduce yourself in a fun, memorable way and ask something interesting to break the ice.')">
+          <div class="t-icon">💕</div><h3>Dating & Social</h3><p>Знакомства</p>
+        </div>
+        <div class="topic-card" data-goals="travel,expat,everyday" onclick="startChat('Restaurant','You are a friendly waiter at a nice English-speaking restaurant. Help the guest navigate the menu, take their order, make recommendations and handle requests entirely in English. Correct mistakes.','🍽️','Restaurant','Welcome the guest warmly to your restaurant, mention one or two specials of the day, and ask if they have any dietary requirements before taking their order.')">
+          <div class="t-icon">🍽️</div><h3>Restaurant</h3><p>В ресторане</p>
+        </div>
+        <div class="topic-card" data-goals="expat,travel" onclick="startChat('Expat Life','You are a helpful experienced expat adviser who has lived abroad for years. Discuss practical topics: renting a flat, opening a bank account, registering with a GP, dealing with bureaucracy. Correct mistakes.','🌍','Expat Life','Greet the new expat warmly — ask which country they have moved to and what their biggest challenge has been so far, then offer practical advice.')">
+          <div class="t-icon">🌍</div><h3>Expat Life</h3><p>Жизнь за рубежом</p>
+        </div>
+        <div class="topic-card" data-goals="general,everyday" onclick="startChat('News Talk','You are a sharp, well-read English speaker who loves discussing current events. Pick a topic — tech, environment, culture or society — and have a thoughtful discussion. Teach news vocabulary and debate phrases. Correct mistakes.','📰','News Talk','Bring up one interesting current topic in the news right now — introduce it briefly in 1-2 sentences and ask for the user&apos;s opinion to kick off the discussion.')">
+          <div class="t-icon">📰</div><h3>News Talk</h3><p>Обсуждение новостей</p>
+        </div>
+        <div class="topic-card" data-goals="everyday,dating,general" onclick="startChat('Slang','You are a cool young American native speaker. Teach American slang, idioms and informal expressions through natural conversation. Briefly explain each slang term in Russian when you use it. Keep it fun and energetic. Correct mistakes.','🤙','Slang & Idioms','Start with a super casual slangy greeting, drop a fun slang word or idiom right away, ask if they know what it means — make it a game.')">
+          <div class="t-icon">🤙</div><h3>Slang & Idioms</h3><p>Сленг и идиомы</p>
         </div>
       </div>
     </div>
@@ -10613,6 +10633,39 @@ function renderTrialBanner(){
 }
 // ── END TRIAL ────────────────────────────────────────────────────────────────
 
+function personalizeTopics(){
+  const goal=localStorage.getItem('smart_goal')||'general';
+  const grid=document.getElementById('topic-grid');
+  if(!grid) return;
+  const cards=[...grid.querySelectorAll('.topic-card')];
+  // Remove existing recommended badge
+  cards.forEach(c=>{
+    c.classList.remove('topic-recommended');
+    const b=c.querySelector('.topic-rec-badge');
+    if(b) b.remove();
+  });
+  if(goal==='general') return; // no sorting for general
+  // Sort: matching goals first
+  const priority=[], rest=[];
+  cards.forEach(c=>{
+    const goals=(c.dataset.goals||'').split(',');
+    if(goals.includes(goal)) priority.push(c);
+    else rest.push(c);
+  });
+  // Add badge to top matches
+  priority.forEach((c,i)=>{
+    if(i<3){
+      c.classList.add('topic-recommended');
+      const badge=document.createElement('span');
+      badge.className='topic-rec-badge';
+      badge.textContent='Для тебя';
+      c.querySelector('.t-icon').after(badge);
+    }
+  });
+  // Reorder DOM
+  [...priority,...rest].forEach(c=>grid.appendChild(c));
+}
+
 function filterCat(cat, btn){
   // update active pill
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
@@ -10659,6 +10712,7 @@ function switchTab(id){
   if(id==='profile')renderProfile();
   if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';restoreCatFilter();}
   if(id==='premium'){renderTrialBanner();}
+  if(id==='chat'){personalizeTopics();}
 }
 function selectPlan(id,btn){
   document.querySelectorAll('.plan-tab').forEach(t=>t.classList.remove('active'));
