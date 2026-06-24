@@ -538,6 +538,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="topic-card" data-goals="everyday,dating,general" onclick="startChat('Slang','You are a cool young American native speaker. Teach American slang, idioms and informal expressions through natural conversation. Briefly explain each slang term in Russian when you use it. Keep it fun and energetic. Correct mistakes.','🤙','Slang & Idioms','Start with a super casual slangy greeting, drop a fun slang word or idiom right away, ask if they know what it means — make it a game.')">
           <div class="t-icon">🤙</div><h3>Slang & Idioms</h3><p>Сленг и идиомы</p>
         </div>
+        <div class="topic-card" data-goals="business,it,general" onclick="startChat('Academic','You are an experienced academic writing tutor. Help the student practise formal academic English: essay structure, thesis statements, linking words, citing sources, passive voice, hedging language, and reporting verbs. After each student response, provide a correction block with grammar and style improvements, and ask a follow-up academic writing question.','🎓','Academic English','Introduce yourself as an academic writing tutor, ask about their current level and what they are writing — an essay, report, or presentation — then begin with one focused writing task or question.')">
+          <div class="t-icon">🎓</div><h3>Academic English</h3><p>Эссе, стиль, академический язык</p>
+        </div>
       </div>
     </div>
     <div id="chat-view">
@@ -803,6 +806,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Инвестиции, банки, экономика, бизнес</p>
         <div class="progress-bar"><div class="progress-fill" id="finance-bar" style="width:0%;background:#16a34a"></div></div>
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="finance-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('academic')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;font-size:18px;">🎓</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Academic English</h3><span style="font-size:9px;background:rgba(99,102,241,0.15);color:#6366f1;border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
+          <span id="academic-pct" style="font-size:11px;color:#6366f1;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Эссе, исследования, презентации, академический стиль</p>
+        <div class="progress-bar"><div class="progress-fill" id="academic-bar" style="width:0%;background:#6366f1"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="academic-sub">20 уроков</p>
       </div>
     </div>
     <div class="divider"></div>
@@ -1387,7 +1402,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -10017,6 +10032,834 @@ I\'ll always care about you. — Я всегда буду заботиться �
       }
     ]
   }
+  ,academic:{
+    title:'Academic English',
+    icon:'🎓',
+    color:'#6366f1',
+    lessons:[
+      {id:1,title:'Academic Vocabulary',xp:35,
+        theory:`<div class="theory-block">
+<h3>Academic Vocabulary — ключевые слова науки</h3>
+<p>Академический английский требует точной и формальной лексики. Знание ключевых слов помогает читать и писать научные тексты.</p>
+<div class="rule"><b>Основные академические слова:</b><br>
+<b>hypothesis</b> — гипотеза | <b>methodology</b> — методология<br>
+<b>findings</b> — результаты исследования | <b>evidence</b> — доказательство<br>
+<b>analysis</b> — анализ | <b>framework</b> — структура / концепция<br>
+<b>concept</b> — понятие | <b>theory</b> — теория<br>
+<b>significant</b> — значимый | <b>relevant</b> — уместный, относящийся</div>
+<p class="example">✦ The study provides <b>evidence</b> that exercise improves memory.</p>
+<p class="example">✦ The <b>methodology</b> involved surveys and interviews.</p>
+<p class="example">✦ These <b>findings</b> support the original <b>hypothesis</b>.</p>
+<p style="margin-top:10px;font-weight:600">Слова для описания исследования:</p>
+<div class="rule"><b>examine</b> — изучать | <b>investigate</b> — исследовать<br>
+<b>demonstrate</b> — демонстрировать | <b>establish</b> — устанавливать<br>
+<b>indicate</b> — указывать | <b>suggest</b> — предполагать</div>
+<p class="example">✦ This paper <b>examines</b> the causes of climate change.</p>
+<p class="example">✦ The results <b>indicate</b> a strong correlation.</p>
+</div>`,
+        exercises:[
+          {q:'The research ___ that sleep affects academic performance.',blank:'indicates',opts:['indicates','tells','says','speaks']},
+          {q:'A ___ is an explanation that has not yet been proven.',blank:'hypothesis',opts:['hypothesis','conclusion','result','finding']},
+          {q:'The paper ___ the relationship between diet and health.',blank:'examines',opts:['examines','watches','looks','sees']},
+          {q:'Strong ___ is needed to support any academic claim.',blank:'evidence',opts:['evidence','proof','show','tell']},
+          {q:'The ___ describes how the data was collected.',blank:'methodology',opts:['methodology','history','story','topic']},
+          {q:'The ___ of the study suggest a need for further research.',blank:'findings',opts:['findings','answers','guesses','tries']},
+          {q:'This study ___ a link between stress and poor sleep.',blank:'demonstrates',opts:['demonstrates','plays','makes','does']},
+          {q:'The theoretical ___ is based on social learning theory.',blank:'framework',opts:['framework','building','house','design']},
+          {q:'The results are statistically ___.',blank:'significant',opts:['significant','big','large','heavy']},
+          {q:'Only ___ sources should be used in academic writing.',blank:'relevant',opts:['relevant','nice','good','old']},
+          {q:'Researchers must ___ their hypotheses through experiments.',blank:'establish',opts:['establish','make','do','find']},
+          {q:'The ___ proposes a new model of economic growth.',blank:'theory',opts:['theory','idea','thought','opinion']},
+          {q:'The paper ___ whether urban life affects mental health.',blank:'investigates',opts:['investigates','asks','tells','shows']},
+          {q:'The study aims to ___ a causal relationship.',blank:'establish',opts:['establish','say','tell','make']},
+          {q:'The ___ of language acquisition is widely debated.',blank:'concept',opts:['concept','word','letter','book']},
+          {q:'These data ___ that the treatment is effective.',blank:'suggest',opts:['suggest','tell','shout','speak']},
+          {q:'The ___ used in this study is qualitative.',blank:'methodology',opts:['methodology','subject','topic','area']},
+          {q:'The researcher conducted an ___ of 200 case studies.',blank:'analysis',opts:['analysis','story','list','count']},
+          {q:'The ___ is that exercise reduces depression symptoms.',blank:'hypothesis',opts:['hypothesis','question','problem','answer']},
+          {q:'The paper ___ that further research is necessary.',blank:'indicates',opts:['indicates','hopes','wants','tries']}
+        ]
+      },
+      {id:2,title:'Formal vs Informal Language',xp:35,
+        theory:`<div class="theory-block">
+<h3>Formal vs Informal — академический стиль</h3>
+<p>В академических текстах используется <b>формальный стиль</b>. Разговорные слова и сокращения не подходят.</p>
+<div class="rule"><b>Неформально → Формально:</b><br>
+kids → <b>children</b> | get → <b>obtain / receive</b><br>
+a lot of → <b>a significant number of</b><br>
+show → <b>demonstrate / indicate</b><br>
+find out → <b>discover / determine</b><br>
+big → <b>substantial / considerable</b><br>
+think → <b>consider / argue / suggest</b><br>
+use → <b>utilise / employ</b></div>
+<p class="example">✦ ❌ Kids get a lot of info from social media.</p>
+<p class="example">✦ ✅ Children <b>obtain</b> a <b>considerable</b> amount of information from social media.</p>
+<p style="margin-top:10px;font-weight:600">⚠️ Избегай в академическом тексте:</p>
+<div class="rule">Сокращений: don't → do not | can't → cannot<br>
+Разговорных фраз: stuff, thing, a lot<br>
+Личных местоимений: I think → It can be argued that...<br>
+Восклицаний и вопросов в тексте</div>
+</div>`,
+        exercises:[
+          {q:'Academic writing uses ___ language throughout.',blank:'formal',opts:['formal','casual','friendly','simple']},
+          {q:'Instead of "use", academic writers prefer to ___ methods.',blank:'utilise',opts:['utilise','grab','take','pick']},
+          {q:'The word "big" should be replaced with ___ in essays.',blank:'substantial',opts:['substantial','huge','giant','massive']},
+          {q:'"I think" should be replaced with "It can be ___ that".',blank:'argued',opts:['argued','said','told','spoken']},
+          {q:'In formal writing, "don\'t" becomes "do ___".',blank:'not',opts:['not','never','no','nothing']},
+          {q:'Instead of "find out", we use ___ in academic texts.',blank:'determine',opts:['determine','get','spot','catch']},
+          {q:'"A lot of evidence" becomes "a ___ amount of evidence".',blank:'considerable',opts:['considerable','big','large','heavy']},
+          {q:'The word "kids" should be replaced with ___ in essays.',blank:'children',opts:['children','boys','guys','youngsters']},
+          {q:'Instead of "show", academic writers use ___ data.',blank:'demonstrate',opts:['demonstrate','display','flash','point']},
+          {q:'Cannot is the formal version of ___.',blank:"can't",opts:["can't",'cannot','wont','shouldnt']},
+          {q:'Formal writing avoids ___ like "stuff" and "things".',blank:'slang',opts:['slang','verbs','nouns','grammar']},
+          {q:'"Get" in formal writing becomes ___ information.',blank:'obtain',opts:['obtain','get','grab','take']},
+          {q:'Academic text should avoid ___ pronouns like "I feel".',blank:'personal',opts:['personal','long','short','complex']},
+          {q:'"Think" in academic writing becomes "it can be ___".',blank:'argued',opts:['argued','thought','guessed','hoped']},
+          {q:'Instead of "use", researchers may ___ qualitative methods.',blank:'employ',opts:['employ','use','try','pick']},
+          {q:'The formal equivalent of "show" is to ___ results.',blank:'demonstrate',opts:['demonstrate','show','display','present']},
+          {q:'Contractions like "isn\'t" should be ___ in essays.',blank:'avoided',opts:['avoided','used','kept','added']},
+          {q:'Instead of "a lot of studies", use "a ___ number of studies".',blank:'significant',opts:['significant','big','huge','lots']},
+          {q:'Formal texts use ___ sentences and precise vocabulary.',blank:'complete',opts:['complete','broken','short','simple']},
+          {q:'The word "get" in academic language becomes ___ results.',blank:'obtain',opts:['obtain','get','take','grab']}
+        ]
+      },
+      {id:3,title:'Linking Words & Transitions',xp:40,
+        theory:`<div class="theory-block">
+<h3>Linking Words — связующие слова</h3>
+<p>Связующие слова делают текст логичным и последовательным. Они показывают отношения между идеями.</p>
+<div class="rule"><b>Добавление:</b> Furthermore, Moreover, In addition, Additionally<br>
+<b>Противопоставление:</b> However, Nevertheless, On the other hand, In contrast<br>
+<b>Причина/следствие:</b> Therefore, Consequently, As a result, Hence<br>
+<b>Иллюстрация:</b> For example, For instance, Such as, Namely<br>
+<b>Уступка:</b> Although, Despite, Even though, While<br>
+<b>Вывод:</b> In conclusion, To summarise, Overall, Thus</div>
+<p class="example">✦ The study was small. <b>However</b>, the results were significant.</p>
+<p class="example">✦ <b>Furthermore</b>, the findings support previous research.</p>
+<p class="example">✦ Temperatures rose. <b>Consequently</b>, ice caps began to melt.</p>
+<p class="example">✦ <b>Despite</b> limited funding, the project succeeded.</p>
+</div>`,
+        exercises:[
+          {q:'The sample was small. ___, the results were clear.',blank:'However',opts:['However','Therefore','Moreover','Unless']},
+          {q:'___ the data was incomplete, conclusions were drawn.',blank:'Although',opts:['Although','Because','So','And']},
+          {q:'Sales fell. ___, the company cut costs.',blank:'Consequently',opts:['Consequently','However','Moreover','Unless']},
+          {q:'___, further research is needed in this area.',blank:'Furthermore',opts:['Furthermore','But','Despite','Since']},
+          {q:'The method was unreliable. ___, it was abandoned.',blank:'Therefore',opts:['Therefore','However','Moreover','Unless']},
+          {q:'Many variables exist, ___ temperature and humidity.',blank:'such as',opts:['such as','like that','for saying','as']},
+          {q:'___ rising costs, the project continued.',blank:'Despite',opts:['Despite','Although','Because','Since']},
+          {q:'___ conclusion, the study confirms the hypothesis.',blank:'In',opts:['In','By','On','At']},
+          {q:'___, the new findings challenge earlier theories.',blank:'Moreover',opts:['Moreover','Despite','Unless','Rather']},
+          {q:'The results were positive. ___ the other hand, costs were high.',blank:'On',opts:['On','In','At','By']},
+          {q:'Productivity increased. ___, profits rose.',blank:'As a result',opts:['As a result','For example','In contrast','Despite']},
+          {q:'___ to summarise, the evidence strongly supports this view.',blank:'In order',opts:['In order','As a','Despite','For']},
+          {q:'___ instance, urbanisation affects air quality.',blank:'For',opts:['For','By','In','On']},
+          {q:'Stress levels rose. ___, sleep quality declined.',blank:'Hence',opts:['Hence','Despite','Although','Moreover']},
+          {q:'___ contrast, rural areas show lower pollution levels.',blank:'In',opts:['In','By','On','At']},
+          {q:'___ the limitations, the study provides valuable insights.',blank:'Despite',opts:['Despite','Although','Because','Unless']},
+          {q:'The hypothesis was rejected. ___, a new one was proposed.',blank:'Nevertheless',opts:['Nevertheless','Therefore','Moreover','Despite']},
+          {q:'___ addition, the participants were interviewed twice.',blank:'In',opts:['In','On','By','At']},
+          {q:'The drug was effective. ___, it had side effects.',blank:'Nevertheless',opts:['Nevertheless','Therefore','Moreover','Unless']},
+          {q:'___, it can be concluded that the programme was successful.',blank:'Overall',opts:['Overall','Despite','However','Moreover']}
+        ]
+      },
+      {id:4,title:'Passive Voice in Academic Writing',xp:40,
+        theory:`<div class="theory-block">
+<h3>Passive Voice — страдательный залог</h3>
+<p>Пассивный залог широко используется в академических текстах, чтобы сделать текст <b>объективным</b> и сфокусировать внимание на действии, а не на исполнителе.</p>
+<div class="rule"><b>Структура:</b> Subject + <b>to be</b> + Past Participle<br>
+The data <b>was collected</b> in 2023.<br>
+Participants <b>were selected</b> randomly.<br>
+Results <b>are presented</b> in Table 1.</div>
+<p class="example">✦ Active: <i>We conducted the experiment.</i></p>
+<p class="example">✦ Passive: <i>The experiment <b>was conducted</b>.</i></p>
+<p style="margin-top:10px;font-weight:600">Типичные пассивные конструкции:</p>
+<div class="rule"><b>It is argued that...</b> — считается, что<br>
+<b>It has been shown that...</b> — было показано, что<br>
+<b>It was found that...</b> — было обнаружено, что<br>
+<b>It can be concluded that...</b> — можно заключить, что</div>
+<p class="example">✦ <b>It has been shown</b> that exercise reduces anxiety.</p>
+<p class="example">✦ A survey <b>was conducted</b> among 500 participants.</p>
+</div>`,
+        exercises:[
+          {q:'The experiment ___ conducted in a lab.',blank:'was',opts:['was','is','are','been']},
+          {q:'The data ___ collected over six months.',blank:'were',opts:['were','was','is','be']},
+          {q:'It ___ argued that climate change is man-made.',blank:'is',opts:['is','was','are','been']},
+          {q:'Participants ___ selected randomly.',blank:'were',opts:['were','was','are','be']},
+          {q:'The results ___ presented in three tables.',blank:'are',opts:['are','is','were','be']},
+          {q:'It has ___ shown that sleep affects memory.',blank:'been',opts:['been','be','was','is']},
+          {q:'A new method ___ developed to analyse the data.',blank:'was',opts:['was','were','is','be']},
+          {q:'The hypothesis ___ tested using a control group.',blank:'was',opts:['was','is','were','be']},
+          {q:'Two hundred surveys ___ completed by students.',blank:'were',opts:['were','was','is','are']},
+          {q:'It ___ concluded that the treatment is effective.',blank:'was',opts:['was','is','are','be']},
+          {q:'The samples ___ analysed in a certified laboratory.',blank:'were',opts:['were','was','is','are']},
+          {q:'It can ___ argued that urban growth causes pollution.',blank:'be',opts:['be','been','was','is']},
+          {q:'The report ___ published in a peer-reviewed journal.',blank:'was',opts:['was','were','is','are']},
+          {q:'Three experiments ___ carried out to test the theory.',blank:'were',opts:['were','was','is','are']},
+          {q:'The participants ___ informed about the study.',blank:'were',opts:['were','was','is','are']},
+          {q:'It ___ found that the new drug reduced symptoms.',blank:'was',opts:['was','is','were','been']},
+          {q:'The findings ___ discussed in the following section.',blank:'are',opts:['are','is','were','be']},
+          {q:'It should ___ noted that the sample size was small.',blank:'be',opts:['be','been','is','was']},
+          {q:'The data ___ interpreted using statistical software.',blank:'were',opts:['were','was','is','be']},
+          {q:'It has ___ established that stress affects health.',blank:'been',opts:['been','be','is','was']}
+        ]
+      },
+      {id:5,title:'Reporting Verbs',xp:40,
+        theory:`<div class="theory-block">
+<h3>Reporting Verbs — глаголы для цитирования</h3>
+<p>В академическом тексте важно правильно ссылаться на других авторов, используя разнообразные reporting verbs.</p>
+<div class="rule"><b>Нейтральные:</b> states, notes, reports, observes<br>
+<b>Сильные (уверенность):</b> demonstrates, proves, confirms, establishes<br>
+<b>Слабые (неуверенность):</b> suggests, proposes, implies, speculates<br>
+<b>Противопоставление:</b> disputes, challenges, contradicts, questions<br>
+<b>Согласие:</b> agrees, supports, confirms, echoes</div>
+<p class="example">✦ Smith (2021) <b>argues</b> that technology improves education.</p>
+<p class="example">✦ Johnson (2019) <b>demonstrates</b> a clear link between diet and mood.</p>
+<p class="example">✦ The study <b>suggests</b> that more research is needed.</p>
+<p class="example">✦ Brown (2020) <b>challenges</b> the traditional view of learning.</p>
+<p style="margin-top:10px;font-weight:600">Структура:</p>
+<div class="rule">Author (year) + verb + that + clause<br>
+Smith (2022) <b>argues that</b> X causes Y.<br>
+According to Smith (2022), X causes Y.</div>
+</div>`,
+        exercises:[
+          {q:'Smith (2021) ___ that exercise reduces stress.',blank:'argues',opts:['argues','says','tells','speaks']},
+          {q:'Johnson (2019) ___ a strong link between diet and health.',blank:'demonstrates',opts:['demonstrates','shows off','says','makes']},
+          {q:'The study ___ that further research is required.',blank:'suggests',opts:['suggests','tells','demands','speaks']},
+          {q:'Brown (2020) ___ the traditional theory of motivation.',blank:'challenges',opts:['challenges','fights','breaks','stops']},
+          {q:'According ___ Smith, the data is inconclusive.',blank:'to',opts:['to','of','by','from']},
+          {q:'The paper ___ that the programme was effective.',blank:'confirms',opts:['confirms','says','tells','speaks']},
+          {q:'Wilson (2018) ___ that the results may be misleading.',blank:'suggests',opts:['suggests','says','speaks','tells']},
+          {q:'Lee (2022) ___ three main causes of urban poverty.',blank:'identifies',opts:['identifies','finds','looks','spots']},
+          {q:'The researcher ___ that the hypothesis was correct.',blank:'concludes',opts:['concludes','ends','finishes','stops']},
+          {q:'Davis (2020) ___ a new framework for analysing data.',blank:'proposes',opts:['proposes','makes','does','says']},
+          {q:'The evidence ___ a causal relationship.',blank:'supports',opts:['supports','helps','tells','makes']},
+          {q:'Several scholars ___ this view as oversimplified.',blank:'criticise',opts:['criticise','hate','dislike','ignore']},
+          {q:'The article ___ that policy changes are necessary.',blank:'argues',opts:['argues','demands','says','begs']},
+          {q:'Harris (2021) ___ that the findings lack validity.',blank:'claims',opts:['claims','says','talks','speaks']},
+          {q:'The report ___ that unemployment rose by 3%.',blank:'states',opts:['states','talks','speaks','shouts']},
+          {q:'The theory ___ that inequality leads to crime.',blank:'implies',opts:['implies','suggests','means','says']},
+          {q:'Ahmed (2023) ___ this interpretation of the data.',blank:'disputes',opts:['disputes','argues','likes','shows']},
+          {q:'The study ___ earlier findings on the topic.',blank:'confirms',opts:['confirms','agrees','says','tells']},
+          {q:'Park (2022) ___ a new approach to solving the problem.',blank:'recommends',opts:['recommends','tells','asks','commands']},
+          {q:'The authors ___ that social media affects attention.',blank:'argue',opts:['argue','say','talk','speak']}
+        ]
+      },
+      {id:6,title:'Hedging Language',xp:40,
+        theory:`<div class="theory-block">
+<h3>Hedging — язык осторожных утверждений</h3>
+<p>В академическом тексте нельзя делать абсолютные утверждения без доказательств. Hedging позволяет выражать <b>осторожность и неопределённость</b>.</p>
+<div class="rule"><b>Модальные глаголы:</b><br>
+<b>may / might</b> — может быть | <b>could</b> — мог бы<br>
+<b>should</b> — должен | <b>would</b> — бы</div>
+<div class="rule"><b>Наречия:</b><br>
+<b>possibly / perhaps</b> — возможно<br>
+<b>probably / likely</b> — вероятно<br>
+<b>apparently / seemingly</b> — по-видимому</div>
+<div class="rule"><b>Глаголы и фразы:</b><br>
+<b>appear to / seem to</b> — кажется<br>
+<b>tend to</b> — как правило<br>
+<b>it is possible that</b> — возможно, что<br>
+<b>it seems likely that</b> — кажется вероятным</div>
+<p class="example">✦ ❌ Stress <b>causes</b> illness.</p>
+<p class="example">✦ ✅ Stress <b>may contribute</b> to illness.</p>
+<p class="example">✦ ✅ This <b>seems to suggest</b> a causal link.</p>
+</div>`,
+        exercises:[
+          {q:'Stress ___ contribute to cardiovascular disease.',blank:'may',opts:['may','must','will','shall']},
+          {q:'The results ___ suggest a positive correlation.',blank:'appear to',opts:['appear to','are to','have to','want to']},
+          {q:'Urban pollution ___ affects mental health.',blank:'likely',opts:['likely','certainly','definitely','absolutely']},
+          {q:'It is ___ that further research will confirm this.',blank:'possible',opts:['possible','certain','sure','clear']},
+          {q:'Students ___ to perform better with structured feedback.',blank:'tend',opts:['tend','try','want','need']},
+          {q:'The treatment ___ be effective in some cases.',blank:'could',opts:['could','must','will','shall']},
+          {q:'The data ___ indicate a growing trend.',blank:'seem to',opts:['seem to','are to','need to','want to']},
+          {q:'This ___ suggests that the hypothesis is partially correct.',blank:'perhaps',opts:['perhaps','certainly','definitely','absolutely']},
+          {q:'It ___ likely that the intervention improved outcomes.',blank:'seems',opts:['seems','is','was','feels']},
+          {q:'These factors ___ contribute to the overall result.',blank:'might',opts:['might','must','will','shall']},
+          {q:'The findings are ___ consistent with earlier research.',blank:'broadly',opts:['broadly','fully','totally','absolutely']},
+          {q:'The relationship ___ be more complex than previously thought.',blank:'may',opts:['may','is','was','will']},
+          {q:'___ the rise in costs influenced the decision.',blank:'Possibly',opts:['Possibly','Certainly','Definitely','Clearly']},
+          {q:'The model ___ to oversimplify real-world complexity.',blank:'tends',opts:['tends','tries','wants','needs']},
+          {q:'It is ___ that the sample was not representative.',blank:'possible',opts:['possible','sure','certain','true']},
+          {q:'Results ___ vary depending on contextual factors.',blank:'may',opts:['may','must','will','do']},
+          {q:'The evidence ___ suggests that policy changes are needed.',blank:'seemingly',opts:['seemingly','certainly','clearly','obviously']},
+          {q:'This approach ___ be more efficient than traditional methods.',blank:'might',opts:['might','must','will','shall']},
+          {q:'It ___ appear that the intervention had limited impact.',blank:'would',opts:['would','could','should','must']},
+          {q:'Participants ___ to show higher engagement in group tasks.',blank:'tended',opts:['tended','tried','wanted','needed']}
+        ]
+      },
+      {id:7,title:'Nominalisation',xp:40,
+        theory:`<div class="theory-block">
+<h3>Nominalisation — перевод глаголов в существительные</h3>
+<p>Номинализация — это превращение глаголов и прилагательных в существительные. Это делает текст <b>более формальным и плотным</b>.</p>
+<div class="rule"><b>Примеры номинализации:</b><br>
+analyse → <b>analysis</b><br>
+decide → <b>decision</b><br>
+discuss → <b>discussion</b><br>
+investigate → <b>investigation</b><br>
+develop → <b>development</b><br>
+apply → <b>application</b><br>
+conclude → <b>conclusion</b><br>
+significant → <b>significance</b></div>
+<p class="example">✦ ❌ We <b>analysed</b> the data carefully.</p>
+<p class="example">✦ ✅ A careful <b>analysis</b> of the data was conducted.</p>
+<p class="example">✦ ❌ They <b>decided</b> to change the policy.</p>
+<p class="example">✦ ✅ A <b>decision</b> was made to change the policy.</p>
+</div>`,
+        exercises:[
+          {q:'The noun form of "analyse" is ___.',blank:'analysis',opts:['analysis','analysing','analyser','analytical']},
+          {q:'The noun form of "decide" is ___.',blank:'decision',opts:['decision','deciding','decided','decider']},
+          {q:'We conducted an ___ of the results.',blank:'analysis',opts:['analysis','analyse','analysed','analysing']},
+          {q:'The ___ to close the project was unanimous.',blank:'decision',opts:['decision','decide','deciding','decided']},
+          {q:'The noun form of "develop" is ___.',blank:'development',opts:['development','developing','developer','developed']},
+          {q:'The ___ of new technology changed the industry.',blank:'development',opts:['development','develop','developing','developed']},
+          {q:'The noun form of "conclude" is ___.',blank:'conclusion',opts:['conclusion','conclude','concluding','concluded']},
+          {q:'The ___ of the paper summarises the findings.',blank:'conclusion',opts:['conclusion','conclude','concluding','concluded']},
+          {q:'The noun form of "apply" is ___.',blank:'application',opts:['application','apply','applying','applied']},
+          {q:'This theory has wide ___ in education.',blank:'application',opts:['application','apply','applying','applied']},
+          {q:'The noun form of "investigate" is ___.',blank:'investigation',opts:['investigation','investigate','investigating','investigated']},
+          {q:'An ___ was launched into the causes of the problem.',blank:'investigation',opts:['investigation','investigate','investigator','investigating']},
+          {q:'The noun form of "discuss" is ___.',blank:'discussion',opts:['discussion','discuss','discussing','discussed']},
+          {q:'The ___ focused on the limitations of the study.',blank:'discussion',opts:['discussion','discuss','discussing','discussed']},
+          {q:'The noun form of "significant" is ___.',blank:'significance',opts:['significance','significant','signify','signified']},
+          {q:'The ___ of the findings cannot be overstated.',blank:'significance',opts:['significance','significant','signify','signifier']},
+          {q:'The noun form of "evaluate" is ___.',blank:'evaluation',opts:['evaluation','evaluate','evaluating','evaluated']},
+          {q:'An ___ of the programme showed positive outcomes.',blank:'evaluation',opts:['evaluation','evaluate','evaluating','evaluated']},
+          {q:'Instead of "they failed", we write: the ___ was a failure.',blank:'outcome',opts:['outcome','output','result','product']},
+          {q:'The noun form of "require" is ___.',blank:'requirement',opts:['requirement','require','requiring','required']}
+        ]
+      },
+      {id:8,title:'Compare & Contrast',xp:40,
+        theory:`<div class="theory-block">
+<h3>Compare & Contrast — сравнение и противопоставление</h3>
+<p>В эссе и отчётах часто нужно <b>сравнивать</b> идеи, результаты или методы.</p>
+<div class="rule"><b>Сходство:</b><br>
+Similarly, Likewise, In the same way<br>
+Both X and Y...<br>
+X is similar to Y in that...<br>
+X and Y share the characteristic of...</div>
+<div class="rule"><b>Различие:</b><br>
+However, In contrast, On the other hand<br>
+Unlike X, Y...<br>
+Whereas X..., Y...<br>
+X differs from Y in terms of...</div>
+<p class="example">✦ <b>Similarly</b>, both methods produced accurate results.</p>
+<p class="example">✦ <b>Unlike</b> quantitative research, qualitative methods explore meaning.</p>
+<p class="example">✦ <b>Whereas</b> Group A improved, Group B showed no change.</p>
+</div>`,
+        exercises:[
+          {q:'___ quantitative research, qualitative methods focus on meaning.',blank:'Unlike',opts:['Unlike','Similar','Likewise','Both']},
+          {q:'Both methods produced ___ results.',blank:'similar',opts:['similar','same','equal','identical']},
+          {q:'___ Group A improved, Group B showed no progress.',blank:'Whereas',opts:['Whereas','Although','Despite','Unless']},
+          {q:'Method A ___ from Method B in its approach to data.',blank:'differs',opts:['differs','changes','moves','goes']},
+          {q:'___, the second study confirmed the first findings.',blank:'Similarly',opts:['Similarly','However','Despite','Unless']},
+          {q:'___ the other hand, the control group showed decline.',blank:'On',opts:['On','In','At','By']},
+          {q:'X and Y ___ the characteristic of being cost-effective.',blank:'share',opts:['share','have','own','keep']},
+          {q:'___ contrast, rural areas have lower pollution levels.',blank:'In',opts:['In','By','On','At']},
+          {q:'Both approaches are ___ in that they use surveys.',blank:'similar',opts:['similar','same','equal','alike']},
+          {q:'___, the new method proved more efficient.',blank:'Likewise',opts:['Likewise','However','Despite','Since']},
+          {q:'The two studies differ ___ terms of sample size.',blank:'in',opts:['in','on','at','by']},
+          {q:'___ X improved significantly, Y showed minimal change.',blank:'While',opts:['While','Despite','Unless','Because']},
+          {q:'The results are consistent ___ previous research.',blank:'with',opts:['with','to','in','by']},
+          {q:'___ both methods are valid, they have different aims.',blank:'Although',opts:['Although','Despite','Unless','Since']},
+          {q:'X ___ Y in terms of cost and efficiency.',blank:'outperforms',opts:['outperforms','beats','wins','loses']},
+          {q:'The two models ___ similar assumptions about human behaviour.',blank:'share',opts:['share','have','own','take']},
+          {q:'___ the same way, urban schools face resource challenges.',blank:'In',opts:['In','By','On','At']},
+          {q:'Unlike traditional methods, this approach ___ qualitative data.',blank:'uses',opts:['uses','takes','brings','makes']},
+          {q:'The studies are comparable ___ their methodology.',blank:'in',opts:['in','on','at','by']},
+          {q:'___, both theories explain the same phenomenon differently.',blank:'Interestingly',opts:['Interestingly','However','Therefore','Despite']}
+        ]
+      },
+      {id:9,title:'Cause & Effect Language',xp:40,
+        theory:`<div class="theory-block">
+<h3>Cause & Effect — причина и следствие</h3>
+<p>Академические тексты часто объясняют <b>причинно-следственные связи</b>.</p>
+<div class="rule"><b>Причина (выражение причины):</b><br>
+because, since, as, due to, owing to<br>
+as a result of, on account of<br>
+<b>because of</b> + noun | <b>because</b> + clause</div>
+<div class="rule"><b>Следствие (выражение результата):</b><br>
+therefore, consequently, as a result<br>
+thus, hence, for this reason<br>
+lead to, result in, cause, bring about</div>
+<p class="example">✦ <b>Due to</b> rising costs, the project was cancelled.</p>
+<p class="example">✦ Stress <b>can lead to</b> poor sleep quality.</p>
+<p class="example">✦ The sample was biased; <b>consequently</b>, results are unreliable.</p>
+<p class="example">✦ <b>Owing to</b> limited resources, data collection was restricted.</p>
+</div>`,
+        exercises:[
+          {q:'___ rising costs, the project was cancelled.',blank:'Due to',opts:['Due to','Because','Since','Although']},
+          {q:'Stress can ___ to poor academic performance.',blank:'lead',opts:['lead','go','cause','bring']},
+          {q:'The sample was small; ___, results may not generalise.',blank:'consequently',opts:['consequently','however','moreover','despite']},
+          {q:'Pollution ___ in serious health problems.',blank:'results',opts:['results','leads','causes','brings']},
+          {q:'___ the intervention, test scores improved significantly.',blank:'As a result of',opts:['As a result of','Because','Since','Although']},
+          {q:'The failure ___ from poor planning and inadequate funding.',blank:'resulted',opts:['resulted','came','went','grew']},
+          {q:'___ increased demand, prices rose sharply.',blank:'Owing to',opts:['Owing to','Despite','Although','Unless']},
+          {q:'The new policy ___ about significant changes.',blank:'brought',opts:['brought','made','did','caused']},
+          {q:'Income inequality ___ higher crime rates.',blank:'causes',opts:['causes','makes','does','puts']},
+          {q:'___ this reason, the experiment was repeated.',blank:'For',opts:['For','In','On','By']},
+          {q:'The drought ___ widespread crop failure.',blank:'led to',opts:['led to','made','did','caused to']},
+          {q:'___ climate change, sea levels are rising.',blank:'As a result of',opts:['As a result of','Because of that','Since when','Although']},
+          {q:'Poor nutrition ___ in slower cognitive development.',blank:'results',opts:['results','leads','goes','ends']},
+          {q:'The study failed ___ inadequate sample size.',blank:'due to',opts:['due to','because','since','unless']},
+          {q:'High temperatures ___ reduced agricultural output.',blank:'caused',opts:['caused','made','did','brought']},
+          {q:'___, the researchers revised their initial conclusions.',blank:'Hence',opts:['Hence','However','Moreover','Despite']},
+          {q:'Urban growth ___ increased demand for housing.',blank:'leads to',opts:['leads to','causes to','makes to','goes to']},
+          {q:'The treatment was withdrawn ___ serious side effects.',blank:'owing to',opts:['owing to','because','since','unless']},
+          {q:'___, investment in education improves economic growth.',blank:'Thus',opts:['Thus','However','Despite','Moreover']},
+          {q:'The drought ___ severe water shortages across the region.',blank:'caused',opts:['caused','made','did','put']}
+        ]
+      },
+      {id:10,title:'Defining & Explaining Concepts',xp:40,
+        theory:`<div class="theory-block">
+<h3>Defining Concepts — определение понятий</h3>
+<p>В академических текстах важно <b>чётко определять</b> ключевые понятия.</p>
+<div class="rule"><b>Стандартные формулы определения:</b><br>
+X is defined as...<br>
+X refers to...<br>
+X can be described as...<br>
+X is (a term) used to describe...<br>
+By X, we mean...<br>
+X, which is..., plays a role in...</div>
+<p class="example">✦ <b>Globalisation is defined as</b> the process by which businesses or organisations develop international influence.</p>
+<p class="example">✦ The term "equity" <b>refers to</b> fairness and justice in the distribution of resources.</p>
+<p class="example">✦ <b>By "critical thinking"</b>, we mean the ability to evaluate arguments objectively.</p>
+<p style="margin-top:10px;font-weight:600">Расширение определения:</p>
+<div class="rule">This means that... | In other words...<br>
+That is to say... | More specifically...</div>
+</div>`,
+        exercises:[
+          {q:'"Sustainability" ___ to the ability to meet present needs without harming future generations.',blank:'refers',opts:['refers','means','says','tells']},
+          {q:'Globalisation is ___ as a process of international economic integration.',blank:'defined',opts:['defined','said','told','spoken']},
+          {q:'___ "methodology", we mean the system of methods used in research.',blank:'By',opts:['By','In','On','At']},
+          {q:'The term "bias" ___ to a systematic error in research.',blank:'refers',opts:['refers','relates','points','aims']},
+          {q:'X can be ___ as a process that transforms raw data into insights.',blank:'described',opts:['described','told','said','spoken']},
+          {q:'"Equity" is a term ___ to describe fairness in resource distribution.',blank:'used',opts:['used','said','told','made']},
+          {q:'In other ___, the data does not support the hypothesis.',blank:'words',opts:['words','means','ways','terms']},
+          {q:'This means ___ the results cannot be generalised.',blank:'that',opts:['that','this','which','what']},
+          {q:'"Critical thinking" ___ the ability to evaluate arguments rationally.',blank:'refers to',opts:['refers to','means to','goes to','leads to']},
+          {q:'More ___, the study focuses on urban secondary schools.',blank:'specifically',opts:['specifically','largely','broadly','generally']},
+          {q:'The concept of "resilience" ___ defined as the ability to recover from difficulty.',blank:'is',opts:['is','was','are','be']},
+          {q:'That ___ to say, all participants were adults.',blank:'is',opts:['is','was','are','be']},
+          {q:'"Learning" ___ be described as the acquisition of knowledge or skills.',blank:'can',opts:['can','must','will','should']},
+          {q:'The term "correlation" ___ to a statistical relationship between variables.',blank:'refers',opts:['refers','means','says','goes']},
+          {q:'By "innovation", the authors ___ the introduction of new ideas.',blank:'mean',opts:['mean','say','tell','speak']},
+          {q:'"Poverty" is ___ as living below the minimum income threshold.',blank:'defined',opts:['defined','said','told','described']},
+          {q:'In ___ words, the study shows that intervention works.',blank:'other',opts:['other','different','new','simple']},
+          {q:'The term "sampling" ___ to the process of selecting participants.',blank:'refers',opts:['refers','relates','goes','points']},
+          {q:'"Validity" ___ defined as the accuracy of a measurement.',blank:'is',opts:['is','was','are','be']},
+          {q:'More ___, data was gathered from three urban schools.',blank:'specifically',opts:['specifically','broadly','generally','largely']}
+        ]
+      },
+      {id:11,title:'Essay Introduction',xp:40,
+        theory:`<div class="theory-block">
+<h3>Essay Introduction — введение в эссе</h3>
+<p>Введение выполняет три функции: <b>привлекает внимание</b>, даёт <b>контекст</b> и формулирует <b>thesis statement</b>.</p>
+<div class="rule"><b>Структура введения:</b><br>
+1. <b>Hook</b> — привлечение внимания (факт, вопрос, цитата)<br>
+2. <b>Background</b> — контекст темы<br>
+3. <b>Thesis statement</b> — главный аргумент</div>
+<p class="example">✦ Hook: "Climate change poses one of the greatest threats to humanity."</p>
+<p class="example">✦ Background: "Over the past century, global temperatures have risen by 1.1°C, causing significant environmental disruption."</p>
+<p class="example">✦ Thesis: "This essay argues that government policy is the most effective tool for addressing climate change."</p>
+<div class="rule"><b>Полезные фразы для введения:</b><br>
+This essay aims to... / This paper examines...<br>
+In recent years, ... has become increasingly...<br>
+This essay argues that... / It will be argued that...</div>
+</div>`,
+        exercises:[
+          {q:'This essay ___ to examine the causes of urban poverty.',blank:'aims',opts:['aims','wants','tries','hopes']},
+          {q:'In recent years, climate change ___ become a major concern.',blank:'has',opts:['has','have','is','was']},
+          {q:'This paper ___ the relationship between education and income.',blank:'examines',opts:['examines','looks','says','tells']},
+          {q:'It will be ___ that technology improves student outcomes.',blank:'argued',opts:['argued','said','told','spoken']},
+          {q:'This essay ___ that social media affects mental health.',blank:'argues',opts:['argues','says','tells','speaks']},
+          {q:'The aim of this ___ is to analyse the effects of globalisation.',blank:'essay',opts:['essay','book','story','report']},
+          {q:'___ the past decade, inequality has risen sharply.',blank:'Over',opts:['Over','In','During','For']},
+          {q:'This paper ___ three key factors in economic growth.',blank:'identifies',opts:['identifies','finds','sees','spots']},
+          {q:'The following ___ will analyse data from 200 participants.',blank:'sections',opts:['sections','parts','pieces','bits']},
+          {q:'___ provides an overview of the current literature.',blank:'This section',opts:['This section','These words','This sentence','The book']},
+          {q:'The thesis ___ that urban planning reduces inequality.',blank:'states',opts:['states','says','tells','speaks']},
+          {q:'This essay is ___ into four main sections.',blank:'divided',opts:['divided','split','cut','broken']},
+          {q:'___ increasingly important, digital literacy is now essential.',blank:'Having become',opts:['Having become','Being','Becoming','Become']},
+          {q:'The ___ of this paper is to evaluate environmental policy.',blank:'purpose',opts:['purpose','aim','goal','target']},
+          {q:'This essay will first ___ the historical context.',blank:'outline',opts:['outline','tell','speak','say']},
+          {q:'The introduction should end with a clear ___ statement.',blank:'thesis',opts:['thesis','topic','main','idea']},
+          {q:'The paper begins by ___ the key terms.',blank:'defining',opts:['defining','saying','telling','speaking']},
+          {q:'___ been debated for decades, this issue remains unresolved.',blank:'Having',opts:['Having','Being','Becoming','To have']},
+          {q:'This essay ___ three perspectives on immigration policy.',blank:'considers',opts:['considers','looks','thinks','wants']},
+          {q:'The ___ sentence of an essay should engage the reader.',blank:'opening',opts:['opening','first','starting','beginning']}
+        ]
+      },
+      {id:12,title:'Essay Body Paragraphs',xp:40,
+        theory:`<div class="theory-block">
+<h3>Body Paragraphs — основная часть эссе</h3>
+<p>Каждый абзац основной части должен следовать структуре <b>PEEL</b>:</p>
+<div class="rule"><b>P — Point:</b> главная мысль абзаца<br>
+<b>E — Evidence:</b> доказательство / цитата<br>
+<b>E — Explanation:</b> объяснение связи<br>
+<b>L — Link:</b> связь со следующим абзацем</div>
+<p class="example">✦ <b>Point:</b> "One key factor is the role of social media."</p>
+<p class="example">✦ <b>Evidence:</b> "According to Smith (2021), 70% of teenagers use social media daily."</p>
+<p class="example">✦ <b>Explanation:</b> "This suggests that social media has become central to adolescent communication."</p>
+<p class="example">✦ <b>Link:</b> "Having established this, the next section examines..."</p>
+<div class="rule"><b>Полезные фразы для абзацев:</b><br>
+One key factor is... | A further point is...<br>
+This suggests that... | This demonstrates that...<br>
+Having established X, the next section...</div>
+</div>`,
+        exercises:[
+          {q:'One ___ factor influencing poverty is lack of education.',blank:'key',opts:['key','big','main','large']},
+          {q:'According to Smith (2021), income inequality ___ risen.',blank:'has',opts:['has','have','is','was']},
+          {q:'This ___ that social media affects mental well-being.',blank:'suggests',opts:['suggests','says','tells','speaks']},
+          {q:'A ___ point relates to the impact of globalisation.',blank:'further',opts:['further','more','next','other']},
+          {q:'The evidence ___ a strong link between diet and mood.',blank:'demonstrates',opts:['demonstrates','shows off','makes','does']},
+          {q:'___ this point established, the next section will examine costs.',blank:'With',opts:['With','Having','After','Before']},
+          {q:'This finding ___ that intervention is necessary.',blank:'indicates',opts:['indicates','says','tells','speaks']},
+          {q:'The ___ paragraph will address the environmental impact.',blank:'following',opts:['following','next','second','last']},
+          {q:'The PEEL structure helps ___ clear, focused paragraphs.',blank:'write',opts:['write','make','do','say']},
+          {q:'Each body paragraph should begin with a ___ sentence.',blank:'topic',opts:['topic','main','first','opening']},
+          {q:'The data ___ that the programme achieved its goals.',blank:'shows',opts:['shows','tells','says','speaks']},
+          {q:'"This supports the view that..." is used to ___ evidence.',blank:'link',opts:['link','show','say','tell']},
+          {q:'___ to Johnson (2020), the effect was significant.',blank:'According',opts:['According','Referring','Relating','Going']},
+          {q:'This ___ that there is a need for further investigation.',blank:'implies',opts:['implies','says','tells','speaks']},
+          {q:'The following ___ discusses the economic consequences.',blank:'section',opts:['section','part','paragraph','area']},
+          {q:'It can ___ argued that education reduces crime rates.',blank:'be',opts:['be','been','is','was']},
+          {q:'The ___ in this paragraph supports the overall argument.',blank:'evidence',opts:['evidence','data','proof','fact']},
+          {q:'___ this in mind, policy recommendations will be made.',blank:'With',opts:['With','Having','By','In']},
+          {q:'A ___ limitation of this approach is its cost.',blank:'significant',opts:['significant','big','large','major']},
+          {q:'The argument ___ developed in the following paragraph.',blank:'is',opts:['is','was','are','be']}
+        ]
+      },
+      {id:13,title:'Essay Conclusion',xp:40,
+        theory:`<div class="theory-block">
+<h3>Essay Conclusion — заключение</h3>
+<p>Заключение подводит итог, но <b>не вводит новых идей</b>. Оно должно перефразировать thesis и обобщить аргументы.</p>
+<div class="rule"><b>Структура заключения:</b><br>
+1. Restate thesis (другими словами)<br>
+2. Summarise key arguments<br>
+3. Final comment / implications / recommendations</div>
+<div class="rule"><b>Фразы для заключения:</b><br>
+In conclusion, / To conclude, / In summary,<br>
+This essay has argued that...<br>
+The evidence suggests that...<br>
+Overall, it can be concluded that...<br>
+Further research is needed to...<br>
+It is recommended that...</div>
+<p class="example">✦ "In conclusion, this essay has demonstrated that climate policy requires international cooperation."</p>
+<p class="example">✦ "Further research is needed to explore long-term effects."</p>
+</div>`,
+        exercises:[
+          {q:'In ___, the evidence supports the main argument.',blank:'conclusion',opts:['conclusion','summary','short','brief']},
+          {q:'This essay ___ argued that education reduces poverty.',blank:'has',opts:['has','have','is','was']},
+          {q:'___ it can be concluded that the hypothesis is supported.',blank:'Overall,',opts:['Overall,','However,','Moreover,','Despite']},
+          {q:'The evidence ___ that intervention improved outcomes.',blank:'suggests',opts:['suggests','says','tells','shows']},
+          {q:'Further ___ is needed to confirm these findings.',blank:'research',opts:['research','study','work','trial']},
+          {q:'To ___, three main arguments have been presented.',blank:'conclude',opts:['conclude','end','finish','stop']},
+          {q:'It is ___ that policy-makers invest in education.',blank:'recommended',opts:['recommended','said','told','suggested']},
+          {q:'In ___, this essay has examined three perspectives.',blank:'summary',opts:['summary','conclusion','brief','short']},
+          {q:'The conclusions drawn ___ from analysis of primary data.',blank:'arise',opts:['arise','come','go','start']},
+          {q:'This essay ___ demonstrated a link between stress and health.',blank:'has',opts:['has','have','is','was']},
+          {q:'___ what has been argued, policy change is essential.',blank:'Given',opts:['Given','Since','Because','As']},
+          {q:'The ___ of this study confirm the initial hypothesis.',blank:'findings',opts:['findings','results','answers','data']},
+          {q:'In conclusion, no ___ ideas should be introduced.',blank:'new',opts:['new','fresh','extra','added']},
+          {q:'Future ___ should consider a larger sample size.',blank:'research',opts:['research','study','work','analysis']},
+          {q:'These findings have important ___ for education policy.',blank:'implications',opts:['implications','meanings','effects','results']},
+          {q:'To ___, the study demonstrates that X causes Y.',blank:'summarise',opts:['summarise','conclude','end','finish']},
+          {q:'The ___ argument is that education must be a priority.',blank:'central',opts:['central','main','big','key']},
+          {q:'Based ___ the evidence, the hypothesis is supported.',blank:'on',opts:['on','in','at','by']},
+          {q:'___ research into this area would benefit from larger datasets.',blank:'Further',opts:['Further','More','Extra','Added']},
+          {q:'The essay has ___ that international cooperation is vital.',blank:'shown',opts:['shown','said','told','spoken']}
+        ]
+      },
+      {id:14,title:'Describing Graphs & Data',xp:40,
+        theory:`<div class="theory-block">
+<h3>Describing Graphs & Data — описание графиков</h3>
+<p>В академических работах часто нужно описывать графики, таблицы и статистику.</p>
+<div class="rule"><b>Рост:</b><br>
+rise / increase / grow / climb / surge (резко вырасти)<br>
+<b>Падение:</b><br>
+fall / decline / drop / decrease / plummet (резко упасть)<br>
+<b>Стабильность:</b><br>
+remain stable / level off / plateau<br>
+<b>Колебание:</b><br>
+fluctuate / vary</div>
+<div class="rule"><b>Наречия изменения:</b><br>
+sharply / dramatically / significantly<br>
+gradually / steadily / slightly</div>
+<p class="example">✦ Sales <b>rose sharply</b> in Q3.</p>
+<p class="example">✦ The unemployment rate <b>declined gradually</b> from 2018.</p>
+<p class="example">✦ Temperatures <b>remained stable</b> throughout winter.</p>
+<p class="example">✦ Figures <b>fluctuated</b> between 20% and 30%.</p>
+</div>`,
+        exercises:[
+          {q:'Sales ___ sharply in the third quarter.',blank:'rose',opts:['rose','went','moved','changed']},
+          {q:'The unemployment rate ___ gradually from 8% to 5%.',blank:'declined',opts:['declined','went','moved','reduced']},
+          {q:'Temperatures ___ stable throughout the winter months.',blank:'remained',opts:['remained','stayed','kept','held']},
+          {q:'The graph ___ a sharp increase in CO2 emissions.',blank:'shows',opts:['shows','says','tells','speaks']},
+          {q:'Prices ___ significantly between January and March.',blank:'fluctuated',opts:['fluctuated','changed','moved','varied']},
+          {q:'GDP ___ by 3% in the second quarter.',blank:'grew',opts:['grew','went','made','did']},
+          {q:'The figure ___ from 20% to 35% over ten years.',blank:'rose',opts:['rose','went','climbed','grew']},
+          {q:'After peaking, sales ___ to their previous level.',blank:'declined',opts:['declined','dropped','fell','went']},
+          {q:'The data ___ a positive trend in literacy rates.',blank:'indicates',opts:['indicates','says','tells','shows']},
+          {q:'Production ___ steadily throughout the year.',blank:'increased',opts:['increased','went','moved','changed']},
+          {q:'The number of students ___ by 15% year on year.',blank:'grew',opts:['grew','went','made','did']},
+          {q:'Following the recession, employment levels ___ off.',blank:'levelled',opts:['levelled','went','became','stopped']},
+          {q:'There was a ___ increase in internet usage after 2015.',blank:'dramatic',opts:['dramatic','big','great','huge']},
+          {q:'The line graph ___ between 40% and 60% over the period.',blank:'fluctuated',opts:['fluctuated','went','moved','varied']},
+          {q:'Figures ___ slightly from the previous year.',blank:'fell',opts:['fell','went','moved','changed']},
+          {q:'As the table ___, average wages rose in all sectors.',blank:'shows',opts:['shows','says','tells','indicates']},
+          {q:'The data ___ a downward trend in manufacturing jobs.',blank:'reveals',opts:['reveals','says','tells','speaks']},
+          {q:'The proportion of graduates ___ from 20% to 45%.',blank:'doubled',opts:['doubled','grew','rose','increased']},
+          {q:'Overall, the chart ___ a clear improvement in health outcomes.',blank:'suggests',opts:['suggests','shows','says','tells']},
+          {q:'Between 2010 and 2020, CO2 levels ___ by 12%.',blank:'increased',opts:['increased','rose','grew','went']}
+        ]
+      },
+      {id:15,title:'Argumentation',xp:45,
+        theory:`<div class="theory-block">
+<h3>Argumentation — построение аргументов</h3>
+<p>Академический аргумент строится на <b>claim → evidence → reasoning</b> и включает <b>counterargument</b>.</p>
+<div class="rule"><b>Структура аргумента:</b><br>
+<b>Claim:</b> It is argued that X...<br>
+<b>Evidence:</b> According to..., research shows...<br>
+<b>Reasoning:</b> This suggests / demonstrates that...<br>
+<b>Counterargument:</b> However, critics argue...<br>
+<b>Rebuttal:</b> Nevertheless, the weight of evidence...</div>
+<p class="example">✦ <b>Claim:</b> "Education is the most effective way to reduce poverty."</p>
+<p class="example">✦ <b>Evidence:</b> "Countries with higher literacy rates show lower poverty rates."</p>
+<p class="example">✦ <b>Counter:</b> "However, some argue that economic policy is more important."</p>
+<p class="example">✦ <b>Rebuttal:</b> "Nevertheless, long-term data supports the role of education."</p>
+</div>`,
+        exercises:[
+          {q:'It is ___ that education is the key to reducing poverty.',blank:'argued',opts:['argued','said','told','thought']},
+          {q:'___ critics argue that economic growth alone reduces poverty.',blank:'However,',opts:['However,','Therefore,','Moreover,','Since']},
+          {q:'The weight of ___ supports the education argument.',blank:'evidence',opts:['evidence','proof','data','facts']},
+          {q:'___, the evidence strongly supports this position.',blank:'Nevertheless',opts:['Nevertheless','Therefore','Moreover','Despite']},
+          {q:'The claim is ___ by data from 40 countries.',blank:'supported',opts:['supported','backed','said','told']},
+          {q:'Some ___ that technology is more important than education.',blank:'argue',opts:['argue','say','tell','speak']},
+          {q:'Research ___ that the intervention reduced crime by 30%.',blank:'shows',opts:['shows','says','tells','speaks']},
+          {q:'This ___ that policy investment in education is justified.',blank:'suggests',opts:['suggests','says','tells','speaks']},
+          {q:'___ this, the argument remains compelling.',blank:'Despite',opts:['Despite','Although','However','Since']},
+          {q:'One ___ argument is that inequality drives social unrest.',blank:'strong',opts:['strong','big','large','great']},
+          {q:'The counterargument is that ___ factors play a greater role.',blank:'economic',opts:['economic','other','more','different']},
+          {q:'In ___ to this view, evidence from Europe suggests otherwise.',blank:'contrast',opts:['contrast','comparison','relation','addition']},
+          {q:'The argument is further ___ by longitudinal studies.',blank:'supported',opts:['supported','backed','shown','told']},
+          {q:'Critics ___ that the sample size is too small.',blank:'suggest',opts:['suggest','say','tell','speak']},
+          {q:'___, the policy implications are significant.',blank:'Overall',opts:['Overall','However','Therefore','Despite']},
+          {q:'It ___ be argued that short-term gains mask long-term costs.',blank:'could',opts:['could','must','will','shall']},
+          {q:'The opposing ___ acknowledges the limitations of education.',blank:'view',opts:['view','side','team','part']},
+          {q:'While critics raise valid points, the overall ___ is clear.',blank:'evidence',opts:['evidence','data','proof','fact']},
+          {q:'___ to Jones (2022), both factors are equally important.',blank:'According',opts:['According','Referring','Going','As']},
+          {q:'The ___ conclusion is that education and economy are interlinked.',blank:'logical',opts:['logical','right','correct','obvious']}
+        ]
+      },
+      {id:16,title:'Paraphrasing & Summarising',xp:45,
+        theory:`<div class="theory-block">
+<h3>Paraphrasing & Summarising — перефразирование</h3>
+<p>Перефразирование — основной навык академического письма. Оно позволяет использовать чужие идеи, <b>не копируя текст</b>.</p>
+<div class="rule"><b>Техники перефразирования:</b><br>
+1. Замени синонимами: increase → rise, significant → notable<br>
+2. Измени структуру предложения<br>
+3. Измени часть речи (номинализация)<br>
+4. Измени порядок информации</div>
+<div class="rule"><b>Фразы для введения перефразирования:</b><br>
+In other words, ... | That is to say, ...<br>
+Put differently, ... | To rephrase this, ...</div>
+<div class="rule"><b>Фразы для суммирования:</b><br>
+To summarise, ... | In brief, ... | In essence, ...<br>
+The key point is that... | Overall, ...</div>
+<p class="example">✦ Original: "The study found that exercise improves mood."</p>
+<p class="example">✦ Paraphrase: "Research indicates that physical activity has a positive effect on mental well-being."</p>
+</div>`,
+        exercises:[
+          {q:'In other ___, the results do not support the hypothesis.',blank:'words',opts:['words','terms','ways','means']},
+          {q:'To ___, the intervention had a positive impact.',blank:'summarise',opts:['summarise','end','finish','conclude']},
+          {q:'Put ___, the data confirms the original prediction.',blank:'differently',opts:['differently','other','again','simply']},
+          {q:'That ___ to say, the findings require cautious interpretation.',blank:'is',opts:['is','was','are','be']},
+          {q:'The key ___ is that motivation affects academic performance.',blank:'point',opts:['point','idea','thing','fact']},
+          {q:'In ___, the study supports existing theories on sleep.',blank:'essence',opts:['essence','brief','short','summary']},
+          {q:'___ briefly, three main trends were identified.',blank:'To put it',opts:['To put it','To say','For speaking','In words']},
+          {q:'The term "significant" can be ___ as "notable".',blank:'paraphrased',opts:['paraphrased','changed','said','replaced']},
+          {q:'Paraphrasing requires changing both ___ and vocabulary.',blank:'structure',opts:['structure','grammar','words','style']},
+          {q:'In ___, the evidence overwhelmingly supports the theory.',blank:'brief',opts:['brief','short','summary','essence']},
+          {q:'"Exercise improves mood" can be ___ as "physical activity enhances well-being".',blank:'paraphrased',opts:['paraphrased','copied','changed','said']},
+          {q:'To ___ this point, education leads to better outcomes.',blank:'rephrase',opts:['rephrase','say','repeat','copy']},
+          {q:'Overall, ___, the study shows a significant correlation.',blank:'then',opts:['then','so','thus','hence']},
+          {q:'The ___ of the argument is that investment is needed.',blank:'essence',opts:['essence','point','idea','meaning']},
+          {q:'You should ___ sources rather than copy them directly.',blank:'paraphrase',opts:['paraphrase','copy','quote','repeat']},
+          {q:'___ differently, the treatment does not work for all patients.',blank:'Put',opts:['Put','Say','Tell','Speak']},
+          {q:'The summary should ___ the original length by half.',blank:'reduce',opts:['reduce','cut','shorten','decrease']},
+          {q:'A ___ changes the wording but keeps the original meaning.',blank:'paraphrase',opts:['paraphrase','summary','quote','copy']},
+          {q:'To avoid plagiarism, always ___ your sources.',blank:'cite',opts:['cite','copy','quote','use']},
+          {q:'In brief, ___ research confirms that early education matters.',blank:'substantial',opts:['substantial','lots of','many','big']}
+        ]
+      },
+      {id:17,title:'Research Paper Vocabulary',xp:45,
+        theory:`<div class="theory-block">
+<h3>Research Paper Vocabulary — язык научной статьи</h3>
+<p>Научные статьи используют специфическую лексику для описания <b>целей, методов и результатов</b>.</p>
+<div class="rule"><b>Цели исследования:</b><br>
+The aim / purpose / objective of this study is to...<br>
+This research seeks to / intends to / is designed to...</div>
+<div class="rule"><b>Методология:</b><br>
+data was <b>collected</b> / <b>gathered</b> / <b>obtained</b><br>
+participants were <b>recruited</b> / <b>selected</b> / <b>sampled</b><br>
+<b>quantitative</b> (числовые данные) | <b>qualitative</b> (смысловые данные)<br>
+<b>variable</b> — переменная | <b>control group</b> — контрольная группа</div>
+<div class="rule"><b>Результаты и выводы:</b><br>
+The results <b>reveal</b> / <b>indicate</b> / <b>demonstrate</b><br>
+The findings are <b>consistent with</b> previous research<br>
+The data <b>support(s)</b> the hypothesis</div>
+</div>`,
+        exercises:[
+          {q:'The ___ of this study is to examine the causes of poverty.',blank:'aim',opts:['aim','want','wish','hope']},
+          {q:'Data was ___ from 300 participants over six months.',blank:'collected',opts:['collected','got','took','made']},
+          {q:'A ___ study uses numbers and statistics.',blank:'quantitative',opts:['quantitative','qualitative','mixed','basic']},
+          {q:'The ___ group received no treatment for comparison.',blank:'control',opts:['control','test','study','compare']},
+          {q:'Participants were ___ from three secondary schools.',blank:'recruited',opts:['recruited','chosen','got','taken']},
+          {q:'A ___ study explores meaning and experience.',blank:'qualitative',opts:['qualitative','quantitative','numeric','basic']},
+          {q:'An independent ___ is the factor that is changed.',blank:'variable',opts:['variable','factor','element','part']},
+          {q:'The ___ of this research seeks to address a gap in knowledge.',blank:'objective',opts:['objective','want','wish','hope']},
+          {q:'The results are ___ with previous findings in the field.',blank:'consistent',opts:['consistent','same','equal','similar']},
+          {q:'A ___ review analyses existing research on a topic.',blank:'literature',opts:['literature','book','text','library']},
+          {q:'The hypothesis was ___ through systematic experimentation.',blank:'tested',opts:['tested','tried','checked','proven']},
+          {q:'The findings ___ a significant correlation between variables.',blank:'reveal',opts:['reveal','show','say','tell']},
+          {q:'Data was gathered using ___ and interviews.',blank:'surveys',opts:['surveys','questions','asks','tests']},
+          {q:'The study ___ to fill a gap in the existing literature.',blank:'aims',opts:['aims','wants','tries','hopes']},
+          {q:'The ___ sample was used to ensure representativeness.',blank:'random',opts:['random','chosen','picked','selected']},
+          {q:'The data ___ the original hypothesis.',blank:'support',opts:['support','say','tell','prove']},
+          {q:'The study used a ___ design combining quantitative and qualitative data.',blank:'mixed',opts:['mixed','combined','joint','double']},
+          {q:'Ethical ___ was obtained from all participants.',blank:'consent',opts:['consent','permission','approval','agreement']},
+          {q:'The ___ was conducted in three phases.',blank:'research',opts:['research','study','work','analysis']},
+          {q:'A ___ group was used to isolate the effect of the variable.',blank:'control',opts:['control','test','study','sample']}
+        ]
+      },
+      {id:18,title:'Citations & References',xp:45,
+        theory:`<div class="theory-block">
+<h3>Citations & References — цитирование</h3>
+<p>Цитирование обязательно в академических работах. Наиболее распространённые стили: <b>APA</b>, <b>Harvard</b>, <b>MLA</b>.</p>
+<div class="rule"><b>In-text citation (APA / Harvard):</b><br>
+Smith (2021) argues that...<br>
+(Smith, 2021, p. 45)<br>
+According to Jones and Lee (2020)...</div>
+<div class="rule"><b>Reference list (APA):</b><br>
+Author, A. (Year). <i>Title of book</i>. Publisher.<br>
+Author, A. (Year). Article title. <i>Journal Name</i>, Vol(Issue), pages.</div>
+<div class="rule"><b>Глаголы для введения цитат:</b><br>
+As Smith (2021) <b>notes</b> / <b>states</b> / <b>argues</b> / <b>observes</b>...<br>
+Smith (2021) <b>points out</b> that...</div>
+<p style="margin-top:10px;font-weight:600">⚠️ Плагиат — использование чужих идей без ссылки — это серьёзное нарушение.</p>
+</div>`,
+        exercises:[
+          {q:'According ___ Smith (2021), stress affects performance.',blank:'to',opts:['to','of','by','from']},
+          {q:'Smith (2021) ___ that technology improves learning.',blank:'argues',opts:['argues','says','tells','speaks']},
+          {q:'Using ideas without citation is called ___.',blank:'plagiarism',opts:['plagiarism','copying','quoting','summarising']},
+          {q:'The ___ list appears at the end of the paper.',blank:'reference',opts:['reference','source','book','citation']},
+          {q:'As Jones (2020) ___ out, sample size matters greatly.',blank:'points',opts:['points','says','tells','speaks']},
+          {q:'The in-text ___ includes the author name and year.',blank:'citation',opts:['citation','reference','quote','source']},
+          {q:'APA style uses ___ in brackets: (Smith, 2021).',blank:'year',opts:['year','date','time','when']},
+          {q:'Smith ___ Lee (2019) conducted the original study.',blank:'and',opts:['and','with','plus','by']},
+          {q:'A ___ citation includes page number: (Smith, 2021, p. 45).',blank:'direct',opts:['direct','full','exact','short']},
+          {q:'"According to" introduces a ___ or idea from a source.',blank:'claim',opts:['claim','word','title','chapter']},
+          {q:'The reference ___ should be in alphabetical order.',blank:'list',opts:['list','page','section','part']},
+          {q:'When paraphrasing, you still need to ___ the source.',blank:'cite',opts:['cite','copy','quote','use']},
+          {q:'MLA, APA, and Harvard are citation ___.',blank:'styles',opts:['styles','methods','ways','types']},
+          {q:'The ___ of work prevents misrepresentation of ideas.',blank:'citation',opts:['citation','copy','quote','reference']},
+          {q:'Smith (2021) ___ that urban schools face greater challenges.',blank:'notes',opts:['notes','says','tells','speaks']},
+          {q:'A footnote provides additional ___ or citations.',blank:'information',opts:['information','words','text','data']},
+          {q:'Ibid. is used when ___ the same source consecutively.',blank:'citing',opts:['citing','quoting','using','writing']},
+          {q:'The Harvard style uses ___ in parentheses.',blank:'author-date',opts:['author-date','page-date','title-year','name-time']},
+          {q:'A bibliography lists ___ sources consulted.',blank:'all',opts:['all','only','some','main']},
+          {q:'It is essential to ___ all sources used in your paper.',blank:'acknowledge',opts:['acknowledge','say','tell','show']}
+        ]
+      },
+      {id:19,title:'Academic Presentations',xp:45,
+        theory:`<div class="theory-block">
+<h3>Academic Presentations — академические презентации</h3>
+<p>На академических презентациях важно чётко структурировать речь и использовать правильные фразы.</p>
+<div class="rule"><b>Начало:</b><br>
+Good morning, I am here today to present...<br>
+My presentation will cover three main areas...<br>
+I would like to begin by...</div>
+<div class="rule"><b>Переходы:</b><br>
+Moving on to... | Turning now to...<br>
+As I mentioned earlier... | This brings me to...<br>
+I would now like to discuss...</div>
+<div class="rule"><b>Графики и данные:</b><br>
+As you can see from the slide... | The graph illustrates...<br>
+The data indicates... | As shown in Figure 1...</div>
+<div class="rule"><b>Завершение:</b><br>
+To conclude... | In summary...<br>
+Thank you for your attention.<br>
+I would be happy to take any questions.</div>
+</div>`,
+        exercises:[
+          {q:'Good morning. I am here today to ___ our research findings.',blank:'present',opts:['present','tell','say','speak']},
+          {q:'My presentation ___ cover three main sections.',blank:'will',opts:['will','is','shall','must']},
+          {q:'I ___ like to begin by giving some background.',blank:'would',opts:['would','will','shall','could']},
+          {q:'___ on to the next point, let us examine the data.',blank:'Moving',opts:['Moving','Going','Turning','Coming']},
+          {q:'As you can ___ from this slide, sales rose in Q3.',blank:'see',opts:['see','look','watch','observe']},
+          {q:'___ brings me to the main argument of this paper.',blank:'This',opts:['This','That','It','So']},
+          {q:'The graph ___ a significant increase in engagement.',blank:'illustrates',opts:['illustrates','shows off','says','tells']},
+          {q:'As ___ in Figure 2, the trend is consistent.',blank:'shown',opts:['shown','said','told','indicated']},
+          {q:'I would now ___ to discuss the implications.',blank:'like',opts:['like','want','wish','hope']},
+          {q:'To ___, three key findings have been presented.',blank:'conclude',opts:['conclude','end','finish','stop']},
+          {q:'Thank you ___ your attention throughout this presentation.',blank:'for',opts:['for','with','by','at']},
+          {q:'I ___ be happy to take any questions at the end.',blank:'would',opts:['would','will','shall','could']},
+          {q:'___ I mentioned, the sample was drawn from three cities.',blank:'As',opts:['As','Like','Since','Because']},
+          {q:'Turning ___ to the methodology, participants were surveyed.',blank:'now',opts:['now','then','next','later']},
+          {q:'The data ___ that the programme achieved its aims.',blank:'indicates',opts:['indicates','says','tells','speaks']},
+          {q:'___ summary, the intervention had a positive impact.',blank:'In',opts:['In','By','On','At']},
+          {q:'The next slide ___ our recommended policy changes.',blank:'outlines',opts:['outlines','says','tells','speaks']},
+          {q:'If you look at Figure 1, you can ___ the overall trend.',blank:'see',opts:['see','watch','look','observe']},
+          {q:'I will now ___ the floor for questions.',blank:'open',opts:['open','give','make','take']},
+          {q:'Our findings ___ important implications for future research.',blank:'have',opts:['have','show','say','tell']}
+        ]
+      },
+      {id:20,title:'Academic English: итог',xp:50,
+        theory:`<div class="theory-block">
+<h3>Academic English — финальный обзор</h3>
+<p>Поздравляем! Ты прошёл курс Academic English. Давай повторим ключевые навыки.</p>
+<b>Что ты освоил:</b><br>
+<div class="rule">
+&bull; <b>Vocabulary</b>: hypothesis, methodology, findings, evidence<br>
+&bull; <b>Formal style</b>: no contractions, no slang, nominalization<br>
+&bull; <b>Linking words</b>: However, Moreover, Consequently, Despite<br>
+&bull; <b>Passive voice</b>: data was collected, it has been shown<br>
+&bull; <b>Reporting verbs</b>: argues, demonstrates, suggests, claims<br>
+&bull; <b>Hedging</b>: may, might, appear to, tend to, possibly<br>
+&bull; <b>Essay structure</b>: Introduction → Body (PEEL) → Conclusion<br>
+&bull; <b>Data description</b>: rose sharply, declined gradually, fluctuated<br>
+&bull; <b>Citations</b>: Smith (2021) argues that... (APA/Harvard)<br>
+&bull; <b>Presentations</b>: structured openings, transitions, conclusions
+</div>
+<p style="margin-top:10px"><b>Продолжай практиковаться:</b><br>
+Читай: Nature, The Economist, academic journals<br>
+Пиши: short essays on academic topics<br>
+Практикуй: AI-диалоги на академические темы</p>
+</div>`,
+        exercises:[
+          {q:'The study ___ that urban schools face greater challenges.',blank:'demonstrates',opts:['demonstrates','says','tells','shows off']},
+          {q:'Data was ___ from 400 participants across five cities.',blank:'collected',opts:['collected','got','took','made']},
+          {q:'It ___ be argued that education reduces inequality.',blank:'could',opts:['could','must','will','shall']},
+          {q:'The findings are ___ with previous research in this area.',blank:'consistent',opts:['consistent','same','equal','similar']},
+          {q:'___ to conclude, the evidence supports the main hypothesis.',blank:'In order',opts:['In order','As a','Despite','For']},
+          {q:'Smith (2021) ___ that technology enhances student engagement.',blank:'argues',opts:['argues','says','tells','speaks']},
+          {q:'The noun form of "analyse" is ___.',blank:'analysis',opts:['analysis','analysing','analyser','analytical']},
+          {q:'The results ___ a significant improvement in test scores.',blank:'indicate',opts:['indicate','say','tell','speak']},
+          {q:'___ the limitations, the study provides valuable insights.',blank:'Despite',opts:['Despite','Although','Because','Unless']},
+          {q:'Using another author\'s work without citation is ___.',blank:'plagiarism',opts:['plagiarism','copying','quoting','summarising']},
+          {q:'Prices ___ sharply during the financial crisis.',blank:'fell',opts:['fell','went','dropped','changed']},
+          {q:'It has been ___ that exercise improves academic performance.',blank:'shown',opts:['shown','said','told','spoken']},
+          {q:'The essay ___ be divided into introduction, body and conclusion.',blank:'should',opts:['should','must','can','will']},
+          {q:'One ___ factor influencing outcomes is socioeconomic status.',blank:'key',opts:['key','big','main','large']},
+          {q:'The data ___ suggest a causal relationship.',blank:'appear to',opts:['appear to','are to','need to','want to']},
+          {q:'___, the study has important implications for policy.',blank:'Overall',opts:['Overall','However','Despite','Moreover']},
+          {q:'The ___ form of "discuss" is "discussion".',blank:'noun',opts:['noun','verb','formal','written']},
+          {q:'Furthermore, ___ research is needed to confirm these results.',blank:'further',opts:['further','more','extra','added']},
+          {q:'The results ___ from analysis of 50 interviews.',blank:'emerged',opts:['emerged','came','went','grew']},
+          {q:'Congratulations! You have completed the ___ English course.',blank:'Academic',opts:['Academic','Basic','Business','Advanced']}
+        ]
+      }
+    ]
+  }
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -10032,7 +10875,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
