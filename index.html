@@ -10902,7 +10902,10 @@ async function sendMessage(){
 
 async function callClaude(userText,isGreeting,existingDiv){
   const correctionInstr=`\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question to keep the conversation going.\n\nIMPORTANT — Error correction: If the user made any English grammar, vocabulary or spelling mistakes in their message, add a correction block at the very end of your reply using EXACTLY this format (on a new line):\n💡CORRECTION: [explain the mistake briefly in Russian, format: «написал X» → правильно «Y» + short reason]\nOnly correct the single most important mistake. If there are no mistakes at all, do NOT add the correction block.`;
-  const sysMsg={role:'system',content:currentSystemPrompt+correctionInstr};
+  const greetInstr=`\n\nKeep your opening message concise (2-3 sentences). End with exactly one question to start the conversation.`;
+  const sysMsg=isGreeting
+    ?{role:'system',content:currentSystemPrompt+greetInstr}
+    :{role:'system',content:currentSystemPrompt+correctionInstr};
   const messages=isGreeting
     ?[sysMsg,{role:'user',content:currentOpeningPrompt||'Start the session with a short friendly opening and your first question.'}]
     :[sysMsg,...chatHistory];
