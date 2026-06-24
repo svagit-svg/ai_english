@@ -897,9 +897,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="r-emoji" id="result-emoji">🎉</div>
         <h2 id="result-title">Урок завершён!</h2>
         <p id="result-text"></p>
-        <div class="stats-grid" style="margin-bottom:16px">
+        <div class="stats-grid" style="margin-bottom:12px">
           <div class="stat-box"><div class="val" id="result-score" style="color:var(--green)">5/5</div><div class="lbl">Правильных</div></div>
           <div class="stat-box"><div class="val" id="result-xp" style="color:var(--amber)">+30</div><div class="lbl">XP получено</div></div>
+        </div>
+        <div id="result-words-row" style="background:rgba(79,110,247,0.08);border:1px solid rgba(79,110,247,0.2);border-radius:12px;padding:10px 14px;margin-bottom:14px;text-align:center;font-size:13px;color:var(--text)">
+          📖 Ты встретил <strong id="result-word-count" style="color:var(--accent)">0</strong> слов и выражений
         </div>
         <div id="result-nav-btns"></div>
         <div id="mistakes-block"></div>
@@ -10236,7 +10239,18 @@ function showResult(){
   setTimeout(()=>{const rc=document.getElementById('lesson-result');if(rc)rc.classList.add('result-celebrate');},50);
   document.getElementById('result-emoji').textContent=pct>=80?'🎉':pct>=50?'💪':'📚';
   document.getElementById('result-title').textContent=pct>=80?'Отлично!':pct>=50?'Хороший результат!':'Попробуй ещё раз';
-  document.getElementById('result-text').textContent='Урок «'+lesson.title+'» пройден. Продолжай учиться!';
+  // Motivational phrase based on score
+  const motives=[
+    {min:100,msg:'🔥 Идеальный результат! Все ответы верны — ты настоящий мастер!'},
+    {min:80, msg:'💪 Отличная работа! Ты хорошо усвоил материал урока.'},
+    {min:60, msg:'👍 Хороший результат! Повтори ошибки и закрепи знания.'},
+    {min:40, msg:'📈 Неплохой старт! Ещё немного практики — и будет отлично.'},
+    {min:0,  msg:'🎯 Не сдавайся! Попробуй урок ещё раз — результат улучшится.'},
+  ];
+  const motive=motives.find(m=>pct>=m.min)||motives[motives.length-1];
+  document.getElementById('result-text').textContent=motive.msg;
+  // Words learned count
+  document.getElementById('result-word-count').textContent=total;
   // ── Next lesson / course complete buttons ──
   const allLessons=COURSES[currentCourseId].lessons;
   const isLastLesson=currentLessonIdx>=allLessons.length-1;
@@ -10387,7 +10401,36 @@ function finishOnboarding(){
   if(obGoal && OB_REC[obGoal]){
     switchTab('courses');
     setTimeout(()=>openCourse(OB_REC[obGoal].course),200);
+  } else {
+    switchTab('courses');
+    setTimeout(showWelcomeHint, 700);
   }
+}
+function showWelcomeHint(){
+  const hint=document.createElement('div');
+  hint.id='welcome-hint';
+  hint.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:1.5px solid var(--accent);border-radius:16px;padding:14px 18px;z-index:9000;width:calc(100% - 40px);max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.4);opacity:0;transition:all 0.35s ease;text-align:center';
+  const emoji=document.createElement('div');
+  emoji.style.cssText='font-size:22px;margin-bottom:6px';
+  emoji.textContent='🎓';
+  const title=document.createElement('div');
+  title.style.cssText='font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px';
+  title.textContent='Добро пожаловать!';
+  const sub=document.createElement('div');
+  sub.style.cssText='font-size:12px;color:var(--muted);margin-bottom:12px';
+  sub.textContent='Выбери курс и начни первый урок прямо сейчас';
+  const btn1=document.createElement('button');
+  btn1.style.cssText='background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:12px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-head);width:100%';
+  btn1.textContent='Начать с основ английского 📚';
+  btn1.onclick=function(){hint.remove();openCourse('basic');};
+  const btn2=document.createElement('button');
+  btn2.style.cssText='background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;margin-top:8px;font-family:var(--font-body);display:block;width:100%';
+  btn2.textContent='Выбрать курс самому →';
+  btn2.onclick=function(){hint.remove();};
+  hint.appendChild(emoji);hint.appendChild(title);hint.appendChild(sub);hint.appendChild(btn1);hint.appendChild(btn2);
+  document.body.appendChild(hint);
+  requestAnimationFrame(()=>{hint.style.opacity='1';hint.style.transform='translateX(-50%) translateY(0)';});
+  setTimeout(()=>{if(hint.parentNode){hint.style.opacity='0';setTimeout(()=>hint.remove(),400);}},8000);
 }
 function finishOnboardingWithReminder(){
   const timeVal=document.getElementById('ob-reminder-time').value||'09:00';
