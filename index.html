@@ -76,8 +76,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .topic-card .t-icon{font-size:24px;margin-bottom:7px;}
 .topic-card h3{font-family:var(--font-head);font-size:12px;font-weight:700;margin-bottom:2px;}
 .topic-card p{font-size:10px;color:var(--muted);}
-#chat-view{flex:1;display:none;flex-direction:column;}
-#chat-view.visible{display:flex;}
+#chat-view{display:none;flex-direction:column;}
+#chat-view.visible{display:flex;position:fixed;top:0;left:0;right:0;bottom:60px;background:var(--bg);z-index:50;padding:0 16px;}
 .chat-topbar{display:flex;align-items:center;gap:10px;padding:8px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px;flex-shrink:0;}
 .back-btn{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--muted);flex-shrink:0;}
 .chat-topbar-info h3{font-family:var(--font-head);font-size:13px;font-weight:700;}
