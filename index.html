@@ -10608,6 +10608,7 @@ function renderDCCard() {
 function startDailyChallenge() {
   if (isDCDone()) return;
   dcQuestions = getDCQuestions();
+  if (!dcQuestions.length) return;
   dcIdx = 0; dcCorrect = 0;
   document.getElementById('dc-overlay').style.display = 'block';
   document.getElementById('dc-result-area').style.display = 'none';
@@ -10891,9 +10892,9 @@ function startChat(key,sysPrompt,icon,label,openingPrompt){
   document.getElementById('chat-title').innerText=label;
   document.getElementById('messages').innerHTML='';
   document.getElementById('chat-input').value='';
+  updateCounter();
   // count dialog
   const s=getStats();s.dialogs++;saveStats(s);
-  updateCounter();
   addAiMessage('...',true);
   callClaude(null,true);
 }
