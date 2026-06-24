@@ -1192,10 +1192,11 @@ function incrementDaily(){
   updateCounter();
 }
 function getRemainingMsgs(){return Math.max(0,FREE_LIMIT-getDailyUsage().count);}
-function isLimitReached(){return getDailyUsage().count>=FREE_LIMIT;}
+function isLimitReached(){if(isPro())return false;return getDailyUsage().count>=FREE_LIMIT;}
 function updateCounter(){
   const el=document.getElementById('msg-counter');
   if(!el)return;
+  if(isPro()){el.innerHTML='';return;}
   const rem=getRemainingMsgs();
   if(rem<=3&&rem>0)el.innerHTML=`Осталось бесплатных сообщений сегодня: <span>${rem}</span>`;
   else if(rem===0)el.innerHTML=`<span style="color:var(--rose)">Лимит исчерпан</span>`;
