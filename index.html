@@ -225,6 +225,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
+/* SUGGESTION CHIPS */
+.chips-row{display:flex;gap:7px;overflow-x:auto;padding:6px 0 4px;flex-shrink:0;}
+.chips-row::-webkit-scrollbar{display:none;}
+.chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:6px 13px;font-size:12px;color:var(--text);white-space:nowrap;cursor:pointer;flex-shrink:0;font-family:var(--font-body);transition:border-color 0.15s,background 0.15s;}
+.chip:active{background:rgba(79,110,247,0.12);border-color:var(--accent);}
 /* LESSONS */
 .lesson-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:13px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;}
 .lesson-item:active{border-color:var(--accent);}
@@ -553,6 +558,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
       <div class="messages" id="messages"></div>
       <div class="msg-counter" id="msg-counter"></div>
+      <div class="chips-row" id="chips-row" style="display:none"></div>
       <div class="chat-input-row">
         <textarea class="chat-input" id="chat-input" rows="1" placeholder="Напиши по-английски..." oninput="autoResize(this)" onkeydown="handleKey(event)"></textarea>
         <button class="send-btn" id="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -11713,6 +11719,47 @@ function showComingSoon(name){
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
 
+// ── SUGGESTION CHIPS ────────────────────────────────────────
+const TOPIC_CHIPS = {
+  'IT English':    ["Tell me about your tech stack", "What's your experience with APIs?", "I work with React and Node.js", "Can you ask me a coding question?"],
+  'Travel':        ["I'd like to check in, please", "Do you have any upgrades available?", "My flight is delayed — what should I do?", "I lost my luggage"],
+  'HR Interview':  ["I'm passionate about problem-solving", "Let me give you an example from my last job", "My biggest strength is communication", "Where do you see growth opportunities?"],
+  'Casual Talk':   ["What's up? How's your day going?", "I've been really into hiking lately", "Have you watched any good shows recently?", "Tell me something interesting!"],
+  'Business':      ["Let's go over the agenda", "I'd like to propose a partnership", "Can we discuss the budget?", "What are your main concerns?"],
+  'IELTS Prep':    ["I'm ready to start the test", "Could you repeat the question?", "In my hometown, people often...", "I'd like to add that..."],
+  'At the Doctor': ["I've had a headache for two days", "It hurts when I breathe deeply", "I have a high temperature", "Can you prescribe something for the pain?"],
+  'Dating & Social': ["Nice to meet you! What do you do?", "I love travelling — have you been abroad?", "What do you enjoy doing on weekends?", "You seem really interesting, tell me more"],
+  'Restaurant':    ["What do you recommend today?", "I'm allergic to nuts", "Could I see the menu, please?", "The bill, please"],
+  'Expat Life':    ["I just moved here last month", "How do I open a bank account?", "What neighbourhoods are good to live in?", "I'm having trouble with the paperwork"],
+  'News Talk':     ["What's your take on AI?", "I think climate change is underrated", "What happened in the news today?", "Let's debate — do you think social media is harmful?"],
+  'Slang & Idioms':["Teach me some new slang!", "What does 'no cap' mean?", "Give me a phrase to sound more natural", "Hit me with your best idiom"],
+  'Academic English': ["I need help with my essay introduction", "How do I write a thesis statement?", "Can you check my paragraph?", "Explain hedging language please"],
+};
+
+function showChips(topicKey) {
+  const row = document.getElementById('chips-row');
+  const chips = TOPIC_CHIPS[topicKey];
+  if (!chips || !row) return;
+  row.innerHTML = chips.map(c =>
+    `<button class="chip" onclick="useChip(this)">${c}</button>`
+  ).join('');
+  row.style.display = 'flex';
+}
+
+function useChip(btn) {
+  const input = document.getElementById('chat-input');
+  input.value = btn.textContent;
+  autoResize(input);
+  input.focus();
+  hideChips();
+}
+
+function hideChips() {
+  const row = document.getElementById('chips-row');
+  if (row) row.style.display = 'none';
+}
+// ── END SUGGESTION CHIPS ────────────────────────────────────
+
 function getLevelInstruction(){
   const lvl=localStorage.getItem('smart_level')||'intermediate';
   const map={
@@ -11737,6 +11784,7 @@ function startChat(key,sysPrompt,icon,label,openingPrompt){
   document.getElementById('messages').innerHTML='';
   document.getElementById('chat-input').value='';
   updateCounter();
+  showChips(key);
   // count dialog
   const s=getStats();s.dialogs++;saveStats(s);
   addAiMessage('...',true);
@@ -11753,6 +11801,7 @@ function backToTopics(){
   }
   document.getElementById('topic-picker').style.display='';
   document.getElementById('chat-view').classList.remove('visible');
+  hideChips();
   chatHistory=[];sessionMsgs=0;sessionXp=0;
 }
 function addUserMessage(text){
@@ -11779,6 +11828,7 @@ async function sendMessage(){
   const text=input.value.trim();
   if(!text||isLoading)return;
   input.value='';input.style.height='auto';
+  hideChips();
   addUserMessage(text);
   chatHistory.push({role:'user',content:text});
   const typingDiv=addAiMessage('...',true);
