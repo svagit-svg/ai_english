@@ -225,6 +225,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
+/* XP FLOAT ANIMATION */
+@keyframes xpFloatUp{0%{opacity:1;transform:translateY(0) scale(1)}60%{opacity:1;transform:translateY(-28px) scale(1.15)}100%{opacity:0;transform:translateY(-46px) scale(0.9)}}
+.xp-float-tag{position:fixed;font-size:13px;font-weight:800;color:#10d98a;pointer-events:none;z-index:9999;font-family:var(--font-head);animation:xpFloatUp 1.4s ease-out forwards;}
 /* SHARE BUTTON */
 .share-tg-btn{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-head);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;}
 .share-tg-btn:active{opacity:0.8;}
@@ -11098,7 +11101,7 @@ function showResult(){
   const s=getStats();s.xp+=xpEarned;s.lessons++;saveStats(s);trackDaily(xpEarned,1);checkAchievements();
   // Suggest level up after every 5 lessons (only lower levels)
   if(s.lessons>0 && s.lessons%5===0){const lvl=localStorage.getItem('smart_level')||'intermediate';if(lvl==='beginner'||lvl==='elementary')setTimeout(suggestLevelUp,1500);}
-  document.getElementById('xp-count').textContent=s.xp;
+  document.getElementById('xp-count').textContent=s.xp;showXpFloat(xpEarned);
   // Show result screen
   document.getElementById('lesson-exercises').style.display='none';
   document.getElementById('lesson-result').style.display='block';
@@ -11558,7 +11561,7 @@ function completeDC() {
   s.xp += bonusXp;
   saveStats(s);
   trackDaily(bonusXp, 0);
-  document.getElementById('xp-count').textContent = s.xp;
+  document.getElementById('xp-count').textContent = s.xp;showXpFloat(bonusXp);
   // Confetti + haptic
   launchConfetti();
   try { window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success'); } catch(e) {}
@@ -11751,6 +11754,21 @@ function showComingSoon(name){
 }
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
+
+// ── XP FLOAT ANIMATION ──────────────────────────────────────
+function showXpFloat(amount){
+  const badge=document.getElementById('xp-count');
+  if(!badge) return;
+  const rect=badge.getBoundingClientRect();
+  const tag=document.createElement('div');
+  tag.className='xp-float-tag';
+  tag.textContent='+'+(amount||5)+' XP';
+  tag.style.left=(rect.left+rect.width/2-24)+'px';
+  tag.style.top=(rect.top-4)+'px';
+  document.body.appendChild(tag);
+  setTimeout(()=>tag.remove(),1500);
+}
+// ── END XP FLOAT ─────────────────────────────────────────────
 
 // ── GREETING BANNER ─────────────────────────────────────────
 function renderGreeting(){
@@ -11973,7 +11991,7 @@ async function callClaude(userText,isGreeting,existingDiv){
       // каждые 5 сообщений = 1 урок
       if(sessionMsgs%5===0)s.lessons++;
       saveStats(s);trackDaily(5,0);checkAchievements();
-      document.getElementById('xp-count').textContent=s.xp;
+      document.getElementById('xp-count').textContent=s.xp;showXpFloat(5);
     } else {
       chatHistory=[
         {role:'user',content:'Hello! Start the session with a short friendly opening and your first question.'},
