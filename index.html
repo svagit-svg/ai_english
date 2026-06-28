@@ -134,6 +134,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .perk{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
 /* NAV */
 /* ── Daily Challenge ── */
+.continue-card{background:linear-gradient(135deg,rgba(79,110,247,0.12),rgba(124,58,237,0.06));border:1.5px solid rgba(79,110,247,0.3);border-radius:18px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:opacity 0.2s;display:none;}
+.continue-card:active{opacity:0.8;}
+.continue-progress-bar{background:rgba(79,110,247,0.15);border-radius:4px;height:5px;margin:10px 0 12px;}
+.continue-progress-fill{background:linear-gradient(90deg,#4f6ef7,#7c3aed);height:5px;border-radius:4px;transition:width 0.4s;}
+.continue-btn-inline{background:rgba(79,110,247,0.2);border:1px solid rgba(79,110,247,0.4);border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;color:#818cf8;cursor:pointer;font-family:var(--font-body);}
 .dc-card{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,179,8,0.06));border:1.5px solid rgba(245,158,11,0.35);border-radius:18px;padding:14px 16px;margin-bottom:16px;cursor:pointer;transition:opacity 0.2s;}
 .dc-card:active{opacity:0.8;}
 .dc-card.done{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.05));border-color:rgba(34,197,94,0.3);}
@@ -476,6 +481,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div style="font-size:14px;font-weight:800;color:var(--text)" id="greeting-name">Привет!</div>
         <div style="font-size:11px;color:var(--muted);margin-top:2px" id="greeting-sub"></div>
       </div>
+    </div>
+
+    <!-- Continue Course Widget -->
+    <div class="continue-card" id="continue-card" onclick="continueLastCourse()">
+      <div style="font-size:10px;font-weight:700;color:#818cf8;letter-spacing:0.5px;margin-bottom:4px;">▶ ПРОДОЛЖИТЬ КУРС</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:15px;font-weight:800;color:var(--text)" id="continue-title">Business English</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px" id="continue-sub">Урок 1</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <div style="font-size:11px;color:#818cf8;font-weight:700;" id="continue-pct">0%</div>
+          <div class="continue-btn-inline">Продолжить →</div>
+        </div>
+      </div>
+      <div class="continue-progress-bar"><div class="continue-progress-fill" id="continue-fill" style="width:0%"></div></div>
     </div>
 
     <!-- Daily Challenge Card -->
@@ -10978,9 +10999,47 @@ function closeCourse(){
   renderCourseProgress();
 }
 
+function saveLastCourse(courseId, lessonIdx){
+  localStorage.setItem('smart_last_course', JSON.stringify({id: courseId, lesson: lessonIdx}));
+}
+
+function renderContinueWidget(){
+  const raw = localStorage.getItem('smart_last_course');
+  if(!raw) return;
+  try {
+    const {id, lesson} = JSON.parse(raw);
+    const course = COURSES[id];
+    if(!course) return;
+    const total = course.lessons.length;
+    const progress = getCourseProgress(id);
+    const done = Object.values(progress).filter(p=>p.done).length;
+    const pct = Math.round(done / total * 100);
+    const lessonObj = course.lessons[lesson] || course.lessons[0];
+    document.getElementById('continue-title').textContent = course.title;
+    document.getElementById('continue-sub').textContent = 'Урок ' + lessonObj.id + ' · ' + lessonObj.title;
+    document.getElementById('continue-pct').textContent = pct + '%';
+    document.getElementById('continue-fill').style.width = pct + '%';
+    document.getElementById('continue-card').style.display = 'block';
+  } catch(e){}
+}
+
+function continueLastCourse(){
+  const raw = localStorage.getItem('smart_last_course');
+  if(!raw) return;
+  try {
+    const {id, lesson} = JSON.parse(raw);
+    showScreen('screen-courses');
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('[onclick="showScreen(\'screen-courses\')"]')?.classList.add('active');
+    openCourse(id);
+    openLesson(lesson);
+  } catch(e){}
+}
+
 function openLesson(idx){
   currentLessonIdx=idx;
   const lesson=COURSES[currentCourseId].lessons[idx];
+  saveLastCourse(currentCourseId, idx);
   // switch to lesson screen
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-lesson').classList.add('active');
@@ -11627,6 +11686,7 @@ renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
 setTimeout(renderGreeting, 300);
+renderContinueWidget();
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
