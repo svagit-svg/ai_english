@@ -225,6 +225,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
+/* VOCAB */
+.vocab-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.vocab-chip{background:rgba(79,110,247,0.1);border:1px solid rgba(79,110,247,0.25);border-radius:10px;padding:4px 9px;font-size:11px;color:#a0aec0;cursor:pointer;font-family:var(--font-body);transition:all 0.15s;}
+.vocab-chip:active{background:rgba(79,110,247,0.2);}
+.vocab-chip.saved{background:rgba(16,217,138,0.1);border-color:rgba(16,217,138,0.3);color:var(--green);}
+.vocab-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.vocab-item:last-child{border-bottom:none;}
+.vocab-del{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:0 4px;line-height:1;}
+.vq-choice{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:13px;padding:13px 16px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:all 0.15s;}
+.vq-choice.correct{background:rgba(16,217,138,0.12);border-color:var(--green);color:var(--green);}
+.vq-choice.wrong{background:rgba(244,63,94,0.1);border-color:var(--rose);color:var(--rose);}
 /* XP FLOAT ANIMATION */
 @keyframes xpFloatUp{0%{opacity:1;transform:translateY(0) scale(1)}60%{opacity:1;transform:translateY(-28px) scale(1.15)}100%{opacity:0;transform:translateY(-46px) scale(0.9)}}
 .xp-float-tag{position:fixed;font-size:13px;font-weight:800;color:#10d98a;pointer-events:none;z-index:9999;font-family:var(--font-head);animation:xpFloatUp 1.4s ease-out forwards;}
@@ -996,7 +1007,25 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
 
     <div class="divider"></div>
-    <p class="section-label">История занятий</p>
+    <div class="divider"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <p class="section-label" style="margin-bottom:0">📖 Мой словарь</p>
+      <button id="vocab-quiz-btn" onclick="startVocabQuiz()" style="display:none;background:rgba(79,110,247,0.15);color:var(--accent);border:none;border-radius:10px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повторить →</button>
+    </div>
+    <div id="vocab-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px;margin-bottom:4px">
+      <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Сохраняй фразы из AI чата — нажми 📖 под сообщением</div>
+    </div>
+
+    <!-- VOCAB QUIZ OVERLAY -->
+    <div id="vocab-quiz-overlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:400;overflow-y:auto;padding:20px 16px 100px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+        <button onclick="closeVocabQuiz()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted)">✕</button>
+        <div style="font-size:15px;font-weight:800;color:var(--text)">📖 Повторение слов</div>
+      </div>
+      <div id="vocab-quiz-content"></div>
+    </div>
+
+    <p class="section-label" style="margin-top:4px">История занятий</p>
     <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
       <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>
     </div>
@@ -1358,6 +1387,7 @@ function renderProfile(){
   renderAvatar();
   // eng level
   renderEngLevel();
+  renderVocabSection();
   // analytics
   renderAnalytics();
   renderAchievements();
@@ -11755,6 +11785,124 @@ function showComingSoon(name){
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
 
+// ── VOCABULARY ───────────────────────────────────────────────
+function getSavedVocab(){return JSON.parse(localStorage.getItem('smart_vocab')||'[]');}
+function saveVocab(items){localStorage.setItem('smart_vocab',JSON.stringify(items));}
+
+function addVocabPhrase(phrase){
+  const items=getSavedVocab();
+  if(items.find(i=>i.phrase===phrase)) return false;
+  items.push({phrase,date:new Date().toISOString()});
+  saveVocab(items);
+  return true;
+}
+
+function deleteVocabPhrase(idx){
+  const items=getSavedVocab();
+  items.splice(idx,1);
+  saveVocab(items);
+  renderVocabSection();
+}
+
+function renderVocabSection(){
+  const el=document.getElementById('vocab-list');
+  const quizBtn=document.getElementById('vocab-quiz-btn');
+  if(!el) return;
+  const items=getSavedVocab();
+  if(!items.length){
+    el.innerHTML='<div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Сохраняй фразы из AI чата — нажми 📖 под сообщением</div>';
+    if(quizBtn) quizBtn.style.display='none';
+    return;
+  }
+  if(quizBtn) quizBtn.style.display=items.length>=3?'block':'none';
+  el.innerHTML=items.map((item,i)=>`
+    <div class="vocab-item">
+      <div style="font-size:13px;font-weight:600;color:var(--text);flex:1;padding-right:8px;line-height:1.4">${item.phrase}</div>
+      <button class="vocab-del" onclick="deleteVocabPhrase(${i})">×</button>
+    </div>`).join('');
+}
+
+function addVocabChipsToMessage(el){
+  const strongs=[...el.querySelectorAll('strong')].filter(s=>{
+    const t=s.textContent.trim();
+    return t.length>3 && t.length<100 && !t.includes('Исправление') && !t.includes('CORRECTION');
+  });
+  if(!strongs.length) return;
+  const wrap=document.createElement('div');
+  wrap.className='vocab-chips';
+  strongs.forEach(s=>{
+    const phrase=s.textContent.trim();
+    const chip=document.createElement('button');
+    chip.className='vocab-chip';
+    chip.textContent='📖 '+phrase;
+    chip.onclick=()=>{
+      const added=addVocabPhrase(phrase);
+      chip.className='vocab-chip saved';
+      chip.textContent='✓ '+phrase;
+      chip.onclick=null;
+    };
+    wrap.appendChild(chip);
+  });
+  el.appendChild(wrap);
+}
+
+let vocabQuizIdx=0, vocabQuizItems=[], vocabQuizAnswered=false;
+
+function startVocabQuiz(){
+  const items=getSavedVocab();
+  if(items.length<3){
+    const tg=window.Telegram?.WebApp;
+    if(tg?.showAlert) tg.showAlert('Сохрани минимум 3 фразы для повторения!');
+    else alert('Сохрани минимум 3 фразы для повторения!');
+    return;
+  }
+  vocabQuizItems=[...items].sort(()=>Math.random()-0.5);
+  vocabQuizIdx=0;
+  document.getElementById('vocab-quiz-overlay').style.display='block';
+  renderVocabQuizQuestion();
+}
+
+function closeVocabQuiz(){
+  document.getElementById('vocab-quiz-overlay').style.display='none';
+}
+
+function renderVocabQuizQuestion(){
+  const items=vocabQuizItems;
+  if(vocabQuizIdx>=items.length){
+    document.getElementById('vocab-quiz-content').innerHTML=`
+      <div style="text-align:center;padding:40px 0">
+        <div style="font-size:52px;margin-bottom:12px">🎉</div>
+        <div style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px">Повторение завершено!</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:24px">Ты повторил ${items.length} фраз</div>
+        <button onclick="closeVocabQuiz()" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:13px;padding:13px 32px;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--font-head)">Готово →</button>
+      </div>`;
+    return;
+  }
+  const correct=items[vocabQuizIdx];
+  const others=items.filter((_,i)=>i!==vocabQuizIdx);
+  const wrongs=others.sort(()=>Math.random()-0.5).slice(0,2);
+  const choices=[correct,...wrongs].sort(()=>Math.random()-0.5);
+  vocabQuizAnswered=false;
+  document.getElementById('vocab-quiz-content').innerHTML=`
+    <div style="background:rgba(79,110,247,0.07);border:1px solid rgba(79,110,247,0.2);border-radius:16px;padding:20px;text-align:center;margin-bottom:20px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Вопрос ${vocabQuizIdx+1} из ${items.length}</div>
+      <div style="font-size:17px;font-weight:800;color:var(--text);line-height:1.4">"${correct.phrase}"</div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Что означает эта фраза? (выбери сам)</div>
+    ${choices.map((c,i)=>`<button class="vq-choice" onclick="vocabQuizAnswer(this,${c===correct})">${c.phrase}</button>`).join('')}`;
+}
+
+function vocabQuizAnswer(btn,isCorrect){
+  if(vocabQuizAnswered) return;
+  vocabQuizAnswered=true;
+  btn.classList.add(isCorrect?'correct':'wrong');
+  setTimeout(()=>{
+    vocabQuizIdx++;
+    renderVocabQuizQuestion();
+  },900);
+}
+// ── END VOCABULARY ────────────────────────────────────────────
+
 // ── XP FLOAT ANIMATION ──────────────────────────────────────
 function showXpFloat(amount){
   const badge=document.getElementById('xp-count');
@@ -11981,7 +12129,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     }
     const corrHTML=correctionText
       ?`<div class="ai-correction"><strong>💡 Исправление:</strong> ${correctionText}</div>`:'';
-    if(target)target.innerHTML=mainReply.replace(/\n/g,'<br>')+corrHTML;
+    if(target){target.innerHTML=mainReply.replace(/\n/g,'<br>')+corrHTML;if(!isGreeting)addVocabChipsToMessage(target);}
     else addAiMessage(mainReply,false);
     if(!isGreeting){
       chatHistory.push({role:'assistant',content:reply});
