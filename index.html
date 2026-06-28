@@ -225,6 +225,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
+/* SHARE BUTTON */
+.share-tg-btn{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-head);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;}
+.share-tg-btn:active{opacity:0.8;}
+.share-tg-icon{width:20px;height:20px;background:#229ED9;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
 /* SUGGESTION CHIPS */
 .chips-row{display:flex;gap:7px;overflow-x:auto;padding:6px 0 4px;flex-shrink:0;}
 .chips-row::-webkit-scrollbar{display:none;}
@@ -503,7 +507,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div style="font-size:13px;color:var(--amber);font-weight:700" id="dc-r-streak-text"></div>
         </div>
         <br>
-        <button onclick="closeDC()" style="background:linear-gradient(135deg,var(--amber),#f97316);color:white;border:none;border-radius:14px;padding:14px 40px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font-head);width:100%">Отлично! →</button>
+        <button onclick="closeDC()" style="background:linear-gradient(135deg,var(--amber),#f97316);color:white;border:none;border-radius:14px;padding:14px 40px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font-head);width:100%;margin-bottom:10px">Отлично! →</button>
+        <button onclick="shareResult('dc')" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-head);display:flex;align-items:center;justify-content:center;gap:8px"><span style="width:20px;height:20px;background:#229ED9;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px">✈</span>Поделиться в Telegram</button>
       </div>
     </div>
 
@@ -11124,7 +11129,10 @@ function showResult(){
         <div style="font-size:16px;font-weight:800;color:var(--text)">Курс завершён!</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">Ты прошёл все ${allLessons.length} уроков курса</div>
       </div>
-      <button class="lesson-btn" onclick="closeLesson()" style="margin-bottom:0">К списку курсов →</button>`;
+      <button class="lesson-btn" onclick="closeLesson()" style="margin-bottom:10px">К списку курсов →</button>
+      <button onclick="shareResult('lesson')" class="share-tg-btn">
+        <span class="share-tg-icon">✈</span>Поделиться в Telegram
+      </button>`;
   } else {
     const nextL=allLessons[currentLessonIdx+1];
     const nextTitle=nextL.title||('Урок '+(currentLessonIdx+2));
@@ -11132,6 +11140,9 @@ function showResult(){
       <button class="lesson-btn" id="next-lesson-btn" onclick="openLesson(${currentLessonIdx+1})"
         style="background:var(--accent);color:#fff;border:none;margin-bottom:10px">
         Следующий урок →<br><span style="font-size:11px;font-weight:500;opacity:0.85">${nextTitle}</span>
+      </button>
+      <button onclick="shareResult('lesson')" class="share-tg-btn" style="margin-bottom:6px">
+        <span class="share-tg-icon">✈</span>Поделиться в Telegram
       </button>
       <button onclick="closeLesson()"
         style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:8px;width:100%;font-family:var(--font-body)">
@@ -11730,6 +11741,34 @@ function showComingSoon(name){
 }
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
+
+// ── SHARE RESULT ────────────────────────────────────────────
+function shareResult(type) {
+  const s = getStats();
+  let text;
+  if (type === 'dc') {
+    const xpEl = document.getElementById('dc-r-xp');
+    const xp = xpEl ? xpEl.textContent : '+50 XP';
+    const streak = s.streak >= 2 ? ` Серия ${s.streak} дней подряд! 🔥` : '';
+    text = `Выполнил ежедневное задание в SmartAI English и заработал ${xp}!${streak} Учу английский каждый день 🧠`;
+  } else {
+    const course = COURSES[currentCourseId];
+    const lesson = course?.lessons?.[currentLessonIdx];
+    const lessonName = lesson?.title || 'урок';
+    const courseName = course?.title || 'английский';
+    const xp = document.getElementById('result-xp')?.textContent || '+XP';
+    const score = document.getElementById('result-score')?.textContent || '';
+    text = `Прошёл урок «${lessonName}» (${courseName}) с результатом ${score} и заработал ${xp}! Учу английский в SmartAI English 🧠`;
+  }
+  const tg = window.Telegram?.WebApp;
+  if (tg?.switchInlineQuery) {
+    tg.switchInlineQuery(text, ['users', 'groups', 'channels']);
+  } else {
+    const url = `https://t.me/share/url?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  }
+}
+// ── END SHARE RESULT ─────────────────────────────────────────
 
 // ── SUGGESTION CHIPS ────────────────────────────────────────
 const TOPIC_CHIPS = {
