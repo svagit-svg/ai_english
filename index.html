@@ -440,7 +440,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <p><span class="dot"></span> AI-Tutor Online</p>
     </div>
   </div>
-  <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
+  <div style="display:flex;align-items:center;gap:6px">
+    <div class="xp-badge" id="streak-badge" style="display:none;border-color:rgba(245,158,11,0.25)">🔥<span id="streak-count">0</span></div>
+    <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
+  </div>
 </header>
 
 <main class="main" id="main-scroll">
@@ -1300,8 +1303,17 @@ function getLevelInfo(xp){
 function renderProfile(){
   const s=getStats();
   const lv=getLevelInfo(s.xp);
-  // header badge
+  // header badges
   document.getElementById('xp-count').textContent=s.xp;
+  const streakBadge=document.getElementById('streak-badge');
+  if(streakBadge){
+    if(s.streak>=2){
+      document.getElementById('streak-count').textContent=s.streak;
+      streakBadge.style.display='flex';
+    } else {
+      streakBadge.style.display='none';
+    }
+  }
   // stats boxes
   document.getElementById('stat-lessons').textContent=s.lessons;
   document.getElementById('stat-xp').textContent=s.xp;
