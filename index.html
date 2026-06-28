@@ -455,6 +455,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <!-- CHAT -->
   <section id="screen-chat" class="screen active">
 
+    <!-- Greeting Banner -->
+    <div id="greeting-banner" style="display:none;background:linear-gradient(135deg,rgba(79,110,247,0.1),rgba(124,58,237,0.06));border:1px solid rgba(79,110,247,0.2);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+      <div style="font-size:28px;flex-shrink:0;">👋</div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:var(--text)" id="greeting-name">Привет!</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px" id="greeting-sub"></div>
+      </div>
+    </div>
+
     <!-- Daily Challenge Card -->
     <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -11584,6 +11593,7 @@ loadFromCloud(()=>{ checkOnboarding(); });
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
+setTimeout(renderGreeting, 300);
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
@@ -11741,6 +11751,28 @@ function showComingSoon(name){
 }
 
 let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessionMsgs=0,sessionXp=0;
+
+// ── GREETING BANNER ─────────────────────────────────────────
+function renderGreeting(){
+  const banner=document.getElementById('greeting-banner');
+  if(!banner) return;
+  const name=tgUser?.first_name||localStorage.getItem('smart_ob_name')||'';
+  const s=getStats();
+  const streak=s.streak||0;
+  const xp=s.xp||0;
+  const nameText=name?`Привет, ${name}!`:'Привет!';
+  document.getElementById('greeting-name').textContent=nameText;
+  let sub='';
+  if(streak>=2){
+    const days=streak===1?'день':streak<5?'дня':'дней';
+    sub=`${streak} ${days} подряд · ${xp} XP всего`;
+  } else {
+    sub=`${xp} XP заработано · продолжай учиться!`;
+  }
+  document.getElementById('greeting-sub').textContent=sub;
+  banner.style.display='flex';
+}
+// ── END GREETING BANNER ──────────────────────────────────────
 
 // ── SHARE RESULT ────────────────────────────────────────────
 function shareResult(type) {
