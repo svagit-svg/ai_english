@@ -847,7 +847,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Medical English</h3><span style="font-size:9px;background:rgba(236,72,153,0.15);color:#ec4899;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
           <span id="medical-pct" style="font-size:11px;color:#ec4899;font-weight:600">0%</span>
-        </div>      </div>
+        </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Врачи, симптомы, больница, здоровье</p>
         <div class="progress-bar"><div class="progress-fill" id="medical-bar" style="width:0%;background:#ec4899"></div></div>
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="medical-sub">20 уроков</p>
@@ -878,6 +878,36 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="academic-sub">20 уроков</p>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('interview')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">🎤</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Interview English</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
+          <span id="interview-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Собеседования, STAR-метод, переговоры о зарплате</p>
+        <div class="progress-bar"><div class="progress-fill" id="interview-bar" style="width:0%;background:#8b5cf6"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="interview-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('legal')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(8,145,178,0.1);color:#0891b2;font-size:18px;">⚖️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Legal English</h3><span style="font-size:9px;background:rgba(8,145,178,0.15);color:#0891b2;border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
+          <span id="legal-pct" style="font-size:11px;color:#0891b2;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Контракты, суды, GDPR, юридические документы</p>
+        <div class="progress-bar"><div class="progress-fill" id="legal-bar" style="width:0%;background:#0891b2"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="legal-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="card" onclick="showComingSoon('Academic English')">
+      <div class="card-row">
+        <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;">🎓</div>
+        <div class="card-text"><h3>Academic English <span class="badge" style="background:rgba(14,165,233,0.15);color:#0ea5e9">Скоро</span></h3><p>Эссе, дискуссии, академическое письмо • 20 уроков</p></div>
+        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+      </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -887,28 +917,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
-    <div class="card" onclick="showComingSoon('Interview English')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎤</div>
-        <div class="card-text"><h3>Interview English <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">Скоро</span></h3><p>Вопросы HR, самопрезентация, оффер • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
-    <div class="card" onclick="showComingSoon('Legal English')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;">⚖️</div>
-        <div class="card-text"><h3>Legal English <span class="badge" style="background:rgba(99,102,241,0.15);color:#6366f1">Скоро</span></h3><p>Контракты, переговоры, юридические тексты • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
-    <div class="card" onclick="showComingSoon('Academic English')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;">🎓</div>
-        <div class="card-text"><h3>Academic English <span class="badge" style="background:rgba(14,165,233,0.15);color:#0ea5e9">Скоро</span></h3><p>Эссе, дискуссии, академическое письмо • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
-    >
     <div class="card" onclick="showComingSoon('British English')">
       <div class="card-row">
         <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;">🇬🇧</div>
@@ -10946,6 +10954,1120 @@ I would be happy to take any questions.</div>
       }
     ]
   }
+  ,interview:{
+    title:'Interview English',
+    icon:'🎤',
+    color:'#8b5cf6',
+    lessons:[
+      {id:1,title:'Self-introduction',xp:35,
+        theory:`<div class="theory-block">
+<h3>Self-introduction — расскажи о себе</h3>
+<p>«Tell me about yourself» — самый частый вопрос на собеседовании. Нужно дать чёткий, структурированный ответ за 1–2 минуты.</p>
+<div class="rule"><b>Структура ответа (Present–Past–Future):</b><br>
+<b>currently</b> — в настоящее время | <b>responsible for</b> — отвечаю за<br>
+<b>background</b> — опыт, история | <b>specialise in</b> — специализируюсь на<br>
+<b>previously</b> — ранее | <b>degree in</b> — степень по<br>
+<b>looking to</b> — стремлюсь к | <b>passionate about</b> — увлечён</div>
+<p class="example">✦ I'm <b>currently</b> a software developer <b>responsible for</b> backend infrastructure.</p>
+<p class="example">✦ I have a <b>degree in</b> computer science and <b>specialise in</b> cloud solutions.</p>
+<p class="example">✦ I'm <b>looking to</b> grow into a leadership role in a product-focused team.</p>
+<div class="rule"><b>Полезные фразы:</b><br>
+<b>I've been working in...</b> — я работаю в сфере...<br>
+<b>My key strength is...</b> — моя ключевая сила —<br>
+<b>What drives me is...</b> — меня мотивирует...<br>
+<b>I'm excited about...</b> — я воодушевлён...</div>
+</div>`,
+        exercises:[
+          {q:'Tell me ___ yourself — the most common interview opener.',blank:'about',opts:['about','for','with','of']},
+          {q:'I\'m ___ a project manager at a tech startup.',blank:'currently',opts:['currently','before','after','always']},
+          {q:'I have a ___ in Business Administration from London Business School.',blank:'degree',opts:['degree','paper','book','test']},
+          {q:'I ___ in digital marketing and SEO strategy.',blank:'specialise',opts:['specialise','work','do','make']},
+          {q:'I am ___ to transition into a senior leadership role.',blank:'looking',opts:['looking','wanting','hoping','wishing']},
+          {q:'I am ___ for managing a team of 12 developers.',blank:'responsible',opts:['responsible','working','doing','making']},
+          {q:'My professional ___ includes 8 years in finance.',blank:'background',opts:['background','history','story','list']},
+          {q:'___, I worked at Google before joining my current company.',blank:'Previously',opts:['Previously','Later','Soon','After']},
+          {q:'What ___ me is solving complex technical challenges.',blank:'drives',opts:['drives','makes','does','puts']},
+          {q:'I\'m ___ about building products that help real people.',blank:'passionate',opts:['passionate','happy','okay','fine']}
+        ]
+      },
+      {id:2,title:'Talking about experience',xp:35,
+        theory:`<div class="theory-block">
+<h3>Talking about experience — опыт работы</h3>
+<p>Описывая опыт, используй конкретные достижения с цифрами и результатами.</p>
+<div class="rule"><b>managed</b> — управлял | <b>led</b> — возглавлял<br>
+<b>delivered</b> — выполнил / реализовал | <b>achieved</b> — достиг<br>
+<b>increased</b> — увеличил | <b>reduced</b> — сократил<br>
+<b>collaborated</b> — сотрудничал | <b>implemented</b> — внедрил<br>
+<b>oversaw</b> — контролировал | <b>coordinated</b> — координировал</div>
+<p class="example">✦ I <b>led</b> a team of 5 engineers and <b>delivered</b> the project 2 weeks early.</p>
+<p class="example">✦ I <b>implemented</b> a new CRM system that <b>increased</b> sales by 30%.</p>
+<p class="example">✦ I <b>managed</b> a $2M budget and <b>reduced</b> costs by 15%.</p>
+<div class="rule"><b>Linking results:</b><br>
+<b>as a result</b> — в результате | <b>which led to</b> — что привело к<br>
+<b>resulting in</b> — что повлекло | <b>this helped</b> — это помогло</div>
+</div>`,
+        exercises:[
+          {q:'I ___ a cross-functional team of 10 people.',blank:'managed',opts:['managed','did','made','used']},
+          {q:'We ___ the product launch on time and under budget.',blank:'delivered',opts:['delivered','sent','gave','put']},
+          {q:'I ___ a 25% increase in customer retention.',blank:'achieved',opts:['achieved','got','made','did']},
+          {q:'I ___ a new onboarding process that saved 3 hours per hire.',blank:'implemented',opts:['implemented','put','made','wrote']},
+          {q:'We ___ costs by 20% through process optimisation.',blank:'reduced',opts:['reduced','cut','broke','lowered']},
+          {q:'I ___ with the design and marketing teams on the campaign.',blank:'collaborated',opts:['collaborated','worked','did','made']},
+          {q:'I ___ the daily operations of the warehouse.',blank:'oversaw',opts:['oversaw','watched','saw','looked']},
+          {q:'We ___ revenue by 40% in just one quarter.',blank:'increased',opts:['increased','grew','made','put']},
+          {q:'I ___ all vendor relationships and contracts.',blank:'coordinated',opts:['coordinated','managed','did','ran']},
+          {q:'I ___ a team that launched 3 successful products.',blank:'led',opts:['led','made','did','ran']}
+        ]
+      },
+      {id:3,title:'Strengths and weaknesses',xp:35,
+        theory:`<div class="theory-block">
+<h3>Strengths and weaknesses — сильные и слабые стороны</h3>
+<p>Для слабостей всегда добавляй, что ты делаешь для улучшения — это показывает зрелость.</p>
+<div class="rule"><b>Сильные стороны:</b><br>
+<b>analytical</b> — аналитический | <b>detail-oriented</b> — внимательный к деталям<br>
+<b>adaptable</b> — адаптивный | <b>proactive</b> — инициативный<br>
+<b>reliable</b> — надёжный | <b>collaborative</b> — умеющий работать в команде<br>
+<b>innovative</b> — новаторский | <b>decisive</b> — решительный</div>
+<div class="rule"><b>Слабые стороны (с улучшением):</b><br>
+<b>I tend to...</b> — я склонен... | <b>I'm working on...</b> — я работаю над...<br>
+<b>I've improved by...</b> — я улучшил через... | <b>I sometimes...</b> — иногда я...</div>
+<p class="example">✦ My greatest strength is being <b>analytical</b> — I always base decisions on data.</p>
+<p class="example">✦ I can be a <b>perfectionist</b>, but I'm <b>working on</b> setting realistic deadlines.</p>
+<p class="example">✦ I <b>tend to</b> take on too much, so I've learned to delegate effectively.</p>
+</div>`,
+        exercises:[
+          {q:'My greatest ___ is my ability to solve complex problems quickly.',blank:'strength',opts:['strength','power','force','talent']},
+          {q:'I am very ___ — I always check my work twice.',blank:'detail-oriented',opts:['detail-oriented','careful','slow','exact']},
+          {q:'I ___ to take on too many tasks at once.',blank:'tend',opts:['tend','like','want','try']},
+          {q:'I\'m ___ on improving my public speaking skills.',blank:'working',opts:['working','doing','making','trying']},
+          {q:'I am highly ___ and adjust quickly to new environments.',blank:'adaptable',opts:['adaptable','flexible','moving','changing']},
+          {q:'I can be a bit of a ___, which sometimes slows me down.',blank:'perfectionist',opts:['perfectionist','worker','thinker','planner']},
+          {q:'One of my strengths is being very ___ — I always meet deadlines.',blank:'reliable',opts:['reliable','fast','strong','good']},
+          {q:'I\'m very ___ and often come up with new ideas.',blank:'innovative',opts:['innovative','creative','old','fresh']},
+          {q:'I sometimes struggle with ___, but I now use time-blocking.',blank:'delegation',opts:['delegation','saying','talking','working']},
+          {q:'My ___ approach means I anticipate problems before they arise.',blank:'proactive',opts:['proactive','active','busy','fast']}
+        ]
+      },
+      {id:4,title:'STAR method',xp:40,
+        theory:`<div class="theory-block">
+<h3>STAR method — структура поведенческих ответов</h3>
+<p>STAR — это формула для структурированных ответов на поведенческие вопросы. Используй её для любого «Tell me about a time when...».</p>
+<div class="rule"><b>S — Situation</b> — опиши контекст и ситуацию<br>
+<b>T — Task</b> — какая задача стояла перед тобой<br>
+<b>A — Action</b> — что конкретно ты сделал<br>
+<b>R — Result</b> — какой был результат (с цифрами)</div>
+<p class="example">✦ <b>Situation:</b> Our main supplier cancelled the contract unexpectedly.</p>
+<p class="example">✦ <b>Task:</b> I needed to find a replacement within 48 hours.</p>
+<p class="example">✦ <b>Action:</b> I contacted 10 vendors and negotiated an emergency deal.</p>
+<p class="example">✦ <b>Result:</b> We avoided any disruption and saved 12% on costs.</p>
+<div class="rule"><b>Ключевые фразы STAR:</b><br>
+<b>The situation was...</b> — ситуация была такой...<br>
+<b>My task was to...</b> — моей задачей было...<br>
+<b>I decided to...</b> — я решил...<br>
+<b>As a result...</b> — в результате...</div>
+</div>`,
+        exercises:[
+          {q:'In the STAR method, S stands for ___.',blank:'Situation',opts:['Situation','Success','Solution','Strategy']},
+          {q:'T in STAR stands for ___.',blank:'Task',opts:['Task','Time','Team','Target']},
+          {q:'A in STAR stands for ___.',blank:'Action',opts:['Action','Answer','Attempt','Analysis']},
+          {q:'R in STAR stands for ___.',blank:'Result',opts:['Result','Reason','Review','Reply']},
+          {q:'___ me about a time you handled a difficult colleague.',blank:'Tell',opts:['Tell','Say','Speak','Talk']},
+          {q:'My ___ was to resolve the conflict before the deadline.',blank:'task',opts:['task','job','work','duty']},
+          {q:'I ___ to organise a meeting with all stakeholders.',blank:'decided',opts:['decided','chose','wanted','tried']},
+          {q:'As a ___, customer satisfaction scores rose by 20%.',blank:'result',opts:['result','cause','reason','fact']},
+          {q:'The ___ was that our team was behind schedule by two weeks.',blank:'situation',opts:['situation','problem','issue','case']},
+          {q:'I ___ the team by assigning clear roles to each member.',blank:'guided',opts:['guided','led','did','made']}
+        ]
+      },
+      {id:5,title:'Questions about motivation',xp:35,
+        theory:`<div class="theory-block">
+<h3>Motivation questions — почему эта компания?</h3>
+<p>Интервьюеры хотят понять: ты пришёл за деньгами или тебя действительно интересует компания? Покажи, что ты исследовал компанию.</p>
+<div class="rule"><b>aligned with</b> — совпадает с | <b>mission</b> — миссия<br>
+<b>values</b> — ценности | <b>reputation</b> — репутация<br>
+<b>attracted by</b> — привлечён | <b>impressed by</b> — впечатлён<br>
+<b>growth opportunities</b> — возможности роста | <b>culture</b> — культура<br>
+<b>contribute to</b> — вносить вклад в | <b>believe in</b> — верить в</div>
+<p class="example">✦ I'm <b>attracted by</b> your company's <b>mission</b> to make education accessible.</p>
+<p class="example">✦ Your <b>reputation</b> for innovation is perfectly <b>aligned with</b> my values.</p>
+<p class="example">✦ I believe I can <b>contribute to</b> your team's growth in a meaningful way.</p>
+</div>`,
+        exercises:[
+          {q:'Why do you want to ___ this company?',blank:'join',opts:['join','enter','go','come']},
+          {q:'Your company\'s ___ to sustainability really inspires me.',blank:'mission',opts:['mission','job','work','task']},
+          {q:'I\'m ___ by your innovative approach to product development.',blank:'impressed',opts:['impressed','happy','glad','okay']},
+          {q:'My personal values are ___ with your company culture.',blank:'aligned',opts:['aligned','same','equal','similar']},
+          {q:'I want to ___ to a team that is making a real difference.',blank:'contribute',opts:['contribute','add','give','help']},
+          {q:'I ___ in the importance of continuous learning and development.',blank:'believe',opts:['believe','think','know','feel']},
+          {q:'I was ___ by your company\'s expansion into Asian markets.',blank:'attracted',opts:['attracted','pulled','pushed','moved']},
+          {q:'I\'m excited about the ___ opportunities this role offers.',blank:'growth',opts:['growth','salary','travel','status']},
+          {q:'Your company\'s ___ for innovation attracted me immediately.',blank:'reputation',opts:['reputation','name','brand','title']},
+          {q:'I want to work in a ___ where creativity is encouraged.',blank:'culture',opts:['culture','place','room','office']}
+        ]
+      },
+      {id:6,title:'Salary negotiation',xp:40,
+        theory:`<div class="theory-block">
+<h3>Salary negotiation — переговоры о зарплате</h3>
+<p>Переговоры о зарплате — нормальная часть найма. Будь уверен, называй диапазон, обосновывай рыночными данными.</p>
+<div class="rule"><b>salary expectations</b> — ожидания по зарплате | <b>range</b> — диапазон<br>
+<b>based on market research</b> — на основе анализа рынка<br>
+<b>negotiable</b> — обсуждаемо | <b>total compensation</b> — общий пакет<br>
+<b>benefits</b> — льготы | <b>bonus</b> — бонус<br>
+<b>flexible</b> — гибкий | <b>equity</b> — доля в компании</div>
+<p class="example">✦ Based on my research and experience, I'm looking for a <b>range</b> of $80–95k.</p>
+<p class="example">✦ I'm open to discussing the <b>total compensation</b>, including <b>benefits</b>.</p>
+<p class="example">✦ My <b>salary expectations</b> are <b>negotiable</b> depending on the full package.</p>
+<div class="rule"><b>Полезные фразы:</b><br>
+<b>What is the budget for this role?</b> — каков бюджет на эту позицию?<br>
+<b>Is there room to negotiate?</b> — есть ли возможность договориться?<br>
+<b>I'd like to think it over.</b> — мне нужно подумать.</div>
+</div>`,
+        exercises:[
+          {q:'My ___ expectations are in the range of $70,000–$85,000.',blank:'salary',opts:['salary','money','pay','wage']},
+          {q:'I am open to discussing the total ___ package.',blank:'compensation',opts:['compensation','pay','salary','money']},
+          {q:'Is this figure ___? I\'d like to discuss it further.',blank:'negotiable',opts:['negotiable','fixed','set','final']},
+          {q:'Based on ___ research, the market rate is around $90k.',blank:'market',opts:['market','internet','my','online']},
+          {q:'I\'m interested in the full package, including ___ and benefits.',blank:'bonus',opts:['bonus','extra','add','plus']},
+          {q:'Is there ___ to negotiate on the base salary?',blank:'room',opts:['room','space','place','time']},
+          {q:'I\'d like to ___ the offer over before giving my answer.',blank:'think',opts:['think','look','see','take']},
+          {q:'Does the package include any ___?',blank:'equity',opts:['equity','stock','share','part']},
+          {q:'What are the ___ included in the compensation package?',blank:'benefits',opts:['benefits','extras','gifts','bonuses']},
+          {q:'My expectations are ___ depending on growth opportunities.',blank:'flexible',opts:['flexible','open','free','loose']}
+        ]
+      },
+      {id:7,title:'Technical interviews',xp:40,
+        theory:`<div class="theory-block">
+<h3>Technical interviews — технические вопросы</h3>
+<p>Технические интервью требуют не только знания — нужно уметь чётко объяснять решения на английском.</p>
+<div class="rule"><b>algorithm</b> — алгоритм | <b>data structure</b> — структура данных<br>
+<b>complexity</b> — сложность | <b>optimise</b> — оптимизировать<br>
+<b>edge case</b> — граничный случай | <b>trade-off</b> — компромисс<br>
+<b>scalable</b> — масштабируемый | <b>efficient</b> — эффективный<br>
+<b>debug</b> — отлаживать | <b>refactor</b> — рефакторить</div>
+<p class="example">✦ I'd approach this using a hash map for O(1) <b>complexity</b>.</p>
+<p class="example">✦ The <b>trade-off</b> here is between speed and memory usage.</p>
+<p class="example">✦ We need to consider <b>edge cases</b> like empty arrays and null values.</p>
+<div class="rule"><b>Фразы для объяснения мышления:</b><br>
+<b>Let me think through this...</b> — дайте подумаю...<br>
+<b>My first approach would be...</b> — моим первым подходом будет...<br>
+<b>I'd optimise by...</b> — я оптимизирую через...</div>
+</div>`,
+        exercises:[
+          {q:'My first ___ would be to sort the array and use binary search.',blank:'approach',opts:['approach','idea','plan','way']},
+          {q:'This ___ has O(n log n) time complexity.',blank:'algorithm',opts:['algorithm','code','method','step']},
+          {q:'We need to handle the ___ case where the input is empty.',blank:'edge',opts:['edge','special','border','corner']},
+          {q:'I\'d use a hash map for O(1) lookup ___ .',blank:'complexity',opts:['complexity','speed','time','cost']},
+          {q:'The ___ between memory and speed depends on the use case.',blank:'trade-off',opts:['trade-off','choice','deal','option']},
+          {q:'Let me ___ the code to make it more readable.',blank:'refactor',opts:['refactor','fix','clean','rewrite']},
+          {q:'This solution is ___ and can handle millions of requests.',blank:'scalable',opts:['scalable','big','fast','strong']},
+          {q:'I\'d ___ the query by adding an index on the user_id column.',blank:'optimise',opts:['optimise','fix','change','improve']},
+          {q:'A linked list is a common ___ used in interview questions.',blank:'data structure',opts:['data structure','method','tool','pattern']},
+          {q:'I need to ___ this function — it throws an error on line 12.',blank:'debug',opts:['debug','fix','check','test']}
+        ]
+      },
+      {id:8,title:'Case interviews',xp:40,
+        theory:`<div class="theory-block">
+<h3>Case interviews — разбор кейсов</h3>
+<p>Кейс-интервью популярны в консалтинге. Нужно структурировать мышление и задавать правильные вопросы.</p>
+<div class="rule"><b>framework</b> — структура анализа | <b>assumption</b> — допущение<br>
+<b>estimate</b> — оценить | <b>hypothesis</b> — гипотеза<br>
+<b>revenue</b> — выручка | <b>profitability</b> — прибыльность<br>
+<b>market share</b> — доля рынка | <b>segment</b> — сегмент<br>
+<b>root cause</b> — первопричина | <b>recommendation</b> — рекомендация</div>
+<p class="example">✦ I'd like to use an issue tree <b>framework</b> to structure my analysis.</p>
+<p class="example">✦ My <b>hypothesis</b> is that the drop in revenue is due to customer churn.</p>
+<p class="example">✦ My <b>recommendation</b> would be to focus on the B2B <b>segment</b>.</p>
+<div class="rule"><b>Вопросы для уточнения:</b><br>
+<b>Could you clarify what you mean by...?</b><br>
+<b>What is the key objective here?</b><br>
+<b>Can I take a moment to structure my thoughts?</b></div>
+</div>`,
+        exercises:[
+          {q:'I\'d like to use a ___ to organise my analysis.',blank:'framework',opts:['framework','plan','list','map']},
+          {q:'My ___ is that the revenue decline is due to pricing issues.',blank:'hypothesis',opts:['hypothesis','guess','idea','thought']},
+          {q:'Can I make an ___ that the market is growing at 5% per year?',blank:'assumption',opts:['assumption','guess','estimate','claim']},
+          {q:'I\'d like to ___ the market size at around 10 million users.',blank:'estimate',opts:['estimate','guess','count','calculate']},
+          {q:'The ___ cause of the problem appears to be customer churn.',blank:'root',opts:['root','main','first','key']},
+          {q:'My ___ would be to invest in customer retention programmes.',blank:'recommendation',opts:['recommendation','idea','plan','thought']},
+          {q:'Which customer ___ is most profitable for the company?',blank:'segment',opts:['segment','group','type','kind']},
+          {q:'The company\'s ___ has dropped by 15% in the past quarter.',blank:'profitability',opts:['profitability','profit','money','income']},
+          {q:'They want to increase their ___ share from 20% to 30%.',blank:'market',opts:['market','business','product','sales']},
+          {q:'Could you ___ what the main objective of this project is?',blank:'clarify',opts:['clarify','tell','say','explain']}
+        ]
+      },
+      {id:9,title:'Group interviews',xp:35,
+        theory:`<div class="theory-block">
+<h3>Group interviews — групповые собеседования</h3>
+<p>В групповых интервью важно проявить лидерство и умение слушать других.</p>
+<div class="rule"><b>facilitate</b> — организовывать обсуждение | <b>build on</b> — развивать чью-то идею<br>
+<b>summarise</b> — подводить итог | <b>mediating</b> — посредничество<br>
+<b>inclusive</b> — включающий всех | <b>consensus</b> — общее согласие<br>
+<b>contribute</b> — вносить вклад | <b>take turns</b> — говорить по очереди<br>
+<b>defer to</b> — уступать | <b>raise a point</b> — поднять вопрос</div>
+<p class="example">✦ I'd like to <b>build on</b> what Sarah said about customer needs.</p>
+<p class="example">✦ Can we <b>take turns</b> sharing our ideas before deciding?</p>
+<p class="example">✦ I think we've reached a <b>consensus</b> — let me <b>summarise</b> our plan.</p>
+</div>`,
+        exercises:[
+          {q:'I\'d like to ___ on what you just said — great point!',blank:'build',opts:['build','add','agree','expand']},
+          {q:'Shall we ___ turns presenting our ideas?',blank:'take',opts:['take','have','make','do']},
+          {q:'Let me ___ what we\'ve discussed so far.',blank:'summarise',opts:['summarise','repeat','say','list']},
+          {q:'I think we need to ___ a point about the timeline.',blank:'raise',opts:['raise','make','say','ask']},
+          {q:'We should try to reach a ___ before the time is up.',blank:'consensus',opts:['consensus','agreement','deal','vote']},
+          {q:'I\'d like to ___ the discussion and make sure everyone speaks.',blank:'facilitate',opts:['facilitate','lead','run','do']},
+          {q:'Let\'s make the process more ___ by inviting quieter members.',blank:'inclusive',opts:['inclusive','fair','open','equal']},
+          {q:'I\'ll ___ to your expertise on the technical side.',blank:'defer',opts:['defer','give','yield','agree']},
+          {q:'Everyone should ___ their ideas to the group discussion.',blank:'contribute',opts:['contribute','give','add','bring']},
+          {q:'I think we\'re ___ — we agree on the main strategy.',blank:'aligned',opts:['aligned','good','done','ready']}
+        ]
+      },
+      {id:10,title:'Video interviews',xp:35,
+        theory:`<div class="theory-block">
+<h3>Video interviews — онлайн-интервью</h3>
+<p>Видеоинтервью требуют дополнительной подготовки — технической и коммуникативной.</p>
+<div class="rule"><b>connection issue</b> — проблема с соединением | <b>mute</b> — отключить звук<br>
+<b>freeze</b> — зависнуть | <b>background</b> — фон<br>
+<b>eye contact</b> — зрительный контакт | <b>lighting</b> — освещение<br>
+<b>bandwidth</b> — пропускная способность | <b>platform</b> — платформа<br>
+<b>recording</b> — запись | <b>lag</b> — задержка</div>
+<p class="example">✦ I apologise — I think there's a <b>connection issue</b> on my end.</p>
+<p class="example">✦ Could you repeat that? There was a slight <b>lag</b>.</p>
+<p class="example">✦ Please let me know if you can't hear me — I'll check my <b>audio</b>.</p>
+<div class="rule"><b>Полезные фразы:</b><br>
+<b>I seem to be on mute — let me fix that.</b><br>
+<b>Can you see my screen?</b> — вы видите мой экран?<br>
+<b>I'll rejoin the call.</b> — я перезайду в звонок.</div>
+</div>`,
+        exercises:[
+          {q:'I apologise — there seems to be a ___ issue on my end.',blank:'connection',opts:['connection','internet','wifi','network']},
+          {q:'Could you repeat that? There was a slight ___.',blank:'lag',opts:['lag','delay','pause','stop']},
+          {q:'Let me check my ___ — you may not be able to hear me.',blank:'audio',opts:['audio','sound','voice','mic']},
+          {q:'I seem to be on ___ — let me unmute myself.',blank:'mute',opts:['mute','silence','pause','hold']},
+          {q:'Make sure your ___ is professional and tidy.',blank:'background',opts:['background','room','desk','wall']},
+          {q:'Good ___ is essential for a professional video interview.',blank:'lighting',opts:['lighting','light','brightness','glow']},
+          {q:'Try to maintain ___ contact by looking at the camera.',blank:'eye',opts:['eye','direct','visual','screen']},
+          {q:'Which ___ are you using — Zoom, Teams, or Google Meet?',blank:'platform',opts:['platform','app','tool','program']},
+          {q:'I\'ll ___ the call and rejoin in a moment.',blank:'leave',opts:['leave','exit','quit','close']},
+          {q:'Please let me know if my video ___.',blank:'freezes',opts:['freezes','stops','breaks','cuts']}
+        ]
+      },
+      {id:11,title:'Culture fit questions',xp:35,
+        theory:`<div class="theory-block">
+<h3>Culture fit — вопросы о культуре компании</h3>
+<p>Работодатели хотят убедиться, что ты подходишь их культуре. Исследуй ценности компании заранее.</p>
+<div class="rule"><b>work environment</b> — рабочая среда | <b>team dynamic</b> — динамика команды<br>
+<b>open-door policy</b> — политика открытых дверей | <b>transparency</b> — прозрачность<br>
+<b>flat hierarchy</b> — плоская иерархия | <b>feedback culture</b> — культура обратной связи<br>
+<b>ownership</b> — ответственность за результат | <b>work-life balance</b> — баланс работы и жизни<br>
+<b>diversity</b> — разнообразие | <b>inclusion</b> — инклюзивность</div>
+<p class="example">✦ I thrive in a <b>transparent</b> environment with regular <b>feedback</b>.</p>
+<p class="example">✦ I prefer a <b>flat hierarchy</b> where everyone's voice is heard.</p>
+<p class="example">✦ I value <b>work-life balance</b> and a culture of <b>ownership</b>.</p>
+</div>`,
+        exercises:[
+          {q:'I work best in a ___ and collaborative work environment.',blank:'transparent',opts:['transparent','open','clear','honest']},
+          {q:'I appreciate a strong ___ culture with regular check-ins.',blank:'feedback',opts:['feedback','review','talk','meeting']},
+          {q:'I prefer a ___ hierarchy where decisions are made quickly.',blank:'flat',opts:['flat','low','small','thin']},
+          {q:'Good ___ balance is important for long-term productivity.',blank:'work-life',opts:['work-life','job-life','office-home','day-night']},
+          {q:'I value ___ and inclusion in every workplace.',blank:'diversity',opts:['diversity','difference','variety','range']},
+          {q:'I like taking ___ of my projects from start to finish.',blank:'ownership',opts:['ownership','control','charge','lead']},
+          {q:'The company\'s open-door ___ means managers are always available.',blank:'policy',opts:['policy','rule','door','way']},
+          {q:'I prefer a positive team ___ where people support each other.',blank:'dynamic',opts:['dynamic','spirit','mood','energy']},
+          {q:'How would you describe the ___ environment here?',blank:'work',opts:['work','office','team','job']},
+          {q:'The company values ___, encouraging employees to speak up.',blank:'transparency',opts:['transparency','honesty','trust','clarity']}
+        ]
+      },
+      {id:12,title:'Behavioural questions',xp:40,
+        theory:`<div class="theory-block">
+<h3>Behavioural questions — поведенческие вопросы</h3>
+<p>Эти вопросы начинаются с «Tell me about a time when...» или «Give me an example of...». Используй STAR.</p>
+<div class="rule"><b>Частые темы:</b><br>
+<b>conflict</b> — конфликт | <b>failure</b> — неудача<br>
+<b>under pressure</b> — под давлением | <b>tight deadline</b> — сжатые сроки<br>
+<b>persuade</b> — убедить | <b>initiative</b> — инициатива<br>
+<b>overcome</b> — преодолеть | <b>adapt</b> — адаптироваться<br>
+<b>lesson learned</b> — урок, который я усвоил | <b>bounce back</b> — восстановиться</div>
+<p class="example">✦ Tell me about a time you had to meet a <b>tight deadline</b>.</p>
+<p class="example">✦ Give me an example of when you took the <b>initiative</b>.</p>
+<p class="example">✦ Describe how you <b>overcame</b> a major challenge at work.</p>
+</div>`,
+        exercises:[
+          {q:'Tell me about a time you worked ___ a tight deadline.',blank:'under',opts:['under','with','against','on']},
+          {q:'Give me an example of when you took the ___.',blank:'initiative',opts:['initiative','lead','charge','role']},
+          {q:'How did you ___ a serious conflict with a colleague?',blank:'resolve',opts:['resolve','fix','end','stop']},
+          {q:'Describe a time when you had to ___ to a major change.',blank:'adapt',opts:['adapt','adjust','change','move']},
+          {q:'Tell me about a ___ and what you learned from it.',blank:'failure',opts:['failure','mistake','error','problem']},
+          {q:'How did you ___ a challenging situation at work?',blank:'overcome',opts:['overcome','pass','beat','avoid']},
+          {q:'Describe a time you had to ___ someone to change their mind.',blank:'persuade',opts:['persuade','convince','tell','make']},
+          {q:'Tell me about a time you worked ___ pressure.',blank:'under',opts:['under','with','in','at']},
+          {q:'What was the key ___ you learned from that experience?',blank:'lesson',opts:['lesson','thing','point','fact']},
+          {q:'How quickly did you ___ back after that setback?',blank:'bounce',opts:['bounce','come','get','move']}
+        ]
+      },
+      {id:13,title:'Leadership questions',xp:40,
+        theory:`<div class="theory-block">
+<h3>Leadership questions — вопросы о лидерстве</h3>
+<p>Лидерство — это не только управление людьми. Можно проявлять лидерство без официальной роли.</p>
+<div class="rule"><b>motivate</b> — мотивировать | <b>delegate</b> — делегировать<br>
+<b>empower</b> — расширять полномочия | <b>mentor</b> — наставничать<br>
+<b>accountability</b> — ответственность | <b>vision</b> — видение<br>
+<b>influence</b> — влиять | <b>develop</b> — развивать (людей)<br>
+<b>align</b> — выравнивать (цели) | <b>drive</b> — продвигать, движущая сила</div>
+<p class="example">✦ I <b>motivated</b> my team by setting a clear <b>vision</b> and celebrating wins.</p>
+<p class="example">✦ I believe in <b>empowering</b> people and holding them to <b>accountability</b>.</p>
+<p class="example">✦ I <b>mentored</b> two junior developers who were later promoted.</p>
+</div>`,
+        exercises:[
+          {q:'A good leader knows how to ___ tasks to the right people.',blank:'delegate',opts:['delegate','give','send','pass']},
+          {q:'I ___ my team by linking their work to the bigger picture.',blank:'motivated',opts:['motivated','pushed','forced','made']},
+          {q:'I ___ junior team members by meeting them weekly.',blank:'mentored',opts:['mentored','helped','taught','trained']},
+          {q:'My leadership style focuses on ___ team members to make decisions.',blank:'empowering',opts:['empowering','allowing','letting','giving']},
+          {q:'I hold everyone, including myself, to a high standard of ___.',blank:'accountability',opts:['accountability','quality','work','output']},
+          {q:'I set a clear ___ for where the team should be in 12 months.',blank:'vision',opts:['vision','goal','plan','idea']},
+          {q:'I used my ___ to persuade leadership to adopt the new process.',blank:'influence',opts:['influence','power','status','position']},
+          {q:'I regularly ___ with my team\'s goals and the company strategy.',blank:'align',opts:['align','match','check','agree']},
+          {q:'My goal is to ___ each team member\'s skills and confidence.',blank:'develop',opts:['develop','grow','build','improve']},
+          {q:'What ___ your leadership style — coaching or directing?',blank:'drives',opts:['drives','defines','shapes','makes']}
+        ]
+      },
+      {id:14,title:'Problem-solving questions',xp:40,
+        theory:`<div class="theory-block">
+<h3>Problem-solving — вопросы о решении проблем</h3>
+<p>Покажи структурированный подход: сначала анализ, потом действие, потом результат.</p>
+<div class="rule"><b>identify</b> — определить | <b>diagnose</b> — диагностировать<br>
+<b>prioritise</b> — расставить приоритеты | <b>brainstorm</b> — мозговой штурм<br>
+<b>evaluate options</b> — оценить варианты | <b>implement</b> — внедрить<br>
+<b>measure impact</b> — измерить эффект | <b>iterate</b> — повторять улучшения<br>
+<b>stakeholder</b> — заинтересованная сторона | <b>constraint</b> — ограничение</div>
+<p class="example">✦ First, I <b>identified</b> the root cause by analysing the data.</p>
+<p class="example">✦ I <b>evaluated</b> three options and chose the most cost-effective one.</p>
+<p class="example">✦ After <b>implementing</b> the solution, I <b>measured</b> its impact weekly.</p>
+</div>`,
+        exercises:[
+          {q:'First, I ___ the root cause of the problem.',blank:'identified',opts:['identified','found','saw','got']},
+          {q:'We ___ possible solutions before deciding on the best approach.',blank:'brainstormed',opts:['brainstormed','listed','wrote','thought']},
+          {q:'I ___ the options based on cost and time to implement.',blank:'evaluated',opts:['evaluated','checked','tested','tried']},
+          {q:'We had to work within strict budget ___.',blank:'constraints',opts:['constraints','limits','rules','borders']},
+          {q:'I ___ the most urgent issues to tackle first.',blank:'prioritised',opts:['prioritised','chose','picked','selected']},
+          {q:'Once the plan was ready, I ___ it in stages.',blank:'implemented',opts:['implemented','did','made','ran']},
+          {q:'I kept all ___ informed throughout the project.',blank:'stakeholders',opts:['stakeholders','people','teams','managers']},
+          {q:'We ___ the impact of the changes after one month.',blank:'measured',opts:['measured','checked','saw','counted']},
+          {q:'After getting feedback, we ___ and improved the solution.',blank:'iterated',opts:['iterated','changed','fixed','updated']},
+          {q:'I used data to ___ where the bottleneck was occurring.',blank:'diagnose',opts:['diagnose','find','spot','check']}
+        ]
+      },
+      {id:15,title:'Career development questions',xp:35,
+        theory:`<div class="theory-block">
+<h3>Career development — карьерные вопросы</h3>
+<p>Вопросы о твоих карьерных планах показывают амбициозность и совпадение с компанией.</p>
+<div class="rule"><b>aspire to</b> — стремиться к | <b>long-term goal</b> — долгосрочная цель<br>
+<b>skill set</b> — набор навыков | <b>professional development</b> — проф. развитие<br>
+<b>milestone</b> — этап, веха | <b>trajectory</b> — траектория карьеры<br>
+<b>cross-functional</b> — межфункциональный | <b>expertise</b> — экспертиза<br>
+<b>mentorship</b> — наставничество | <b>upskill</b> — повышать квалификацию</div>
+<p class="example">✦ My <b>long-term goal</b> is to lead a product team at a global company.</p>
+<p class="example">✦ I <b>aspire to</b> build deep <b>expertise</b> in machine learning over the next 5 years.</p>
+<p class="example">✦ I'm actively <b>upskilling</b> in cloud architecture and DevOps.</p>
+</div>`,
+        exercises:[
+          {q:'Where do you see yourself in five ___?',blank:'years',opts:['years','time','months','days']},
+          {q:'My ___ goal is to become a VP of Engineering.',blank:'long-term',opts:['long-term','future','big','main']},
+          {q:'I ___ to lead a cross-functional team within 3 years.',blank:'aspire',opts:['aspire','want','wish','hope']},
+          {q:'I\'m constantly working to ___ my data analysis skills.',blank:'upskill',opts:['upskill','improve','grow','build']},
+          {q:'I value ___ from experienced leaders in my field.',blank:'mentorship',opts:['mentorship','advice','help','support']},
+          {q:'I want to deepen my ___ in product management.',blank:'expertise',opts:['expertise','knowledge','skills','ability']},
+          {q:'Each role has been an important ___ in my career trajectory.',blank:'milestone',opts:['milestone','step','move','jump']},
+          {q:'My career ___ has always moved towards leadership roles.',blank:'trajectory',opts:['trajectory','path','road','way']},
+          {q:'I want to work on ___ projects that span multiple departments.',blank:'cross-functional',opts:['cross-functional','big','global','large']},
+          {q:'I\'m investing in my ___ through online courses and certifications.',blank:'professional development',opts:['professional development','training','study','learning']}
+        ]
+      },
+      {id:16,title:'Remote work questions',xp:35,
+        theory:`<div class="theory-block">
+<h3>Remote work — удалённая работа</h3>
+<p>Умение работать удалённо — важный навык. Покажи самоорганизацию и коммуникацию.</p>
+<div class="rule"><b>self-motivated</b> — самомотивированный | <b>asynchronous</b> — асинхронный<br>
+<b>time zone</b> — часовой пояс | <b>home office</b> — домашний офис<br>
+<b>collaboration tools</b> — инструменты совместной работы<br>
+<b>check-in</b> — регулярная встреча | <b>boundaries</b> — границы<br>
+<b>productivity</b> — продуктивность | <b>distraction-free</b> — без отвлечений<br>
+<b>hybrid</b> — гибридный формат</div>
+<p class="example">✦ I'm highly <b>self-motivated</b> and work well without direct supervision.</p>
+<p class="example">✦ I use <b>asynchronous</b> communication tools like Slack and Notion.</p>
+<p class="example">✦ I set clear <b>boundaries</b> to maintain <b>productivity</b> at home.</p>
+</div>`,
+        exercises:[
+          {q:'I am highly ___ and don\'t need micromanagement.',blank:'self-motivated',opts:['self-motivated','independent','free','alone']},
+          {q:'I use ___ communication to collaborate across time zones.',blank:'asynchronous',opts:['asynchronous','online','remote','digital']},
+          {q:'I have a dedicated ___ office with high-speed internet.',blank:'home',opts:['home','remote','personal','private']},
+          {q:'I set clear ___ between work time and personal time.',blank:'boundaries',opts:['boundaries','rules','limits','lines']},
+          {q:'Daily ___ calls help me stay connected with the team.',blank:'check-in',opts:['check-in','meeting','call','talk']},
+          {q:'I use tools like Notion and Slack as ___ tools for collaboration.',blank:'collaboration',opts:['collaboration','work','team','project']},
+          {q:'Working across ___ zones requires flexible scheduling.',blank:'time',opts:['time','work','world','global']},
+          {q:'My home office is ___ so I can focus without interruptions.',blank:'distraction-free',opts:['distraction-free','quiet','empty','clean']},
+          {q:'Our team works in a ___ model — 2 days in office, 3 remote.',blank:'hybrid',opts:['hybrid','mixed','flexible','remote']},
+          {q:'I track my ___ with time-blocking and daily to-do lists.',blank:'productivity',opts:['productivity','output','work','tasks']}
+        ]
+      },
+      {id:17,title:'Asking questions to the interviewer',xp:35,
+        theory:`<div class="theory-block">
+<h3>Questions to ask — задай вопросы интервьюеру</h3>
+<p>Всегда готовь вопросы для интервьюера — это показывает интерес и вовлечённость.</p>
+<div class="rule"><b>Хорошие вопросы:</b><br>
+<b>What does success look like in this role?</b> — как выглядит успех?<br>
+<b>What are the biggest challenges your team faces?</b> — главные вызовы?<br>
+<b>How would you describe the team culture?</b> — командная культура?<br>
+<b>What's the typical career path from this position?</b> — карьерный путь?<br>
+<b>How do you support professional development?</b> — развитие сотрудников?</div>
+<p class="example">✦ <b>What does success look like</b> in the first 90 days?</p>
+<p class="example">✦ <b>How would you describe</b> the team's working style?</p>
+<p class="example">✦ <b>What are the biggest challenges</b> someone in this role faces?</p>
+<div class="rule"><b>Вопросы о компании:</b><br>
+<b>Where do you see the company in 3 years?</b><br>
+<b>What do you enjoy most about working here?</b></div>
+</div>`,
+        exercises:[
+          {q:'What does ___ look like in the first 90 days?',blank:'success',opts:['success','work','progress','achievement']},
+          {q:'What are the biggest ___ your team currently faces?',blank:'challenges',opts:['challenges','problems','issues','tasks']},
+          {q:'How would you ___ the culture of the team?',blank:'describe',opts:['describe','say','tell','explain']},
+          {q:'What is the typical ___ path from this position?',blank:'career',opts:['career','growth','job','work']},
+          {q:'How do you support employees\' ___ development?',blank:'professional',opts:['professional','personal','work','career']},
+          {q:'What do you ___ most about working at this company?',blank:'enjoy',opts:['enjoy','like','love','prefer']},
+          {q:'Where do you ___ the company going in the next 3 years?',blank:'see',opts:['see','think','imagine','expect']},
+          {q:'How does the team ___ on a day-to-day basis?',blank:'collaborate',opts:['collaborate','work','function','operate']},
+          {q:'What ___ does the company have for training and learning?',blank:'resources',opts:['resources','support','help','tools']},
+          {q:'Is this a ___ position or a newly created one?',blank:'backfill',opts:['backfill','replacement','old','existing']}
+        ]
+      },
+      {id:18,title:'Follow-up email',xp:35,
+        theory:`<div class="theory-block">
+<h3>Follow-up email — письмо после интервью</h3>
+<p>Письмо после интервью выделяет тебя среди других кандидатов. Отправь в течение 24 часов.</p>
+<div class="rule"><b>thank you for</b> — спасибо за | <b>opportunity</b> — возможность<br>
+<b>reiterate</b> — повторить / подчеркнуть | <b>enthusiasm</b> — энтузиазм<br>
+<b>discussed</b> — обсудили | <b>keen</b> — очень заинтересованный<br>
+<b>look forward to</b> — с нетерпением жду | <b>next steps</b> — следующие шаги<br>
+<b>reach out</b> — обратиться | <b>sincerely</b> — искренне</div>
+<p class="example">✦ Thank you for the <b>opportunity</b> to interview for the Marketing Manager role.</p>
+<p class="example">✦ I wanted to <b>reiterate</b> my <b>enthusiasm</b> for joining your team.</p>
+<p class="example">✦ I <b>look forward to</b> hearing about the <b>next steps</b> in the process.</p>
+</div>`,
+        exercises:[
+          {q:'Thank you for the ___ to interview for this position.',blank:'opportunity',opts:['opportunity','chance','time','invite']},
+          {q:'I wanted to ___ my enthusiasm for the role.',blank:'reiterate',opts:['reiterate','repeat','say','express']},
+          {q:'I really enjoyed ___ the project roadmap with you.',blank:'discussing',opts:['discussing','talking','saying','sharing']},
+          {q:'I\'m very ___ to contribute to your team\'s success.',blank:'keen',opts:['keen','happy','glad','willing']},
+          {q:'I ___ forward to hearing about the next steps.',blank:'look',opts:['look','wait','hope','stay']},
+          {q:'Please feel free to ___ out if you need more information.',blank:'reach',opts:['reach','come','get','call']},
+          {q:'I am writing to ___ for the time you gave me yesterday.',blank:'thank',opts:['thank','ask','tell','write']},
+          {q:'The interview confirmed my ___ about this opportunity.',blank:'enthusiasm',opts:['enthusiasm','feelings','thoughts','views']},
+          {q:'What are the ___ steps in the hiring process?',blank:'next',opts:['next','following','coming','future']},
+          {q:'___, I hope to be joining your team soon.',blank:'Sincerely',opts:['Sincerely','Kindly','Greatly','Truly']}
+        ]
+      },
+      {id:19,title:'Rejection and feedback',xp:35,
+        theory:`<div class="theory-block">
+<h3>Rejection and feedback — отказ и обратная связь</h3>
+<p>Даже получив отказ, можно произвести хорошее впечатление. Попроси обратную связь профессионально.</p>
+<div class="rule"><b>appreciate</b> — ценить | <b>constructive feedback</b> — конструктивная обратная связь<br>
+<b>disappointed</b> — разочарован | <b>improve</b> — улучшить<br>
+<b>consider</b> — рассмотреть | <b>future openings</b> — будущие вакансии<br>
+<b>keep in touch</b> — оставаться на связи | <b>grow from</b> — расти из (опыта)<br>
+<b>respectfully</b> — уважительно | <b>grateful</b> — благодарный</div>
+<p class="example">✦ Thank you for letting me know. I'm <b>disappointed</b> but I understand.</p>
+<p class="example">✦ Could you share any <b>constructive feedback</b> to help me <b>improve</b>?</p>
+<p class="example">✦ I'd love to be <b>considered</b> for any <b>future openings</b> that may arise.</p>
+</div>`,
+        exercises:[
+          {q:'Thank you for letting me know — I\'m ___ but I understand.',blank:'disappointed',opts:['disappointed','sad','upset','unhappy']},
+          {q:'Could you share any ___ feedback to help me improve?',blank:'constructive',opts:['constructive','helpful','useful','positive']},
+          {q:'I ___ any advice you can offer about my interview performance.',blank:'appreciate',opts:['appreciate','value','want','need']},
+          {q:'I hope we can ___ in touch for future opportunities.',blank:'keep',opts:['keep','stay','be','remain']},
+          {q:'I would love to be ___ for any future roles that open up.',blank:'considered',opts:['considered','remembered','called','invited']},
+          {q:'I will ___ from this experience and apply your feedback.',blank:'grow',opts:['grow','learn','improve','get']},
+          {q:'Is there anything specific I could ___ for next time?',blank:'improve',opts:['improve','do','change','fix']},
+          {q:'I am ___ for the time you invested in the interview process.',blank:'grateful',opts:['grateful','thankful','glad','happy']},
+          {q:'I respect your decision and ___ thank you for the opportunity.',blank:'sincerely',opts:['sincerely','truly','really','greatly']},
+          {q:'Please keep me in mind for ___ openings in the future.',blank:'future',opts:['future','other','new','open']}
+        ]
+      },
+      {id:20,title:'Interview English: итог',xp:50,
+        theory:`<div class="theory-block">
+<h3>Interview English — финальный обзор</h3>
+<p>Поздравляем! Ты прошёл курс Interview English. Ты готов к собеседованиям на английском!</p>
+<div class="rule">
+&bull; <b>Self-intro</b>: Present–Past–Future, passionate about, responsible for<br>
+&bull; <b>Experience</b>: managed, led, delivered, achieved, implemented<br>
+&bull; <b>STAR method</b>: Situation → Task → Action → Result<br>
+&bull; <b>Strengths</b>: analytical, detail-oriented, reliable, proactive<br>
+&bull; <b>Salary</b>: range, negotiable, total compensation, benefits<br>
+&bull; <b>Technical</b>: algorithm, trade-off, edge case, optimise<br>
+&bull; <b>Follow-up</b>: reiterate enthusiasm, look forward to next steps<br>
+&bull; <b>Rejection</b>: constructive feedback, future openings, grateful
+</div>
+<p style="margin-top:10px"><b>Практика:</b><br>
+Запишись на mock interview • Практикуй с AI в чате • Читай: Glassdoor, LinkedIn</p>
+</div>`,
+        exercises:[
+          {q:'Tell me ___ yourself — start with your current role.',blank:'about',opts:['about','for','with','on']},
+          {q:'I ___ a team of 8 engineers delivering 3 major features.',blank:'led',opts:['led','managed','did','ran']},
+          {q:'In the STAR method, A stands for ___.',blank:'Action',opts:['Action','Answer','Approach','Activity']},
+          {q:'My salary expectations are ___ depending on the full package.',blank:'negotiable',opts:['negotiable','fixed','open','flexible']},
+          {q:'I ___ in a flat hierarchy where ideas come from everyone.',blank:'thrive',opts:['thrive','work','like','prefer']},
+          {q:'I wanted to ___ my enthusiasm for joining your team.',blank:'reiterate',opts:['reiterate','show','express','say']},
+          {q:'Could you share ___ feedback to help me improve?',blank:'constructive',opts:['constructive','useful','helpful','good']},
+          {q:'I\'m ___ motivated and work well without supervision.',blank:'self',opts:['self','very','highly','well']},
+          {q:'What does ___ look like in the first 90 days?',blank:'success',opts:['success','work','progress','growth']},
+          {q:'I look ___ to hearing about the next steps.',blank:'forward',opts:['forward','ahead','to','for']},
+          {q:'I ___ on that project by leading the data migration.',blank:'delivered',opts:['delivered','worked','helped','did']},
+          {q:'The ___ between speed and memory depends on the context.',blank:'trade-off',opts:['trade-off','choice','decision','option']},
+          {q:'I prefer to ___ tasks to teammates who can handle them best.',blank:'delegate',opts:['delegate','give','pass','send']},
+          {q:'I ___ motivated my team by linking daily work to the company vision.',blank:'effectively',opts:['effectively','always','greatly','well']},
+          {q:'Congratulations! You completed the ___ English course.',blank:'Interview',opts:['Interview','Business','Academic','HR']}
+        ]
+      }
+    ]
+  }
+  ,legal:{
+    title:'Legal English',
+    icon:'⚖️',
+    color:'#0891b2',
+    lessons:[
+      {id:1,title:'Legal vocabulary basics',xp:35,
+        theory:`<div class="theory-block">
+<h3>Legal vocabulary basics — базовая юридическая лексика</h3>
+<p>Юридический английский точен и формален. Знание базовых терминов необходимо для работы с документами.</p>
+<div class="rule"><b>jurisdiction</b> — юрисдикция | <b>plaintiff</b> — истец<br>
+<b>defendant</b> — ответчик | <b>litigation</b> — судебный процесс<br>
+<b>statute</b> — статут, закон | <b>precedent</b> — прецедент<br>
+<b>liability</b> — ответственность | <b>remedy</b> — средство правовой защиты<br>
+<b>claimant</b> — заявитель | <b>enforcement</b> — исполнение / применение закона</div>
+<p class="example">✦ The <b>plaintiff</b> filed a claim against the <b>defendant</b> for breach of contract.</p>
+<p class="example">✦ The court set a new <b>precedent</b> in intellectual property <b>litigation</b>.</p>
+<p class="example">✦ The <b>remedy</b> sought was compensation and an injunction.</p>
+</div>`,
+        exercises:[
+          {q:'The ___ filed a lawsuit against the company for damages.',blank:'plaintiff',opts:['plaintiff','defendant','judge','lawyer']},
+          {q:'The ___ denied all charges brought against him.',blank:'defendant',opts:['defendant','plaintiff','witness','claimant']},
+          {q:'The case falls within the ___ of the English courts.',blank:'jurisdiction',opts:['jurisdiction','area','region','scope']},
+          {q:'This case may set a new ___ for similar disputes.',blank:'precedent',opts:['precedent','rule','law','example']},
+          {q:'The company faces significant ___ for the data breach.',blank:'liability',opts:['liability','risk','fine','penalty']},
+          {q:'The ___ sought was compensation of £500,000.',blank:'remedy',opts:['remedy','solution','answer','fix']},
+          {q:'The ___ states that all contracts must be in writing.',blank:'statute',opts:['statute','rule','law','code']},
+          {q:'The case went to ___ after negotiations failed.',blank:'litigation',opts:['litigation','court','dispute','trial']},
+          {q:'The ___ submitted their claim to the tribunal.',blank:'claimant',opts:['claimant','plaintiff','client','applicant']},
+          {q:'The court ordered ___ of the judgement within 30 days.',blank:'enforcement',opts:['enforcement','payment','execution','action']}
+        ]
+      },
+      {id:2,title:'Contract terms',xp:35,
+        theory:`<div class="theory-block">
+<h3>Contract terms — термины договора</h3>
+<p>Контракты — основа деловых отношений. Понимание ключевых терминов защищает ваши интересы.</p>
+<div class="rule"><b>parties</b> — стороны договора | <b>clause</b> — пункт, статья<br>
+<b>breach</b> — нарушение | <b>termination</b> — расторжение<br>
+<b>indemnification</b> — возмещение ущерба | <b>warranty</b> — гарантия<br>
+<b>consideration</b> — встречное предоставление | <b>void</b> — недействительный<br>
+<b>enforceable</b> — имеющий юридическую силу | <b>amendment</b> — поправка</div>
+<p class="example">✦ The contract <b>parties</b> agreed on a 12-month term with a renewal <b>clause</b>.</p>
+<p class="example">✦ Any <b>breach</b> of this agreement may lead to immediate <b>termination</b>.</p>
+<p class="example">✦ The <b>warranty</b> covers defects for two years from the date of purchase.</p>
+</div>`,
+        exercises:[
+          {q:'Both ___ must sign the agreement for it to be valid.',blank:'parties',opts:['parties','sides','people','groups']},
+          {q:'The confidentiality ___ prevents disclosure of trade secrets.',blank:'clause',opts:['clause','rule','part','point']},
+          {q:'Failure to deliver on time constitutes a ___ of contract.',blank:'breach',opts:['breach','break','fail','error']},
+          {q:'The contract may be terminated with 30 days notice by either party.',blank:'terminated',opts:['terminated','ended','stopped','cancelled']},
+          {q:'The seller provides a two-year ___ against manufacturing defects.',blank:'warranty',opts:['warranty','guarantee','promise','cover']},
+          {q:'A contract without ___ may not be legally enforceable.',blank:'consideration',opts:['consideration','payment','money','value']},
+          {q:'The agreement is ___ if one party was under duress.',blank:'void',opts:['void','invalid','illegal','broken']},
+          {q:'The ___ clause requires the supplier to cover all losses.',blank:'indemnification',opts:['indemnification','payment','liability','penalty']},
+          {q:'We need to draft an ___ to the original agreement.',blank:'amendment',opts:['amendment','change','update','addition']},
+          {q:'The court found the penalty clause was not ___.',blank:'enforceable',opts:['enforceable','valid','legal','allowed']}
+        ]
+      },
+      {id:3,title:'Rights and obligations',xp:35,
+        theory:`<div class="theory-block">
+<h3>Rights and obligations — права и обязательства</h3>
+<p>В праве чётко разграничивают что сторона «может делать» (права) и что «обязана делать» (обязательства).</p>
+<div class="rule"><b>entitled to</b> — имеет право на | <b>obligated to</b> — обязан<br>
+<b>duty</b> — обязанность | <b>right</b> — право<br>
+<b>waive</b> — отказаться от права | <b>exercise</b> — реализовать (право)<br>
+<b>comply with</b> — соблюдать | <b>refrain from</b> — воздерживаться от<br>
+<b>consent</b> — согласие | <b>discretion</b> — усмотрение</div>
+<p class="example">✦ Each party is <b>entitled to</b> terminate the agreement with 30 days notice.</p>
+<p class="example">✦ The employee is <b>obligated to</b> <b>comply with</b> all company policies.</p>
+<p class="example">✦ You may <b>waive</b> your right to a refund by signing this form.</p>
+</div>`,
+        exercises:[
+          {q:'You are ___ to a full refund within 14 days.',blank:'entitled',opts:['entitled','allowed','given','able']},
+          {q:'The contractor is ___ to complete the work by the agreed date.',blank:'obligated',opts:['obligated','forced','asked','requested']},
+          {q:'All staff must ___ with the new data protection regulations.',blank:'comply',opts:['comply','follow','do','obey']},
+          {q:'You may ___ your right to appeal by not responding.',blank:'waive',opts:['waive','lose','give','drop']},
+          {q:'The tenant has a ___ to pay rent on the first of each month.',blank:'duty',opts:['duty','job','task','need']},
+          {q:'The employee must ___ from sharing confidential information.',blank:'refrain',opts:['refrain','stop','avoid','hold']},
+          {q:'The company may ___ this right at any time without notice.',blank:'exercise',opts:['exercise','use','take','apply']},
+          {q:'The patient must give written ___ before the procedure.',blank:'consent',opts:['consent','agreement','approval','permit']},
+          {q:'The manager has ___ over how to allocate the budget.',blank:'discretion',opts:['discretion','control','power','choice']},
+          {q:'Each party has the ___ to request a contract review annually.',blank:'right',opts:['right','option','chance','ability']}
+        ]
+      },
+      {id:4,title:'Court system',xp:40,
+        theory:`<div class="theory-block">
+<h3>Court system — судебная система</h3>
+<p>Понимание судебной системы помогает ориентироваться в правовых процессах в англоязычных странах.</p>
+<div class="rule"><b>trial</b> — судебный процесс | <b>verdict</b> — вердикт<br>
+<b>appeal</b> — апелляция | <b>judge</b> — судья<br>
+<b>jury</b> — жюри присяжных | <b>witness</b> — свидетель<br>
+<b>testimony</b> — показания | <b>cross-examination</b> — перекрёстный допрос<br>
+<b>acquittal</b> — оправдательный приговор | <b>conviction</b> — обвинительный приговор</div>
+<p class="example">✦ The <b>jury</b> returned a not-guilty <b>verdict</b> after deliberating for 3 days.</p>
+<p class="example">✦ The defence lawyer challenged the <b>witness</b>'s <b>testimony</b> during <b>cross-examination</b>.</p>
+<p class="example">✦ The defendant's <b>appeal</b> was rejected by the Court of Appeal.</p>
+</div>`,
+        exercises:[
+          {q:'The ___ found the defendant not guilty on all charges.',blank:'jury',opts:['jury','judge','court','panel']},
+          {q:'The judge delivered her ___ at the end of the trial.',blank:'verdict',opts:['verdict','decision','result','ruling']},
+          {q:'The defendant plans to file an ___ against the conviction.',blank:'appeal',opts:['appeal','complaint','review','request']},
+          {q:'The ___ lasted three weeks and included 20 witnesses.',blank:'trial',opts:['trial','case','hearing','process']},
+          {q:'The witness gave her ___ under oath.',blank:'testimony',opts:['testimony','statement','story','words']},
+          {q:'The lawyer challenged the witness during ___.',blank:'cross-examination',opts:['cross-examination','questioning','trial','hearing']},
+          {q:'The ___ resulted in a 5-year prison sentence.',blank:'conviction',opts:['conviction','verdict','ruling','judgement']},
+          {q:'The defendant was delighted by the ___.',blank:'acquittal',opts:['acquittal','verdict','result','decision']},
+          {q:'The ___ listened carefully to all the evidence presented.',blank:'judge',opts:['judge','jury','lawyer','court']},
+          {q:'Three ___ were called to testify on behalf of the defence.',blank:'witnesses',opts:['witnesses','people','experts','speakers']}
+        ]
+      },
+      {id:5,title:'Intellectual property',xp:40,
+        theory:`<div class="theory-block">
+<h3>Intellectual property — интеллектуальная собственность</h3>
+<p>IP-право защищает творческие и коммерческие активы компаний и частных лиц.</p>
+<div class="rule"><b>copyright</b> — авторское право | <b>trademark</b> — торговый знак<br>
+<b>patent</b> — патент | <b>trade secret</b> — коммерческая тайна<br>
+<b>infringement</b> — нарушение | <b>licensing</b> — лицензирование<br>
+<b>royalty</b> — роялти | <b>proprietary</b> — частный, запатентованный<br>
+<b>fair use</b> — добросовестное использование | <b>registration</b> — регистрация</div>
+<p class="example">✦ The company holds a <b>patent</b> on the manufacturing process.</p>
+<p class="example">✦ Using the logo without permission constitutes <b>trademark</b> <b>infringement</b>.</p>
+<p class="example">✦ The software is protected by <b>copyright</b> and licensed under strict terms.</p>
+</div>`,
+        exercises:[
+          {q:'The novel is protected by ___ for 70 years after the author\'s death.',blank:'copyright',opts:['copyright','law','protection','right']},
+          {q:'The company registered its logo as a ___.',blank:'trademark',opts:['trademark','brand','symbol','logo']},
+          {q:'She applied for a ___ to protect her new invention.',blank:'patent',opts:['patent','copyright','trademark','licence']},
+          {q:'Sharing the formula would violate our ___ agreement.',blank:'trade secret',opts:['trade secret','NDA','contract','clause']},
+          {q:'Copying the design without permission is a clear ___.',blank:'infringement',opts:['infringement','violation','breach','crime']},
+          {q:'The software is available through a commercial ___ agreement.',blank:'licensing',opts:['licensing','buying','selling','sharing']},
+          {q:'The artist receives a ___ every time the song is played.',blank:'royalty',opts:['royalty','payment','fee','salary']},
+          {q:'The ___ algorithm gives the company a competitive advantage.',blank:'proprietary',opts:['proprietary','secret','private','hidden']},
+          {q:'Using short quotes for commentary may be covered by ___ use.',blank:'fair',opts:['fair','free','open','public']},
+          {q:'___ of a trademark must be renewed every 10 years.',blank:'Registration',opts:['Registration','Renewal','Filing','Approval']}
+        ]
+      },
+      {id:6,title:'Employment law',xp:40,
+        theory:`<div class="theory-block">
+<h3>Employment law — трудовое право</h3>
+<p>Трудовое право регулирует отношения между работодателями и сотрудниками.</p>
+<div class="rule"><b>redundancy</b> — сокращение | <b>dismissal</b> — увольнение<br>
+<b>grievance</b> — жалоба | <b>discrimination</b> — дискриминация<br>
+<b>notice period</b> — срок уведомления об увольнении<br>
+<b>severance pay</b> — выходное пособие | <b>employment tribunal</b> — трудовой суд<br>
+<b>maternity leave</b> — декретный отпуск | <b>unfair dismissal</b> — незаконное увольнение<br>
+<b>probation</b> — испытательный срок</div>
+<p class="example">✦ The employee filed a claim for <b>unfair dismissal</b> at the <b>employment tribunal</b>.</p>
+<p class="example">✦ Workers made <b>redundant</b> are entitled to <b>severance pay</b>.</p>
+<p class="example">✦ She raised a <b>grievance</b> about workplace <b>discrimination</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The employee was made ___ due to company restructuring.',blank:'redundant',opts:['redundant','fired','dismissed','removed']},
+          {q:'She filed a claim of ___ dismissal at the employment tribunal.',blank:'unfair',opts:['unfair','wrongful','illegal','unjust']},
+          {q:'Employees may raise a ___ about working conditions.',blank:'grievance',opts:['grievance','complaint','claim','issue']},
+          {q:'The company was found guilty of racial ___.',blank:'discrimination',opts:['discrimination','bias','prejudice','unfairness']},
+          {q:'The ___ period is 6 months for this role.',blank:'probation',opts:['probation','trial','test','notice']},
+          {q:'She is currently on ___ leave after having her first child.',blank:'maternity',opts:['maternity','family','parental','birth']},
+          {q:'The notice ___ for senior managers is three months.',blank:'period',opts:['period','time','term','length']},
+          {q:'Redundant employees received a generous ___ pay package.',blank:'severance',opts:['severance','exit','leaving','final']},
+          {q:'The case was heard at the ___ tribunal last Monday.',blank:'employment',opts:['employment','labour','work','job']},
+          {q:'All new hires must pass a background check before formal ___.',blank:'dismissal',opts:['dismissal','hiring','employment','appointment']}
+        ]
+      },
+      {id:7,title:'Company law',xp:40,
+        theory:`<div class="theory-block">
+<h3>Company law — корпоративное право</h3>
+<p>Корпоративное право регулирует создание и деятельность компаний.</p>
+<div class="rule"><b>incorporation</b> — регистрация компании | <b>shareholder</b> — акционер<br>
+<b>director</b> — директор | <b>liability</b> — ответственность<br>
+<b>articles of association</b> — устав компании | <b>dividend</b> — дивиденд<br>
+<b>annual general meeting</b> — годовое собрание акционеров<br>
+<b>fiduciary duty</b> — фидуциарная обязанность | <b>insolvency</b> — неплатёжеспособность<br>
+<b>liquidation</b> — ликвидация</div>
+<p class="example">✦ The company completed its <b>incorporation</b> and opened a bank account.</p>
+<p class="example">✦ Directors have a <b>fiduciary duty</b> to act in the company's best interests.</p>
+<p class="example">✦ The company declared <b>insolvency</b> and began <b>liquidation</b> proceedings.</p>
+</div>`,
+        exercises:[
+          {q:'The company completed its ___ and is now a limited company.',blank:'incorporation',opts:['incorporation','registration','setup','formation']},
+          {q:'Each ___ has one vote per share at the annual general meeting.',blank:'shareholder',opts:['shareholder','owner','investor','partner']},
+          {q:'The ___ voted to approve the merger at the board meeting.',blank:'directors',opts:['directors','managers','owners','partners']},
+          {q:'Directors have a ___ duty to act in the best interest of shareholders.',blank:'fiduciary',opts:['fiduciary','legal','moral','financial']},
+          {q:'The ___ of association outlines the company\'s internal rules.',blank:'articles',opts:['articles','rules','charter','document']},
+          {q:'The company declared a 5p per share ___ this quarter.',blank:'dividend',opts:['dividend','payment','bonus','profit']},
+          {q:'The AGM is short for Annual ___ Meeting.',blank:'General',opts:['General','Group','Global','Governing']},
+          {q:'The company filed for ___ after failing to pay its debts.',blank:'insolvency',opts:['insolvency','bankruptcy','debt','failure']},
+          {q:'The court ordered the ___ of all company assets.',blank:'liquidation',opts:['liquidation','sale','disposal','distribution']},
+          {q:'Limited ___ protects shareholders from personal debt liability.',blank:'liability',opts:['liability','risk','debt','loss']}
+        ]
+      },
+      {id:8,title:'Real estate law',xp:35,
+        theory:`<div class="theory-block">
+<h3>Real estate law — недвижимость</h3>
+<p>Сделки с недвижимостью требуют понимания юридических терминов для защиты ваших интересов.</p>
+<div class="rule"><b>conveyancing</b> — передача права собственности | <b>lease</b> — аренда<br>
+<b>freehold</b> — полное право собственности | <b>leasehold</b> — аренда на срок<br>
+<b>mortgage</b> — ипотека | <b>title deed</b> — свидетельство о праве собственности<br>
+<b>easement</b> — сервитут | <b>covenant</b> — обязательство<br>
+<b>tenancy</b> — аренда | <b>eviction</b> — выселение</div>
+<p class="example">✦ The solicitor handled the <b>conveyancing</b> for the property purchase.</p>
+<p class="example">✦ The flat is sold <b>leasehold</b> with 90 years remaining on the <b>lease</b>.</p>
+<p class="example">✦ The bank holds the <b>title deed</b> until the <b>mortgage</b> is fully repaid.</p>
+</div>`,
+        exercises:[
+          {q:'The solicitor completed the ___ in just 6 weeks.',blank:'conveyancing',opts:['conveyancing','transfer','sale','purchase']},
+          {q:'The property is sold on a ___ basis with 125 years remaining.',blank:'leasehold',opts:['leasehold','freehold','rental','temporary']},
+          {q:'They bought the house outright on a ___ basis.',blank:'freehold',opts:['freehold','leasehold','rental','permanent']},
+          {q:'The ___ is secured against the property as collateral.',blank:'mortgage',opts:['mortgage','loan','debt','credit']},
+          {q:'The ___ deed proves legal ownership of the property.',blank:'title',opts:['title','property','land','house']},
+          {q:'A ___ gives the neighbour the right to cross the land.',blank:'easement',opts:['easement','right','access','path']},
+          {q:'The covenant ___ the owner from building on the garden.',blank:'prevents',opts:['prevents','stops','bans','restricts']},
+          {q:'The tenant signed a 12-month ___ agreement.',blank:'tenancy',opts:['tenancy','rental','lease','stay']},
+          {q:'The landlord began ___ proceedings after 3 months of unpaid rent.',blank:'eviction',opts:['eviction','removal','dismissal','exit']},
+          {q:'The annual ground ___ for the leasehold flat is £250.',blank:'rent',opts:['rent','fee','charge','payment']}
+        ]
+      },
+      {id:9,title:'Criminal law vocabulary',xp:40,
+        theory:`<div class="theory-block">
+<h3>Criminal law — уголовное право</h3>
+<p>Уголовное право касается преступлений против государства и общества.</p>
+<div class="rule"><b>offence</b> — правонарушение | <b>prosecution</b> — обвинение / прокуратура<br>
+<b>sentence</b> — приговор | <b>bail</b> — залог, поручительство<br>
+<b>plea</b> — признание вины / позиция | <b>probation</b> — условное осуждение<br>
+<b>custody</b> — содержание под стражей | <b>acquit</b> — оправдать<br>
+<b>charge</b> — предъявить обвинение | <b>parole</b> — условно-досрочное освобождение</div>
+<p class="example">✦ He was <b>charged</b> with a serious criminal <b>offence</b>.</p>
+<p class="example">✦ The defendant entered a guilty <b>plea</b> and avoided a lengthy trial.</p>
+<p class="example">✦ She was released on <b>bail</b> pending the trial.</p>
+</div>`,
+        exercises:[
+          {q:'He was ___ with assault and robbery.',blank:'charged',opts:['charged','accused','blamed','tried']},
+          {q:'The ___ called three expert witnesses to support the case.',blank:'prosecution',opts:['prosecution','lawyer','judge','court']},
+          {q:'The judge handed down a 5-year prison ___.',blank:'sentence',opts:['sentence','verdict','ruling','decision']},
+          {q:'The defendant entered a not-guilty ___ at the start of the trial.',blank:'plea',opts:['plea','statement','answer','claim']},
+          {q:'He was released on ___ of £50,000 pending his trial.',blank:'bail',opts:['bail','bond','payment','deposit']},
+          {q:'She was found not guilty and left court without a criminal ___.',blank:'record',opts:['record','charge','offence','conviction']},
+          {q:'He was acquitted of all ___.',blank:'charges',opts:['charges','crimes','offences','claims']},
+          {q:'The suspect was held in ___ overnight.',blank:'custody',opts:['custody','prison','jail','detention']},
+          {q:'After serving half his sentence he was released on ___.',blank:'parole',opts:['parole','bail','licence','release']},
+          {q:'She received a suspended sentence and was put on ___ for 2 years.',blank:'probation',opts:['probation','supervision','monitoring','parole']}
+        ]
+      },
+      {id:10,title:'Civil law vocabulary',xp:35,
+        theory:`<div class="theory-block">
+<h3>Civil law — гражданское право</h3>
+<p>Гражданское право регулирует споры между частными лицами и организациями.</p>
+<div class="rule"><b>damages</b> — ущерб, компенсация | <b>injunction</b> — судебный запрет<br>
+<b>tort</b> — деликт | <b>negligence</b> — халатность<br>
+<b>claimant</b> — истец | <b>burden of proof</b> — бремя доказывания<br>
+<b>settlement</b> — мировое соглашение | <b>mediation</b> — медиация<br>
+<b>specific performance</b> — исполнение в натуре | <b>causation</b> — причинно-следственная связь</div>
+<p class="example">✦ The court awarded <b>damages</b> of £200,000 to the <b>claimant</b>.</p>
+<p class="example">✦ The parties reached an out-of-court <b>settlement</b> to avoid further costs.</p>
+<p class="example">✦ The claimant must prove <b>causation</b> to establish <b>negligence</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The court awarded £150,000 in ___ to the injured party.',blank:'damages',opts:['damages','money','payment','award']},
+          {q:'The judge granted an ___ stopping the company from publishing.',blank:'injunction',opts:['injunction','order','ban','stop']},
+          {q:'Negligence is a form of ___ in civil law.',blank:'tort',opts:['tort','crime','wrong','offence']},
+          {q:'The hospital was found liable for medical ___.',blank:'negligence',opts:['negligence','error','mistake','fault']},
+          {q:'The ___ must prove their case on the balance of probabilities.',blank:'claimant',opts:['claimant','plaintiff','victim','applicant']},
+          {q:'The ___ of proof lies with the person making the claim.',blank:'burden',opts:['burden','weight','task','job']},
+          {q:'Both sides agreed to a ___ of £80,000 out of court.',blank:'settlement',opts:['settlement','deal','agreement','payment']},
+          {q:'They agreed to try ___ before going to court.',blank:'mediation',opts:['mediation','negotiation','discussion','arbitration']},
+          {q:'The claimant must show ___ between the act and the harm.',blank:'causation',opts:['causation','link','connection','proof']},
+          {q:'The court ordered ___ performance of the contract.',blank:'specific',opts:['specific','full','complete','exact']}
+        ]
+      },
+      {id:11,title:'International law',xp:40,
+        theory:`<div class="theory-block">
+<h3>International law — международное право</h3>
+<p>Международное право регулирует отношения между государствами и международными организациями.</p>
+<div class="rule"><b>treaty</b> — договор, соглашение | <b>convention</b> — конвенция<br>
+<b>sovereignty</b> — суверенитет | <b>diplomatic immunity</b> — дипломатический иммунитет<br>
+<b>sanctions</b> — санкции | <b>ratification</b> — ратификация<br>
+<b>extradition</b> — экстрадиция | <b>jurisdiction</b> — юрисдикция<br>
+<b>human rights</b> — права человека | <b>multilateral</b> — многосторонний</div>
+<p class="example">✦ The two countries signed a <b>treaty</b> on double taxation avoidance.</p>
+<p class="example">✦ The UN <b>convention</b> on the rights of the child has been <b>ratified</b> globally.</p>
+<p class="example">✦ <b>Diplomatic immunity</b> protects ambassadors from prosecution abroad.</p>
+</div>`,
+        exercises:[
+          {q:'The two states signed a ___ to resolve the border dispute.',blank:'treaty',opts:['treaty','contract','agreement','deal']},
+          {q:'The UN ___ on Refugees protects people fleeing persecution.',blank:'convention',opts:['convention','treaty','law','rule']},
+          {q:'National ___ means a country controls its own affairs.',blank:'sovereignty',opts:['sovereignty','power','authority','control']},
+          {q:'The diplomat was protected by ___ immunity.',blank:'diplomatic',opts:['diplomatic','legal','political','national']},
+          {q:'The Security Council imposed economic ___ on the country.',blank:'sanctions',opts:['sanctions','penalties','fines','bans']},
+          {q:'Parliament voted against the ___ of the climate agreement.',blank:'ratification',opts:['ratification','approval','adoption','signing']},
+          {q:'The country requested ___ of the suspect from Germany.',blank:'extradition',opts:['extradition','return','transfer','removal']},
+          {q:'The ___ agreement involved 50 nations working together.',blank:'multilateral',opts:['multilateral','joint','global','shared']},
+          {q:'The court has ___ over crimes committed on its territory.',blank:'jurisdiction',opts:['jurisdiction','power','authority','control']},
+          {q:'The treaty protects fundamental ___ rights of all citizens.',blank:'human',opts:['human','civil','basic','legal']}
+        ]
+      },
+      {id:12,title:'Privacy and GDPR',xp:40,
+        theory:`<div class="theory-block">
+<h3>Privacy and GDPR — конфиденциальность и GDPR</h3>
+<p>GDPR (General Data Protection Regulation) — европейский закон о защите персональных данных, действует с 2018 года.</p>
+<div class="rule"><b>data subject</b> — субъект данных | <b>data controller</b> — контролёр данных<br>
+<b>processing</b> — обработка данных | <b>consent</b> — согласие<br>
+<b>data breach</b> — утечка данных | <b>right to erasure</b> — право на удаление<br>
+<b>lawful basis</b> — законное основание | <b>retention period</b> — срок хранения<br>
+<b>DPA</b> — Закон о защите данных | <b>supervisory authority</b> — надзорный орган</div>
+<p class="example">✦ Every <b>data subject</b> has the right to know what data is being <b>processed</b>.</p>
+<p class="example">✦ The company must report a <b>data breach</b> within 72 hours.</p>
+<p class="example">✦ Users can exercise the <b>right to erasure</b> to delete their account.</p>
+</div>`,
+        exercises:[
+          {q:'Under GDPR, users are called ___ subjects.',blank:'data',opts:['data','personal','privacy','user']},
+          {q:'The company is the ___ controller responsible for your data.',blank:'data',opts:['data','privacy','information','content']},
+          {q:'Collecting user emails without ___ violates GDPR.',blank:'consent',opts:['consent','permission','agreement','approval']},
+          {q:'A ___ breach must be reported to the ICO within 72 hours.',blank:'data',opts:['data','security','system','personal']},
+          {q:'Users have the right to ___ — asking companies to delete their data.',blank:'erasure',opts:['erasure','deletion','removal','privacy']},
+          {q:'There must be a ___ basis for processing personal data.',blank:'lawful',opts:['lawful','legal','valid','proper']},
+          {q:'Personal data should not be kept beyond the ___ period.',blank:'retention',opts:['retention','storage','keeping','holding']},
+          {q:'The ICO is the UK ___ authority for data protection.',blank:'supervisory',opts:['supervisory','oversight','governing','regulatory']},
+          {q:'The DPA stands for Data ___ Act.',blank:'Protection',opts:['Protection','Privacy','Processing','Provision']},
+          {q:'All ___ of personal data must have a legitimate purpose.',blank:'processing',opts:['processing','use','handling','collection']}
+        ]
+      },
+      {id:13,title:'Legal letters and documents',xp:35,
+        theory:`<div class="theory-block">
+<h3>Legal letters and documents — юридические письма</h3>
+<p>Юридические письма используют чёткий, формальный язык. Знай ключевые фразы и структуру.</p>
+<div class="rule"><b>pursuant to</b> — в соответствии с | <b>herein</b> — в настоящем документе<br>
+<b>aforementioned</b> — вышеупомянутый | <b>hereby</b> — настоящим<br>
+<b>notwithstanding</b> — невзирая на | <b>whereas</b> — принимая во внимание<br>
+<b>in witness whereof</b> — в подтверждение чего | <b>duly</b> — надлежащим образом<br>
+<b>without prejudice</b> — без ущерба для прав | <b>forthwith</b> — незамедлительно</div>
+<p class="example">✦ <b>Pursuant to</b> clause 4.2, the payment is due on 1 January.</p>
+<p class="example">✦ The parties <b>hereby</b> agree to the <b>aforementioned</b> terms.</p>
+<p class="example">✦ This letter is sent <b>without prejudice</b> to our client's legal rights.</p>
+</div>`,
+        exercises:[
+          {q:'___ to our agreement dated 1 March, payment is now due.',blank:'Pursuant',opts:['Pursuant','According','Refer','Based']},
+          {q:'The parties ___ agree to waive their right to appeal.',blank:'hereby',opts:['hereby','now','therefore','thus']},
+          {q:'The ___ terms shall apply to all future transactions.',blank:'aforementioned',opts:['aforementioned','above','listed','stated']},
+          {q:'___ the clause 3 restriction, the work may proceed.',blank:'Notwithstanding',opts:['Notwithstanding','Despite','Although','However']},
+          {q:'The documents must be returned ___.',blank:'forthwith',opts:['forthwith','immediately','quickly','soon']},
+          {q:'This offer is made ___ prejudice to our legal position.',blank:'without',opts:['without','no','not','non']},
+          {q:'The agreement was ___ signed by both parties.',blank:'duly',opts:['duly','properly','correctly','formally']},
+          {q:'___ the company has operated for 10 years, it now seeks expansion.',blank:'Whereas',opts:['Whereas','Because','Since','As']},
+          {q:'All terms are set out ___ in the attached schedule.',blank:'herein',opts:['herein','here','below','above']},
+          {q:'___ whereof the parties have signed this agreement.',blank:'In witness',opts:['In witness','Therefore','Herein','Pursuant']}
+        ]
+      },
+      {id:14,title:'Due diligence',xp:40,
+        theory:`<div class="theory-block">
+<h3>Due diligence — правовая проверка</h3>
+<p>Due diligence — комплексная проверка компании перед сделкой M&A или инвестированием.</p>
+<div class="rule"><b>due diligence</b> — правовая проверка | <b>disclosure</b> — раскрытие информации<br>
+<b>red flag</b> — тревожный сигнал | <b>data room</b> — виртуальная комната данных<br>
+<b>representations</b> — заверения | <b>warranties</b> — гарантии<br>
+<b>material</b> — существенный | <b>audit</b> — аудит<br>
+<b>risk assessment</b> — оценка рисков | <b>encumbrance</b> — обременение</div>
+<p class="example">✦ The legal team conducted thorough <b>due diligence</b> before signing.</p>
+<p class="example">✦ The <b>data room</b> contained 500 documents for <b>disclosure</b>.</p>
+<p class="example">✦ Several <b>red flags</b> were identified in the financial <b>audit</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The lawyers conducted full ___ diligence before the acquisition.',blank:'due',opts:['due','full','legal','proper']},
+          {q:'The seller made certain ___ about the company\'s financial position.',blank:'representations',opts:['representations','claims','statements','promises']},
+          {q:'All documents were uploaded to the ___ room for review.',blank:'data',opts:['data','virtual','document','file']},
+          {q:'The discovery of hidden debts was a major ___ flag.',blank:'red',opts:['red','warning','danger','serious']},
+          {q:'Full ___ of all liabilities is required before completion.',blank:'disclosure',opts:['disclosure','sharing','reporting','revealing']},
+          {q:'The property had an ___ — a charge registered against it.',blank:'encumbrance',opts:['encumbrance','issue','problem','debt']},
+          {q:'The financial ___ revealed several accounting irregularities.',blank:'audit',opts:['audit','review','check','inspection']},
+          {q:'The seller gave ___ that all assets were free from claims.',blank:'warranties',opts:['warranties','promises','assurances','guarantees']},
+          {q:'A ___ assessment showed the acquisition carried moderate risk.',blank:'risk',opts:['risk','threat','danger','hazard']},
+          {q:'Any ___ change in circumstances must be disclosed immediately.',blank:'material',opts:['material','important','significant','major']}
+        ]
+      },
+      {id:15,title:'Dispute resolution',xp:40,
+        theory:`<div class="theory-block">
+<h3>Dispute resolution — разрешение споров</h3>
+<p>Судебный процесс — не единственный способ разрешить спор. Альтернативные методы быстрее и дешевле.</p>
+<div class="rule"><b>negotiate</b> — переговоры | <b>mediation</b> — медиация<br>
+<b>arbitration</b> — арбитраж | <b>conciliation</b> — примирение<br>
+<b>adjudication</b> — решение третьей стороны | <b>claimant</b> — истец<br>
+<b>counterclaim</b> — встречный иск | <b>without prejudice</b> — без ущерба для прав<br>
+<b>ADR</b> — Alternative Dispute Resolution | <b>ombudsman</b> — омбудсмен</div>
+<p class="example">✦ The parties tried to <b>negotiate</b> before resorting to <b>mediation</b>.</p>
+<p class="example">✦ The <b>arbitration</b> clause means disputes must go to an arbitrator, not court.</p>
+<p class="example">✦ The consumer complained to the financial <b>ombudsman</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The parties attempted to ___ a settlement before going to court.',blank:'negotiate',opts:['negotiate','discuss','talk','meet']},
+          {q:'A neutral third party helped resolve the dispute through ___.',blank:'mediation',opts:['mediation','negotiation','arbitration','discussion']},
+          {q:'The contract included a binding ___ clause.',blank:'arbitration',opts:['arbitration','dispute','resolution','mediation']},
+          {q:'ADR stands for Alternative Dispute ___.',blank:'Resolution',opts:['Resolution','Result','Review','Response']},
+          {q:'The bank customer raised a complaint with the financial ___.',blank:'ombudsman',opts:['ombudsman','regulator','authority','court']},
+          {q:'The defendant filed a ___ against the original claimant.',blank:'counterclaim',opts:['counterclaim','response','reply','answer']},
+          {q:'This letter is marked ___ prejudice to protect our legal position.',blank:'without',opts:['without','no','not','non']},
+          {q:'A trained ___ helps both sides reach a mutually acceptable deal.',blank:'mediator',opts:['mediator','arbitrator','judge','lawyer']},
+          {q:'___ is a faster alternative to full court proceedings.',blank:'Adjudication',opts:['Adjudication','Negotiation','Discussion','Mediation']},
+          {q:'The parties reached ___ and dropped all claims against each other.',blank:'conciliation',opts:['conciliation','agreement','settlement','deal']}
+        ]
+      },
+      {id:16,title:'Arbitration and mediation',xp:35,
+        theory:`<div class="theory-block">
+<h3>Arbitration and mediation — арбитраж и медиация</h3>
+<p>Арбитраж и медиация — популярные методы разрешения коммерческих споров вне суда.</p>
+<div class="rule"><b>arbitrator</b> — арбитр | <b>award</b> — решение арбитра<br>
+<b>binding</b> — обязательный | <b>panel</b> — коллегия арбитров<br>
+<b>seat of arbitration</b> — место арбитража | <b>ICC</b> — Международная торговая палата<br>
+<b>mediator</b> — медиатор | <b>facilitative</b> — содействующий<br>
+<b>caucus</b> — отдельная встреча сторон | <b>BATNA</b> — лучшая альтернатива переговорному соглашению</div>
+<p class="example">✦ The <b>arbitrator</b> issued a final <b>award</b> of $2 million.</p>
+<p class="example">✦ The <b>binding</b> arbitration clause prevents either party from going to court.</p>
+<p class="example">✦ The <b>mediator</b> held a private <b>caucus</b> with each party separately.</p>
+</div>`,
+        exercises:[
+          {q:'The ___ issued a final decision in favour of the claimant.',blank:'arbitrator',opts:['arbitrator','judge','mediator','panel']},
+          {q:'The arbitration ___ was $500,000 in damages.',blank:'award',opts:['award','decision','ruling','verdict']},
+          {q:'The clause is ___, meaning no court proceedings are allowed.',blank:'binding',opts:['binding','fixed','set','final']},
+          {q:'The case was heard by a three-person ___.',blank:'panel',opts:['panel','group','board','team']},
+          {q:'London is frequently chosen as the ___ of international arbitration.',blank:'seat',opts:['seat','place','location','venue']},
+          {q:'The ___ met with each party separately in a private caucus.',blank:'mediator',opts:['mediator','arbitrator','judge','lawyer']},
+          {q:'In a ___ caucus, the mediator speaks to one party alone.',blank:'private',opts:['private','separate','solo','individual']},
+          {q:'Your ___ is what you\'ll do if no agreement is reached.',blank:'BATNA',opts:['BATNA','plan','option','alternative']},
+          {q:'The dispute was referred to the ICC ___ Court.',blank:'arbitration',opts:['arbitration','international','commercial','dispute']},
+          {q:'A ___ mediator guides the process but doesn\'t make decisions.',blank:'facilitative',opts:['facilitative','neutral','passive','active']}
+        ]
+      },
+      {id:17,title:'Legal English for immigrants',xp:35,
+        theory:`<div class="theory-block">
+<h3>Legal English for immigrants — для мигрантов</h3>
+<p>Иммиграционный закон регулирует право на проживание, работу и гражданство.</p>
+<div class="rule"><b>visa</b> — виза | <b>residence permit</b> — вид на жительство<br>
+<b>citizenship</b> — гражданство | <b>naturalisation</b> — натурализация<br>
+<b>asylum</b> — убежище | <b>deportation</b> — депортация<br>
+<b>work permit</b> — разрешение на работу | <b>indefinite leave to remain</b> — постоянный вид на жительство<br>
+<b>biometric</b> — биометрический | <b>points-based system</b> — балльная система</div>
+<p class="example">✦ She applied for a <b>work permit</b> to legally work in the UK.</p>
+<p class="example">✦ After 5 years, he was eligible for <b>indefinite leave to remain</b>.</p>
+<p class="example">✦ The family applied for <b>asylum</b> on humanitarian grounds.</p>
+</div>`,
+        exercises:[
+          {q:'She applied for a student ___ to study in the UK.',blank:'visa',opts:['visa','permit','pass','card']},
+          {q:'After 5 years you may apply for indefinite leave to ___.',blank:'remain',opts:['remain','stay','live','settle']},
+          {q:'He applied for ___ after living in the UK for 10 years.',blank:'citizenship',opts:['citizenship','passport','residence','nationality']},
+          {q:'The family was granted ___ due to persecution in their home country.',blank:'asylum',opts:['asylum','refuge','protection','shelter']},
+          {q:'A ___ permit is required to work legally in the country.',blank:'work',opts:['work','job','employment','labour']},
+          {q:'___ involves becoming a citizen through an official process.',blank:'Naturalisation',opts:['Naturalisation','Immigration','Registration','Application']},
+          {q:'The UK uses a ___ based system to assess visa applications.',blank:'points',opts:['points','merit','score','grade']},
+          {q:'A ___ resident card contains fingerprint and photo data.',blank:'biometric',opts:['biometric','digital','electronic','identity']},
+          {q:'The court ordered the ___ of the overstayed visa holder.',blank:'deportation',opts:['deportation','removal','expulsion','return']},
+          {q:'A ___ permit allows foreigners to live in the country legally.',blank:'residence',opts:['residence','living','stay','home']}
+        ]
+      },
+      {id:18,title:'Legal tech vocabulary',xp:35,
+        theory:`<div class="theory-block">
+<h3>Legal tech vocabulary — юридические технологии</h3>
+<p>LegalTech — быстро растущая сфера. Юристы всё чаще работают с технологическими инструментами.</p>
+<div class="rule"><b>e-discovery</b> — электронное раскрытие | <b>document review</b> — проверка документов<br>
+<b>contract automation</b> — автоматизация договоров | <b>AI-assisted</b> — с поддержкой ИИ<br>
+<b>blockchain</b> — блокчейн | <b>smart contract</b> — смарт-контракт<br>
+<b>legal research tool</b> — инструмент правовых исследований<br>
+<b>case management software</b> — ПО для управления делами<br>
+<b>digital signature</b> — электронная подпись | <b>compliance</b> — соответствие требованиям</div>
+<p class="example">✦ AI-powered <b>e-discovery</b> reduced review time by 80%.</p>
+<p class="example">✦ The firm uses <b>contract automation</b> to draft NDAs in minutes.</p>
+<p class="example">✦ A <b>smart contract</b> executes automatically when conditions are met.</p>
+</div>`,
+        exercises:[
+          {q:'The law firm uses ___ to automate standard contract drafting.',blank:'contract automation',opts:['contract automation','word processing','templates','software']},
+          {q:'___ discovery uses AI to search millions of legal documents.',blank:'e',opts:['e','electronic','digital','online']},
+          {q:'A ___ contract executes itself when conditions are fulfilled.',blank:'smart',opts:['smart','auto','digital','self']},
+          {q:'The firm adopted ___ case management software across all offices.',blank:'cloud-based',opts:['cloud-based','new','digital','online']},
+          {q:'___ signatures are now legally accepted in most countries.',blank:'Digital',opts:['Digital','Electronic','Online','Virtual']},
+          {q:'The AI-___ review identified key clauses in seconds.',blank:'assisted',opts:['assisted','powered','based','driven']},
+          {q:'___ research tools help lawyers find relevant cases faster.',blank:'Legal',opts:['Legal','Online','Digital','AI']},
+          {q:'All processes must remain in ___ with data protection law.',blank:'compliance',opts:['compliance','line','agreement','accordance']},
+          {q:'Document ___ is a key stage in the litigation process.',blank:'review',opts:['review','check','reading','analysis']},
+          {q:'___ technology provides a tamper-proof record of transactions.',blank:'Blockchain',opts:['Blockchain','Digital','Crypto','Cloud']}
+        ]
+      },
+      {id:19,title:'Reading legal texts',xp:35,
+        theory:`<div class="theory-block">
+<h3>Reading legal texts — чтение юридических документов</h3>
+<p>Юридические тексты плотные и сложные. Научись находить ключевые части и понимать структуру.</p>
+<div class="rule"><b>preamble</b> — преамбула | <b>operative clause</b> — оперативная статья<br>
+<b>schedule</b> — приложение | <b>definitions section</b> — раздел определений<br>
+<b>boilerplate</b> — стандартные условия | <b>recitals</b> — преамбульные положения<br>
+<b>annex</b> — приложение | <b>governing law</b> — применимое право<br>
+<b>entire agreement</b> — полное соглашение | <b>severability</b> — делимость</div>
+<p class="example">✦ The <b>preamble</b> sets out the background and purpose of the agreement.</p>
+<p class="example">✦ All technical specs are contained in <b>Schedule 1</b> of the contract.</p>
+<p class="example">✦ The <b>governing law</b> clause states that English law applies.</p>
+</div>`,
+        exercises:[
+          {q:'The ___ sets out the background and context of the agreement.',blank:'preamble',opts:['preamble','introduction','header','opening']},
+          {q:'The technical specifications are listed in the ___ to the contract.',blank:'schedule',opts:['schedule','annex','appendix','attachment']},
+          {q:'The ___ section defines all key terms used in the document.',blank:'definitions',opts:['definitions','glossary','terms','words']},
+          {q:'Standard terms like jurisdiction and notices are called ___ clauses.',blank:'boilerplate',opts:['boilerplate','standard','basic','common']},
+          {q:'The ___ clause states which country\'s law governs the contract.',blank:'governing law',opts:['governing law','jurisdiction','legal','country']},
+          {q:'The ___ agreement clause confirms this document supersedes all prior agreements.',blank:'entire',opts:['entire','complete','whole','full']},
+          {q:'The ___ clause means an invalid clause doesn\'t void the whole contract.',blank:'severability',opts:['severability','separation','division','independence']},
+          {q:'The ___ contain background statements explaining why the contract was made.',blank:'recitals',opts:['recitals','preamble','notes','background']},
+          {q:'All supporting documents are listed in the ___ to the agreement.',blank:'annex',opts:['annex','schedule','appendix','attachment']},
+          {q:'The ___ clauses in section 5 create the main legal obligations.',blank:'operative',opts:['operative','main','key','core']}
+        ]
+      },
+      {id:20,title:'Legal English: итог',xp:50,
+        theory:`<div class="theory-block">
+<h3>Legal English — финальный обзор</h3>
+<p>Поздравляем! Ты прошёл курс Legal English. Ты освоил профессиональный юридический английский!</p>
+<div class="rule">
+&bull; <b>Basics</b>: plaintiff, defendant, litigation, precedent, liability<br>
+&bull; <b>Contracts</b>: breach, clause, warranty, void, enforceable<br>
+&bull; <b>Rights</b>: entitled to, obligated to, comply, waive, consent<br>
+&bull; <b>Courts</b>: verdict, jury, appeal, testimony, acquittal<br>
+&bull; <b>IP</b>: copyright, trademark, patent, infringement, licensing<br>
+&bull; <b>Employment</b>: redundancy, unfair dismissal, grievance, tribunal<br>
+&bull; <b>GDPR</b>: data subject, consent, data breach, right to erasure<br>
+&bull; <b>Dispute</b>: mediation, arbitration, ADR, ombudsman, award<br>
+&bull; <b>Documents</b>: preamble, boilerplate, governing law, severability
+</div>
+<p style="margin-top:10px"><b>Продолжай развиваться:</b><br>
+Читай: The Lawyer, Legal Week, Lexology • Практикуй в AI-чате на юридические темы</p>
+</div>`,
+        exercises:[
+          {q:'The ___ filed a claim for breach of contract.',blank:'plaintiff',opts:['plaintiff','defendant','claimant','witness']},
+          {q:'Any ___ of this agreement may lead to legal action.',blank:'breach',opts:['breach','break','fail','issue']},
+          {q:'The arbitration ___ is legally binding on both parties.',blank:'award',opts:['award','decision','verdict','ruling']},
+          {q:'Personal data must be processed with the ___ of the data subject.',blank:'consent',opts:['consent','permission','agreement','approval']},
+          {q:'The company holds a ___ on its core manufacturing process.',blank:'patent',opts:['patent','copyright','trademark','licence']},
+          {q:'The judge issued an ___ stopping the publication immediately.',blank:'injunction',opts:['injunction','order','ban','ruling']},
+          {q:'She was made ___ after the department was restructured.',blank:'redundant',opts:['redundant','dismissed','fired','removed']},
+          {q:'The ___ of proof lies with the party making the claim.',blank:'burden',opts:['burden','weight','task','duty']},
+          {q:'The ___ clause means an invalid term doesn\'t void the contract.',blank:'severability',opts:['severability','separation','deletion','removal']},
+          {q:'After 5 years she applied for indefinite leave to ___.',blank:'remain',opts:['remain','stay','live','reside']},
+          {q:'The parties agreed to resolve the dispute through ___.',blank:'mediation',opts:['mediation','negotiation','arbitration','court']},
+          {q:'The contract ___ clause states which country\'s law applies.',blank:'governing law',opts:['governing law','jurisdiction','legal system','country']},
+          {q:'The company faced a ___ breach and notified the ICO within 48 hours.',blank:'data',opts:['data','security','privacy','information']},
+          {q:'The defendant entered a not-guilty ___.',blank:'plea',opts:['plea','answer','statement','response']},
+          {q:'Congratulations — you completed the ___ English course!',blank:'Legal',opts:['Legal','Business','Academic','Contract']}
+        ]
+      }
+    ]
+  }
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -10961,7 +12083,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -12043,6 +13165,8 @@ const TOPIC_CHIPS = {
   'News Talk':     ["What's your take on AI?", "I think climate change is underrated", "What happened in the news today?", "Let's debate — do you think social media is harmful?"],
   'Slang & Idioms':["Teach me some new slang!", "What does 'no cap' mean?", "Give me a phrase to sound more natural", "Hit me with your best idiom"],
   'Academic English': ["I need help with my essay introduction", "How do I write a thesis statement?", "Can you check my paragraph?", "Explain hedging language please"],
+  'Interview English': ["Tell me about yourself", "What are your greatest strengths?", "Why do you want to work here?", "Can we practice a mock interview?"],
+  'Legal English': ["Explain this contract clause to me", "What does 'without prejudice' mean?", "Help me understand GDPR basics", "What is the difference between mediation and arbitration?"],
 };
 
 function showChips(topicKey) {
