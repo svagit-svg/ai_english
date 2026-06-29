@@ -13318,7 +13318,7 @@ async function sendMessage(){
 }
 
 async function callClaude(userText,isGreeting,existingDiv){
-  const correctionInstr=`\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question to keep the conversation going.\n\nIMPORTANT — Error correction: If the user made any English grammar, vocabulary or spelling mistakes in their message, add a correction block at the very end of your reply using EXACTLY this format (on a new line):\n💡CORRECTION: [explain the mistake briefly in Russian, format: «написал X» → правильно «Y» + short reason]\nOnly correct the single most important mistake. If there are no mistakes at all, do NOT add the correction block.`;
+  const correctionInstr=`\n\nKeep responses concise (2-4 sentences). Always end with a follow-up question to keep the conversation going.\n\nIMPORTANT — Vocabulary highlighting: Bold 1-3 useful English phrases or idioms in your reply using **double asterisks** so the student can save them to their vocabulary.\n\nIMPORTANT — Error correction: If the user made any English grammar, vocabulary or spelling mistakes in their message, add a correction block at the very end of your reply using EXACTLY this format (on a new line):\n💡CORRECTION: [explain the mistake briefly in Russian, format: «написал X» → правильно «Y» + short reason]\nOnly correct the single most important mistake. If there are no mistakes at all, do NOT add the correction block.`;
   const greetInstr=`\n\nKeep your opening message concise (2-3 sentences). End with exactly one question to start the conversation.`;
   const sysMsg=isGreeting
     ?{role:'system',content:currentSystemPrompt+greetInstr}
@@ -13359,7 +13359,8 @@ async function callClaude(userText,isGreeting,existingDiv){
     }
     const corrHTML=correctionText
       ?`<div class="ai-correction"><strong>💡 Исправление:</strong> ${correctionText}</div>`:'';
-    if(target){target.innerHTML=mainReply.replace(/\n/g,'<br>')+corrHTML;if(!isGreeting)addVocabChipsToMessage(target);}
+    const renderText=t=>t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    if(target){target.innerHTML=renderText(mainReply)+corrHTML;if(!isGreeting)addVocabChipsToMessage(target);}
     else addAiMessage(mainReply,false);
     if(!isGreeting){
       chatHistory.push({role:'assistant',content:reply});
