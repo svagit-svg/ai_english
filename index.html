@@ -1182,10 +1182,12 @@ const tgUser = tg?.initDataUnsafe?.user;
 const CS = tg?.cloudStorage || null;
 
 // Keys we sync to cloud
-const CLOUD_KEYS = ['smart_pro','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time'];
+const CLOUD_KEYS = ['smart_pro','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach'];
 const CLOUD_STATS_KEY = 'ss_core';
 const CLOUD_ACTIVITY_KEY = 'ss_activity';
 const CLOUD_HISTORY_KEY = 'ss_history';
+const CLOUD_COURSES_KEY = 'ss_courses';
+const CLOUD_VOCAB_KEY = 'ss_vocab';
 
 // Debounce timer for cloud saves
 let _cloudTimer = null;
@@ -1225,18 +1227,39 @@ function _doCloudSave(){
       if(str.length <= 4096) CS.setItem(CLOUD_HISTORY_KEY, str, ()=>{});
     }
 
-    // Simple keys
+    // Simple keys (including smart_ach)
     CLOUD_KEYS.forEach(k=>{
       const v = localStorage.getItem(k);
       if(v !== null) CS.setItem(k, v, ()=>{});
     });
+
+    // Course progress — compact: {courseId:[lessonId,...]}
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal'];
+    const cp={};
+    allIds.forEach(id=>{
+      try{
+        const p=JSON.parse(localStorage.getItem('course_'+id)||'{}');
+        const done=Object.keys(p).filter(k=>p[k]?.done);
+        if(done.length) cp[id]=done.map(Number);
+      }catch{}
+    });
+    const cpStr=JSON.stringify(cp);
+    if(cpStr.length<=4096) CS.setItem(CLOUD_COURSES_KEY, cpStr, ()=>{});
+
+    // Vocab — last 30 entries, capped at 1024 bytes
+    try{
+      const vocab=JSON.parse(localStorage.getItem('smart_vocab')||'[]');
+      const trimmed=vocab.slice(-30);
+      const vStr=JSON.stringify(trimmed);
+      if(vStr.length<=1024) CS.setItem(CLOUD_VOCAB_KEY, vStr, ()=>{});
+    }catch{}
   } catch(e) { console.warn('CloudSave error', e); }
 }
 
 function loadFromCloud(callback){
   if(!CS){ callback(); return; }
 
-  const allKeys = [CLOUD_STATS_KEY, CLOUD_ACTIVITY_KEY, CLOUD_HISTORY_KEY, ...CLOUD_KEYS];
+  const allKeys = [CLOUD_STATS_KEY, CLOUD_ACTIVITY_KEY, CLOUD_HISTORY_KEY, CLOUD_COURSES_KEY, CLOUD_VOCAB_KEY, ...CLOUD_KEYS];
   CS.getItems(allKeys, (err, vals) => {
     if(err || !vals){ callback(); return; }
     try {
@@ -1262,12 +1285,34 @@ function loadFromCloud(callback){
         localStorage.setItem('smart_stats', JSON.stringify(merged));
       }
 
-      // Merge simple keys: cloud wins if local is missing
+      // Merge simple keys (including smart_ach): cloud wins if local is missing
       CLOUD_KEYS.forEach(k=>{
         if(vals[k] !== undefined && vals[k] !== null && !localStorage.getItem(k)){
           localStorage.setItem(k, vals[k]);
         }
       });
+
+      // Restore course progress — cloud wins per-lesson if local is missing
+      if(vals[CLOUD_COURSES_KEY]){
+        try{
+          const cp=JSON.parse(vals[CLOUD_COURSES_KEY]);
+          Object.entries(cp).forEach(([courseId, lessonIds])=>{
+            const local=JSON.parse(localStorage.getItem('course_'+courseId)||'{}');
+            let changed=false;
+            lessonIds.forEach(lid=>{
+              if(!local[lid]){local[lid]={done:true,score:0,xp:0};changed=true;}
+            });
+            if(changed) localStorage.setItem('course_'+courseId, JSON.stringify(local));
+          });
+        }catch{}
+      }
+
+      // Restore vocab — cloud wins if local is empty
+      if(vals[CLOUD_VOCAB_KEY] && !localStorage.getItem('smart_vocab')){
+        try{
+          localStorage.setItem('smart_vocab', vals[CLOUD_VOCAB_KEY]);
+        }catch{}
+      }
     } catch(e){ console.warn('CloudLoad error', e); }
     callback();
   });
@@ -12080,6 +12125,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
   const p=getCourseProgress(courseId);
   p[lessonId]={score,xp,done:true};
   localStorage.setItem('course_'+courseId,JSON.stringify(p));
+  queueCloudSave();
 }
 
 function renderCourseProgress(){
@@ -12969,7 +13015,7 @@ let chatHistory=[],currentSystemPrompt='',isLoading=false,currentTopic='',sessio
 
 // ── VOCABULARY ───────────────────────────────────────────────
 function getSavedVocab(){return JSON.parse(localStorage.getItem('smart_vocab')||'[]');}
-function saveVocab(items){localStorage.setItem('smart_vocab',JSON.stringify(items));}
+function saveVocab(items){localStorage.setItem('smart_vocab',JSON.stringify(items));queueCloudSave();}
 
 function addVocabPhrase(phrase){
   const items=getSavedVocab();
