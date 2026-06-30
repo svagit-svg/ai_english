@@ -902,12 +902,42 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="legal-sub">20 уроков</p>
       </div>
     </div>
-    <div class="card" onclick="showComingSoon('Academic English')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;">🎓</div>
-        <div class="card-text"><h3>Academic English <span class="badge" style="background:rgba(14,165,233,0.15);color:#0ea5e9">Скоро</span></h3><p>Эссе, дискуссии, академическое письмо • 20 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
+    <div class="course-card" onclick="openCourse('pronunciation')" style="cursor:pointer" data-cat="base">
+      <div class="card-icon" style="background:rgba(124,58,237,0.1);color:#7c3aed;font-size:18px;">🗣️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Pronunciation</h3><span style="font-size:9px;background:rgba(124,58,237,0.15);color:#7c3aed;border-radius:4px;padding:1px 5px;font-weight:700">A2–C1</span></div>
+          <span id="pronunciation-pct" style="font-size:11px;color:#7c3aed;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Звуки, ударение, интонация, связная речь</p>
+        <div class="progress-bar"><div class="progress-fill" id="pronunciation-bar" style="width:0%;background:#7c3aed"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="pronunciation-sub">20 уроков</p>
       </div>
+    </div>
+    <div class="course-card" onclick="openCourse('writing')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(5,150,105,0.1);color:#059669;font-size:18px;">✍️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Writing English</h3><span style="font-size:9px;background:rgba(5,150,105,0.15);color:#059669;border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
+          <span id="writing-pct" style="font-size:11px;color:#059669;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Email, резюме, эссе, деловые письма</p>
+        <div class="progress-bar"><div class="progress-fill" id="writing-bar" style="width:0%;background:#059669"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="writing-sub">20 уроков</p>
+      </div>
+    </div>
+    <div class="course-card" onclick="openCourse('sport')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(220,38,38,0.1);color:#dc2626;font-size:18px;">🏋️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Sport & Fitness</h3><span style="font-size:9px;background:rgba(220,38,38,0.15);color:#dc2626;border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
+          <span id="sport-pct" style="font-size:11px;color:#dc2626;font-weight:600">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:2px 0">Спорт, фитнес, питание, тренировки</p>
+        <div class="progress-bar"><div class="progress-fill" id="sport-bar" style="width:0%;background:#dc2626"></div></div>
+        <p style="font-size:10px;color:var(--muted);margin-top:3px" id="sport-sub">20 уроков</p>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -921,13 +951,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="card-row">
         <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;">🇬🇧</div>
         <div class="card-text"><h3>British English <span class="badge" style="background:rgba(239,68,68,0.15);color:#ef4444">Скоро</span></h3><p>Акцент, идиомы, культура • 15 уроков</p></div>
-        <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
-      </div>
-    </div>
-    <div class="card" onclick="showComingSoon('Pronunciation')">
-      <div class="card-row">
-        <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);">🎙️</div>
-        <div class="card-text"><h3>Pronunciation <span class="badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">Скоро</span></h3><p>Звуки, ударение, интонация • 15 уроков</p></div>
         <i class="fa-solid fa-lock" style="color:var(--muted);font-size:11px;margin-left:auto"></i>
       </div>
     </div>
@@ -1234,7 +1257,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -12113,6 +12136,1564 @@ I would be happy to take any questions.</div>
       }
     ]
   }
+  ,pronunciation:{
+    title:'Pronunciation English',
+    icon:'🗣️',
+    color:'#7c3aed',
+    lessons:[
+      {id:1,title:'Гласные: /æ/ /ɑː/ /ʌ/ — cat, car, cut',xp:35,
+        theory:`<div class="theory-block">
+<h3>Короткие гласные: /æ/, /ɑː/, /ʌ/</h3>
+<p>Три звука, которые русскоговорящие путают чаще всего. /æ/ — рот открыт широко, язык низко (как «э», но шире). /ɑː/ — рот широко открыт, язык назад (долгое «а»). /ʌ/ — короткое «а», рот чуть открыт.</p>
+<div class="rule"><b>cat</b> /kæt/ — кот | <b>car</b> /kɑːr/ — машина<br>
+<b>cut</b> /kʌt/ — резать | <b>bad</b> /bæd/ — плохой<br>
+<b>bath</b> /bɑːθ/ — ванна | <b>but</b> /bʌt/ — но<br>
+<b>man</b> /mæn/ — мужчина | <b>calm</b> /kɑːm/ — спокойный</div>
+<p class="example">✦ The <b>man</b> put the <b>cat</b> in the <b>car</b>.</p>
+<p class="example">✦ She <b>cut</b> a <b>bad</b> apple with a sharp knife.</p>
+<p class="example">✦ Stay <b>calm</b> and take a <b>bath</b> after a hard day.</p>
+</div>`,
+        exercises:[
+          {q:'Which word has the /æ/ sound?',blank:'hat',opts:['hat','heart','hut','hot']},
+          {q:'Which word has the /ɑː/ sound?',blank:'farm',opts:['farm','fat','fun','fan']},
+          {q:'Which word has the /ʌ/ sound?',blank:'cup',opts:['cup','cap','carp','cop']},
+          {q:'The word "ban" rhymes with ___.',blank:'man',opts:['man','moon','burn','barn']},
+          {q:'"___ " has the same vowel as "car".',blank:'park',opts:['park','pack','puck','pot']},
+          {q:'Choose the /æ/ word: ___ apple',blank:'bad',opts:['bad','bard','bud','bode']},
+          {q:'The vowel in "sun" is ___.',blank:'/ʌ/',opts:['/ʌ/','/æ/','/ɑː/','/ɒ/']},
+          {q:'"staff" — the vowel sound is ___.',blank:'/ɑː/',opts:['/ɑː/','/æ/','/ʌ/','/ɪ/']},
+          {q:'Which pair shares the same vowel? ___ ',blank:'car/bar',opts:['car/bar','cat/cut','cup/cap','but/bat']},
+          {q:'The word "laugh" in British English has the ___ sound.',blank:'/ɑː/',opts:['/ɑː/','/æ/','/ʌ/','/eɪ/']}
+        ]
+      },
+      {id:2,title:'Гласные: /ɪ/ /iː/ /ɒ/ — sit, seat, hot',xp:35,
+        theory:`<div class="theory-block">
+<h3>Гласные /ɪ/, /iː/, /ɒ/</h3>
+<p>/ɪ/ — короткий «и», язык высоко, губы чуть растянуты. /iː/ — долгий «и», губы растянуты сильнее. /ɒ/ — короткий «о», губы округлены, рот открыт.</p>
+<div class="rule"><b>sit</b> /sɪt/ — сидеть | <b>seat</b> /siːt/ — место/сиденье<br>
+<b>hot</b> /hɒt/ — горячий | <b>ship</b> /ʃɪp/ — корабль<br>
+<b>sheep</b> /ʃiːp/ — овца | <b>dog</b> /dɒɡ/ — собака<br>
+<b>bit</b> /bɪt/ — кусочек | <b>beat</b> /biːt/ — бить/ритм</div>
+<p class="example">✦ The <b>ship</b> carried <b>sheep</b> across the sea.</p>
+<p class="example">✦ Please take a <b>seat</b> — don't just <b>sit</b> on the floor.</p>
+<p class="example">✦ The <b>hot dog</b> stand is on the corner.</p>
+</div>`,
+        exercises:[
+          {q:'Which word has the /iː/ sound?',blank:'feet',opts:['feet','fit','fat','fat']},
+          {q:'Which word has the /ɪ/ sound?',blank:'ship',opts:['ship','sheep','shop','shape']},
+          {q:'"hot" and "not" share the ___ vowel.',blank:'/ɒ/',opts:['/ɒ/','/ɔː/','/ʌ/','/ɑː/']},
+          {q:'Minimal pair: "bin" vs "been" — difference is ___.',blank:'vowel length',opts:['vowel length','consonant','stress','tone']},
+          {q:'The word "field" has the ___ sound.',blank:'/iː/',opts:['/iː/','/ɪ/','/eɪ/','/ɒ/']},
+          {q:'Choose the /ɒ/ word.',blank:'lot',opts:['lot','let','lit','late']},
+          {q:'"it" rhymes with ___.',blank:'bit',opts:['bit','beat','beet','bat']},
+          {q:'The vowel in "green" is ___.',blank:'/iː/',opts:['/iː/','/ɪ/','/eɪ/','/ɒ/']},
+          {q:'Which pair are minimal pairs?',blank:'ship/sheep',opts:['ship/sheep','hot/hat','seat/sat','bit/bat']},
+          {q:'"clock" has the ___ vowel sound.',blank:'/ɒ/',opts:['/ɒ/','/ʌ/','/ɑː/','/ɔː/']}
+        ]
+      },
+      {id:3,title:'Дифтонги: /eɪ/ /aɪ/ /ɔɪ/ — day, my, boy',xp:35,
+        theory:`<div class="theory-block">
+<h3>Дифтонги /eɪ/, /aɪ/, /ɔɪ/</h3>
+<p>Дифтонг — скольжение от одного гласного к другому внутри одного слога. /eɪ/ начинается как «э» и скользит к «й». /aɪ/ — от «а» к «й». /ɔɪ/ — от «о» к «й».</p>
+<div class="rule"><b>day</b> /deɪ/ — день | <b>my</b> /maɪ/ — мой<br>
+<b>boy</b> /bɔɪ/ — мальчик | <b>say</b> /seɪ/ — говорить<br>
+<b>fly</b> /flaɪ/ — летать | <b>coin</b> /kɔɪn/ — монета<br>
+<b>make</b> /meɪk/ — делать | <b>time</b> /taɪm/ — время</div>
+<p class="example">✦ One <b>day</b> I'll <b>fly</b> to see <b>my</b> friend.</p>
+<p class="example">✦ The <b>boy</b> found a <b>coin</b> on his way home.</p>
+<p class="example">✦ <b>Say</b> what you mean and <b>make</b> your point clearly.</p>
+</div>`,
+        exercises:[
+          {q:'Which word contains the /eɪ/ diphthong?',blank:'name',opts:['name','him','hot','run']},
+          {q:'Which word contains the /aɪ/ diphthong?',blank:'night',opts:['night','net','not','nut']},
+          {q:'Which word contains the /ɔɪ/ diphthong?',blank:'choice',opts:['choice','chase','chess','cheese']},
+          {q:'"eight" has the ___ diphthong.',blank:'/eɪ/',opts:['/eɪ/','/aɪ/','/ɔɪ/','/əʊ/']},
+          {q:'"enjoy" has the ___ diphthong.',blank:'/ɔɪ/',opts:['/ɔɪ/','/eɪ/','/aɪ/','/ɪə/']},
+          {q:'The word "kite" rhymes with ___.',blank:'bite',opts:['bite','bait','boat','bit']},
+          {q:'Choose the /eɪ/ word: ___',blank:'cake',opts:['cake','kick','cook','clock']},
+          {q:'"oil" and "toil" share the ___ diphthong.',blank:'/ɔɪ/',opts:['/ɔɪ/','/eɪ/','/aʊ/','/ɔː/']},
+          {q:'The diphthong in "five" is ___.',blank:'/aɪ/',opts:['/aɪ/','/eɪ/','/ɔɪ/','/ɪə/']},
+          {q:'"pain" and "lane" — the shared diphthong is ___.',blank:'/eɪ/',opts:['/eɪ/','/aɪ/','/ɔɪ/','/ɑː/']}
+        ]
+      },
+      {id:4,title:'Согласные: TH-звуки /θ/ и /ð/ — think, this',xp:35,
+        theory:`<div class="theory-block">
+<h3>TH-звуки: /θ/ и /ð/</h3>
+<p>/θ/ — глухой TH: язык между зубами, воздух выходит без вибрации (think, three). /ð/ — звонкий TH: язык между зубами, голосовые связки вибрируют (this, the). В русском этих звуков нет — нужна тренировка.</p>
+<div class="rule"><b>think</b> /θɪŋk/ — думать | <b>this</b> /ðɪs/ — это<br>
+<b>three</b> /θriː/ — три | <b>the</b> /ðə/ — артикль<br>
+<b>thank</b> /θæŋk/ — благодарить | <b>that</b> /ðæt/ — тот<br>
+<b>through</b> /θruː/ — через | <b>there</b> /ðeər/ — там</div>
+<p class="example">✦ I <b>think</b> <b>that</b> <b>three</b> is enough.</p>
+<p class="example">✦ <b>Thank</b> you for <b>this</b> — it means a lot.</p>
+<p class="example">✦ Go <b>through</b> <b>the</b> door and turn left.</p>
+</div>`,
+        exercises:[
+          {q:'Which word uses the voiced /ð/ sound?',blank:'the',opts:['the','think','three','throw']},
+          {q:'Which word uses the voiceless /θ/ sound?',blank:'thought',opts:['thought','them','those','though']},
+          {q:'"birthday" contains the ___ sound.',blank:'/θ/',opts:['/θ/','/ð/','/t/','/d/']},
+          {q:'"breathe" (verb) contains the ___ sound.',blank:'/ð/',opts:['/ð/','/θ/','/v/','/z/']},
+          {q:'To make the TH sound, place your ___ between your teeth.',blank:'tongue',opts:['tongue','lips','teeth','jaw']},
+          {q:'"breath" (noun) has the ___ sound at the end.',blank:'/θ/',opts:['/θ/','/ð/','/s/','/z/']},
+          {q:'The word "together" contains the ___ sound.',blank:'/ð/',opts:['/ð/','/θ/','/t/','/g/']},
+          {q:'"thousand" starts with which sound?',blank:'/θ/',opts:['/θ/','/ð/','/t/','/s/']},
+          {q:'"worthy" contains which TH sound?',blank:'/ð/',opts:['/ð/','/θ/','/w/','/r/']},
+          {q:'"author" contains the ___ sound.',blank:'/θ/',opts:['/θ/','/ð/','/t/','/f/']}
+        ]
+      },
+      {id:5,title:'Согласные: /v/ vs /w/, /b/ vs /p/',xp:35,
+        theory:`<div class="theory-block">
+<h3>Согласные: /v/ vs /w/ и /b/ vs /p/</h3>
+<p>/v/ — верхние зубы касаются нижней губы, вибрация (very). /w/ — губы округлены, вибрация голоса (we). /b/ — губы смыкаются, звонкий взрыв (big). /p/ — то же, но без голоса, с выдохом (pet).</p>
+<div class="rule"><b>very</b> /ˈveri/ — очень | <b>we</b> /wiː/ — мы<br>
+<b>vine</b> /vaɪn/ — лоза | <b>wine</b> /waɪn/ — вино<br>
+<b>big</b> /bɪɡ/ — большой | <b>pig</b> /pɪɡ/ — свинья<br>
+<b>ban</b> /bæn/ — запрет | <b>pan</b> /pæn/ — сковорода</div>
+<p class="example">✦ We bought <b>very</b> good <b>wine</b> for the party.</p>
+<p class="example">✦ The <b>big</b> <b>pig</b> ate from the <b>pan</b>.</p>
+<p class="example">✦ <b>Ban</b> the <b>van</b> from the <b>village</b> road.</p>
+</div>`,
+        exercises:[
+          {q:'Minimal pair: "vine" vs "wine" — first sound difference.',blank:'/v/ vs /w/',opts:['/v/ vs /w/','/b/ vs /p/','/f/ vs /v/','/m/ vs /n/']},
+          {q:'To make /w/ your lips should be ___.',blank:'rounded',opts:['rounded','spread','open wide','closed']},
+          {q:'"vest" and "best" — first sound difference.',blank:'/v/ vs /b/',opts:['/v/ vs /b/','/v/ vs /w/','/b/ vs /p/','/f/ vs /p/']},
+          {q:'Which word starts with /p/ (voiceless)?',blank:'pet',opts:['pet','bet','vet','wet']},
+          {q:'"ban" and "pan" differ by ___.',blank:'voicing',opts:['voicing','vowel','ending','stress']},
+          {q:'The word "van" starts with ___.',blank:'/v/',opts:['/v/','/w/','/b/','/f/']},
+          {q:'"wet" and "vet" — the difference is ___.',blank:'lip position',opts:['lip position','vowel','ending','stress']},
+          {q:'"pill" vs "bill" — first sound is ___.',blank:'/p/ vs /b/',opts:['/p/ vs /b/','/f/ vs /v/','/t/ vs /d/','/s/ vs /z/']},
+          {q:'Which word uses /w/?',blank:'world',opts:['world','void','vet','van']},
+          {q:'To make /b/, your lips must ___ then release.',blank:'close',opts:['close','spread','round','open wide']}
+        ]
+      },
+      {id:6,title:'Согласные: /r/ vs /l/, /s/ vs /z/',xp:35,
+        theory:`<div class="theory-block">
+<h3>Согласные: /r/ vs /l/ и /s/ vs /z/</h3>
+<p>/r/ — язык не касается нёба, загнут назад (английский ≠ русский Р). /l/ — кончик языка касается альвеол за зубами. /s/ — глухой свист. /z/ — то же с вибрацией голоса.</p>
+<div class="rule"><b>red</b> /red/ — красный | <b>led</b> /led/ — вёл<br>
+<b>right</b> /raɪt/ — правый | <b>light</b> /laɪt/ — свет<br>
+<b>sip</b> /sɪp/ — пить маленькими глотками | <b>zip</b> /zɪp/ — застёжка<br>
+<b>seal</b> /siːl/ — тюлень | <b>zeal</b> /ziːl/ — рвение</div>
+<p class="example">✦ Turn <b>right</b> at the <b>red</b> traffic <b>light</b>.</p>
+<p class="example">✦ She had the <b>zeal</b> of a <b>seal</b> on ice.</p>
+<p class="example">✦ The <b>rice</b> dish is on the <b>left</b> side of the menu.</p>
+</div>`,
+        exercises:[
+          {q:'Minimal pair: "rice" vs "lice" — difference is ___.',blank:'/r/ vs /l/',opts:['/r/ vs /l/','/s/ vs /z/','/v/ vs /w/','/b/ vs /p/']},
+          {q:'To make /l/, the tongue tip touches ___.',blank:'the ridge behind upper teeth',opts:['the ridge behind upper teeth','the lower teeth','the roof of the mouth','the lips']},
+          {q:'"zip" vs "sip" — first sound difference.',blank:'/z/ vs /s/',opts:['/z/ vs /s/','/r/ vs /l/','/b/ vs /p/','/v/ vs /f/']},
+          {q:'"zoo" starts with the ___ sound.',blank:'/z/',opts:['/z/','/s/','/r/','/l/']},
+          {q:'The /r/ sound in English — the tongue ___.',blank:'does not touch the palate',opts:['does not touch the palate','taps the ridge once','vibrates against teeth','touches the lips']},
+          {q:'Which word ends in /z/?',blank:'dogs',opts:['dogs','locks','hats','cups']},
+          {q:'"play" and "pray" differ by ___.',blank:'/l/ vs /r/',opts:['/l/ vs /r/','/p/ vs /b/','/s/ vs /z/','/eɪ/ vs /æ/']},
+          {q:'"glass" ends with ___.',blank:'/s/',opts:['/s/','/z/','/ʃ/','/tʃ/']},
+          {q:'"loves" ends with ___.',blank:'/z/',opts:['/z/','/s/','/v/','/f/']},
+          {q:'In "correct", the /r/ is pronounced ___.',blank:'without tongue tapping',opts:['without tongue tapping','with a roll','like Russian Р','silently']}
+        ]
+      },
+      {id:7,title:'Ударение в двусложных словах',xp:35,
+        theory:`<div class="theory-block">
+<h3>Ударение в двусложных словах</h3>
+<p>В английском ударение фиксировано и часто различает существительное и глагол. В двусложных словах: существительные/прилагательные — ударение на 1-й слог; глаголы — часто на 2-й. Ударный слог произносится громче, длиннее и с более чётким гласным.</p>
+<div class="rule"><b>PREsent</b> (n) — подарок | <b>preSENT</b> (v) — представлять<br>
+<b>REcord</b> (n) — запись | <b>reCORD</b> (v) — записывать<br>
+<b>OBject</b> (n) — предмет | <b>obJECT</b> (v) — возражать<br>
+<b>PERfect</b> (adj) — совершенный | <b>perFECT</b> (v) — совершенствовать</div>
+<p class="example">✦ She gave me a lovely <b>PREsent</b> at the party.</p>
+<p class="example">✦ Could you <b>preSENT</b> your findings to the board?</p>
+<p class="example">✦ I <b>obJECT</b> — that <b>OBject</b> is mine.</p>
+</div>`,
+        exercises:[
+          {q:'In "REcord" (noun) the stress is on ___.',blank:'first syllable',opts:['first syllable','second syllable','both equally','last syllable']},
+          {q:'In "reCORD" (verb) the stress is on ___.',blank:'second syllable',opts:['second syllable','first syllable','both equally','last syllable']},
+          {q:'"PERmit" (noun) vs "perMIT" (verb) — the stress shifts to ___.',blank:'second syllable in verb',opts:['second syllable in verb','first syllable in verb','same in both','last syllable always']},
+          {q:'Which is correct for the noun "export"?',blank:'EXport',opts:['EXport','exPORT','EXPort','exPort']},
+          {q:'Which is correct for the verb "export"?',blank:'exPORT',opts:['exPORT','EXport','EXPort','EXport']},
+          {q:'"conTENT" (adj: happy) vs "CONtent" (n: subject matter) — noun stress?',blank:'CONtent',opts:['CONtent','conTENT','conTent','CONTent']},
+          {q:'The word "subject" as a noun is stressed on ___.',blank:'SUBject',opts:['SUBject','subJECT','SUBJect','subJect']},
+          {q:'"protest" as a verb: ___.',blank:'proTEST',opts:['proTEST','PROtest','PROTest','proTest']},
+          {q:'Which noun has stress on the second syllable?',blank:'reBEL',opts:['reBEL','INsult','REfund','IMport']},
+          {q:'"increase" as a noun is ___.',blank:'INcrease',opts:['INcrease','inCREASE','INCrease','inCrease']}
+        ]
+      },
+      {id:8,title:'Ударение в трёхсложных словах',xp:35,
+        theory:`<div class="theory-block">
+<h3>Ударение в трёхсложных словах</h3>
+<p>В трёхсложных словах ударение чаще всего падает на первый или второй слог. Слова с латинскими корнями нередко имеют ударение на второй слог. Неударные слоги редуцируются — гласная часто превращается в /ə/ (schwa).</p>
+<div class="rule"><b>BEAUtiful</b> /ˈbjuːtɪfəl/ — красивый | <b>imPORTant</b> /ɪmˈpɔːtənt/ — важный<br>
+<b>COMputer</b> /kəmˈpjuːtər/ — компьютер | <b>toGEther</b> /təˈɡeðər/ — вместе<br>
+<b>HOlliday</b> /ˈhɒlɪdeɪ/ — праздник | <b>reMEMber</b> /rɪˈmembər/ — помнить<br>
+<b>DIFferent</b> /ˈdɪfrənt/ — разный | <b>enJOY</b> /ɪnˈdʒɔɪ/ — наслаждаться</div>
+<p class="example">✦ It's <b>imPORTant</b> to stay <b>toGEther</b>.</p>
+<p class="example">✦ I <b>reMEMber</b> a <b>BEAUtiful</b> <b>HOliday</b>.</p>
+<p class="example">✦ A <b>COMputer</b> makes life <b>DIFferent</b>.</p>
+</div>`,
+        exercises:[
+          {q:'Stress in "beautiful": ___.',blank:'BEAUtiful',opts:['BEAUtiful','beAUtiful','beauTIful','beautiFUL']},
+          {q:'Stress in "important": ___.',blank:'imPORtant',opts:['imPORtant','IMportant','importANT','IMPORtant']},
+          {q:'The unstressed vowel /ə/ is called ___.',blank:'schwa',opts:['schwa','glide','diphthong','semivowel']},
+          {q:'Stress in "together": ___.',blank:'toGEther',opts:['toGEther','TOgether','togeTHER','TOGether']},
+          {q:'Stress in "computer": ___.',blank:'comPUter',opts:['comPUter','COMputer','computER','COMPUter']},
+          {q:'Stress in "holiday": ___.',blank:'HOliday',opts:['HOliday','hoLIday','holidAY','HOLiday']},
+          {q:'Which syllable is stressed in "remember"?',blank:'second',opts:['second','first','third','none']},
+          {q:'Stress in "tomato": ___.',blank:'toMAto',opts:['toMAto','TOmato','tomatO','TOMato']},
+          {q:'"different" — the stress is on ___.',blank:'DIFferent',opts:['DIFferent','difFErent','differENT','diFFErent']},
+          {q:'Stress in "banana": ___.',blank:'baNAna',opts:['baNAna','BANana','banaNa','BAna']}
+        ]
+      },
+      {id:9,title:'Ударение с суффиксами: -tion, -ic, -ity',xp:35,
+        theory:`<div class="theory-block">
+<h3>Ударение с суффиксами -tion, -ic, -ity</h3>
+<p>Суффиксы меняют место ударения по правилу: перед -tion, -sion, -ic ударение на последний слог основы; перед -ity ударение тоже смещается. Это предсказуемо — выучи правило и применяй к новым словам.</p>
+<div class="rule"><b>-tion</b>: naˈtion, inˈforˈmation | <b>-ic</b>: eˈconˈomic, draˈmatic<br>
+<b>-ity</b>: aˈbility, uniˈversity | <b>-sion</b>: deˈcision, diˈmension<br>
+<b>eduˈcation</b> — образование | <b>reˈalistic</b> — реалистичный<br>
+<b>creˈativity</b> — креативность | <b>conˈclusion</b> — заключение</div>
+<p class="example">✦ The <b>university</b> offers courses in <b>economics</b>.</p>
+<p class="example">✦ Her <b>creativity</b> leads to <b>dramatic</b> solutions.</p>
+<p class="example">✦ The <b>conclusion</b> of the <b>nation</b>-wide study is clear.</p>
+</div>`,
+        exercises:[
+          {q:'Words ending in -tion: stress falls on ___.',blank:'syllable before -tion',opts:['syllable before -tion','last syllable','-tion itself','first syllable']},
+          {q:'"information" — stressed syllable is ___.',blank:'MA',opts:['MA','in','for','tion']},
+          {q:'"economic" — stress is on ___.',blank:'NO',opts:['NO','e','co','mic']},
+          {q:'"ability" — stress is on ___.',blank:'BIL',opts:['BIL','a','i','ty']},
+          {q:'"dramatic" — stress pattern is ___.',blank:'draMATic',opts:['draMATic','DRAmatic','dramatIC','draMatic']},
+          {q:'"decision" — stress is on ___.',blank:'CI',opts:['CI','de','sion','DE']},
+          {q:'"creativity" — stress is on ___.',blank:'A',opts:['A (creaTIvity)','cre','tiv','ty']},
+          {q:'"conclusion" — stress is on ___.',blank:'CLU',opts:['CLU','con','sion','CON']},
+          {q:'"realistic" — stress is on ___.',blank:'LIS',opts:['LIS','re','a','tic']},
+          {q:'The suffix -ity usually ___ the stress.',blank:'shifts',opts:['shifts','removes','doubles','ignores']}
+        ]
+      },
+      {id:10,title:'Интонация — утверждения и вопросы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Интонация: утверждения и вопросы</h3>
+<p>Утверждения в английском заканчиваются нисходящим тоном (голос идёт вниз). Вопросы с вопросительным словом (Wh-) — тоже нисходящий тон. Yes/No вопросы — восходящий тон (голос идёт вверх). Интонация меняет смысл!</p>
+<div class="rule"><b>falling ↘</b> — утверждения, Wh-вопросы | <b>rising ↗</b> — yes/no вопросы<br>
+<b>She's coming ↘</b> — она приходит | <b>Is she coming? ↗</b> — она приходит?<br>
+<b>Where are you? ↘</b> — где ты? | <b>Do you agree? ↗</b> — ты согласен?<br>
+<b>falling-rising ↘↗</b> — вежливость, сомнение, незавершённость</div>
+<p class="example">✦ <b>She left ↘</b> — statement of fact.</p>
+<p class="example">✦ <b>Did she leave? ↗</b> — genuine question needing yes/no.</p>
+<p class="example">✦ <b>Where did she go? ↘</b> — Wh-question with falling tone.</p>
+</div>`,
+        exercises:[
+          {q:'A statement normally ends with a ___ tone.',blank:'falling',opts:['falling','rising','flat','rising-falling']},
+          {q:'A yes/no question normally ends with a ___ tone.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'"Where do you live?" uses a ___ tone at the end.',blank:'falling',opts:['falling','rising','flat','rising-falling']},
+          {q:'"You\'re joking?" (surprise) uses a ___ tone.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'The falling-rising tone often signals ___.',blank:'doubt or politeness',opts:['doubt or politeness','certainty','anger','boredom']},
+          {q:'"I\'d love to come ↘↗" — this tone shows ___.',blank:'hesitation/reservation',opts:['hesitation/reservation','enthusiasm','certainty','refusal']},
+          {q:'Which sentence uses a rising tone?',blank:'Can you help me?',opts:['Can you help me?','I can help you.','What time is it?','She went home.']},
+          {q:'Wh-questions use which intonation?',blank:'falling',opts:['falling','rising','flat','either']},
+          {q:'Repeating something back to confirm ("You said WHAT?") uses ___.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'A list of items uses ___ on each item except the last.',blank:'rising',opts:['rising','falling','flat','rising-falling']}
+        ]
+      },
+      {id:11,title:'Интонация — списки и незаконченные мысли',xp:35,
+        theory:`<div class="theory-block">
+<h3>Интонация в списках и незавершённых мыслях</h3>
+<p>В списке каждый элемент кроме последнего произносится с восходящим тоном ↗ — это сигнал «продолжение следует». Последний элемент — нисходящий тон ↘ — сигнал завершения. Незаконченные фразы (pause, thinking) — также восходящий тон.</p>
+<div class="rule"><b>I need milk ↗, bread ↗, eggs ↗, and butter ↘</b><br>
+<b>Well ↗... (pause)</b> — раздумье | <b>If you agree ↗ ... (then)</b> — условие<br>
+<b>First ↗, then ↗, finally ↘</b> — последовательность<br>
+<b>On the one hand ↗ ... on the other hand ↘</b> — противопоставление</div>
+<p class="example">✦ She speaks English ↗, French ↗, and Spanish ↘.</p>
+<p class="example">✦ Well ↗... I'm not sure I agree completely.</p>
+<p class="example">✦ If you finish early ↗, we can go for coffee ↘.</p>
+</div>`,
+        exercises:[
+          {q:'In a list, each item except the last uses ___ intonation.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'The last item in a list uses ___ intonation.',blank:'falling',opts:['falling','rising','flat','rising-falling']},
+          {q:'An unfinished thought uses ___ intonation.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'"I like coffee ↗, tea ↗, and juice ↘" — how many items?',blank:'three',opts:['three','two','four','one']},
+          {q:'A conditional clause ("if you go") uses ___ intonation.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'"Well..." at the start of a hesitant answer uses ___.',blank:'rising',opts:['rising','falling','flat','none']},
+          {q:'Which signals "I have more to say"?',blank:'rising tone',opts:['rising tone','falling tone','flat tone','silence']},
+          {q:'In "First ↗, prepare the dough ↗, then bake ↘" — "then bake" has ___.',blank:'falling tone',opts:['falling tone','rising tone','flat','rising-falling']},
+          {q:'"On the one hand ↗..." signals ___.',blank:'contrast is coming',opts:['contrast is coming','conclusion','question','surprise']},
+          {q:'A tag question like "isn\'t it?" usually has ___ tone.',blank:'rising',opts:['rising','falling','flat','falling-rising']}
+        ]
+      },
+      {id:12,title:'Связная речь: linking sounds',xp:35,
+        theory:`<div class="theory-block">
+<h3>Связная речь: Linking</h3>
+<p>В беглой речи слова не произносятся отдельно — они сливаются. Linking: согласный конца слова + гласный начала следующего слова сливаются. Это нормально и правильно — так говорят носители.</p>
+<div class="rule"><b>an apple</b> → /ənˈæpl/ — «эн-эпл» | <b>not at all</b> → /nɒtətˈɔːl/<br>
+<b>come in</b> → /kʌmˈɪn/ | <b>pick it up</b> → /pɪkɪtˈʌp/<br>
+<b>turn off</b> → /tɜːnˈɒf/ | <b>check it</b> → /tʃekɪt/<br>
+<b>hold on</b> → /həʊldˈɒn/ | <b>take off</b> → /teɪkˈɒf/</div>
+<p class="example">✦ "Pick it up" sounds like <b>"Pickitup"</b> in natural speech.</p>
+<p class="example">✦ "Not at all" sounds like <b>"Notatall"</b>.</p>
+<p class="example">✦ "Come in and sit down" flows as one smooth phrase.</p>
+</div>`,
+        exercises:[
+          {q:'"an apple" in linked speech sounds like ___.',blank:'uh-NAPPLE',opts:['uh-NAPPLE','AN apple','a NAPPLE','an-APPLE']},
+          {q:'Linking happens between ___ and ___.',blank:'consonant + vowel',opts:['consonant + vowel','vowel + vowel','consonant + consonant','same sounds']},
+          {q:'"not at all" in connected speech sounds closest to ___.',blank:'no-ta-tall',opts:['no-ta-tall','not-at-all','no-tat-all','not-tall']},
+          {q:'"pick it up" — how many linking points?',blank:'two',opts:['two','one','three','none']},
+          {q:'"come in" — the "n" links to ___.',blank:'the vowel "i"',opts:['the vowel "i"','the next word\'s "n"','the "c"','nothing']},
+          {q:'Why do native speakers link words?',blank:'Natural speech rhythm',opts:['Natural speech rhythm','Laziness','Accent','Grammar rule']},
+          {q:'"hold on" — which sounds link?',blank:'/d/ + /ɒ/',opts:['/d/ + /ɒ/','/h/ + /ɒ/','/l/ + /d/','/n/ + end']},
+          {q:'"check it" in fast speech sounds like ___.',blank:'checkit',opts:['checkit','check-it','chek-kit','ches-it']},
+          {q:'Linking is characteristic of ___ speech.',blank:'connected/natural',opts:['connected/natural','formal/written','slow/careful','silent']},
+          {q:'"take off" — which sounds link?',blank:'/k/ + /ɒ/',opts:['/k/ + /ɒ/','/t/ + /æ/','/eɪ/ + /ɒ/','/f/ + end']}
+        ]
+      },
+      {id:13,title:'Редукция: gonna, wanna, gotta, kinda',xp:35,
+        theory:`<div class="theory-block">
+<h3>Редукция: разговорные формы</h3>
+<p>В разговорной речи определённые слова и сочетания сокращаются (редуцируются). Это не ошибка, а норма разговорного английского — особенно американского. Важно уметь понимать эти формы и при необходимости использовать.</p>
+<div class="rule"><b>gonna</b> = going to | <b>wanna</b> = want to<br>
+<b>gotta</b> = got to (have to) | <b>kinda</b> = kind of<br>
+<b>dunno</b> = don't know | <b>lemme</b> = let me<br>
+<b>gimme</b> = give me | <b>hafta</b> = have to</div>
+<p class="example">✦ I'm <b>gonna</b> call you later — I <b>hafta</b> go now.</p>
+<p class="example">✦ Do you <b>wanna</b> come? I <b>dunno</b> yet.</p>
+<p class="example">✦ <b>Gimme</b> a sec — this is <b>kinda</b> complicated.</p>
+</div>`,
+        exercises:[
+          {q:'"gonna" is the reduced form of ___.',blank:'going to',opts:['going to','gone to','get to','go now']},
+          {q:'"wanna" means ___.',blank:'want to',opts:['want to','went to','wanted','will to']},
+          {q:'"I gotta go" means ___.',blank:'I have to go',opts:['I have to go','I got a go','I go now','I will go']},
+          {q:'"kinda" means ___.',blank:'kind of',opts:['kind of','kind','kindly','kinds']},
+          {q:'"dunno" is a reduction of ___.',blank:'don\'t know',opts:['don\'t know','do know','didn\'t know','does know']},
+          {q:'"Lemme see" means ___.',blank:'Let me see',opts:['Let me see','Leave me see','Let me be','Let it be']},
+          {q:'"gimme" = ___.',blank:'give me',opts:['give me','get me','gave me','go me']},
+          {q:'These reductions are mostly used in ___ English.',blank:'informal spoken',opts:['informal spoken','formal written','academic','legal']},
+          {q:'"hafta" is a reduction of ___.',blank:'have to',opts:['have to','has to','had to','half to']},
+          {q:'"I\'m kinda tired" — "kinda" modifies the ___.',blank:'adjective',opts:['adjective','verb','noun','preposition']}
+        ]
+      },
+      {id:14,title:'Слабые формы артиклей и предлогов',xp:35,
+        theory:`<div class="theory-block">
+<h3>Слабые формы: артикли и предлоги</h3>
+<p>В потоке речи служебные слова (the, a, and, to, for, of, at, from) часто теряют свои «сильные» гласные и произносятся с /ə/ (schwa). Это называется слабой формой. Сильная форма используется только при особом акценте.</p>
+<div class="rule"><b>the</b>: слабая /ðə/, сильная /ðiː/ | <b>a</b>: слабая /ə/, сильная /eɪ/<br>
+<b>and</b>: слабая /ən(d)/ | <b>to</b>: слабая /tə/<br>
+<b>for</b>: слабая /fə/ | <b>of</b>: слабая /əv/<br>
+<b>at</b>: слабая /ət/ | <b>from</b>: слабая /frəm/</div>
+<p class="example">✦ "I'll be <b>at</b> the office <b>for</b> a while" — all weak forms.</p>
+<p class="example">✦ "<b>A</b> cup <b>of</b> tea" sounds like "ə kʌp əv tiː".</p>
+<p class="example">✦ "It's <b>THE</b> best!" — strong form for emphasis.</p>
+</div>`,
+        exercises:[
+          {q:'The weak form of "the" before a consonant is ___.',blank:'/ðə/',opts:['/ðə/','/ðiː/','/də/','/tiː/']},
+          {q:'The strong form of "the" is used ___.',blank:'for emphasis',opts:['for emphasis','always','before vowels only','never']},
+          {q:'The weak form of "a" is ___.',blank:'/ə/',opts:['/ə/','/eɪ/','/æ/','/ɑː/']},
+          {q:'"a cup of tea" — "of" sounds like ___.',blank:'/əv/',opts:['/əv/','/ɒv/','/ɔːf/','/ʌv/']},
+          {q:'"and" in weak form sounds like ___.',blank:'/ən/',opts:['/ən/','/ænd/','/ɑːnd/','/end/']},
+          {q:'When is the strong form of "a" used?',blank:'When emphasizing',opts:['When emphasizing','Always','Before vowels','In questions']},
+          {q:'"to" in weak form sounds like ___.',blank:'/tə/',opts:['/tə/','/tuː/','/tɒ/','/tʌ/']},
+          {q:'"for" in weak form sounds like ___.',blank:'/fə/',opts:['/fə/','/fɔː/','/fʌ/','/fɒ/']},
+          {q:'Weak forms help English speech sound ___.',blank:'natural and fluent',opts:['natural and fluent','choppy','louder','slower']},
+          {q:'"from" in weak form sounds like ___.',blank:'/frəm/',opts:['/frəm/','/frɒm/','/frʌm/','/freɪm/']}
+        ]
+      },
+      {id:15,title:'Американское произношение — ключевые отличия',xp:35,
+        theory:`<div class="theory-block">
+<h3>Американское произношение</h3>
+<p>Американский английский (General American) отличается от британского несколькими систематическими чертами. Зная эти правила, легче понимать американские фильмы, подкасты и собеседников.</p>
+<div class="rule"><b>Rhotic /r/</b>: /r/ произносится везде — car /kɑːr/, better /ˈbetər/<br>
+<b>Flap T</b>: /t/ между гласными → /d/ — butter /ˈbʌdər/, water /ˈwɑːdər/<br>
+<b>/ɑː/ вместо /ɒ/</b>: hot /hɑːt/, not /nɑːt/<br>
+<b>Can't</b>: американское /kænt/, британское /kɑːnt/</div>
+<p class="example">✦ "Better" in American sounds like <b>"bedder"</b>.</p>
+<p class="example">✦ "Water" sounds like <b>"wader"</b> in American English.</p>
+<p class="example">✦ American "dance" = /dæns/, British "dance" = /dɑːns/.</p>
+</div>`,
+        exercises:[
+          {q:'In American English, the /r/ after a vowel is ___.',blank:'pronounced',opts:['pronounced','silent','optional','doubled']},
+          {q:'The "flap T" makes /t/ sound like ___ between vowels.',blank:'/d/',opts:['/d/','/s/','/θ/','/r/']},
+          {q:'"butter" in American sounds like ___.',blank:'budder',opts:['budder','butter','buhter','buder']},
+          {q:'American "hot" uses the vowel ___.',blank:'/ɑː/',opts:['/ɑː/','/ɒ/','/ɔː/','/ʌ/']},
+          {q:'British /ɒ/ in "not" becomes ___ in American English.',blank:'/ɑː/',opts:['/ɑː/','/ɔː/','/ʌ/','/æ/']},
+          {q:'"can\'t" in American is pronounced ___.',blank:'/kænt/',opts:['/kænt/','/kɑːnt/','/keɪnt/','/kɒnt/']},
+          {q:'American English is described as ___.',blank:'rhotic',opts:['rhotic','non-rhotic','tonal','clipped']},
+          {q:'"water" with flap T sounds like ___.',blank:'wader',opts:['wader','watter','woter','wahter']},
+          {q:'"letter" in American: the middle consonant is ___.',blank:'flap /d/',opts:['flap /d/','clear /t/','silent','double /tt/']},
+          {q:'The accent described as "neutral American" is called ___.',blank:'General American',opts:['General American','RP','Southern','Mid-Atlantic']}
+        ]
+      },
+      {id:16,title:'Британское произношение — ключевые отличия',xp:35,
+        theory:`<div class="theory-block">
+<h3>Британское произношение (RP)</h3>
+<p>Received Pronunciation (RP) — стандартный британский акцент, используемый в BBC и на уроках. Ключевые черты: non-rhotic (r после гласной не произносится), чёткое /t/, долгое /ɑː/ в словах типа bath/dance.</p>
+<div class="rule"><b>Non-rhotic</b>: car /kɑː/, better /ˈbetə/ — /r/ молчит<br>
+<b>BATH vowel</b>: bath /bɑːθ/, dance /dɑːns/, can\'t /kɑːnt/<br>
+<b>Чёткое /t/</b>: butter /ˈbʌtə/ (не флэп) | <b>/ɒ/</b>: hot /hɒt/, lot /lɒt/<br>
+<b>Yod</b>: news /njuːz/, tune /tjuːn/ (AmE: /nuːz/, /tuːn/)</div>
+<p class="example">✦ In British RP, "car" ends without any /r/ sound.</p>
+<p class="example">✦ "Can\'t" in RP sounds like /kɑːnt/, not /kænt/.</p>
+<p class="example">✦ British "news" = /njuːz/ with a clear /j/ glide.</p>
+</div>`,
+        exercises:[
+          {q:'RP is described as ___.',blank:'non-rhotic',opts:['non-rhotic','rhotic','tonal','nasal']},
+          {q:'In RP, the /r/ in "car" is ___.',blank:'silent',opts:['silent','pronounced','trilled','flapped']},
+          {q:'"bath" in RP uses the vowel ___.',blank:'/ɑː/',opts:['/ɑː/','/æ/','/ɒ/','/ʌ/']},
+          {q:'"hot" in RP uses the vowel ___.',blank:'/ɒ/',opts:['/ɒ/','/ɑː/','/ɔː/','/ʌ/']},
+          {q:'"can\'t" in RP is ___.',blank:'/kɑːnt/',opts:['/kɑːnt/','/kænt/','/keɪnt/','/kɒnt/']},
+          {q:'RP stands for ___.',blank:'Received Pronunciation',opts:['Received Pronunciation','Royal Pronunciation','Real Pronunciation','Regional Pronunciation']},
+          {q:'In RP, "butter" has a ___ /t/, not a flap.',blank:'clear',opts:['clear','flap','silent','glottal']},
+          {q:'"news" in RP is ___.',blank:'/njuːz/',opts:['/njuːz/','/nuːz/','/neɪz/','/nʌz/']},
+          {q:'Which word has a different vowel in RP vs American?',blank:'dance',opts:['dance','bit','green','cat']},
+          {q:'RP is associated with ___.',blank:'BBC English',opts:['BBC English','Southern US accent','Australian English','Irish English']}
+        ]
+      },
+      {id:17,title:'Произношение числительных и дат',xp:35,
+        theory:`<div class="theory-block">
+<h3>Числительные и даты</h3>
+<p>Числа и даты в английском имеют свои правила произношения, которые часто путают. Год, дату, номер телефона, дробь — у каждого своя логика.</p>
+<div class="rule"><b>2024</b>: "twenty twenty-four" | <b>1999</b>: "nineteen ninety-nine"<br>
+<b>2000</b>: "two thousand" | <b>2001</b>: "two thousand and one"<br>
+<b>25 March</b>: "the twenty-fifth of March" (UK) / "March twenty-fifth" (US)<br>
+<b>0.5</b>: "nought point five" / "zero point five" | <b>½</b>: "a half"</div>
+<p class="example">✦ The meeting is on <b>the 3rd of April</b> (UK style).</p>
+<p class="example">✦ She was born in <b>nineteen eighty-five</b>.</p>
+<p class="example">✦ My number is <b>zero seven nine...</b> (UK) or <b>oh seven nine...</b></p>
+</div>`,
+        exercises:[
+          {q:'How do you say 2024?',blank:'twenty twenty-four',opts:['twenty twenty-four','two thousand twenty-four','two zero two four','twenty-oh-twenty-four']},
+          {q:'How do you say 1999?',blank:'nineteen ninety-nine',opts:['nineteen ninety-nine','one nine nine nine','nineteen-nine-nine','one thousand nine hundred']},
+          {q:'UK style for 15 March: ___.',blank:'the fifteenth of March',opts:['the fifteenth of March','March the fifteen','fifteenth March','March fifteenth']},
+          {q:'US style for 15 March: ___.',blank:'March fifteenth',opts:['March fifteenth','the fifteenth of March','March fifteen','the March fifteen']},
+          {q:'How do you say 2000?',blank:'two thousand',opts:['two thousand','twenty hundred','two zero zero zero','twenty zero']},
+          {q:'0.75 is said as ___.',blank:'nought/zero point seven five',opts:['nought/zero point seven five','zero comma seventy-five','point seventy-five','zero dot seventy-five']},
+          {q:'"½" is said as ___.',blank:'a half',opts:['a half','half one','one half part','zero five']},
+          {q:'UK phone number 07911 — "0" is read as ___.',blank:'oh',opts:['oh','zero','nil','nought']},
+          {q:'The year 1900 is said as ___.',blank:'nineteen hundred',opts:['nineteen hundred','one nine zero zero','nineteen zero zero','one thousand nine hundred']},
+          {q:'"¾" is said as ___.',blank:'three quarters',opts:['three quarters','three over four','zero point seventy-five','three fourth']}
+        ]
+      },
+      {id:18,title:'Произношение сложных слов: -ough, -tion',xp:35,
+        theory:`<div class="theory-block">
+<h3>Сложные буквосочетания: -ough, -tion, -ture</h3>
+<p>Английская орфография часто не соответствует произношению. Буквосочетание -ough может читаться 6+ способами. -tion всегда /ʃən/. -ture — /tʃər/. Нужно запоминать слова или знать паттерны.</p>
+<div class="rule"><b>though</b> /ðəʊ/ — хотя | <b>through</b> /θruː/ — через<br>
+<b>thought</b> /θɔːt/ — мысль | <b>tough</b> /tʌf/ — жёсткий<br>
+<b>cough</b> /kɒf/ — кашель | <b>nation</b> /ˈneɪʃən/ — нация<br>
+<b>nature</b> /ˈneɪtʃər/ — природа | <b>picture</b> /ˈpɪktʃər/ — картина</div>
+<p class="example">✦ <b>Though</b> it was <b>tough</b>, she pushed <b>through</b>.</p>
+<p class="example">✦ His <b>cough</b> interrupted every <b>nation</b>-wide broadcast.</p>
+<p class="example">✦ The <b>picture</b> showed the beauty of <b>nature</b>.</p>
+</div>`,
+        exercises:[
+          {q:'"through" is pronounced ___.',blank:'/θruː/',opts:['/θruː/','/θrəʊ/','/θrɒf/','/θrɔːt/']},
+          {q:'"though" is pronounced ___.',blank:'/ðəʊ/',opts:['/ðəʊ/','/θruː/','/θɔːt/','/ðʌf/']},
+          {q:'"tough" is pronounced ___.',blank:'/tʌf/',opts:['/tʌf/','/tuːf/','/tɒf/','/tɔːf/']},
+          {q:'"thought" is pronounced ___.',blank:'/θɔːt/',opts:['/θɔːt/','/θruːt/','/θəʊt/','/θʌt/']},
+          {q:'"cough" is pronounced ___.',blank:'/kɒf/',opts:['/kɒf/','/kʌf/','/kuːf/','/kɔːf/']},
+          {q:'The suffix -tion is always pronounced ___.',blank:'/ʃən/',opts:['/ʃən/','/tɪɒn/','/tʃən/','/sɪən/']},
+          {q:'"nature" ends with the sound ___.',blank:'/tʃər/',opts:['/tʃər/','/tjʊər/','/tʃʊər/','/tər/']},
+          {q:'"picture" ends with the sound ___.',blank:'/tʃər/',opts:['/tʃər/','/tjʊər/','/ktʃ/','/tər/']},
+          {q:'"rough" rhymes with ___.',blank:'stuff',opts:['stuff','show','fort','true']},
+          {q:'"bough" (tree branch) rhymes with ___.',blank:'cow',opts:['cow','low','off','bought']}
+        ]
+      },
+      {id:19,title:'Ритм и паузы в речи',xp:35,
+        theory:`<div class="theory-block">
+<h3>Ритм и паузы в английской речи</h3>
+<p>Английский — stress-timed язык: ударные слоги повторяются через примерно равные интервалы. Паузы между смысловыми группами помогают слушателю понять структуру. Умение делать правильные паузы делает речь естественной и понятной.</p>
+<div class="rule"><b>Stress-timed</b>: CATs eat FISH / CATS and DOGS eat FISH — одинаковый ритм<br>
+<b>Пауза между смысловыми группами</b>: "The man | who I met yesterday | works here"<br>
+<b>Паузы для обдумывания</b>: "Well... | I think... | you know..."<br>
+<b>Финальное замедление</b>: последний слог фразы часто длиннее</div>
+<p class="example">✦ "I WENT to the SHOP and BOUGHT some BREAD" — 4 beats.</p>
+<p class="example">✦ Pause before a key word: "The answer is... <b>yes</b>."</p>
+<p class="example">✦ Group words by meaning: "In the morning | I usually | have coffee."</p>
+</div>`,
+        exercises:[
+          {q:'English is described as a ___ language.',blank:'stress-timed',opts:['stress-timed','syllable-timed','tone','mora-timed']},
+          {q:'In stress-timed speech, ___ syllables occur at regular intervals.',blank:'stressed',opts:['stressed','unstressed','all','silent']},
+          {q:'A pause between meaning groups helps the listener ___.',blank:'understand structure',opts:['understand structure','fill silence','breathe','speed up']},
+          {q:'"The man | who I met | works here" — how many pauses?',blank:'two',opts:['two','one','three','none']},
+          {q:'What is a "filler pause"?',blank:'"Well...", "um...", "you know..."',opts:['"Well...", "um...", "you know..."','A long silence','A full stop','A breath']},
+          {q:'In English rhythm, content words are usually ___.',blank:'stressed',opts:['stressed','unstressed','silent','reduced']},
+          {q:'Function words (the, a, to) are usually ___.',blank:'unstressed',opts:['unstressed','stressed','paused','repeated']},
+          {q:'Slowing down at the end of a phrase signals ___.',blank:'completion',opts:['completion','continuation','question','surprise']},
+          {q:'"CATS eat FISH" and "CATS and DOGS eat FISH" take about ___.',blank:'the same time',opts:['the same time','different times','two beats vs four','three vs five beats']},
+          {q:'Good speakers use pauses to ___.',blank:'emphasize key information',opts:['emphasize key information','hide mistakes','sound foreign','slow down only']}
+        ]
+      },
+      {id:20,title:'Итоговый тест Pronunciation',xp:50,
+        theory:`<div class="theory-block">
+<h3>Pronunciation — финальный обзор</h3>
+<p>Ты прошёл все ключевые темы произношения: гласные и согласные звуки, дифтонги, ударение, интонация, связная речь, редукция и ритм. Финальный тест проверит всё вместе.</p>
+<div class="rule"><b>Гласные</b>: /æ/ /ɑː/ /ʌ/ /ɪ/ /iː/ /ɒ/ и дифтонги /eɪ/ /aɪ/ /ɔɪ/<br>
+<b>Согласные</b>: TH /θ/ /ð/, /v/ vs /w/, /r/ vs /l/, /s/ vs /z/<br>
+<b>Ударение</b>: 2–3 слога, суффиксы -tion/-ic/-ity<br>
+<b>Связность</b>: linking, редукция, слабые формы, ритм</div>
+<p class="example">✦ Perfect pronunciation takes practice — keep going!</p>
+<p class="example">✦ Focus on the sounds that don't exist in your native language.</p>
+<p class="example">✦ Record yourself and compare with native speakers regularly.</p>
+</div>`,
+        exercises:[
+          {q:'"cat" uses the vowel ___.',blank:'/æ/',opts:['/æ/','/ɑː/','/ʌ/','/ɒ/']},
+          {q:'"car" uses the vowel ___.',blank:'/ɑː/',opts:['/ɑː/','/æ/','/ɒ/','/ɔː/']},
+          {q:'The voiced TH sound /ð/ is in ___.',blank:'this',opts:['this','think','three','thank']},
+          {q:'"vine" vs "wine" — difference is ___.',blank:'/v/ vs /w/',opts:['/v/ vs /w/','/b/ vs /p/','/f/ vs /θ/','/m/ vs /n/']},
+          {q:'The word "present" (noun) is stressed ___.',blank:'PREsent',opts:['PREsent','preSENT','PResSENT','preSent']},
+          {q:'Words ending in -tion: stress on ___.',blank:'syllable before -tion',opts:['syllable before -tion','-tion itself','first syllable','last syllable']},
+          {q:'Yes/no questions end with a ___ tone.',blank:'rising',opts:['rising','falling','flat','falling-rising']},
+          {q:'"gonna" = ___.',blank:'going to',opts:['going to','gone to','want to','have to']},
+          {q:'English is ___ (rhythm type).',blank:'stress-timed',opts:['stress-timed','syllable-timed','tone language','mora-timed']},
+          {q:'In American English, the flap T makes "butter" sound like ___.',blank:'budder',opts:['budder','butter','buter','buhtter']},
+          {q:'RP (British) is described as ___.',blank:'non-rhotic',opts:['non-rhotic','rhotic','tonal','flapped']},
+          {q:'"through" is pronounced ___.',blank:'/θruː/',opts:['/θruː/','/θrəʊ/','/ðruː/','/θrɒf/']},
+          {q:'The weak form of "the" before a consonant is ___.',blank:'/ðə/',opts:['/ðə/','/ðiː/','/də/','/tiː/']},
+          {q:'In a list, the last item uses ___ intonation.',blank:'falling',opts:['falling','rising','flat','rising-falling']},
+          {q:'Congratulations — you completed the ___ course!',blank:'Pronunciation',opts:['Pronunciation','Speaking','Phonetics','Listening']}
+        ]
+      }
+    ]
+  }
+  ,writing:{
+    title:'Writing English',
+    icon:'✍️',
+    color:'#059669',
+    lessons:[
+      {id:1,title:'Структура делового email',xp:35,
+        theory:`<div class="theory-block">
+<h3>Структура делового email</h3>
+<p>Деловой email имеет чёткую структуру: тема, приветствие, вступление, основная часть, заключение и подпись. Чёткая структура помогает читателю быстро понять суть письма.</p>
+<div class="rule"><b>Subject line</b> — тема письма | <b>Salutation</b> — приветствие<br>
+<b>Opening line</b> — вступление | <b>Body</b> — основная часть<br>
+<b>Closing line</b> — завершение | <b>Sign-off</b> — прощание<br>
+<b>Signature</b> — подпись | <b>Attachment</b> — вложение</div>
+<p class="example">✦ Subject: <b>Meeting Request — Q3 Review</b> (конкретно и кратко).</p>
+<p class="example">✦ Opening: <b>I hope this email finds you well.</b></p>
+<p class="example">✦ Closing: <b>Please let me know if you need any further information.</b></p>
+</div>`,
+        exercises:[
+          {q:'The ___ line tells the reader what the email is about.',blank:'subject',opts:['subject','topic','title','header']},
+          {q:'A professional email always starts with a ___.',blank:'salutation',opts:['salutation','greeting card','hello','title']},
+          {q:'"I hope this email finds you well" is an ___.',blank:'opening line',opts:['opening line','closing line','subject','signature']},
+          {q:'Files sent with an email are called ___.',blank:'attachments',opts:['attachments','additions','inserts','extras']},
+          {q:'"Yours sincerely" is a formal ___.',blank:'sign-off',opts:['sign-off','salutation','subject','body']},
+          {q:'The ___ contains the main message of the email.',blank:'body',opts:['body','subject','footer','header']},
+          {q:'A good subject line should be ___.',blank:'specific and brief',opts:['specific and brief','very long','vague','optional']},
+          {q:'"Please find the report attached" goes in the ___.',blank:'body',opts:['body','subject line','signature','salutation']},
+          {q:'Your name, title and contact info form the ___.',blank:'signature',opts:['signature','closing','salutation','subject']},
+          {q:'Which part comes last in a formal email?',blank:'signature',opts:['signature','body','subject','salutation']}
+        ]
+      },
+      {id:2,title:'Формальные приветствия и подписи',xp:35,
+        theory:`<div class="theory-block">
+<h3>Приветствия и подписи в деловых письмах</h3>
+<p>Выбор приветствия зависит от степени формальности и от того, знаете ли вы имя адресата. Ошибки в приветствии — первое впечатление о вас. Подпись должна соответствовать тональности письма.</p>
+<div class="rule"><b>Dear Mr/Ms Smith,</b> — формально, имя известно | <b>Dear Sir/Madam,</b> — имя неизвестно<br>
+<b>Hi John,</b> — неформально | <b>To Whom It May Concern,</b> — официально<br>
+<b>Yours sincerely,</b> — если знаете имя | <b>Yours faithfully,</b> — если Dear Sir/Madam<br>
+<b>Best regards,</b> — нейтрально | <b>Kind regards,</b> — нейтрально-тепло</div>
+<p class="example">✦ <b>Dear Ms Johnson,</b> — when you know the recipient's name.</p>
+<p class="example">✦ <b>Yours sincerely,</b> — formal close after "Dear [Name]".</p>
+<p class="example">✦ <b>Best regards,</b> — neutral and widely used in business.</p>
+</div>`,
+        exercises:[
+          {q:'When you know the recipient\'s name, use ___.',blank:'Dear Mr/Ms [Name]',opts:['Dear Mr/Ms [Name]','Dear Sir/Madam','To Whom It May Concern','Hi there']},
+          {q:'When you don\'t know the name, use ___.',blank:'Dear Sir/Madam',opts:['Dear Sir/Madam','Dear Mr Unknown','Hi there','Dear Friend']},
+          {q:'After "Dear Sir/Madam", close with ___.',blank:'Yours faithfully',opts:['Yours faithfully','Yours sincerely','Best regards','Kind regards']},
+          {q:'After "Dear Mr Smith", close with ___.',blank:'Yours sincerely',opts:['Yours sincerely','Yours faithfully','Love','Best wishes']},
+          {q:'"Kind regards" is a ___ sign-off.',blank:'neutral',opts:['neutral','very formal','informal','rude']},
+          {q:'"To Whom It May Concern" is used when ___.',blank:'you don\'t know who will read it',opts:['you don\'t know who will read it','you know the name','writing informally','sending a CV']},
+          {q:'Which greeting is most informal?',blank:'Hi John,',opts:['Hi John,','Dear Mr Smith,','Dear Sir/Madam,','To Whom It May Concern,']},
+          {q:'"Best regards" is appropriate for ___ emails.',blank:'semi-formal/neutral',opts:['semi-formal/neutral','very formal legal','very informal','internal team only']},
+          {q:'"Yours faithfully" is used after ___.',blank:'Dear Sir/Madam',opts:['Dear Sir/Madam','Dear John','Hi there','To my colleague']},
+          {q:'Which sign-off pairs with "Dear Ms Carter"?',blank:'Yours sincerely',opts:['Yours sincerely','Yours faithfully','Love','Cheers']}
+        ]
+      },
+      {id:3,title:'Polite requests — вежливые просьбы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Polite Requests в деловой переписке</h3>
+<p>Прямые просьбы в деловых письмах звучат грубо. Вежливые формы используют модальные глаголы (could, would, might), вопросы и условные конструкции. Чем вы более вежливы, тем лучше впечатление.</p>
+<div class="rule"><b>Could you please...?</b> — вежливая просьба | <b>Would you mind...?</b> — очень вежливо<br>
+<b>I would be grateful if you could...</b> — формально | <b>I was wondering if...</b> — мягко<br>
+<b>Please find attached...</b> — сообщить о вложении | <b>I would appreciate it if...</b> — ценю<br>
+<b>Could you kindly...?</b> — подчёркнутая вежливость | <b>Feel free to...</b> — неформальное разрешение</div>
+<p class="example">✦ <b>Could you please</b> send me the report by Friday?</p>
+<p class="example">✦ <b>I would be grateful if you could</b> confirm your availability.</p>
+<p class="example">✦ <b>Would you mind</b> reviewing the draft before the meeting?</p>
+</div>`,
+        exercises:[
+          {q:'Which is the most polite request form?',blank:'I would be grateful if you could',opts:['I would be grateful if you could','Send me the file','Give me an answer','I want you to']},
+          {q:'"Would you mind sending...?" is ___ than "Send..."',blank:'more polite',opts:['more polite','less polite','the same','more direct']},
+          {q:'"I was wondering if you could help" is ___.',blank:'polite and indirect',opts:['polite and indirect','rude','very direct','a question']},
+          {q:'"Please find attached the report" means ___.',blank:'The report is attached to this email',opts:['The report is attached to this email','Look for the report','I found the report','Please send the report']},
+          {q:'Which phrase asks permission politely?',blank:'Would you mind if I...?',opts:['Would you mind if I...?','I will do it','Let me do it','Can I?']},
+          {q:'"I would appreciate it if you could..." is used to ___.',blank:'make a formal request',opts:['make a formal request','give an order','complain','thank someone']},
+          {q:'"Feel free to contact me" is ___.',blank:'an informal invitation',opts:['an informal invitation','a formal command','a complaint','a refusal']},
+          {q:'Which word makes a request more polite?',blank:'kindly',opts:['kindly','now','immediately','always']},
+          {q:'"Could you please confirm receipt?" means ___.',blank:'Please let me know you received this',opts:['Please let me know you received this','Please send it','Can you reply later?','I confirm receipt']},
+          {q:'To soften a request, you can use ___.',blank:'conditional + modal verb',opts:['conditional + modal verb','imperative','present simple','past tense']}
+        ]
+      },
+      {id:4,title:'Жалобы и претензии — complaint letters',xp:35,
+        theory:`<div class="theory-block">
+<h3>Письма с жалобами и претензиями</h3>
+<p>Письмо-жалоба должно быть вежливым но настойчивым. Структура: описание проблемы → последствия → что вы хотите → срок. Агрессивный тон вредит — держите профессиональный и конкретный стиль.</p>
+<div class="rule"><b>I am writing to complain about...</b> — начало жалобы | <b>I am disappointed to inform you...</b><br>
+<b>This has caused me significant inconvenience.</b> — последствия<br>
+<b>I would like a full refund / an apology / replacement.</b> — требование<br>
+<b>I would appreciate a response within 5 working days.</b> — срок<br>
+<b>I look forward to your prompt response.</b> — завершение</div>
+<p class="example">✦ <b>I am writing to complain about</b> the delayed delivery of my order.</p>
+<p class="example">✦ <b>This has caused me significant inconvenience</b> as I needed it urgently.</p>
+<p class="example">✦ <b>I would appreciate a full refund</b> within 7 working days.</p>
+</div>`,
+        exercises:[
+          {q:'A complaint letter should be ___.',blank:'polite but firm',opts:['polite but firm','aggressive','apologetic','vague']},
+          {q:'"I am writing to complain about..." is ___.',blank:'the opening of a complaint',opts:['the opening of a complaint','a request','a thank you','a sign-off']},
+          {q:'After describing the problem, you should state ___.',blank:'the consequences',opts:['the consequences','your name','your CV','a joke']},
+          {q:'"I would like a full refund" expresses ___.',blank:'a demand/request for remedy',opts:['a demand/request for remedy','an apology','a question','a greeting']},
+          {q:'"I look forward to your prompt response" is ___.',blank:'a closing line in a complaint',opts:['a closing line in a complaint','an opening','a salutation','a subject line']},
+          {q:'"Working days" means ___.',blank:'Monday to Friday (excluding weekends)',opts:['Monday to Friday (excluding weekends)','7 days a week','public holidays','night shifts']},
+          {q:'You should give a ___ for your requested response.',blank:'deadline',opts:['deadline','reason','discount','signature']},
+          {q:'The tone of a complaint letter should be ___.',blank:'professional',opts:['professional','emotional','informal','threatening']},
+          {q:'"This has caused me significant inconvenience" describes ___.',blank:'impact of the problem',opts:['impact of the problem','the solution','your CV','your name']},
+          {q:'"I am disappointed to inform you" is used to ___.',blank:'politely express dissatisfaction',opts:['politely express dissatisfaction','threaten the company','apologize','request a meeting']}
+        ]
+      },
+      {id:5,title:'Благодарственные письма',xp:35,
+        theory:`<div class="theory-block">
+<h3>Thank-you Letters</h3>
+<p>Благодарственное письмо укрепляет деловые отношения. Пишут после встречи, интервью, помощи, подарка или сотрудничества. Структура: приветствие → выражение благодарности → конкретика → пожелание продолжения.</p>
+<div class="rule"><b>Thank you for...</b> — базовая форма | <b>I am writing to express my gratitude for...</b><br>
+<b>I truly appreciate your...</b> — искренняя благодарность | <b>It was a pleasure meeting you.</b><br>
+<b>Your help was invaluable.</b> — высокая оценка | <b>I look forward to working with you.</b><br>
+<b>I hope to have the opportunity to return the favour.</b> — взаимность</div>
+<p class="example">✦ <b>Thank you for</b> taking the time to meet with me yesterday.</p>
+<p class="example">✦ <b>Your assistance was invaluable</b> and I truly appreciate it.</p>
+<p class="example">✦ <b>I look forward to</b> collaborating with you in the future.</p>
+</div>`,
+        exercises:[
+          {q:'A thank-you letter is usually sent ___.',blank:'after receiving help or meeting someone',opts:['after receiving help or meeting someone','before a meeting','when complaining','to apply for a job']},
+          {q:'"I am writing to express my gratitude" is ___.',blank:'a formal way to say thank you',opts:['a formal way to say thank you','a complaint','a request','a refusal']},
+          {q:'"Your help was invaluable" means ___.',blank:'Your help was extremely important',opts:['Your help was extremely important','Your help was useless','You helped a little','I don\'t need help']},
+          {q:'"It was a pleasure meeting you" is used ___.',blank:'after a meeting or interview',opts:['after a meeting or interview','before meeting someone','in a complaint','in a CV']},
+          {q:'"I hope to return the favour" means ___.',blank:'I want to help you in the future',opts:['I want to help you in the future','I owe you money','I can\'t help','I won\'t contact you']},
+          {q:'Which phrase is the most formal thank-you opening?',blank:'I am writing to express my sincerest gratitude',opts:['I am writing to express my sincerest gratitude','Thanks a lot!','Cheers!','Many thanks']},
+          {q:'"I truly appreciate your time" — "appreciate" means ___.',blank:'am grateful for',opts:['am grateful for','want more of','expect','refuse']},
+          {q:'After thanking, you should mention ___.',blank:'what specifically you are thankful for',opts:['what specifically you are thankful for','your CV','a complaint','your salary']},
+          {q:'"I look forward to working with you again" belongs in the ___.',blank:'closing paragraph',opts:['closing paragraph','opening line','subject line','complaint section']},
+          {q:'Thank-you letters should be sent ___.',blank:'promptly after the event',opts:['promptly after the event','weeks later','before the event','only in spring']}
+        ]
+      },
+      {id:6,title:'Резюме (CV) — структура и ключевые фразы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Структура CV (Резюме)</h3>
+<p>CV (Curriculum Vitae) — британский термин. Resume — американский. Стандартная структура: личные данные, краткое summary, опыт работы (обратная хронология), образование, навыки. Используй глаголы действия и конкретные числа.</p>
+<div class="rule"><b>Personal details</b>: имя, email, телефон, LinkedIn | <b>Professional summary</b>: 2-3 предложения<br>
+<b>Work experience</b>: должность, компания, даты, достижения | <b>Education</b>: диплом, вуз, год<br>
+<b>Skills</b>: технические и мягкие навыки | <b>References</b>: "available on request"<br>
+<b>Action verbs</b>: managed, developed, led, achieved, improved, delivered</div>
+<p class="example">✦ <b>Managed</b> a team of 8 engineers across 3 time zones.</p>
+<p class="example">✦ <b>Increased</b> sales by 25% within the first quarter.</p>
+<p class="example">✦ <b>Developed</b> and implemented a new onboarding process.</p>
+</div>`,
+        exercises:[
+          {q:'CV stands for ___.',blank:'Curriculum Vitae',opts:['Curriculum Vitae','Career Version','Creative Vitals','Career Vita']},
+          {q:'Work experience in a CV is listed in ___ order.',blank:'reverse chronological',opts:['reverse chronological','alphabetical','random','oldest first']},
+          {q:'Which is a strong CV action verb?',blank:'managed',opts:['managed','was responsible','did','helped maybe']},
+          {q:'"Increased sales by 30%" is better than "Did sales work" because it is ___.',blank:'specific and quantified',opts:['specific and quantified','more modest','vague','longer']},
+          {q:'A professional summary is usually ___.',blank:'2-3 sentences at the top',opts:['2-3 sentences at the top','a full page','at the end','your photo caption']},
+          {q:'"References available on request" is placed ___.',blank:'at the end of the CV',opts:['at the end of the CV','at the top','in the summary','in the skills section']},
+          {q:'The US equivalent of a CV is called a ___.',blank:'resume',opts:['resume','bio','profile','portfolio']},
+          {q:'Personal details in a CV include ___.',blank:'name, email, phone, LinkedIn',opts:['name, email, phone, LinkedIn','salary expectations','religion','age (optional)']},
+          {q:'CV bullet points should start with ___.',blank:'action verbs',opts:['action verbs','"I" pronoun','articles (the/a)','questions']},
+          {q:'Which word best describes the ideal CV length for most professionals?',blank:'one to two pages',opts:['one to two pages','five pages','one sentence','unlimited']}
+        ]
+      },
+      {id:7,title:'Cover Letter — сопроводительное письмо',xp:35,
+        theory:`<div class="theory-block">
+<h3>Cover Letter</h3>
+<p>Cover letter — письмо, которое сопровождает резюме при подаче на вакансию. Задача: убедить работодателя прочитать CV. Структура: почему вас интересует роль → ваши ключевые достижения → почему именно эта компания → призыв к действию.</p>
+<div class="rule"><b>I am writing to apply for the position of...</b> — открытие<br>
+<b>With X years of experience in...</b> — экспертиза | <b>In my current role, I have...</b> — достижения<br>
+<b>I am particularly drawn to your company because...</b> — интерес к компании<br>
+<b>I would welcome the opportunity to discuss...</b> — призыв к действию<br>
+<b>I have enclosed my CV for your consideration.</b> — ссылка на CV</div>
+<p class="example">✦ <b>I am writing to apply for</b> the Marketing Manager position at XYZ.</p>
+<p class="example">✦ <b>In my current role, I have</b> grown the client base by 40%.</p>
+<p class="example">✦ <b>I would welcome the opportunity</b> to discuss how I can contribute.</p>
+</div>`,
+        exercises:[
+          {q:'A cover letter is sent ___.',blank:'with your CV when applying for a job',opts:['with your CV when applying for a job','instead of a CV','after you get the job','before writing a CV']},
+          {q:'"I am writing to apply for the position of..." is the ___.',blank:'opening line of a cover letter',opts:['opening line of a cover letter','closing line','subject line','complaint']},
+          {q:'"I have enclosed my CV" means ___.',blank:'My CV is attached/included',opts:['My CV is attached/included','Please send my CV','Find my CV online','My CV is not ready']},
+          {q:'A cover letter should explain ___.',blank:'why you are the best candidate',opts:['why you are the best candidate','your age and address','your hobbies only','your salary history']},
+          {q:'"I am particularly drawn to your company because..." shows ___.',blank:'research and genuine interest',opts:['research and genuine interest','desperation','generic interest','a complaint']},
+          {q:'Which phrase ends a cover letter well?',blank:'I would welcome the opportunity to discuss my application.',opts:['I would welcome the opportunity to discuss my application.','Please hire me.','Call me.','That\'s all.']},
+          {q:'Cover letters should be ___.',blank:'tailored to the specific job',opts:['tailored to the specific job','identical for all jobs','longer than the CV','one word']},
+          {q:'"With five years of experience in finance..." is used to ___.',blank:'establish credibility',opts:['establish credibility','complain','apologize','introduce a colleague']},
+          {q:'The main goal of a cover letter is to ___.',blank:'get the employer to read your CV',opts:['get the employer to read your CV','list all your skills','describe your childhood','apologize for gaps']},
+          {q:'A cover letter should be ___.',blank:'one page maximum',opts:['one page maximum','three pages','as long as your CV','optional always']}
+        ]
+      },
+      {id:8,title:'LinkedIn профиль — About и Experience',xp:35,
+        theory:`<div class="theory-block">
+<h3>LinkedIn: About и Experience</h3>
+<p>LinkedIn — главная профессиональная сеть. Секция About — ваше личное statement: кто вы, что умеете, чего хотите. Experience — как CV, но живее и с ключевыми словами для поиска рекрутеров.</p>
+<div class="rule"><b>I am a passionate...</b> — описание себя | <b>With expertise in...</b> — область экспертизы<br>
+<b>I specialize in...</b> — специализация | <b>I am currently seeking...</b> — поиск работы<br>
+<b>Key achievements:</b> — достижения | <b>Open to opportunities in...</b> — открытость<br>
+<b>Let\'s connect!</b> — призыв к связи | <b>DM me for...</b> — неформальный призыв</div>
+<p class="example">✦ <b>I am a data analyst</b> with 5 years of experience in e-commerce.</p>
+<p class="example">✦ <b>I specialize in</b> turning complex data into actionable insights.</p>
+<p class="example">✦ <b>Open to opportunities</b> in product analytics and growth roles.</p>
+</div>`,
+        exercises:[
+          {q:'The LinkedIn "About" section is your ___.',blank:'personal professional statement',opts:['personal professional statement','CV copy-paste','complaint letter','cover letter']},
+          {q:'"I specialize in..." is used to ___.',blank:'define your area of expertise',opts:['define your area of expertise','apply for a job','complain','thank someone']},
+          {q:'"Open to opportunities in..." signals that you ___.',blank:'are job searching',opts:['are job searching','are not available','hate your job','want a promotion']},
+          {q:'LinkedIn Experience should include ___.',blank:'achievements with numbers',opts:['achievements with numbers','your salary','your personal problems','only job titles']},
+          {q:'"Let\'s connect!" is ___.',blank:'an informal call-to-action',opts:['an informal call-to-action','a formal phrase','a complaint','a subject line']},
+          {q:'Keywords in LinkedIn help ___.',blank:'recruiters find your profile',opts:['recruiters find your profile','confuse readers','fill space','look professional only']},
+          {q:'"Key achievements:" is followed by ___.',blank:'bullet points with results',opts:['bullet points with results','your photo','your address','a complaint']},
+          {q:'The About section should be written in ___.',blank:'first person (I)',opts:['first person (I)','third person (he/she)','second person (you)','passive voice only']},
+          {q:'"DM me for..." means ___.',blank:'Send me a direct message for...',opts:['Send me a direct message for...','Don\'t message me','Delete my message','Download my CV']},
+          {q:'Which is NOT good LinkedIn About content?',blank:'My salary expectations are £60k',opts:['My salary expectations are £60k','I specialize in UX design','Open to remote roles','I have 8 years in marketing']}
+        ]
+      },
+      {id:9,title:'Деловые отчёты — структура и язык',xp:35,
+        theory:`<div class="theory-block">
+<h3>Деловые отчёты (Business Reports)</h3>
+<p>Бизнес-отчёт информирует, анализирует и рекомендует. Структура: заголовок, краткое резюме (executive summary), введение, основная часть (findings), выводы и рекомендации. Язык — объективный, безличный, конкретный.</p>
+<div class="rule"><b>Executive summary</b>: краткий обзор для руководства | <b>Introduction</b>: цель отчёта<br>
+<b>Findings</b>: данные и анализ | <b>Conclusions</b>: что это означает<br>
+<b>Recommendations</b>: что делать | <b>This report aims to...</b> — цель<br>
+<b>The data indicates that...</b> — вывод из данных | <b>It is recommended that...</b> — рекомендация</div>
+<p class="example">✦ <b>This report aims to</b> analyse customer satisfaction in Q3.</p>
+<p class="example">✦ <b>The findings indicate that</b> 72% of users prefer mobile access.</p>
+<p class="example">✦ <b>It is recommended that</b> the company invest in a mobile-first interface.</p>
+</div>`,
+        exercises:[
+          {q:'An executive summary is placed ___.',blank:'at the beginning of the report',opts:['at the beginning of the report','at the end','in the middle','it\'s optional']},
+          {q:'"This report aims to..." introduces the ___.',blank:'purpose of the report',opts:['purpose of the report','findings','conclusion','recommendation']},
+          {q:'The "Findings" section contains ___.',blank:'data and analysis',opts:['data and analysis','recommendations','the summary','the title']},
+          {q:'"It is recommended that..." is ___.',blank:'a formal recommendation',opts:['a formal recommendation','a complaint','a greeting','a finding']},
+          {q:'Business report language should be ___.',blank:'objective and impersonal',opts:['objective and impersonal','emotional','first-person casual','vague']},
+          {q:'The "Conclusions" section explains ___.',blank:'what the findings mean',opts:['what the findings mean','what data was collected','what to do next','how to greet']},
+          {q:'"The data indicates that..." is used to ___.',blank:'present a finding',opts:['present a finding','complain','thank someone','sign off']},
+          {q:'Which comes after "Findings" in a report?',blank:'Conclusions',opts:['Conclusions','Introduction','Title','Salutation']},
+          {q:'Executive summaries are written for ___.',blank:'busy senior readers',opts:['busy senior readers','technical experts only','the general public','children']},
+          {q:'Passive voice is often used in reports because it sounds ___.',blank:'more objective',opts:['more objective','more personal','more casual','more emotional']}
+        ]
+      },
+      {id:10,title:'Эссе — введение и тезис',xp:35,
+        theory:`<div class="theory-block">
+<h3>Введение и тезис в эссе</h3>
+<p>Введение эссе должно зацепить читателя и чётко сформулировать тезис. Тезис (thesis statement) — это центральное утверждение эссе, которое вы будете доказывать. Хорошее введение: hook → background → thesis.</p>
+<div class="rule"><b>Hook</b>: интересный факт, вопрос, цитата | <b>Background</b>: контекст<br>
+<b>Thesis statement</b>: ваша позиция | <b>This essay argues that...</b> — тезис<br>
+<b>In recent years...</b> — контекст | <b>This essay will examine...</b> — план<br>
+<b>While some believe X, this essay contends that Y.</b> — противопоставление</div>
+<p class="example">✦ Hook: <b>Over 4 billion people use social media daily.</b></p>
+<p class="example">✦ Thesis: <b>This essay argues that</b> social media has a net negative effect on mental health.</p>
+<p class="example">✦ <b>This essay will examine</b> three key arguments for stricter regulation.</p>
+</div>`,
+        exercises:[
+          {q:'A "hook" at the start of an essay is designed to ___.',blank:'grab the reader\'s attention',opts:['grab the reader\'s attention','state the conclusion','list references','give a definition']},
+          {q:'A thesis statement expresses ___.',blank:'the central argument of the essay',opts:['the central argument of the essay','background information','a question only','a list of facts']},
+          {q:'"This essay argues that..." introduces the ___.',blank:'thesis',opts:['thesis','hook','conclusion','body paragraph']},
+          {q:'The background section provides ___.',blank:'context for the topic',opts:['context for the topic','the thesis','evidence','the conclusion']},
+          {q:'"In recent years..." is used to ___.',blank:'provide context',opts:['provide context','state the thesis','conclude','cite sources']},
+          {q:'Which is a strong thesis statement?',blank:'Social media harms mental health in teenagers.',opts:['Social media harms mental health in teenagers.','Social media exists.','This essay is about social media.','Some people use social media.']},
+          {q:'Essay introductions should move from ___ to ___.',blank:'general to specific',opts:['general to specific','specific to general','topic to hook','conclusion to introduction']},
+          {q:'"While some believe X, this essay contends that Y" shows ___.',blank:'acknowledgment of opposing view',opts:['acknowledgment of opposing view','agreement','confusion','conclusion']},
+          {q:'The thesis statement is usually placed ___.',blank:'at the end of the introduction',opts:['at the end of the introduction','at the start','in the body','in the conclusion']},
+          {q:'"This essay will examine three key areas" is a ___.',blank:'signposting sentence',opts:['signposting sentence','thesis','hook','conclusion']}
+        ]
+      },
+      {id:11,title:'Эссе — основная часть и аргументы',xp:35,
+        theory:`<div class="theory-block">
+<h3>Основная часть эссе</h3>
+<p>Каждый абзац основной части строится по схеме PEEL: Point (утверждение) → Evidence (доказательство) → Explanation (объяснение) → Link (связь с тезисом). Используй linking words для связи между абзацами.</p>
+<div class="rule"><b>Firstly / First of all</b> — первый аргумент | <b>Furthermore / Moreover</b> — добавление<br>
+<b>However / Nevertheless</b> — противопоставление | <b>For example / For instance</b> — пример<br>
+<b>According to...</b> — ссылка на источник | <b>This suggests that...</b> — вывод<br>
+<b>This supports the argument that...</b> — связь с тезисом | <b>In contrast</b> — контраст</div>
+<p class="example">✦ <b>Firstly,</b> studies show that regular exercise reduces anxiety.</p>
+<p class="example">✦ <b>Furthermore,</b> physical activity improves cognitive performance.</p>
+<p class="example">✦ <b>However,</b> access to sports facilities remains unequal.</p>
+</div>`,
+        exercises:[
+          {q:'PEEL stands for Point, Evidence, Explanation, ___.',blank:'Link',opts:['Link','Logic','Language','Level']},
+          {q:'"Furthermore" is used to ___.',blank:'add another point',opts:['add another point','contradict','conclude','ask a question']},
+          {q:'"However" is used to ___.',blank:'introduce a contrast',opts:['introduce a contrast','add more evidence','conclude','give an example']},
+          {q:'"For instance" introduces ___.',blank:'an example',opts:['an example','a contrast','a conclusion','a citation']},
+          {q:'"This suggests that..." is used to ___.',blank:'draw a conclusion from evidence',opts:['draw a conclusion from evidence','add a point','contradict','start a paragraph']},
+          {q:'"According to Smith (2020)..." is a ___.',blank:'citation of a source',opts:['citation of a source','personal opinion','example','hook']},
+          {q:'Which linking word introduces an opposing point?',blank:'Nevertheless',opts:['Nevertheless','Moreover','Firstly','For example']},
+          {q:'"This supports the argument that..." connects evidence to ___.',blank:'the thesis',opts:['the thesis','the hook','the conclusion','the introduction']},
+          {q:'"In contrast" signals ___.',blank:'a difference between two ideas',opts:['a difference between two ideas','an example','a conclusion','an addition']},
+          {q:'How many main points should a body paragraph develop?',blank:'one',opts:['one','three','as many as possible','none']}
+        ]
+      },
+      {id:12,title:'Эссе — заключение',xp:35,
+        theory:`<div class="theory-block">
+<h3>Заключение эссе</h3>
+<p>Заключение подводит итог и оставляет читателю финальное впечатление. Не добавляй новую информацию — только обобщи и переформулируй тезис другими словами. Финальное предложение — strong statement или call to action.</p>
+<div class="rule"><b>In conclusion,</b> — начало заключения | <b>To summarize,</b> — подведение итога<br>
+<b>In summary,</b> — краткое резюме | <b>Ultimately,</b> — в конечном счёте<br>
+<b>This essay has argued that...</b> — повтор тезиса | <b>As demonstrated above,</b> — отсылка<br>
+<b>It is clear that...</b> — уверенный финал | <b>Future research should...</b> — перспективы</div>
+<p class="example">✦ <b>In conclusion,</b> the evidence strongly supports the need for policy change.</p>
+<p class="example">✦ <b>This essay has argued that</b> digital literacy is essential in modern education.</p>
+<p class="example">✦ <b>Ultimately,</b> society must address these issues before it is too late.</p>
+</div>`,
+        exercises:[
+          {q:'"In conclusion" signals ___.',blank:'the end of the essay',opts:['the end of the essay','a new argument','an example','the introduction']},
+          {q:'A conclusion should NOT ___.',blank:'introduce new information',opts:['introduce new information','summarize the essay','restate the thesis','give a final thought']},
+          {q:'"This essay has argued that..." restates ___.',blank:'the thesis',opts:['the thesis','an example','a counter-argument','a citation']},
+          {q:'"Ultimately" is used to suggest ___.',blank:'the most important final point',opts:['the most important final point','a first argument','an example','a question']},
+          {q:'"As demonstrated above" refers to ___.',blank:'points made in the body',opts:['points made in the body','new evidence','the introduction','a source']},
+          {q:'"It is clear that..." expresses ___.',blank:'a confident conclusion',opts:['a confident conclusion','uncertainty','a question','a complaint']},
+          {q:'The conclusion should be ___.',blank:'shorter than the body paragraphs',opts:['shorter than the body paragraphs','the longest section','the same length as intro','empty']},
+          {q:'"Future research should explore..." is a ___.',blank:'forward-looking statement',opts:['forward-looking statement','thesis','example','hook']},
+          {q:'The thesis in the conclusion should be ___.',blank:'paraphrased, not copied',opts:['paraphrased, not copied','copied exactly','removed','contradicted']},
+          {q:'Which phrase is NOT used to start a conclusion?',blank:'Firstly,',opts:['Firstly,','In conclusion,','To summarize,','Ultimately,']}
+        ]
+      },
+      {id:13,title:'Академическое письмо — номинализация',xp:35,
+        theory:`<div class="theory-block">
+<h3>Номинализация в академическом письме</h3>
+<p>Номинализация — преобразование глаголов и прилагательных в существительные. Делает текст формальнее и объективнее. Академический стиль избегает личных местоимений и предпочитает абстрактные существительные.</p>
+<div class="rule"><b>analyze → analysis</b> | <b>decide → decision</b><br>
+<b>develop → development</b> | <b>significant → significance</b><br>
+<b>apply → application</b> | <b>investigate → investigation</b><br>
+<b>We found → The findings showed</b> | <b>We suggest → It is suggested</b></div>
+<p class="example">✦ "We analyzed" → <b>The analysis of</b> the data revealed...</p>
+<p class="example">✦ "We decided" → <b>A decision was made</b> to proceed with...</p>
+<p class="example">✦ "It is significant" → <b>The significance of</b> these results cannot be overstated.</p>
+</div>`,
+        exercises:[
+          {q:'Nominalisation turns verbs into ___.',blank:'nouns',opts:['nouns','adjectives','adverbs','articles']},
+          {q:'The noun form of "analyze" is ___.',blank:'analysis',opts:['analysis','analyzer','analytical','analyzing']},
+          {q:'The noun form of "decide" is ___.',blank:'decision',opts:['decision','decider','deciding','decisive']},
+          {q:'"We found" in academic style becomes ___.',blank:'The findings showed',opts:['The findings showed','I found','We did find','Finding was']},
+          {q:'"We suggest" in academic passive becomes ___.',blank:'It is suggested',opts:['It is suggested','We are suggesting','Suggestions were','I suggest']},
+          {q:'Nominalisation makes writing more ___.',blank:'formal and objective',opts:['formal and objective','personal','casual','emotional']},
+          {q:'The noun form of "investigate" is ___.',blank:'investigation',opts:['investigation','investigator','investigative','investigating']},
+          {q:'Academic writing avoids ___.',blank:'personal pronouns like "I" and "we"',opts:['personal pronouns like "I" and "we"','passive voice','long sentences','technical terms']},
+          {q:'"develop" → ___',blank:'development',opts:['development','developer','developing','developed']},
+          {q:'"apply" → ___',blank:'application',opts:['application','applicant','applicating','applied']}
+        ]
+      },
+      {id:14,title:'Посты в соцсетях — вовлекающий контент',xp:35,
+        theory:`<div class="theory-block">
+<h3>Посты в соцсетях на английском</h3>
+<p>Вовлекающий пост: захватывающий первый абзац, ценность для читателя, призыв к действию. Хэштеги — для охвата. Эмодзи — для визуального акцента. Тон — аутентичный и разговорный, но профессиональный.</p>
+<div class="rule"><b>Hook</b>: "Did you know...?" / "Hot take:" / "Unpopular opinion:" | <b>CTA</b>: call to action<br>
+<b>Like if you agree 👍</b> — вовлечение | <b>Share this with someone who needs it</b><br>
+<b>Drop your thoughts in the comments 💬</b> | <b>Save this for later 🔖</b><br>
+<b>Thread 🧵</b> — серия твитов/постов | <b>Hashtags</b> — для охвата</div>
+<p class="example">✦ "Hot take: <b>most meetings could be emails.</b> Here's why 👇"</p>
+<p class="example">✦ "<b>Did you know</b> that 80% of people abandon apps after one use?"</p>
+<p class="example">✦ "<b>Save this post</b> — 5 phrases that make you sound more professional."</p>
+</div>`,
+        exercises:[
+          {q:'CTA stands for ___.',blank:'Call To Action',opts:['Call To Action','Content To Add','Create The Account','Caption Title Action']},
+          {q:'"Drop your thoughts in the comments" is a ___.',blank:'call to action',opts:['call to action','hook','hashtag','signature']},
+          {q:'A social media "hook" is designed to ___.',blank:'stop the reader from scrolling',opts:['stop the reader from scrolling','end the post','list hashtags','credit sources']},
+          {q:'"Save this for later 🔖" encourages ___.',blank:'bookmarking the post',opts:['bookmarking the post','sharing the post','liking the post','deleting the post']},
+          {q:'Hashtags on social media help ___.',blank:'increase reach and discoverability',opts:['increase reach and discoverability','make text longer','add emojis','create polls']},
+          {q:'"Unpopular opinion:" as a hook is designed to ___.',blank:'spark curiosity and debate',opts:['spark curiosity and debate','agree with everyone','end discussion','list facts']},
+          {q:'A "thread" on Twitter/X means ___.',blank:'a series of connected posts',opts:['a series of connected posts','a single post','a profile photo','a deleted tweet']},
+          {q:'Which tone is best for professional LinkedIn posts?',blank:'Authentic and professional',opts:['Authentic and professional','Formal and impersonal','Aggressive','Fully informal']},
+          {q:'"Share this with someone who needs it" is a ___.',blank:'sharing CTA',opts:['sharing CTA','hook','hashtag','conclusion']},
+          {q:'The first line of a social post is most important because ___.',blank:'it determines if people read further',opts:['it determines if people read further','it contains hashtags','it is the longest','it\'s for bots']}
+        ]
+      },
+      {id:15,title:'Мессенджеры и неформальная переписка',xp:35,
+        theory:`<div class="theory-block">
+<h3>Неформальная переписка в мессенджерах</h3>
+<p>Неформальная переписка на английском — быстрая, краткая и дружелюбная. Сокращения, аббревиатуры и эмодзи — нормальная часть коммуникации. Но в деловом контексте — осторожно: знай свою аудиторию.</p>
+<div class="rule"><b>btw</b> = by the way | <b>lol</b> = laugh out loud | <b>omg</b> = oh my god<br>
+<b>tbh</b> = to be honest | <b>imo</b> = in my opinion | <b>fyi</b> = for your information<br>
+<b>asap</b> = as soon as possible | <b>thx / ty</b> = thanks / thank you<br>
+<b>np</b> = no problem | <b>brb</b> = be right back | <b>ttyl</b> = talk to you later</div>
+<p class="example">✦ "BTW, the meeting is moved to 3pm — FYI 📌"</p>
+<p class="example">✦ "Thx for the help! NP if you can't make it tomorrow 😊"</p>
+<p class="example">✦ "OMG same! TBH I had no idea either lol"</p>
+</div>`,
+        exercises:[
+          {q:'"btw" stands for ___.',blank:'by the way',opts:['by the way','between two words','because the work','be there waiting']},
+          {q:'"fyi" means ___.',blank:'for your information',opts:['for your information','find your invoice','follow your instinct','fix your issue']},
+          {q:'"asap" means ___.',blank:'as soon as possible',opts:['as soon as possible','after sending a package','at some assumed point','always send a photo']},
+          {q:'"tbh" means ___.',blank:'to be honest',opts:['to be honest','to be helpful','talk back here','think before hesitating']},
+          {q:'"np" in a chat means ___.',blank:'no problem',opts:['no problem','next post','not possible','new phone']},
+          {q:'"brb" means ___.',blank:'be right back',opts:['be right back','bring real books','before reading begins','be ready, boss']},
+          {q:'"imo" means ___.',blank:'in my opinion',opts:['in my opinion','in my order','I message online','in most offices']},
+          {q:'In a professional Slack message to your boss, you should ___.',blank:'avoid heavy slang and use clear language',opts:['avoid heavy slang and use clear language','use lol and omg freely','write in ALL CAPS','use no punctuation']},
+          {q:'"ttyl" means ___.',blank:'talk to you later',opts:['talk to you later','thanks to your leader','tell them your limit','try to yield later']},
+          {q:'Which abbreviation can be used professionally (emails)?',blank:'FYI',opts:['FYI','OMG','LOL','brb']}
+        ]
+      },
+      {id:16,title:'Протоколы встреч (Meeting Minutes)',xp:35,
+        theory:`<div class="theory-block">
+<h3>Meeting Minutes — Протоколы встреч</h3>
+<p>Meeting minutes — официальный документ, фиксирующий ход встречи: кто присутствовал, что обсуждалось, какие решения приняты, кто за что отвечает. Пишутся кратко, в прошедшем времени, безлично.</p>
+<div class="rule"><b>Attendees:</b> список участников | <b>Apologies:</b> кто не пришёл<br>
+<b>Agenda:</b> повестка | <b>It was agreed that...</b> — решение<br>
+<b>Action point:</b> задача + ответственный + срок | <b>It was noted that...</b> — замечание<br>
+<b>The meeting was chaired by...</b> — кто вёл встречу | <b>AOB</b> = Any Other Business</div>
+<p class="example">✦ <b>It was agreed that</b> the deadline would be moved to March 31st.</p>
+<p class="example">✦ <b>Action point:</b> Sarah to send the updated budget by Friday.</p>
+<p class="example">✦ <b>It was noted that</b> the client had not yet confirmed the order.</p>
+</div>`,
+        exercises:[
+          {q:'Meeting minutes are written in ___ tense.',blank:'past',opts:['past','present','future','present perfect']},
+          {q:'"Attendees" in meeting minutes refers to ___.',blank:'people who were present',opts:['people who were present','the agenda','the venue','the date']},
+          {q:'"Apologies" in meeting minutes means ___.',blank:'list of people who could not attend',opts:['list of people who could not attend','sorry for mistakes','apology letters','late arrivals']},
+          {q:'"It was agreed that..." records ___.',blank:'a decision made',opts:['a decision made','a complaint','a greeting','an agenda item only']},
+          {q:'An "action point" includes ___.',blank:'task + responsible person + deadline',opts:['task + responsible person + deadline','only the task','the agenda','only the date']},
+          {q:'AOB stands for ___.',blank:'Any Other Business',opts:['Any Other Business','All Official Briefings','Approved Operations Board','Actions of the Board']},
+          {q:'"The meeting was chaired by..." tells us ___.',blank:'who led the meeting',opts:['who led the meeting','where the meeting was','how long it lasted','who took notes']},
+          {q:'Minutes are written in ___ voice.',blank:'passive (often)',opts:['passive (often)','first person active','second person','future passive']},
+          {q:'"It was noted that..." records ___.',blank:'an observation or concern',opts:['an observation or concern','a decision','an action point','a greeting']},
+          {q:'Meeting minutes are distributed ___.',blank:'after the meeting to all attendees',opts:['after the meeting to all attendees','during the meeting only','before the meeting','never']}
+        ]
+      },
+      {id:17,title:'Технические инструкции и документация',xp:35,
+        theory:`<div class="theory-block">
+<h3>Технические инструкции и документация</h3>
+<p>Технические тексты должны быть точными, краткими и понятными. Инструкции пишутся в повелительном наклонении (imperative). Используй нумерованные шаги, активный залог и избегай жаргона если аудитория — не специалисты.</p>
+<div class="rule"><b>Click the button.</b> — повелительное | <b>Select the option.</b> — инструкция<br>
+<b>Note:</b> важная заметка | <b>Warning:</b> предупреждение | <b>Tip:</b> совет<br>
+<b>Ensure that...</b> — убедиться | <b>Navigate to...</b> — перейти к<br>
+<b>The system will...</b> — описание поведения | <b>If... then...</b> — условие</div>
+<p class="example">✦ <b>Click</b> "Settings" and <b>select</b> "Privacy".</p>
+<p class="example">✦ <b>Note:</b> changes will take effect after restarting the application.</p>
+<p class="example">✦ <b>Warning:</b> do not disconnect the device during the update.</p>
+</div>`,
+        exercises:[
+          {q:'Technical instructions are usually written in ___ mood.',blank:'imperative',opts:['imperative','subjunctive','conditional','interrogative']},
+          {q:'"Click the button" is written in which form?',blank:'imperative',opts:['imperative','past tense','passive','interrogative']},
+          {q:'"Warning:" in documentation signals ___.',blank:'potential danger or important caution',opts:['potential danger or important caution','a tip','a note','a step']},
+          {q:'"Note:" in documentation is used for ___.',blank:'important but non-critical information',opts:['important but non-critical information','a warning','an error','a command']},
+          {q:'"Ensure that the file is saved" means ___.',blank:'Make sure the file is saved',opts:['Make sure the file is saved','Ensure is a name','Send the file','Delete the file']},
+          {q:'"Navigate to Settings" means ___.',blank:'Go to Settings',opts:['Go to Settings','Create Settings','Delete Settings','Copy Settings']},
+          {q:'Why use numbered steps in instructions?',blank:'For clear sequence and easy following',opts:['For clear sequence and easy following','To add length','To look technical','For decoration']},
+          {q:'"If... then..." in instructions describes ___.',blank:'a conditional action',opts:['a conditional action','a warning','a title','an apology']},
+          {q:'"The system will restart automatically" describes ___.',blank:'expected system behavior',opts:['expected system behavior','a user action','a warning','a note']},
+          {q:'Technical documentation for non-experts should avoid ___.',blank:'unexplained jargon',opts:['unexplained jargon','numbered steps','simple words','active voice']}
+        ]
+      },
+      {id:18,title:'Сторителлинг в тексте',xp:35,
+        theory:`<div class="theory-block">
+<h3>Сторителлинг в письменных текстах</h3>
+<p>Сторителлинг делает текст живым и запоминающимся. Структура: завязка → конфликт → кульминация → развязка. В бизнес-контексте сторителлинг применяется в pitch-текстах, LinkedIn, маркетинговых материалах.</p>
+<div class="rule"><b>It all started when...</b> — завязка | <b>The challenge was...</b> — конфликт<br>
+<b>That\'s when we decided to...</b> — поворот | <b>As a result,...</b> — последствие<br>
+<b>Looking back,...</b> — рефлексия | <b>The lesson we learned was...</b> — вывод<br>
+<b>Paint a picture</b>: детальное описание | <b>Show, don\'t tell</b>: через действие</div>
+<p class="example">✦ <b>It all started when</b> we lost our biggest client overnight.</p>
+<p class="example">✦ <b>That\'s when we decided to</b> completely pivot our business model.</p>
+<p class="example">✦ <b>As a result,</b> revenue grew by 200% in 12 months.</p>
+</div>`,
+        exercises:[
+          {q:'Storytelling in business writing makes content ___.',blank:'more engaging and memorable',opts:['more engaging and memorable','longer','more formal','less clear']},
+          {q:'"It all started when..." introduces ___.',blank:'the beginning of the story',opts:['the beginning of the story','the conclusion','a complaint','a list']},
+          {q:'"The challenge was..." introduces ___.',blank:'the conflict or problem',opts:['the conflict or problem','the solution','the hook','the sign-off']},
+          {q:'"As a result,..." introduces ___.',blank:'the outcome',opts:['the outcome','the problem','the introduction','the hook']},
+          {q:'"Show, don\'t tell" means ___.',blank:'use specific details and actions, not vague statements',opts:['use specific details and actions, not vague statements','use shorter sentences','show a picture','tell fewer facts']},
+          {q:'The "climax" in a story is ___.',blank:'the turning point or highest tension',opts:['the turning point or highest tension','the beginning','the conclusion','the hook']},
+          {q:'"Looking back,..." signals ___.',blank:'reflection on the past',opts:['reflection on the past','a new idea','the start of the story','a complaint']},
+          {q:'Business storytelling is used in ___.',blank:'pitches, LinkedIn posts, case studies',opts:['pitches, LinkedIn posts, case studies','legal contracts','meeting minutes','technical manuals']},
+          {q:'"The lesson we learned was..." ends a story with ___.',blank:'a takeaway or insight',opts:['a takeaway or insight','a complaint','a new story','a question']},
+          {q:'Which element makes a story relatable?',blank:'A specific character or situation',opts:['A specific character or situation','Vague statistics','Long sentences','No conflict']}
+        ]
+      },
+      {id:19,title:'Редактирование и корректура',xp:35,
+        theory:`<div class="theory-block">
+<h3>Редактирование и корректура текста</h3>
+<p>Редактирование (editing) — работа над структурой, логикой, стилем. Корректура (proofreading) — проверка грамматики, орфографии, пунктуации. Редактируют после написания черновика; корректируют — последний шаг перед публикацией.</p>
+<div class="rule"><b>Editing</b>: структура, логика, ясность, стиль | <b>Proofreading</b>: грамматика, орфография, пунктуация<br>
+<b>Cut unnecessary words</b> — убери лишнее | <b>Vary sentence length</b> — чередуй длину<br>
+<b>Check for consistency</b> — проверь единообразие | <b>Read aloud</b> — читай вслух<br>
+<b>Passive → active</b> — активный залог чётче | <b>Avoid redundancy</b> — избегай повторений</div>
+<p class="example">✦ "Due to the fact that" → <b>"because"</b> (shorter, clearer).</p>
+<p class="example">✦ "The report was written by me" → <b>"I wrote the report"</b> (active).</p>
+<p class="example">✦ Read your text aloud — you\'ll catch awkward phrases your eye misses.</p>
+</div>`,
+        exercises:[
+          {q:'Proofreading focuses on ___.',blank:'grammar, spelling, punctuation',opts:['grammar, spelling, punctuation','structure and logic','word count','style only']},
+          {q:'Editing focuses on ___.',blank:'structure, logic, clarity',opts:['structure, logic, clarity','spelling errors','punctuation','word count']},
+          {q:'Which comes first: editing or proofreading?',blank:'Editing',opts:['Editing','Proofreading','Both at once','Neither']},
+          {q:'"Due to the fact that" should be replaced with ___.',blank:'because',opts:['because','due','in fact that','for the reason']},
+          {q:'Active voice is usually ___ than passive.',blank:'clearer and more direct',opts:['clearer and more direct','longer','more formal','more academic']},
+          {q:'Reading your text ___ helps catch awkward phrasing.',blank:'aloud',opts:['aloud','backwards','to a friend','very slowly']},
+          {q:'"Vary sentence length" improves ___.',blank:'rhythm and readability',opts:['rhythm and readability','word count','grammar','spelling']},
+          {q:'"The report was written by me" → better as ___.',blank:'I wrote the report.',opts:['I wrote the report.','The report was written.','Me wrote the report.','Report was mine.']},
+          {q:'Redundancy means ___.',blank:'unnecessary repetition of the same idea',opts:['unnecessary repetition of the same idea','cutting all adjectives','using passive voice','being too short']},
+          {q:'Checking for consistency means ___.',blank:'using the same style, terms and format throughout',opts:['using the same style, terms and format throughout','using only one tense','avoiding contractions','shortening all sentences']}
+        ]
+      },
+      {id:20,title:'Итоговый тест Writing English',xp:50,
+        theory:`<div class="theory-block">
+<h3>Writing English — финальный обзор</h3>
+<p>Ты прошёл все ключевые жанры делового и академического письма. Финальный тест проверит твои знания структур, фраз и правил письменного английского.</p>
+<div class="rule"><b>Email</b>: subject, salutation, body, sign-off | <b>CV</b>: reverse chronological, action verbs<br>
+<b>Cover letter</b>: why you, why them, CTA | <b>Essay</b>: hook → thesis → PEEL → conclusion<br>
+<b>Report</b>: exec summary → findings → recommendations | <b>Minutes</b>: past tense, action points<br>
+<b>Editing</b>: structure first, proofread last | <b>Nominalisation</b>: verbs → nouns</div>
+<p class="example">✦ Great writing is clear, concise and appropriate for the audience.</p>
+<p class="example">✦ Always proofread before sending — one error can undermine your message.</p>
+<p class="example">✦ Congratulations on completing Writing English!</p>
+</div>`,
+        exercises:[
+          {q:'A formal email to an unknown person starts with ___.',blank:'Dear Sir/Madam',opts:['Dear Sir/Madam','Hi there','Hey','To my friend']},
+          {q:'After "Dear Sir/Madam", close with ___.',blank:'Yours faithfully',opts:['Yours faithfully','Yours sincerely','Best','Cheers']},
+          {q:'CV work experience is listed in ___ order.',blank:'reverse chronological',opts:['reverse chronological','alphabetical','random','oldest first']},
+          {q:'A cover letter\'s main goal is to ___.',blank:'persuade the employer to read your CV',opts:['persuade the employer to read your CV','list your skills only','apologize for gaps','copy the CV']},
+          {q:'The thesis statement goes at the ___ of the introduction.',blank:'end',opts:['end','start','middle','it\'s in the conclusion']},
+          {q:'PEEL stands for Point, Evidence, Explanation, ___.',blank:'Link',opts:['Link','Logic','Level','Language']},
+          {q:'"In conclusion" signals ___.',blank:'the end of the essay',opts:['the end of the essay','a new argument','a body paragraph','the hook']},
+          {q:'Meeting minutes are written in ___ tense.',blank:'past',opts:['past','present','future','conditional']},
+          {q:'Nominalisation converts verbs to ___.',blank:'nouns',opts:['nouns','adjectives','adverbs','conjunctions']},
+          {q:'"Proofreading" checks for ___.',blank:'grammar and spelling errors',opts:['grammar and spelling errors','essay structure','storytelling flow','social media hooks']},
+          {q:'"FYI" in a chat means ___.',blank:'for your information',opts:['for your information','find your invoice','follow your instinct','fix your issue']},
+          {q:'"It was agreed that..." is used in ___.',blank:'meeting minutes',opts:['meeting minutes','complaint letters','essays','LinkedIn posts']},
+          {q:'"I am writing to apply for the position of..." opens a ___.',blank:'cover letter',opts:['cover letter','thank-you letter','complaint','report']},
+          {q:'Technical instructions are written in ___ mood.',blank:'imperative',opts:['imperative','subjunctive','interrogative','conditional']},
+          {q:'Congratulations! You completed the ___ English course!',blank:'Writing',opts:['Writing','Speaking','Business','Academic']}
+        ]
+      }
+    ]
+  }
+  ,sport:{
+    title:'Sport & Fitness English',
+    icon:'🏋️',
+    color:'#dc2626',
+    lessons:[
+      {id:1,title:'Gym Vocabulary',xp:30,
+        theory:`<div class="theory-block">
+<h3>Gym Vocabulary — в тренажёрном зале</h3>
+<p>Знание спортивной лексики поможет общаться с тренером, понимать инструкции и описывать тренировки на английском.</p>
+<div class="rule"><b>gym / fitness centre</b> — тренажёрный зал<br>
+<b>treadmill</b> — беговая дорожка | <b>barbell</b> — штанга<br>
+<b>dumbbell</b> — гантель | <b>kettlebell</b> — гиря<br>
+<b>resistance band</b> — эспандер | <b>pull-up bar</b> — турник<br>
+<b>bench press</b> — жим лёжа | <b>squat rack</b> — стойка для приседаний<br>
+<b>locker room</b> — раздевалка | <b>membership</b> — абонемент</div>
+<p class="example">✦ I do <b>bench press</b> on Mondays and <b>squats</b> on Wednesdays.</p>
+<p class="example">✦ Can I use the <b>treadmill</b> for 20 minutes?</p>
+<p class="example">✦ My <b>gym membership</b> includes access to all classes.</p>
+</div>`,
+        exercises:[
+          {q:'A ___ is a long bar with weights on each end.',blank:'barbell',opts:['barbell','dumbbell','kettlebell','band']},
+          {q:'You run on a ___ indoors.',blank:'treadmill',opts:['treadmill','bike','bench','rack']},
+          {q:'A monthly ___ gives you access to the gym.',blank:'membership',opts:['membership','ticket','pass','card']},
+          {q:'___ are small weights you hold in each hand.',blank:'Dumbbells',opts:['Dumbbells','Barbells','Kettlebells','Bands']},
+          {q:'The ___ press involves lying on a bench and pushing weight up.',blank:'bench',opts:['bench','dead','squat','leg']},
+          {q:'You change clothes in the ___ room.',blank:'locker',opts:['locker','change','rest','shower']},
+          {q:'A ___ band is used for stretching and resistance exercises.',blank:'resistance',opts:['resistance','elastic','rubber','stretch']},
+          {q:'The ___ rack holds the barbell at shoulder height for squats.',blank:'squat',opts:['squat','bench','power','weight']}
+        ]
+      },
+      {id:2,title:'Types of Exercise',xp:30,
+        theory:`<div class="theory-block">
+<h3>Types of Exercise — виды упражнений</h3>
+<p>Различные виды тренировок служат разным целям: кардио сжигает калории, силовые наращивают мышцы, растяжка улучшает гибкость.</p>
+<div class="rule"><b>cardio / aerobic exercise</b> — кардио<br>
+<b>strength training</b> — силовые тренировки | <b>weightlifting</b> — тяжёлая атлетика<br>
+<b>flexibility training</b> — тренировки на гибкость | <b>stretching</b> — растяжка<br>
+<b>HIIT</b> (High Intensity Interval Training) — высокоинтенсивная интервальная тренировка<br>
+<b>circuit training</b> — круговая тренировка | <b>cross-training</b> — кросс-тренинг<br>
+<b>warm-up</b> — разминка | <b>cool-down</b> — заминка<br>
+<b>rep / repetition</b> — повторение | <b>set</b> — подход</div>
+<p class="example">✦ I do three <b>sets</b> of ten <b>reps</b> for each exercise.</p>
+<p class="example">✦ Always start with a <b>warm-up</b> to prevent injuries.</p>
+<p class="example">✦ <b>HIIT</b> burns more calories than steady-state <b>cardio</b>.</p>
+</div>`,
+        exercises:[
+          {q:'___ training uses weights to build muscle strength.',blank:'Strength',opts:['Strength','Cardio','Flex','Warm']},
+          {q:'One repetition of an exercise is called a ___.',blank:'rep',opts:['rep','set','lap','round']},
+          {q:'A group of repetitions done together is called a ___.',blank:'set',opts:['set','rep','lap','series']},
+          {q:'___ exercises increase your heart rate over a longer period.',blank:'Cardio',opts:['Cardio','Strength','Static','Rest']},
+          {q:'Always do a ___ before intense exercise to avoid injury.',blank:'warm-up',opts:['warm-up','cool-down','stretch','break']},
+          {q:'___ training alternates high-intensity bursts with rest periods.',blank:'HIIT',opts:['HIIT','Circuit','Cardio','Yoga']},
+          {q:'___ training improves flexibility and range of motion.',blank:'Flexibility',opts:['Flexibility','Strength','Cardio','Balance']},
+          {q:'After exercise, a ___ helps your body recover gradually.',blank:'cool-down',opts:['cool-down','warm-up','sprint','set']}
+        ]
+      },
+      {id:3,title:'Body Parts & Muscles',xp:35,
+        theory:`<div class="theory-block">
+<h3>Body Parts & Muscles — части тела и мышцы</h3>
+<p>Знание названий мышц важно при разговоре с тренером, описании боли или травмы, и понимании программ тренировок.</p>
+<div class="rule"><b>biceps</b> — бицепс (передняя часть плеча)<br>
+<b>triceps</b> — трицепс (задняя часть плеча) | <b>shoulders / deltoids</b> — плечи / дельтовидные<br>
+<b>chest / pectorals</b> — грудь / грудные | <b>back / lats</b> — спина / широчайшие<br>
+<b>abs / core</b> — пресс / кор | <b>glutes</b> — ягодицы<br>
+<b>quadriceps / quads</b> — квадрицепсы (передняя часть бедра)<br>
+<b>hamstrings</b> — бицепс бедра | <b>calves</b> — икры<br>
+<b>forearms</b> — предплечья | <b>lower back</b> — поясница</div>
+<p class="example">✦ My <b>hamstrings</b> are sore after yesterday's leg day.</p>
+<p class="example">✦ I need to strengthen my <b>core</b> to improve my posture.</p>
+<p class="example">✦ Pull-ups are great for your <b>lats</b> and <b>biceps</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The muscles on the front of your upper arm are called ___.',blank:'biceps',opts:['biceps','triceps','deltoids','forearms']},
+          {q:'Your ___ are the muscles at the back of your thighs.',blank:'hamstrings',opts:['hamstrings','quads','calves','glutes']},
+          {q:'The ___ are the muscles in your buttocks.',blank:'glutes',opts:['glutes','abs','quads','lats']},
+          {q:'Your ___ is the group of muscles around your midsection.',blank:'core',opts:['core','chest','back','neck']},
+          {q:'The muscles on the front of your thighs are called ___.',blank:'quads',opts:['quads','hamstrings','calves','glutes']},
+          {q:'Your ___ are the muscles on your lower legs, behind the shin.',blank:'calves',opts:['calves','quads','hamstrings','ankles']},
+          {q:'Bench press mainly works your ___ muscles.',blank:'chest',opts:['chest','back','legs','arms']},
+          {q:'The ___ back is the lower part of your spine area.',blank:'lower',opts:['lower','upper','middle','side']}
+        ]
+      },
+      {id:4,title:'Talking to Your Trainer',xp:35,
+        theory:`<div class="theory-block">
+<h3>Talking to Your Trainer — диалог с тренером</h3>
+<p>Умение объяснить свои цели, уровень подготовки и проблемы тренеру — важный навык для занятий в англоязычном зале.</p>
+<div class="rule"><b>personal trainer / PT</b> — персональный тренер<br>
+<b>fitness goal</b> — цель тренировок | <b>lose weight</b> — похудеть<br>
+<b>build muscle / bulk up</b> — набрать мышечную массу<br>
+<b>tone up</b> — подтянуть тело | <b>improve endurance</b> — улучшить выносливость<br>
+<b>workout plan / programme</b> — план тренировок<br>
+<b>I'm a beginner</b> — я новичок | <b>I have an injury</b> — у меня травма<br>
+<b>form / technique</b> — техника | <b>spot me</b> — страхуй меня</div>
+<p class="example">✦ My main <b>fitness goal</b> is to <b>lose weight</b> and <b>tone up</b>.</p>
+<p class="example">✦ Can you show me the correct <b>form</b> for deadlifts?</p>
+<p class="example">✦ Could you <b>spot me</b> while I do this heavy set?</p>
+</div>`,
+        exercises:[
+          {q:'A ___ trainer creates personalised workout plans for clients.',blank:'personal',opts:['personal','private','single','solo']},
+          {q:'My ___ goal is to run a 5K by summer.',blank:'fitness',opts:['fitness','sport','health','body']},
+          {q:'I want to ___ up — I need to gain more muscle.',blank:'bulk',opts:['bulk','tone','slim','build']},
+          {q:'Please ___ me while I attempt this heavy bench press.',blank:'spot',opts:['spot','watch','guard','help']},
+          {q:'Good ___ is essential to avoid injury during weightlifting.',blank:'form',opts:['form','style','method','practice']},
+          {q:'I\'m a ___ — I\'ve never been to a gym before.',blank:'beginner',opts:['beginner','starter','newbie','fresher']},
+          {q:'Can you design a workout ___ for me to follow?',blank:'programme',opts:['programme','list','sheet','guide']},
+          {q:'I want to ___ up — lose fat and get more definition.',blank:'tone',opts:['tone','slim','shrink','cut']}
+        ]
+      },
+      {id:5,title:'Sports Injuries & Recovery',xp:35,
+        theory:`<div class="theory-block">
+<h3>Sports Injuries & Recovery — травмы и восстановление</h3>
+<p>Умение описать травму по-английски необходимо при визите к врачу, физиотерапевту или разговоре с тренером.</p>
+<div class="rule"><b>sprain</b> — растяжение связок | <b>strain</b> — растяжение мышцы<br>
+<b>fracture</b> — перелом | <b>bruise</b> — синяк / ушиб<br>
+<b>torn ligament</b> — разрыв связки | <b>tendonitis</b> — тендинит<br>
+<b>muscle cramp</b> — судорога | <b>blister</b> — мозоль / волдырь<br>
+<b>physiotherapist / physio</b> — физиотерапевт<br>
+<b>RICE method</b> — Rest, Ice, Compression, Elevation<br>
+<b>rehabilitation / rehab</b> — реабилитация | <b>recovery</b> — восстановление</div>
+<p class="example">✦ I have a <b>sprain</b> in my ankle — I twisted it during the run.</p>
+<p class="example">✦ The doctor recommended the <b>RICE method</b>: rest, ice, compress, elevate.</p>
+<p class="example">✦ After surgery I need six weeks of <b>rehabilitation</b>.</p>
+</div>`,
+        exercises:[
+          {q:'A ___ is an injury to a ligament caused by overstretching.',blank:'sprain',opts:['sprain','strain','fracture','bruise']},
+          {q:'A broken bone is called a ___.',blank:'fracture',opts:['fracture','sprain','strain','tear']},
+          {q:'RICE stands for Rest, Ice, Compression and ___.',blank:'Elevation',opts:['Elevation','Extension','Exercise','Energy']},
+          {q:'A ___ is a painful involuntary muscle contraction.',blank:'cramp',opts:['cramp','sprain','bruise','strain']},
+          {q:'A ___ is a discoloration of skin after a knock or fall.',blank:'bruise',opts:['bruise','blister','fracture','sprain']},
+          {q:'After the operation, she needed months of ___ to recover.',blank:'rehabilitation',opts:['rehabilitation','medication','surgery','therapy']},
+          {q:'A ___ sees patients to help them recover from physical injuries.',blank:'physiotherapist',opts:['physiotherapist','surgeon','dentist','pharmacist']},
+          {q:'A ___ ligament often requires surgery to repair.',blank:'torn',opts:['torn','sprained','bruised','pulled']}
+        ]
+      },
+      {id:6,title:'Nutrition & Diet',xp:35,
+        theory:`<div class="theory-block">
+<h3>Nutrition & Diet — питание и диета</h3>
+<p>Правильное питание — ключевая часть спортивного образа жизни. Знание терминов поможет читать этикетки, разговаривать с диетологом и понимать фитнес-контент на английском.</p>
+<div class="rule"><b>protein</b> — белок | <b>carbohydrates / carbs</b> — углеводы<br>
+<b>fats</b> — жиры | <b>calories / kcal</b> — калории<br>
+<b>macronutrients / macros</b> — макронутриенты<br>
+<b>calorie deficit</b> — дефицит калорий | <b>calorie surplus</b> — профицит калорий<br>
+<b>meal prep</b> — приготовление еды заранее | <b>portion size</b> — размер порции<br>
+<b>hydration</b> — гидратация | <b>supplement</b> — добавка<br>
+<b>metabolism</b> — метаболизм | <b>nutrient-dense</b> — питательный / богатый нутриентами</div>
+<p class="example">✦ To lose weight, you need to be in a <b>calorie deficit</b>.</p>
+<p class="example">✦ I do <b>meal prep</b> every Sunday to eat healthy during the week.</p>
+<p class="example">✦ Chicken and eggs are great sources of <b>protein</b>.</p>
+</div>`,
+        exercises:[
+          {q:'___ are the building blocks of muscle tissue.',blank:'Proteins',opts:['Proteins','Carbs','Fats','Vitamins']},
+          {q:'To lose fat, you need to be in a calorie ___.',blank:'deficit',opts:['deficit','surplus','balance','excess']},
+          {q:'___ are your body\'s main source of energy.',blank:'Carbohydrates',opts:['Carbohydrates','Proteins','Fats','Fibres']},
+          {q:'Preparing meals in advance is called ___ prep.',blank:'meal',opts:['meal','food','diet','cook']},
+          {q:'Proteins, carbs and fats are called ___.',blank:'macros',opts:['macros','micros','vitamins','minerals']},
+          {q:'Drinking enough water is important for proper ___.',blank:'hydration',opts:['hydration','digestion','respiration','circulation']},
+          {q:'A vitamin or protein powder taken to improve health is a ___.',blank:'supplement',opts:['supplement','medicine','drug','remedy']},
+          {q:'Foods rich in nutrients with few empty calories are called ___-dense.',blank:'nutrient',opts:['nutrient','calorie','protein','energy']}
+        ]
+      },
+      {id:7,title:'Team Sports',xp:30,
+        theory:`<div class="theory-block">
+<h3>Team Sports — командные виды спорта</h3>
+<p>Командные виды спорта — важная часть культуры англоязычных стран. Знание терминов поможет смотреть матчи, обсуждать игры и играть самому.</p>
+<div class="rule"><b>football / soccer</b> — футбол | <b>basketball</b> — баскетбол<br>
+<b>volleyball</b> — волейбол | <b>rugby</b> — регби<br>
+<b>hockey</b> — хоккей / хоккей на траве | <b>baseball</b> — бейсбол<br>
+<b>teammate</b> — партнёр по команде | <b>coach</b> — тренер<br>
+<b>score a goal</b> — забить гол | <b>pass the ball</b> — отдать пас<br>
+<b>foul</b> — фол | <b>penalty</b> — штрафной / пенальти<br>
+<b>championship</b> — чемпионат | <b>league</b> — лига</div>
+<p class="example">✦ He <b>scored a goal</b> in the last minute of the match.</p>
+<p class="example">✦ The referee gave a <b>penalty</b> for the <b>foul</b>.</p>
+<p class="example">✦ Our team won the <b>championship</b> for the third year in a row.</p>
+</div>`,
+        exercises:[
+          {q:'In American English, football is often called ___.',blank:'soccer',opts:['soccer','rugby','gridiron','handball']},
+          {q:'When you break the rules in sport, it is called a ___.',blank:'foul',opts:['foul','fault','error','miss']},
+          {q:'The person who leads and trains a sports team is the ___.',blank:'coach',opts:['coach','captain','referee','manager']},
+          {q:'To ___ a goal means to put the ball in the net.',blank:'score',opts:['score','make','hit','kick']},
+          {q:'A ___ is a punishment kick or shot given after a foul.',blank:'penalty',opts:['penalty','foul','offside','card']},
+          {q:'The top competition in a sport is called a ___.',blank:'championship',opts:['championship','league','cup','match']},
+          {q:'A person on your team is your ___.',blank:'teammate',opts:['teammate','opponent','rival','partner']},
+          {q:'To ___ the ball means to send it to another player.',blank:'pass',opts:['pass','kick','throw','send']}
+        ]
+      },
+      {id:8,title:'Individual Sports',xp:30,
+        theory:`<div class="theory-block">
+<h3>Individual Sports — индивидуальные виды спорта</h3>
+<p>Индивидуальные виды спорта развивают самодисциплину и требуют особой лексики для описания соревнований и тренировок.</p>
+<div class="rule"><b>tennis</b> — теннис | <b>swimming</b> — плавание<br>
+<b>cycling</b> — велоспорт | <b>running / athletics</b> — бег / лёгкая атлетика<br>
+<b>boxing</b> — бокс | <b>martial arts</b> — боевые искусства<br>
+<b>gymnastics</b> — гимнастика | <b>golf</b> — гольф<br>
+<b>personal best / PB</b> — личный рекорд | <b>lap</b> — круг / дорожка<br>
+<b>heat</b> — забег / предварительный тур | <b>qualifier</b> — квалификация<br>
+<b>podium</b> — пьедестал | <b>gold / silver / bronze medal</b> — золото / серебро / бронза</div>
+<p class="example">✦ She set a new <b>personal best</b> in the 100m sprint.</p>
+<p class="example">✦ He swam ten <b>laps</b> without stopping.</p>
+<p class="example">✦ After winning the final, she stood on the <b>podium</b> to receive her <b>gold medal</b>.</p>
+</div>`,
+        exercises:[
+          {q:'Your ___ best is your fastest or strongest performance ever.',blank:'personal',opts:['personal','all-time','lifetime','career']},
+          {q:'One length of a swimming pool or running track is called a ___.',blank:'lap',opts:['lap','length','round','stretch']},
+          {q:'The ___ is the raised platform where medal winners stand.',blank:'podium',opts:['podium','stage','platform','stand']},
+          {q:'A preliminary round to qualify for the final is called a ___.',blank:'heat',opts:['heat','warm','round','trial']},
+          {q:'___ includes disciplines like judo, karate and taekwondo.',blank:'Martial arts',opts:['Martial arts','Boxing','Wrestling','Athletics']},
+          {q:'The first place winner receives a ___ medal.',blank:'gold',opts:['gold','silver','bronze','platinum']},
+          {q:'___ involves riding a bicycle competitively.',blank:'Cycling',opts:['Cycling','Running','Swimming','Rowing']},
+          {q:'A ___ round determines who advances to the main competition.',blank:'qualifier',opts:['qualifier','final','semi-final','practice']}
+        ]
+      },
+      {id:9,title:'Sports Commentary',xp:35,
+        theory:`<div class="theory-block">
+<h3>Sports Commentary — спортивные комментарии</h3>
+<p>Понимание спортивных трансляций на английском открывает доступ к мировому спорту. Комментаторы используют яркие выражения и идиомы.</p>
+<div class="rule"><b>What a save!</b> — Какой сейв! | <b>He's on fire!</b> — Он в огне! / Он великолепен!<br>
+<b>nail-biting finish</b> — захватывающий финал | <b>upset</b> — неожиданное поражение фаворита<br>
+<b>hat-trick</b> — хет-трик | <b>in the lead</b> — лидирует<br>
+<b>neck and neck</b> — ноздря в ноздрю | <b>come from behind</b> — отыграться<br>
+<b>substitute / sub</b> — замена | <b>extra time</b> — дополнительное время<br>
+<b>possession</b> — владение мячом | <b>VAR</b> — видеоповтор</div>
+<p class="example">✦ It was a <b>nail-biting finish</b> — the score was tied until the last second.</p>
+<p class="example">✦ They managed to <b>come from behind</b> and win 3–2!</p>
+<p class="example">✦ The teams are <b>neck and neck</b> with just two laps to go.</p>
+</div>`,
+        exercises:[
+          {q:'When two competitors are very close, we say they are ___ and neck.',blank:'neck',opts:['neck','head','toe','nose']},
+          {q:'An unexpected defeat of the favourite is called an ___.',blank:'upset',opts:['upset','surprise','shock','loss']},
+          {q:'Scoring three goals in one match is called a ___-trick.',blank:'hat',opts:['hat','head','goal','triple']},
+          {q:'When a team is winning, they are said to be in the ___.',blank:'lead',opts:['lead','front','top','first']},
+          {q:'A ___ is a player brought on to replace another during the match.',blank:'substitute',opts:['substitute','reserve','backup','extra']},
+          {q:'If the match is tied after 90 minutes, it goes to ___ time.',blank:'extra',opts:['extra','over','added','bonus']},
+          {q:'A team that controls the ball has ___.',blank:'possession',opts:['possession','control','power','advantage']},
+          {q:'To ___ from behind means to win after losing earlier.',blank:'come',opts:['come','fight','get','pull']}
+        ]
+      },
+      {id:10,title:'Healthy Lifestyle',xp:35,
+        theory:`<div class="theory-block">
+<h3>Healthy Lifestyle — здоровый образ жизни</h3>
+<p>Лексика здорового образа жизни нужна для обсуждения привычек, самочувствия и целей в жизни.</p>
+<div class="rule"><b>work-life balance</b> — баланс работы и жизни<br>
+<b>sleep hygiene</b> — гигиена сна | <b>well-being</b> — благополучие<br>
+<b>stress management</b> — управление стрессом | <b>burnout</b> — выгорание<br>
+<b>mindfulness</b> — осознанность | <b>meditation</b> — медитация<br>
+<b>sedentary lifestyle</b> — сидячий образ жизни | <b>active lifestyle</b> — активный образ жизни<br>
+<b>junk food</b> — нездоровая еда | <b>wholesome food</b> — полезная еда<br>
+<b>screen time</b> — время у экрана | <b>detox</b> — детокс</div>
+<p class="example">✦ Good <b>sleep hygiene</b> means going to bed at the same time every night.</p>
+<p class="example">✦ Too much <b>screen time</b> can disrupt your <b>well-being</b>.</p>
+<p class="example">✦ She avoids <b>junk food</b> and prefers <b>wholesome</b> home-cooked meals.</p>
+</div>`,
+        exercises:[
+          {q:'Feeling exhausted and unmotivated from overwork is called ___.',blank:'burnout',opts:['burnout','fatigue','stress','depression']},
+          {q:'A ___ lifestyle involves sitting most of the day.',blank:'sedentary',opts:['sedentary','active','healthy','mobile']},
+          {q:'___ means paying full attention to the present moment.',blank:'Mindfulness',opts:['Mindfulness','Awareness','Alertness','Focus']},
+          {q:'___ food includes chips, fast food and sugary snacks.',blank:'Junk',opts:['Junk','Bad','Unhealthy','Cheap']},
+          {q:'Good ___ hygiene includes a consistent sleep schedule.',blank:'sleep',opts:['sleep','night','rest','body']},
+          {q:'___ balance means not letting work dominate your personal life.',blank:'Work-life',opts:['Work-life','Time','Life','Day']},
+          {q:'The time you spend looking at phones and computers is called ___ time.',blank:'screen',opts:['screen','digital','tech','device']},
+          {q:'Overall physical and mental health is called ___.',blank:'well-being',opts:['well-being','wellness','health','fitness']}
+        ]
+      },
+      {id:11,title:'Running & Marathons',xp:35,
+        theory:`<div class="theory-block">
+<h3>Running & Marathons — бег и марафоны</h3>
+<p>Бег — один из самых популярных видов спорта в мире. Специальная лексика нужна для тренировок, участия в забегах и общения с другими бегунами.</p>
+<div class="rule"><b>marathon</b> — марафон (42.2 км) | <b>half marathon</b> — полумарафон<br>
+<b>5K / 10K</b> — забег на 5 / 10 км | <b>sprint</b> — спринт<br>
+<b>pace</b> — темп | <b>stride</b> — шаг / stride length — длина шага<br>
+<b>endurance</b> — выносливость | <b>stamina</b> — выносливость / запас сил<br>
+<b>hitting the wall</b> — «стена» (резкая усталость на марафоне)<br>
+<b>finish line</b> — финишная черта | <b>race bib</b> — стартовый номер<br>
+<b>cool-down run</b> — лёгкая пробежка после тренировки</div>
+<p class="example">✦ My target <b>pace</b> for the marathon is 5 minutes per kilometre.</p>
+<p class="example">✦ Around kilometre 30, I started <b>hitting the wall</b>.</p>
+<p class="example">✦ Don't forget to collect your <b>race bib</b> at registration.</p>
+</div>`,
+        exercises:[
+          {q:'A full ___ covers a distance of 42.2 kilometres.',blank:'marathon',opts:['marathon','triathlon','ultramarathon','race']},
+          {q:'Your ___ is how fast you run per kilometre or mile.',blank:'pace',opts:['pace','speed','rate','tempo']},
+          {q:'___ is the ability to exercise for a long period without tiring.',blank:'Endurance',opts:['Endurance','Strength','Power','Speed']},
+          {q:'Runners wear a ___ bib with their race number pinned to their chest.',blank:'race',opts:['race','start','runner','event']},
+          {q:'The ___ line is where the race ends.',blank:'finish',opts:['finish','end','stop','final']},
+          {q:'A short, fast run is called a ___.',blank:'sprint',opts:['sprint','dash','jog','stride']},
+          {q:'"___ the wall" means experiencing sudden exhaustion during a race.',blank:'Hitting',opts:['Hitting','Running','Breaking','Reaching']},
+          {q:'A ___ run after a hard workout helps your muscles recover.',blank:'cool-down',opts:['cool-down','warm-up','recovery','easy']}
+        ]
+      },
+      {id:12,title:'Swimming & Water Sports',xp:35,
+        theory:`<div class="theory-block">
+<h3>Swimming & Water Sports — плавание и водные виды спорта</h3>
+<p>Плавание — один из лучших видов тренировок для всего тела. Знание лексики поможет на занятиях в бассейне и на водных соревнованиях.</p>
+<div class="rule"><b>freestyle</b> — вольный стиль / кроль | <b>breaststroke</b> — брасс<br>
+<b>backstroke</b> — плавание на спине | <b>butterfly</b> — баттерфляй<br>
+<b>lane</b> — дорожка в бассейне | <b>goggles</b> — очки для плавания<br>
+<b>swim cap</b> — шапочка для плавания | <b>flip turn</b> — кувырок у стенки<br>
+<b>surfing</b> — сёрфинг | <b>diving</b> — дайвинг / прыжки в воду<br>
+<b>kayaking</b> — каякинг | <b>water polo</b> — водное поло<br>
+<b>lifeguard</b> — спасатель | <b>pool length</b> — длина бассейна</div>
+<p class="example">✦ She swims <b>freestyle</b> for the first 1000m, then switches to <b>breaststroke</b>.</p>
+<p class="example">✦ Don't forget your <b>goggles</b> and <b>swim cap</b> before the race.</p>
+<p class="example">✦ The <b>lifeguard</b> watches the pool from an elevated chair.</p>
+</div>`,
+        exercises:[
+          {q:'___ is the most common and fastest swimming stroke.',blank:'Freestyle',opts:['Freestyle','Backstroke','Butterfly','Breaststroke']},
+          {q:'You wear ___ over your eyes to see underwater.',blank:'goggles',opts:['goggles','glasses','mask','visor']},
+          {q:'Each swimmer has their own ___ in the pool.',blank:'lane',opts:['lane','track','line','row']},
+          {q:'___ involves riding ocean waves on a board.',blank:'Surfing',opts:['Surfing','Diving','Kayaking','Rowing']},
+          {q:'A ___ protects swimmers and responds to emergencies.',blank:'lifeguard',opts:['lifeguard','guard','watcher','supervisor']},
+          {q:'A ___ cap keeps hair out of your face when swimming.',blank:'swim',opts:['swim','hair','head','water']},
+          {q:'The ___ stroke involves lying on your back and moving your arms.',blank:'back',opts:['back','breast','fly','crawl']},
+          {q:'___ involves exploring the underwater world with breathing equipment.',blank:'Diving',opts:['Diving','Surfing','Kayaking','Swimming']}
+        ]
+      },
+      {id:13,title:'Winter Sports',xp:35,
+        theory:`<div class="theory-block">
+<h3>Winter Sports — зимние виды спорта</h3>
+<p>Зимние виды спорта популярны по всему миру. Знание специальной лексики пригодится на горнолыжном курорте и при просмотре зимних Олимпийских игр.</p>
+<div class="rule"><b>skiing</b> — горные лыжи | <b>snowboarding</b> — сноуборд<br>
+<b>ice skating</b> — катание на коньках | <b>ice hockey</b> — хоккей на льду<br>
+<b>ski slope / piste</b> — горнолыжная трасса | <b>ski lift / chairlift</b> — подъёмник<br>
+<b>black run</b> — чёрная трасса (экспертная) | <b>blue run</b> — синяя (для начинающих)<br>
+<b>avalanche</b> — лавина | <b>frostbite</b> — обморожение<br>
+<b>helmet</b> — шлем | <b>ski boots</b> — горнолыжные ботинки<br>
+<b>après-ski</b> — отдых после катания</div>
+<p class="example">✦ The <b>black run</b> is only for expert skiers.</p>
+<p class="example">✦ Always wear a <b>helmet</b> when skiing or snowboarding.</p>
+<p class="example">✦ We took the <b>chairlift</b> to the top of the mountain.</p>
+</div>`,
+        exercises:[
+          {q:'A ___ run is the most difficult ski slope, for experts only.',blank:'black',opts:['black','red','blue','green']},
+          {q:'A ___ is a machine that carries skiers up the mountain.',blank:'ski lift',opts:['ski lift','cable car','gondola','escalator']},
+          {q:'___ is the sport of riding a single board down a snowy slope.',blank:'Snowboarding',opts:['Snowboarding','Skiing','Sledding','Skating']},
+          {q:'___ is the freezing of skin and body tissue in very cold conditions.',blank:'Frostbite',opts:['Frostbite','Hypothermia','Sunburn','Windburn']},
+          {q:'You wear ___ boots that clip into your skis.',blank:'ski',opts:['ski','snow','winter','slope']},
+          {q:'A skiing ___ is a prepared snow surface for skiing down.',blank:'piste',opts:['piste','path','track','route']},
+          {q:'An ___ is a dangerous mass of snow sliding rapidly down a mountain.',blank:'avalanche',opts:['avalanche','landslide','snowfall','blizzard']},
+          {q:'___ ski refers to the social activities after a day on the slopes.',blank:'Après',opts:['Après','Post','After','Evening']}
+        ]
+      },
+      {id:14,title:'Yoga & Meditation',xp:30,
+        theory:`<div class="theory-block">
+<h3>Yoga & Meditation — йога и медитация</h3>
+<p>Йога и медитация набирают огромную популярность по всему миру. Большинство инструкций и приложений используют английскую терминологию.</p>
+<div class="rule"><b>yoga pose / asana</b> — поза йоги<br>
+<b>downward dog</b> — поза собаки мордой вниз | <b>warrior pose</b> — поза воина<br>
+<b>child's pose</b> — поза ребёнка | <b>tree pose</b> — поза дерева<br>
+<b>breathwork / pranayama</b> — дыхательные практики<br>
+<b>meditation</b> — медитация | <b>mindfulness</b> — осознанность<br>
+<b>mantra</b> — мантра | <b>chakra</b> — чакра<br>
+<b>mat</b> — коврик | <b>instructor / yogi</b> — инструктор по йоге</div>
+<p class="example">✦ We held the <b>downward dog</b> pose for five slow breaths.</p>
+<p class="example">✦ Focus on your <b>breathwork</b> to calm your mind.</p>
+<p class="example">✦ The <b>mindfulness</b> meditation helped reduce my anxiety.</p>
+</div>`,
+        exercises:[
+          {q:'A yoga ___ is a specific body position, also called an asana.',blank:'pose',opts:['pose','position','move','stance']},
+          {q:'The ___ dog pose involves hands and feet on the floor, hips raised.',blank:'downward',opts:['downward','upward','sideward','forward']},
+          {q:'You practise yoga on a rubber ___.',blank:'mat',opts:['mat','carpet','pad','sheet']},
+          {q:'Controlled breathing exercises are called ___.',blank:'breathwork',opts:['breathwork','airwork','lungwork','inhaling']},
+          {q:'Paying full attention to the present moment is called ___.',blank:'mindfulness',opts:['mindfulness','awareness','presence','calm']},
+          {q:'A repeated phrase used in meditation is called a ___.',blank:'mantra',opts:['mantra','chant','prayer','word']},
+          {q:'A yoga teacher is sometimes called a ___.',blank:'yogi',opts:['yogi','master','guide','teacher']},
+          {q:'The ___ pose involves sitting back on your heels with arms extended.',blank:'child\'s',opts:["child's",'warrior','tree','lotus'])}
+        ]
+      },
+      {id:15,title:'Motivation & Mental Strength',xp:35,
+        theory:`<div class="theory-block">
+<h3>Motivation & Mental Strength — мотивация и ментальная сила</h3>
+<p>Психологическая устойчивость — такой же важный аспект спорта, как физическая подготовка. Профессиональные атлеты активно работают с ментальной составляющей.</p>
+<div class="rule"><b>mental toughness</b> — психологическая устойчивость<br>
+<b>resilience</b> — стойкость / способность восстанавливаться<br>
+<b>consistency</b> — постоянство / регулярность<br>
+<b>discipline</b> — дисциплина | <b>willpower</b> — сила воли<br>
+<b>growth mindset</b> — установка на рост | <b>comfort zone</b> — зона комфорта<br>
+<b>visualisation</b> — визуализация | <b>self-belief</b> — вера в себя<br>
+<b>setback</b> — неудача / откат | <b>bounce back</b> — восстанавливаться после неудачи</div>
+<p class="example">✦ <b>Consistency</b> beats intensity — train regularly, not just occasionally.</p>
+<p class="example">✦ Great athletes use <b>visualisation</b> to mentally rehearse their performance.</p>
+<p class="example">✦ After the injury, she showed incredible <b>resilience</b> to <b>bounce back</b>.</p>
+</div>`,
+        exercises:[
+          {q:'The ability to recover quickly from difficulties is called ___.',blank:'resilience',opts:['resilience','toughness','courage','strength']},
+          {q:'Training regularly and not giving up requires strong ___.',blank:'discipline',opts:['discipline','motivation','energy','focus']},
+          {q:'Imagining yourself succeeding before a competition is called ___.',blank:'visualisation',opts:['visualisation','imagination','dreaming','planning']},
+          {q:'To ___ back means to recover after a setback or failure.',blank:'bounce',opts:['bounce','come','get','push']},
+          {q:'A ___ mindset means believing you can improve through effort.',blank:'growth',opts:['growth','fixed','open','positive']},
+          {q:'Your ___ zone is the area where you feel safe and unchallenged.',blank:'comfort',opts:['comfort','safe','easy','familiar']},
+          {q:'___ means doing something regularly, not just when you feel like it.',blank:'Consistency',opts:['Consistency','Routine','Habit','Practice']},
+          {q:'Believing in your own ability to succeed is called ___.',blank:'self-belief',opts:['self-belief','confidence','ego','pride']}
+        ]
+      },
+      {id:16,title:'Fitness Apps & Technology',xp:30,
+        theory:`<div class="theory-block">
+<h3>Fitness Apps & Technology — фитнес-приложения</h3>
+<p>Технологии изменили способ, которым мы тренируемся. Фитнес-трекеры и приложения стали неотъемлемой частью тренировочного процесса.</p>
+<div class="rule"><b>fitness tracker / wearable</b> — фитнес-браслет / носимое устройство<br>
+<b>step count</b> — количество шагов | <b>heart rate monitor</b> — пульсометр<br>
+<b>GPS tracking</b> — отслеживание по GPS | <b>calories burned</b> — сожжённые калории<br>
+<b>workout log</b> — дневник тренировок | <b>progress photo</b> — фото прогресса<br>
+<b>rest day</b> — день отдыха | <b>recovery score</b> — показатель восстановления<br>
+<b>sleep tracker</b> — трекер сна | <b>VO2 max</b> — максимальное потребление кислорода</div>
+<p class="example">✦ My <b>fitness tracker</b> shows I burned 600 <b>calories</b> during the run.</p>
+<p class="example">✦ I use a <b>workout log</b> to track my progress each week.</p>
+<p class="example">✦ My <b>heart rate monitor</b> keeps me in the right training zone.</p>
+</div>`,
+        exercises:[
+          {q:'A device worn on the wrist that tracks activity is called a fitness ___.',blank:'tracker',opts:['tracker','monitor','counter','meter']},
+          {q:'The number of steps you take in a day is your ___ count.',blank:'step',opts:['step','walk','foot','stride']},
+          {q:'A ___ rate monitor measures how fast your heart beats during exercise.',blank:'heart',opts:['heart','pulse','blood','body']},
+          {q:'Energy used during a workout is measured in ___ burned.',blank:'calories',opts:['calories','energy','joules','watts']},
+          {q:'A ___ day means no training — your body recovers.',blank:'rest',opts:['rest','off','free','break']},
+          {q:'A ___ log records all your workouts and progress.',blank:'workout',opts:['workout','exercise','training','fitness']},
+          {q:'___ tracking shows your exact route and distance during outdoor exercise.',blank:'GPS',opts:['GPS','Map','Route','Location']},
+          {q:'VO2 ___ is a measure of your body\'s maximum oxygen use.',blank:'max',opts:['max','peak','top','limit']}
+        ]
+      },
+      {id:17,title:'Sports Supplements',xp:35,
+        theory:`<div class="theory-block">
+<h3>Sports Supplements — спортивное питание</h3>
+<p>Спортивные добавки широко используются атлетами и любителями фитнеса. Важно понимать их назначение и правильно читать этикетки на английском.</p>
+<div class="rule"><b>whey protein</b> — сывороточный протеин | <b>casein</b> — казеин<br>
+<b>creatine</b> — креатин | <b>pre-workout</b> — предтренировочный комплекс<br>
+<b>BCAAs</b> (Branched-Chain Amino Acids) — аминокислоты с разветвлённой цепью<br>
+<b>omega-3</b> — омега-3 жирные кислоты | <b>vitamin D</b> — витамин D<br>
+<b>serving size</b> — размер порции | <b>dosage</b> — дозировка<br>
+<b>side effects</b> — побочные эффекты | <b>certified</b> — сертифицированный</div>
+<p class="example">✦ I take <b>whey protein</b> within 30 minutes of finishing my workout.</p>
+<p class="example">✦ <b>Creatine</b> helps improve strength and power output.</p>
+<p class="example">✦ Always check the <b>serving size</b> and <b>dosage</b> on the label.</p>
+</div>`,
+        exercises:[
+          {q:'___ protein is a fast-digesting protein derived from milk.',blank:'Whey',opts:['Whey','Casein','Soy','Plant']},
+          {q:'___ is a supplement that helps increase power and strength.',blank:'Creatine',opts:['Creatine','Caffeine','Protein','Carnitine']},
+          {q:'BCAAs are ___ acids that help with muscle recovery.',blank:'amino',opts:['amino','fatty','lactic','citric']},
+          {q:'A ___ workout supplement is taken before exercise for energy.',blank:'pre',opts:['pre','post','mid','intra']},
+          {q:'The recommended amount of a supplement per use is the ___.',blank:'dosage',opts:['dosage','serving','portion','dose']},
+          {q:'Unwanted effects from a supplement are called ___ effects.',blank:'side',opts:['side','bad','negative','adverse']},
+          {q:'___ are healthy fats found in fish oil that support heart health.',blank:'Omega-3s',opts:['Omega-3s','Omega-6s','Saturated fats','Trans fats']},
+          {q:'A ___ product has been tested and approved by an official body.',blank:'certified',opts:['certified','approved','tested','verified']}
+        ]
+      },
+      {id:18,title:'Cycling & Triathlon',xp:35,
+        theory:`<div class="theory-block">
+<h3>Cycling & Triathlon — велоспорт и триатлон</h3>
+<p>Велоспорт и триатлон — одни из самых требовательных видов спорта. Специальная лексика нужна как для тренировок, так и для соревнований.</p>
+<div class="rule"><b>road cycling</b> — шоссейный велоспорт | <b>mountain biking</b> — горный велосипед<br>
+<b>peloton</b> — пелотон (группа велосипедистов) | <b>breakaway</b> — отрыв<br>
+<b>triathlon</b> — триатлон | <b>transition zone</b> — переходная зона<br>
+<b>cadence</b> — каденс (обороты педалей) | <b>drafting</b> — езда в колесе<br>
+<b>gear</b> — передача | <b>sprint finish</b> — финишный спринт<br>
+<b>Tour de France</b> — Тур де Франс | <b>Ironman</b> — Айронмен (триатлон)</div>
+<p class="example">✦ He broke away from the <b>peloton</b> with 10km to go.</p>
+<p class="example">✦ In triathlon, the <b>transition zone</b> is where you switch from swimming to cycling.</p>
+<p class="example">✦ Maintaining a high <b>cadence</b> is more efficient than pushing heavy gears.</p>
+</div>`,
+        exercises:[
+          {q:'The large group of cyclists riding together is called a ___.',blank:'peloton',opts:['peloton','pack','group','bunch']},
+          {q:'In triathlon, the ___ zone is where athletes change equipment.',blank:'transition',opts:['transition','change','switch','gear']},
+          {q:'___ biking is done on rough, off-road terrain.',blank:'Mountain',opts:['Mountain','Road','Trail','Off']},
+          {q:'When a cyclist leaves the main group alone, it is called a ___.',blank:'breakaway',opts:['breakaway','escape','attack','sprint']},
+          {q:'The number of pedal revolutions per minute is called ___.',blank:'cadence',opts:['cadence','speed','rate','tempo']},
+          {q:'___ means cycling closely behind another rider to reduce wind resistance.',blank:'Drafting',opts:['Drafting','Following','Pacing','Tucking']},
+          {q:'You change ___ to make pedalling easier or harder.',blank:'gears',opts:['gears','speeds','ratios','settings']},
+          {q:'An Ironman triathlon consists of swimming, cycling and ___.',blank:'running',opts:['running','rowing','kayaking','skiing']}
+        ]
+      },
+      {id:19,title:'Sports & Emotions',xp:35,
+        theory:`<div class="theory-block">
+<h3>Sports & Emotions — эмоции в спорте</h3>
+<p>Спорт вызывает сильные эмоции — радость победы, разочарование поражения, гордость за команду. Умение выразить их по-английски делает общение живым.</p>
+<div class="rule"><b>thrilled</b> — в восторге | <b>devastated</b> — опустошён / разбит<br>
+<b>gutted</b> (British) — расстроен до глубины души | <b>pumped up</b> — заряжен<br>
+<b>on cloud nine</b> — на седьмом небе | <b>in agony</b> — в агонии / страдает<br>
+<b>choke</b> — сорваться в ответственный момент | <b>clutch</b> — выступить блестяще под давлением<br>
+<b>sportsmanship</b> — спортивный дух / честная игра<br>
+<b>fan / supporter</b> — болельщик | <b>rivalry</b> — соперничество</div>
+<p class="example">✦ I was absolutely <b>thrilled</b> when we won the championship!</p>
+<p class="example">✦ He was <b>gutted</b> after missing the penalty in the final.</p>
+<p class="example">✦ She showed great <b>sportsmanship</b> by congratulating her opponent.</p>
+</div>`,
+        exercises:[
+          {q:'To be ___ means to be extremely happy and excited.',blank:'thrilled',opts:['thrilled','pumped','gutted','clutch']},
+          {q:'If you are ___, you are deeply upset or disappointed.',blank:'devastated',opts:['devastated','thrilled','pumped','elated']},
+          {q:'To ___ means to fail under pressure at a crucial moment.',blank:'choke',opts:['choke','miss','fail','drop']},
+          {q:'___ refers to fair and respectful behaviour in sport.',blank:'Sportsmanship',opts:['Sportsmanship','Fairness','Respect','Honour']},
+          {q:'Being ___ up means feeling very energised and ready to compete.',blank:'pumped',opts:['pumped','fired','hyped','amped']},
+          {q:'The intense competition between two teams is called a ___.',blank:'rivalry',opts:['rivalry','contest','battle','war']},
+          {q:'A ___ performance means succeeding brilliantly under pressure.',blank:'clutch',opts:['clutch','lucky','surprise','fluke']},
+          {q:'Fans who actively support a team are called ___ or supporters.',blank:'fans',opts:['fans','viewers','watchers','followers']}
+        ]
+      },
+      {id:20,title:'Sport & Fitness: Final Test',xp:50,
+        theory:`<div class="theory-block">
+<h3>Sport & Fitness English — финальный тест</h3>
+<p>Отлично! Ты прошёл курс Sport & Fitness English. Давай проверим все ключевые темы.</p>
+<div class="rule">
+&bull; <b>Gym</b>: barbell, dumbbell, treadmill, bench press, membership<br>
+&bull; <b>Exercise types</b>: cardio, strength, HIIT, sets, reps, warm-up<br>
+&bull; <b>Muscles</b>: biceps, quads, hamstrings, core, glutes, lats<br>
+&bull; <b>Injuries</b>: sprain, fracture, RICE method, physio, rehabilitation<br>
+&bull; <b>Nutrition</b>: protein, carbs, calorie deficit, macros, meal prep<br>
+&bull; <b>Sports</b>: foul, penalty, hat-trick, personal best, podium<br>
+&bull; <b>Mindset</b>: resilience, discipline, consistency, visualisation<br>
+&bull; <b>Lifestyle</b>: well-being, burnout, mindfulness, sedentary
+</div>
+<p style="margin-top:10px"><b>Продолжай практиковаться:</b><br>
+Смотри: спортивные трансляции и YouTube-каналы на английском<br>
+Читай: спортивные новости на BBC Sport, ESPN<br>
+Говори: обсуждай тренировки с AI-тьютором в разделе «Чат»</p>
+</div>`,
+        exercises:[
+          {q:'A ___ is a weight with a long bar and plates on each end.',blank:'barbell',opts:['barbell','dumbbell','kettlebell','band']},
+          {q:'One complete movement of an exercise is called a ___.',blank:'rep',opts:['rep','set','lap','round']},
+          {q:'An injury to a ligament from overstretching is a ___.',blank:'sprain',opts:['sprain','fracture','strain','bruise']},
+          {q:'To lose weight, you need to eat in a calorie ___.',blank:'deficit',opts:['deficit','surplus','balance','intake']},
+          {q:'Scoring three goals in one match is called a ___-trick.',blank:'hat',opts:['hat','goal','triple','score']},
+          {q:'Your ___ is how fast you run per kilometre.',blank:'pace',opts:['pace','speed','stride','tempo']},
+          {q:'The ability to recover after setbacks is called ___.',blank:'resilience',opts:['resilience','toughness','discipline','strength']},
+          {q:'A ___ lifestyle means sitting for most of the day.',blank:'sedentary',opts:['sedentary','active','healthy','lazy']},
+          {q:'The muscles at the back of your thighs are called ___.',blank:'hamstrings',opts:['hamstrings','quads','calves','glutes']},
+          {q:'___ is paying full attention to the present moment.',blank:'Mindfulness',opts:['Mindfulness','Awareness','Meditation','Focus']},
+          {q:'___ stands for High Intensity Interval Training.',blank:'HIIT',opts:['HIIT','LISS','HIIC','HIRT']},
+          {q:'The large group of cyclists riding together is the ___.',blank:'peloton',opts:['peloton','pack','team','group']},
+          {q:'Good ___ hygiene means going to bed at the same time each night.',blank:'sleep',opts:['sleep','rest','night','body']},
+          {q:'A pre-workout ___ gives you energy before exercise.',blank:'supplement',opts:['supplement','snack','drink','boost']},
+          {q:'Congratulations — you finished the Sport & ___ English course!',blank:'Fitness',opts:['Fitness','Health','Body','Active']}
+        ]
+      }
+    ]
+  }
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -12129,7 +13710,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -13212,7 +14793,10 @@ const TOPIC_CHIPS = {
   'Slang':       ["Teach me some new slang!", "What does 'no cap' mean?", "Give me a phrase to sound more natural", "Hit me with your best idiom"],
   'Academic':    ["I need help with my essay introduction", "How do I write a thesis statement?", "Can you check my paragraph?", "Explain hedging language please"],
   'Interview English': ["Tell me about yourself", "What are your greatest strengths?", "Why do you want to work here?", "Can we practice a mock interview?"],
-  'Legal English': ["Explain this contract clause to me", "What does 'without prejudice' mean?", "Help me understand GDPR basics", "What is the difference between mediation and arbitration?"],
+  'Legal English':  ["Explain this contract clause to me", "What does 'without prejudice' mean?", "Help me understand GDPR basics", "What is the difference between mediation and arbitration?"],
+  'Pronunciation':  ["How do I pronounce 'through'?", "What's the difference between /ɪ/ and /iː/?", "Help me with TH sounds", "Practice word stress with me"],
+  'Writing':        ["Help me write a professional email", "Check my cover letter please", "How do I start an essay?", "Give me phrases for polite requests"],
+  'Sport':          ["I want to talk about gym vocabulary", "What do you say to a personal trainer?", "Help me describe an injury in English", "Let's talk about nutrition"],
 };
 
 function showChips(topicKey) {
