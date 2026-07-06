@@ -13777,9 +13777,7 @@ function continueLastCourse(){
   if(!raw) return;
   try {
     const {id, lesson} = JSON.parse(raw);
-    showScreen('screen-courses');
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelector('[onclick="showScreen(\'screen-courses\')"]')?.classList.add('active');
+    switchTab('courses');
     openCourse(id);
     openLesson(lesson);
   } catch(e){}
@@ -14042,7 +14040,7 @@ async function translateMistake(btn, sentence){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'mistral-small-latest',max_tokens:80,
-        messages:[{role:'user',content:'Переведи на русский язык одним предложением, без пояснений: "'+clean+'"'}]})
+        messages:[{role:'user',content:'Переведи на русский язык одним предложением, без пояснений: '+JSON.stringify(clean)}]})
     });
     const data=await resp.json();
     const translation=data.choices?.[0]?.message?.content?.trim()||'Перевод недоступен';
@@ -14926,7 +14924,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     const data=await resp.json();
     if(data.error){
       const target=existingDiv||document.querySelector('.msg.ai:last-child');
-      if(target)target.innerHTML='❌ Ошибка API: '+data.error.message;
+      if(target)target.textContent='❌ Ошибка API: '+(data.error.message||'unknown');
       isLoading=false;
       document.getElementById('send-btn').disabled=false;
       return;
@@ -14964,7 +14962,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     scrollMessages();
   }catch(err){
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
-    if(target)target.innerHTML='❌ ERR: '+(err.toString()||'unknown');
+    if(target)target.textContent='❌ ERR: '+(err.toString()||'unknown');
   }finally{
     isLoading=false;
     document.getElementById('send-btn').disabled=false;
