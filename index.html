@@ -499,6 +499,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="continue-progress-bar"><div class="continue-progress-fill" id="continue-fill" style="width:0%"></div></div>
     </div>
 
+    <!-- Weak Spots Widget -->
+    <div class="continue-card" id="weak-card" onclick="goToWeakSpot()" style="display:none;background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(239,68,68,0.06));border-color:rgba(245,158,11,0.35);">
+      <div style="font-size:10px;font-weight:700;color:var(--amber);letter-spacing:0.5px;margin-bottom:4px;">💡 ПОДТЯНИ СЛАБОЕ МЕСТО</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:15px;font-weight:800;color:var(--text)" id="weak-title"></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px" id="weak-sub"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <div style="font-size:11px;color:var(--amber);font-weight:700;" id="weak-pct"></div>
+          <div class="continue-btn-inline" style="background:rgba(245,158,11,0.18);border-color:rgba(245,158,11,0.4);color:var(--amber)">Начать →</div>
+        </div>
+      </div>
+      <div class="continue-progress-bar" style="background:rgba(245,158,11,0.15)"><div class="continue-progress-fill" id="weak-fill" style="width:0%;background:linear-gradient(90deg,var(--amber),#ef4444)"></div></div>
+    </div>
+
     <!-- Daily Challenge Card -->
     <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -13772,6 +13788,65 @@ function renderContinueWidget(){
   } catch(e){}
 }
 
+function renderWeakSpotWidget(){
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'];
+  // Count total lessons done across all courses
+  const totalDone = allIds.reduce((sum,id)=>{
+    const p=getCourseProgress(id);
+    return sum + Object.values(p).filter(v=>v.done).length;
+  }, 0);
+  // Only show after 5+ lessons total
+  if(totalDone < 5){ document.getElementById('weak-card').style.display='none'; return; }
+
+  // Find the course with lowest completion % but at least 1 lesson done (or never started)
+  // Priority: started but stuck (1-3 lessons done) > never started
+  let best = null, bestScore = Infinity;
+  allIds.forEach(id=>{
+    const course = COURSES[id];
+    if(!course) return;
+    const p = getCourseProgress(id);
+    const done = Object.values(p).filter(v=>v.done).length;
+    const total = course.lessons.length;
+    const pct = done / total;
+    // Skip fully completed
+    if(done === total) return;
+    // Score: lower pct = higher priority; started courses slightly prioritised over never-started
+    const score = pct + (done === 0 ? 0.5 : 0);
+    if(score < bestScore){ bestScore = score; best = id; }
+  });
+
+  if(!best){ document.getElementById('weak-card').style.display='none'; return; }
+
+  const course = COURSES[best];
+  const p = getCourseProgress(best);
+  const done = Object.values(p).filter(v=>v.done).length;
+  const total = course.lessons.length;
+  const pct = Math.round(done/total*100);
+  // Find first undone lesson index
+  const nextIdx = course.lessons.findIndex((_,i)=>!p[course.lessons[i].id]?.done);
+  const nextLesson = course.lessons[nextIdx >= 0 ? nextIdx : 0];
+
+  document.getElementById('weak-title').textContent = course.title;
+  document.getElementById('weak-sub').textContent = done === 0
+    ? 'Ещё не начат · ' + total + ' уроков'
+    : 'Урок ' + nextLesson.id + ' · ' + nextLesson.title;
+  document.getElementById('weak-pct').textContent = pct + '%';
+  document.getElementById('weak-fill').style.width = pct + '%';
+  document.getElementById('weak-card').dataset.courseId = best;
+  document.getElementById('weak-card').dataset.lessonIdx = nextIdx >= 0 ? nextIdx : 0;
+  document.getElementById('weak-card').style.display = 'block';
+}
+
+function goToWeakSpot(){
+  const card = document.getElementById('weak-card');
+  const id = card.dataset.courseId;
+  const idx = parseInt(card.dataset.lessonIdx) || 0;
+  if(!id) return;
+  switchTab('courses');
+  openCourse(id);
+  openLesson(idx);
+}
+
 function continueLastCourse(){
   const raw = localStorage.getItem('smart_last_course');
   if(!raw) return;
@@ -14434,6 +14509,7 @@ renderDCCard();
 setTimeout(renderAvatar, 500);
 setTimeout(renderGreeting, 300);
 renderContinueWidget();
+renderWeakSpotWidget();
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
