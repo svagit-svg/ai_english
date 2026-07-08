@@ -954,6 +954,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <p style="font-size:10px;color:var(--muted);margin-top:3px" id="sport-sub">20 уроков</p>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('shopping')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">🛍️</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Shopping & Fashion</h3>
+          <span style="font-size:10px;font-weight:700;color:#ec4899" id="shopping-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="shopping-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="shopping-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1273,7 +1284,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -13710,6 +13721,211 @@ I would be happy to take any questions.</div>
       }
     ]
   }
+  ,shopping:{
+    title:'Shopping & Fashion 🛍️',
+    lessons:[
+      {id:1,title:'Clothing Vocabulary',xp:15,
+        theory:'<b>Clothing Vocabulary</b> — базовая лексика одежды<br><br><b>Верхняя одежда:</b><br>&bull; <b>coat</b> — пальто<br>&bull; <b>jacket</b> — куртка / жакет<br>&bull; <b>raincoat / mac</b> — дождевик<br>&bull; <b>hoodie</b> — худи<br><br><b>Повседневная одежда:</b><br>&bull; <b>shirt</b> — рубашка (с пуговицами)<br>&bull; <b>T-shirt / tee</b> — футболка<br>&bull; <b>blouse</b> — блузка<br>&bull; <b>trousers / pants</b> — брюки<br>&bull; <b>jeans</b> — джинсы<br>&bull; <b>shorts</b> — шорты<br>&bull; <b>skirt</b> — юбка<br>&bull; <b>dress</b> — платье<br>&bull; <b>suit</b> — костюм (пиджак + брюки)<br><br><b>Нижняя одежда и носки:</b><br>&bull; <b>underwear / underpants</b> — нижнее бельё<br>&bull; <b>socks</b> — носки<br>&bull; <b>tights / stockings</b> — колготки / чулки<br><br><b>Обувь:</b><br>&bull; <b>shoes</b> — туфли / ботинки<br>&bull; <b>boots</b> — сапоги / ботинки с высоким берцем<br>&bull; <b>trainers / sneakers</b> — кроссовки<br>&bull; <b>sandals</b> — сандалии<br><br><div class="rule">"I need a new <b>suit</b> for the job interview."</div><div class="rule">"She was wearing a lovely <b>dress</b> and high heels."</div>',
+        exercises:[
+          {q:'A ___ is a formal outfit with a jacket and matching trousers.',blank:'suit',opts:['suit','costume','uniform','set']},
+          {q:'___ are casual trousers made of denim fabric.',blank:'Jeans',opts:['Jeans','Trousers','Shorts','Leggings']},
+          {q:'A ___ is a long piece of clothing worn by women and girls.',blank:'skirt',opts:['skirt','dress','blouse','top']},
+          {q:'You wear ___ on your feet inside shoes.',blank:'socks',opts:['socks','tights','stockings','underwear']},
+          {q:'___ are sports shoes also called sneakers.',blank:'Trainers',opts:['Trainers','Boots','Sandals','Heels']}
+        ]
+      },
+      {id:2,title:'Sizes & Fitting Room',xp:15,
+        theory:'<b>Sizes & Fitting Room</b> — размеры и примерочная<br><br><b>Размеры одежды:</b><br>&bull; <b>XS</b> — Extra Small | <b>S</b> — Small | <b>M</b> — Medium<br>&bull; <b>L</b> — Large | <b>XL</b> — Extra Large | <b>XXL</b> — Double XL<br>&bull; <b>UK size / EU size / US size</b> — британский / европейский / американский размер<br>&bull; <b>to take a size 10</b> — носить 10-й размер<br><br><b>Примерочная (fitting room / changing room):</b><br>&bull; <b>to try on</b> — примерить<br>&bull; <b>it fits / it doesn\'t fit</b> — подходит / не подходит<br>&bull; <b>it\'s too tight</b> — слишком тесно<br>&bull; <b>it\'s too loose / baggy</b> — слишком свободно<br>&bull; <b>it\'s a bit short / long</b> — немного коротко / длинно<br>&bull; <b>Do you have this in a size up/down?</b> — Есть ли размер больше/меньше?<br>&bull; <b>Do you have this in a different colour?</b> — Есть ли другой цвет?<br><br><div class="rule">"Excuse me, can I <b>try on</b> this jacket?"</div><div class="rule">"These trousers are <b>too tight</b> — do you have a size 34?"</div>',
+        exercises:[
+          {q:'The room where you try on clothes in a shop is the ___ room.',blank:'fitting',opts:['fitting','changing','dressing','trying']},
+          {q:'If clothes are too ___, they are uncomfortably small and close to the body.',blank:'tight',opts:['tight','loose','short','long']},
+          {q:'To ___ on means to wear clothes to see if they fit.',blank:'try',opts:['try','put','take','wear']},
+          {q:'If the dress ___, it is the right size and shape for your body.',blank:'fits',opts:['fits','matches','suits','goes']},
+          {q:'Do you have this in a size ___? I need something bigger.',blank:'up',opts:['up','down','more','higher']}
+        ]
+      },
+      {id:3,title:'Shopping for Clothes',xp:15,
+        theory:'<b>Shopping for Clothes</b> — диалог в магазине одежды<br><br><b>Помощь продавца-консультанта:</b><br>&bull; <b>shop assistant / sales assistant</b> — продавец-консультант<br>&bull; <b>Can I help you?</b> — Могу я вам помочь?<br>&bull; <b>I\'m just looking, thanks.</b> — Я просто смотрю, спасибо.<br>&bull; <b>I\'m looking for...</b> — Я ищу...<br>&bull; <b>Do you have...?</b> — У вас есть...?<br><br><b>Покупка:</b><br>&bull; <b>to pay by card / cash</b> — платить картой / наличными<br>&bull; <b>contactless payment</b> — бесконтактная оплата<br>&bull; <b>receipt</b> — чек<br>&bull; <b>carrier bag / shopping bag</b> — пакет<br>&bull; <b>till / checkout</b> — касса<br>&bull; <b>price tag</b> — ценник<br><br><b>Типичный диалог:</b><br><div class="rule">"Can I help you?" — "Yes, I\'m <b>looking for</b> a blue shirt."</div><div class="rule">"How would you like to <b>pay</b>?" — "By card, please."</div>',
+        exercises:[
+          {q:'A shop ___ is a person who helps customers in a store.',blank:'assistant',opts:['assistant','worker','manager','helper']},
+          {q:'The place where you pay for items in a shop is called the ___.',blank:'till',opts:['till','desk','counter','register']},
+          {q:'A small piece of paper or sticker showing the price is a price ___.',blank:'tag',opts:['tag','label','sign','mark']},
+          {q:'If you don\'t need help, you say "I\'m just ___."',blank:'looking',opts:['looking','browsing','walking','seeing']},
+          {q:'You get a ___ as proof of purchase after paying.',blank:'receipt',opts:['receipt','ticket','voucher','card']}
+        ]
+      },
+      {id:4,title:'Online Shopping',xp:15,
+        theory:'<b>Online Shopping</b> — покупки онлайн<br><br><b>Основные термины:</b><br>&bull; <b>to browse / to shop online</b> — просматривать / делать покупки онлайн<br>&bull; <b>online store / e-commerce site</b> — интернет-магазин<br>&bull; <b>shopping cart / basket</b> — корзина<br>&bull; <b>to add to cart</b> — добавить в корзину<br>&bull; <b>to checkout</b> — оформить заказ<br>&bull; <b>to place an order</b> — сделать заказ<br><br><b>Доставка:</b><br>&bull; <b>delivery / shipping</b> — доставка<br>&bull; <b>standard delivery</b> — стандартная доставка (3–5 дней)<br>&bull; <b>express / next-day delivery</b> — экспресс / доставка на следующий день<br>&bull; <b>tracking number</b> — номер отслеживания<br>&bull; <b>estimated delivery date</b> — ожидаемая дата доставки<br>&bull; <b>out of stock</b> — нет в наличии<br>&bull; <b>in stock</b> — в наличии<br><br><b>Оплата:</b><br>&bull; <b>secure payment</b> — безопасная оплата<br>&bull; <b>PayPal / Apple Pay / Google Pay</b> — популярные методы оплаты<br><div class="rule">"Add the item to your <b>cart</b> and proceed to <b>checkout</b>."</div><div class="rule">"Your order is <b>out of stock</b> — we\'ll notify you when it\'s available."</div>',
+        exercises:[
+          {q:'You put items in your online shopping ___ before paying.',blank:'cart',opts:['cart','bag','box','list']},
+          {q:'To ___ means to complete your online purchase and pay.',blank:'checkout',opts:['checkout','confirm','submit','finish']},
+          {q:'If an item is ___ of stock, it is not available to buy.',blank:'out',opts:['out','away','off','gone']},
+          {q:'A ___ number lets you track where your parcel is.',blank:'tracking',opts:['tracking','order','parcel','delivery']},
+          {q:'___ delivery means your parcel arrives the next working day.',blank:'Next-day',opts:['Next-day','Express','Fast','Quick']}
+        ]
+      },
+      {id:5,title:'Returns & Refunds',xp:15,
+        theory:'<b>Returns & Refunds</b> — возврат товара<br><br><b>Основная лексика:</b><br>&bull; <b>to return</b> — вернуть товар<br>&bull; <b>to exchange</b> — обменять<br>&bull; <b>refund</b> — возврат денег<br>&bull; <b>refund policy</b> — политика возврата<br>&bull; <b>returns window</b> — срок возврата (напр. 28 дней)<br>&bull; <b>receipt / proof of purchase</b> — чек / подтверждение покупки<br><br><b>Причины возврата:</b><br>&bull; <b>faulty / defective item</b> — бракованный товар<br>&bull; <b>wrong size</b> — неподходящий размер<br>&bull; <b>not as described</b> — не соответствует описанию<br>&bull; <b>changed my mind</b> — передумал(а)<br><br><b>Полезные фразы:</b><br>&bull; <b>I\'d like to return this, please.</b> — Я хотел бы вернуть это.<br>&bull; <b>I have my receipt.</b> — У меня есть чек.<br>&bull; <b>Can I get a refund?</b> — Можно вернуть деньги?<br>&bull; <b>I\'d prefer an exchange.</b> — Я предпочту обмен.<br><br><div class="rule">"I\'d like to <b>return</b> this jacket — it\'s <b>faulty</b>."</div><div class="rule">"Do you have your <b>receipt</b>? Our <b>returns window</b> is 30 days."</div>',
+        exercises:[
+          {q:'A ___ means getting your money back after returning an item.',blank:'refund',opts:['refund','exchange','credit','reward']},
+          {q:'A ___ item has a defect and doesn\'t work properly.',blank:'faulty',opts:['faulty','broken','used','old']},
+          {q:'The ___ window is the period during which you can return items.',blank:'returns',opts:['returns','refund','exchange','sales']},
+          {q:'You need a ___ as proof of purchase when returning goods.',blank:'receipt',opts:['receipt','label','tag','card']},
+          {q:'Instead of a refund, you can ask to ___ the item for a different size.',blank:'exchange',opts:['exchange','replace','swap','change']}
+        ]
+      },
+      {id:6,title:'Sales & Discounts',xp:15,
+        theory:'<b>Sales & Discounts</b> — скидки и распродажи<br><br><b>Основная лексика:</b><br>&bull; <b>sale</b> — распродажа<br>&bull; <b>discount</b> — скидка<br>&bull; <b>% off</b> — процент скидки (напр. 30% off = скидка 30%)<br>&bull; <b>half price</b> — полцены<br>&bull; <b>BOGOF</b> — Buy One Get One Free (купи одно, второе бесплатно)<br>&bull; <b>clearance sale</b> — распродажа остатков<br>&bull; <b>flash sale</b> — краткосрочная акция<br>&bull; <b>promo code / voucher</b> — промокод / купон<br><br><b>Известные распродажи:</b><br>&bull; <b>Black Friday</b> — последняя пятница ноября (огромные скидки)<br>&bull; <b>Boxing Day</b> — 26 декабря (Великобритания) — распродажи после Рождества<br>&bull; <b>January Sales</b> — январские распродажи<br>&bull; <b>Amazon Prime Day</b> — эксклюзивные скидки для подписчиков Prime<br><br><div class="rule">"Everything is <b>50% off</b> this weekend — it\'s our summer sale!"</div><div class="rule">"Use promo code SAVE20 for an extra <b>20% discount</b> at checkout."</div>',
+        exercises:[
+          {q:'If a jacket is 40___ off, you pay 60% of the original price.',blank:'%',opts:['%','£','$','#']},
+          {q:'___ Friday is a major sales event in November.',blank:'Black',opts:['Black','Dark','Sale','Big']},
+          {q:'BOGOF means Buy One Get One ___.',blank:'Free',opts:['Free','Half','Cheap','Off']},
+          {q:'A ___ code gives you a discount when you type it at checkout.',blank:'promo',opts:['promo','secret','voucher','special']},
+          {q:'A ___ sale clears old stock at very low prices.',blank:'clearance',opts:['clearance','flash','summer','end']}
+        ]
+      },
+      {id:7,title:'Fashion Vocabulary',xp:15,
+        theory:'<b>Fashion Vocabulary</b> — лексика моды<br><br><b>Стили:</b><br>&bull; <b>casual</b> — повседневный, неформальный<br>&bull; <b>formal / smart</b> — формальный / элегантный<br>&bull; <b>smart casual</b> — деловой повседневный стиль<br>&bull; <b>vintage</b> — в стиле прошлых эпох<br>&bull; <b>retro</b> — ретро-стиль<br>&bull; <b>classic</b> — классический, вневременной<br>&bull; <b>trendy / fashionable</b> — модный, в тренде<br>&bull; <b>timeless</b> — вне времени, всегда актуальный<br><br><b>Характеристики одежды:</b><br>&bull; <b>stylish / chic</b> — стильный / шикарный<br>&bull; <b>elegant</b> — элегантный<br>&bull; <b>bold</b> — смелый, яркий (о стиле)<br>&bull; <b>minimalist</b> — минималистичный<br>&bull; <b>oversized</b> — оверсайз (намеренно большой размер)<br>&bull; <b>tailored</b> — приталенный, сшитый на заказ<br><br><div class="rule">"Her style is very <b>chic</b> — always <b>elegant</b> but never overdressed."</div><div class="rule">"I prefer <b>classic</b> styles — they never go out of fashion."</div>',
+        exercises:[
+          {q:'A ___ style means relaxed and informal clothing.',blank:'casual',opts:['casual','formal','smart','classic']},
+          {q:'___ clothing is inspired by styles from past decades.',blank:'Vintage',opts:['Vintage','Classic','Retro','Old']},
+          {q:'Something ___ is currently popular and fashionable.',blank:'trendy',opts:['trendy','stylish','elegant','bold']},
+          {q:'A ___ style is deliberately simple with few accessories or decorations.',blank:'minimalist',opts:['minimalist','casual','plain','basic']},
+          {q:'A ___ fit means the clothing is cut close to the body shape.',blank:'tailored',opts:['tailored','slim','tight','shaped']}
+        ]
+      },
+      {id:8,title:'Accessories',xp:15,
+        theory:'<b>Accessories</b> — аксессуары<br><br><b>Сумки:</b><br>&bull; <b>handbag / purse</b> — сумочка (женская)<br>&bull; <b>backpack / rucksack</b> — рюкзак<br>&bull; <b>tote bag</b> — шопер / объёмная сумка<br>&bull; <b>clutch</b> — клатч (небольшая вечерняя сумочка)<br>&bull; <b>wallet / purse</b> — кошелёк (wallet — мужской; purse — женский)<br><br><b>Украшения:</b><br>&bull; <b>necklace</b> — ожерелье / колье<br>&bull; <b>bracelet</b> — браслет<br>&bull; <b>earrings</b> — серьги<br>&bull; <b>ring</b> — кольцо<br>&bull; <b>watch</b> — часы<br><br><b>Другие аксессуары:</b><br>&bull; <b>scarf</b> — шарф<br>&bull; <b>belt</b> — ремень<br>&bull; <b>hat / cap</b> — шляпа / кепка<br>&bull; <b>gloves</b> — перчатки<br>&bull; <b>sunglasses</b> — солнцезащитные очки<br>&bull; <b>tie / bow tie</b> — галстук / бабочка<br><br><div class="rule">"She wore a pearl <b>necklace</b> and matching <b>earrings</b>."</div><div class="rule">"Don\'t forget your <b>scarf</b> — it\'s cold outside!"</div>',
+        exercises:[
+          {q:'A ___ is a long piece of fabric worn around the neck for warmth or style.',blank:'scarf',opts:['scarf','tie','belt','strap']},
+          {q:'___ are worn on the eyes to protect them from sunlight.',blank:'Sunglasses',opts:['Sunglasses','Glasses','Goggles','Shades']},
+          {q:'A ___ is a small evening bag without handles.',blank:'clutch',opts:['clutch','tote','purse','pouch']},
+          {q:'You wear a ___ around your waist to hold your trousers up.',blank:'belt',opts:['belt','strap','band','sash']},
+          {q:'___ are jewellery worn on the lobes or along the ears.',blank:'Earrings',opts:['Earrings','Rings','Bracelets','Necklaces']}
+        ]
+      },
+      {id:9,title:'Department Stores',xp:15,
+        theory:'<b>Department Stores</b> — универмаги<br><br><b>Структура универмага:</b><br>&bull; <b>ground floor / first floor</b> — первый этаж (ground = 0 в Великобритании)<br>&bull; <b>department</b> — отдел (напр. menswear, womenswear, homeware)<br>&bull; <b>menswear</b> — мужская одежда<br>&bull; <b>womenswear / ladieswear</b> — женская одежда<br>&bull; <b>childrenswear / kids\' section</b> — детская одежда<br>&bull; <b>footwear / shoe department</b> — обувной отдел<br>&bull; <b>cosmetics / beauty</b> — косметика / бьюти-отдел<br><br><b>Услуги:</b><br>&bull; <b>customer service desk</b> — стойка обслуживания клиентов<br>&bull; <b>loyalty card / rewards card</b> — карта лояльности<br>&bull; <b>gift wrapping</b> — упаковка подарков<br>&bull; <b>personal shopper</b> — персональный стилист-помощник<br>&bull; <b>store directory</b> — схема магазина<br><br><div class="rule">"Excuse me, where is the <b>menswear</b> department?"</div><div class="rule">"Do you have a <b>loyalty card</b>? You can earn points on every purchase."</div>',
+        exercises:[
+          {q:'The ___ floor in a British department store is the street level.',blank:'ground',opts:['ground','first','zero','bottom']},
+          {q:'The ___ department sells clothes for men.',blank:'menswear',opts:['menswear','menswear','gents','males','menfashion']},
+          {q:'A ___ card lets you collect points every time you shop.',blank:'loyalty',opts:['loyalty','reward','member','points']},
+          {q:'You go to the customer ___ desk if you have a problem or query.',blank:'service',opts:['service','help','support','care']},
+          {q:'A ___ shopper helps you choose clothes that suit your style.',blank:'personal',opts:['personal','style','fashion','shopping']}
+        ]
+      },
+      {id:10,title:'Describing Style',xp:15,
+        theory:'<b>Describing Style</b> — описание стиля и внешнего вида<br><br><b>Описание одежды:</b><br>&bull; <b>She\'s wearing...</b> — На ней надето...<br>&bull; <b>He\'s dressed in...</b> — Он одет в...<br>&bull; <b>outfit</b> — наряд / комплект одежды<br>&bull; <b>look</b> — образ (the whole look = весь образ целиком)<br>&bull; <b>to match / to go with</b> — подходить по цвету / стилю<br><br><b>Комплименты по поводу внешнего вида:</b><br>&bull; <b>You look amazing!</b> — Ты выглядишь потрясающе!<br>&bull; <b>That really suits you.</b> — Это тебе очень идёт.<br>&bull; <b>What a great outfit!</b> — Какой классный наряд!<br>&bull; <b>Those colours look great on you.</b> — Эти цвета тебе очень идут.<br>&bull; <b>Is that new? It looks fantastic.</b> — Это новое? Выглядит отлично.<br><br><b>Описание тканей и рисунков:</b><br>&bull; <b>striped</b> — в полоску<br>&bull; <b>checked / plaid</b> — в клетку<br>&bull; <b>floral</b> — с цветочным принтом<br>&bull; <b>plain / solid</b> — однотонный<br>&bull; <b>patterned</b> — с рисунком<br><br><div class="rule">"That <b>striped</b> shirt really <b>suits</b> you — it matches your eyes."</div><div class="rule">"I love your <b>outfit</b> — where did you get that <b>floral</b> dress?"</div>',
+        exercises:[
+          {q:'A ___ pattern has flowers or plant designs on it.',blank:'floral',opts:['floral','striped','checked','plain']},
+          {q:'If clothes ___ you, they look good on you.',blank:'suit',opts:['suit','fit','match','go']},
+          {q:'A ___ colour means no pattern — just one solid colour.',blank:'plain',opts:['plain','simple','basic','clear']},
+          {q:'A complete clothing combination — top, bottoms, shoes — is called an ___.',blank:'outfit',opts:['outfit','look','style','set']},
+          {q:'A ___ pattern has crossing horizontal and vertical lines forming squares.',blank:'checked',opts:['checked','striped','plaid','patterned']}
+        ]
+      },
+      {id:11,title:'Sustainable Fashion',xp:15,
+        theory:'<b>Sustainable Fashion</b> — устойчивая мода<br><br><b>Проблема быстрой моды:</b><br>&bull; <b>fast fashion</b> — быстрая мода (дешёвые коллекции, меняющиеся еженедельно)<br>&bull; <b>textile waste</b> — текстильные отходы<br>&bull; <b>exploitation</b> — эксплуатация (дешёвый труд в развивающихся странах)<br>&bull; <b>carbon footprint</b> — углеродный след<br><br><b>Альтернативы:</b><br>&bull; <b>sustainable / ethical fashion</b> — устойчивая / этичная мода<br>&bull; <b>eco brands</b> — экологичные бренды<br>&bull; <b>second-hand / pre-owned clothing</b> — одежда б/у<br>&bull; <b>thrift store / charity shop</b> — секонд-хэнд / магазин благотворительного фонда<br>&bull; <b>vintage shopping</b> — покупка одежды прошлых эпох<br>&bull; <b>upcycling</b> — апсайклинг (переделка старой вещи в новую)<br>&bull; <b>capsule wardrobe</b> — капсульный гардероб (минималистичный, универсальный)<br>&bull; <b>swap / clothing swap event</b> — обмен одеждой<br><br><div class="rule">"I only buy from <b>ethical</b> brands — <b>fast fashion</b> is destroying the planet."</div><div class="rule">"I found this amazing coat in a <b>charity shop</b> for just £5!"</div>',
+        exercises:[
+          {q:'___ fashion means cheap clothing produced rapidly and in large quantities.',blank:'Fast',opts:['Fast','Cheap','Quick','Mass']},
+          {q:'A ___ shop sells donated second-hand items to raise money for charity.',blank:'charity',opts:['charity','thrift','vintage','second']},
+          {q:'___ is creatively remaking old items into something new and better.',blank:'Upcycling',opts:['Upcycling','Recycling','Reusing','Fixing']},
+          {q:'Your carbon ___ is the amount of CO2 your choices produce.',blank:'footprint',opts:['footprint','impact','trace','mark']},
+          {q:'A ___ wardrobe contains a small number of versatile, timeless pieces.',blank:'capsule',opts:['capsule','mini','small','basic']}
+        ]
+      },
+      {id:12,title:'Luxury Shopping',xp:15,
+        theory:'<b>Luxury Shopping</b> — люксовые покупки<br><br><b>Люксовые бренды и магазины:</b><br>&bull; <b>designer brand</b> — дизайнерский бренд (Gucci, Chanel, Louis Vuitton)<br>&bull; <b>flagship store</b> — флагманский магазин (главный магазин бренда)<br>&bull; <b>boutique</b> — бутик (маленький эксклюзивный магазин)<br>&bull; <b>luxury goods</b> — предметы роскоши<br>&bull; <b>high-end</b> — высшего класса, элитный<br><br><b>Эксклюзивность:</b><br>&bull; <b>limited edition</b> — лимитированная коллекция<br>&bull; <b>exclusive / one-of-a-kind</b> — эксклюзивный / в единственном экземпляре<br>&bull; <b>bespoke / made-to-measure</b> — сшитый на заказ<br>&bull; <b>waiting list</b> — лист ожидания<br>&bull; <b>authentication certificate</b> — сертификат подлинности<br><br><b>Шопинг в люксовом магазине:</b><br>&bull; <b>personal stylist</b> — персональный стилист<br>&bull; <b>VIP treatment</b> — обслуживание класса VIP<br>&bull; <b>complimentary champagne</b> — комплиментарное шампанское<br>&bull; <b>luxury gift wrapping</b> — изысканная подарочная упаковка<br><br><div class="rule">"This is a <b>limited edition</b> handbag — only 200 were made worldwide."</div><div class="rule">"I\'ve been on the <b>waiting list</b> for that bag for six months!"</div>',
+        exercises:[
+          {q:'A ___ store is the main, most important shop for a brand.',blank:'flagship',opts:['flagship','main','head','central']},
+          {q:'A ___ edition product is only made in small numbers.',blank:'limited',opts:['limited','special','rare','unique']},
+          {q:'___ clothing is made specifically for one person\'s measurements.',blank:'Bespoke',opts:['Bespoke','Custom','Unique','Designer']},
+          {q:'A small, exclusive fashion shop is called a ___.',blank:'boutique',opts:['boutique','store','shop','outlet']},
+          {q:'A ___ certificate proves that a luxury item is genuine, not fake.',blank:'authentication',opts:['authentication','quality','genuine','proof']}
+        ]
+      },
+      {id:13,title:'Grocery Shopping Abroad',xp:15,
+        theory:'<b>Grocery Shopping Abroad</b> — продуктовые покупки за рубежом<br><br><b>Планировка супермаркета:</b><br>&bull; <b>aisle</b> — проход между стеллажами<br>&bull; <b>fresh produce</b> — свежие продукты (фрукты, овощи)<br>&bull; <b>dairy section</b> — молочный отдел<br>&bull; <b>deli counter</b> — отдел кулинарии / гастрономия<br>&bull; <b>bakery</b> — хлебный отдел<br>&bull; <b>frozen foods</b> — замороженные продукты<br>&bull; <b>tinned / canned goods</b> — консервы<br><br><b>Чтение этикеток:</b><br>&bull; <b>best before / use by</b> — годен до (best before — качество; use by — безопасность)<br>&bull; <b>ingredients</b> — состав<br>&bull; <b>allergens</b> — аллергены<br>&bull; <b>nutritional information</b> — пищевая ценность<br>&bull; <b>gluten-free / vegan / organic</b> — без глютена / веганский / органический<br><br><b>Полезные фразы:</b><br>&bull; <b>Excuse me, where can I find...?</b><br>&bull; <b>Do you have a self-checkout?</b> — Есть ли касса самообслуживания?<br><br><div class="rule">"Excuse me, which <b>aisle</b> is the bread in?"</div><div class="rule">"Check the <b>use by</b> date — it expired yesterday!"</div>',
+        exercises:[
+          {q:'The passage between shelves in a supermarket is called an ___.',blank:'aisle',opts:['aisle','lane','row','path']},
+          {q:'Fresh fruits and vegetables are called fresh ___.',blank:'produce',opts:['produce','goods','food','items']},
+          {q:'The ___ by date tells you the last day food is safe to eat.',blank:'use',opts:['use','best','sell','eat']},
+          {q:'A ___ checkout lets you scan and pay for items yourself.',blank:'self',opts:['self','auto','quick','fast']},
+          {q:'___ are substances in food that can cause allergic reactions.',blank:'Allergens',opts:['Allergens','Additives','Ingredients','Chemicals']}
+        ]
+      },
+      {id:14,title:'Haggling & Bargaining',xp:15,
+        theory:'<b>Haggling & Bargaining</b> — торг и переговоры о цене<br><br><b>Контекст:</b><br>В Великобритании торг уместен на рынках, в антикварных магазинах, при покупке б/у вещей (Gumtree, Facebook Marketplace). В обычных магазинах цены фиксированы.<br><br><b>Полезные фразы для торга:</b><br>&bull; <b>What\'s your best price?</b> — Какая ваша лучшая цена?<br>&bull; <b>Can you do any better?</b> — Можете предложить что-то лучше?<br>&bull; <b>Would you take £20 for it?</b> — Возьмёте 20 фунтов?<br>&bull; <b>That\'s a bit too expensive for me.</b> — Это немного дороговато для меня.<br>&bull; <b>I\'ll take it if you can lower the price.</b> — Возьму, если снизите цену.<br>&bull; <b>Deal!</b> — По рукам! Договорились!<br>&bull; <b>No deal — I\'ll leave it.</b> — Не договорились — оставляю.<br><br><b>Ответы продавца:</b><br>&bull; <b>That\'s the best I can do.</b> — Это мой предел.<br>&bull; <b>I can knock £5 off.</b> — Могу скинуть 5 фунтов.<br>&bull; <b>I can\'t go any lower than that.</b> — Ниже не могу.<br><br><div class="rule">"What\'s your <b>best price</b>?" — "I can <b>knock</b> £10 off — that\'s £40."</div>',
+        exercises:[
+          {q:'Negotiating a lower price is called ___ or bargaining.',blank:'haggling',opts:['haggling','arguing','talking','asking']},
+          {q:'"What\'s your ___ price?" asks for the lowest the seller will go.',blank:'best',opts:['best','lowest','minimum','cheapest']},
+          {q:'To ___ £5 off means to reduce the price by £5.',blank:'knock',opts:['knock','take','cut','bring']},
+          {q:'"___!" means you both agree on the price.',blank:'Deal',opts:['Deal','Yes','Done','Fine']},
+          {q:'If you say "I\'ll leave it", you choose ___ to buy.',blank:'not',opts:['not','never','no','don\'t']}
+        ]
+      },
+      {id:15,title:'Wardrobe Essentials',xp:15,
+        theory:'<b>Wardrobe Essentials</b> — основы гардероба<br><br><b>Капсульный гардероб — базовые вещи:</b><br>&bull; <b>white shirt / white tee</b> — белая рубашка / белая футболка<br>&bull; <b>dark jeans</b> — тёмные джинсы<br>&bull; <b>black trousers</b> — чёрные брюки<br>&bull; <b>navy blazer</b> — тёмно-синий блейзер<br>&bull; <b>little black dress (LBD)</b> — маленькое чёрное платье<br>&bull; <b>trench coat</b> — тренч<br>&bull; <b>white trainers / sneakers</b> — белые кроссовки<br><br><b>Концепции:<br></b>&bull; <b>investment piece</b> — вещь, в которую стоит вложить деньги (качественная, долговечная)<br>&bull; <b>staple</b> — базовый / незаменимый предмет одежды<br>&bull; <b>versatile</b> — универсальный (подходит для разных образов)<br>&bull; <b>timeless</b> — вневременной<br>&bull; <b>wardrobe staple</b> — незаменимая вещь в гардеробе<br><br><div class="rule">"A <b>trench coat</b> is a true <b>investment piece</b> — it never goes out of style."</div><div class="rule">"White trainers are so <b>versatile</b> — they go with almost any outfit."</div>',
+        exercises:[
+          {q:'A ___ piece is something high-quality worth spending more money on.',blank:'investment',opts:['investment','luxury','designer','quality']},
+          {q:'A ___ item can be worn in many different ways and situations.',blank:'versatile',opts:['versatile','useful','basic','classic']},
+          {q:'A white ___ is a classic wardrobe essential for men and women.',blank:'shirt',opts:['shirt','top','blouse','tee']},
+          {q:'A ___ coat is a classic belted raincoat that never goes out of style.',blank:'trench',opts:['trench','rain','mac','duster']},
+          {q:'A wardrobe ___ is a basic item that everyone should own.',blank:'staple',opts:['staple','must','need','basic']}
+        ]
+      },
+      {id:16,title:'Complaining About Products',xp:15,
+        theory:'<b>Complaining About Products</b> — жалобы на товары<br><br><b>Проблемы с товаром:</b><br>&bull; <b>defective / faulty item</b> — бракованный товар<br>&bull; <b>poor quality</b> — низкое качество<br>&bull; <b>not fit for purpose</b> — не выполняет заявленную функцию<br>&bull; <b>damaged in transit</b> — повреждён при доставке<br>&bull; <b>missing parts</b> — недостаёт деталей / комплектующих<br>&bull; <b>wrong item sent</b> — прислали не тот товар<br><br><b>Что делать:</b><br>&bull; <b>to lodge a complaint</b> — подать жалобу<br>&bull; <b>to speak to the manager</b> — поговорить с менеджером<br>&bull; <b>to contact customer services</b> — обратиться в службу поддержки<br>&bull; <b>consumer rights</b> — права потребителя<br><br><b>Полезные фразы:</b><br>&bull; <b>I\'d like to make a complaint.</b> — Я хотел бы подать жалобу.<br>&bull; <b>This item is faulty.</b> — Этот товар бракованный.<br>&bull; <b>I\'d like a full refund, please.</b> — Прошу полный возврат средств.<br>&bull; <b>Could I speak to your manager?</b> — Могу я поговорить с вашим менеджером?<br><br><div class="rule">"I\'d like to <b>make a complaint</b> — the zip on this jacket is broken."</div>',
+        exercises:[
+          {q:'A ___ item is broken or has manufacturing faults.',blank:'defective',opts:['defective','broken','used','cheap']},
+          {q:'To ___ a complaint means to formally report a problem.',blank:'lodge',opts:['lodge','make','give','file']},
+          {q:'If goods are ___ in transit, they were damaged during delivery.',blank:'damaged',opts:['damaged','broken','lost','stolen']},
+          {q:'___ rights protect buyers when products are faulty or misrepresented.',blank:'Consumer',opts:['Consumer','Customer','Buyer','Shopping']},
+          {q:'"Could I speak to your ___?" is a common complaint phrase.',blank:'manager',opts:['manager','boss','supervisor','director']}
+        ]
+      },
+      {id:17,title:'Brand Vocabulary',xp:15,
+        theory:'<b>Brand Vocabulary</b> — лексика брендов<br><br><b>Элементы бренда:</b><br>&bull; <b>brand identity</b> — идентичность бренда (визуальный стиль, ценности, образ)<br>&bull; <b>logo</b> — логотип<br>&bull; <b>brand values</b> — ценности бренда<br>&bull; <b>target audience</b> — целевая аудитория<br>&bull; <b>brand loyalty</b> — лояльность к бренду<br><br><b>Коллекции и сотрудничество:</b><br>&bull; <b>collection</b> — коллекция (сезонная или тематическая)<br>&bull; <b>collaboration / collab</b> — коллаборация (сотрудничество двух брендов)<br>&bull; <b>capsule collection</b> — капсульная коллекция (ограниченная серия)<br>&bull; <b>brand ambassador</b> — посол бренда (знаменитость, продвигающая бренд)<br>&bull; <b>endorsement deal</b> — контракт на рекламное продвижение<br><br><b>Восприятие:<br></b>&bull; <b>premium / upmarket</b> — премиальный / ориентированный на верхний сегмент рынка<br>&bull; <b>budget / affordable</b> — бюджетный / доступный<br>&bull; <b>mid-range</b> — средний ценовой сегмент<br><br><div class="rule">"Nike\'s <b>brand identity</b> is built on performance, innovation and the \'Just Do It\' spirit."</div><div class="rule">"The H&M x Versace <b>collaboration</b> sold out within hours."</div>',
+        exercises:[
+          {q:'A brand ___ is a famous person who promotes a brand.',blank:'ambassador',opts:['ambassador','agent','model','spokesperson']},
+          {q:'A ___ is a special limited set of items released by a brand.',blank:'collection',opts:['collection','range','series','edition']},
+          {q:'___ loyalty means customers always prefer the same brand.',blank:'Brand',opts:['Brand','Customer','Product','Store']},
+          {q:'A ___ between two brands creates a joint product or range.',blank:'collaboration',opts:['collaboration','deal','merger','partnership']},
+          {q:'A ___ brand is affordable and not expensive.',blank:'budget',opts:['budget','cheap','low','discount']}
+        ]
+      },
+      {id:18,title:'Shopping Malls',xp:15,
+        theory:'<b>Shopping Malls</b> — торговые центры<br><br><b>Структура торгового центра:</b><br>&bull; <b>shopping centre / mall</b> — торговый центр<br>&bull; <b>anchor store</b> — якорный магазин (крупный известный ретейлер)<br>&bull; <b>high street brand</b> — популярный бренд на главной улице (Zara, H&M)<br>&bull; <b>independent retailer</b> — независимый магазин<br>&bull; <b>atrium</b> — атриум (центральный зал с куполом / стеклянной крышей)<br>&bull; <b>escalator / lift</b> — эскалатор / лифт<br><br><b>Зоны отдыха и развлечений:</b><br>&bull; <b>food court</b> — фудкорт<br>&bull; <b>cinema / multiplex</b> — кинотеатр / мультиплекс<br>&bull; <b>play area / soft play</b> — детская игровая зона<br>&bull; <b>parking / car park</b> — парковка<br>&bull; <b>customer toilets / restrooms</b> — туалеты<br><br><b>Навигация:</b><br>&bull; <b>directory / you are here map</b> — схема / карта торгового центра<br>&bull; <b>information desk</b> — стойка информации<br><br><div class="rule">"The <b>food court</b> is on the top floor — great place for lunch after shopping."</div><div class="rule">"Marks & Spencer is the <b>anchor store</b> — you\'ll find it at the main entrance."</div>',
+        exercises:[
+          {q:'The large main store that attracts shoppers to a mall is the ___ store.',blank:'anchor',opts:['anchor','main','key','prime']},
+          {q:'The ___ court is an area with multiple fast food and restaurant options.',blank:'food',opts:['food','eating','restaurant','dining']},
+          {q:'You use the ___ or lift to move between floors in a mall.',blank:'escalator',opts:['escalator','stairs','elevator','moving']},
+          {q:'A shopping ___ is another word for a shopping centre or mall.',blank:'centre',opts:['centre','complex','building','place']},
+          {q:'The large open central area in a modern mall is called the ___.',blank:'atrium',opts:['atrium','lobby','hall','concourse']}
+        ]
+      },
+      {id:19,title:'Fashion Trends',xp:15,
+        theory:'<b>Fashion Trends</b> — модные тренды<br><br><b>Индустрия моды:</b><br>&bull; <b>fashion week</b> — неделя моды (Лондон, Париж, Милан, Нью-Йорк)<br>&bull; <b>runway / catwalk</b> — подиум<br>&bull; <b>seasonal collection</b> — сезонная коллекция (SS = Spring/Summer, AW = Autumn/Winter)<br>&bull; <b>haute couture</b> — высокая мода (сделано вручную, по заказу)<br>&bull; <b>ready-to-wear / prêt-à-porter</b> — одежда от кутюр (без индивидуального пошива)<br><br><b>Влияние на тренды:</b><br>&bull; <b>fashion influencer</b> — модный инфлюенсер<br>&bull; <b>street style</b> — уличная мода<br>&bull; <b>micro-trend</b> — микротренд (быстро набирает и теряет популярность)<br>&bull; <b>to go viral</b> — стать вирусным (о модном образе или вещи)<br>&bull; <b>to trend on social media</b> — быть в тренде в соцсетях<br><br><b>Описание трендов:</b><br>&bull; <b>in / out</b> — в тренде / устарело<br>&bull; <b>to come back into fashion</b> — вернуться в моду<br>&bull; <b>ahead of the curve</b> — опережать тренды<br><br><div class="rule">"Wide-leg trousers are back <b>in fashion</b> — they were huge in the 90s."</div><div class="rule">"That outfit went <b>viral</b> on Instagram — everyone copied it."</div>',
+        exercises:[
+          {q:'Models walk down the ___ during a fashion show.',blank:'runway',opts:['runway','stage','podium','walkway']},
+          {q:'London, Paris, Milan and New York host ___ Week twice a year.',blank:'Fashion',opts:['Fashion','Style','Design','Model']},
+          {q:'SS stands for Spring/___ — one of the two main fashion seasons.',blank:'Summer',opts:['Summer','Season','Style','Show']},
+          {q:'If something goes ___, millions of people see and share it online.',blank:'viral',opts:['viral','global','famous','popular']},
+          {q:'___ style refers to real people\'s clothing choices seen in city streets.',blank:'Street',opts:['Street','Urban','City','Real']}
+        ]
+      },
+      {id:20,title:'Shopping Challenge',xp:20,
+        theory:'<b>Shopping & Fashion English — финальный урок</b><br><br>Отлично! Ты прошёл курс Shopping & Fashion English. Давай проверим все ключевые темы:<br><br>&bull; <b>Clothing basics</b>: shirt, trousers, dress, suit, jacket, trainers<br>&bull; <b>Sizes & fitting room</b>: try on, fits, too tight/loose, size up/down<br>&bull; <b>In-store</b>: shop assistant, till, receipt, price tag<br>&bull; <b>Online shopping</b>: cart, checkout, out of stock, tracking number<br>&bull; <b>Returns</b>: refund, exchange, faulty, returns window<br>&bull; <b>Sales</b>: % off, BOGOF, Black Friday, promo code<br>&bull; <b>Fashion styles</b>: casual, formal, vintage, trendy, minimalist<br>&bull; <b>Accessories</b>: scarf, belt, earrings, clutch, sunglasses<br>&bull; <b>Sustainability</b>: fast fashion, charity shop, upcycling, capsule wardrobe<br>&bull; <b>Luxury</b>: flagship store, limited edition, bespoke, boutique<br>&bull; <b>Complaining</b>: defective, lodge a complaint, consumer rights<br><br><div class="rule">"I\'d like to <b>return</b> this — it\'s <b>faulty</b> and I have my <b>receipt</b>."</div><div class="rule">"The <b>runway</b> show featured the new <b>capsule collection</b> from a sustainable brand."</div>',
+        exercises:[
+          {q:'You ___ on clothes in the fitting room to check if they fit.',blank:'try',opts:['try','put','wear','test']},
+          {q:'A ___ is a money-back guarantee when you return a product.',blank:'refund',opts:['refund','return','exchange','credit']},
+          {q:'The ___ is where you pay for items in a shop.',blank:'till',opts:['till','desk','counter','checkout']},
+          {q:'BOGOF stands for Buy One Get One ___.',blank:'Free',opts:['Free','Half','Cheap','Off']},
+          {q:'A ___ store is the main shop representing a brand in a city.',blank:'flagship',opts:['flagship','head','main','prime']}
+        ]
+      }
+    ]
+  }
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -13726,7 +13942,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -13789,7 +14005,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -14871,6 +15087,7 @@ const TOPIC_CHIPS = {
   'Pronunciation':  ["How do I pronounce 'through'?", "What's the difference between /ɪ/ and /iː/?", "Help me with TH sounds", "Practice word stress with me"],
   'Writing':        ["Help me write a professional email", "Check my cover letter please", "How do I start an essay?", "Give me phrases for polite requests"],
   'Sport':          ["I want to talk about gym vocabulary", "What do you say to a personal trainer?", "Help me describe an injury in English", "Let's talk about nutrition"],
+  'Shopping':       ["I\'d like to try this on", "Do you have this in a size medium?", "Can I return this if it doesn\'t fit?", "Is there a sale on at the moment?"],
 };
 
 function showChips(topicKey) {
