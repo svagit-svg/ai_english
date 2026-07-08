@@ -965,6 +965,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="shopping-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('realestate')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(16,185,129,0.1);color:#10b981;font-size:18px;">🏠</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Real Estate & Housing</h3>
+          <span style="font-size:10px;font-weight:700;color:#10b981" id="realestate-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="realestate-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="realestate-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1284,7 +1295,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -13925,6 +13936,231 @@ I would be happy to take any questions.</div>
         ]
       }
     ]
+  },
+  realestate: {
+    title: 'Real Estate & Housing 🏠',
+    lessons: [
+      {
+        id:1,title:'Types of Housing',xp:15,
+        theory:'<b>Types of Housing — Виды жилья</b><br><br>В английском языке существует много слов для описания различных типов жилья. Знание этих слов поможет тебе понимать объявления о недвижимости и вести разговоры на эту тему.<br><br><b>Основные типы жилья:</b><br>&bull; <b>flat / apartment</b> — квартира (flat — британский вариант, apartment — американский)<br>&bull; <b>studio</b> — студия (квартира без отдельной спальни)<br>&bull; <b>house</b> — дом (отдельно стоящее здание)<br>&bull; <b>detached house</b> — отдельно стоящий дом (не примыкает к другим домам)<br>&bull; <b>semi-detached house</b> — полудетачный дом (примыкает к одному соседнему дому)<br>&bull; <b>terraced house</b> — таунхаус (дом в ряду одинаковых домов)<br>&bull; <b>bungalow</b> — бунгало (одноэтажный дом)<br>&bull; <b>cottage</b> — коттедж (небольшой загородный домик)<br>&bull; <b>mansion</b> — особняк (большой роскошный дом)<br>&bull; <b>penthouse</b> — пентхаус (квартира на верхнем этаже)<br><br><b>Дополнительные понятия:</b><br>&bull; <b>bedsit</b> — однокомнатная квартира с кухней в одной комнате<br>&bull; <b>maisonette</b> — мезонет (двухуровневая квартира)<br>&bull; <b>block of flats</b> — многоквартирный дом<br><br><div class="rule">"I live in a <b>semi-detached house</b> in the suburbs — we share a wall with our neighbours."</div><div class="rule">"She rents a <b>studio flat</b> in the city centre — it\'s compact but very convenient."</div><div class="rule">"They finally bought a <b>detached house</b> with a big garden for the children."</div>',
+        exercises:[
+          {q:'A ___ house does not share any walls with neighbouring properties.',blank:'detached',opts:['detached','terraced','semi-detached','attached']},
+          {q:'A ___ is a one-room apartment where the bedroom and living area are combined.',blank:'studio',opts:['studio','bedsit','penthouse','maisonette']},
+          {q:'A ___ house is part of a row of identical houses joined together.',blank:'terraced',opts:['terraced','detached','bungalow','semi-detached']},
+          {q:'A ___ is a small country house, often with a garden.',blank:'cottage',opts:['cottage','mansion','flat','bungalow']},
+          {q:'A ___ is a luxury apartment on the top floor of a tall building.',blank:'penthouse',opts:['penthouse','studio','loft','bedsit']}
+        ]
+      },
+      {
+        id:2,title:'Searching for a Property',xp:15,
+        theory:'<b>Searching for a Property — Поиск недвижимости</b><br><br>Поиск жилья — это целый процесс, требующий знания специальной лексики. Давай разберём ключевые слова и фразы, которые ты встретишь при поиске квартиры или дома.<br><br><b>Ключевые понятия:</b><br>&bull; <b>property listing</b> — объявление о недвижимости<br>&bull; <b>estate agent</b> — агент по недвижимости (риелтор)<br>&bull; <b>letting agent</b> — агент по аренде<br>&bull; <b>viewing</b> — просмотр объекта<br>&bull; <b>location</b> — расположение, местоположение<br>&bull; <b>budget</b> — бюджет<br>&bull; <b>available from</b> — доступно с (дата)<br>&bull; <b>to let</b> — сдаётся в аренду<br>&bull; <b>for sale</b> — продаётся<br>&bull; <b>shortlist</b> — составить список лучших вариантов<br><br><b>Полезные фразы при поиске:</b><br>&bull; <b>I\'m looking for a flat to rent</b> — я ищу квартиру в аренду<br>&bull; <b>What\'s my budget?</b> — каков мой бюджет?<br>&bull; <b>Can I arrange a viewing?</b> — могу я записаться на просмотр?<br>&bull; <b>Is the property still available?</b> — объект ещё доступен?<br>&bull; <b>What floor is it on?</b> — на каком этаже?<br><br><div class="rule">"I found several <b>property listings</b> online and contacted the <b>estate agent</b> to arrange <b>viewings</b>."</div><div class="rule">"My <b>budget</b> is £1,200 per month — can you show me what\'s <b>available</b> in the city centre?"</div>',
+        exercises:[
+          {q:'You contact an ___ agent to help you find a property to rent or buy.',blank:'estate',opts:['estate','rental','property','letting']},
+          {q:'A ___ is when you visit a property to see if you want to rent or buy it.',blank:'viewing',opts:['viewing','meeting','survey','inspection']},
+          {q:'If a property is "___ ___", it means it is available to rent.',blank:'to let',opts:['to let','for sale','on offer','in stock']},
+          {q:'You need to set a ___ before starting your property search to know how much you can spend.',blank:'budget',opts:['budget','target','limit','plan']},
+          {q:'A property ___ is an advertisement showing details of a home for rent or sale.',blank:'listing',opts:['listing','entry','post','advert']}
+        ]
+      },
+      {
+        id:3,title:'Viewing an Apartment',xp:15,
+        theory:'<b>Viewing an Apartment — Осмотр квартиры</b><br><br>Когда ты приходишь смотреть квартиру, важно знать, что спросить и на что обратить внимание. Грамотные вопросы помогут тебе принять правильное решение.<br><br><b>Что осматривать:</b><br>&bull; <b>condition</b> — состояние квартиры<br>&bull; <b>natural light</b> — естественное освещение<br>&bull; <b>storage space</b> — место для хранения<br>&bull; <b>damp / mould</b> — сырость / плесень<br>&bull; <b>double glazing</b> — двойные стеклопакеты (теплоизоляция)<br>&bull; <b>central heating</b> — центральное отопление<br>&bull; <b>boiler</b> — котёл (для горячей воды)<br><br><b>Вопросы при просмотре:</b><br>&bull; <b>Is there a parking space?</b> — есть ли парковочное место?<br>&bull; <b>How old is the boiler?</b> — сколько лет котлу?<br>&bull; <b>Are pets allowed?</b> — разрешены ли домашние животные?<br>&bull; <b>What is the broadband speed?</b> — какая скорость интернета?<br>&bull; <b>Which direction does it face?</b> — в какую сторону выходят окна?<br>&bull; <b>Is there any damp or mould?</b> — есть ли сырость или плесень?<br>&bull; <b>How long has it been on the market?</b> — как долго выставлено объявление?<br><br><div class="rule">"During the <b>viewing</b>, I noticed some <b>damp</b> in the corner — I asked the agent about it straight away."</div><div class="rule">"Always check the <b>condition</b> of the <b>boiler</b> and whether the flat has <b>double glazing</b> before signing anything."</div><div class="rule">"I asked if <b>pets</b> were allowed — the landlord said small pets were fine with a deposit."</div>',
+        exercises:[
+          {q:'You should check for ___ or mould on the walls, as it can be a sign of water damage.',blank:'damp',opts:['damp','dust','dirt','cracks']},
+          {q:'___ glazing means the windows have two layers of glass for better insulation.',blank:'Double',opts:['Double','Triple','Single','Extra']},
+          {q:'The ___ provides hot water and heating in most British homes.',blank:'boiler',opts:['boiler','radiator','furnace','heater']},
+          {q:'___ heating means the whole building is heated from one central system.',blank:'Central',opts:['Central','Main','Full','Total']},
+          {q:'Before signing the contract, always check the ___ of the property carefully.',blank:'condition',opts:['condition','look','style','design']}
+        ]
+      },
+      {
+        id:4,title:'Renting: Lease & Contract',xp:15,
+        theory:'<b>Renting: Lease & Contract — Аренда: договор и условия</b><br><br>Когда ты арендуешь жильё, ты подписываешь договор аренды. Важно понимать ключевые термины, чтобы знать свои права и обязанности.<br><br><b>Основные термины договора аренды:</b><br>&bull; <b>tenancy agreement / lease</b> — договор аренды<br>&bull; <b>landlord</b> — арендодатель (владелец жилья)<br>&bull; <b>tenant</b> — арендатор (тот, кто снимает жильё)<br>&bull; <b>letting agent</b> — агент по аренде (посредник)<br>&bull; <b>fixed-term tenancy</b> — аренда на фиксированный срок (напр. 12 месяцев)<br>&bull; <b>periodic tenancy</b> — аренда без фиксированного срока (помесячно)<br>&bull; <b>notice period</b> — срок уведомления (когда нужно предупредить заранее)<br>&bull; <b>deposit</b> — залог/депозит<br>&bull; <b>rent in advance</b> — аванс за аренду<br>&bull; <b>clause</b> — пункт договора<br><br><b>Важные понятия:</b><br>&bull; <b>break clause</b> — условие досрочного расторжения договора<br>&bull; <b>inventory</b> — опись имущества<br>&bull; <b>guarantor</b> — поручитель<br>&bull; <b>reference check</b> — проверка рекомендаций<br><br><div class="rule">"The <b>tenancy agreement</b> stated a <b>notice period</b> of two months — we had to plan our move carefully."</div><div class="rule">"There was a <b>break clause</b> at six months, which gave us flexibility if we needed to leave early."</div>',
+        exercises:[
+          {q:'The ___ is the person who owns the property and rents it out to others.',blank:'landlord',opts:['landlord','tenant','agent','surveyor']},
+          {q:'A ___ agreement is the legal contract between the landlord and the tenant.',blank:'tenancy',opts:['tenancy','rental','housing','letting']},
+          {q:'The ___ period is the amount of notice you must give before leaving the property.',blank:'notice',opts:['notice','warning','leaving','exit']},
+          {q:'A ___ clause allows either party to end the tenancy early under certain conditions.',blank:'break',opts:['break','exit','stop','cancel']},
+          {q:'A ___ is a person who agrees to pay the rent if the tenant cannot.',blank:'guarantor',opts:['guarantor','witness','sponsor','referee']}
+        ]
+      },
+      {
+        id:5,title:'Negotiating Rent',xp:15,
+        theory:'<b>Negotiating Rent — Переговоры об аренде</b><br><br>Во многих странах арендная плата — не фиксированная цена, и её можно обсудить. Знание правильных фраз поможет тебе сэкономить деньги.<br><br><b>Ключевые фразы для переговоров:</b><br>&bull; <b>Is there any flexibility on the rent?</b> — есть ли возможность снизить цену?<br>&bull; <b>Would you consider lowering the rent?</b> — вы бы рассмотрели снижение аренды?<br>&bull; <b>I can offer you £X per month</b> — я могу предложить X фунтов в месяц<br>&bull; <b>I\'m happy to sign a longer lease</b> — я готов подписать более долгий договор<br>&bull; <b>Could we negotiate the deposit?</b> — можно ли обсудить размер депозита?<br>&bull; <b>I\'m a reliable tenant with good references</b> — я надёжный арендатор с хорошими рекомендациями<br><br><b>Стратегии переговоров:</b><br>&bull; <b>Offer a longer lease in exchange for lower rent</b> — предложить более длительный договор в обмен на снижение цены<br>&bull; <b>Pay several months upfront</b> — заплатить несколько месяцев вперёд<br>&bull; <b>Highlight your strengths as a tenant</b> — подчеркнуть свои преимущества как арендатора<br>&bull; <b>Research comparable rents</b> — изучить цены на аналогичное жильё<br><br><div class="rule">"I asked \'<b>Is there any flexibility on the rent?</b>\' — the landlord agreed to drop it by £50 a month."</div><div class="rule">"By offering to <b>sign a longer lease</b>, I managed to <b>negotiate</b> a better monthly rate."</div>',
+        exercises:[
+          {q:'You can ask "Is there any ___ on the rent?" to see if the price can be lowered.',blank:'flexibility',opts:['flexibility','discount','change','room']},
+          {q:'Offering to sign a ___ lease can persuade a landlord to lower the monthly rent.',blank:'longer',opts:['longer','shorter','fixed','new']},
+          {q:'You can offer to pay several months ___ to make yourself a more attractive tenant.',blank:'upfront',opts:['upfront','early','before','ahead']},
+          {q:'To ___ rent means to discuss and agree on a price that works for both sides.',blank:'negotiate',opts:['negotiate','reduce','pay','fix']},
+          {q:'Strong ___ from previous landlords can help you get a better deal on rent.',blank:'references',opts:['references','contacts','reviews','records']}
+        ]
+      },
+      {
+        id:6,title:'Tenant Rights',xp:15,
+        theory:'<b>Tenant Rights — Права арендатора</b><br><br>Как арендатор, ты имеешь определённые права, которые защищают тебя от недобросовестных арендодателей. Знание своих прав очень важно.<br><br><b>Основные права арендатора:</b><br>&bull; <b>deposit protection</b> — защита депозита (арендодатель обязан хранить его в специальной схеме)<br>&bull; <b>right to quiet enjoyment</b> — право на спокойное пользование жильём без вмешательства<br>&bull; <b>repairs</b> — арендодатель обязан делать ремонт структурных элементов<br>&bull; <b>notice to enter</b> — арендодатель должен предупредить за 24 часа о визите<br>&bull; <b>eviction</b> — выселение (должно происходить по закону)<br>&bull; <b>unlawful eviction</b> — незаконное выселение<br><br><b>Ситуации и фразы:</b><br>&bull; <b>My landlord hasn\'t made the repairs</b> — арендодатель не сделал ремонт<br>&bull; <b>I\'m entitled to get my deposit back</b> — я имею право на возврат депозита<br>&bull; <b>Harassment by a landlord is illegal</b> — преследование со стороны арендодателя незаконно<br>&bull; <b>I will contact the council</b> — я обращусь в местный совет<br>&bull; <b>section 21 notice</b> — уведомление об освобождении жилья (в Великобритании)<br><br><div class="rule">"The landlord must give at least <b>24 hours\' notice</b> before entering the property — it\'s your <b>right to privacy</b>."</div><div class="rule">"If the landlord refuses to return your <b>deposit</b>, you can raise a dispute through the <b>deposit protection scheme</b>."</div>',
+        exercises:[
+          {q:'The landlord must give ___ hours\' notice before entering your home.',blank:'24',opts:['24','48','12','72']},
+          {q:'___ protection schemes ensure your deposit is safely held and can be recovered.',blank:'Deposit',opts:['Deposit','Money','Rent','Security']},
+          {q:'Unlawful ___ means being forced out of your home without following legal procedures.',blank:'eviction',opts:['eviction','removal','leaving','exit']},
+          {q:'As a tenant, you have the right to ___ enjoyment of your home without interference.',blank:'quiet',opts:['quiet','full','free','peaceful']},
+          {q:'If your landlord won\'t do repairs, you can contact the local ___ for help.',blank:'council',opts:['council','police','court','agent']}
+        ]
+      },
+      {
+        id:7,title:'Utilities & Bills',xp:15,
+        theory:'<b>Utilities & Bills — Коммунальные услуги и счета</b><br><br>После переезда нужно разобраться с коммунальными услугами. Знание нужных слов поможет тебе быстро всё организовать.<br><br><b>Виды коммунальных услуг:</b><br>&bull; <b>gas</b> — газ (отопление и плита)<br>&bull; <b>electricity</b> — электричество<br>&bull; <b>water</b> — вода (включая канализацию)<br>&bull; <b>council tax</b> — муниципальный налог (в Великобритании)<br>&bull; <b>broadband / internet</b> — интернет<br>&bull; <b>TV licence</b> — лицензия на телевизор (Великобритания)<br><br><b>Полезные фразы:</b><br>&bull; <b>set up an account</b> — открыть счёт<br>&bull; <b>meter reading</b> — показания счётчика<br>&bull; <b>direct debit</b> — автоматическое списание<br>&bull; <b>bill split</b> — разделение счёта<br>&bull; <b>estimated vs actual bill</b> — расчётный vs фактический счёт<br>&bull; <b>standing charge</b> — фиксированная плата за обслуживание<br>&bull; <b>unit rate</b> — тариф за единицу потребления<br><br><div class="rule">"When I moved in, I set up a <b>direct debit</b> for gas and electricity — much easier than paying manually."</div><div class="rule">"I need to submit a <b>meter reading</b> at the end of the month to get an accurate bill."</div><div class="rule">"Don\'t forget to register for <b>council tax</b> — students are often exempt from paying it."</div>',
+        exercises:[
+          {q:'___ tax is a local tax paid to the council for local services like rubbish collection.',blank:'Council',opts:['Council','Local','Property','Housing']},
+          {q:'A ___ debit is an automatic payment set up from your bank account.',blank:'direct',opts:['direct','auto','bank','regular']},
+          {q:'A ___ reading is when you record how much gas or electricity you have used.',blank:'meter',opts:['meter','bill','usage','counter']},
+          {q:'The ___ rate is the price you pay per unit of electricity or gas.',blank:'unit',opts:['unit','fixed','base','charge']},
+          {q:'You need to ___ up a new account when you move into a property and change utility providers.',blank:'set',opts:['set','open','start','make']}
+        ]
+      },
+      {
+        id:8,title:'Moving In & Out',xp:15,
+        theory:'<b>Moving In & Out — Въезд и выезд</b><br><br>Переезд — это важный процесс, требующий знания специальных слов и процедур. Правильные действия при въезде и выезде помогут избежать споров о депозите.<br><br><b>Процесс въезда:</b><br>&bull; <b>check-in</b> — заселение<br>&bull; <b>inventory</b> — опись имущества (список всего в квартире)<br>&bull; <b>condition report</b> — акт приёмки состояния квартиры<br>&bull; <b>take photos</b> — сфотографировать всё при въезде<br>&bull; <b>handing over keys</b> — передача ключей<br>&bull; <b>meter readings</b> — показания счётчиков на дату въезда<br><br><b>Процесс выезда:</b><br>&bull; <b>check-out</b> — выселение<br>&bull; <b>deep clean</b> — генеральная уборка<br>&bull; <b>fair wear and tear</b> — нормальный износ (не вычитается из депозита)<br>&bull; <b>damage</b> — повреждения (могут быть вычтены из депозита)<br>&bull; <b>deductions</b> — вычеты из депозита<br>&bull; <b>dispute</b> — спор (о депозите)<br><br><div class="rule">"At <b>check-in</b>, I photographed every room and noted all existing damage on the <b>inventory</b> report."</div><div class="rule">"Normal <b>wear and tear</b> cannot be deducted from your deposit — only actual <b>damage</b> can be charged."</div>',
+        exercises:[
+          {q:'The ___ is a document listing all items and their condition in the property.',blank:'inventory',opts:['inventory','checklist','catalogue','record']},
+          {q:'Normal ___ and tear, like minor scuffs on walls, cannot be charged to the tenant.',blank:'wear',opts:['wear','use','age','time']},
+          {q:'At ___, you hand back the keys and the landlord inspects the property.',blank:'check-out',opts:['check-out','check-in','departure','leaving']},
+          {q:'Always take ___ when you move in to document the condition of the property.',blank:'photos',opts:['photos','notes','videos','measurements']},
+          {q:'Landlords can make ___ from your deposit for any damage beyond normal wear and tear.',blank:'deductions',opts:['deductions','charges','fees','payments']}
+        ]
+      },
+      {
+        id:9,title:'Talking to Your Landlord',xp:15,
+        theory:'<b>Talking to Your Landlord — Общение с арендодателем</b><br><br>Умение правильно общаться с арендодателем — важный навык. Нужно знать, как сообщать о проблемах и делать официальные запросы.<br><br><b>Фразы для сообщения о проблемах:</b><br>&bull; <b>I\'m writing to report a maintenance issue</b> — пишу, чтобы сообщить о технической проблеме<br>&bull; <b>The boiler is not working</b> — котёл не работает<br>&bull; <b>There is a leaky tap in the kitchen</b> — течёт кран на кухне<br>&bull; <b>The heating has stopped working</b> — перестало работать отопление<br>&bull; <b>Could you please arrange for a repair?</b> — не могли бы вы организовать ремонт?<br><br><b>Официальные vs неофициальные сообщения:</b><br>&bull; <b>Informal:</b> "Hey, the tap is dripping again — can you get it fixed?"<br>&bull; <b>Formal:</b> "I am writing to inform you that the tap in the bathroom is leaking and requires urgent attention."<br><br><b>Отслеживание запросов:</b><br>&bull; <b>I sent you a message last week about...</b> — я написал тебе на прошлой неделе о...<br>&bull; <b>Could you give me an update on...?</b> — можете ли вы сообщить о статусе...?<br>&bull; <b>This issue is urgent</b> — проблема срочная<br><br><div class="rule">"I emailed my <b>landlord</b> about the broken heating and asked for an urgent <b>repair</b>."</div><div class="rule">"Always keep written records of <b>maintenance requests</b> — emails are better than phone calls."</div>',
+        exercises:[
+          {q:'I am writing to ___ a maintenance issue in the property.',blank:'report',opts:['report','say','tell','discuss']},
+          {q:'A ___ tap wastes water and should be repaired as soon as possible.',blank:'leaky',opts:['leaky','broken','dirty','loose']},
+          {q:'Always send ___ requests in writing so you have a record of the communication.',blank:'maintenance',opts:['maintenance','repair','fix','service']},
+          {q:'Could you please ___ for a plumber to come and fix the problem?',blank:'arrange',opts:['arrange','call','get','bring']},
+          {q:'If the issue is ___,contact your landlord immediately rather than waiting.',blank:'urgent',opts:['urgent','big','large','serious']}
+        ]
+      },
+      {
+        id:10,title:'Roommates & Shared Housing',xp:15,
+        theory:'<b>Roommates & Shared Housing — Соседи по квартире</b><br><br>Жизнь в общей квартире требует навыков коммуникации и умения договариваться. Знание правильных слов поможет избежать конфликтов.<br><br><b>Полезная лексика:</b><br>&bull; <b>roommate / housemate</b> — сосед по квартире<br>&bull; <b>shared house / house share</b> — общая квартира<br>&bull; <b>common areas</b> — общие зоны (кухня, гостиная, ванная)<br>&bull; <b>house rules</b> — правила проживания<br>&bull; <b>splitting bills</b> — разделение счетов поровну<br>&bull; <b>rota</b> — график (уборки, дежурств)<br>&bull; <b>conflict</b> — конфликт, разногласие<br><br><b>Фразы для решения конфликтов:</b><br>&bull; <b>Could we discuss the cleaning rota?</b> — можем ли мы обсудить график уборки?<br>&bull; <b>I\'d appreciate it if you could...</b> — я был бы признателен, если бы вы...<br>&bull; <b>Let\'s split this bill equally</b> — давай разделим этот счёт поровну<br>&bull; <b>Can we set some house rules?</b> — можем ли мы установить правила проживания?<br>&bull; <b>Please be mindful of noise after 10pm</b> — пожалуйста, следи за шумом после 22:00<br><br><div class="rule">"My <b>housemates</b> and I set up a <b>cleaning rota</b> to keep the <b>common areas</b> tidy."</div><div class="rule">"We use an app to split <b>bills</b> fairly — it avoids any awkward conversations about money."</div>',
+        exercises:[
+          {q:'A ___ is a person you share a house or flat with.',blank:'housemate',opts:['housemate','neighbour','flatmate','roomie']},
+          {q:'___ areas like the kitchen and bathroom are shared by all residents.',blank:'Common',opts:['Common','Shared','Joint','Public']},
+          {q:'A cleaning ___ is a schedule that shows whose turn it is to clean.',blank:'rota',opts:['rota','plan','chart','list']},
+          {q:'We agreed to ___ the electricity bill equally between the four housemates.',blank:'split',opts:['split','share','divide','pay']},
+          {q:'It\'s a good idea to agree on ___ rules when you first move into shared accommodation.',blank:'house',opts:['house','home','flat','basic']}
+        ]
+      },
+      {
+        id:11,title:'Buying Property',xp:15,
+        theory:'<b>Buying Property — Покупка недвижимости</b><br><br>Покупка жилья — это сложный процесс с множеством этапов. Знание ключевых слов поможет тебе понять весь процесс.<br><br><b>Этапы покупки:</b><br>&bull; <b>make an offer</b> — сделать предложение о цене<br>&bull; <b>offer accepted</b> — предложение принято<br>&bull; <b>surveyor</b> — сюрвейер (специалист по оценке состояния здания)<br>&bull; <b>solicitor / conveyancer</b> — юрист, оформляющий сделку с недвижимостью<br>&bull; <b>exchange of contracts</b> — обмен контрактами (юридически обязательный момент)<br>&bull; <b>completion</b> — завершение сделки (когда деньги переходят и ты получаешь ключи)<br>&bull; <b>stamp duty</b> — гербовый сбор (налог на покупку недвижимости в Великобритании)<br><br><b>Важные понятия:</b><br>&bull; <b>gazumping</b> — когда продавец принимает более высокое предложение от другого покупателя<br>&bull; <b>chain</b> — цепочка сделок (когда несколько покупателей и продавцов зависят друг от друга)<br>&bull; <b>survey</b> — техническая проверка здания<br>&bull; <b>freehold vs leasehold</b> — право собственности на здание и землю vs долгосрочная аренда земли<br><br><div class="rule">"We made an <b>offer</b> on the house and it was <b>accepted</b> — now we\'re waiting for the <b>survey</b>."</div><div class="rule">"<b>Exchange of contracts</b> is when the sale becomes legally binding — you can\'t pull out without penalty."</div>',
+        exercises:[
+          {q:'You need to hire a ___ to check the structural condition of a property before buying.',blank:'surveyor',opts:['surveyor','inspector','builder','engineer']},
+          {q:'A ___ handles all the legal paperwork when you buy or sell a property.',blank:'solicitor',opts:['solicitor','accountant','agent','manager']},
+          {q:'___ of contracts is the point when the sale becomes legally binding.',blank:'Exchange',opts:['Exchange','Signing','Transfer','Completion']},
+          {q:'___ duty is a tax paid by the buyer when purchasing a property in the UK.',blank:'Stamp',opts:['Stamp','Property','Land','Purchase']},
+          {q:'A ___ is when the buyer owns the land and building outright, with no time limit.',blank:'freehold',opts:['freehold','leasehold','ownership','title']}
+        ]
+      },
+      {
+        id:12,title:'Mortgage Vocabulary',xp:15,
+        theory:'<b>Mortgage Vocabulary — Ипотека</b><br><br>Ипотека — это кредит на покупку жилья. Знание ипотечной лексики поможет тебе принимать взвешенные финансовые решения.<br><br><b>Основные термины:</b><br>&bull; <b>mortgage</b> — ипотека (кредит на покупку жилья)<br>&bull; <b>deposit</b> — первоначальный взнос (обычно 5–20% от стоимости)<br>&bull; <b>lender</b> — кредитор (банк или строительное общество)<br>&bull; <b>interest rate</b> — процентная ставка<br>&bull; <b>fixed rate</b> — фиксированная ставка (не меняется в течение срока)<br>&bull; <b>variable rate</b> — переменная ставка (может меняться)<br>&bull; <b>monthly repayments</b> — ежемесячные платежи<br>&bull; <b>term</b> — срок ипотеки (обычно 25–35 лет)<br><br><b>Дополнительные понятия:</b><br>&bull; <b>mortgage agreement in principle</b> — предварительное одобрение ипотеки<br>&bull; <b>LTV (loan-to-value)</b> — соотношение кредита к стоимости недвижимости<br>&bull; <b>overpayment</b> — досрочное погашение<br>&bull; <b>early repayment charge</b> — штраф за досрочное погашение<br>&bull; <b>remortgage</b> — рефинансирование ипотеки<br><br><div class="rule">"We got a <b>fixed rate</b> mortgage for five years — our <b>monthly repayments</b> won\'t change during that period."</div><div class="rule">"The <b>lender</b> required a 10% <b>deposit</b> and a good credit score to approve our <b>mortgage</b>."</div>',
+        exercises:[
+          {q:'A ___ is a loan from a bank to help you buy a property.',blank:'mortgage',opts:['mortgage','loan','credit','advance']},
+          {q:'The ___ is the amount you pay upfront when buying a property, typically 5–20%.',blank:'deposit',opts:['deposit','payment','fee','charge']},
+          {q:'A ___ rate mortgage means your interest rate stays the same for a set period.',blank:'fixed',opts:['fixed','set','stable','locked']},
+          {q:'The ___ is the bank or building society that lends you money for a mortgage.',blank:'lender',opts:['lender','bank','creditor','provider']},
+          {q:'Monthly ___ are the regular payments you make to pay back your mortgage.',blank:'repayments',opts:['repayments','instalments','payments','fees']}
+        ]
+      },
+      {
+        id:13,title:'Estate Agents',xp:15,
+        theory:'<b>Estate Agents — Агенты по недвижимости</b><br><br>Агенты по недвижимости играют ключевую роль в рынке жилья. Понимание того, как они работают, поможет тебе взаимодействовать с ними эффективнее.<br><br><b>Как работают агенты:</b><br>&bull; <b>estate agent</b> — агент по продаже недвижимости<br>&bull; <b>letting agent</b> — агент по аренде недвижимости<br>&bull; <b>commission</b> — комиссия (обычно 1–3% от стоимости продажи)<br>&bull; <b>sole agent</b> — единственный агент (эксклюзивное право продажи)<br>&bull; <b>multiple agents</b> — несколько агентов (выше конкуренция, выше комиссия)<br><br><b>Что делает агент:</b><br>&bull; <b>value the property</b> — оценить стоимость недвижимости<br>&bull; <b>list the property</b> — разместить объявление<br>&bull; <b>conduct viewings</b> — проводить показы<br>&bull; <b>negotiate on your behalf</b> — вести переговоры от вашего имени<br>&bull; <b>handle paperwork</b> — оформлять документы<br><br><b>Вопросы агенту:</b><br>&bull; <b>What is your commission rate?</b> — какова ваша комиссия?<br>&bull; <b>How long has this property been on the market?</b> — как долго продаётся этот объект?<br>&bull; <b>Has there been much interest?</b> — было ли много заинтересованных покупателей?<br><br><div class="rule">"The <b>estate agent</b> charged a 1.5% <b>commission</b> on the sale price, which is quite standard."</div><div class="rule">"We hired a <b>letting agent</b> to manage the property — they handle tenant applications and <b>viewings</b>."</div>',
+        exercises:[
+          {q:'An estate agent charges a ___ based on a percentage of the property\'s sale price.',blank:'commission',opts:['commission','fee','charge','payment']},
+          {q:'A ___ agent specialises in renting out properties on behalf of landlords.',blank:'letting',opts:['letting','rental','housing','property']},
+          {q:'The agent will ___ the property to estimate how much it is worth.',blank:'value',opts:['value','price','assess','check']},
+          {q:'When an agent has ___ rights, no other agent is allowed to sell the property.',blank:'sole',opts:['sole','exclusive','single','only']},
+          {q:'The agent will ___ viewings to show the property to potential buyers or tenants.',blank:'conduct',opts:['conduct','arrange','hold','run']}
+        ]
+      },
+      {
+        id:14,title:'Property Descriptions',xp:15,
+        theory:'<b>Property Descriptions — Описание недвижимости</b><br><br>Объявления о недвижимости используют специальный язык и аббревиатуры. Понимание этого языка поможет тебе читать объявления и понимать, что именно предлагается.<br><br><b>Типичные характеристики в объявлениях:</b><br>&bull; <b>sq m / square metres</b> — квадратные метры<br>&bull; <b>en-suite</b> — ванная комната, смежная со спальней<br>&bull; <b>open-plan</b> — открытая планировка (кухня-гостиная без перегородок)<br>&bull; <b>EPC rating</b> — рейтинг энергоэффективности здания (A–G)<br>&bull; <b>double bedroom</b> — двуспальная спальня<br>&bull; <b>reception room</b> — гостиная/приёмная комната<br><br><b>Агентский язык (что на самом деле означает):</b><br>&bull; <b>cosy</b> — маленькое (агентский эвфемизм)<br>&bull; <b>charming</b> — старое, нуждающееся в ремонте<br>&bull; <b>up-and-coming area</b> — район, который ещё только развивается<br>&bull; <b>deceptively spacious</b> — просторнее, чем кажется снаружи<br>&bull; <b>in need of modernisation</b> — требует капитального ремонта<br>&bull; <b>great investment potential</b> — не очень хорошее место прямо сейчас<br><br><div class="rule">"The listing said <b>open-plan</b> living and an <b>en-suite</b> master bedroom with a high <b>EPC rating</b>."</div><div class="rule">"When agents say \'<b>in need of modernisation</b>\', expect major renovation work."</div>',
+        exercises:[
+          {q:'An ___ bathroom is attached directly to a bedroom.',blank:'en-suite',opts:['en-suite','private','attached','separate']},
+          {q:'An ___ plan layout has no walls between the kitchen and living area.',blank:'open',opts:['open','free','clear','wide']},
+          {q:'The EPC ___ shows how energy efficient a building is, from A (best) to G (worst).',blank:'rating',opts:['rating','score','grade','level']},
+          {q:'When agents describe a property as \'___\', they usually mean it is quite small.',blank:'cosy',opts:['cosy','cute','warm','homely']},
+          {q:'A ___ bedroom is large enough for a double bed and usually has more storage space.',blank:'double',opts:['double','large','master','single']}
+        ]
+      },
+      {
+        id:15,title:'Neighbourhood Vocabulary',xp:15,
+        theory:'<b>Neighbourhood Vocabulary — Словарь района</b><br><br>Расположение так же важно, как и сама квартира. Умение описать и обсудить район поможет тебе принять правильное решение при поиске жилья.<br><br><b>Характеристики района:</b><br>&bull; <b>amenities</b> — удобства (магазины, рестораны, парки)<br>&bull; <b>transport links</b> — транспортное сообщение (автобусы, метро, поезда)<br>&bull; <b>local schools</b> — местные школы<br>&bull; <b>crime rate</b> — уровень преступности<br>&bull; <b>up-and-coming</b> — развивающийся район (потенциально привлекательный)<br>&bull; <b>gentrification</b> — джентрификация (облагораживание района)<br>&bull; <b>residential area</b> — жилой район<br>&bull; <b>commute</b> — ежедневная поездка на работу<br><br><b>Фразы для описания района:</b><br>&bull; <b>It\'s very well connected</b> — хорошее транспортное сообщение<br>&bull; <b>There are lots of amenities nearby</b> — много удобств рядом<br>&bull; <b>It\'s a quiet residential area</b> — тихий жилой район<br>&bull; <b>The crime rate is quite low</b> — уровень преступности довольно низкий<br>&bull; <b>It\'s an up-and-coming neighbourhood</b> — развивающийся район<br><br><div class="rule">"The flat is in a great <b>location</b> — excellent <b>transport links</b> and lots of <b>amenities</b> within walking distance."</div><div class="rule">"The area is <b>up-and-coming</b> — house prices have risen 20% in the last three years."</div>',
+        exercises:[
+          {q:'Good ___ links mean you can easily reach the city centre by bus or train.',blank:'transport',opts:['transport','travel','commute','public']},
+          {q:'___ such as shops, restaurants, and parks make a neighbourhood more desirable.',blank:'Amenities',opts:['Amenities','Facilities','Services','Features']},
+          {q:'The ___ rate tells you how much crime happens in a particular area.',blank:'crime',opts:['crime','safety','police','risk']},
+          {q:'An ___ area is one that is improving and becoming more popular.',blank:'up-and-coming',opts:['up-and-coming','old','cheap','quiet']},
+          {q:'Your ___ is the journey you make to and from work every day.',blank:'commute',opts:['commute','travel','journey','trip']}
+        ]
+      },
+      {
+        id:16,title:'Home Repairs & Maintenance',xp:15,
+        theory:'<b>Home Repairs & Maintenance — Ремонт и обслуживание жилья</b><br><br>В каждом доме рано или поздно что-то ломается. Знание нужных слов поможет тебе объяснить проблему и найти нужного специалиста.<br><br><b>Специалисты по ремонту:</b><br>&bull; <b>plumber</b> — сантехник<br>&bull; <b>electrician</b> — электрик<br>&bull; <b>locksmith</b> — слесарь (замки, двери)<br>&bull; <b>roofer</b> — кровельщик<br>&bull; <b>builder / contractor</b> — строитель / подрядчик<br><br><b>Типичные проблемы:</b><br>&bull; <b>leaky tap</b> — протекающий кран<br>&bull; <b>boiler breakdown</b> — поломка котла<br>&bull; <b>damp</b> — сырость<br>&bull; <b>structural issues</b> — структурные проблемы (трещины в стенах, фундаменте)<br>&bull; <b>blocked drain</b> — засорённый сток<br>&bull; <b>blown fuse</b> — перегоревший предохранитель<br>&bull; <b>cracked ceiling</b> — трещина в потолке<br><br><b>Фразы:</b><br>&bull; <b>I need an emergency repair</b> — мне нужен срочный ремонт<br>&bull; <b>The boiler has broken down</b> — котёл сломался<br>&bull; <b>There is a structural issue</b> — есть структурная проблема<br><br><div class="rule">"The <b>boiler</b> broke down in January — we needed an emergency <b>plumber</b> over the weekend."</div><div class="rule">"A <b>structural issue</b> like a large crack in the wall must be assessed by a professional <b>builder</b>."</div>',
+        exercises:[
+          {q:'A ___ fixes water pipes, taps, and drainage systems.',blank:'plumber',opts:['plumber','electrician','builder','roofer']},
+          {q:'A ___ tap should be fixed quickly as it wastes a lot of water over time.',blank:'leaky',opts:['leaky','dripping','broken','loose']},
+          {q:'If you have no electricity, check for a ___ fuse in the fuse box first.',blank:'blown',opts:['blown','broken','dead','burnt']},
+          {q:'___ issues like cracks in walls or foundations require a professional structural assessment.',blank:'Structural',opts:['Structural','Major','Physical','Building']},
+          {q:'A blocked ___ means water cannot flow away properly from the sink or shower.',blank:'drain',opts:['drain','pipe','tap','sink']}
+        ]
+      },
+      {
+        id:17,title:'Furnished vs Unfurnished',xp:15,
+        theory:'<b>Furnished vs Unfurnished — С мебелью или без</b><br><br>При аренде жилья важно понимать разницу между вариантами с мебелью и без. Это влияет на стоимость аренды и удобство переезда.<br><br><b>Варианты меблировки:</b><br>&bull; <b>furnished</b> — с мебелью (кровати, диваны, столы уже есть)<br>&bull; <b>unfurnished</b> — без мебели (пустое жильё)<br>&bull; <b>part-furnished</b> — частично меблированное (есть часть мебели)<br><br><b>Белая техника (white goods):</b><br>&bull; <b>washing machine</b> — стиральная машина<br>&bull; <b>fridge-freezer</b> — холодильник с морозильником<br>&bull; <b>dishwasher</b> — посудомоечная машина<br>&bull; <b>oven / cooker</b> — духовка / плита<br>&bull; <b>tumble dryer</b> — сушилка для белья<br><br><b>Что обычно включено:</b><br>&bull; <b>curtains / blinds</b> — шторы / жалюзи<br>&bull; <b>light fittings</b> — осветительные приборы<br>&bull; <b>carpets / flooring</b> — ковровые покрытия / напольное покрытие<br><br><div class="rule">"The flat is <b>fully furnished</b> — it includes a double bed, sofa, dining table, and all <b>white goods</b>."</div><div class="rule">"I prefer <b>unfurnished</b> properties — I already have my own furniture and don\'t want to pay extra."</div>',
+        exercises:[
+          {q:'A ___ property comes with beds, sofas, and other essential furniture.',blank:'furnished',opts:['furnished','complete','ready','equipped']},
+          {q:'White ___ refers to large kitchen appliances like fridges, washing machines, and ovens.',blank:'goods',opts:['goods','items','appliances','products']},
+          {q:'A ___ property has some furniture but not everything you would need.',blank:'part-furnished',opts:['part-furnished','semi-furnished','half-furnished','mostly-furnished']},
+          {q:'Curtains and ___ are window coverings that are usually included with a furnished property.',blank:'blinds',opts:['blinds','covers','screens','shades']},
+          {q:'An ___ property is completely empty — you need to bring or buy all your own furniture.',blank:'unfurnished',opts:['unfurnished','empty','bare','plain']}
+        ]
+      },
+      {
+        id:18,title:'Subletting & Airbnb',xp:15,
+        theory:'<b>Subletting & Airbnb — Субаренда и краткосрочная аренда</b><br><br>Субаренда и сдача жилья через Airbnb — популярные способы получить дополнительный доход, но они имеют юридические ограничения.<br><br><b>Субаренда:</b><br>&bull; <b>subletting / subleasing</b> — субаренда (сдача арендованного жилья другому человеку)<br>&bull; <b>sublet clause</b> — пункт договора о субаренде<br>&bull; <b>written permission</b> — письменное разрешение (нужно от арендодателя)<br>&bull; <b>subtenant</b> — субарендатор<br>&bull; <b>illegal subletting</b> — незаконная субаренда (нарушение договора)<br><br><b>Краткосрочная аренда (Airbnb):</b><br>&bull; <b>short-term let</b> — краткосрочная аренда<br>&bull; <b>host</b> — хозяин объявления<br>&bull; <b>guest</b> — гость<br>&bull; <b>listing</b> — объявление<br>&bull; <b>review</b> — отзыв<br>&bull; <b>house rules</b> — правила проживания для гостей<br><br><b>Общение с гостями:</b><br>&bull; <b>Check-in is at 3pm</b> — заселение в 15:00<br>&bull; <b>Please leave the property clean</b> — пожалуйста, оставьте жильё в чистоте<br>&bull; <b>Wi-Fi password is...</b> — пароль от Wi-Fi...<br><br><div class="rule">"Always get <b>written permission</b> from your landlord before <b>subletting</b> your property."</div><div class="rule">"As an Airbnb <b>host</b>, I provide clear <b>house rules</b> to all my <b>guests</b> at check-in."</div>',
+        exercises:[
+          {q:'___ means renting out a property that you yourself rent from a landlord.',blank:'Subletting',opts:['Subletting','Letting','Renting','Leasing']},
+          {q:'You need ___ permission from your landlord before subletting your flat.',blank:'written',opts:['written','verbal','official','formal']},
+          {q:'A short-term ___ is when you rent out your property for a few days or weeks at a time.',blank:'let',opts:['let','rent','lease','hire']},
+          {q:'An Airbnb ___ is the person who owns or manages the property being rented out.',blank:'host',opts:['host','owner','landlord','manager']},
+          {q:'Guests often leave ___ after their stay to share their experience with future visitors.',blank:'reviews',opts:['reviews','feedback','comments','ratings']}
+        ]
+      },
+      {
+        id:19,title:'Expat Housing Tips',xp:15,
+        theory:'<b>Expat Housing Tips — Советы по жилью для экспатов</b><br><br>Поиск жилья в новой стране может быть непростым. Вот полезные советы и слова для тех, кто переезжает за рубеж.<br><br><b>Особенности поиска жилья за рубежом:</b><br>&bull; <b>proof of income</b> — подтверждение дохода (обычно требуется)<br>&bull; <b>right to rent check</b> — проверка права на аренду (в Великобритании — для иностранных граждан)<br>&bull; <b>bank statement</b> — выписка из банка<br>&bull; <b>employment contract</b> — трудовой договор<br>&bull; <b>passport / visa</b> — паспорт / виза<br>&bull; <b>credit history</b> — кредитная история (часто нет у новых эмигрантов)<br><br><b>Культурные различия:</b><br>&bull; <b>Different rental customs</b> — разные традиции аренды в разных странах<br>&bull; <b>First month + deposit upfront</b> — первый месяц + депозит вперёд<br>&bull; <b>Shorter notice periods in some countries</b> — более короткие сроки уведомления<br>&bull; <b>Furnished flats more common in some countries</b> — в некоторых странах меблированные квартиры — норма<br><br><b>Полезные советы:</b><br>&bull; <b>Use reputable agencies</b> — пользуйтесь проверенными агентствами<br>&bull; <b>Join expat Facebook groups</b> — вступите в группы экспатов<br>&bull; <b>Always get everything in writing</b> — всегда требуйте всё в письменном виде<br><br><div class="rule">"As an expat, I had to provide <b>proof of income</b>, a <b>bank statement</b>, and a copy of my <b>visa</b> to rent a flat."</div><div class="rule">"Joining local <b>expat groups</b> helped me find trustworthy landlords and avoid rental scams."</div>',
+        exercises:[
+          {q:'As an expat, you often need to provide ___ of income to prove you can pay the rent.',blank:'proof',opts:['proof','evidence','document','record']},
+          {q:'A ___ statement shows your recent bank transactions and confirms your financial situation.',blank:'bank',opts:['bank','finance','account','money']},
+          {q:'In the UK, landlords must carry out a right to ___ check on all tenants.',blank:'rent',opts:['rent','live','stay','reside']},
+          {q:'New expats often have no ___ history in the new country, which can make renting harder.',blank:'credit',opts:['credit','financial','rental','payment']},
+          {q:'Always get everything in ___ — verbal agreements are difficult to prove in a dispute.',blank:'writing',opts:['writing','writing','email','paper']}
+        ]
+      },
+      {
+        id:20,title:'Real Estate Challenge',xp:20,
+        theory:'<b>Real Estate & Housing English — финальный урок</b><br><br>Отлично! Ты прошёл курс Real Estate & Housing English. Давай проверим все ключевые темы:<br><br>&bull; <b>Types of housing</b>: flat, detached, semi-detached, terraced, bungalow, cottage<br>&bull; <b>Searching & viewing</b>: estate agent, viewing, listing, location, budget<br>&bull; <b>Renting</b>: tenancy agreement, landlord, tenant, notice period, deposit<br>&bull; <b>Negotiating</b>: flexibility, longer lease, upfront payment, references<br>&bull; <b>Tenant rights</b>: deposit protection, quiet enjoyment, eviction, repairs<br>&bull; <b>Utilities</b>: gas, electricity, council tax, direct debit, meter reading<br>&bull; <b>Moving in/out</b>: inventory, check-in/out, fair wear and tear, deductions<br>&bull; <b>Buying property</b>: surveyor, solicitor, exchange of contracts, stamp duty<br>&bull; <b>Mortgage</b>: deposit, fixed/variable rate, monthly repayments, lender<br>&bull; <b>Descriptions</b>: en-suite, open-plan, EPC rating, freehold, leasehold<br>&bull; <b>Neighbourhood</b>: amenities, transport links, crime rate, up-and-coming<br>&bull; <b>Repairs</b>: plumber, electrician, leaky tap, boiler breakdown<br><br><div class="rule">"I\'d like to <b>arrange a viewing</b> for the <b>semi-detached house</b> listed on your website."</div><div class="rule">"The <b>tenancy agreement</b> includes a <b>break clause</b> at six months and a two-month <b>notice period</b>."</div>',
+        exercises:[
+          {q:'A ___ agent helps you find, buy, sell, or rent a property.',blank:'estate',opts:['estate','letting','housing','property']},
+          {q:'The ___ is the legal document that outlines the terms of your rental agreement.',blank:'tenancy agreement',opts:['tenancy agreement','house contract','rent deal','lease form']},
+          {q:'When buying a house, you pay ___ duty as a tax to the government.',blank:'stamp',opts:['stamp','land','purchase','property']},
+          {q:'A semi-___ house shares one wall with a neighbouring property.',blank:'detached',opts:['detached','attached','joined','linked']},
+          {q:'The landlord must protect your ___ in a government-approved scheme.',blank:'deposit',opts:['deposit','money','payment','rent']}
+        ]
+      }
+    ]
   }
 };
 // ── COURSE UI ─────────────────────────────────────────────
@@ -13942,7 +14178,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -14005,7 +14241,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -15088,6 +15324,7 @@ const TOPIC_CHIPS = {
   'Writing':        ["Help me write a professional email", "Check my cover letter please", "How do I start an essay?", "Give me phrases for polite requests"],
   'Sport':          ["I want to talk about gym vocabulary", "What do you say to a personal trainer?", "Help me describe an injury in English", "Let's talk about nutrition"],
   'Shopping':       ["I\'d like to try this on", "Do you have this in a size medium?", "Can I return this if it doesn\'t fit?", "Is there a sale on at the moment?"],
+  'Real Estate':    ["I\'m looking to rent a flat", "What\'s included in the rent?", "Can we negotiate the price?", "What are the neighbours like?"],
 };
 
 function showChips(topicKey) {
