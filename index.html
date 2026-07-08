@@ -976,6 +976,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="realestate-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('eco')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(34,197,94,0.1);color:#22c55e;font-size:18px;">🌿</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Environment & Eco</h3>
+          <span style="font-size:10px;font-weight:700;color:#22c55e" id="eco-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="eco-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="eco-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1295,7 +1306,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -14161,6 +14172,231 @@ I would be happy to take any questions.</div>
         ]
       }
     ]
+  },
+  eco: {
+    title: 'Environment & Eco 🌿',
+    lessons: [
+      {
+        id:1,title:'Climate Change Basics',xp:15,
+        theory:'<b>Climate Change Basics — основы изменения климата</b><br><br>Изменение климата — одна из главных тем современности. В этом уроке ты узнаешь базовую лексику для обсуждения глобального потепления на английском.<br><br><b>Ключевые термины:</b><br>&bull; <b>climate change</b> — изменение климата<br>&bull; <b>global warming</b> — глобальное потепление<br>&bull; <b>greenhouse effect</b> — парниковый эффект<br>&bull; <b>carbon dioxide (CO₂)</b> — углекислый газ<br>&bull; <b>temperature rise</b> — повышение температуры<br>&bull; <b>fossil fuels</b> — ископаемое топливо (уголь, нефть, газ)<br>&bull; <b>atmosphere</b> — атмосфера<br>&bull; <b>ice caps</b> — полярные льды<br>&bull; <b>sea level rise</b> — повышение уровня моря<br>&bull; <b>extreme weather</b> — экстремальные погодные явления<br><br><b>Полезные фразы:</b><br>&bull; <b>The planet is getting warmer</b> — планета становится теплее<br>&bull; <b>Human activity causes...</b> — деятельность человека вызывает...<br>&bull; <b>Scientists warn that...</b> — учёные предупреждают, что...<br><br><div class="rule">"<b>Global warming</b> is caused by the buildup of <b>greenhouse gases</b> in the <b>atmosphere</b>."</div><div class="rule">"<b>Rising sea levels</b> threaten coastal cities around the world."</div><div class="rule">"<b>Extreme weather</b> events are becoming more frequent due to <b>climate change</b>."</div>',
+        exercises:[
+          {q:'___ warming refers to the long-term rise in Earth\'s average temperature.',blank:'Global',opts:['Global','Local','Ocean','Solar']},
+          {q:'The ___ effect traps heat in the Earth\'s atmosphere.',blank:'greenhouse',opts:['greenhouse','carbon','heat','solar']},
+          {q:'Carbon ___ is the main greenhouse gas produced by burning fossil fuels.',blank:'dioxide',opts:['dioxide','monoxide','oxide','acid']},
+          {q:'___ fuels like coal and oil release CO₂ when burned.',blank:'Fossil',opts:['Fossil','Green','Clean','Nuclear']},
+          {q:'Rising sea ___ threatens coastal cities and islands.',blank:'levels',opts:['levels','water','floods','waves']}
+        ]
+      },
+      {
+        id:2,title:'Greenhouse Gases',xp:15,
+        theory:'<b>Greenhouse Gases — парниковые газы</b><br><br>Парниковые газы удерживают тепло в атмосфере Земли, вызывая глобальное потепление. Понимание источников этих газов помогает говорить об экологических проблемах на английском.<br><br><b>Основные парниковые газы:</b><br>&bull; <b>carbon dioxide (CO₂)</b> — углекислый газ; источник: сжигание топлива, вырубка лесов<br>&bull; <b>methane (CH₄)</b> — метан; источник: скот, свалки, добыча газа<br>&bull; <b>nitrous oxide (N₂O)</b> — закись азота; источник: сельское хозяйство, удобрения<br>&bull; <b>water vapour</b> — водяной пар; самый распространённый парниковый газ<br>&bull; <b>fluorinated gases</b> — фторированные газы; источник: промышленность<br><br><b>Важные понятия:</b><br>&bull; <b>emissions</b> — выбросы (газов в атмосферу)<br>&bull; <b>to emit</b> — выбрасывать (газы)<br>&bull; <b>reducing output</b> — сокращение выбросов<br>&bull; <b>carbon neutral</b> — углеродно нейтральный<br>&bull; <b>net zero emissions</b> — нулевые чистые выбросы<br>&bull; <b>greenhouse gas concentration</b> — концентрация парниковых газов<br><br><div class="rule">"<b>Methane</b> is a powerful <b>greenhouse gas</b> released by livestock and landfills."</div><div class="rule">"Countries are working to <b>reduce emissions</b> and reach <b>net zero</b> by 2050."</div><div class="rule">"Agriculture is responsible for significant <b>nitrous oxide emissions</b>."</div>',
+        exercises:[
+          {q:'___ is a potent greenhouse gas released by cattle and rice paddies.',blank:'Methane',opts:['Methane','Oxygen','Nitrogen','Hydrogen']},
+          {q:'The term "___ " refers to gases that trap heat in the atmosphere.',blank:'greenhouse gases',opts:['greenhouse gases','clean air','ozone layer','air pollution']},
+          {q:'Nitrous ___ from agriculture is a significant greenhouse gas.',blank:'oxide',opts:['oxide','acid','gas','compound']},
+          {q:'Countries aim to reach net ___ by cutting and offsetting all emissions.',blank:'zero',opts:['zero','neutral','balance','negative']},
+          {q:'Factories ___ large amounts of CO₂ into the atmosphere every year.',blank:'emit',opts:['emit','absorb','remove','filter']}
+        ]
+      },
+      {
+        id:3,title:'Renewable Energy',xp:15,
+        theory:'<b>Renewable Energy — возобновляемая энергия</b><br><br>Возобновляемые источники энергии — ключ к снижению зависимости от ископаемого топлива. Узнай английскую лексику для обсуждения зелёной энергетики.<br><br><b>Виды возобновляемой энергии:</b><br>&bull; <b>solar energy</b> — солнечная энергия (solar panels — солнечные панели)<br>&bull; <b>wind energy</b> — ветровая энергия (wind turbines — ветряные турбины)<br>&bull; <b>hydropower / hydroelectric</b> — гидроэнергия (dams — плотины)<br>&bull; <b>geothermal energy</b> — геотермальная энергия (heat from the Earth)<br>&bull; <b>tidal energy</b> — приливная энергия (ocean tides)<br>&bull; <b>biomass energy</b> — биомасса (organic materials)<br><br><b>Преимущества vs ископаемое топливо:</b><br>&bull; <b>clean / zero-emission</b> — чистая, без выбросов<br>&bull; <b>sustainable</b> — устойчивая, возобновляемая<br>&bull; <b>infinite / inexhaustible</b> — бесконечная, неисчерпаемая<br>&bull; <b>reduces dependence on oil and gas</b> — снижает зависимость от нефти и газа<br>&bull; <b>creates green jobs</b> — создаёт «зелёные» рабочие места<br><br><div class="rule">"<b>Solar panels</b> convert sunlight into electricity without any <b>emissions</b>."</div><div class="rule">"<b>Wind turbines</b> are becoming cheaper and more efficient every year."</div><div class="rule">"<b>Hydropower</b> is the largest source of <b>renewable energy</b> globally."</div>',
+        exercises:[
+          {q:'___ panels on rooftops convert sunlight directly into electricity.',blank:'Solar',opts:['Solar','Wind','Geo','Tidal']},
+          {q:'Wind ___ generate electricity by harnessing the power of moving air.',blank:'turbines',opts:['turbines','panels','cells','stations']},
+          {q:'___ energy comes from the natural heat inside the Earth.',blank:'Geothermal',opts:['Geothermal','Tidal','Solar','Nuclear']},
+          {q:'Renewable energy sources are considered ___ because they don\'t run out.',blank:'sustainable',opts:['sustainable','polluting','expensive','rare']},
+          {q:'___ power uses the flow of rivers and water to generate electricity.',blank:'Hydro',opts:['Hydro','Wind','Geo','Tidal']}
+        ]
+      },
+      {
+        id:4,title:'Recycling & Waste',xp:15,
+        theory:'<b>Recycling & Waste — переработка и отходы</b><br><br>Правильное обращение с отходами — важная часть экологической ответственности. Выучи английскую лексику по теме мусора и переработки.<br><br><b>Принцип трёх R:</b><br>&bull; <b>Reduce</b> — сокращать (потребление)<br>&bull; <b>Reuse</b> — повторно использовать<br>&bull; <b>Recycle</b> — перерабатывать<br><br><b>Типы отходов и переработка:</b><br>&bull; <b>landfill</b> — свалка, мусорный полигон<br>&bull; <b>composting</b> — компостирование (органические отходы)<br>&bull; <b>waste sorting / separation</b> — сортировка мусора<br>&bull; <b>recycling bin</b> — контейнер для вторсырья<br>&bull; <b>biodegradable</b> — биоразлагаемый<br>&bull; <b>single-use plastic</b> — одноразовый пластик<br>&bull; <b>food waste</b> — пищевые отходы<br>&bull; <b>e-waste</b> — электронные отходы<br>&bull; <b>upcycling</b> — апсайклинг (создание нового из старого)<br><br><div class="rule">"Please <b>sort your waste</b> — paper, plastic, and glass go in separate bins."</div><div class="rule">"<b>Composting</b> your food scraps reduces the amount of waste sent to <b>landfill</b>."</div><div class="rule">"<b>Single-use plastic</b> items like straws and bags are being banned in many countries."</div>',
+        exercises:[
+          {q:'A ___ is a site where waste is buried underground, often causing pollution.',blank:'landfill',opts:['landfill','compost','recycling','dump']},
+          {q:'___ means turning organic waste like vegetable peels into natural fertiliser.',blank:'Composting',opts:['Composting','Recycling','Sorting','Burning']},
+          {q:'The three Rs of waste management are reduce, reuse, and ___.',blank:'recycle',opts:['recycle','remove','repair','replace']},
+          {q:'___ plastic items such as straws and bags create enormous waste problems.',blank:'Single-use',opts:['Single-use','Recycled','Biodegradable','Reusable']},
+          {q:'Waste ___ means separating glass, paper, and plastic into different containers.',blank:'sorting',opts:['sorting','burning','burying','dumping']}
+        ]
+      },
+      {
+        id:5,title:'Sustainable Lifestyle',xp:15,
+        theory:'<b>Sustainable Lifestyle — устойчивый образ жизни</b><br><br>Экологичный образ жизни предполагает осознанное потребление и минимизацию вреда для окружающей среды. Узнай, как говорить об этом по-английски.<br><br><b>Концепции и движения:</b><br>&bull; <b>zero waste</b> — ноль отходов (lifestyle movement)<br>&bull; <b>minimalism</b> — минимализм (owning less, consuming less)<br>&bull; <b>carbon footprint</b> — углеродный след<br>&bull; <b>eco-friendly habits</b> — экологичные привычки<br>&bull; <b>conscious consumption</b> — осознанное потребление<br><br><b>Практические привычки:</b><br>&bull; <b>use a reusable bag / bottle / cup</b> — использовать многоразовые вещи<br>&bull; <b>take public transport</b> — ездить на общественном транспорте<br>&bull; <b>eat less meat</b> — есть меньше мяса<br>&bull; <b>buy local produce</b> — покупать местные продукты<br>&bull; <b>reduce energy consumption</b> — сокращать потребление энергии<br>&bull; <b>switch to LED lights</b> — перейти на светодиодные лампы<br>&bull; <b>avoid fast fashion</b> — избегать быстрой моды<br><br><div class="rule">"Carrying a <b>reusable bag</b> is a small step that helps reduce <b>plastic waste</b>."</div><div class="rule">"Adopting a <b>zero-waste lifestyle</b> means being thoughtful about every purchase."</div><div class="rule">"Reducing your <b>carbon footprint</b> can be as simple as eating less meat."</div>',
+        exercises:[
+          {q:'Your carbon ___ is the total amount of CO₂ your activities produce.',blank:'footprint',opts:['footprint','shadow','mark','trace']},
+          {q:'The ___ waste movement encourages people to send nothing to landfill.',blank:'zero',opts:['zero','low','less','minimal']},
+          {q:'Using a ___ bag instead of plastic ones reduces waste significantly.',blank:'reusable',opts:['reusable','paper','fabric','cotton']},
+          {q:'Taking public ___ instead of driving is a great eco habit.',blank:'transport',opts:['transport','roads','buses','routes']},
+          {q:'___ consumption means buying only what you truly need.',blank:'Conscious',opts:['Conscious','Fast','High','Mass']}
+        ]
+      },
+      {
+        id:6,title:'Eco-Activism',xp:15,
+        theory:'<b>Eco-Activism — экологический активизм</b><br><br>Миллионы людей по всему миру выступают за защиту окружающей среды. Узнай лексику для обсуждения экологического активизма на английском.<br><br><b>Методы активизма:</b><br>&bull; <b>protest / demonstration</b> — протест, демонстрация<br>&bull; <b>petition</b> — петиция (онлайн или бумажная)<br>&bull; <b>campaign</b> — кампания (awareness campaign — кампания по информированию)<br>&bull; <b>boycott</b> — бойкот (отказ от товаров/услуг)<br>&bull; <b>civil disobedience</b> — гражданское неповиновение<br>&bull; <b>lobbying</b> — лоббирование (influence on politicians)<br><br><b>Организации и движения:</b><br>&bull; <b>NGO</b> (non-governmental organisation) — НКО<br>&bull; <b>Greenpeace</b> — Гринпис<br>&bull; <b>Extinction Rebellion (XR)</b> — Бунт против вымирания<br>&bull; <b>Fridays for Future</b> — движение Греты Тунберг<br>&bull; <b>climate activist</b> — климатический активист<br>&bull; <b>Greta Thunberg</b> — шведская активистка, основательница FFF<br><br><div class="rule">"<b>Greta Thunberg</b> started <b>Fridays for Future</b> by striking from school every Friday."</div><div class="rule">"Thousands joined the <b>climate protest</b> calling for urgent government action."</div><div class="rule">"The NGO launched a <b>petition</b> that gathered over a million signatures."</div>',
+        exercises:[
+          {q:'Greta Thunberg started the ___ for Future movement to demand climate action.',blank:'Fridays',opts:['Fridays','Saturdays','Students','Sundays']},
+          {q:'A ___ is a formal request signed by many people to demand change.',blank:'petition',opts:['petition','protest','campaign','boycott']},
+          {q:'An NGO is a ___ -governmental organisation that works on social or environmental issues.',blank:'non',opts:['non','anti','pro','sub']},
+          {q:'Activists sometimes ___ companies whose products harm the environment.',blank:'boycott',opts:['boycott','support','fund','reward']},
+          {q:'An ___ campaign raises public awareness about environmental issues.',blank:'awareness',opts:['awareness','ignore','profit','sales']}
+        ]
+      },
+      {
+        id:7,title:'Carbon Footprint',xp:15,
+        theory:'<b>Carbon Footprint — углеродный след</b><br><br>Углеродный след показывает, сколько CO₂ производит наша деятельность. Понимание этого помогает принимать более экологичные решения.<br><br><b>Ключевые понятия:</b><br>&bull; <b>carbon footprint</b> — углеродный след (total CO₂ equivalent)<br>&bull; <b>carbon offset</b> — компенсация выбросов углерода<br>&bull; <b>carbon credits</b> — углеродные кредиты (units of CO₂ reduction)<br>&bull; <b>net zero</b> — нулевой баланс выбросов<br>&bull; <b>carbon neutral</b> — углеродно нейтральный<br>&bull; <b>carbon tax</b> — углеродный налог<br>&bull; <b>personal impact</b> — личное воздействие на среду<br><br><b>Как рассчитать и сократить:</b><br>&bull; <b>flight emissions</b> — выбросы от авиаперелётов<br>&bull; <b>diet footprint</b> — след от питания (meat vs plant-based)<br>&bull; <b>home energy use</b> — потребление энергии дома<br>&bull; <b>transport choices</b> — выбор транспорта<br>&bull; <b>to offset</b> — компенсировать (e.g. by planting trees)<br>&bull; <b>carbon calculator</b> — калькулятор углеродного следа<br><br><div class="rule">"You can <b>offset</b> your flight\'s <b>carbon emissions</b> by donating to tree-planting projects."</div><div class="rule">"Many companies buy <b>carbon credits</b> to compensate for their <b>greenhouse gas</b> output."</div><div class="rule">"Switching to a <b>plant-based diet</b> significantly reduces your <b>carbon footprint</b>."</div>',
+        exercises:[
+          {q:'To ___ your carbon emissions means to compensate for them, e.g. by planting trees.',blank:'offset',opts:['offset','emit','increase','ignore']},
+          {q:'___ credits are units that represent a reduction of one tonne of CO₂.',blank:'Carbon',opts:['Carbon','Green','Energy','Climate']},
+          {q:'A company that produces no net CO₂ is described as carbon ___.',blank:'neutral',opts:['neutral','free','zero','empty']},
+          {q:'Flying is one of the most carbon-___ activities an individual can do.',blank:'intensive',opts:['intensive','friendly','neutral','efficient']},
+          {q:'Net ___ means balancing the amount of CO₂ released with the amount removed.',blank:'zero',opts:['zero','neutral','balance','negative']}
+        ]
+      },
+      {
+        id:8,title:'Biodiversity',xp:15,
+        theory:'<b>Biodiversity — биоразнообразие</b><br><br>Биоразнообразие — это разнообразие жизни на Земле. Потеря видов угрожает экосистемам и жизни людей. Выучи ключевые термины на английском.<br><br><b>Основные понятия:</b><br>&bull; <b>biodiversity</b> — биоразнообразие<br>&bull; <b>species</b> — вид (множ.: species)<br>&bull; <b>habitat</b> — среда обитания<br>&bull; <b>ecosystem</b> — экосистема<br>&bull; <b>extinction</b> — вымирание<br>&bull; <b>endangered species</b> — исчезающие виды<br>&bull; <b>conservation</b> — охрана природы<br>&bull; <b>national park / nature reserve</b> — национальный парк / заповедник<br>&bull; <b>wildlife</b> — дикая природа<br>&bull; <b>food chain</b> — пищевая цепь<br>&bull; <b>invasive species</b> — инвазивные (чужеродные) виды<br>&bull; <b>rewilding</b> — ревайлдинг (восстановление дикой природы)<br><br><div class="rule">"The <b>Amazon rainforest</b> contains over half of the world\'s <b>biodiversity</b>."</div><div class="rule">"<b>Habitat loss</b> is the biggest threat to <b>endangered species</b> worldwide."</div><div class="rule">"<b>National parks</b> protect <b>wildlife</b> and allow <b>ecosystems</b> to recover."</div>',
+        exercises:[
+          {q:'An ___ species is at risk of disappearing from the planet forever.',blank:'endangered',opts:['endangered','extinct','invasive','exotic']},
+          {q:'The natural home of an animal or plant is called its ___.',blank:'habitat',opts:['habitat','ecosystem','territory','region']},
+          {q:'___ refers to the variety of all living species on Earth.',blank:'Biodiversity',opts:['Biodiversity','Conservation','Wildlife','Ecology']},
+          {q:'When a species completely disappears, it is said to have gone ___.',blank:'extinct',opts:['extinct','endangered','rare','wild']},
+          {q:'___ areas protect animals and plants from hunting and human development.',blank:'Conservation',opts:['Conservation','Industrial','Urban','Mining']}
+        ]
+      },
+      {
+        id:9,title:'Types of Pollution',xp:15,
+        theory:'<b>Types of Pollution — виды загрязнения</b><br><br>Загрязнение окружающей среды принимает разные формы. Узнай, как назвать и обсудить их по-английски.<br><br><b>Виды загрязнения:</b><br>&bull; <b>air pollution</b> — загрязнение воздуха (smog, toxic gases, particulates)<br>&bull; <b>water pollution</b> — загрязнение воды (chemicals, sewage, plastic)<br>&bull; <b>soil / land pollution</b> — загрязнение почвы (pesticides, heavy metals)<br>&bull; <b>noise pollution</b> — шумовое загрязнение (traffic, industry)<br>&bull; <b>light pollution</b> — световое загрязнение (affects wildlife, astronomy)<br>&bull; <b>plastic pollution</b> — пластиковое загрязнение<br>&bull; <b>microplastics</b> — микропластик (tiny plastic particles)<br><br><b>Связанные термины:</b><br>&bull; <b>toxic / hazardous waste</b> — токсичные / опасные отходы<br>&bull; <b>smog</b> — смог (smoke + fog)<br>&bull; <b>acid rain</b> — кислотный дождь<br>&bull; <b>oil spill</b> — разлив нефти<br>&bull; <b>contamination</b> — заражение, загрязнение<br>&bull; <b>pollutant</b> — загрязняющее вещество<br><br><div class="rule">"<b>Air pollution</b> in cities is often caused by vehicle <b>emissions</b> and factory <b>pollutants</b>."</div><div class="rule">"An <b>oil spill</b> can devastate marine <b>ecosystems</b> for decades."</div><div class="rule">"<b>Light pollution</b> from cities prevents us from seeing the stars at night."</div>',
+        exercises:[
+          {q:'___ pollution from traffic and factories makes city air unhealthy to breathe.',blank:'Air',opts:['Air','Water','Soil','Light']},
+          {q:'An oil ___ occurs when petroleum leaks into the ocean, harming marine life.',blank:'spill',opts:['spill','dump','leak','pour']},
+          {q:'___ is a thick haze formed when traffic fumes mix with fog in cities.',blank:'Smog',opts:['Smog','Acid','Mist','Cloud']},
+          {q:'___ rain is caused by sulfur dioxide and nitrogen oxides mixing with rainwater.',blank:'Acid',opts:['Acid','Black','Toxic','Heavy']},
+          {q:'Tiny plastic particles found in oceans and food are called ___.',blank:'microplastics',opts:['microplastics','nanowaste','plasticules','miniplastics']}
+        ]
+      },
+      {
+        id:10,title:'Green Technology',xp:15,
+        theory:'<b>Green Technology — зелёные технологии</b><br><br>Технологии играют ключевую роль в решении экологических проблем. Узнай современный английский словарь зелёных технологий.<br><br><b>Ключевые технологии:</b><br>&bull; <b>electric vehicles (EVs)</b> — электромобили<br>&bull; <b>smart grids</b> — умные электросети (optimize energy distribution)<br>&bull; <b>energy storage / batteries</b> — накопители энергии / аккумуляторы<br>&bull; <b>green hydrogen</b> — зелёный водород (produced using renewable energy)<br>&bull; <b>carbon capture</b> — улавливание углерода (removing CO₂ from air)<br>&bull; <b>LED lighting</b> — светодиодное освещение<br>&bull; <b>smart home technology</b> — технологии умного дома<br><br><b>Дополнительные термины:</b><br>&bull; <b>charging infrastructure</b> — зарядная инфраструктура (для EV)<br>&bull; <b>battery capacity</b> — ёмкость аккумулятора<br>&bull; <b>range anxiety</b> — беспокойство о запасе хода (у EV-водителей)<br>&bull; <b>clean tech</b> — чистые технологии<br>&bull; <b>innovation</b> — инновация<br>&bull; <b>scalable solution</b> — масштабируемое решение<br><br><div class="rule">"<b>Electric vehicles</b> produce zero <b>tailpipe emissions</b>, reducing urban air pollution."</div><div class="rule">"<b>Smart grids</b> use digital technology to balance electricity supply and demand."</div><div class="rule">"<b>Green hydrogen</b> could replace fossil fuels in industries that are hard to electrify."</div>',
+        exercises:[
+          {q:'___ vehicles run on electricity and produce no direct exhaust emissions.',blank:'Electric',opts:['Electric','Hybrid','Solar','Steam']},
+          {q:'___ grids use digital systems to efficiently manage electricity distribution.',blank:'Smart',opts:['Smart','Power','Energy','Modern']},
+          {q:'___ hydrogen is produced using renewable energy and emits no CO₂.',blank:'Green',opts:['Green','Blue','Grey','Black']},
+          {q:'Carbon ___ technology removes CO₂ directly from the atmosphere.',blank:'capture',opts:['capture','storage','filter','removal']},
+          {q:'LED ___ uses up to 75% less energy than traditional incandescent bulbs.',blank:'lighting',opts:['lighting','heating','cooling','power']}
+        ]
+      },
+      {
+        id:11,title:'Sustainable Fashion',xp:15,
+        theory:'<b>Sustainable Fashion — устойчивая мода</b><br><br>Индустрия моды — один из крупнейших загрязнителей планеты. Узнай, как говорить об ответственном потреблении одежды по-английски.<br><br><b>Проблемы быстрой моды:</b><br>&bull; <b>fast fashion</b> — быстрая мода (cheap, disposable clothing)<br>&bull; <b>overproduction</b> — перепроизводство<br>&bull; <b>textile waste</b> — текстильные отходы<br>&bull; <b>sweatshop</b> — потогонное производство (poor conditions, low pay)<br>&bull; <b>carbon footprint of clothing</b> — углеродный след от одежды<br><br><b>Решения и альтернативы:</b><br>&bull; <b>ethical brands</b> — этичные бренды<br>&bull; <b>second-hand / thrift shopping</b> — секонд-хенд / магазины подержанных вещей<br>&bull; <b>clothing swap</b> — обмен одеждой<br>&bull; <b>clothing lifecycle</b> — жизненный цикл одежды<br>&bull; <b>capsule wardrobe</b> — капсульный гардероб<br>&bull; <b>natural fibres</b> — натуральные волокна (cotton, linen, wool)<br>&bull; <b>upcycling</b> — апсайклинг (transforming old clothes into new items)<br><br><div class="rule">"<b>Fast fashion</b> brands produce billions of garments that end up in <b>landfill</b> within months."</div><div class="rule">"Buying <b>second-hand</b> clothes is one of the most sustainable fashion choices."</div><div class="rule">"An <b>ethical brand</b> pays fair wages and uses sustainable <b>natural fibres</b>."</div>',
+        exercises:[
+          {q:'___ fashion involves cheap, trendy clothing that\'s quickly thrown away.',blank:'Fast',opts:['Fast','High','Slow','Green']},
+          {q:'Buying ___ -hand clothes reduces demand for new production.',blank:'second',opts:['second','third','old','used']},
+          {q:'A ___ wardrobe consists of a few versatile, timeless items you wear often.',blank:'capsule',opts:['capsule','mini','slim','basic']},
+          {q:'___ factories pay workers very low wages in poor working conditions.',blank:'Sweatshop',opts:['Sweatshop','Ethical','Union','Green']},
+          {q:'___ fibres like organic cotton and linen are more eco-friendly than synthetics.',blank:'Natural',opts:['Natural','Plastic','Synthetic','Chemical']}
+        ]
+      },
+      {
+        id:12,title:'Food & Environment',xp:15,
+        theory:'<b>Food & Environment — еда и окружающая среда</b><br><br>То, что мы едим, напрямую влияет на экологию. Узнай английскую лексику, чтобы обсуждать связь питания и экологии.<br><br><b>Ключевые понятия:</b><br>&bull; <b>meat industry</b> — мясная промышленность (responsible for ~14% of emissions)<br>&bull; <b>veganism / plant-based diet</b> — веганство / растительная диета<br>&bull; <b>food miles</b> — «мили еды» (distance food travels before being eaten)<br>&bull; <b>organic farming</b> — органическое земледелие<br>&bull; <b>food waste</b> — пищевые отходы<br>&bull; <b>factory farming</b> — промышленное животноводство<br>&bull; <b>sustainable agriculture</b> — устойчивое сельское хозяйство<br><br><b>Практические советы:</b><br>&bull; <b>eat seasonal produce</b> — есть сезонные продукты<br>&bull; <b>buy local</b> — покупать у местных производителей<br>&bull; <b>reduce food waste</b> — сокращать пищевые отходы<br>&bull; <b>compost food scraps</b> — компостировать пищевые остатки<br>&bull; <b>choose plant-based alternatives</b> — выбирать растительные альтернативы<br><br><div class="rule">"The <b>meat industry</b> produces more <b>greenhouse gases</b> than all global transport combined."</div><div class="rule">"Choosing <b>local, seasonal food</b> reduces <b>food miles</b> and supports local farmers."</div><div class="rule">"One-third of all food produced globally is wasted — this is a major <b>environmental</b> problem."</div>',
+        exercises:[
+          {q:'___ miles measure how far food has travelled from farm to your plate.',blank:'Food',opts:['Food','Carbon','Green','Travel']},
+          {q:'A ___ -based diet that avoids meat has a much lower carbon footprint.',blank:'plant',opts:['plant','meat','fish','dairy']},
+          {q:'___ farming avoids synthetic pesticides and promotes soil health.',blank:'Organic',opts:['Organic','Factory','Industrial','Modern']},
+          {q:'___ farming keeps animals in confined spaces to maximise production.',blank:'Factory',opts:['Factory','Organic','Natural','Free-range']},
+          {q:'Buying ___ produce reduces the energy needed to transport food long distances.',blank:'local',opts:['local','frozen','packaged','imported']}
+        ]
+      },
+      {
+        id:13,title:'Eco Travel',xp:15,
+        theory:'<b>Eco Travel — экологичные путешествия</b><br><br>Путешествия влияют на окружающую среду, но есть способы сделать их более ответственными. Узнай лексику для обсуждения экотуризма на английском.<br><br><b>Концепции:</b><br>&bull; <b>carbon offset flights</b> — перелёты с компенсацией выбросов<br>&bull; <b>slow travel</b> — медленные путешествия (train, bus instead of flying)<br>&bull; <b>eco-lodge</b> — экологичный отель<br>&bull; <b>responsible / sustainable tourism</b> — ответственный / устойчивый туризм<br>&bull; <b>ecotourism</b> — экотуризм<br>&bull; <b>overtourism</b> — чрезмерный туризм (too many visitors damage a place)<br><br><b>Практические решения:</b><br>&bull; <b>travel by train</b> — путешествовать на поезде<br>&bull; <b>pack light</b> — паковать меньше (heavier luggage = more fuel)<br>&bull; <b>support local businesses</b> — поддерживать местный бизнес<br>&bull; <b>avoid single-use plastics abroad</b> — избегать одноразового пластика за рубежом<br>&bull; <b>respect wildlife and nature</b> — уважать дикую природу<br>&bull; <b>leave no trace</b> — не оставлять следов<br><br><div class="rule">"<b>Slow travel</b> by train produces far fewer <b>emissions</b> than flying."</div><div class="rule">"<b>Eco-lodges</b> are built with sustainable materials and minimise their <b>environmental impact</b>."</div><div class="rule">"<b>Responsible tourism</b> means respecting local cultures, wildlife, and environments."</div>',
+        exercises:[
+          {q:'___ travel means choosing slower transport like trains to reduce emissions.',blank:'Slow',opts:['Slow','Fast','Air','Space']},
+          {q:'An eco-___ is an environmentally friendly accommodation in a natural setting.',blank:'lodge',opts:['lodge','hotel','resort','hostel']},
+          {q:'___ tourism happens when too many visitors damage a place\'s environment.',blank:'Over',opts:['Over','Eco','Slow','Responsible']},
+          {q:'You can ___ your flight\'s carbon emissions by paying into tree-planting projects.',blank:'offset',opts:['offset','cancel','ignore','avoid']},
+          {q:'The principle of "leave no ___" means taking all your rubbish when you leave.',blank:'trace',opts:['trace','waste','litter','impact']}
+        ]
+      },
+      {
+        id:14,title:'Environmental News',xp:15,
+        theory:'<b>Environmental News — экологические новости</b><br><br>Чтение и обсуждение экологических новостей — отличный способ улучшить английский и быть в курсе событий. Узнай лексику для этого.<br><br><b>Типичные заголовки и фразы:</b><br>&bull; <b>Scientists warn of...</b> — учёные предупреждают о...<br>&bull; <b>record high temperatures</b> — рекордно высокие температуры<br>&bull; <b>wildfires spread</b> — лесные пожары распространяются<br>&bull; <b>flooding hits...</b> — наводнение затрагивает...<br>&bull; <b>drought conditions</b> — условия засухи<br>&bull; <b>species faces extinction</b> — вид находится под угрозой вымирания<br>&bull; <b>government pledges to...</b> — правительство обещает...<br><br><b>Слова для обсуждения новостей:</b><br>&bull; <b>according to...</b> — согласно...<br>&bull; <b>experts say...</b> — эксперты говорят...<br>&bull; <b>the latest report shows...</b> — последний доклад показывает...<br>&bull; <b>in my opinion</b> — по моему мнению<br>&bull; <b>I think / I believe</b> — я думаю / я считаю<br>&bull; <b>on the one hand... on the other hand</b> — с одной стороны... с другой стороны<br><br><div class="rule">"<b>According to</b> the UN report, we have less than a decade to limit global warming."</div><div class="rule">"<b>Scientists warn</b> that <b>wildfires</b> will become more frequent as temperatures rise."</div><div class="rule">"<b>In my opinion</b>, governments must act faster to address the <b>climate crisis</b>."</div>',
+        exercises:[
+          {q:'___ to the latest data, global temperatures rose by 1.2°C in the last century.',blank:'According',opts:['According','Due','Thanks','Owing']},
+          {q:'___ are large, uncontrolled fires in forests that destroy ecosystems.',blank:'Wildfires',opts:['Wildfires','Heatwaves','Droughts','Floods']},
+          {q:'A ___ is a long period with very little rainfall, causing water shortages.',blank:'drought',opts:['drought','flood','storm','frost']},
+          {q:'The government ___ to cut emissions by 50% before 2030.',blank:'pledged',opts:['pledged','ignored','refused','forgot']},
+          {q:'Experts ___ that action on climate change must happen in the next ten years.',blank:'warn',opts:['warn','doubt','disagree','ignore']}
+        ]
+      },
+      {
+        id:15,title:'Climate Negotiations',xp:15,
+        theory:'<b>Climate Negotiations — климатические переговоры</b><br><br>Международные соглашения по климату — важная часть глобальных усилий. Узнай лексику для обсуждения климатической политики на английском.<br><br><b>Ключевые события и документы:</b><br>&bull; <b>COP</b> (Conference of the Parties) — Конференция сторон (ежегодный саммит ООН)<br>&bull; <b>Paris Agreement</b> — Парижское соглашение (2015, limit warming to 1.5°C)<br>&bull; <b>Kyoto Protocol</b> — Киотский протокол (1997, первое климатическое соглашение)<br>&bull; <b>IPCC</b> — Межправительственная группа экспертов по изменению климата<br><br><b>Переговорная лексика:</b><br>&bull; <b>carbon targets</b> — цели по выбросам углерода<br>&bull; <b>international cooperation</b> — международное сотрудничество<br>&bull; <b>binding agreement</b> — обязывающее соглашение<br>&bull; <b>to ratify</b> — ратифицировать (официально утвердить)<br>&bull; <b>developed / developing countries</b> — развитые / развивающиеся страны<br>&bull; <b>climate finance</b> — климатическое финансирование<br>&bull; <b>carbon targets</b> — целевые показатели по углероду<br><br><div class="rule">"The <b>Paris Agreement</b> aims to limit global warming to <b>1.5 degrees Celsius</b> above pre-industrial levels."</div><div class="rule">"At <b>COP</b>, world leaders negotiate <b>binding agreements</b> to cut carbon emissions."</div><div class="rule">"<b>Developing countries</b> need <b>climate finance</b> from wealthier nations to adapt to climate change."</div>',
+        exercises:[
+          {q:'The ___ Agreement of 2015 aims to limit global warming to 1.5°C.',blank:'Paris',opts:['Paris','Kyoto','Geneva','Berlin']},
+          {q:'COP stands for Conference of the ___.',blank:'Parties',opts:['Parties','People','Partners','Politicians']},
+          {q:'A ___ agreement legally requires countries to meet their climate targets.',blank:'binding',opts:['binding','optional','loose','flexible']},
+          {q:'Countries must ___ an agreement in their own parliament for it to become law.',blank:'ratify',opts:['ratify','ignore','draft','debate']},
+          {q:'___ finance helps poorer nations adapt to climate change and invest in clean energy.',blank:'Climate',opts:['Climate','Carbon','Green','Eco']}
+        ]
+      },
+      {
+        id:16,title:'Ocean & Plastic',xp:15,
+        theory:'<b>Ocean & Plastic — океан и пластик</b><br><br>Мировой океан страдает от пластикового загрязнения и изменения климата. Узнай лексику для обсуждения морских экологических проблем.<br><br><b>Основные проблемы:</b><br>&bull; <b>microplastics</b> — микропластик (tiny plastic particles in oceans and food)<br>&bull; <b>ocean acidification</b> — закисление океана (CO₂ makes seawater acidic)<br>&bull; <b>coral bleaching</b> — обесцвечивание кораллов (caused by warming water)<br>&bull; <b>coral reefs</b> — коралловые рифы<br>&bull; <b>marine pollution</b> — загрязнение морской среды<br>&bull; <b>plastic gyres</b> — пластиковые острова (floating plastic patches in oceans)<br><br><b>Защита океана:</b><br>&bull; <b>marine conservation</b> — охрана морской среды<br>&bull; <b>marine protected area (MPA)</b> — морская охраняемая зона<br>&bull; <b>ocean cleanup</b> — очистка океана<br>&bull; <b>ban single-use plastic</b> — запрет одноразового пластика<br>&bull; <b>sustainable fishing</b> — устойчивое рыболовство<br>&bull; <b>overfishing</b> — перелов рыбы<br><br><div class="rule">"<b>Microplastics</b> have been found in fish, drinking water, and even human blood."</div><div class="rule">"<b>Ocean acidification</b> caused by CO₂ absorption is killing <b>coral reefs</b> worldwide."</div><div class="rule">"<b>Marine protected areas</b> help recover fish populations and restore <b>ecosystems</b>."</div>',
+        exercises:[
+          {q:'___ plastics are tiny particles that enter the ocean and food chain.',blank:'Micro',opts:['Micro','Mini','Nano','Macro']},
+          {q:'Ocean ___ occurs when CO₂ dissolves in seawater, making it more acidic.',blank:'acidification',opts:['acidification','pollution','warming','bleaching']},
+          {q:'___ reefs are underwater structures built by corals that support marine biodiversity.',blank:'Coral',opts:['Coral','Rock','Sand','Shell']},
+          {q:'___ fishing depletes fish stocks faster than they can naturally replenish.',blank:'Over',opts:['Over','Eco','Slow','Smart']},
+          {q:'A marine ___ area bans fishing and development to protect ocean ecosystems.',blank:'protected',opts:['protected','polluted','restricted','zoned']}
+        ]
+      },
+      {
+        id:17,title:'Deforestation',xp:15,
+        theory:'<b>Deforestation — вырубка лесов</b><br><br>Леса поглощают CO₂ и защищают биоразнообразие. Их уничтожение — одна из главных экологических проблем. Изучи лексику на английском.<br><br><b>Причины и последствия:</b><br>&bull; <b>deforestation</b> — обезлесение, вырубка лесов<br>&bull; <b>logging</b> — лесозаготовка<br>&bull; <b>palm oil</b> — пальмовое масло (major driver of deforestation)<br>&bull; <b>slash-and-burn</b> — подсечно-огневое земледелие<br>&bull; <b>the Amazon</b> — Амазонка (largest tropical rainforest)<br>&bull; <b>carbon sink</b> — поглотитель углерода (forests absorb CO₂)<br>&bull; <b>habitat loss</b> — потеря среды обитания<br><br><b>Решения:</b><br>&bull; <b>reforestation</b> — лесовосстановление (planting new trees)<br>&bull; <b>afforestation</b> — лесоразведение (creating new forests)<br>&bull; <b>forest protection laws</b> — законы о защите лесов<br>&bull; <b>sustainable forestry</b> — устойчивое лесопользование<br>&bull; <b>FSC certified</b> — сертифицированная древесина (Forest Stewardship Council)<br><br><div class="rule">"The <b>Amazon rainforest</b> is a critical <b>carbon sink</b> that absorbs billions of tonnes of CO₂."</div><div class="rule">"<b>Palm oil</b> production drives massive <b>deforestation</b> in Indonesia and Malaysia."</div><div class="rule">"<b>Reforestation</b> projects are planting billions of trees to restore lost forest cover."</div>',
+        exercises:[
+          {q:'The Amazon rainforest acts as a carbon ___, absorbing billions of tonnes of CO₂.',blank:'sink',opts:['sink','source','filter','store']},
+          {q:'___ oil production is a leading cause of rainforest destruction in Southeast Asia.',blank:'Palm',opts:['Palm','Olive','Coconut','Sunflower']},
+          {q:'___ is the deliberate removal of trees from forests for agriculture or industry.',blank:'Deforestation',opts:['Deforestation','Reforestation','Conservation','Rewilding']},
+          {q:'___ means planting trees to restore forests that were previously cut down.',blank:'Reforestation',opts:['Reforestation','Deforestation','Logging','Farming']},
+          {q:'Sustainable ___ ensures trees are harvested without destroying the whole forest.',blank:'forestry',opts:['forestry','farming','fishing','mining']}
+        ]
+      },
+      {
+        id:18,title:'Urban Ecology',xp:15,
+        theory:'<b>Urban Ecology — городская экология</b><br><br>Города потребляют огромное количество ресурсов, но могут стать более экологичными. Узнай лексику для обсуждения зелёных городов.<br><br><b>Зелёные города:</b><br>&bull; <b>green city</b> — зелёный город<br>&bull; <b>urban garden / community garden</b> — городской / общественный сад<br>&bull; <b>green roofs</b> — озеленённые крыши (plants on rooftops)<br>&bull; <b>green walls / vertical gardens</b> — вертикальные сады<br>&bull; <b>city parks</b> — городские парки<br>&bull; <b>urban trees</b> — городские деревья<br><br><b>Устойчивый городской транспорт:</b><br>&bull; <b>public transport</b> — общественный транспорт<br>&bull; <b>cycling infrastructure</b> — велосипедная инфраструктура<br>&bull; <b>pedestrian zones</b> — пешеходные зоны<br>&bull; <b>car-free days</b> — дни без автомобилей<br>&bull; <b>electric buses / trams</b> — электрические автобусы / трамваи<br><br><b>Планирование:</b><br>&bull; <b>city planning</b> — городское планирование<br>&bull; <b>mixed-use development</b> — смешанная застройка<br>&bull; <b>walkable city</b> — город, удобный для пешеходов<br><br><div class="rule">"<b>Green roofs</b> reduce urban heat, absorb rainwater, and improve air quality."</div><div class="rule">"Investing in <b>cycling infrastructure</b> reduces car use and cuts <b>emissions</b>."</div><div class="rule">"A <b>walkable city</b> encourages residents to travel on foot, reducing their <b>carbon footprint</b>."</div>',
+        exercises:[
+          {q:'___ roofs covered with plants help cool buildings and reduce city heat.',blank:'Green',opts:['Green','Flat','Solar','Metal']},
+          {q:'___ gardens allow city residents to grow their own vegetables and fruits.',blank:'Community',opts:['Community','Indoor','Vertical','Rooftop']},
+          {q:'Good ___ infrastructure with safe bike lanes encourages people to cycle.',blank:'cycling',opts:['cycling','driving','parking','walking']},
+          {q:'___ zones in city centres ban cars, making areas safer and less polluted.',blank:'Pedestrian',opts:['Pedestrian','Parking','Industrial','Quiet']},
+          {q:'___ city planning ensures homes, shops, and offices are close together.',blank:'Mixed-use',opts:['Mixed-use','Single-use','Suburban','Industrial']}
+        ]
+      },
+      {
+        id:19,title:'Environmental Jobs & Careers',xp:15,
+        theory:'<b>Environmental Jobs & Careers — профессии в области экологии</b><br><br>Зелёная экономика создаёт новые рабочие места. Узнай профессиональную лексику для обсуждения карьеры в сфере экологии.<br><br><b>Профессии:</b><br>&bull; <b>environmental scientist</b> — эколог-учёный (studies environmental problems)<br>&bull; <b>sustainability manager</b> — менеджер по устойчивому развитию<br>&bull; <b>climate analyst</b> — климатический аналитик<br>&bull; <b>conservation officer</b> — инспектор по охране природы<br>&bull; <b>renewable energy engineer</b> — инженер возобновляемой энергетики<br>&bull; <b>urban planner</b> — городской планировщик<br>&bull; <b>environmental lawyer</b> — экологический юрист<br>&bull; <b>ecotourism guide</b> — гид экотуризма<br><br><b>Связанные термины:</b><br>&bull; <b>green jobs</b> — зелёные рабочие места<br>&bull; <b>just transition</b> — справедливый переход (from fossil fuels to clean energy)<br>&bull; <b>corporate social responsibility (CSR)</b> — корпоративная социальная ответственность<br>&bull; <b>ESG</b> (Environmental, Social, Governance) — ESG-критерии<br>&bull; <b>green economy</b> — зелёная экономика<br><br><div class="rule">"A <b>sustainability manager</b> helps companies reduce their <b>environmental impact</b>."</div><div class="rule">"<b>Green jobs</b> in solar and wind energy are among the fastest-growing sectors globally."</div><div class="rule">"<b>ESG</b> criteria help investors choose companies that take environment seriously."</div>',
+        exercises:[
+          {q:'A ___ manager helps organisations develop eco-friendly policies and practices.',blank:'sustainability',opts:['sustainability','marketing','finance','product']},
+          {q:'___ jobs are positions that contribute to protecting or restoring the environment.',blank:'Green',opts:['Green','Blue','Tech','Office']},
+          {q:'ESG stands for Environmental, Social, and ___.',blank:'Governance',opts:['Governance','Growth','Government','Geography']},
+          {q:'A ___ transition ensures workers from fossil fuel industries are supported as the economy shifts.',blank:'just',opts:['just','fast','slow','free']},
+          {q:'An environmental ___ represents clients in legal cases related to pollution and nature protection.',blank:'lawyer',opts:['lawyer','scientist','engineer','planner']}
+        ]
+      },
+      {
+        id:20,title:'Eco Challenge',xp:20,
+        theory:'<b>Environment & Eco English — финальный урок</b><br><br>Отлично! Ты прошёл курс Environment & Eco English. Давай проверим все ключевые темы:<br><br>&bull; <b>Climate basics</b>: global warming, greenhouse effect, CO₂, temperature rise<br>&bull; <b>Greenhouse gases</b>: methane, nitrous oxide, emissions, net zero<br>&bull; <b>Renewable energy</b>: solar, wind, hydro, geothermal, tidal<br>&bull; <b>Recycling</b>: reduce, reuse, recycle, landfill, composting<br>&bull; <b>Sustainable lifestyle</b>: zero waste, carbon footprint, conscious consumption<br>&bull; <b>Eco-activism</b>: petition, campaign, NGO, Fridays for Future<br>&bull; <b>Carbon footprint</b>: offset, carbon credits, carbon neutral<br>&bull; <b>Biodiversity</b>: species, habitat, endangered, conservation, extinction<br>&bull; <b>Pollution types</b>: air, water, soil, noise, microplastics, smog<br>&bull; <b>Green tech</b>: EVs, smart grids, green hydrogen, carbon capture<br>&bull; <b>Sustainable fashion</b>: fast fashion, second-hand, ethical brands<br>&bull; <b>Food & environment</b>: food miles, organic farming, food waste<br>&bull; <b>Eco travel</b>: slow travel, eco-lodge, responsible tourism<br>&bull; <b>Deforestation</b>: logging, carbon sink, reforestation, palm oil<br>&bull; <b>Urban ecology</b>: green roofs, cycling infrastructure, walkable cities<br><br><div class="rule">"Every small action — from carrying a <b>reusable bag</b> to eating <b>plant-based</b> — adds up."</div><div class="rule">"<b>International cooperation</b> through agreements like the <b>Paris Agreement</b> is essential."</div>',
+        exercises:[
+          {q:'Forests act as carbon ___, absorbing CO₂ and helping to slow climate change.',blank:'sinks',opts:['sinks','sources','banks','stores']},
+          {q:'The ___ Agreement requires countries to limit global warming to 1.5°C.',blank:'Paris',opts:['Paris','Kyoto','Geneva','London']},
+          {q:'___ energy from the sun, wind, and water doesn\'t run out and produces no emissions.',blank:'Renewable',opts:['Renewable','Fossil','Nuclear','Coal']},
+          {q:'Planting trees to restore lost forests is called ___.',blank:'reforestation',opts:['reforestation','deforestation','logging','rewilding']},
+          {q:'Buying clothes second-hand and avoiding ___ fashion reduces textile waste.',blank:'fast',opts:['fast','slow','high','eco']}
+        ]
+      }
+    ]
   }
 };
 // ── COURSE UI ─────────────────────────────────────────────
@@ -14178,7 +14414,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -14241,7 +14477,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -15325,6 +15561,7 @@ const TOPIC_CHIPS = {
   'Sport':          ["I want to talk about gym vocabulary", "What do you say to a personal trainer?", "Help me describe an injury in English", "Let's talk about nutrition"],
   'Shopping':       ["I\'d like to try this on", "Do you have this in a size medium?", "Can I return this if it doesn\'t fit?", "Is there a sale on at the moment?"],
   'Real Estate':    ["I\'m looking to rent a flat", "What\'s included in the rent?", "Can we negotiate the price?", "What are the neighbours like?"],
+  'Eco':         ["What can I do to reduce my carbon footprint?", "Let\'s talk about renewable energy", "What do you think about fast fashion?", "How serious is climate change?"],
 };
 
 function showChips(topicKey) {
