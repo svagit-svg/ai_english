@@ -135,6 +135,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* NAV */
 /* ── Daily Challenge ── */
 .continue-card{background:linear-gradient(135deg,rgba(79,110,247,0.12),rgba(124,58,237,0.06));border:1.5px solid rgba(79,110,247,0.3);border-radius:18px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:opacity 0.2s;display:none;}
+.order-slot{min-height:48px;border:1.5px dashed var(--border);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center;}
+.order-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.order-chip{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;color:var(--text);font-weight:600;transition:opacity 0.15s;}
+.order-chip.used{opacity:0.25;pointer-events:none;}
+.order-chip.placed{background:rgba(79,110,247,0.15);border-color:rgba(79,110,247,0.4);}
+.listen-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:50%;width:72px;height:72px;font-size:30px;cursor:pointer;display:block;margin:0 auto 18px;color:#fff;box-shadow:0 4px 16px rgba(79,110,247,0.4);}
+.listen-btn:active{transform:scale(0.94);}
 .continue-card:active{opacity:0.8;}
 .continue-progress-bar{background:rgba(79,110,247,0.15);border-radius:4px;height:5px;margin:10px 0 12px;}
 .continue-progress-fill{background:linear-gradient(90deg,#4f6ef7,#7c3aed);height:5px;border-radius:4px;transition:width 0.4s;}
@@ -15208,9 +15215,51 @@ function closeLesson(){
   openCourse(currentCourseId);
 }
 
+// ── EXERCISE TYPES (#32) ─────────────────────────────────
+let currentExList=[];
+let orderAssembled=[];
+
+function buildExerciseList(lesson){
+  const list=lesson.exercises.slice();
+  // candidates: full sentence 4-10 words, no HTML
+  const cands=lesson.exercises.filter(e=>{
+    if(!e.q.includes('___'))return false;
+    const full=e.q.replace('___',e.blank);
+    const w=full.trim().split(/\s+/);
+    return w.length>=4&&w.length<=10&&!full.includes('<')&&!full.includes('«');
+  });
+  // 1. «Собери предложение» из случайного упражнения
+  if(cands.length){
+    const src=cands[Math.floor(Math.random()*cands.length)];
+    const sentence=src.q.replace('___',src.blank).trim().replace(/\s+/g,' ');
+    list.push({type:'order',sentence});
+  }
+  // 2. «Аудирование» — TTS произносит слово из другого упражнения
+  if('speechSynthesis' in window){
+    const pool=lesson.exercises.filter(e=>e.blank&&e.blank.length>1&&/^[a-zA-Z' -]+$/.test(e.blank));
+    if(pool.length){
+      const src=pool[Math.floor(Math.random()*pool.length)];
+      list.push({type:'listen',q:'🎧 Послушай и выбери слово, которое ты услышал:',blank:src.blank,opts:src.opts});
+    }
+  }
+  return list;
+}
+
+function speakEx(){
+  const ex=currentExList[currentExIdx];
+  if(!ex||!('speechSynthesis' in window))return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(ex.blank);
+    u.lang='en-US';u.rate=0.85;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
 function startExercises(){
   currentExIdx=0;exCorrect=0;exMistakes=[];
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
+  currentExList=buildExerciseList(lesson);
   document.getElementById('lesson-theory').style.display='none';
   document.getElementById('lesson-exercises').style.display='block';
   document.getElementById('ex-title').textContent=lesson.title;
@@ -15219,11 +15268,12 @@ function startExercises(){
 }
 
 function renderExercise(){
-  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
-  const ex=lesson.exercises[currentExIdx];
-  const total=lesson.exercises.length;
+  const ex=currentExList[currentExIdx];
+  const total=currentExList.length;
   document.getElementById('ex-progress').textContent='Упражнение '+(currentExIdx+1)+' из '+total;
   document.getElementById('ex-progress-bar').style.width=((currentExIdx/total)*100)+'%';
+  if(ex.type==='order'){renderOrderExercise(ex);return;}
+  if(ex.type==='listen'){renderListenExercise(ex);return;}
   document.getElementById('ex-content').innerHTML=`
     <div class="ex-card">
       <div class="ex-q">${ex.q.replace('___','<span>___</span>')}</div>
@@ -15234,12 +15284,87 @@ function renderExercise(){
     </div>`;
 }
 
+function renderOrderExercise(ex){
+  orderAssembled=[];
+  const words=ex.sentence.split(' ');
+  // shuffled indices
+  const shuffled=words.map((w,i)=>i).sort(()=>Math.random()-0.5);
+  document.getElementById('ex-content').innerHTML=`
+    <div class="ex-card">
+      <div class="ex-q">🧩 Собери предложение из слов:</div>
+      <div class="order-slot" id="order-slot"></div>
+      <div class="order-bank" id="order-bank">
+        ${shuffled.map(i=>`<button class="order-chip" id="order-src-${i}" onclick="orderPick(${i})">${words[i]}</button>`).join('')}
+      </div>
+      <button id="order-check" onclick="checkOrderAnswer()" disabled style="width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;opacity:0.4">Проверить</button>
+      <div class="ex-feedback" id="ex-fb"></div>
+    </div>`;
+}
+
+function orderPick(i){
+  const ex=currentExList[currentExIdx];
+  const words=ex.sentence.split(' ');
+  orderAssembled.push(i);
+  document.getElementById('order-src-'+i).classList.add('used');
+  renderOrderSlot(words);
+}
+
+function orderRemove(pos){
+  const ex=currentExList[currentExIdx];
+  const words=ex.sentence.split(' ');
+  const i=orderAssembled[pos];
+  orderAssembled.splice(pos,1);
+  document.getElementById('order-src-'+i).classList.remove('used');
+  renderOrderSlot(words);
+}
+
+function renderOrderSlot(words){
+  const slot=document.getElementById('order-slot');
+  slot.innerHTML=orderAssembled.map((i,pos)=>`<button class="order-chip placed" onclick="orderRemove(${pos})">${words[i]}</button>`).join('')||'<span style="font-size:12px;color:var(--muted);padding:4px 8px">Нажимай на слова ниже</span>';
+  const btn=document.getElementById('order-check');
+  const ready=orderAssembled.length===words.length;
+  btn.disabled=!ready;
+  btn.style.opacity=ready?'1':'0.4';
+}
+
+function checkOrderAnswer(){
+  const ex=currentExList[currentExIdx];
+  const words=ex.sentence.split(' ');
+  const answer=orderAssembled.map(i=>words[i]).join(' ');
+  const fb=document.getElementById('ex-fb');
+  document.querySelectorAll('.order-chip,#order-check').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.order-chip').forEach(b=>b.style.pointerEvents='none');
+  if(answer===ex.sentence){
+    fb.className='ex-feedback show ok';
+    fb.textContent='✓ Правильно!';
+    exCorrect++;
+  } else {
+    fb.className='ex-feedback show err';
+    fb.textContent='✗ Правильный порядок: '+ex.sentence;
+    exMistakes.push({q:'Собери: '+ex.sentence,blank:ex.sentence,selected:answer,correct:ex.sentence});
+  }
+  setTimeout(nextExercise,1600);
+}
+
+function renderListenExercise(ex){
+  document.getElementById('ex-content').innerHTML=`
+    <div class="ex-card">
+      <div class="ex-q">${ex.q}</div>
+      <button class="listen-btn" onclick="speakEx()">🔊</button>
+      <div class="choice-grid">
+        ${ex.opts.map((o,i)=>`<button class="choice-btn" onclick="checkAnswer(this,${i})">${o}</button>`).join('')}
+      </div>
+      <div class="ex-feedback" id="ex-fb"></div>
+    </div>`;
+  setTimeout(speakEx,400);
+}
+
 function checkAnswer(btn,optIdx){
   const btns=document.querySelectorAll('.choice-btn');
   btns.forEach(b=>b.disabled=true);
   const fb=document.getElementById('ex-fb');
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
-  const ex=lesson.exercises[currentExIdx];
+  const ex=currentExList[currentExIdx];
   const selected=ex.opts[optIdx],correct=ex.blank;
   if(selected===correct){
     btn.classList.add('correct');
@@ -15252,7 +15377,7 @@ function checkAnswer(btn,optIdx){
     fb.className='ex-feedback show err';
     fb.textContent='✗ Неверно. Правильный ответ: '+correct;
     exMistakes.push({q:ex.q,blank:ex.blank,selected,correct});
-    saveMistake(ex.q,ex.blank,ex.opts,COURSES[currentCourseId].title,lesson.title);
+    if(!ex.type)saveMistake(ex.q,ex.blank,ex.opts,COURSES[currentCourseId].title,lesson.title);
   }
   setTimeout(nextExercise,1200);
 }
@@ -15285,9 +15410,8 @@ function renderMistakesWidget(){
 }
 
 function nextExercise(){
-  const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
   currentExIdx++;
-  if(currentExIdx>=lesson.exercises.length){
+  if(currentExIdx>=currentExList.length){
     showResult();
   } else {
     renderExercise();
@@ -15352,7 +15476,7 @@ function launchConfetti(){
 
 function showResult(){
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
-  const total=lesson.exercises.length;
+  const total=currentExList.length||lesson.exercises.length;
   const xpEarned=Math.round(lesson.xp*(exCorrect/total));
   // Save progress
   saveLessonDone(currentCourseId,lesson.id,exCorrect,xpEarned);
