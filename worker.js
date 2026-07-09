@@ -32,6 +32,19 @@ const REMINDER_MSGS = [
   '⭐ Ты делаешь отличные успехи! Не останавливайся — пройди урок сегодня.',
 ];
 
+// ── Premium plans (YooKassa direct) ──────────────────────
+// Суммы в рублях. Должны совпадать с ценами в index.html.
+const PLANS = {
+  week:  { amount: '99.00',   days: 7,   desc: 'SmartAI English Premium — Неделя' },
+  month: { amount: '299.00',  days: 30,  desc: 'SmartAI English Premium — Месяц' },
+  year:  { amount: '1999.00', days: 365, desc: 'SmartAI English Premium — Год' },
+};
+
+// Basic-auth заголовок для YooKassa API из секретов Worker
+function yooAuth(env) {
+  return 'Basic ' + btoa(`${env.YOOKASSA_SHOP_ID}:${env.YOOKASSA_SECRET_KEY}`);
+}
+
 export default {
   // ── HTTP handler ─────────────────────────────────────────
   async fetch(request, env) {
@@ -69,6 +82,60 @@ export default {
         if (!env.REMINDERS) return json({ error: 'KV not configured' }, 500);
         await env.REMINDERS.delete(`user:${chatId}`);
         return json({ ok: true });
+      } catch (e) {
+        return json({ error: e.message }, 500);
+      }
+    }
+
+    // ── /pay/create ───────────────────────────────────────
+    // Создаёт платёж в YooKassa, возвращает { paymentId, url }
+    if (path === '/pay/create' && request.method === 'POST') {
+      try {
+        if (!env.YOOKASSA_SHOP_ID || !env.YOOKASSA_SECRET_KEY) {
+          return json({ error: 'payments not configured' }, 503);
+        }
+        const { plan } = await request.json();
+        const p = PLANS[plan];
+        if (!p) return json({ error: 'bad plan' }, 400);
+        const r = await fetch('https://api.yookassa.ru/v3/payments', {
+          method: 'POST',
+          headers: {
+            'Authorization': yooAuth(env),
+            'Idempotence-Key': crypto.randomUUID(),
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: { value: p.amount, currency: 'RUB' },
+            capture: true,
+            confirmation: { type: 'redirect', return_url: env.PAY_RETURN_URL || 'https://t.me' },
+            description: p.desc,
+            metadata: { plan },
+          }),
+        });
+        const data = await r.json();
+        if (data.confirmation && data.confirmation.confirmation_url) {
+          return json({ paymentId: data.id, url: data.confirmation.confirmation_url });
+        }
+        return json({ error: 'yookassa error', detail: data }, 502);
+      } catch (e) {
+        return json({ error: e.message }, 500);
+      }
+    }
+
+    // ── /pay/status ───────────────────────────────────────
+    // Проверяет статус платежа напрямую в YooKassa: { status, paid }
+    if (path === '/pay/status' && request.method === 'POST') {
+      try {
+        if (!env.YOOKASSA_SHOP_ID || !env.YOOKASSA_SECRET_KEY) {
+          return json({ error: 'payments not configured' }, 503);
+        }
+        const { paymentId } = await request.json();
+        if (!paymentId) return json({ error: 'missing paymentId' }, 400);
+        const r = await fetch(`https://api.yookassa.ru/v3/payments/${paymentId}`, {
+          headers: { 'Authorization': yooAuth(env) },
+        });
+        const data = await r.json();
+        return json({ status: data.status || 'unknown', paid: data.paid === true, plan: data.metadata && data.metadata.plan });
       } catch (e) {
         return json({ error: e.message }, 500);
       }

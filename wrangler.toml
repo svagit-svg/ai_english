@@ -5,6 +5,18 @@ compatibility_date = "2024-01-01"
 # Secrets (set via: npx wrangler secret put MISTRAL_KEY)
 # - MISTRAL_KEY : your Mistral API key
 
+# ── Оплата картой (YooKassa direct, #27b) ────────────────
+# Чтобы включить кнопки «Купить» на экране Premium:
+# 1. Зарегистрируй магазин в ЮKassa (yookassa.ru), возьми shopId и секретный ключ
+# 2. npx wrangler secret put YOOKASSA_SHOP_ID
+# 3. npx wrangler secret put YOOKASSA_SECRET_KEY
+# 4. (опционально) npx wrangler secret put PAY_RETURN_URL — ссылка возврата после оплаты
+#    (по умолчанию https://t.me; лучше ссылку на бота, напр. https://t.me/your_bot/app)
+# 5. npx wrangler deploy
+# Пока секреты не заданы, /pay/create отдаёт 503 и приложение показывает
+# «Оплата картой скоро будет доступна» — без ошибок. Цены в worker.js (PLANS)
+# должны совпадать с ценами в index.html.
+
 # Notifications (add later when KV namespace is ready):
 # 1. npx wrangler kv:namespace create REMINDERS
 # 2. Uncomment and fill in id below

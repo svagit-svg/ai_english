@@ -1199,7 +1199,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
             <li><i class="fa-solid fa-check"></i>Базовые курсы</li>
           </ul>
         </div>
-        <button class="plan-btn" style="background:var(--rose);color:white;flex-shrink:0">Купить</button>
+        <button class="plan-btn" style="background:var(--rose);color:white;flex-shrink:0" onclick="buyPlan('week',this)">Купить</button>
       </div>
     </div>
     <div class="plan-detail popular-plan active" id="plan-month">
@@ -1217,7 +1217,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           </ul>
           <p style="font-size:10px;color:var(--muted);margin-top:4px">Экономия 57%</p>
         </div>
-        <button class="plan-btn" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;flex-shrink:0;margin-top:2px">Купить</button>
+        <button class="plan-btn" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;flex-shrink:0;margin-top:2px" onclick="buyPlan('month',this)">Купить</button>
       </div>
     </div>
     <div class="plan-detail" id="plan-year">
@@ -1232,7 +1232,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           </ul>
           <p style="font-size:10px;color:var(--muted);margin-top:4px">167 ₽/мес • Экономия 79%</p>
         </div>
-        <button class="plan-btn" style="background:linear-gradient(135deg,#b45309,var(--amber));color:white;flex-shrink:0;margin-top:2px">Купить</button>
+        <button class="plan-btn" style="background:linear-gradient(135deg,#b45309,var(--amber));color:white;flex-shrink:0;margin-top:2px" onclick="buyPlan('year',this)">Купить</button>
       </div>
     </div>
     <div class="perks-grid">
@@ -1275,7 +1275,7 @@ const tgUser = tg?.initDataUnsafe?.user;
 const CS = tg?.cloudStorage || null;
 
 // Keys we sync to cloud
-const CLOUD_KEYS = ['smart_pro','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach'];
+const CLOUD_KEYS = ['smart_pro','smart_pro_until','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach'];
 const CLOUD_STATS_KEY = 'ss_core';
 const CLOUD_ACTIVITY_KEY = 'ss_activity';
 const CLOUD_HISTORY_KEY = 'ss_history';
@@ -1448,7 +1448,17 @@ function getTrialInfo(){
     return {active:daysLeft>0,daysLeft,expired:daysLeft===0,startDate:new Date(ts)};
   }catch{return {active:false,daysLeft:0,expired:false};}
 }
-function isPro(){try{if(localStorage.getItem('smart_pro')==='1')return true;return getTrialInfo().active;}catch{return false;}}
+function isPro(){try{
+  if(localStorage.getItem('smart_pro')==='1'){
+    const until=parseInt(localStorage.getItem('smart_pro_until')||'0');
+    if(until && Date.now()>until){ // подписка истекла
+      localStorage.removeItem('smart_pro');localStorage.removeItem('smart_pro_until');queueCloudSave();
+      return getTrialInfo().active;
+    }
+    return true;
+  }
+  return getTrialInfo().active;
+}catch{return false;}}
 function showPaywall(){document.getElementById('paywall').classList.remove('hidden');}
 function closePaywall(){document.getElementById('paywall').classList.add('hidden');}
 function showCoursePaywall(){
@@ -16190,6 +16200,103 @@ function selectPlan(id,btn){
   document.querySelectorAll('.plan-detail').forEach(d=>d.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('plan-'+id).classList.add('active');
+}
+
+// ── PAYMENTS: YooKassa direct (#27b) ─────────────────────
+const PLAN_DAYS={week:7,month:30,year:365};
+let payPollTimer=null,payCheckBtnShown=false;
+
+async function buyPlan(plan,btn){
+  const tg=window.Telegram?.WebApp;
+  const orig=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='Создаём платёж…';}
+  try{
+    const r=await fetch(WORKER_URL+'/pay/create',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({plan})
+    });
+    const data=await r.json();
+    if(r.status===503||data.error==='payments not configured'){
+      showPayMsg('Оплата картой скоро будет доступна. Напиши в поддержку, чтобы оформить Premium.');
+      if(btn){btn.disabled=false;btn.textContent=orig;}
+      return;
+    }
+    if(!data.url||!data.paymentId){
+      showPayMsg('Не удалось создать платёж. Попробуй позже.');
+      if(btn){btn.disabled=false;btn.textContent=orig;}
+      return;
+    }
+    // открываем страницу оплаты YooKassa
+    if(tg?.openLink){tg.openLink(data.url);}else{window.open(data.url,'_blank');}
+    if(btn){btn.disabled=false;btn.textContent=orig;}
+    startPayPolling(data.paymentId,plan);
+  }catch(e){
+    showPayMsg('Ошибка сети. Проверь соединение и попробуй снова.');
+    if(btn){btn.disabled=false;btn.textContent=orig;}
+  }
+}
+
+function startPayPolling(paymentId,plan){
+  clearInterval(payPollTimer);
+  showPayBanner(paymentId,plan);
+  let attempts=0;
+  payPollTimer=setInterval(async()=>{
+    attempts++;
+    if(attempts>60){clearInterval(payPollTimer);return;} // ~5 мин
+    const paid=await checkPayOnce(paymentId);
+    if(paid){clearInterval(payPollTimer);activatePro(plan);}
+  },5000);
+}
+
+async function checkPayOnce(paymentId){
+  try{
+    const r=await fetch(WORKER_URL+'/pay/status',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({paymentId})
+    });
+    const d=await r.json();
+    return d.status==='succeeded'||d.paid===true;
+  }catch(e){return false;}
+}
+
+function showPayBanner(paymentId,plan){
+  let b=document.getElementById('pay-banner');
+  if(!b){
+    b=document.createElement('div');
+    b.id='pay-banner';
+    b.style.cssText='position:fixed;left:12px;right:12px;bottom:74px;z-index:400;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:13px 15px;box-shadow:0 6px 24px rgba(0,0,0,0.4)';
+    document.body.appendChild(b);
+  }
+  b.innerHTML=`
+    <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">💳 Ожидаем оплату…</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:9px">После оплаты на странице YooKassa Premium подключится автоматически.</div>
+    <button onclick="manualPayCheck('${paymentId}','${plan}')" style="width:100%;padding:9px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-family:var(--font-head);font-size:12px;font-weight:700;cursor:pointer">Я оплатил — проверить</button>`;
+  b.style.display='block';
+}
+
+async function manualPayCheck(paymentId,plan){
+  const paid=await checkPayOnce(paymentId);
+  if(paid){clearInterval(payPollTimer);activatePro(plan);}
+  else{showPayMsg('Платёж ещё не поступил. Если оплатил — подожди пару секунд и нажми снова.');}
+}
+
+function activatePro(plan){
+  const days=PLAN_DAYS[plan]||30;
+  localStorage.setItem('smart_pro','1');
+  localStorage.setItem('smart_pro_until',String(Date.now()+days*864e5));
+  queueCloudSave();
+  const b=document.getElementById('pay-banner');if(b)b.style.display='none';
+  try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');}catch(e){}
+  launchConfetti();
+  document.querySelectorAll('.nav-btn').forEach(()=>{});
+  renderTrialBanner();
+  const nav=document.getElementById('nav-premium');if(nav)nav.style.display='none';
+  showPayMsg('🎉 Premium активирован! Все курсы и безлимитные AI-диалоги открыты.');
+}
+
+function showPayMsg(msg){
+  const tg=window.Telegram?.WebApp;
+  if(tg?.showAlert){tg.showAlert(msg);}else{alert(msg);}
 }
 function showComingSoon(name){
   const tg=window.Telegram?.WebApp;
