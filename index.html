@@ -515,6 +515,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="continue-progress-bar" style="background:rgba(245,158,11,0.15)"><div class="continue-progress-fill" id="weak-fill" style="width:0%;background:linear-gradient(90deg,var(--amber),#ef4444)"></div></div>
     </div>
 
+    <!-- Mistakes Review Card -->
+    <div class="continue-card" id="mistakes-card" onclick="startMistakesReview()" style="display:none;background:linear-gradient(135deg,rgba(239,68,68,0.10),rgba(236,72,153,0.05));border-color:rgba(239,68,68,0.3);">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:24px">🎯</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--text)">Работа над ошибками</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px" id="mistakes-sub">0 вопросов на повторение</div>
+          </div>
+        </div>
+        <div class="continue-btn-inline" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.35);color:#f87171">Повторить →</div>
+      </div>
+    </div>
+
     <!-- Daily Challenge Card -->
     <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -543,10 +557,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
         <button onclick="closeDC()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted);line-height:1">✕</button>
         <div style="flex:1">
-          <div style="font-size:15px;font-weight:800;color:var(--text)">🔥 Ежедневное задание</div>
+          <div style="font-size:15px;font-weight:800;color:var(--text)" id="dc-header-title">🔥 Ежедневное задание</div>
           <div style="font-size:11px;color:var(--muted)" id="dc-progress-text">Вопрос 1 из 5</div>
         </div>
-        <div style="font-size:13px;font-weight:700;color:var(--amber)">+50 XP</div>
+        <div style="font-size:13px;font-weight:700;color:var(--amber)" id="dc-header-xp">+50 XP</div>
       </div>
       <!-- Progress bar -->
       <div style="height:5px;background:var(--surface2);border-radius:5px;margin-bottom:22px">
@@ -561,7 +575,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div style="font-size:13px;color:var(--muted);margin-bottom:28px" id="dc-r-sub">Отличная работа!</div>
         <div style="background:rgba(245,158,11,0.12);border:1.5px solid rgba(245,158,11,0.3);border-radius:20px;padding:20px 32px;display:inline-block;margin-bottom:28px">
           <div style="font-size:36px;font-weight:800;color:var(--amber)" id="dc-r-xp">+50 XP</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">Ежедневный бонус</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px" id="dc-r-xp-label">Ежедневный бонус</div>
         </div>
         <div id="dc-r-streak" style="margin-bottom:28px;display:none">
           <div style="font-size:13px;color:var(--amber);font-weight:700" id="dc-r-streak-text"></div>
@@ -15238,8 +15252,36 @@ function checkAnswer(btn,optIdx){
     fb.className='ex-feedback show err';
     fb.textContent='✗ Неверно. Правильный ответ: '+correct;
     exMistakes.push({q:ex.q,blank:ex.blank,selected,correct});
+    saveMistake(ex.q,ex.blank,ex.opts,COURSES[currentCourseId].title,lesson.title);
   }
   setTimeout(nextExercise,1200);
+}
+
+// ── MISTAKES STORAGE (#33) ───────────────────────────────
+const MISTAKES_KEY='smart_mistakes';
+function getMistakes(){
+  try{return JSON.parse(localStorage.getItem(MISTAKES_KEY)||'[]');}catch(e){return [];}
+}
+function saveMistake(q,blank,opts,course,lesson){
+  if(!q||!blank||!Array.isArray(opts))return;
+  let list=getMistakes().filter(m=>m.q!==q); // dedupe by question
+  list.unshift({q,blank,opts,course,lesson,ts:Date.now()});
+  if(list.length>50)list=list.slice(0,50);
+  localStorage.setItem(MISTAKES_KEY,JSON.stringify(list));
+  renderMistakesWidget();
+}
+function removeMistake(q){
+  const list=getMistakes().filter(m=>m.q!==q);
+  localStorage.setItem(MISTAKES_KEY,JSON.stringify(list));
+}
+function renderMistakesWidget(){
+  const card=document.getElementById('mistakes-card');
+  if(!card)return;
+  const n=getMistakes().length;
+  if(n<3){card.style.display='none';return;}
+  const word=n===1?'вопрос':n<5?'вопроса':'вопросов';
+  document.getElementById('mistakes-sub').textContent=n+' '+word+' на повторение';
+  card.style.display='block';
 }
 
 function nextExercise(){
@@ -15707,10 +15749,34 @@ function renderDCCard() {
   }
 }
 
+let mistakesMode = false;
+
 function startDailyChallenge() {
   if (isDCDone()) return;
   dcQuestions = getDCQuestions();
   if (!dcQuestions.length) return;
+  mistakesMode = false;
+  document.getElementById('dc-header-title').textContent = '🔥 Ежедневное задание';
+  document.getElementById('dc-header-xp').textContent = '+50 XP';
+  document.getElementById('dc-r-xp-label').textContent = 'Ежедневный бонус';
+  dcIdx = 0; dcCorrect = 0;
+  document.getElementById('dc-overlay').style.display = 'block';
+  document.getElementById('dc-result-area').style.display = 'none';
+  document.getElementById('dc-ex-area').style.display = 'block';
+  document.getElementById('main-scroll').scrollTop = 0;
+  renderDCExercise();
+}
+
+function startMistakesReview() {
+  const all = getMistakes();
+  if (all.length < 1) return;
+  // up to 15 most recent, shuffled
+  const pool = all.slice(0, 15).sort(() => Math.random() - 0.5);
+  dcQuestions = pool.map(m => ({q: m.q, blank: m.blank, opts: m.opts, courseTitle: m.course || 'Повторение', lessonTitle: m.lesson || ''}));
+  mistakesMode = true;
+  document.getElementById('dc-header-title').textContent = '🎯 Работа над ошибками';
+  document.getElementById('dc-header-xp').textContent = '+2 XP за ответ';
+  document.getElementById('dc-r-xp-label').textContent = 'За повторение';
   dcIdx = 0; dcCorrect = 0;
   document.getElementById('dc-overlay').style.display = 'block';
   document.getElementById('dc-result-area').style.display = 'none';
@@ -15725,8 +15791,9 @@ function closeDC() {
 
 function renderDCExercise() {
   const ex = dcQuestions[dcIdx];
-  const pct = Math.round((dcIdx / DC_TOTAL) * 100);
-  document.getElementById('dc-progress-text').textContent = 'Вопрос ' + (dcIdx + 1) + ' из ' + DC_TOTAL;
+  const total = dcQuestions.length;
+  const pct = Math.round((dcIdx / total) * 100);
+  document.getElementById('dc-progress-text').textContent = 'Вопрос ' + (dcIdx + 1) + ' из ' + total;
   document.getElementById('dc-progress-bar').style.width = pct + '%';
   const qText = ex.q.replace('___', '<b style="color:var(--amber)">___</b>');
   document.getElementById('dc-ex-area').innerHTML = `
@@ -15750,18 +15817,20 @@ function checkDCAnswer(btn, optIdx) {
     fb.style.color = 'var(--green)';
     fb.textContent = '✓ Правильно!';
     dcCorrect++;
+    if (mistakesMode) removeMistake(ex.q); // освоено — убираем из повторения
   } else {
     btn.classList.add('wrong');
     document.querySelectorAll('.dc-choice-btn').forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
     fb.style.color = '#ef4444';
     fb.textContent = '✗ Правильный ответ: ' + correct;
+    if (!mistakesMode) saveMistake(ex.q, ex.blank, ex.opts, ex.courseTitle, ex.lessonTitle);
   }
   setTimeout(nextDCQuestion, 1100);
 }
 
 function nextDCQuestion() {
   dcIdx++;
-  if (dcIdx >= DC_TOTAL) {
+  if (dcIdx >= dcQuestions.length) {
     completeDC();
   } else {
     renderDCExercise();
@@ -15770,6 +15839,7 @@ function nextDCQuestion() {
 }
 
 function completeDC() {
+  if (mistakesMode) { completeMistakesReview(); return; }
   // Mark done
   localStorage.setItem('smart_dc_' + dcDateKey(), 'done');
   // Update streak
@@ -15803,6 +15873,34 @@ function completeDC() {
   // Refresh card
   renderDCCard();
 }
+
+function completeMistakesReview() {
+  const total = dcQuestions.length;
+  const xpEarned = dcCorrect * 2;
+  if (xpEarned > 0) {
+    const s = getStats();
+    s.xp += xpEarned;
+    saveStats(s);
+    trackDaily(xpEarned, 0);
+    document.getElementById('xp-count').textContent = s.xp;
+    showXpFloat(xpEarned);
+  }
+  const pct = Math.round(dcCorrect / total * 100);
+  if (pct >= 80) {
+    launchConfetti();
+    try { window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success'); } catch(e) {}
+  }
+  document.getElementById('dc-ex-area').style.display = 'none';
+  document.getElementById('dc-result-area').style.display = 'block';
+  document.getElementById('dc-progress-bar').style.width = '100%';
+  document.getElementById('dc-r-emoji').textContent = pct >= 80 ? '🎉' : pct >= 50 ? '💪' : '📚';
+  document.getElementById('dc-r-title').textContent = pct >= 80 ? 'Отличная работа!' : 'Повторение завершено!';
+  const left = getMistakes().length;
+  document.getElementById('dc-r-sub').textContent = dcCorrect + ' из ' + total + ' правильно' + (left > 0 ? ' · осталось ' + left + ' на повторение' : ' · все ошибки отработаны! 🎓');
+  document.getElementById('dc-r-xp').textContent = '+' + xpEarned + ' XP';
+  document.getElementById('dc-r-streak').style.display = 'none';
+  renderMistakesWidget();
+}
 // ── END DAILY CHALLENGE ──────────────────────────────────
 
 
@@ -15818,6 +15916,7 @@ setTimeout(renderAvatar, 500);
 setTimeout(renderGreeting, 300);
 renderContinueWidget();
 renderWeakSpotWidget();
+renderMistakesWidget();
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
