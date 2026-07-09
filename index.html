@@ -1378,12 +1378,34 @@ function loadFromCloud(callback){
         localStorage.setItem('smart_stats', JSON.stringify(merged));
       }
 
-      // Merge simple keys (including smart_ach): cloud wins if local is missing
+      // Merge simple keys (including smart_ach): cloud wins if local is missing.
+      // Pro-флаги (smart_pro/smart_pro_until) обрабатываются отдельно ниже.
       CLOUD_KEYS.forEach(k=>{
+        if(k==='smart_pro'||k==='smart_pro_until') return;
         if(vals[k] !== undefined && vals[k] !== null && !localStorage.getItem(k)){
           localStorage.setItem(k, vals[k]);
         }
       });
+
+      // ── Pro-подписка: глобальная привилегия, двунаправленный синк ──
+      // «Активнее» (более поздний срок или бессрочная) побеждает на любом устройстве.
+      (function(){
+        const now=Date.now();
+        const lUntil=parseInt(localStorage.getItem('smart_pro_until')||'0');
+        const cUntil=parseInt(vals['smart_pro_until']||'0');
+        const lActive=localStorage.getItem('smart_pro')==='1' && (!lUntil || lUntil>now);
+        const cActive=vals['smart_pro']==='1' && (!cUntil || cUntil>now);
+        if(cActive && (!lActive || cUntil>lUntil)){
+          // облако свежее — применяем локально
+          localStorage.setItem('smart_pro','1');
+          if(cUntil) localStorage.setItem('smart_pro_until',String(cUntil));
+          else localStorage.removeItem('smart_pro_until');
+        } else if(lActive && (!cActive || lUntil>cUntil) && CS){
+          // это устройство знает про активную подписку — заливаем в облако
+          CS.setItem('smart_pro','1',()=>{});
+          if(lUntil) CS.setItem('smart_pro_until',String(lUntil),()=>{});
+        }
+      })();
 
       // Restore course progress — cloud wins per-lesson if local is missing
       if(vals[CLOUD_COURSES_KEY]){
@@ -16282,8 +16304,11 @@ async function manualPayCheck(paymentId,plan){
 
 function activatePro(plan){
   const days=PLAN_DAYS[plan]||30;
+  const until=Date.now()+days*864e5;
   localStorage.setItem('smart_pro','1');
-  localStorage.setItem('smart_pro_until',String(Date.now()+days*864e5));
+  localStorage.setItem('smart_pro_until',String(until));
+  // немедленная надёжная запись подписки в облако (не ждём debounce)
+  if(CS){CS.setItem('smart_pro','1',()=>{});CS.setItem('smart_pro_until',String(until),()=>{});}
   queueCloudSave();
   const b=document.getElementById('pay-banner');if(b)b.style.display='none';
   try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');}catch(e){}
