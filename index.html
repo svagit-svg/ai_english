@@ -43,6 +43,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .xp-badge{background:var(--surface2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;font-family:var(--font-head);display:flex;align-items:center;gap:5px;color:var(--amber);}
+.pro-badge{background:linear-gradient(135deg,rgba(245,158,11,0.22),rgba(124,58,237,0.16));border:1px solid rgba(245,158,11,0.5);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;font-family:var(--font-head);display:flex;align-items:center;gap:4px;color:var(--amber);cursor:pointer;}
 .main{flex:1;overflow-y:auto;overflow-x:hidden;padding:12px 14px 80px;scroll-behavior:smooth;}
 .main::-webkit-scrollbar{display:none;}
 .screen{display:none;animation:fadeUp 0.25s ease;}
@@ -471,6 +472,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:6px">
+    <div class="pro-badge" id="pro-badge" style="display:none" onclick="switchTab('premium')">👑<span>Premium</span></div>
     <div class="xp-badge" id="streak-badge" style="display:none;border-color:rgba(245,158,11,0.25)">🔥<span id="streak-count">0</span></div>
     <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
   </div>
@@ -1272,7 +1274,9 @@ if(tg){tg.ready();tg.expand();}
 const tgUser = tg?.initDataUnsafe?.user;
 
 // ── TELEGRAM CLOUD STORAGE SYNC ──────────────────────────────
-const CS = tg?.CloudStorage || null;
+// CloudStorage появился в Bot API 6.9 — на старых клиентах методы кидают ошибку,
+// поэтому включаем синк только если версия поддерживается (иначе тихо отключаем).
+const CS = (tg && tg.isVersionAtLeast && tg.isVersionAtLeast('6.9') && tg.CloudStorage) ? tg.CloudStorage : null;
 
 // Keys we sync to cloud
 const CLOUD_KEYS = ['smart_pro','smart_pro_until','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach'];
@@ -1353,7 +1357,10 @@ function loadFromCloud(callback){
   if(!CS){ callback(); return; }
 
   const allKeys = [CLOUD_STATS_KEY, CLOUD_ACTIVITY_KEY, CLOUD_HISTORY_KEY, CLOUD_COURSES_KEY, CLOUD_VOCAB_KEY, ...CLOUD_KEYS];
-  CS.getItems(allKeys, (err, vals) => {
+  let _getItems;
+  try{ _getItems = CS.getItems.bind(CS); }catch(e){ callback(); return; }
+  try{
+  _getItems(allKeys, (err, vals) => {
     if(err || !vals){ callback(); return; }
     try {
       // Merge stats
@@ -1431,6 +1438,7 @@ function loadFromCloud(callback){
     } catch(e){ console.warn('CloudLoad error', e); }
     callback();
   });
+  }catch(e){ callback(); }
 }
 // ──────────────────────────────────────────────────────────────
 
@@ -16065,7 +16073,7 @@ function completeMistakesReview() {
 updateStreak();
 renderProfile();
 renderCourseProgress();
-loadFromCloud(()=>{ checkOnboarding(); });
+loadFromCloud(()=>{ checkOnboarding(); renderProBadge(); });
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
@@ -16100,14 +16108,45 @@ function showTrialToast(){
   },4000);
 }
 
+// Активная платная подписка (не триал)?
+function isPaidPro(){ return isPro() && localStorage.getItem('smart_pro')==='1'; }
+
+// Сколько дней осталось у платной подписки (null = бессрочно)
+function proDaysLeft(){
+  const until=parseInt(localStorage.getItem('smart_pro_until')||'0');
+  if(!until) return null;
+  return Math.max(0, Math.ceil((until-Date.now())/864e5));
+}
+
+// Бейдж Premium в шапке — виден на всех экранах
+function renderProBadge(){
+  const el=document.getElementById('pro-badge');
+  if(!el) return;
+  el.style.display = isPaidPro() ? 'flex' : 'none';
+}
+
 function renderTrialBanner(){
   const old=document.getElementById('trial-banner');
   if(old) old.remove();
-  const t=getTrialInfo();
-  const pro=localStorage.getItem('smart_pro')==='1';
-  if(pro) return; // paid — no banner
+  renderProBadge();
   const scr=document.getElementById('screen-premium');
   if(!scr) return;
+  // Платная подписка — показываем активный статус с остатком дней
+  if(isPaidPro()){
+    const d=proDaysLeft();
+    const daysMsg = d===null ? 'Подписка активна' : ('Осталось '+d+' '+(d===1?'день':d<5&&d>0?'дня':'дней'));
+    const banner=document.createElement('div');
+    banner.id='trial-banner';
+    banner.innerHTML=`
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.14),rgba(124,58,237,0.08));border:1.5px solid rgba(245,158,11,0.5);border-radius:16px;padding:14px 16px;margin-bottom:14px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">👑</div>
+        <div style="font-size:14px;font-weight:800;color:var(--text)">Premium активен</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">${daysMsg} · все курсы и AI-диалоги открыты</div>
+      </div>`;
+    scr.insertBefore(banner, scr.firstChild);
+    return;
+  }
+  const t=getTrialInfo();
   const banner=document.createElement('div');
   banner.id='trial-banner';
   if(t.active){
@@ -16212,6 +16251,7 @@ function switchTab(id){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   const _nb=document.getElementById('nav-'+id);if(_nb&&_nb.style.display!=='none')_nb.classList.add('active');
   document.getElementById('main-scroll').scrollTop=0;
+  renderProBadge();
   if(id==='profile')renderProfile();
   if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';restoreCatFilter();}
   if(id==='premium'){renderTrialBanner();}
