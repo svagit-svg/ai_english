@@ -17,6 +17,13 @@ compatibility_date = "2024-01-01"
 # «Оплата картой скоро будет доступна» — без ошибок. Цены в worker.js (PLANS)
 # должны совпадать с ценами в index.html.
 
+# ── Защита воркера: проверка Telegram initData (#34) ─────
+# Пока TG_BOT_TOKEN не задан — воркер пускает всех (fail-open), поведение не меняется.
+# Как зададите — /mistral и /pay/* начнут отвечать только реальным пользователям бота
+# (проверяется HMAC-подпись initData). Тот же токен нужен для push-напоминаний.
+#   npx wrangler secret put TG_BOT_TOKEN --name mistral-proxy   (токен от @BotFather)
+# Откат, если что-то сломалось: npx wrangler secret delete TG_BOT_TOKEN --name mistral-proxy
+
 # Notifications (add later when KV namespace is ready):
 # 1. npx wrangler kv:namespace create REMINDERS
 # 2. Uncomment and fill in id below

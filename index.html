@@ -1444,6 +1444,8 @@ function loadFromCloud(callback){
 
 const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=15;
+// Заголовок авторизации Mini App — воркер проверяет подпись initData (#34)
+function tgAuthHeaders(){ return { 'X-Telegram-Init-Data': (tg && tg.initData) || '' }; }
 
 // ── MESSAGE LIMIT ─────────────────────────────────────────
 function getDailyUsage(){
@@ -15625,7 +15627,7 @@ async function translateMistake(btn, sentence){
     const clean=sentence.replace('___','[пропуск]');
     const resp=await fetch(WORKER_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json',...tgAuthHeaders()},
       body:JSON.stringify({model:'mistral-small-latest',max_tokens:80,
         messages:[{role:'user',content:'Переведи на русский язык одним предложением, без пояснений: '+JSON.stringify(clean)}]})
     });
@@ -16274,7 +16276,7 @@ async function buyPlan(plan,btn){
   if(btn){btn.disabled=true;btn.textContent='Создаём платёж…';}
   try{
     const r=await fetch(WORKER_URL+'/pay/create',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+      method:'POST',headers:{'Content-Type':'application/json',...tgAuthHeaders()},
       body:JSON.stringify({plan})
     });
     const data=await r.json();
@@ -16313,7 +16315,7 @@ function startPayPolling(paymentId,plan){
 async function checkPayOnce(paymentId){
   try{
     const r=await fetch(WORKER_URL+'/pay/status',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+      method:'POST',headers:{'Content-Type':'application/json',...tgAuthHeaders()},
       body:JSON.stringify({paymentId})
     });
     const d=await r.json();
@@ -16697,7 +16699,7 @@ async function callClaude(userText,isGreeting,existingDiv){
     try{
       resp=await fetch(WORKER_URL,{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json',...tgAuthHeaders()},
         body:JSON.stringify({model:'mistral-small-latest',max_tokens:1000,messages}),
         signal:controller.signal
       });

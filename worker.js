@@ -1,7 +1,7 @@
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept, X-Telegram-Init-Data',
   'Access-Control-Max-Age': '86400',
 };
 
@@ -10,6 +10,49 @@ function json(data, status = 200) {
     status,
     headers: { ...CORS, 'Content-Type': 'application/json' },
   });
+}
+
+// ── Telegram initData verification (#34) ─────────────────
+// Проверяет HMAC-подпись initData бот-токеном (Telegram WebApp spec).
+async function hmacSha256(keyBytes, msgBytes) {
+  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return new Uint8Array(await crypto.subtle.sign('HMAC', key, msgBytes));
+}
+
+async function verifyInitData(initData, botToken) {
+  if (!initData || !botToken) return false;
+  try {
+    const enc = new TextEncoder();
+    const params = new URLSearchParams(initData);
+    const hash = params.get('hash');
+    if (!hash) return false;
+    // data_check_string: все поля кроме hash, отсортированы, key=value через \n
+    const pairs = [];
+    for (const [k, v] of params) { if (k !== 'hash') pairs.push(`${k}=${v}`); }
+    pairs.sort();
+    const dataCheckString = pairs.join('\n');
+    // secret_key = HMAC(key="WebAppData", msg=botToken); hash = HMAC(key=secret_key, msg=dcs)
+    const secretKey = await hmacSha256(enc.encode('WebAppData'), enc.encode(botToken));
+    const computed = await hmacSha256(secretKey, enc.encode(dataCheckString));
+    const computedHex = [...computed].map(b => b.toString(16).padStart(2, '0')).join('');
+    // сравнение без утечки по времени
+    if (computedHex.length !== hash.length) return false;
+    let diff = 0;
+    for (let i = 0; i < computedHex.length; i++) diff |= computedHex.charCodeAt(i) ^ hash.charCodeAt(i);
+    return diff === 0;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Гейт для защищённых эндпоинтов. Возвращает null если ОК, либо Response(401).
+// Fail-open: если TG_BOT_TOKEN не задан — пропускаем (не ломаем прод до настройки).
+async function requireTgAuth(request, env) {
+  if (!env.TG_BOT_TOKEN) return null; // защита ещё не включена
+  const initData = request.headers.get('X-Telegram-Init-Data');
+  const ok = await verifyInitData(initData, env.TG_BOT_TOKEN);
+  if (!ok) return json({ error: 'unauthorized' }, 401);
+  return null;
 }
 
 // ── Telegram helper ──────────────────────────────────────
@@ -91,6 +134,8 @@ export default {
     // Создаёт платёж в YooKassa, возвращает { paymentId, url }
     if (path === '/pay/create' && request.method === 'POST') {
       try {
+        const authErr = await requireTgAuth(request, env);
+        if (authErr) return authErr;
         if (!env.YOOKASSA_SHOP_ID || !env.YOOKASSA_SECRET_KEY) {
           return json({ error: 'payments not configured' }, 503);
         }
@@ -126,6 +171,8 @@ export default {
     // Проверяет статус платежа напрямую в YooKassa: { status, paid }
     if (path === '/pay/status' && request.method === 'POST') {
       try {
+        const authErr = await requireTgAuth(request, env);
+        if (authErr) return authErr;
         if (!env.YOOKASSA_SHOP_ID || !env.YOOKASSA_SECRET_KEY) {
           return json({ error: 'payments not configured' }, 503);
         }
@@ -145,6 +192,9 @@ export default {
     if (request.method !== 'POST') {
       return new Response('Method not allowed', { status: 405, headers: CORS });
     }
+
+    const mistralAuthErr = await requireTgAuth(request, env);
+    if (mistralAuthErr) return mistralAuthErr;
 
     try {
       const body = await request.json();
