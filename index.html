@@ -16133,10 +16133,13 @@ function renderTrialBanner(){
   renderProBadge();
   const scr=document.getElementById('screen-premium');
   if(!scr) return;
+  // Для активной подписки кнопки называются «Продлить», иначе «Купить»
+  const paid=isPaidPro();
+  document.querySelectorAll('#screen-premium .plan-btn').forEach(b=>{ b.textContent = paid?'Продлить':'Купить'; });
   // Платная подписка — показываем активный статус с остатком дней
-  if(isPaidPro()){
+  if(paid){
     const d=proDaysLeft();
-    const daysMsg = d===null ? 'Подписка активна' : ('Осталось '+d+' '+(d===1?'день':d<5&&d>0?'дня':'дней'));
+    const daysMsg = d===null ? 'Подписка активна' : ('Осталось '+d+' '+dayWord(d));
     const banner=document.createElement('div');
     banner.id='trial-banner';
     banner.innerHTML=`
@@ -16344,9 +16347,17 @@ async function manualPayCheck(paymentId,plan){
   else{showPayMsg('Платёж ещё не поступил. Если оплатил — подожди пару секунд и нажми снова.');}
 }
 
+function dayWord(n){ return n===1?'день':(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?'дня':'дней'; }
+
 function activatePro(plan){
   const days=PLAN_DAYS[plan]||30;
-  const until=Date.now()+days*864e5;
+  const now=Date.now();
+  const currentUntil=parseInt(localStorage.getItem('smart_pro_until')||'0');
+  // честное продление: если подписка ещё активна — добавляем дни к остатку,
+  // иначе отсчитываем от сегодня
+  const wasActive = localStorage.getItem('smart_pro')==='1' && currentUntil>now;
+  const base = wasActive ? currentUntil : now;
+  const until = base + days*864e5;
   localStorage.setItem('smart_pro','1');
   localStorage.setItem('smart_pro_until',String(until));
   // немедленная надёжная запись подписки в облако (не ждём debounce)
@@ -16355,10 +16366,12 @@ function activatePro(plan){
   const b=document.getElementById('pay-banner');if(b)b.style.display='none';
   try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');}catch(e){}
   launchConfetti();
-  document.querySelectorAll('.nav-btn').forEach(()=>{});
   renderTrialBanner();
   const nav=document.getElementById('nav-premium');if(nav)nav.style.display='none';
-  showPayMsg('🎉 Premium активирован! Все курсы и безлимитные AI-диалоги открыты.');
+  const totalDays=Math.max(0,Math.ceil((until-now)/864e5));
+  showPayMsg(wasActive
+    ? `🎉 Premium продлён! Теперь активен ещё ${totalDays} ${dayWord(totalDays)}.`
+    : '🎉 Premium активирован! Все курсы и безлимитные AI-диалоги открыты.');
 }
 
 function showPayMsg(msg){
