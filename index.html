@@ -67,7 +67,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .card-text p{font-size:11px;color:var(--muted);}
 .badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:7px;margin-left:5px;vertical-align:middle;}
 /* CHAT */
-#screen-chat{display:none;flex-direction:column;height:calc(100vh - 118px);}
+#screen-chat{display:none;flex-direction:column;height:calc(100vh - 118px);height:calc(100dvh - 118px);}
 #screen-chat.active{display:flex;}
 #topic-picker{flex:1;overflow-y:auto;}
 #topic-picker::-webkit-scrollbar{display:none;}
@@ -136,6 +136,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* NAV */
 /* ── Daily Challenge ── */
 .continue-card{background:linear-gradient(135deg,rgba(79,110,247,0.12),rgba(124,58,237,0.06));border:1.5px solid rgba(79,110,247,0.3);border-radius:18px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:opacity 0.2s;display:none;}
+.quick-actions-row{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.quick-actions-row::-webkit-scrollbar{display:none;}
+.qa-pill{flex-shrink:0;display:none;align-items:center;gap:8px;border:1.5px solid;border-radius:14px;padding:9px 13px;cursor:pointer;transition:opacity 0.2s;max-width:200px;}
+.qa-pill:active{opacity:0.8;}
+.qa-pill-icon{font-size:18px;flex-shrink:0;}
+.qa-pill-title{font-size:11px;font-weight:800;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
+.qa-pill-sub{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;margin-top:1px;}
 .order-slot{min-height:48px;border:1.5px dashed var(--border);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center;}
 .order-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
 .order-chip{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;color:var(--text);font-weight:600;transition:opacity 0.15s;}
@@ -492,70 +499,38 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
     </div>
 
-    <!-- Continue Course Widget -->
-    <div class="continue-card" id="continue-card" onclick="continueLastCourse()">
-      <div style="font-size:10px;font-weight:700;color:#818cf8;letter-spacing:0.5px;margin-bottom:4px;">▶ ПРОДОЛЖИТЬ КУРС</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;">
+    <!-- Quick Actions: компактная горизонтально-прокручиваемая полоса вместо стопки карточек -->
+    <div class="quick-actions-row" id="quick-actions-row">
+      <div class="qa-pill" id="continue-card" onclick="continueLastCourse()" style="border-color:rgba(79,110,247,0.35);background:rgba(79,110,247,0.08)">
+        <div class="qa-pill-icon">▶</div>
         <div>
-          <div style="font-size:15px;font-weight:800;color:var(--text)" id="continue-title">Business English</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px" id="continue-sub">Урок 1</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-          <div style="font-size:11px;color:#818cf8;font-weight:700;" id="continue-pct">0%</div>
-          <div class="continue-btn-inline">Продолжить →</div>
+          <div class="qa-pill-title" id="continue-title">Курс</div>
+          <div class="qa-pill-sub"><span id="continue-sub">Продолжить</span> · <span id="continue-pct" style="color:#818cf8;font-weight:700">0%</span></div>
         </div>
       </div>
-      <div class="continue-progress-bar"><div class="continue-progress-fill" id="continue-fill" style="width:0%"></div></div>
-    </div>
 
-    <!-- Weak Spots Widget -->
-    <div class="continue-card" id="weak-card" onclick="goToWeakSpot()" style="display:none;background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(239,68,68,0.06));border-color:rgba(245,158,11,0.35);">
-      <div style="font-size:10px;font-weight:700;color:var(--amber);letter-spacing:0.5px;margin-bottom:4px;">💡 ПОДТЯНИ СЛАБОЕ МЕСТО</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="qa-pill" id="weak-card" onclick="goToWeakSpot()" style="border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.08)">
+        <div class="qa-pill-icon">💡</div>
         <div>
-          <div style="font-size:15px;font-weight:800;color:var(--text)" id="weak-title"></div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px" id="weak-sub"></div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-          <div style="font-size:11px;color:var(--amber);font-weight:700;" id="weak-pct"></div>
-          <div class="continue-btn-inline" style="background:rgba(245,158,11,0.18);border-color:rgba(245,158,11,0.4);color:var(--amber)">Начать →</div>
+          <div class="qa-pill-title" id="weak-title">Слабое место</div>
+          <div class="qa-pill-sub"><span id="weak-sub">Подтянуть</span> · <span id="weak-pct" style="color:var(--amber);font-weight:700"></span></div>
         </div>
       </div>
-      <div class="continue-progress-bar" style="background:rgba(245,158,11,0.15)"><div class="continue-progress-fill" id="weak-fill" style="width:0%;background:linear-gradient(90deg,var(--amber),#ef4444)"></div></div>
-    </div>
 
-    <!-- Mistakes Review Card -->
-    <div class="continue-card" id="mistakes-card" onclick="startMistakesReview()" style="display:none;background:linear-gradient(135deg,rgba(239,68,68,0.10),rgba(236,72,153,0.05));border-color:rgba(239,68,68,0.3);">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="font-size:24px">🎯</div>
-          <div>
-            <div style="font-size:14px;font-weight:800;color:var(--text)">Работа над ошибками</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px" id="mistakes-sub">0 вопросов на повторение</div>
-          </div>
+      <div class="qa-pill" id="mistakes-card" onclick="startMistakesReview()" style="border-color:rgba(239,68,68,0.35);background:rgba(239,68,68,0.08)">
+        <div class="qa-pill-icon">🎯</div>
+        <div>
+          <div class="qa-pill-title">Ошибки</div>
+          <div class="qa-pill-sub" id="mistakes-sub">Повторить</div>
         </div>
-        <div class="continue-btn-inline" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.35);color:#f87171">Повторить →</div>
       </div>
-    </div>
 
-    <!-- Streak Freeze Card -->
-    <div class="continue-card" id="freeze-card" onclick="switchTab('premium')" style="display:none;background:linear-gradient(135deg,rgba(56,189,248,0.10),rgba(79,110,247,0.05));border-color:rgba(56,189,248,0.35);">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="font-size:24px">❄️</div>
-          <div>
-            <div style="font-size:14px;font-weight:800;color:var(--text)">Заморозка стрика</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">Пропустишь день — 🔥 стрик сохранится</div>
-          </div>
+      <div class="qa-pill" id="freeze-card" onclick="switchTab('premium')" style="border-color:rgba(56,189,248,0.4);background:rgba(56,189,248,0.08)">
+        <div class="qa-pill-icon">❄️</div>
+        <div>
+          <div class="qa-pill-title"><span id="freeze-count">1</span> заморозка</div>
+          <div class="qa-pill-sub">В запасе</div>
         </div>
-        <div style="text-align:right">
-          <div style="font-size:18px;font-weight:800;color:#38bdf8" id="freeze-count">1</div>
-          <div style="font-size:8px;color:var(--muted);letter-spacing:.3px">В ЗАПАСЕ</div>
-        </div>
-      </div>
-      <div id="freeze-upsell" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <div style="font-size:11px;color:var(--muted)">👑 Premium — до 3 заморозок</div>
-        <div style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap">Открыть →</div>
       </div>
     </div>
 
@@ -1317,6 +1292,14 @@ if(tg){
       tg.setBottomBarColor('#080b12');
     }
   }catch(e){}
+  // Клавиатура на iOS не уменьшает 100vh — при её открытии/закрытии сообщения
+  // в AI-чате могли оказаться перекрыты. Пересчитываем скролл на каждое изменение вьюпорта.
+  try{
+    tg.onEvent('viewportChanged', ()=>{
+      const chatScreen = document.getElementById('screen-chat');
+      if(chatScreen && chatScreen.classList.contains('active')) scrollMessages();
+    });
+  }catch(e){}
 }
 const tgUser = tg?.initDataUnsafe?.user;
 
@@ -1734,10 +1717,8 @@ function renderFreezeWidget(){
   if(s.streak<1){ card.style.display='none'; }
   else{
     const f=getFreezeState();
-    const cap=getFreezeCap();
     document.getElementById('freeze-count').textContent=f.count;
-    document.getElementById('freeze-upsell').style.display=isPro()?'none':'flex';
-    card.style.display='block';
+    card.style.display='flex';
   }
   const usedCard=document.getElementById('freeze-used-card');
   if(usedCard){
@@ -15404,8 +15385,7 @@ function renderContinueWidget(){
     document.getElementById('continue-title').textContent = course.title;
     document.getElementById('continue-sub').textContent = 'Урок ' + lessonObj.id + ' · ' + lessonObj.title;
     document.getElementById('continue-pct').textContent = pct + '%';
-    document.getElementById('continue-fill').style.width = pct + '%';
-    document.getElementById('continue-card').style.display = 'block';
+    document.getElementById('continue-card').style.display = 'flex';
   } catch(e){}
 }
 
@@ -15452,10 +15432,9 @@ function renderWeakSpotWidget(){
     ? 'Ещё не начат · ' + total + ' уроков'
     : 'Урок ' + nextLesson.id + ' · ' + nextLesson.title;
   document.getElementById('weak-pct').textContent = pct + '%';
-  document.getElementById('weak-fill').style.width = pct + '%';
   document.getElementById('weak-card').dataset.courseId = best;
   document.getElementById('weak-card').dataset.lessonIdx = nextIdx >= 0 ? nextIdx : 0;
-  document.getElementById('weak-card').style.display = 'block';
+  document.getElementById('weak-card').style.display = 'flex';
 }
 
 function goToWeakSpot(){
@@ -15705,7 +15684,7 @@ function renderMistakesWidget(){
   if(n<3){card.style.display='none';return;}
   const word=n===1?'вопрос':n<5?'вопроса':'вопросов';
   document.getElementById('mistakes-sub').textContent=n+' '+word+' на повторение';
-  card.style.display='block';
+  card.style.display='flex';
 }
 
 function nextExercise(){
