@@ -24,6 +24,16 @@ compatibility_date = "2024-01-01"
 #   npx wrangler secret put TG_BOT_TOKEN --name mistral-proxy   (токен от @BotFather)
 # Откат, если что-то сломалось: npx wrangler secret delete TG_BOT_TOKEN --name mistral-proxy
 
+# ── БД прогресса пользователей (#31, D1) ─────────────────
+# Заменяет Telegram CloudStorage как источник правды между устройствами
+# (тот работает, но непрозрачен — нельзя посмотреть, что там реально лежит).
+# Провижининг: npx wrangler d1 create smartai-progress (уже создана)
+# Миграция схемы: npx wrangler d1 migrations apply smartai-progress --local|--remote
+[[d1_databases]]
+binding = "DB"
+database_name = "smartai-progress"
+database_id = "b8acf87b-2203-4112-80e4-ddb1dcc7b679"
+
 # Notifications (add later when KV namespace is ready):
 # 1. npx wrangler kv:namespace create REMINDERS
 # 2. Uncomment and fill in id below
