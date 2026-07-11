@@ -1132,6 +1132,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="level-bar"><div class="level-fill" id="level-fill-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div id="sync-status" onclick="manualSync()" style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;padding:6px;font-size:11px;color:var(--muted);cursor:pointer">
+      <i id="sync-status-icon" class="fa-solid fa-cloud-arrow-up" style="font-size:11px"></i>
+      <span id="sync-status-text">Синхронизация…</span>
+    </div>
     <div class="stat-cards">
       <div class="stat-card">
         <div class="stat-card-icon" style="background:rgba(34,197,94,0.12)">📚</div>
@@ -1300,7 +1304,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 <script>
 const tg = window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();}
+if(tg){
+  tg.ready();tg.expand();
+  // Красим нативную шапку/фон Telegram под тёмную тему приложения — без этого
+  // над контентом виден светлый системный header (Bot API 6.9+, иначе тихо игнорируем).
+  try{
+    if(tg.isVersionAtLeast && tg.isVersionAtLeast('6.9')){
+      tg.setHeaderColor('#080b12');
+      tg.setBackgroundColor('#080b12');
+    }
+    if(tg.isVersionAtLeast && tg.isVersionAtLeast('7.10') && tg.setBottomBarColor){
+      tg.setBottomBarColor('#080b12');
+    }
+  }catch(e){}
+}
 const tgUser = tg?.initDataUnsafe?.user;
 
 // ── TELEGRAM CLOUD STORAGE SYNC ──────────────────────────────
@@ -1392,6 +1409,8 @@ function loadFromCloud(callback){
   try{
   _getItems(allKeys, (err, vals) => {
     if(err || !vals){ callback(); return; }
+    // Успешный round-trip до Telegram-облака — фиксируем время для статуса синка в Профиле
+    localStorage.setItem('smart_last_sync', String(Date.now()));
     try {
       // Merge stats
       const localStats = JSON.parse(localStorage.getItem('smart_stats') || '{}');
@@ -1476,6 +1495,18 @@ const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=15;
 // Заголовок авторизации Mini App — воркер проверяет подпись initData (#34)
 function tgAuthHeaders(){ return { 'X-Telegram-Init-Data': (tg && tg.initData) || '' }; }
+
+// Короткий хелпер для тактильной отдачи — 'success'/'error'/'warning' идут в notificationOccurred,
+// остальное ('light','medium','heavy','rigid','soft') — в impactOccurred, 'selection' — в selectionChanged.
+function haptic(type){
+  try{
+    const h=window.Telegram?.WebApp?.HapticFeedback;
+    if(!h)return;
+    if(type==='success'||type==='error'||type==='warning')h.notificationOccurred(type);
+    else if(type==='selection')h.selectionChanged();
+    else h.impactOccurred(type||'light');
+  }catch(e){}
+}
 
 // ── MESSAGE LIMIT ─────────────────────────────────────────
 function getDailyUsage(){
@@ -1663,9 +1694,55 @@ function getLevelInfo(xp){
   return{name:'Proficiency',pct:100,next:Infinity,nextName:'Max'};
 }
 
+// ── SYNC STATUS ────────────────────────────────────────────
+function relativeSyncTime(ts){
+  const diff=Math.max(0,Date.now()-ts);
+  if(diff<60e3)return'только что';
+  if(diff<3600e3)return Math.floor(diff/60e3)+' мин назад';
+  if(diff<86400e3)return Math.floor(diff/3600e3)+' ч назад';
+  return Math.floor(diff/86400e3)+' дн назад';
+}
+
+function renderSyncStatus(){
+  const text=document.getElementById('sync-status-text');
+  const icon=document.getElementById('sync-status-icon');
+  if(!text||!icon)return;
+  if(!CS){
+    icon.className='fa-solid fa-circle-exclamation';
+    text.textContent='Синхронизация недоступна на этом устройстве';
+    return;
+  }
+  const ts=parseInt(localStorage.getItem('smart_last_sync')||'0');
+  if(!ts){
+    icon.className='fa-solid fa-cloud-arrow-up';
+    text.textContent='Синхронизация…';
+  } else {
+    icon.className='fa-solid fa-circle-check';
+    text.textContent='Синхронизировано · '+relativeSyncTime(ts)+' · Обновить';
+  }
+}
+
+function manualSync(){
+  if(!CS)return;
+  haptic('selection');
+  const text=document.getElementById('sync-status-text');
+  const icon=document.getElementById('sync-status-icon');
+  if(text){icon.className='fa-solid fa-arrows-rotate fa-spin';text.textContent='Синхронизация…';}
+  queueCloudSave();
+  loadFromCloud(()=>{
+    renderSyncStatus();
+    renderProfile();
+    renderProBadge();
+    renderCourseProgress();
+    renderMistakesWidget();
+    renderFreezeWidget();
+  });
+}
+
 function renderProfile(){
   const s=getStats();
   const lv=getLevelInfo(s.xp);
+  renderSyncStatus();
   // header badges
   document.getElementById('xp-count').textContent=s.xp;
   const streakBadge=document.getElementById('streak-badge');
@@ -15488,10 +15565,12 @@ function checkOrderAnswer(){
     fb.className='ex-feedback show ok';
     fb.textContent='✓ Правильно!';
     exCorrect++;
+    haptic('success');
   } else {
     fb.className='ex-feedback show err';
     fb.textContent='✗ Правильный порядок: '+ex.sentence;
     exMistakes.push({q:'Собери: '+ex.sentence,blank:ex.sentence,selected:answer,correct:ex.sentence});
+    haptic('error');
   }
   setTimeout(nextExercise,1600);
 }
@@ -15521,6 +15600,7 @@ function checkAnswer(btn,optIdx){
     fb.className='ex-feedback show ok';
     fb.textContent='✓ Правильно!';
     exCorrect++;
+    haptic('success');
   } else {
     btn.classList.add('wrong');
     btns.forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
@@ -15528,6 +15608,7 @@ function checkAnswer(btn,optIdx){
     fb.textContent='✗ Неверно. Правильный ответ: '+correct;
     exMistakes.push({q:ex.q,blank:ex.blank,selected,correct});
     if(!ex.type)saveMistake(ex.q,ex.blank,ex.opts,COURSES[currentCourseId].title,lesson.title);
+    haptic('error');
   }
   setTimeout(nextExercise,1200);
 }
@@ -16092,12 +16173,14 @@ function checkDCAnswer(btn, optIdx) {
     fb.textContent = '✓ Правильно!';
     dcCorrect++;
     if (mistakesMode) removeMistake(ex.q); // освоено — убираем из повторения
+    haptic('success');
   } else {
     btn.classList.add('wrong');
     document.querySelectorAll('.dc-choice-btn').forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
     fb.style.color = '#ef4444';
     fb.textContent = '✗ Правильный ответ: ' + correct;
     if (!mistakesMode) saveMistake(ex.q, ex.blank, ex.opts, ex.courseTitle, ex.lessonTitle);
+    haptic('error');
   }
   setTimeout(nextDCQuestion, 1100);
 }
@@ -16350,6 +16433,7 @@ function restoreCatFilter(){
 }
 
 function switchTab(id){
+  haptic('selection');
   // save chat history if leaving chat mid-session
   if(id!=='chat' && sessionMsgs>0 && currentTopic){
     const s=getStats();
@@ -16715,6 +16799,7 @@ function showChips(topicKey) {
 }
 
 function useChip(btn) {
+  haptic('selection');
   const input = document.getElementById('chat-input');
   input.value = btn.textContent;
   autoResize(input);
