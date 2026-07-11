@@ -538,6 +538,36 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
     </div>
 
+    <!-- Streak Freeze Card -->
+    <div class="continue-card" id="freeze-card" onclick="switchTab('premium')" style="display:none;background:linear-gradient(135deg,rgba(56,189,248,0.10),rgba(79,110,247,0.05));border-color:rgba(56,189,248,0.35);">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:24px">❄️</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--text)">Заморозка стрика</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Пропустишь день — 🔥 стрик сохранится</div>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:18px;font-weight:800;color:#38bdf8" id="freeze-count">1</div>
+          <div style="font-size:8px;color:var(--muted);letter-spacing:.3px">В ЗАПАСЕ</div>
+        </div>
+      </div>
+      <div id="freeze-upsell" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <div style="font-size:11px;color:var(--muted)">👑 Premium — до 3 заморозок</div>
+        <div style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap">Открыть →</div>
+      </div>
+    </div>
+
+    <!-- Streak Freeze Used Notice (session-only) -->
+    <div id="freeze-used-card" style="display:none;background:rgba(56,189,248,0.10);border:1px solid rgba(56,189,248,0.3);border-radius:14px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px">
+      <div style="font-size:22px">❄️</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--text)">Заморозка использована</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:1px" id="freeze-used-sub"></div>
+      </div>
+    </div>
+
     <!-- Daily Challenge Card -->
     <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -1279,7 +1309,7 @@ const tgUser = tg?.initDataUnsafe?.user;
 const CS = (tg && tg.isVersionAtLeast && tg.isVersionAtLeast('6.9') && tg.CloudStorage) ? tg.CloudStorage : null;
 
 // Keys we sync to cloud
-const CLOUD_KEYS = ['smart_pro','smart_pro_until','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach'];
+const CLOUD_KEYS = ['smart_pro','smart_pro_until','smart_trial_start','smart_onboarded','smart_level','smart_goal','smart_reminder_time','smart_ach','smart_freezes'];
 const CLOUD_STATS_KEY = 'ss_core';
 const CLOUD_ACTIVITY_KEY = 'ss_activity';
 const CLOUD_HISTORY_KEY = 'ss_history';
@@ -1533,14 +1563,92 @@ function trackDaily(xp,lessons){
   saveStats(s);
 }
 
+// ── STREAK FREEZE (#D) ────────────────────────────────────
+const FREEZE_RECHARGE_DAYS=7;
+let freezeJustUsed=false, freezeSavedStreakDays=0;
+
+function getFreezeCap(){ return isPro()?3:1; }
+
+function getFreezeState(){
+  try{ return Object.assign({count:null,lastCharge:0}, JSON.parse(localStorage.getItem('smart_freezes')||'{}')); }
+  catch{ return {count:null,lastCharge:0}; }
+}
+function saveFreezeState(f){
+  localStorage.setItem('smart_freezes',JSON.stringify(f));
+  queueCloudSave();
+}
+
+// Инициализирует запас при первом запуске и доначисляет заморозки со временем (до кап).
+function rechargeFreezes(){
+  const cap=getFreezeCap();
+  let f=getFreezeState();
+  if(f.count===null){
+    f={count:cap,lastCharge:Date.now()};
+    saveFreezeState(f);
+    return f;
+  }
+  if(f.count>=cap){ f.lastCharge=Date.now(); saveFreezeState(f); return f; }
+  const daysSince=Math.floor((Date.now()-f.lastCharge)/864e5);
+  const earned=Math.floor(daysSince/FREEZE_RECHARGE_DAYS);
+  if(earned>0){
+    f.count=Math.min(cap,f.count+earned);
+    f.lastCharge+=earned*FREEZE_RECHARGE_DAYS*864e5;
+    saveFreezeState(f);
+  }
+  return f;
+}
+
 function updateStreak(){
   const s=getStats();
   const today=new Date().toDateString();
   if(s.lastDate===today)return;
+  rechargeFreezes();
   const yesterday=new Date(Date.now()-86400000).toDateString();
-  s.streak=(s.lastDate===yesterday)?s.streak+1:1;
+  const dayBefore=new Date(Date.now()-2*86400000).toDateString();
+  if(s.lastDate===yesterday){
+    s.streak=s.streak+1;
+  } else if(s.lastDate===dayBefore && s.streak>0){
+    // пропущен ровно один день — пробуем спасти стрик заморозкой
+    const f=getFreezeState();
+    if(f.count>0){
+      f.count--;
+      saveFreezeState(f);
+      freezeJustUsed=true;
+      freezeSavedStreakDays=s.streak;
+    } else {
+      s.streak=1;
+    }
+  } else {
+    s.streak=1;
+  }
   s.lastDate=today;
   saveStats(s);
+}
+
+function dayWordStreak(n){ return n===1?'день':(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?'дня':'дней'; }
+
+// Виджет заморозки на главной: статус-карточка + разовое уведомление «спасено»
+function renderFreezeWidget(){
+  const card=document.getElementById('freeze-card');
+  if(!card) return;
+  const s=getStats();
+  if(s.streak<1){ card.style.display='none'; }
+  else{
+    const f=getFreezeState();
+    const cap=getFreezeCap();
+    document.getElementById('freeze-count').textContent=f.count;
+    document.getElementById('freeze-upsell').style.display=isPro()?'none':'flex';
+    card.style.display='block';
+  }
+  const usedCard=document.getElementById('freeze-used-card');
+  if(usedCard){
+    if(freezeJustUsed){
+      document.getElementById('freeze-used-sub').textContent='Ты пропустил вчера, но стрик 🔥 '+freezeSavedStreakDays+' '+dayWordStreak(freezeSavedStreakDays)+' сохранён!';
+      usedCard.style.display='flex';
+    } else {
+      usedCard.style.display='none';
+    }
+  }
 }
 
 function getLevelInfo(xp){
@@ -16083,6 +16191,7 @@ setTimeout(renderGreeting, 300);
 renderContinueWidget();
 renderWeakSpotWidget();
 renderMistakesWidget();
+renderFreezeWidget();
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
@@ -16367,6 +16476,7 @@ function activatePro(plan){
   try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred('success');}catch(e){}
   launchConfetti();
   renderTrialBanner();
+  rechargeFreezes();renderFreezeWidget();
   const nav=document.getElementById('nav-premium');if(nav)nav.style.display='none';
   const totalDays=Math.max(0,Math.ceil((until-now)/864e5));
   showPayMsg(wasActive
