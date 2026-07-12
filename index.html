@@ -1261,11 +1261,25 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="paywall-box">
     <div class="paywall-emoji">🚀</div>
     <h2>Лимит исчерпан</h2>
-    <p>Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.</p>
+    <p>Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.<span style="display:block;margin-top:8px;color:var(--amber);font-weight:700">от 99 ₽/нед · безлимит AI · 540 уроков</span></p>
     <button class="paywall-btn" onclick="switchTab('premium');closePaywall()">
       <i class="fa-solid fa-crown"></i> Получить Premium
     </button>
     <div class="paywall-skip" id="paywall-skip-btn" onclick="closeCoursePaywall()">Напомни завтра</div>
+  </div>
+</div>
+
+<!-- TRIAL MOMENTS: одноразовые модалы «триал заканчивается/закончился» -->
+<div class="paywall-overlay hidden" id="trial-modal">
+  <div class="paywall-box">
+    <div class="paywall-emoji" id="trial-modal-emoji">⏳</div>
+    <h2 id="trial-modal-title"></h2>
+    <p id="trial-modal-text"></p>
+    <div id="trial-modal-stats" style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin:4px 0 14px;font-size:13px;font-weight:700;color:var(--text)"></div>
+    <button class="paywall-btn" onclick="switchTab('premium');closeTrialModal()">
+      <i class="fa-solid fa-crown"></i> <span id="trial-modal-cta">Сохранить доступ</span>
+    </button>
+    <div class="paywall-skip" onclick="closeTrialModal()">Позже</div>
   </div>
 </div>
 
@@ -1579,8 +1593,9 @@ function updateCounter(){
   if(!el)return;
   if(isPro()){el.innerHTML='';return;}
   const rem=getRemainingMsgs();
-  if(rem<=3&&rem>0)el.innerHTML=`Осталось бесплатных сообщений сегодня: <span>${rem}</span>`;
-  else if(rem===0)el.innerHTML=`<span style="color:var(--rose)">Лимит исчерпан</span>`;
+  const upsell=` · <span onclick="switchTab('premium')" style="color:var(--amber);font-weight:700;cursor:pointer;text-decoration:underline">Безлимит →</span>`;
+  if(rem<=3&&rem>0)el.innerHTML=`Осталось бесплатных сообщений сегодня: <span>${rem}</span>`+upsell;
+  else if(rem===0)el.innerHTML=`<span style="color:var(--rose)">Лимит исчерпан</span>`+upsell;
   else el.innerHTML='';
 }
 function getTrialInfo(){
@@ -1605,11 +1620,12 @@ function isPro(){try{
 }catch{return false;}}
 function showPaywall(){document.getElementById('paywall').classList.remove('hidden');}
 function closePaywall(){document.getElementById('paywall').classList.add('hidden');}
+const PAYWALL_PRICE_LINE='<span style="display:block;margin-top:8px;color:var(--amber);font-weight:700">от 99 ₽/нед · безлимит AI · 540 уроков</span>';
 function showCoursePaywall(){
   const box=document.getElementById('paywall');
   box.querySelector('.paywall-emoji').textContent='🔒';
-  box.querySelector('h2').textContent='Только для Premium';
-  box.querySelector('p').innerHTML='Первые <strong>3 урока</strong> каждого курса — бесплатно.<br>Открой все уроки всех курсов с Premium подпиской.';
+  box.querySelector('h2').textContent='Упражнения — в Premium';
+  box.querySelector('p').innerHTML='Теорию всех уроков можно читать бесплатно.<br>Упражнения и XP после 3-го урока — с Premium подпиской.'+PAYWALL_PRICE_LINE;
   box.querySelector('.paywall-skip').textContent='Закрыть';
   box.classList.remove('hidden');
 }
@@ -1617,9 +1633,46 @@ function closeCoursePaywall(){
   const box=document.getElementById('paywall');
   box.querySelector('.paywall-emoji').textContent='🚀';
   box.querySelector('h2').textContent='Лимит исчерпан';
-  box.querySelector('p').innerHTML='Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.';
+  box.querySelector('p').innerHTML='Ты использовал все <strong>15 бесплатных сообщений</strong> на сегодня.<br>Подключи Premium и общайся с AI без ограничений.'+PAYWALL_PRICE_LINE;
   box.querySelector('.paywall-skip').textContent='Напомни завтра';
   closePaywall();
+}
+
+// ── TRIAL MOMENTS ─────────────────────────────────────────
+// Самые конверсионные точки: за день до конца триала и сразу после.
+// Каждый модал показывается один раз (флаг в localStorage + CloudStorage не нужен —
+// повтор на втором устройстве не вредит, а лишний once-флаг в синке усложнил бы).
+function closeTrialModal(){document.getElementById('trial-modal').classList.add('hidden');}
+
+function showTrialModal(emoji,title,text,cta){
+  const s=getStats();
+  document.getElementById('trial-modal-emoji').textContent=emoji;
+  document.getElementById('trial-modal-title').textContent=title;
+  document.getElementById('trial-modal-text').innerHTML=text;
+  document.getElementById('trial-modal-stats').innerHTML=
+    '⚡ '+(s.xp||0)+' XP&nbsp;&nbsp;·&nbsp;&nbsp;📚 '+(s.lessons||0)+' уроков&nbsp;&nbsp;·&nbsp;&nbsp;🔥 '+(s.streak||0)+' '+dayWordStreak(s.streak||0)+' подряд';
+  document.getElementById('trial-modal-cta').textContent=cta;
+  document.getElementById('trial-modal').classList.remove('hidden');
+}
+
+function checkTrialMoments(){
+  try{
+    if(!localStorage.getItem('smart_onboarded'))return;        // онбординг ещё не пройден
+    if(localStorage.getItem('smart_pro')==='1')return;         // уже платит
+    if(!localStorage.getItem('smart_trial_start'))return;      // триала не было
+    const t=getTrialInfo();
+    if(t.active && t.daysLeft===1 && !localStorage.getItem('smart_trial_warn_shown')){
+      localStorage.setItem('smart_trial_warn_shown','1');
+      showTrialModal('⏳','Триал заканчивается завтра',
+        'Остался последний день безлимитного доступа.<br>Не потеряй то, что уже накопил:',
+        'Сохранить доступ от 99 ₽');
+    } else if(t.expired && !localStorage.getItem('smart_trial_end_shown')){
+      localStorage.setItem('smart_trial_end_shown','1');
+      showTrialModal('🔓','Триал завершён',
+        'Безлимитный доступ закончился, но твой прогресс на месте:',
+        'Вернуть Premium от 99 ₽');
+    }
+  }catch(e){}
 }
 
 // ── STATS ────────────────────────────────────────────────
@@ -15351,10 +15404,10 @@ function openCourse(id){
   container.innerHTML=course.lessons.map((l,i)=>{
     const done=progress[l.id]?.done;
     const locked=i>=3&&!isPro();
-    return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'showCoursePaywall()':'openLesson('+i+')'}">
+    return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="openLesson(${i})">
       <div class="lesson-num">${done?'✓':l.id}</div>
       <div class="lesson-info"><h4>${l.title}</h4>
-      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Premium 👑':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
+      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Теория бесплатно · упражнения 👑':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
       ${locked?'<i class="fa-solid fa-lock" style="color:var(--amber);font-size:11px;margin-left:auto"></i>':'<i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:11px;margin-left:auto"></i>'}
     </div>`;
   }).join('');
@@ -15472,6 +15525,15 @@ function openLesson(idx){
   document.getElementById('lesson-title-view').textContent=lesson.title;
   document.getElementById('lesson-step-view').textContent='Теория • Урок '+lesson.id+' из '+COURSES[currentCourseId].lessons.length;
   document.getElementById('lesson-content').innerHTML=lesson.theory;
+  // Теория locked-уроков читается бесплатно (вовлечение), упражнения — Premium
+  const nextBtn=document.getElementById('lesson-next-btn');
+  if(idx>=3 && !isPro()){
+    nextBtn.innerHTML='🔒 Упражнения и XP — Premium';
+    nextBtn.onclick=showCoursePaywall;
+  } else {
+    nextBtn.innerHTML='Начать упражнения →';
+    nextBtn.onclick=startExercises;
+  }
   document.getElementById('main-scroll').scrollTop=0;
 }
 
@@ -15531,6 +15593,7 @@ function speakEx(){
 }
 
 function startExercises(){
+  if(currentLessonIdx>=3 && !isPro()){showCoursePaywall();return;}
   currentExIdx=0;exCorrect=0;exMistakes=[];
   const lesson=COURSES[currentCourseId].lessons[currentLessonIdx];
   currentExList=buildExerciseList(lesson);
@@ -16313,7 +16376,7 @@ function completeMistakesReview() {
 updateStreak();
 renderProfile();
 renderCourseProgress();
-loadFromCloud(()=>{ checkOnboarding(); renderProBadge(); });
+loadFromCloud(()=>{ checkOnboarding(); renderProBadge(); checkTrialMoments(); });
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
