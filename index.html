@@ -1624,8 +1624,8 @@ const PAYWALL_PRICE_LINE='<span style="display:block;margin-top:8px;color:var(--
 function showCoursePaywall(){
   const box=document.getElementById('paywall');
   box.querySelector('.paywall-emoji').textContent='🔒';
-  box.querySelector('h2').textContent='Упражнения — в Premium';
-  box.querySelector('p').innerHTML='Теорию всех уроков можно читать бесплатно.<br>Упражнения и XP после 3-го урока — с Premium подпиской.'+PAYWALL_PRICE_LINE;
+  box.querySelector('h2').textContent='Только для Premium';
+  box.querySelector('p').innerHTML='Первые <strong>3 урока</strong> каждого курса — бесплатно.<br>Открой все уроки всех курсов с Premium подпиской.'+PAYWALL_PRICE_LINE;
   box.querySelector('.paywall-skip').textContent='Закрыть';
   box.classList.remove('hidden');
 }
@@ -15404,10 +15404,10 @@ function openCourse(id){
   container.innerHTML=course.lessons.map((l,i)=>{
     const done=progress[l.id]?.done;
     const locked=i>=3&&!isPro();
-    return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="openLesson(${i})">
+    return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'showCoursePaywall()':'openLesson('+i+')'}">
       <div class="lesson-num">${done?'✓':l.id}</div>
       <div class="lesson-info"><h4>${l.title}</h4>
-      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Теория бесплатно · упражнения 👑':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
+      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Premium 👑':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
       ${locked?'<i class="fa-solid fa-lock" style="color:var(--amber);font-size:11px;margin-left:auto"></i>':'<i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:11px;margin-left:auto"></i>'}
     </div>`;
   }).join('');
@@ -15512,6 +15512,9 @@ function continueLastCourse(){
 }
 
 function openLesson(idx){
+  // Уроки 4+ только для Premium — закрывает и прямые клики, и обходные пути
+  // («Следующий урок →», «Продолжить курс», «Слабые места»)
+  if(idx>=3 && !isPro()){showCoursePaywall();return;}
   currentLessonIdx=idx;
   const lesson=COURSES[currentCourseId].lessons[idx];
   saveLastCourse(currentCourseId, idx);
@@ -15525,15 +15528,6 @@ function openLesson(idx){
   document.getElementById('lesson-title-view').textContent=lesson.title;
   document.getElementById('lesson-step-view').textContent='Теория • Урок '+lesson.id+' из '+COURSES[currentCourseId].lessons.length;
   document.getElementById('lesson-content').innerHTML=lesson.theory;
-  // Теория locked-уроков читается бесплатно (вовлечение), упражнения — Premium
-  const nextBtn=document.getElementById('lesson-next-btn');
-  if(idx>=3 && !isPro()){
-    nextBtn.innerHTML='🔒 Упражнения и XP — Premium';
-    nextBtn.onclick=showCoursePaywall;
-  } else {
-    nextBtn.innerHTML='Начать упражнения →';
-    nextBtn.onclick=startExercises;
-  }
   document.getElementById('main-scroll').scrollTop=0;
 }
 
