@@ -2168,10 +2168,11 @@ function renderAnalytics(){
     {id:'medical',name:'Medical English',color:'#ec4899'},{id:'finance',name:'Finance English',color:'#16a34a'},
   ];
   const courseEl=document.getElementById('course-analytics');
-  const courseWrap=courseEl?.parentElement;
+  if(!courseEl)return;
   if(!pro){
-    if(courseWrap)courseWrap.innerHTML=`
-      <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Прогресс по курсам</p>
+    // Пишем ВНУТРЬ #course-analytics (не в родителя), иначе элемент уничтожается
+    // и ветка Premium ниже падает, если статус сменится в той же сессии
+    courseEl.innerHTML=`
       <div style="filter:blur(4px);pointer-events:none">
         ${courseList.map(c=>`<div style="margin-bottom:10px">
           <div style="display:flex;justify-content:space-between;margin-bottom:3px">
@@ -2202,7 +2203,7 @@ function renderAnalytics(){
         </div>
       </div>`;
     }).join('');
-    document.getElementById('course-analytics').innerHTML=rows||'<p style="font-size:12px;color:var(--muted)">Начни проходить курсы!</p>';
+    courseEl.innerHTML=rows||'<p style="font-size:12px;color:var(--muted)">Начни проходить курсы!</p>';
   }
 }
 
