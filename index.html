@@ -490,15 +490,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <!-- CHAT -->
   <section id="screen-chat" class="screen active">
 
-    <!-- Greeting Banner -->
-    <div id="greeting-banner" style="display:none;background:linear-gradient(135deg,rgba(79,110,247,0.1),rgba(124,58,237,0.06));border:1px solid rgba(79,110,247,0.2);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
-      <div style="font-size:28px;flex-shrink:0;">👋</div>
-      <div>
-        <div style="font-size:14px;font-weight:800;color:var(--text)" id="greeting-name">Привет!</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px" id="greeting-sub"></div>
-      </div>
-    </div>
-
     <!-- Quick Actions: компактная горизонтально-прокручиваемая полоса вместо стопки карточек -->
     <div class="quick-actions-row" id="quick-actions-row">
       <div class="qa-pill" id="continue-card" onclick="continueLastCourse()" style="border-color:rgba(79,110,247,0.35);background:rgba(79,110,247,0.08)">
@@ -525,13 +516,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         </div>
       </div>
 
-      <div class="qa-pill" id="freeze-card" onclick="switchTab('premium')" style="border-color:rgba(56,189,248,0.4);background:rgba(56,189,248,0.08)">
-        <div class="qa-pill-icon">❄️</div>
-        <div>
-          <div class="qa-pill-title"><span id="freeze-count">1</span> заморозка</div>
-          <div class="qa-pill-sub">В запасе</div>
-        </div>
-      </div>
     </div>
 
     <!-- Streak Freeze Used Notice (session-only) -->
@@ -1129,6 +1113,19 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div><div class="stat-card-val" id="stat-dialogs" style="color:var(--rose)">0</div><div class="stat-card-lbl">AI-диалогов</div></div>
       </div>
     </div>
+
+    <!-- Streak Freeze (статус живёт в Профиле рядом со стриком) -->
+    <div id="freeze-card" style="display:none;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.3);border-radius:13px;padding:12px 16px;margin-top:10px;align-items:center;justify-content:space-between;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-size:22px">❄️</div>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:var(--text)">Заморозка стрика · <span id="freeze-count" style="color:#38bdf8">1</span> в запасе</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:1px">Пропустишь день — 🔥 стрик сохранится</div>
+        </div>
+      </div>
+      <div id="freeze-upsell" onclick="switchTab('premium')" style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap;cursor:pointer">👑 До 3 →</div>
+    </div>
+
     <div class="divider"></div>
     <p class="section-label">Уровень английского</p>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
@@ -1762,7 +1759,7 @@ function updateStreak(){
 
 function dayWordStreak(n){ return n===1?'день':(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?'дня':'дней'; }
 
-// Виджет заморозки на главной: статус-карточка + разовое уведомление «спасено»
+// Статус заморозки в Профиле + разовое уведомление «спасено» на главной
 function renderFreezeWidget(){
   const card=document.getElementById('freeze-card');
   if(!card) return;
@@ -1771,6 +1768,8 @@ function renderFreezeWidget(){
   else{
     const f=getFreezeState();
     document.getElementById('freeze-count').textContent=f.count;
+    const upsell=document.getElementById('freeze-upsell');
+    if(upsell)upsell.style.display=isPro()?'none':'block';
     card.style.display='flex';
   }
   const usedCard=document.getElementById('freeze-used-card');
@@ -1845,6 +1844,7 @@ function renderProfile(){
   const s=getStats();
   const lv=getLevelInfo(s.xp);
   renderSyncStatus();
+  renderFreezeWidget();
   // header badges
   document.getElementById('xp-count').textContent=s.xp;
   const streakBadge=document.getElementById('streak-badge');
@@ -15471,6 +15471,13 @@ function renderWeakSpotWidget(){
 
   if(!best){ document.getElementById('weak-card').style.display='none'; return; }
 
+  // Не дублируем пилюлю «Продолжить курс»: если слабое место — тот же курс,
+  // который пользователь и так продолжает, вторая пилюля не нужна
+  try{
+    const last=JSON.parse(localStorage.getItem('smart_last_course')||'{}');
+    if(last.id===best){ document.getElementById('weak-card').style.display='none'; return; }
+  }catch(e){}
+
   const course = COURSES[best];
   const p = getCourseProgress(best);
   const done = Object.values(p).filter(v=>v.done).length;
@@ -16374,7 +16381,6 @@ loadFromCloud(()=>{ checkOnboarding(); renderProBadge(); checkTrialMoments(); })
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
-setTimeout(renderGreeting, 300);
 renderContinueWidget();
 renderWeakSpotWidget();
 renderMistakesWidget();
@@ -16816,28 +16822,6 @@ function showXpFloat(amount){
   setTimeout(()=>tag.remove(),1500);
 }
 // ── END XP FLOAT ─────────────────────────────────────────────
-
-// ── GREETING BANNER ─────────────────────────────────────────
-function renderGreeting(){
-  const banner=document.getElementById('greeting-banner');
-  if(!banner) return;
-  const name=tgUser?.first_name||localStorage.getItem('smart_ob_name')||'';
-  const s=getStats();
-  const streak=s.streak||0;
-  const xp=s.xp||0;
-  const nameText=name?`Привет, ${name}!`:'Привет!';
-  document.getElementById('greeting-name').textContent=nameText;
-  let sub='';
-  if(streak>=2){
-    const days=streak===1?'день':streak<5?'дня':'дней';
-    sub=`${streak} ${days} подряд · ${xp} XP всего`;
-  } else {
-    sub=`${xp} XP заработано · продолжай учиться!`;
-  }
-  document.getElementById('greeting-sub').textContent=sub;
-  banner.style.display='flex';
-}
-// ── END GREETING BANNER ──────────────────────────────────────
 
 // ── SHARE RESULT ────────────────────────────────────────────
 function shareResult(type) {
