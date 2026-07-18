@@ -502,23 +502,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="qa-pill-sub"><span id="continue-sub">Продолжить</span> · <span id="continue-pct" style="color:#818cf8;font-weight:700">0%</span></div>
         </div>
       </div>
-
-      <div class="qa-pill" id="weak-card" onclick="goToWeakSpot()" style="border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.08)">
-        <div class="qa-pill-icon">💡</div>
-        <div>
-          <div class="qa-pill-title" id="weak-title">Слабое место</div>
-          <div class="qa-pill-sub"><span id="weak-sub">Подтянуть</span> · <span id="weak-pct" style="color:var(--amber);font-weight:700"></span></div>
-        </div>
-      </div>
-
-      <div class="qa-pill" id="mistakes-card" onclick="startMistakesReview()" style="border-color:rgba(239,68,68,0.35);background:rgba(239,68,68,0.08)">
-        <div class="qa-pill-icon">🎯</div>
-        <div>
-          <div class="qa-pill-title">Ошибки</div>
-          <div class="qa-pill-sub" id="mistakes-sub">Повторить</div>
-        </div>
-      </div>
-
     </div>
 
     <!-- Streak Freeze Used Notice (session-only) -->
@@ -1079,6 +1062,60 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
   </section>
 
+  <!-- PRACTICE -->
+  <section id="screen-practice" class="screen">
+    <p class="screen-title">Практика</p>
+    <p style="font-size:12px;color:var(--muted);margin:-4px 0 14px">Повторяй пройденное — так знания закрепляются</p>
+
+    <!-- Слабое место -->
+    <div class="continue-card" id="practice-weak-card" onclick="goToWeakSpot()" style="display:none;background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(239,68,68,0.06));border-color:rgba(245,158,11,0.35);">
+      <div style="font-size:10px;font-weight:700;color:var(--amber);letter-spacing:0.5px;margin-bottom:4px;">💡 ПОДТЯНИ СЛАБОЕ МЕСТО</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:15px;font-weight:800;color:var(--text)" id="weak-title"></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px" id="weak-sub"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <div style="font-size:11px;color:var(--amber);font-weight:700;" id="weak-pct"></div>
+          <div class="continue-btn-inline" style="background:rgba(245,158,11,0.18);border-color:rgba(245,158,11,0.4);color:var(--amber)">Начать →</div>
+        </div>
+      </div>
+      <div class="continue-progress-bar" style="background:rgba(245,158,11,0.15)"><div class="continue-progress-fill" id="weak-fill" style="width:0%;background:linear-gradient(90deg,var(--amber),#ef4444)"></div></div>
+    </div>
+
+    <!-- Работа над ошибками -->
+    <div class="continue-card" id="practice-mistakes-card" onclick="startMistakesReview()" style="display:none;background:linear-gradient(135deg,rgba(239,68,68,0.10),rgba(236,72,153,0.05));border-color:rgba(239,68,68,0.3);">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:24px">🎯</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--text)">Работа над ошибками</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px" id="mistakes-sub">0 вопросов на повторение</div>
+          </div>
+        </div>
+        <div class="continue-btn-inline" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.35);color:#f87171">Повторить →</div>
+      </div>
+    </div>
+
+    <!-- Мой словарь -->
+    <div id="practice-vocab-block">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;margin-top:4px">
+        <p class="section-label" style="margin-bottom:0">📖 Мой словарь</p>
+        <button id="vocab-quiz-btn" onclick="startVocabQuiz()" style="display:none;background:rgba(79,110,247,0.15);color:var(--accent);border:none;border-radius:10px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повторить →</button>
+      </div>
+      <div id="vocab-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px;margin-bottom:4px">
+        <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Сохраняй фразы из AI чата — нажми 📖 под сообщением</div>
+      </div>
+    </div>
+
+    <!-- Пустое состояние всей вкладки (когда совсем нечего повторять) -->
+    <div id="practice-empty" style="display:none;text-align:center;padding:36px 20px;color:var(--muted)">
+      <div style="font-size:40px;margin-bottom:10px">🎯</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Пока нечего повторять</div>
+      <div style="font-size:12px">Проходи уроки и общайся с AI — здесь появятся ошибки, слабые места и сохранённые слова для повторения</div>
+    </div>
+  </section>
+
   <!-- PROFILE -->
   <section id="screen-profile" class="screen">
     <p class="screen-title">Профиль</p>
@@ -1138,16 +1175,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div id="eng-level-desc" style="font-size:11px;color:var(--muted);margin-top:2px">B1–B2</div>
       </div>
       <button onclick="openLevelModal()" style="border:none;background:rgba(99,102,241,0.12);color:var(--accent);border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Изменить</button>
-    </div>
-
-    <div class="divider"></div>
-    <div class="divider"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-      <p class="section-label" style="margin-bottom:0">📖 Мой словарь</p>
-      <button id="vocab-quiz-btn" onclick="startVocabQuiz()" style="display:none;background:rgba(79,110,247,0.15);color:var(--accent);border:none;border-radius:10px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повторить →</button>
-    </div>
-    <div id="vocab-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px;margin-bottom:4px">
-      <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Сохраняй фразы из AI чата — нажми 📖 под сообщением</div>
     </div>
 
     <!-- VOCAB QUIZ OVERLAY -->
@@ -1287,6 +1314,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <nav class="bottom-nav">
   <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-robot"></i>AI Тьютор</button>
   <button class="nav-btn" id="nav-courses" onclick="switchTab('courses')"><i class="fa-solid fa-book-open"></i>Курсы</button>
+  <button class="nav-btn" id="nav-practice" onclick="switchTab('practice')"><i class="fa-solid fa-dumbbell"></i>Практика</button>
   <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i>Профиль</button>
   <!-- nav-premium hidden: Premium moved to Profile tab -->
   <button class="nav-btn" id="nav-premium" onclick="switchTab('premium')" style="display:none"><i class="fa-solid fa-crown"></i>Премиум</button>
@@ -15458,7 +15486,7 @@ function renderWeakSpotWidget(){
     return sum + Object.values(p).filter(v=>v.done).length;
   }, 0);
   // Only show after 5+ lessons total
-  if(totalDone < 5){ document.getElementById('weak-card').style.display='none'; return; }
+  if(totalDone < 5){ document.getElementById('practice-weak-card').style.display='none'; return; }
 
   // Find the course with lowest completion % but at least 1 lesson done (or never started)
   // Priority: started but stuck (1-3 lessons done) > never started
@@ -15477,13 +15505,13 @@ function renderWeakSpotWidget(){
     if(score < bestScore){ bestScore = score; best = id; }
   });
 
-  if(!best){ document.getElementById('weak-card').style.display='none'; return; }
+  if(!best){ document.getElementById('practice-weak-card').style.display='none'; return; }
 
   // Не дублируем пилюлю «Продолжить курс»: если слабое место — тот же курс,
   // который пользователь и так продолжает, вторая пилюля не нужна
   try{
     const last=JSON.parse(localStorage.getItem('smart_last_course')||'{}');
-    if(last.id===best){ document.getElementById('weak-card').style.display='none'; return; }
+    if(last.id===best){ document.getElementById('practice-weak-card').style.display='none'; return; }
   }catch(e){}
 
   const course = COURSES[best];
@@ -15500,13 +15528,13 @@ function renderWeakSpotWidget(){
     ? 'Ещё не начат · ' + total + ' уроков'
     : 'Урок ' + nextLesson.id + ' · ' + nextLesson.title;
   document.getElementById('weak-pct').textContent = pct + '%';
-  document.getElementById('weak-card').dataset.courseId = best;
-  document.getElementById('weak-card').dataset.lessonIdx = nextIdx >= 0 ? nextIdx : 0;
-  document.getElementById('weak-card').style.display = 'flex';
+  document.getElementById('practice-weak-card').dataset.courseId = best;
+  document.getElementById('practice-weak-card').dataset.lessonIdx = nextIdx >= 0 ? nextIdx : 0;
+  document.getElementById('practice-weak-card').style.display = 'flex';
 }
 
 function goToWeakSpot(){
-  const card = document.getElementById('weak-card');
+  const card = document.getElementById('practice-weak-card');
   const id = card.dataset.courseId;
   const idx = parseInt(card.dataset.lessonIdx) || 0;
   if(!id) return;
@@ -15750,13 +15778,26 @@ function removeMistake(q){
   localStorage.setItem(MISTAKES_KEY,JSON.stringify(list));
 }
 function renderMistakesWidget(){
-  const card=document.getElementById('mistakes-card');
+  const card=document.getElementById('practice-mistakes-card');
   if(!card)return;
   const n=getMistakes().length;
   if(n<3){card.style.display='none';return;}
   const word=n===1?'вопрос':n<5?'вопроса':'вопросов';
   document.getElementById('mistakes-sub').textContent=n+' '+word+' на повторение';
   card.style.display='flex';
+}
+
+// Вкладка «Практика»: слабое место + ошибки + словарь, с пустым состоянием
+function renderPractice(){
+  renderWeakSpotWidget();
+  renderMistakesWidget();
+  renderVocabSection();
+  const weakShown=document.getElementById('practice-weak-card').style.display!=='none';
+  const mistakesShown=document.getElementById('practice-mistakes-card').style.display!=='none';
+  const hasVocab=getSavedVocab().length>0;
+  const empty=!weakShown && !mistakesShown && !hasVocab;
+  document.getElementById('practice-empty').style.display=empty?'block':'none';
+  document.getElementById('practice-vocab-block').style.display=empty?'none':'block';
 }
 
 function nextExercise(){
@@ -16600,6 +16641,7 @@ function switchTab(id){
   document.getElementById('main-scroll').scrollTop=0;
   renderProBadge();
   if(id==='profile')renderProfile();
+  if(id==='practice')renderPractice();
   if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';restoreCatFilter();}
   if(id==='premium'){renderTrialBanner();}
   if(id==='chat'){personalizeTopics();}
