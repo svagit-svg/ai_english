@@ -38,12 +38,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(8,11,18,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);flex-shrink:0;z-index:10;}
 .logo{display:flex;align-items:center;gap:10px;}
 .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.logo-text h1{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:-0.3px;}
+.logo-text h1{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:-0.3px;white-space:nowrap;}
+.logo{flex-shrink:0;}
 .logo-text p{font-size:10px;color:var(--green);display:flex;align-items:center;gap:4px;margin-top:1px;}
 .dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .xp-badge{background:var(--surface2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;font-family:var(--font-head);display:flex;align-items:center;gap:5px;color:var(--amber);}
-.pro-badge{background:linear-gradient(135deg,rgba(245,158,11,0.22),rgba(124,58,237,0.16));border:1px solid rgba(245,158,11,0.5);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;font-family:var(--font-head);display:flex;align-items:center;gap:4px;color:var(--amber);cursor:pointer;}
+.plan-badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;font-family:var(--font-head);display:flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap;}
+.plan-badge.free{background:var(--surface2);border:1px solid var(--border);color:var(--muted);}
+.plan-badge.trial{background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);color:var(--amber);}
+.plan-badge.premium{background:linear-gradient(135deg,rgba(245,158,11,0.22),rgba(124,58,237,0.16));border:1px solid rgba(245,158,11,0.5);color:var(--amber);}
 .main{flex:1;overflow-y:auto;overflow-x:hidden;padding:12px 14px 80px;scroll-behavior:smooth;}
 .main::-webkit-scrollbar{display:none;}
 .screen{display:none;animation:fadeUp 0.25s ease;}
@@ -474,14 +478,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
-      <h1>SmartAI English <span style="font-size:10px;font-weight:400;color:var(--muted);letter-spacing:0">v3.0</span></h1>
-      <p><span class="dot"></span> AI-Tutor Online</p>
+      <h1>SmartAI English</h1>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:6px">
-    <div class="pro-badge" id="pro-badge" style="display:none" onclick="switchTab('premium')">👑<span>Premium</span></div>
+    <div class="plan-badge" id="plan-badge" onclick="switchTab('premium')">Free</div>
     <div class="xp-badge" id="streak-badge" style="display:none;border-color:rgba(245,158,11,0.25)">🔥<span id="streak-count">0</span></div>
-    <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span> XP</div>
+    <div class="xp-badge"><i class="fa-solid fa-bolt"></i><span id="xp-count">150</span></div>
   </div>
 </header>
 
@@ -627,6 +630,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div class="t-icon">🎓</div><h3>Academic English</h3><p>Эссе, стиль, академический язык</p>
         </div>
       </div>
+      <button id="topics-toggle" onclick="toggleTopics()" style="display:none;width:100%;margin-top:10px;padding:11px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--accent);font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">Показать все темы →</button>
     </div>
     <div id="chat-view">
       <div class="chat-topbar">
@@ -1555,6 +1559,9 @@ function loadFromCloud(callback){
 
 const WORKER_URL='https://mistral-proxy.s-vagit-f1f.workers.dev';
 const FREE_LIMIT=15;
+// Свёртка сетки тем: сколько показывать до кнопки «Показать все»
+const TOPICS_PREVIEW=6;
+let topicsExpanded=false;
 // Заголовок авторизации Mini App — воркер проверяет подпись initData (#34)
 function tgAuthHeaders(){ return { 'X-Telegram-Init-Data': (tg && tg.initData) || '' }; }
 
@@ -16386,6 +16393,7 @@ renderContinueWidget();
 renderWeakSpotWidget();
 renderMistakesWidget();
 renderFreezeWidget();
+personalizeTopics();
 
 // ── TRIAL ────────────────────────────────────────────────────────────────────
 function showTrialToast(){
@@ -16423,11 +16431,23 @@ function proDaysLeft(){
   return Math.max(0, Math.ceil((until-Date.now())/864e5));
 }
 
-// Бейдж Premium в шапке — виден на всех экранах
+// Бейдж статуса подписки в шапке — Premium / Триал·Nд / Free (виден всегда)
 function renderProBadge(){
-  const el=document.getElementById('pro-badge');
+  const el=document.getElementById('plan-badge');
   if(!el) return;
-  el.style.display = isPaidPro() ? 'flex' : 'none';
+  if(isPaidPro()){
+    el.className='plan-badge premium';
+    el.innerHTML='👑<span>Premium</span>';
+  } else {
+    const t=getTrialInfo();
+    if(t.active){
+      el.className='plan-badge trial';
+      el.textContent='Триал · '+t.daysLeft+'д';
+    } else {
+      el.className='plan-badge free';
+      el.textContent='Free';
+    }
+  }
 }
 
 function renderTrialBanner(){
@@ -16494,7 +16514,7 @@ function personalizeTopics(){
     const b=c.querySelector('.topic-rec-badge');
     if(b) b.remove();
   });
-  if(goal==='general') return; // no sorting for general
+  if(goal==='general'){ applyTopicCollapse(); return; } // no sorting for general
   // Sort: matching goals first
   const priority=[], rest=[];
   cards.forEach(c=>{
@@ -16514,6 +16534,24 @@ function personalizeTopics(){
   });
   // Reorder DOM
   [...priority,...rest].forEach(c=>grid.appendChild(c));
+  applyTopicCollapse();
+}
+
+// Показываем первые 6 тем, остальные — под кнопкой «Показать все» (меньше скролла)
+function applyTopicCollapse(){
+  const grid=document.getElementById('topic-grid');
+  const toggle=document.getElementById('topics-toggle');
+  if(!grid||!toggle) return;
+  const cards=[...grid.querySelectorAll('.topic-card')];
+  if(cards.length<=TOPICS_PREVIEW){ toggle.style.display='none'; cards.forEach(c=>c.style.display=''); return; }
+  cards.forEach((c,i)=>{ c.style.display=(topicsExpanded||i<TOPICS_PREVIEW)?'':'none'; });
+  toggle.style.display='block';
+  toggle.textContent=topicsExpanded?'Свернуть ↑':('Показать все ('+cards.length+') →');
+}
+function toggleTopics(){
+  topicsExpanded=!topicsExpanded;
+  haptic('selection');
+  applyTopicCollapse();
 }
 
 function filterCat(cat, btn){
