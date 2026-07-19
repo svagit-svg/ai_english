@@ -997,6 +997,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="ukusa-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('idioms')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(168,85,247,0.1);color:#a855f7;font-size:18px;">📜</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Idioms & Proverbs</h3>
+          <span style="font-size:10px;font-weight:700;color:#a855f7" id="idioms-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="idioms-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="idioms-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1414,7 +1425,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1443,7 +1454,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -15637,6 +15648,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  idioms: {
+    title: 'Idioms & Proverbs 📜',
+    lessons: [
+      {
+        id:1,title:'Что такое идиомы и пословицы — введение',xp:15,
+        theory:'<b>Что такое идиома и чем она отличается от пословицы</b><br><br>Идиома — это устойчивое словосочетание, значение которого нельзя понять, если переводить слова по отдельности. Например, фраза <b>kick the bucket</b> дословно значит «пнуть ведро», но на самом деле означает «умереть» — и если перевести её буквально, носитель языка вас просто не поймёт. Пословица (proverb) — это отдельный жанр: короткое законченное изречение, которое выражает житейскую мудрость или совет, например <b>actions speak louder than words</b> («поступки говорят громче слов»). Идиомы обычно являются частью предложения, а пословицы — самостоятельные фразы-афоризмы.<br><br>Почему идиомы нельзя переводить дословно? Потому что их значение сложилось исторически и часто не имеет никакой логической связи с буквальным смыслом слов. Это как культурный код: чтобы понять идиому <b>break the ice</b> («растопить лёд», то есть снять напряжение в начале разговора), нужно просто выучить её как целое выражение, а не разбирать по словам.<br><br>Идиомы — обязательная часть естественной речи носителей языка. Без них речь звучит «книжно» и неестественно, а понимание живого английского (фильмов, сериалов, разговоров) без знания идиом крайне затруднено.<br><br><div class="rule">"Please don\'t take it literally — it\'s just an idiom!"</div><div class="rule">"He kicked the bucket last year, sadly."</div><div class="rule">"Actions speak louder than words, so stop promising and start doing."</div><div class="rule">"It took a while, but she finally managed to break the ice at the meeting."</div>',
+        exercises:[
+          {q:'To die is sometimes expressed with the idiom "___ the bucket".',blank:'kick',opts:['kick','hit','drop','break']},
+          {q:'"Actions speak louder than words" is an example of a ___, not an idiom.',blank:'proverb',opts:['proverb','slang word','phrasal verb','synonym']},
+          {q:'To reduce tension at the start of a conversation, you can "___ the ice".',blank:'break',opts:['break','kick','melt','crack']},
+          {q:'Idioms should never be translated ___ — you need to learn their real meaning.',blank:'literally',opts:['literally','loudly','quickly','politely']},
+          {q:'A proverb is usually a short, complete ___ expressing wisdom or advice.',blank:'saying',opts:['saying','verb','noun','question']}
+        ]
+      },
+      {
+        id:2,title:'Идиомы о погоде',xp:15,
+        theory:'<b>Идиомы о погоде — почему англичане так любят говорить о дожде</b><br><br>Погода — любимая тема разговоров в англоязычных странах, особенно в Великобритании, поэтому идиомы о дожде, облаках и солнце глубоко укоренились в языке. <b>It\'s raining cats and dogs</b> — дословно «дождь из кошек и собак», а по смыслу — «льёт как из ведра». Происхождение спорно: по одной из версий, в средневековых английских городах после сильных ливней на улицах действительно оказывались тела бездомных животных, смытых потоками воды с крыш и из подворотен, что дало начало этому яркому выражению.<br><br><b>Under the weather</b> — дословно «под погодой», по смыслу — «неважно себя чувствовать, приболеть». Идиома пришла из морского языка: больных моряков отправляли вниз, под палубу, подальше от непогоды, отсюда и связь с плохим самочувствием.<br><br><b>Save for a rainy day</b> — «откладывать на чёрный день» — совет копить деньги на случай трудных времён, ведь «дождливый день» символизирует неприятности.<br><br><b>Every cloud has a silver lining</b> — «нет худа без добра», дословно «у каждой тучи есть серебряная кайма» — даже в плохой ситуации можно найти что-то хорошее.<br><br><b>Come rain or shine</b> — «что бы ни случилось», буквально «будь то дождь или солнце» — используется, когда что-то происходит независимо от обстоятельств. Эти идиомы разговорные и уместны в любой бытовой беседе.<br><br><div class="rule">"It\'s raining cats and dogs outside — take an umbrella!"</div><div class="rule">"I\'m feeling a bit under the weather today, so I\'ll skip the gym."</div><div class="rule">"You should save some money for a rainy day."</div><div class="rule">"Don\'t worry — every cloud has a silver lining."</div>',
+        exercises:[
+          {q:'When it rains very heavily, you can say it\'s ___ cats and dogs.',blank:'raining',opts:['raining','pouring','falling','dropping']},
+          {q:'If you feel unwell, you might say you are ___ the weather.',blank:'under',opts:['under','below','inside','beneath']},
+          {q:'It\'s wise to save money for a ___ day.',blank:'rainy',opts:['rainy','sunny','cloudy','snowy']},
+          {q:'Every cloud has a ___ lining, so don\'t lose hope.',blank:'silver',opts:['silver','golden','bright','shiny']},
+          {q:'She jogs every morning, ___ rain or shine.',blank:'come',opts:['come','rain','through','despite']}
+        ]
+      },
+      {
+        id:3,title:'Идиомы о еде',xp:15,
+        theory:'<b>Идиомы о еде — как кухня превращается в язык</b><br><br>Английский язык богат идиомами, связанными с едой — они делают речь образной и понятной без лишних объяснений. <b>Piece of cake</b> — дословно «кусок торта», по смыслу — «проще простого», что-то очень лёгкое. Ассоциация понятна: съесть кусок торта — приятно и не требует усилий.<br><br><b>Spill the beans</b> — «проболтаться, выдать секрет», буквально «рассыпать бобы». По одной из версий, идиома восходит к древнегреческой практике голосования бобами: белый боб — «за», чёрный — «против», и если сосуд с бобами случайно опрокидывался раньше времени, результат голосования становился известен до срока.<br><br><b>Bring home the bacon</b> — «зарабатывать на жизнь, содержать семью», дословно «приносить домой бекон». Считается, что выражение связано со средневековыми ярмарочными состязаниями, где победителю доставался кусок бекона в качестве приза.<br><br><b>In a nutshell</b> — «в двух словах, вкратце», буквально «в ореховой скорлупе» — то есть максимально сжато, как будто что-то огромное поместили в крошечную скорлупу ореха.<br><br><b>Cool as a cucumber</b> — «невозмутимый, спокойный», дословно «холодный как огурец» — мякоть огурца действительно остаётся прохладной даже в жару, что стало метафорой хладнокровия. Все эти идиомы разговорные и часто встречаются в неформальной речи.<br><br><div class="rule">"Don\'t worry, this exam will be a piece of cake for you."</div><div class="rule">"Please don\'t spill the beans about the surprise party!"</div><div class="rule">"He works two jobs to bring home the bacon for his family."</div><div class="rule">"In a nutshell, we need more time and more money."</div>',
+        exercises:[
+          {q:'If a task is very easy, you can call it a ___ of cake.',blank:'piece',opts:['piece','slice','bite','crumb']},
+          {q:'To accidentally reveal a secret is to ___ the beans.',blank:'spill',opts:['spill','drop','pour','spoil']},
+          {q:'The main earner in a family is said to bring home the ___.',blank:'bacon',opts:['bacon','cheese','bread','butter']},
+          {q:'To summarize something briefly, you say it "in a ___".',blank:'nutshell',opts:['nutshell','shellcase','box','frame']},
+          {q:'Someone who stays calm under pressure is "cool as a ___".',blank:'cucumber',opts:['cucumber','tomato','pepper','melon']}
+        ]
+      },
+      {
+        id:4,title:'Идиомы о животных',xp:15,
+        theory:'<b>Идиомы о животных — звериные образы в английской речи</b><br><br>Животные — источник вдохновения для множества идиом, ведь их повадки и внешний вид легко становятся метафорами человеческого поведения. <b>Let the cat out of the bag</b> — «проболтаться, случайно выдать секрет», буквально «выпустить кота из мешка». По одной из версий, идиома связана со старинным мошенничеством на рынках: недобросовестные торговцы продавали кота в мешке вместо поросёнка, и если покупатель открывал мешок раньше времени, обман раскрывался.<br><br><b>When pigs fly</b> — «когда рак на горе свистнет», буквально «когда свиньи полетят» — используется для описания событий, которые никогда не произойдут, ведь свиньи, разумеется, летать не умеют.<br><br><b>Kill two birds with one stone</b> — «убить двух зайцев», дословно «убить двух птиц одним камнем» — сделать сразу два дела одним действием.<br><br><b>Elephant in the room</b> — «слон в комнате», то есть очевидная проблема, которую все замечают, но никто не решается обсудить вслух.<br><br><b>Hold your horses</b> — «не торопись, придержи коней» — совет подождать и не спешить; идиома родом из времён, когда лошади были главным транспортом и резкая остановка требовала буквально придержать поводья.<br><br><div class="rule">"Oops, I think I just let the cat out of the bag about the surprise trip."</div><div class="rule">"He\'ll apologize when pigs fly — he\'s way too stubborn."</div><div class="rule">"By working from the café, I killed two birds with one stone."</div><div class="rule">"Nobody wanted to mention the elephant in the room during the meeting."</div>',
+        exercises:[
+          {q:'To accidentally reveal a secret is to let the ___ out of the bag.',blank:'cat',opts:['cat','dog','bird','fish']},
+          {q:'Something that will never happen is said to occur "when ___ fly".',blank:'pigs',opts:['pigs','cows','horses','sheep']},
+          {q:'To achieve two goals with a single action is to kill two ___ with one stone.',blank:'birds',opts:['birds','cats','stones','flies']},
+          {q:'An obvious problem nobody wants to discuss is called the "___ in the room".',blank:'elephant',opts:['elephant','giraffe','lion','tiger']},
+          {q:'"___ your horses!" means "slow down, don\'t rush."',blank:'Hold',opts:['Hold','Catch','Grab','Ride']}
+        ]
+      },
+      {
+        id:5,title:'Идиомы о деньгах',xp:15,
+        theory:'<b>Идиомы о деньгах — как англичане говорят о богатстве и бедности</b><br><br>Деньги — универсальная тема, и в английском языке накопилось множество красочных идиом на эту тему. <b>Break the bank</b> — «влететь в копеечку, разорить», буквально «сломать банк» — так говорят о слишком дорогой покупке или трате, способной серьёзно ударить по бюджету.<br><br><b>Cost an arm and a leg</b> — «стоить целое состояние», дословно «стоить руку и ногу». По одной из версий, идиома связана с портретной живописью XVIII века: полное изображение человека с руками и ногами стоило художнику намного больше труда и, соответственно, денег, чем поясной портрет.<br><br><b>Born with a silver spoon in one\'s mouth</b> — «родиться в рубашке, родиться богатым», буквально «родиться с серебряной ложкой во рту» — идиома восходит к традиции состоятельных семей дарить новорождённым серебряные ложки как символ достатка.<br><br><b>A penny for your thoughts</b> — вежливый способ спросить, о чём человек задумался, буквально «пенни за твои мысли».<br><br><b>Tighten your belt</b> — «затянуть пояс потуже», то есть начать экономить в трудные времена, метафора буквального сужения талии при недоедании.<br><br><div class="rule">"This vacation is going to break the bank if we\'re not careful."</div><div class="rule">"That designer bag cost an arm and a leg."</div><div class="rule">"She was born with a silver spoon in her mouth and never had to work."</div><div class="rule">"You\'ve been so quiet — a penny for your thoughts?"</div>',
+        exercises:[
+          {q:'An extremely expensive purchase might "___ the bank".',blank:'break',opts:['break','crash','open','rob']},
+          {q:'Something very costly is said to cost an ___ and a leg.',blank:'arm',opts:['arm','hand','elbow','finger']},
+          {q:'A person born into wealth is said to be born with a ___ spoon in their mouth.',blank:'silver',opts:['silver','golden','diamond','wooden']},
+          {q:'"A ___ for your thoughts?" is a polite way to ask what someone is thinking.',blank:'penny',opts:['penny','dollar','coin','dime']},
+          {q:'During hard times, families often have to ___ their belts.',blank:'tighten',opts:['tighten','loosen','buckle','wear']}
+        ]
+      },
+      {
+        id:6,title:'Идиомы о времени',xp:15,
+        theory:'<b>Идиомы о времени — как англичане говорят о минутах и годах</b><br><br>Время — одна из самых частых тем для идиом, ведь оно универсально понятно каждому. <b>Once in a blue moon</b> — «очень редко, раз в сто лет», буквально «раз в голубую луну». «Голубая луна» — редкое астрономическое явление (второе полнолуние в одном календарном месяце), поэтому идиома описывает нечто крайне нечастое.<br><br><b>In the nick of time</b> — «в последний момент, впритык», происхождение связано со старинной системой учёта: слово nick когда-то означало «зарубка», и «попасть точно в зарубку» на деревянной палочке-счётчике означало сделать что-то предельно вовремя, без права на ошибку.<br><br><b>Time flies</b> — «время летит», сокращение от латинской фразы tempus fugit, подчёркивающее, как быстро проходит время, особенно когда чем-то увлечён.<br><br><b>Better late than never</b> — пословица «лучше поздно, чем никогда», используется, чтобы подбодрить того, кто опоздал с делом, но всё же его выполнил.<br><br><b>The eleventh hour</b> — «в последнюю минуту», отсылка к библейской притче о работниках в винограднике, нанятых в одиннадцатом часу дня и всё же получивших полную плату.<br><br><div class="rule">"We only meet once in a blue moon these days."</div><div class="rule">"The ambulance arrived in the nick of time."</div><div class="rule">"Time flies when you\'re having fun."</div><div class="rule">"He finally apologized — better late than never."</div>',
+        exercises:[
+          {q:'Something that rarely happens occurs "once in a ___ moon".',blank:'blue',opts:['blue','red','pale','full']},
+          {q:'Arriving just in time, at the last possible moment, is "in the ___ of time".',blank:'nick',opts:['nick','edge','tip','end']},
+          {q:'"Time ___" means time passes very quickly.',blank:'flies',opts:['flies','runs','walks','jumps']},
+          {q:'"___ late than never" encourages someone who is behind schedule.',blank:'Better',opts:['Better','Rather','Sooner','Later']},
+          {q:'Doing something at "the ___ hour" means at the very last moment.',blank:'eleventh',opts:['eleventh','twelfth','tenth','final']}
+        ]
+      },
+      {
+        id:7,title:'Идиомы о теле — руки, ноги, голова',xp:15,
+        theory:'<b>Идиомы о частях тела — руки, ноги и голова в переносном смысле</b><br><br>Части тела — очень продуктивный источник идиом, потому что они всегда «под рукой» в буквальном смысле и легко становятся метафорами действий и качеств характера. <b>Give someone a hand</b> — «помочь кому-то», буквально «дать руку» — простое и очень частое выражение в повседневной речи.<br><br><b>Keep your head</b> — «сохранять хладнокровие, не паниковать», буквально «держать голову» — то есть не терять контроль над собой в стрессовой ситуации.<br><br><b>Foot the bill</b> — «оплатить счёт, взять расходы на себя», происхождение связано со старой практикой подводить итоговую сумму счёта внизу страницы (у «подножия», foot, листа), и тот, кто «оплачивал подножие», оплачивал весь счёт целиком.<br><br><b>Twist someone\'s arm</b> — «уговорить, надавить на кого-то», буквально «выкрутить кому-то руку» — шутливое преувеличение, обычно используется без агрессии, просто как образ настойчивого убеждения.<br><br><b>Keep an eye on</b> — «присматривать за кем-то/чем-то», буквально «держать глаз на». Напомним также идиому <b>cost an arm and a leg</b> из урока про деньги — она тоже входит в эту телесную группу образов.<br><br><div class="rule">"Could you give me a hand with these boxes?"</div><div class="rule">"Try to keep your head during the exam, even if it\'s hard."</div><div class="rule">"Our boss agreed to foot the bill for the office party."</div><div class="rule">"Okay, you\'ve twisted my arm — I\'ll come to the party."</div>',
+        exercises:[
+          {q:'To help someone is to give them a ___.',blank:'hand',opts:['hand','foot','leg','arm']},
+          {q:'To stay calm under pressure is to keep your ___.',blank:'head',opts:['head','hand','face','mind']},
+          {q:'To pay for something, especially a large expense, is to "___ the bill".',blank:'foot',opts:['foot','hand','head','pay']},
+          {q:'To persuade someone (often jokingly) is to "___ their arm".',blank:'twist',opts:['twist','pull','bend','break']},
+          {q:'To watch over something carefully is to "keep an ___ on it".',blank:'eye',opts:['eye','ear','hand','head']}
+        ]
+      },
+      {
+        id:8,title:'Идиомы о цветах',xp:15,
+        theory:'<b>Идиомы о цветах — что означают blue, green, white и red в переносном смысле</b><br><br>Цвета в английских идиомах почти никогда не описывают буквальный оттенок — они несут символическое значение. Мы уже встречали идиому <b>once in a blue moon</b> («очень редко») в уроке про время — она отлично иллюстрирует, что «голубой» цвет в идиомах часто связан с редкостью.<br><br><b>Green with envy</b> — «позеленеть от зависти», буквально «зелёный от зависти» — ассоциация зелёного цвета с завистью встречается ещё у Шекспира, который называл ревность «green-eyed monster» («зеленоглазым монстром»).<br><br><b>Out of the blue</b> — «как гром среди ясного неба, неожиданно», буквально «из голубого» — то есть словно свалившееся с ясного голубого неба, без предупреждения.<br><br><b>A white lie</b> — «невинная ложь во благо», буквально «белая ложь» — белый цвет традиционно символизирует чистоту и невинность, поэтому такая ложь считается безобидной.<br><br><b>Red flag</b> — «тревожный сигнал, предупреждающий знак», красный цвет исторически используется для сигналов опасности.<br><br><b>See red</b> — «прийти в ярость», буквально «увидеть красное» — связано со старым представлением о том, что красный цвет провоцирует агрессию у быков на корриде.<br><br><div class="rule">"She was green with envy when she saw my new car."</div><div class="rule">"He called me out of the blue after five years."</div><div class="rule">"I told a white lie to avoid hurting her feelings."</div><div class="rule">"His constant lateness was a red flag from the start."</div>',
+        exercises:[
+          {q:'To be very jealous is to be "___ with envy".',blank:'green',opts:['green','yellow','red','blue']},
+          {q:'Something unexpected happens "out of the ___".',blank:'blue',opts:['blue','sky','clear','nowhere']},
+          {q:'A harmless, small lie told to avoid hurting someone is called a "___ lie".',blank:'white',opts:['white','black','grey','pale']},
+          {q:'A warning sign of a problem is called a "___ flag".',blank:'red',opts:['red','yellow','black','pink']},
+          {q:'To become extremely angry is to "see ___".',blank:'red',opts:['red','black','stars','white']}
+        ]
+      },
+      {
+        id:9,title:'Идиомы морского происхождения',xp:15,
+        theory:'<b>Идиомы морского происхождения — наследие эпохи парусного флота</b><br><br>Великобритания веками была морской державой, и множество повседневных английских идиом пришли прямиком с палубы корабля. <b>All hands on deck</b> — «все за работу, аврал», буквально «все руки на палубу» — команда, означавшая, что абсолютно все матросы (hands) должны выйти на палубу для срочной общей работы, например в шторм.<br><br><b>In the same boat</b> — «быть в одинаковом положении, разделять одну проблему», буквально «в одной лодке» — если лодка тонет, тонут все пассажиры вместе, независимо от статуса.<br><br><b>Plain sailing</b> — «всё идёт легко и гладко», буквально «спокойное плавание» — так моряки называли участки маршрута без рифов, штормов и других опасностей.<br><br><b>Know the ropes</b> — «разбираться в деле, знать все тонкости», буквально «знать канаты» — на парусном корабле были десятки канатов, управляющих парусами, и опытный матрос должен был знать назначение каждого из них.<br><br><b>Batten down the hatches</b> — «готовиться к трудностям», буквально «задраить люки» — перед штормом моряки закрепляли крышки люков, чтобы вода не попала внутрь трюма.<br><br><div class="rule">"It\'s an emergency — all hands on deck, everyone!"</div><div class="rule">"Don\'t worry, we\'re all in the same boat here."</div><div class="rule">"After a rocky start, the project became plain sailing."</div><div class="rule">"It took her a month to learn the ropes at her new job."</div>',
+        exercises:[
+          {q:'"All ___ on deck!" means everyone needs to help immediately.',blank:'hands',opts:['hands','sailors','men','crew']},
+          {q:'If people share the same difficult situation, they are "in the same ___".',blank:'boat',opts:['boat','ship','storm','ocean']},
+          {q:'If something goes smoothly with no problems, it\'s "plain ___".',blank:'sailing',opts:['sailing','swimming','rowing','floating']},
+          {q:'To understand how something works, especially a new job, is to "know the ___".',blank:'ropes',opts:['ropes','sails','knots','wheel']},
+          {q:'To prepare for a difficult situation is to "___ down the hatches".',blank:'batten',opts:['batten','shut','lock','close']}
+        ]
+      },
+      {
+        id:10,title:'Идиомы из фермерской жизни',xp:15,
+        theory:'<b>Идиомы из фермерской жизни — сельский быт в языке города</b><br><br>До индустриализации большинство жителей Англии были так или иначе связаны с сельским хозяйством, поэтому в языке осталось множество идиом из жизни на ферме. <b>Make hay while the sun shines</b> — «куй железо пока горячо», буквально «коси сено, пока светит солнце» — сено нужно было заготавливать именно в сухую погоду, иначе оно сгниёт, отсюда совет не упускать благоприятный момент.<br><br><b>Don\'t count your chickens before they hatch</b> — «не дели шкуру неубитого медведя», буквально «не считай цыплят, пока они не вылупились» — восходит к басне Эзопа о девушке, которая мечтала, сколько цыплят вылупится из яиц, и в итоге уронила корзину, разбив все яйца.<br><br><b>The straw that broke the camel\'s back</b> — «последняя капля», буквально «соломинка, которая сломала спину верблюда» — образ верблюда, перегруженного поклажей, у которого одна лишняя соломинка становится роковой.<br><br><b>Separate the wheat from the chaff</b> — «отделять зёрна от плевел», то есть отличать ценное от бесполезного, отсылка к древнему процессу обмолота зерна.<br><br><b>Put the cart before the horse</b> — «делать всё задом наперёд», буквально «поставить телегу перед лошадью» — очевидная бессмыслица в сельском хозяйстве, ставшая метафорой неправильной последовательности действий.<br><br><div class="rule">"We should make hay while the sun shines and sign the deal today."</div><div class="rule">"Don\'t count your chickens before they hatch — we haven\'t won yet."</div><div class="rule">"That email was the straw that broke the camel\'s back."</div><div class="rule">"Buying furniture before renting the flat is putting the cart before the horse."</div>',
+        exercises:[
+          {q:'To take advantage of good conditions while they last is to "make ___ while the sun shines".',blank:'hay',opts:['hay','wood','bread','wine']},
+          {q:'"Don\'t count your ___ before they hatch" warns against assuming success too early.',blank:'chickens',opts:['chickens','eggs','ducks','chicks']},
+          {q:'The final small problem that causes a complete collapse is "the straw that broke the camel\'s ___".',blank:'back',opts:['back','leg','neck','spirit']},
+          {q:'To separate the wheat from the ___ means to identify what is truly valuable.',blank:'chaff',opts:['chaff','dust','stones','weeds']},
+          {q:'Doing things in the wrong order is "putting the ___ before the horse".',blank:'cart',opts:['cart','wagon','plow','saddle']}
+        ]
+      },
+      {
+        id:11,title:'Идиомы из Библии и религии',xp:15,
+        theory:'<b>Идиомы из Библии — как священный текст сформировал повседневную речь</b><br><br>Библия столетиями была самой читаемой книгой в англоязычном мире, и множество библейских образов и сюжетов превратились в устойчивые идиомы, которые используют даже нерелигиозные люди, часто не осознавая их происхождения. <b>A drop in the ocean</b> — «капля в море», то есть ничтожно малое количество по сравнению с целым — образ восходит к библейской Книге Исайи, где народы сравниваются с каплей из ведра.<br><br><b>A doubting Thomas</b> — «Фома неверующий», то есть человек, который ничему не верит без доказательств — отсылка к апостолу Фоме, который не поверил в воскресение Христа, пока не увидел раны на его теле собственными глазами.<br><br><b>Forbidden fruit</b> — «запретный плод», то есть нечто привлекательное именно потому, что запрещено — прямая отсылка к истории Адама и Евы и плоду с древа познания добра и зла.<br><br><b>Good Samaritan</b> — «добрый самаритянин», человек, бескорыстно помогающий незнакомцу в беде — из притчи о самаритянине, который помог раненому путнику, когда все остальные прошли мимо.<br><br><b>The writing on the wall</b> — «предзнаменование беды, дурной знак», из Книги Даниила, где таинственная надпись на стене предсказала падение вавилонского царя.<br><br><div class="rule">"My donation is just a drop in the ocean compared to what\'s needed."</div><div class="rule">"He\'s a real doubting Thomas — he never believes anything without proof."</div><div class="rule">"Forbidden fruit is always the sweetest, they say."</div><div class="rule">"A good Samaritan stopped to help change our flat tyre."</div>',
+        exercises:[
+          {q:'A tiny amount compared to what is needed is called "a drop in the ___".',blank:'ocean',opts:['ocean','sea','bucket','glass']},
+          {q:'A person who refuses to believe without proof is called a "doubting ___".',blank:'Thomas',opts:['Thomas','Peter','John','Judas']},
+          {q:'Something tempting mainly because it is prohibited is called "___ fruit".',blank:'forbidden',opts:['forbidden','sweet','hidden','secret']},
+          {q:'Someone who kindly helps a stranger in trouble is called a "good ___".',blank:'Samaritan',opts:['Samaritan','neighbor','shepherd','stranger']},
+          {q:'A clear sign that something bad is about to happen is called "the ___ on the wall".',blank:'writing',opts:['writing','shadow','sign','mark']}
+        ]
+      },
+      {
+        id:12,title:'Идиомы из Шекспира',xp:15,
+        theory:'<b>Идиомы из Шекспира — как один драматург обогатил английский язык</b><br><br>Уильям Шекспир, писавший на рубеже XVI–XVII веков, подарил английскому языку не только тысячи новых слов, но и множество идиом, которые используются до сих пор, спустя четыре столетия. Мы уже знаем идиому <b>break the ice</b> из первого урока — похожий образ встречается уже в пьесах эпохи Шекспира.<br><br><b>A wild goose chase</b> — «погоня за химерами, бессмысленное занятие», буквально «погоня за дикими гусями» — впервые встречается в «Ромео и Джульетте», где изначально описывало разновидность скачек, а позже стало означать бесплодные поиски.<br><br><b>In a pickle</b> — «попасть в переделку, оказаться в затруднительном положении», буквально «в маринаде» — фраза встречается в «Буре», где персонаж, напившись, буквально описывает своё состояние как «pickled».<br><br><b>Method to the madness</b> — «в этом безумии есть своя логика», из «Гамлета», где Полоний замечает про странное поведение Гамлета, что в нём, хоть это и похоже на безумие, есть система.<br><br><b>Vanish into thin air</b> — «исчезнуть бесследно», из «Бури» — Просперо описывает исчезновение духов именно этими словами.<br><br><div class="rule">"Looking for that missing report has turned into a wild goose chase."</div><div class="rule">"After losing his keys and his phone in one day, he was really in a pickle."</div><div class="rule">"Her plan seemed chaotic, but there was method to the madness."</div><div class="rule">"My keys were on the table and then just vanished into thin air."</div>',
+        exercises:[
+          {q:'A pointless, hopeless search is called "a wild goose ___".',blank:'chase',opts:['chase','hunt','flight','trip']},
+          {q:'To be in a difficult, awkward situation is to be "in a ___".',blank:'pickle',opts:['pickle','jar','mess','pinch']},
+          {q:'When something seems crazy but actually makes sense, we say there is "___ to the madness".',blank:'method',opts:['method','reason','logic','order']},
+          {q:'To disappear completely and mysteriously is to "vanish into thin ___".',blank:'air',opts:['air','space','nothing','smoke']},
+          {q:'The idiom "break the ___" (meeting someone for the first time) dates back to Shakespeare\'s era.',blank:'ice',opts:['ice','ground','silence','wall']}
+        ]
+      },
+      {
+        id:13,title:'Пословицы о мудрости и опыте',xp:15,
+        theory:'<b>Пословицы о мудрости и опыте</b><br><br>Пословицы о мудрости обобщают многовековой жизненный опыт целых поколений в одной короткой фразе. Мы уже разобрали пословицу <b>actions speak louder than words</b> в первом уроке — она напоминает, что дела важнее обещаний.<br><br><b>Practice makes perfect</b> — «повторение — мать учения», буквально «практика создаёт совершенство» — призыв не бояться повторять и тренироваться, ведь мастерство приходит только через регулярные усилия.<br><br><b>Better safe than sorry</b> — «береги себя заранее, а не потом жалей», совет проявлять осторожность и предусмотрительность, даже если это кажется избыточным, чтобы позже не сожалеть о последствиях.<br><br><b>Knowledge is power</b> — «знание — сила», короткая и ёмкая формула, часто приписываемая английскому философу Фрэнсису Бэкону (XVII век), который в своих трудах связывал знание с властью и контролем над миром.<br><br><b>Look before you leap</b> — «не зная броду, не суйся в воду», буквально «посмотри, прежде чем прыгнуть» — совет тщательно всё обдумать, прежде чем действовать, особенно в необратимых ситуациях.<br><br>Такие пословицы часто используются взрослыми, чтобы дать совет младшим, и звучат уместно как в разговорной, так и в более формальной речи.<br><br><div class="rule">"Keep practicing the piano — practice makes perfect."</div><div class="rule">"Take your umbrella, just in case. Better safe than sorry."</div><div class="rule">"He reads constantly because he believes knowledge is power."</div><div class="rule">"Before quitting your job, look before you leap."</div>',
+        exercises:[
+          {q:'"___ makes perfect" reminds us that skill comes from repetition.',blank:'Practice',opts:['Practice','Patience','Effort','Time']},
+          {q:'"Better ___ than sorry" advises caution to avoid regret later.',blank:'safe',opts:['safe','careful','early','ready']},
+          {q:'"Knowledge is ___" is often linked to the philosopher Francis Bacon.',blank:'power',opts:['power','wealth','freedom','wisdom']},
+          {q:'"Look before you ___" means think carefully before acting.',blank:'leap',opts:['leap','run','speak','decide']},
+          {q:'The proverb "actions speak louder than ___" values deeds over promises.',blank:'words',opts:['words','promises','plans','ideas']}
+        ]
+      },
+      {
+        id:14,title:'Пословицы о дружбе и отношениях',xp:15,
+        theory:'<b>Пословицы о дружбе и отношениях</b><br><br>Отношения между людьми — вечная тема, поэтому в английском языке накопилось множество пословиц о дружбе, доверии и человеческих связях. <b>A friend in need is a friend indeed</b> — «друг познаётся в беде», буквально «друг в нужде — настоящий друг» — истинную дружбу проверяет не благополучие, а трудные времена, когда человек действительно рядом.<br><br><b>Birds of a feather flock together</b> — «рыбак рыбака видит издалека», буквально «птицы одного оперения держатся вместе» — люди со схожими взглядами и интересами естественным образом тянутся друг к другу, как и птицы одного вида собираются в стаи.<br><br><b>Two\'s company, three\'s a crowd</b> — «третий лишний», буквально «двое — компания, трое — уже толпа» — используется, когда третий человек нарушает уютную атмосферу пары или близких друзей.<br><br><b>Out of sight, out of mind</b> — «с глаз долой — из сердца вон», буквально «вне поля зрения — вне мыслей» — когда человек или вещь долго отсутствуют, о них постепенно забывают, даже если раньше они были важны.<br><br>Эти пословицы уместны в неформальной беседе о личной жизни, а также нередко встречаются в песнях, фильмах и художественной литературе как крылатые фразы.<br><br><div class="rule">"She helped me move at midnight — a friend in need is a friend indeed."</div><div class="rule">"Of course they get along so well — birds of a feather flock together."</div><div class="rule">"I\'ll let you two catch up alone — two\'s company, three\'s a crowd."</div><div class="rule">"He stopped calling after she moved abroad — out of sight, out of mind."</div>',
+        exercises:[
+          {q:'"A friend in ___ is a friend indeed" means true friends show up during hard times.',blank:'need',opts:['need','deed','joy','luck']},
+          {q:'"Birds of a ___ flock together" means similar people tend to become friends.',blank:'feather',opts:['feather','wing','nest','colour']},
+          {q:'"Two\'s company, three\'s a ___" suggests a third person can feel unwelcome.',blank:'crowd',opts:['crowd','group','party','pair']},
+          {q:'"Out of sight, out of ___" means we forget people or things we don\'t see often.',blank:'mind',opts:['mind','sight','touch','reach']},
+          {q:'People with similar interests are described using the proverb about "___ of a feather".',blank:'birds',opts:['birds','flocks','geese','ducks']}
+        ]
+      },
+      {
+        id:15,title:'Пословицы об удаче и судьбе',xp:15,
+        theory:'<b>Пословицы об удаче и судьбе</b><br><br>Удача, невезение и судьба — благодатная почва для народной мудрости. Мы уже встречали пословицу <b>every cloud has a silver lining</b> в уроке про погоду — она напоминает, что даже в неудаче можно найти что-то хорошее.<br><br><b>When it rains, it pours</b> — «беда не приходит одна», буквально «когда идёт дождь, он льёт как из ведра» — неприятности имеют свойство наваливаться все сразу, а не по одной.<br><br><b>Don\'t put all your eggs in one basket</b> — «не клади все яйца в одну корзину», совет не рисковать всем сразу ради одной цели или вложения, ведь если корзина упадёт, разобьются все яйца одновременно.<br><br><b>Fortune favours the bold</b> — «удача любит смелых», латинское по происхождению изречение (fortes fortuna adiuvat), популяризированное в английском языке через классическую литературу и позже — массовую культуру.<br><br><b>You can\'t have your cake and eat it too</b> — «нельзя усидеть на двух стульях», буквально «нельзя одновременно иметь торт и съесть его» — если ты съел торт, у тебя его больше нет, то есть нельзя получить оба взаимоисключающих результата сразу.<br><br><div class="rule">"First I lost my job, then my car broke down — when it rains, it pours."</div><div class="rule">"Investing in just one company is risky — don\'t put all your eggs in one basket."</div><div class="rule">"She quit her job to start a business — fortune favours the bold."</div><div class="rule">"You want to save money and travel the world? You can\'t have your cake and eat it too."</div>',
+        exercises:[
+          {q:'"When it rains, it ___" means problems tend to happen all at once.',blank:'pours',opts:['pours','falls','floods','storms']},
+          {q:'"Don\'t put all your eggs in one ___" warns against risking everything at once.',blank:'basket',opts:['basket','box','bag','nest']},
+          {q:'"Fortune favours the ___" suggests that being brave leads to success.',blank:'bold',opts:['bold','lucky','rich','wise']},
+          {q:'"You can\'t have your ___ and eat it too" means you can\'t enjoy two conflicting benefits at once.',blank:'cake',opts:['cake','pie','bread','cookie']},
+          {q:'"Every cloud has a ___ lining" reminds us that bad situations often have a positive side.',blank:'silver',opts:['silver','golden','bright','hidden']}
+        ]
+      },
+      {
+        id:16,title:'Идиомы про работу и бизнес',xp:15,
+        theory:'<b>Идиомы про работу и бизнес</b><br><br>Деловая среда породила огромное количество идиом, которые давно вышли за пределы офиса и используются в повседневной речи. Про идиому <b>learn the ropes</b> («освоиться, разобраться в деле») мы уже говорили в уроке про морские идиомы под формой «know the ropes» — на новой работе часто говорят именно «learn the ropes», постепенно осваивая все тонкости.<br><br><b>Back to the drawing board</b> — «начать всё сначала», буквально «назад к чертёжной доске» — выражение популяризировано карикатурой времён Второй мировой войны, где инженер идёт переделывать неудачный чертёж самолёта после неудачного испытания.<br><br><b>Think outside the box</b> — «мыслить нестандартно, творчески», буквально «думать вне коробки» — связано с классической головоломкой на смекалку, где девять точек нужно соединить четырьмя линиями, не отрывая руки, выходя мысленно за пределы воображаемого квадрата.<br><br><b>In the loop</b> — «быть в курсе дел, включённым в процесс», буквально «в петле» — распространённое выражение офисной переписки, противоположность «out of the loop» (не в курсе).<br><br><b>Get the ball rolling</b> — «начать дело, дать делу ход», буквально «покатить мяч» — образ из старинных спортивных игр, где, чтобы игра началась, кто-то должен был первым толкнуть мяч.<br><br><div class="rule">"It took her a few weeks to learn the ropes at the new company."</div><div class="rule">"The client rejected our proposal, so it\'s back to the drawing board."</div><div class="rule">"We need someone who can think outside the box for this campaign."</div><div class="rule">"Please keep me in the loop about any updates."</div>',
+        exercises:[
+          {q:'To gradually understand how a new job works is to "learn the ___".',blank:'ropes',opts:['ropes','chains','wires','tricks']},
+          {q:'If a plan fails completely, you go "back to the drawing ___".',blank:'board',opts:['board','table','desk','room']},
+          {q:'To think creatively, beyond usual limits, is to "think outside the ___".',blank:'box',opts:['box','lines','frame','line']},
+          {q:'To stay informed about ongoing matters is to be "in the ___".',blank:'loop',opts:['loop','circle','ring','know']},
+          {q:'To start a project or process moving is to "get the ___ rolling".',blank:'ball',opts:['ball','wheel','engine','train']}
+        ]
+      },
+      {
+        id:17,title:'Идиомы для выражения эмоций',xp:15,
+        theory:'<b>Идиомы для выражения эмоций</b><br><br>Английский язык необычайно богат на образные способы выразить эмоциональное состояние — от восторга до тревоги. <b>Over the moon</b> — «на седьмом небе от счастья», буквально «за луной» — восходит к старой детской колыбельной «Hey Diddle Diddle», где корова буквально перепрыгивает через луну от избытка чувств.<br><br><b>Down in the dumps</b> — «в подавленном настроении, хандрить», буквально «внизу, в кучах мусора» — слово dump когда-то обозначало не только свалку, но и общее уныние, тяжесть на душе, отсюда и современное значение.<br><br><b>On cloud nine</b> — «на седьмом небе», синоним over the moon, буквально «на девятом облаке» — по одной из версий, идиома связана со старой метеорологической классификацией облаков, где девятый тип считался самым высоким и внушительным.<br><br><b>Butterflies in one\'s stomach</b> — «бабочки в животе», волнение перед важным событием — яркая физическая метафора нервного трепета, знакомая всем перед экзаменом или свиданием.<br><br><b>Cold feet</b> — «струсить, передумать в последний момент», буквально «холодные ноги» — чаще всего используется в контексте свадеб, когда жених или невеста сомневаются перед церемонией.<br><br><div class="rule">"She was over the moon when she got the job offer."</div><div class="rule">"He\'s been down in the dumps since his team lost the final."</div><div class="rule">"I\'ve been on cloud nine since our engagement."</div><div class="rule">"I always get butterflies in my stomach before a presentation."</div>',
+        exercises:[
+          {q:'To be extremely happy is to be "over the ___".',blank:'moon',opts:['moon','stars','sky','sun']},
+          {q:'To feel sad or depressed is to be "down in the ___".',blank:'dumps',opts:['dumps','holes','pits','blues']},
+          {q:'To feel intense joy is to be "on cloud ___".',blank:'nine',opts:['nine','seven','ten','eight']},
+          {q:'Nervous excitement before an important event feels like "___ in your stomach".',blank:'butterflies',opts:['butterflies','bees','moths','birds']},
+          {q:'To become suddenly too nervous to go through with something, especially a wedding, is to get "___ feet".',blank:'cold',opts:['cold','wet','sore','weak']}
+        ]
+      },
+      {
+        id:18,title:'Ложные друзья и идиомы, которые легко перепутать с русскими аналогами',xp:15,
+        theory:'<b>Ложные друзья: идиомы, которые легко перепутать с русскими аналогами</b><br><br>Иногда в английском и русском языках есть пословицы или идиомы с абсолютно одинаковым смыслом, но выраженные совершенно разными образами. Если переводить их дословно, получится нелепица, и носитель языка вас не поймёт — нужно знать готовый английский эквивалент.<br><br><b>It\'s (all) Greek to me</b> — «это для меня китайская грамота», буквально «это для меня по-гречески» — и английский, и русский вариант выражают одну идею («совершенно непонятно»), но выбирают разные «непонятные» языки: англичане — греческий, русские — китайский.<br><br><b>Make a mountain out of a molehill</b> — «делать из мухи слона», буквально «делать гору из кротовины» — смысл идентичен (преувеличивать проблему), но образ противоположный: русский язык увеличивает муху до слона, а английский — маленький кротовый холмик до горы.<br><br><b>Let sleeping dogs lie</b> — «не буди лихо, пока оно тихо», буквально «пусть спящие собаки лежат» — совет не трогать то, что может создать проблемы, если его не тревожить.<br><br><b>Once bitten, twice shy</b> — «обжёгшись на молоке, дуешь на воду», буквально «однажды укушенный, дважды осторожный».<br><br><b>A leopard can\'t change its spots</b> — «горбатого могила исправит», буквально «леопард не может изменить свои пятна» — характер человека не меняется в корне.<br><br><div class="rule">"Sorry, quantum physics is all Greek to me."</div><div class="rule">"Don\'t make a mountain out of a molehill — it\'s a tiny mistake."</div><div class="rule">"I wouldn\'t mention that old argument again — let sleeping dogs lie."</div><div class="rule">"After being scammed once, she double-checks everything now — once bitten, twice shy."</div>',
+        exercises:[
+          {q:'"It\'s all ___ to me" means something is completely incomprehensible.',blank:'Greek',opts:['Greek','Chinese','French','Latin']},
+          {q:'To exaggerate a small problem is to "make a mountain out of a ___".',blank:'molehill',opts:['molehill','anthill','pebble','fly']},
+          {q:'"Let sleeping ___ lie" advises against disturbing a settled issue.',blank:'dogs',opts:['dogs','cats','bears','lions']},
+          {q:'"Once bitten, twice ___" means a bad experience makes you more cautious.',blank:'shy',opts:['shy','careful','wise','safe']},
+          {q:'"A leopard can\'t change its ___" means people don\'t fundamentally change.',blank:'spots',opts:['spots','stripes','fur','coat']}
+        ]
+      },
+      {
+        id:19,title:'Современные варианты и парафразы классических идиом',xp:15,
+        theory:'<b>Современные варианты классических идиом</b><br><br>Идиомы не застывают навсегда — язык живой, и на смену старым образам приходят новые, более современные аналоги, особенно в неформальной речи молодёжи и поп-культуре. Полезно узнавать классический вариант идиомы и её более свежую версию, чтобы понимать и книги, и живые разговоры.<br><br><b>Spill the beans</b> (классика, «выдать секрет») в современном неформальном сленге часто заменяется на <b>spill the tea</b> — «выдать сплетню», где tea («чай») на сленге означает «горячие сплетни, инсайдерская информация» — выражение особенно популярно в интернет-культуре и среди молодёжи.<br><br><b>The whole nine yards</b> (классика, «всё целиком, по полной программе») имеет более разговорный аналог <b>the whole shebang</b> — оба выражения означают «всё, весь комплект», но shebang звучит более непринуждённо и современно.<br><br><b>Get cold feet</b> (классика, «струсить перед важным шагом») в разговорной речи часто заменяется простым фразовым глаголом <b>chicken out</b> — «сдрейфить», где сама курица (chicken) стала символом трусости.<br><br><b>Actions speak louder than words</b> (классическая пословица) в деловой среде превратилась в модную фразу <b>walk the talk</b> — «не только говорить, но и делать», популярную в статьях про менеджмент и лидерство.<br><br><div class="rule">"Okay, spill the tea — what happened at the party?"</div><div class="rule">"We rented a car, booked hotels, planned excursions — the whole shebang."</div><div class="rule">"He signed up for the marathon but chickened out the night before."</div><div class="rule">"A good leader doesn\'t just talk about values — they walk the talk."</div>',
+        exercises:[
+          {q:'The modern slang version of "spill the beans" is "spill the ___".',blank:'tea',opts:['tea','coffee','juice','milk']},
+          {q:'A casual modern synonym for "the whole nine yards" is "the whole ___".',blank:'shebang',opts:['shebang','package','deal','works']},
+          {q:'A modern phrasal verb meaning "to get cold feet and back out" is "to ___ out".',blank:'chicken',opts:['chicken','duck','pull','back']},
+          {q:'The modern business phrase for "actions speak louder than words" is "___ the talk".',blank:'walk',opts:['walk','live','do','back']},
+          {q:'Modern idioms often emerge first in ___ culture before becoming mainstream.',blank:'internet',opts:['internet','print','formal','academic']}
+        ]
+      },
+      {
+        id:20,title:'Финальный тест — смешанные вопросы по всем темам курса',xp:20,
+        theory:'<b>Финальный обзор — идиомы и пословицы всего курса</b><br><br>Поздравляем — вы прошли путь от определения идиомы до её современных сленговых вариаций! Подведём итог: идиомы охватывают буквально все сферы жизни — погоду (<b>it\'s raining cats and dogs</b>, <b>every cloud has a silver lining</b>), еду (<b>piece of cake</b>, <b>spill the beans</b>), животных (<b>let the cat out of the bag</b>, <b>when pigs fly</b>) и деньги (<b>cost an arm and a leg</b>, <b>born with a silver spoon</b>).<br><br>Мы также увидели, откуда берутся идиомы: из морского дела (<b>know the ropes</b>, <b>all hands on deck</b>), фермерской жизни (<b>make hay while the sun shines</b>), Библии (<b>a drop in the ocean</b>, <b>forbidden fruit</b>) и пьес Шекспира (<b>wild goose chase</b>, <b>in a pickle</b>). Пословицы о мудрости, дружбе и удаче (<b>practice makes perfect</b>, <b>a friend in need is a friend indeed</b>, <b>don\'t put all your eggs in one basket</b>) закрепляют житейский опыт целых поколений.<br><br>Важно помнить: одна и та же мысль в разных языках часто выражается разными образами (сравните <b>make a mountain out of a molehill</b> и «делать из мухи слона»), а сам язык постоянно обновляется — классические идиомы получают модные аналоги вроде <b>spill the tea</b> вместо <b>spill the beans</b>.<br><br>Используйте идиомы дозированно и уместно: они украшают речь, но злоупотребление ими в формальном тексте может выглядеть неуместно. В разговорной речи, кино и книгах — это как раз то, что делает язык живым и естественным.<br><br><div class="rule">"After finishing this course, idioms are no longer Greek to me!"</div><div class="rule">"Learning idioms was a piece of cake once I understood their origins."</div><div class="rule">"Don\'t worry about mistakes — practice makes perfect."</div><div class="rule">"Now I finally know the ropes of English idioms and proverbs."</div>',
+        exercises:[
+          {q:'If something is very easy, it\'s a "___ of cake".',blank:'piece',opts:['piece','slice','bit','crumb']},
+          {q:'To accidentally reveal a secret is to "let the ___ out of the bag".',blank:'cat',opts:['cat','dog','bird','mouse']},
+          {q:'"Actions speak louder than ___" values deeds over promises.',blank:'words',opts:['words','talk','speech','promises']},
+          {q:'To understand the details of a new job is to "know the ___".',blank:'ropes',opts:['ropes','rules','tricks','tips']},
+          {q:'A tempting thing that is off-limits is called "___ fruit".',blank:'forbidden',opts:['forbidden','hidden','sweet','secret']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -15653,7 +15889,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -15715,7 +15951,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -17192,6 +17428,7 @@ const TOPIC_CHIPS = {
   'Real Estate':    ["I\'m looking to rent a flat", "What\'s included in the rent?", "Can we negotiate the price?", "What are the neighbours like?"],
   'Eco':         ["What can I do to reduce my carbon footprint?", "Let\'s talk about renewable energy", "What do you think about fast fashion?", "How serious is climate change?"],
   'British vs American': ["What\'s the British word for \'apartment\'?", "How do you spell \'colour\' in American English?", "Can you explain the difference between \'gotten\' and \'got\'?", "Which is more formal: \'holiday\' or \'vacation\'?"],
+  'Idioms': ["Can you explain the idiom \'piece of cake\'?", "What does \'break the ice\' mean?", "Give me an idiom about money", "How do I use \'once in a blue moon\' in a sentence?"],
 };
 
 function showChips(topicKey) {
