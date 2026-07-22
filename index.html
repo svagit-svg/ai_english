@@ -126,9 +126,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .plan-detail.active{display:block;}
 .plan-detail.popular-plan{border-color:var(--accent);}
 .plan-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
-.plan-price-block{display:flex;align-items:baseline;gap:5px;}
-.plan-price{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;}
-.plan-period{font-size:11px;color:var(--muted);}
+.plan-price-block{display:flex;align-items:baseline;gap:5px;flex-shrink:0;}
+.plan-price{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;white-space:nowrap;}
+.plan-period{font-size:11px;color:var(--muted);white-space:nowrap;}
 .popular-badge{background:rgba(79,110,247,0.15);color:var(--accent);font-size:10px;font-weight:700;padding:3px 8px;border-radius:18px;font-family:var(--font-head);white-space:nowrap;}
 .features{list-style:none;margin-bottom:9px;}
 .features li{font-size:12px;color:#b0bcd4;margin-bottom:4px;display:flex;align-items:center;gap:7px;}
@@ -339,7 +339,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div style="flex:1"></div>
     <div style="background:var(--surface);border-radius:16px;padding:16px 14px;margin-bottom:24px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-        <span style="font-size:20px">📚</span><span style="font-size:13px;color:var(--text)">6 курсов на любой случай жизни</span>
+        <span style="font-size:20px">📚</span><span style="font-size:13px;color:var(--text)">33 курса на любой случай жизни</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <span style="font-size:20px">💬</span><span style="font-size:13px;color:var(--text)">AI-тьютор исправляет ошибки в реальном времени</span>
@@ -528,7 +528,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div style="font-size:10px;color:var(--muted);margin-top:1px" id="dc-card-badge">Новое!</div>
         </div>
       </div>
-      <div id="dc-streak-row" style="display:none;margin-top:10px;display:flex;align-items:center;gap:6px">
+      <div id="dc-streak-row" style="display:none;margin-top:10px;align-items:center;gap:6px">
         <span style="font-size:10px;color:var(--muted)">Серия:</span>
         <div id="dc-streak-dots"></div>
         <span id="dc-streak-label" style="font-size:11px;font-weight:700;color:var(--amber)"></span>
@@ -1189,7 +1189,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="profile-avatar" id="profile-avatar">👤</div>
       <h3 id="user-name" style="font-family:var(--font-head);font-size:15px;font-weight:800">Пользователь</h3>
       <p id="user-handle" style="font-size:11px;color:var(--muted);margin-top:2px"></p>
-      <p id="user-level" style="font-size:12px;color:var(--accent);margin-top:3px">Уровень: Beginner</p>
+      <p id="user-level" style="font-size:12px;color:var(--accent);margin-top:3px">Ранг: Beginner</p>
       <div style="margin-top:8px">
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px">
           <span id="level-label">Прогресс</span>
@@ -1963,7 +1963,7 @@ function renderProfile(){
   document.getElementById('stat-streak').textContent=s.streak;
   document.getElementById('stat-dialogs').textContent=s.dialogs;
   // level
-  document.getElementById('user-level').textContent='Уровень: '+lv.name;
+  document.getElementById('user-level').textContent='Ранг: '+lv.name;
   document.getElementById('level-label').textContent='До '+lv.nextName;
   document.getElementById('xp-progress-text').textContent=s.xp+(lv.next===Infinity?' XP (MAX)':' / '+lv.next+' XP');
   document.getElementById('level-fill-bar').style.width=lv.pct+'%';
@@ -2060,11 +2060,11 @@ const ACHIEVEMENTS=[
   {id:'business_d',  icon:'💼', name:'Профессионал',  desc:'Заверши Business English',    pro:true,  check:(s,cp)=>cp.business>=100},
   {id:'dating_d',    icon:'💕', name:'Романтик',      desc:'Заверши Dating English',      pro:true,  check:(s,cp)=>cp.dating>=100},
   {id:'chat_pro',    icon:'🎤', name:'Оратор',        desc:'Проведи 20 AI-диалогов',      pro:true,  check:(s,cp)=>s.dialogs>=20},
-  {id:'all_courses', icon:'👑', name:'Легенда',       desc:'Заверши все 6 курсов',        pro:true,  check:(s,cp)=>Object.values(cp).filter(v=>v>=100).length>=6},
+  {id:'all_courses', icon:'👑', name:'Легенда',       desc:'Заверши все 33 курса',        pro:true,  check:(s,cp)=>Object.values(cp).filter(v=>v>=100).length>=Object.keys(cp).length},
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -2120,7 +2120,7 @@ function getAchievementProgress(a,s,cp){
   if(a.id==='lessons10')return{cur:Math.min(s.lessons,10),max:10};
   if(a.id==='lessons50')return{cur:Math.min(s.lessons,50),max:50};
   if(a.id==='chat_pro')return{cur:Math.min(s.dialogs,20),max:20};
-  if(a.id==='all_courses')return{cur:Object.values(cp).filter(v=>v>=100).length,max:6};
+  if(a.id==='all_courses')return{cur:Object.values(cp).filter(v=>v>=100).length,max:Object.keys(cp).length};
   if(a.id==='business_d')return{cur:Math.min(cp.business||0,100),max:100};
   return{cur:0,max:1};
 }
