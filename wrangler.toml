@@ -34,6 +34,15 @@ binding = "DB"
 database_name = "smartai-progress"
 database_id = "b8acf87b-2203-4112-80e4-ddb1dcc7b679"
 
+# ── /start webhook (кнопка запуска Mini App) ─────────────
+# Отдельный секрет для проверки, что запросы на /tg-webhook реально шлёт
+# Telegram (передаётся в X-Telegram-Bot-Api-Secret-Token при setWebhook).
+#   npx wrangler secret put TG_WEBHOOK_SECRET   (любая случайная строка)
+# Активация (после деплоя воркера), подставив токен бота и тот же секрет:
+#   curl -F "url=https://mistral-proxy.s-vagit-f1f.workers.dev/tg-webhook" \
+#        -F "secret_token=<TG_WEBHOOK_SECRET>" \
+#        https://api.telegram.org/bot<TG_BOT_TOKEN>/setWebhook
+
 # Notifications (add later when KV namespace is ready):
 # 1. npx wrangler kv:namespace create REMINDERS
 # 2. Uncomment and fill in id below

@@ -206,6 +206,25 @@ async function tgSend(botToken, chatId, text) {
   return r.json();
 }
 
+// ── /start webhook: приветствие + кнопка запуска Mini App ──
+const APP_URL = 'https://svagit-svg.github.io/ai_english/';
+const START_TEXT = 'SmartAI English — учи английский с AI-репетитором 🧠\n\n' +
+  '33 курса · 660 уроков · живые диалоги с ИИ · разбор ошибок · ежедневные задания';
+
+async function tgSendStartReply(botToken, chatId) {
+  await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: START_TEXT,
+      reply_markup: {
+        inline_keyboard: [[{ text: '🚀 Открыть SmartAI English', web_app: { url: APP_URL } }]],
+      },
+    }),
+  });
+}
+
 // ── Reminder messages pool ────────────────────────────────
 const REMINDER_MSGS = [
   '🧠 Время английского! Всего 5 минут сегодня — и ты на шаг впереди. Открывай SmartAI English!',
@@ -375,6 +394,25 @@ export default {
       } catch (e) {
         return json({ error: e.message }, 500);
       }
+    }
+
+    // ── /tg-webhook ─────────────────────────────────────────
+    // Telegram шлёт сюда обновления (после setWebhook). Отвечаем на /start
+    // приветствием с кнопкой запуска Mini App. Всегда возвращаем 200, иначе
+    // Telegram будет ретраить доставку того же update.
+    if (path === '/tg-webhook' && request.method === 'POST') {
+      try {
+        if (env.TG_WEBHOOK_SECRET) {
+          const secret = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
+          if (secret !== env.TG_WEBHOOK_SECRET) return json({ error: 'unauthorized' }, 401);
+        }
+        const update = await request.json();
+        const msg = update.message;
+        if (msg && typeof msg.text === 'string' && msg.text.startsWith('/start') && env.TG_BOT_TOKEN) {
+          await tgSendStartReply(env.TG_BOT_TOKEN, msg.chat.id);
+        }
+      } catch (e) { /* игнорируем — Telegram не должен ретраить из-за наших ошибок */ }
+      return json({ ok: true });
     }
 
     // ── /mistral (AI proxy) ───────────────────────────────
