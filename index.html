@@ -1052,6 +1052,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="history-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('phrasal')" style="cursor:pointer" data-cat="base">
+      <div class="card-icon" style="background:rgba(79,110,247,0.1);color:#4f6ef7;font-size:18px;">📎</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Phrasal Verbs</h3>
+          <span style="font-size:10px;font-weight:700;color:#4f6ef7" id="phrasal-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="phrasal-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phrasal-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1469,7 +1480,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1498,7 +1509,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2064,7 +2075,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -16817,6 +16828,231 @@ I would be happy to take any questions.</div>
       },
     ]
   },
+  phrasal: {
+    title: 'Phrasal Verbs Deep Dive 📎',
+    lessons: [
+      {
+        id:1,title:'Что такое фразовый глагол — введение',xp:15,
+        theory:`<b>Фразовый глагол — главная головная боль и главный секрет живого английского</b><br><br>Фразовый глагол (phrasal verb) — это глагол в связке с предлогом или наречием (particle), у которого появляется <b>новое значение</b>, отличное от исходного глагола. Например, глагол <b>look</b> значит «смотреть», но <b>look after</b> — «заботиться», <b>look for</b> — «искать», а <b>look up</b> — «найти информацию». Одно слово <b>look</b>, но три совершенно разных смысла, и угадать их по логике невозможно — их учат как отдельные единицы.<br><br>Почему это важно? Потому что носители языка используют фразовые глаголы постоянно, особенно в разговорной речи. Там, где в учебнике написано <b>investigate</b>, живой человек скажет <b>look into</b>; вместо <b>tolerate</b> — <b>put up with</b>; вместо <b>continue</b> — <b>carry on</b>. Без фразовых глаголов речь звучит формально и «по-книжному».<br><br>Есть два важных свойства. Первое: <b>переходность</b> — некоторые фразовые глаголы требуют дополнения (<b>turn off the light</b>), другие нет (<b>the plane took off</b>). Второе: <b>разделяемость</b> — у разделяемых глаголов дополнение можно поставить в середину (<b>turn the light off</b>), у неразделяемых нельзя. Этому посвящён отдельный урок в конце курса. Пока запомните главное: фразовый глагол — это единое целое, и учить его нужно вместе с частицей и значением.<br><br><div class="rule">"Can you look after my cat while I'm away?"</div><div class="rule">"I'll look up the address on my phone."</div><div class="rule">"Let's carry on with the meeting."</div><div class="rule">"I don't know how you put up with all that noise."</div>`,
+        exercises:[
+          {q:`A phrasal verb is a verb combined with a particle that creates a ___ meaning.`,blank:'new',opts:['new','literal','formal','plural']},
+          {q:`"Look ___" means to take care of someone.`,blank:'after',opts:['after','up','for','into']},
+          {q:`"Look ___" means to find information (e.g. in a dictionary).`,blank:'up',opts:['up','after','for','out']},
+          {q:`Instead of the formal "tolerate", speakers often say "put ___ with".`,blank:'up',opts:['up','off','on','out']},
+          {q:`Native speakers use phrasal verbs most often in ___ speech.`,blank:'casual',opts:['casual','written','legal','ancient']}
+        ]
+      },
+      {
+        id:2,title:'Фразовые глаголы с UP',xp:15,
+        theory:`<b>UP — завершённость, увеличение и появление</b><br><br>Частица <b>up</b> — одна из самых частых. Она добавляет глаголу оттенок <b>завершённости</b>, <b>увеличения</b> или <b>появления чего-то нового</b>. Разберём ключевые глаголы.<br><br><b>wake up</b> — просыпаться; <b>get up</b> — вставать с постели. <b>give up</b> — сдаваться, бросать (<b>I gave up smoking</b> — «я бросил курить»). <b>look up</b> — искать информацию. <b>make up</b> — придумывать (историю), а также мириться после ссоры и наносить макияж — три значения у одного глагола. <b>set up</b> — организовывать, налаживать (<b>set up a meeting</b>, <b>set up a company</b>). <b>bring up</b> — поднимать тему в разговоре, а также растить ребёнка. <b>show up</b> — появляться, приходить (<b>He didn't show up</b> — «он не пришёл»). <b>speak up</b> — говорить громче. <b>come up with</b> — придумать, предложить (идею).<br><br>Обратите внимание, что <b>up</b> часто усиливает смысл: <b>eat</b> — «есть», а <b>eat up</b> — «съесть всё до конца»; <b>fill</b> — «наполнять», <b>fill up</b> — «наполнить полностью». Это интуитивное ощущение «до конца» помогает запоминать новые глаголы с up.<br><br><div class="rule">"I usually wake up at seven and get up ten minutes later."</div><div class="rule">"Don't give up — you're almost there!"</div><div class="rule">"She made up a silly excuse for being late."</div><div class="rule">"We need to come up with a better plan."</div>`,
+        exercises:[
+          {q:`To stop trying and quit is to "give ___".`,blank:'up',opts:['up','in','out','off']},
+          {q:`To invent a story is to "make ___" a story.`,blank:'up',opts:['up','out','over','on']},
+          {q:`To arrive or appear is to "show ___".`,blank:'up',opts:['up','on','in','off']},
+          {q:`To organize a meeting is to "set ___" a meeting.`,blank:'up',opts:['up','on','out','in']},
+          {q:`To think of a new idea is to "come up ___" an idea.`,blank:'with',opts:['with','for','to','on']}
+        ]
+      },
+      {
+        id:3,title:'Фразовые глаголы с OUT',xp:15,
+        theory:`<b>OUT — наружу, до результата, до конца</b><br><br>Частица <b>out</b> часто означает движение наружу, но во фразовых глаголах она чаще указывает на <b>достижение результата</b>, <b>решение задачи</b> или <b>исчерпание</b>.<br><br><b>find out</b> — узнавать, выяснять (<b>I found out the truth</b>). <b>work out</b> — три значения: заниматься спортом, решать проблему и «складываться, получаться» (<b>It worked out well</b> — «всё сложилось хорошо»). <b>figure out</b> — понять, разобраться (<b>I can't figure out this puzzle</b>). <b>sort out</b> — уладить, разобраться с проблемой. <b>run out (of)</b> — заканчиваться, иссякать (<b>We ran out of milk</b> — «у нас кончилось молоко»). <b>hand out</b> — раздавать. <b>check out</b> — выписываться из отеля, а также «взглянуть, оценить» (<b>Check out this video</b>). <b>point out</b> — указать, обратить внимание. <b>cross out</b> — вычёркивать. <b>turn out</b> — оказаться в итоге (<b>It turned out to be a mistake</b>).<br><br>Смысловая связка: <b>out</b> часто про то, как скрытое становится явным (<b>find out</b>, <b>point out</b>, <b>turn out</b>) или как что-то доводится до конца (<b>sort out</b>, <b>work out</b>).<br><br><div class="rule">"How did you find out about the party?"</div><div class="rule">"I go to the gym to work out three times a week."</div><div class="rule">"We've run out of coffee — I'll buy some."</div><div class="rule">"It turned out that he was right all along."</div>`,
+        exercises:[
+          {q:`To discover a fact is to "find ___".`,blank:'out',opts:['out','up','off','in']},
+          {q:`To exercise at the gym is to "work ___".`,blank:'out',opts:['out','up','on','off']},
+          {q:`When your supplies are finished, you have "run ___ of" them.`,blank:'out',opts:['out','off','down','up']},
+          {q:`To finally understand a problem is to "figure ___".`,blank:'out',opts:['out','up','over','on']},
+          {q:`To resolve or settle a problem is to "sort ___".`,blank:'out',opts:['out','up','off','in']}
+        ]
+      },
+      {
+        id:4,title:'Фразовые глаголы с ON',xp:15,
+        theory:`<b>ON — продолжение, включение, надевание</b><br><br>Частица <b>on</b> передаёт идею <b>продолжения действия</b>, <b>включения</b> или <b>надевания</b>.<br><br><b>carry on</b> / <b>go on</b> — продолжать (<b>Carry on, I'm listening</b>). <b>hold on</b> — подождать, «секундочку» (<b>Hold on, I'll check</b>). <b>get on</b> — садиться в транспорт (автобус, поезд, самолёт), а также «ладить» (<b>get on with someone</b>) и «продвигаться» (<b>How are you getting on?</b>). <b>put on</b> — надевать одежду, а также включать (<b>put on some music</b>) и набирать вес (<b>put on weight</b>). <b>turn on</b> / <b>switch on</b> — включать устройство. <b>count on</b> — рассчитывать на кого-то (<b>You can count on me</b>). <b>try on</b> — примерять одежду. <b>keep on</b> — продолжать делать (<b>He kept on talking</b>).<br><br>Важно не путать <b>get on</b> (садиться в большой транспорт — bus, train, plane) и <b>get in</b> (садиться в машину или такси). Это классическая ошибка. С автобусом — on, с машиной — in.<br><br><div class="rule">"Please carry on — I didn't mean to interrupt."</div><div class="rule">"Hold on a second, I'm almost ready."</div><div class="rule">"Put on your coat, it's cold outside."</div><div class="rule">"You can always count on your real friends."</div>`,
+        exercises:[
+          {q:`To continue an action, you can say "carry ___".`,blank:'on',opts:['on','out','up','off']},
+          {q:`To wait a moment, you say "hold ___".`,blank:'on',opts:['on','up','out','in']},
+          {q:`To put clothes onto your body is to "put ___" clothes.`,blank:'on',opts:['on','up','in','out']},
+          {q:`To rely on someone is to "count ___" them.`,blank:'on',opts:['on','in','out','up']},
+          {q:`You "get ___" a bus, but you "get in" a car.`,blank:'on',opts:['on','out','off','up']}
+        ]
+      },
+      {
+        id:5,title:'Фразовые глаголы с OFF',xp:15,
+        theory:`<b>OFF — отделение, отъезд, отключение</b><br><br>Частица <b>off</b> — противоположность <b>on</b>. Она означает <b>отделение</b>, <b>удаление</b>, <b>отъезд</b> или <b>отключение</b>.<br><br><b>take off</b> — снимать одежду, а также взлетать (о самолёте) и «резко пойти в гору» (<b>Her career took off</b>). <b>turn off</b> / <b>switch off</b> — выключать. <b>call off</b> — отменять (<b>They called off the wedding</b>). <b>put off</b> — откладывать на потом (<b>Don't put off your homework</b>), а также «отталкивать, вызывать неприязнь». <b>get off</b> — выходить из транспорта. <b>show off</b> — хвастаться, красоваться. <b>set off</b> — отправляться в путь (<b>We set off at dawn</b>). <b>go off</b> — сработать (о будильнике, сигнализации), а также испортиться (о еде: <b>The milk has gone off</b>). <b>day off</b> — выходной день (<b>I have a day off tomorrow</b>).<br><br>Полезная пара для запоминания: <b>turn on</b> ↔ <b>turn off</b>, <b>take off</b> ↔ <b>put on</b>, <b>get on</b> ↔ <b>get off</b>. Противоположности учить парами проще.<br><br><div class="rule">"Please turn off the lights when you leave."</div><div class="rule">"The meeting was called off at the last minute."</div><div class="rule">"Stop showing off — nobody is impressed."</div><div class="rule">"My alarm went off at 6 a.m. this morning."</div>`,
+        exercises:[
+          {q:`When a plane leaves the ground, it "takes ___".`,blank:'off',opts:['off','up','on','out']},
+          {q:`To cancel an event is to "call it ___".`,blank:'off',opts:['off','out','up','down']},
+          {q:`To postpone something is to "put it ___".`,blank:'off',opts:['off','up','out','in']},
+          {q:`When an alarm rings, it "goes ___".`,blank:'off',opts:['off','on','up','out']},
+          {q:`To brag and try to impress people is to "show ___".`,blank:'off',opts:['off','up','out','on']}
+        ]
+      },
+      {
+        id:6,title:'Фразовые глаголы с DOWN',xp:15,
+        theory:`<b>DOWN — уменьшение, запись, поломка</b><br><br>Частица <b>down</b> означает <b>уменьшение</b>, <b>движение вниз</b>, <b>запись на бумаге</b> или <b>прекращение работы</b>.<br><br><b>break down</b> — ломаться (о машине, механизме: <b>My car broke down</b>), а также эмоционально сорваться, расплакаться. <b>calm down</b> — успокаиваться (<b>Calm down, everything is fine</b>). <b>turn down</b> — отказываться от предложения (<b>She turned down the job</b>), а также убавлять громкость. <b>write down</b> / <b>note down</b> — записывать. <b>let down</b> — подводить, разочаровывать (<b>Don't let me down</b>). <b>slow down</b> — замедляться. <b>cut down (on)</b> — сокращать (<b>Cut down on sugar</b> — «сократи сахар»). <b>put down</b> — класть на место, а также записывать; в переносном смысле — унижать. <b>settle down</b> — остепениться, обустроиться.<br><br>Обратите внимание на <b>turn down</b>: у него два значения — «отклонить предложение» и «сделать тише». Контекст всегда подскажет: <b>turn down the offer</b> (предложение) vs <b>turn down the music</b> (музыку).<br><br><div class="rule">"My car broke down on the motorway."</div><div class="rule">"Please calm down and tell me what happened."</div><div class="rule">"Let me write down your phone number."</div><div class="rule">"I try to cut down on coffee in the evenings."</div>`,
+        exercises:[
+          {q:`When a machine stops working, it "breaks ___".`,blank:'down',opts:['down','up','off','out']},
+          {q:`To become calm again is to "calm ___".`,blank:'down',opts:['down','up','off','in']},
+          {q:`To write information on paper is to "write it ___".`,blank:'down',opts:['down','up','out','in']},
+          {q:`To reject an offer is to "turn it ___".`,blank:'down',opts:['down','off','up','out']},
+          {q:`To reduce how much you consume is to "cut ___ on" something.`,blank:'down',opts:['down','off','out','up']}
+        ]
+      },
+      {
+        id:7,title:'Фразовые глаголы с IN',xp:15,
+        theory:`<b>IN — внутрь, участие, заполнение</b><br><br>Частица <b>in</b> означает <b>движение внутрь</b>, <b>участие</b> или <b>заполнение</b>.<br><br><b>fill in</b> — заполнять (форму, бланк: <b>fill in the form</b>), а также вводить в курс дела (<b>fill me in</b> — «расскажи мне, что было»). <b>check in</b> — регистрироваться (в отеле, аэропорту). <b>give in</b> — сдаваться, уступать (<b>Don't give in to pressure</b>). <b>drop in</b> — заглянуть без предупреждения. <b>take in</b> — усваивать информацию, понимать (<b>It's a lot to take in</b>), а также приютить. <b>hand in</b> — сдавать (работу, документ: <b>hand in your homework</b>). <b>get in</b> — садиться в машину, а также входить/поступать (<b>She got into a good university</b>). <b>plug in</b> — подключать к розетке. <b>join in</b> — присоединяться к общему делу.<br><br>Полезно сравнить близкие по смыслу глаголы: <b>fill in</b> и <b>fill out</b> оба значат «заполнять форму» — в британском чаще <b>fill in</b>, в американском <b>fill out</b>, но оба правильны.<br><br><div class="rule">"Please fill in this form with your details."</div><div class="rule">"We need to check in two hours before the flight."</div><div class="rule">"He never gives in — he's very stubborn."</div><div class="rule">"Don't forget to hand in your report by Friday."</div>`,
+        exercises:[
+          {q:`To complete a form with your details is to "fill it ___".`,blank:'in',opts:['in','up','out','on']},
+          {q:`To register at a hotel is to "check ___".`,blank:'in',opts:['in','out','up','on']},
+          {q:`To stop resisting and surrender is to "give ___".`,blank:'in',opts:['in','up','out','off']},
+          {q:`To submit your homework to the teacher is to "hand it ___".`,blank:'in',opts:['in','out','up','over']},
+          {q:`"It's a lot to take ___" means it's hard to absorb all the information.`,blank:'in',opts:['in','up','on','over']}
+        ]
+      },
+      {
+        id:8,title:'Фразовые глаголы с BACK',xp:15,
+        theory:`<b>BACK — возврат и ответное действие</b><br><br>Частица <b>back</b> означает <b>возвращение</b> или <b>ответное, взаимное действие</b>.<br><br><b>call back</b> / <b>ring back</b> — перезвонить (<b>I'll call you back later</b>). <b>get back</b> — возвращаться (<b>What time did you get back?</b>), а также <b>get back to someone</b> — вернуться с ответом позже. <b>pay back</b> — возвращать долг, а также мстить. <b>look back (on)</b> — оглядываться в прошлое, вспоминать. <b>hold back</b> — сдерживать (эмоции, информацию). <b>bring back</b> — возвращать (вещь), а также навевать воспоминания (<b>This song brings back memories</b>). <b>cut back (on)</b> — сокращать (синоним cut down). <b>fight back</b> — сопротивляться, давать отпор. <b>give back</b> — отдавать обратно.<br><br>Очень частая фраза в деловой переписке: <b>get back to you</b> — «я вернусь к вам с ответом». Её используют, когда нужно время, чтобы что-то проверить: <b>Let me check and get back to you tomorrow</b>.<br><br><div class="rule">"I'm busy now — can I call you back in an hour?"</div><div class="rule">"He paid back the money he borrowed."</div><div class="rule">"Let me look into it and get back to you."</div><div class="rule">"This old photo brings back so many memories."</div>`,
+        exercises:[
+          {q:`To return a phone call is to "call someone ___".`,blank:'back',opts:['back','up','out','in']},
+          {q:`To return money you borrowed is to "pay it ___".`,blank:'back',opts:['back','off','down','up']},
+          {q:`To reply later with an answer is to "get ___ to" someone.`,blank:'back',opts:['back','up','over','in']},
+          {q:`To restrain your emotions is to "hold them ___".`,blank:'back',opts:['back','in','down','off']},
+          {q:`A song that returns old memories "brings ___" memories.`,blank:'back',opts:['back','up','out','in']}
+        ]
+      },
+      {
+        id:9,title:'Фразовые глаголы с AWAY и OVER',xp:15,
+        theory:`<b>AWAY — прочь, OVER — сверху и заново</b><br><br>Две полезные частицы. <b>away</b> означает <b>удаление, исчезновение</b>; <b>over</b> — <b>переход, повторение или тщательность</b>.<br><br>С <b>away</b>: <b>throw away</b> — выбрасывать (<b>Don't throw away that letter</b>). <b>give away</b> — раздавать бесплатно, а также выдавать секрет. <b>get away</b> — сбежать, вырваться (<b>get away from it all</b> — «отвлечься от всего»). <b>run away</b> — убегать. <b>put away</b> — убирать на место. <b>take away</b> — уносить (еда навынос — <b>takeaway</b>).<br><br>С <b>over</b>: <b>take over</b> — брать под контроль, возглавлять (<b>She took over the company</b>). <b>come over</b> — заходить в гости (<b>Come over tonight</b>). <b>go over</b> — просматривать, повторять (<b>Let's go over the plan</b>). <b>get over</b> — оправиться от болезни или потрясения (<b>get over an illness</b>, <b>get over a breakup</b>). <b>hand over</b> — передавать (полномочия, вещь). <b>think over</b> — обдумывать.<br><br>Обратите внимание: <b>get over</b> — очень употребительный глагол про восстановление, физическое (<b>get over the flu</b>) и эмоциональное (<b>get over your ex</b>).<br><br><div class="rule">"You should throw away those old newspapers."</div><div class="rule">"I really need to get away for the weekend."</div><div class="rule">"Come over for dinner on Saturday."</div><div class="rule">"It took her months to get over the breakup."</div>`,
+        exercises:[
+          {q:`To put something in the bin is to "throw it ___".`,blank:'away',opts:['away','out','off','over']},
+          {q:`To visit someone's home casually is to "come ___".`,blank:'over',opts:['over','up','on','in']},
+          {q:`To recover from an illness is to "get ___" it.`,blank:'over',opts:['over','out','off','up']},
+          {q:`To review a plan carefully is to "go ___" it.`,blank:'over',opts:['over','up','on','in']},
+          {q:`To take control of a company is to "take ___".`,blank:'over',opts:['over','up','on','out']}
+        ]
+      },
+      {
+        id:10,title:'Фразовые глаголы про работу и бизнес',xp:20,
+        theory:`<b>Фразовые глаголы в офисе и бизнесе</b><br><br>В деловом английском фразовые глаголы встречаются на каждом шагу — в письмах, на встречах, в переговорах.<br><br><b>carry out</b> — выполнять, проводить (<b>carry out a task</b>, <b>carry out research</b>). <b>take on</b> — брать на себя (задачу), а также нанимать (<b>We're taking on new staff</b>). <b>lay off</b> — увольнять по сокращению (<b>The company laid off 200 workers</b>). <b>set up</b> — учреждать, основывать (<b>set up a business</b>). <b>follow up</b> — напоминать, продолжать контакт (<b>I'll follow up with an email</b>). <b>back up</b> — поддерживать, а также делать резервную копию (<b>back up your files</b>). <b>fill in for</b> — замещать кого-то. <b>run by</b> — согласовать, «прогнать через» (<b>Let me run this by my manager</b>). <b>draw up</b> — составлять (документ, договор). <b>close down</b> — закрывать (бизнес). <b>step down</b> — уходить с должности.<br><br>Особенно полезен <b>follow up</b> — в деловой культуре принято «фолловапить», то есть напоминать о себе вежливым письмом после встречи или невыполненной просьбы. Это признак профессионализма, а не назойливости.<br><br><div class="rule">"We'll carry out the survey next week."</div><div class="rule">"Unfortunately, the firm had to lay off staff."</div><div class="rule">"I'll follow up with you after the meeting."</div><div class="rule">"Let me run this idea by the team first."</div>`,
+        exercises:[
+          {q:`To perform a task or research is to "carry it ___".`,blank:'out',opts:['out','up','on','off']},
+          {q:`To dismiss employees for economic reasons is to "lay them ___".`,blank:'off',opts:['off','out','down','up']},
+          {q:`To send a reminder email after a meeting is to "follow ___".`,blank:'up',opts:['up','out','on','in']},
+          {q:`To accept a new responsibility is to "take it ___".`,blank:'on',opts:['on','up','out','in']},
+          {q:`To get approval from your manager is to "run it ___" them.`,blank:'by',opts:['by','up','on','over']}
+        ]
+      },
+      {
+        id:11,title:'Фразовые глаголы про отношения и общение',xp:20,
+        theory:`<b>Фразовые глаголы о людях и чувствах</b><br><br>Отношения — благодатная почва для фразовых глаголов, ведь речь о них почти всегда неформальная.<br><br><b>get along (with)</b> — ладить (<b>I get along with my colleagues</b>). <b>make up</b> — мириться после ссоры (<b>They argued but soon made up</b>). <b>fall out (with)</b> — поссориться (<b>She fell out with her friend</b>). <b>break up (with)</b> — расставаться (о паре: <b>They broke up last month</b>). <b>open up</b> — раскрываться, делиться чувствами (<b>It's hard for him to open up</b>). <b>put up with</b> — терпеть, мириться с чем-то неприятным (<b>I can't put up with the noise</b>). <b>look up to</b> — уважать, брать пример (<b>I look up to my mentor</b>). <b>look down on</b> — смотреть свысока, презирать. <b>get together</b> — собираться, встречаться. <b>settle down</b> — остепениться, завести семью. <b>grow apart</b> — отдаляться со временем.<br><br>Полезная противоположная пара: <b>look up to</b> (уважать, смотреть снизу вверх) ↔ <b>look down on</b> (презирать, смотреть сверху вниз). Направление взгляда буквально отражает отношение.<br><br><div class="rule">"Do you get along with your neighbours?"</div><div class="rule">"They had a fight but made up the next day."</div><div class="rule">"I really look up to my older sister."</div><div class="rule">"How do you put up with such a long commute?"</div>`,
+        exercises:[
+          {q:`To have a good relationship with someone is to "get ___ with" them.`,blank:'along',opts:['along','up','on','over']},
+          {q:`To reconcile after an argument is to "make ___".`,blank:'up',opts:['up','out','in','off']},
+          {q:`When a couple ends their relationship, they "break ___".`,blank:'up',opts:['up','off','down','out']},
+          {q:`To admire and respect someone is to "look ___ to" them.`,blank:'up',opts:['up','down','out','over']},
+          {q:`To tolerate something unpleasant is to "put ___ with" it.`,blank:'up',opts:['up','off','out','on']}
+        ]
+      },
+      {
+        id:12,title:'Фразовые глаголы про путешествия и транспорт',xp:20,
+        theory:`<b>Фразовые глаголы в дороге</b><br><br>Путешествия — сплошные фразовые глаголы: от регистрации до прибытия.<br><br><b>check in</b> — регистрироваться (в аэропорту, отеле); <b>check out</b> — выписываться из отеля. <b>take off</b> — взлетать; <b>touch down</b> / <b>land</b> — приземляться. <b>get on</b> / <b>get off</b> — садиться в транспорт и выходить (bus, train, plane). <b>get in</b> / <b>get out (of)</b> — садиться в машину/такси и выходить. <b>set off</b> / <b>set out</b> — отправляться в путь. <b>pick up</b> — забирать, подвозить (<b>I'll pick you up at the airport</b>); <b>drop off</b> — высаживать, подвозить до места (<b>Can you drop me off here?</b>). <b>stop over</b> — делать пересадку с остановкой. <b>get away</b> — уезжать отдыхать. <b>see off</b> — провожать (<b>We saw them off at the station</b>).<br><br>Запомните пары «сесть/выйти»: с большим транспортом (bus/train/plane) — <b>get on/off</b>; с машиной/такси — <b>get in/out</b>. И различайте <b>pick up</b> (забрать/подвезти) и <b>drop off</b> (высадить/довезти) — это две стороны одной поездки.<br><br><div class="rule">"We need to check in three hours before an international flight."</div><div class="rule">"The plane took off on time."</div><div class="rule">"I'll pick you up at eight and drop you off after dinner."</div><div class="rule">"They came to see us off at the airport."</div>`,
+        exercises:[
+          {q:`To leave a hotel and pay the bill is to "check ___".`,blank:'out',opts:['out','in','off','up']},
+          {q:`To collect someone in your car is to "pick them ___".`,blank:'up',opts:['up','out','off','in']},
+          {q:`To let someone out of your car at a location is to "drop them ___".`,blank:'off',opts:['off','out','down','up']},
+          {q:`You "get ___" a train, but you "get in" a taxi.`,blank:'on',opts:['on','in','up','out']},
+          {q:`To begin a journey is to "set ___".`,blank:'off',opts:['off','up','in','down']}
+        ]
+      },
+      {
+        id:13,title:'Фразовые глаголы про здоровье и самочувствие',xp:20,
+        theory:`<b>Фразовые глаголы о здоровье</b><br><br>Когда речь заходит о самочувствии, англичане редко используют «медицинские» слова — куда чаще фразовые глаголы.<br><br><b>come down with</b> — заболеть чем-то (<b>I'm coming down with a cold</b> — «кажется, я простужаюсь»). <b>get over</b> — оправиться от болезни (<b>It took a week to get over the flu</b>). <b>pass out</b> — потерять сознание, упасть в обморок. <b>throw up</b> — тошнить, рвать (разговорное). <b>work out</b> — заниматься спортом. <b>cut down (on)</b> — сокращать (вредное: <b>cut down on salt</b>). <b>give up</b> — бросать (привычку: <b>give up smoking</b>). <b>warm up</b> — разминаться перед тренировкой; <b>cool down</b> — восстанавливаться после. <b>put on weight</b> / <b>gain weight</b> — набирать вес; <b>lose weight</b> — худеть. <b>break out</b> — покрыться (сыпью), а также «вспыхнуть» (об эпидемии).<br><br>Очень частая разговорная фраза: <b>come down with something</b> — так говорят о начинающейся простуде или гриппе, когда симптомы только появляются. А <b>get over it</b> — универсальный глагол выздоровления, и физического, и душевного.<br><br><div class="rule">"I think I'm coming down with the flu."</div><div class="rule">"It took me two weeks to get over the infection."</div><div class="rule">"Always warm up before you work out."</div><div class="rule">"My doctor told me to cut down on sugar."</div>`,
+        exercises:[
+          {q:`To start to catch an illness is to "come ___ with" it.`,blank:'down',opts:['down','up','over','out']},
+          {q:`To recover from an illness is to "get ___" it.`,blank:'over',opts:['over','up','off','out']},
+          {q:`To faint and lose consciousness is to "pass ___".`,blank:'out',opts:['out','off','up','down']},
+          {q:`To do gentle exercise before training is to "warm ___".`,blank:'up',opts:['up','down','out','off']},
+          {q:`To quit a bad habit like smoking is to "give it ___".`,blank:'up',opts:['up','out','off','in']}
+        ]
+      },
+      {
+        id:14,title:'Многозначный GET: get up, get on, get over',xp:20,
+        theory:`<b>GET — король фразовых глаголов</b><br><br>Глагол <b>get</b> образует десятки фразовых глаголов, и у многих несколько значений. Освоить их — большой шаг к беглости.<br><br><b>get up</b> — вставать с постели. <b>get on</b> — садиться в транспорт; ладить (<b>get on with someone</b>); справляться (<b>How's it getting on?</b>). <b>get on with</b> — продолжать заниматься чем-то (<b>Let me get on with my work</b>). <b>get over</b> — оправляться от болезни/потрясения. <b>get by</b> — сводить концы с концами, обходиться (<b>We get by on a small budget</b>). <b>get away with</b> — избежать наказания (<b>He got away with cheating</b>). <b>get around</b> — передвигаться (<b>It's easy to get around by bike</b>), а также обходить проблему. <b>get through</b> — пережить трудный период; дозвониться. <b>get along</b> — ладить. <b>get back</b> — возвращаться. <b>get up to</b> — затевать (обычно проказы: <b>What are you getting up to?</b>).<br><br>Особенно коварен <b>get away with</b> — «выйти сухим из воды», избежать последствий проступка. И <b>get by</b> — «перебиваться, кое-как справляться», часто про деньги или язык (<b>I can get by in Spanish</b>).<br><br><div class="rule">"I get up early during the week."</div><div class="rule">"They get on really well — like old friends."</div><div class="rule">"How do you get around the city without a car?"</div><div class="rule">"He always gets away with being late."</div>`,
+        exercises:[
+          {q:`To rise from bed in the morning is to "get ___".`,blank:'up',opts:['up','on','off','in']},
+          {q:`To manage with limited money is to "get ___".`,blank:'by',opts:['by','up','out','over']},
+          {q:`To avoid punishment for something is to "get away ___" it.`,blank:'with',opts:['with','from','out','off']},
+          {q:`To move around a place is to "get ___".`,blank:'around',opts:['around','up','on','in']},
+          {q:`To have a good relationship is to "get ___ with" someone.`,blank:'on',opts:['on','up','in','off']}
+        ]
+      },
+      {
+        id:15,title:'Многозначный TAKE: take off, take up, take after',xp:20,
+        theory:`<b>TAKE — многоликий глагол</b><br><br><b>take</b> тоже образует множество фразовых глаголов с разными смыслами.<br><br><b>take off</b> — снимать (одежду); взлетать (самолёт); резко пойти вверх (<b>Sales took off</b>); взять отгул (<b>take a day off</b>). <b>take up</b> — начать заниматься хобби (<b>I took up yoga</b>); занимать место или время (<b>This takes up too much space</b>). <b>take on</b> — брать на себя (задачу); нанимать. <b>take in</b> — усваивать информацию; приютить; ушивать одежду. <b>take after</b> — быть похожим на родственника (<b>She takes after her mother</b>). <b>take back</b> — брать назад слова (<b>I take it back, I was wrong</b>); возвращать товар. <b>take over</b> — брать под контроль, возглавлять. <b>take out</b> — вынимать; приглашать куда-то (<b>take someone out for dinner</b>). <b>take down</b> — записывать; демонтировать.<br><br>Обратите внимание на <b>take after</b> — «пойти в кого-то» из родни, о внешности или характере (<b>He takes after his dad</b>). И на <b>take up</b> в значении «увлечься новым делом»: <b>take up painting, take up running</b>.<br><br><div class="rule">"I recently took up photography as a hobby."</div><div class="rule">"She really takes after her grandmother."</div><div class="rule">"I take back what I said — you were right."</div><div class="rule">"He took on too much work and got exhausted."</div>`,
+        exercises:[
+          {q:`To start a new hobby is to "take it ___".`,blank:'up',opts:['up','on','off','in']},
+          {q:`To resemble a parent or relative is to "take ___" them.`,blank:'after',opts:['after','on','up','over']},
+          {q:`To retract something you said is to "take it ___".`,blank:'back',opts:['back','off','out','down']},
+          {q:`To assume control of a company is to "take it ___".`,blank:'over',opts:['over','up','on','in']},
+          {q:`To invite someone out for dinner is to "take them ___".`,blank:'out',opts:['out','off','up','over']}
+        ]
+      },
+      {
+        id:16,title:'Многозначный PUT: put on, put off, put up with',xp:20,
+        theory:`<b>PUT — гибкий глагол</b><br><br>Фразовые глаголы с <b>put</b> покрывают всё от одежды до терпения.<br><br><b>put on</b> — надевать; включать (<b>put on music</b>); набирать вес (<b>put on weight</b>); притворяться (<b>put on an accent</b>). <b>put off</b> — откладывать (<b>Don't put it off</b>); отталкивать, вызывать неприязнь (<b>The smell put me off</b>). <b>put up with</b> — терпеть неприятное. <b>put down</b> — класть; унижать (<b>Stop putting me down</b>); записывать; усыплять (животное). <b>put out</b> — тушить (огонь: <b>put out the fire</b>); выставлять наружу; причинять неудобство. <b>put away</b> — убирать на место. <b>put up</b> — вешать (плакат); строить; приютить на ночь (<b>Can you put me up for the night?</b>). <b>put together</b> — собирать, монтировать (<b>put together a plan</b>). <b>put forward</b> — выдвигать (идею, предложение).<br><br>Не путайте <b>put off</b> (отложить) и <b>put up with</b> (терпеть) — они выглядят похоже, но смыслы разные. И запомните двойное значение <b>put on</b>: и «надеть», и «включить», и «набрать вес».<br><br><div class="rule">"Don't put off till tomorrow what you can do today."</div><div class="rule">"The loud music really put me off studying."</div><div class="rule">"They put out the fire before it spread."</div><div class="rule">"Can you put me up for a couple of nights?"</div>`,
+        exercises:[
+          {q:`To postpone a task is to "put it ___".`,blank:'off',opts:['off','on','up','out']},
+          {q:`To extinguish a fire is to "put it ___".`,blank:'out',opts:['out','off','down','away']},
+          {q:`To tolerate something annoying is to "put ___ with" it.`,blank:'up',opts:['up','off','out','on']},
+          {q:`To let a guest stay overnight is to "put them ___".`,blank:'up',opts:['up','on','in','out']},
+          {q:`To assemble or create a plan is to "put it ___".`,blank:'together',opts:['together','off','out','down']}
+        ]
+      },
+      {
+        id:17,title:'Многозначный COME: come across, come up with',xp:20,
+        theory:`<b>COME — глагол открытий и появлений</b><br><br><b>come</b> образует фразовые глаголы про случайности, идеи и события.<br><br><b>come across</b> — случайно наткнуться (<b>I came across an old photo</b>); производить впечатление (<b>He comes across as shy</b>). <b>come up with</b> — придумать (идею, решение). <b>come up</b> — возникнуть (о теме, проблеме: <b>Something came up</b>). <b>come down with</b> — заболеть. <b>come over</b> — заходить в гости. <b>come out</b> — выходить (о фильме, книге); открыться, признаться. <b>come back</b> — возвращаться. <b>come along</b> — идти вместе; продвигаться (<b>How's the project coming along?</b>). <b>come round</b> / <b>come to</b> — приходить в себя после обморока. <b>come off</b> — отделяться, отрываться; удаваться (<b>The plan came off</b>). <b>come apart</b> — разваливаться.<br><br>Очень полезен <b>come across</b> в двух смыслах: «случайно найти» (<b>I came across a great café</b>) и «производить впечатление» (<b>She comes across as confident</b>). А фраза <b>something came up</b> — вежливый способ сказать «возникли непредвиденные дела».<br><br><div class="rule">"I came across an interesting article today."</div><div class="rule">"Can you come up with a better solution?"</div><div class="rule">"Sorry, I can't make it — something came up."</div><div class="rule">"He comes across as confident, but he's actually shy."</div>`,
+        exercises:[
+          {q:`To find something by chance is to "come ___" it.`,blank:'across',opts:['across','up','out','over']},
+          {q:`To invent an idea is to "come up ___" it.`,blank:'with',opts:['with','across','for','to']},
+          {q:`When an unexpected matter arises, "something came ___".`,blank:'up',opts:['up','out','over','off']},
+          {q:`When a film is released, it "comes ___".`,blank:'out',opts:['out','up','over','off']},
+          {q:`To give the impression of being shy is to "come ___ as" shy.`,blank:'across',opts:['across','up','out','over']}
+        ]
+      },
+      {
+        id:18,title:'Многозначный GO: go on, go off, go through',xp:20,
+        theory:`<b>GO — глагол движения и событий</b><br><br><b>go</b> завершает нашу подборку многозначных глаголов.<br><br><b>go on</b> — продолжать (<b>Go on, I'm listening</b>); происходить (<b>What's going on?</b>). <b>go off</b> — сработать (будильник, бомба); испортиться (еда: <b>The milk went off</b>); разлюбить (<b>I've gone off coffee</b>). <b>go over</b> — просматривать, повторять. <b>go through</b> — переживать трудное (<b>She's going through a hard time</b>); тщательно изучать (<b>go through the documents</b>). <b>go out</b> — выходить куда-то развлечься; гаснуть (<b>The lights went out</b>); встречаться (<b>They've been going out for a year</b>). <b>go for</b> — выбрать (<b>I'll go for the salad</b>); стоить. <b>go ahead</b> — приступать (<b>Go ahead, start without me</b>). <b>go up</b> — расти (о ценах); <b>go down</b> — падать. <b>go back</b> — возвращаться. <b>go along with</b> — соглашаться, поддерживать.<br><br>Запомните <b>go through</b> в значении «переживать тяжёлый период» — очень человечная, сочувственная фраза (<b>I know what you're going through</b>). И <b>what's going on?</b> — самый частый способ спросить «что происходит?».<br><br><div class="rule">"What's going on here? Why is everyone shouting?"</div><div class="rule">"My alarm didn't go off this morning."</div><div class="rule">"She's going through a really tough time."</div><div class="rule">"Let's go over the details one more time."</div>`,
+        exercises:[
+          {q:`To ask what is happening, you say "what's going ___?".`,blank:'on',opts:['on','off','out','up']},
+          {q:`When food spoils, it "goes ___".`,blank:'off',opts:['off','out','down','over']},
+          {q:`To experience a difficult period is to "go ___" it.`,blank:'through',opts:['through','over','on','out']},
+          {q:`To review details again is to "go ___" them.`,blank:'over',opts:['over','off','up','out']},
+          {q:`To choose an option is to "go ___" it.`,blank:'for',opts:['for','on','off','up']}
+        ]
+      },
+      {
+        id:19,title:'Разделяемые и неразделяемые глаголы',xp:25,
+        theory:`<b>Куда ставить дополнение — главное правило</b><br><br>Это самая техничная, но важнейшая тема курса. Фразовые глаголы делятся на <b>разделяемые</b> (separable) и <b>неразделяемые</b> (inseparable), и от этого зависит порядок слов.<br><br><b>Разделяемые</b> глаголы допускают дополнение как после глагола, так и в середину: <b>turn off the light</b> = <b>turn the light off</b>. Оба варианта верны. НО если дополнение — местоимение (it, them, him), оно ОБЯЗАНО стоять в середине: <b>turn it off</b> (верно), <b>turn off it</b> (ОШИБКА). Это железное правило. Примеры разделяемых: <b>pick up</b>, <b>turn on/off</b>, <b>put on</b>, <b>throw away</b>, <b>give up</b>, <b>fill in</b>, <b>work out</b>.<br><br><b>Неразделяемые</b> глаголы не пускают дополнение внутрь — оно всегда после частицы: <b>look after the kids</b> = <b>look after them</b> (нельзя «look them after»). Большинство глаголов с предлогами (after, for, into, with) неразделяемы: <b>look after</b>, <b>look for</b>, <b>get over</b>, <b>run into</b>, <b>look into</b>, <b>get on (a bus)</b>.<br><br>Практический вывод: с местоимением у разделяемых глаголов ставьте его в середину (<b>pick it up</b>), а у неразделяемых — после частицы (<b>look after it</b>). Если сомневаетесь — многие словари помечают глаголы как sep./insep.<br><br><div class="rule">"Turn off the light. → Turn the light off. → Turn it off."</div><div class="rule">"Pick up your toys. → Pick your toys up. → Pick them up."</div><div class="rule">"Look after the baby. → Look after her. (NOT 'look her after')"</div><div class="rule">"I ran into an old friend. → I ran into him. (NOT 'ran him into')"</div>`,
+        exercises:[
+          {q:`With a separable verb and a pronoun, the pronoun goes in the ___.`,blank:'middle',opts:['middle','end','start','front']},
+          {q:`"Turn ___ off" is correct when using the pronoun "it".`,blank:'it',opts:['it','off it','the it','out it']},
+          {q:`Verbs like "look after" and "look for" are usually ___.`,blank:'inseparable',opts:['inseparable','separable','optional','plural']},
+          {q:`"Pick ___ up" is the correct order with the pronoun "them".`,blank:'them',opts:['them','up them','it them','them up']},
+          {q:`With "look after", the pronoun goes ___ the particle.`,blank:'after',opts:['after','before','inside','above']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: фразовые глаголы как система</b><br><br>Поздравляем — вы прошли путь от «что это вообще такое» до уверенного владения десятками фразовых глаголов. Соберём всё вместе.<br><br>Мы начали с сути: <b>phrasal verb</b> — это глагол плюс частица (particle), у которых <b>новое значение</b>, не выводимое из отдельных слов. Затем прошли частицы-«ключи»: <b>up</b> (завершённость, увеличение — <b>give up</b>, <b>set up</b>), <b>out</b> (результат, исчерпание — <b>find out</b>, <b>run out</b>), <b>on</b> (продолжение, включение — <b>carry on</b>, <b>put on</b>), <b>off</b> (отделение, отъезд — <b>take off</b>, <b>call off</b>), <b>down</b> (уменьшение, запись — <b>break down</b>, <b>write down</b>), <b>in</b> (внутрь, участие — <b>fill in</b>, <b>hand in</b>), <b>back</b> (возврат — <b>call back</b>, <b>get back to you</b>), <b>away</b> и <b>over</b> (<b>throw away</b>, <b>get over</b>).<br><br>Мы разобрали тематические группы — работа (<b>carry out</b>, <b>lay off</b>, <b>follow up</b>), отношения (<b>get along</b>, <b>put up with</b>, <b>break up</b>), путешествия (<b>check in</b>, <b>pick up</b>, <b>drop off</b>), здоровье (<b>come down with</b>, <b>get over</b>). Затем — многозначных «королей»: <b>get</b>, <b>take</b>, <b>put</b>, <b>come</b>, <b>go</b>, у каждого из которых десяток значений. И, наконец, ключевое грамматическое правило: разделяемые глаголы пускают местоимение в середину (<b>turn it off</b>), неразделяемые — нет (<b>look after it</b>).<br><br>Главный совет напоследок: учите фразовые глаголы не списками, а в контексте живых фраз, и не бойтесь использовать их в речи — именно они делают ваш английский естественным.<br><br><div class="rule">"Don't give up — you've come a long way."</div><div class="rule">"Let's go over what we've learned and carry on practising."</div><div class="rule">"I came across so many new phrasal verbs and finally figured them out."</div><div class="rule">"Now you can get by in real conversations and get your point across."</div>`,
+        exercises:[
+          {q:`The particle "up" often adds a sense of ___ or increase.`,blank:'completion',opts:['completion','doubt','distance','silence']},
+          {q:`"Get ___ to you" is a common business phrase meaning to reply later.`,blank:'back',opts:['back','up','over','out']},
+          {q:`To resolve or understand a problem, you "figure it ___".`,blank:'out',opts:['out','up','off','in']},
+          {q:`To tolerate something annoying is to "put ___ with" it.`,blank:'up',opts:['up','off','out','on']},
+          {q:`The best way to learn phrasal verbs is in ___, not in lists.`,blank:'context',opts:['context','silence','theory','isolation']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -16833,7 +17069,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -16895,7 +17131,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -18377,6 +18613,7 @@ const TOPIC_CHIPS = {
   'Science & Tech': ["How does AI actually work?", "What\'s the difference between a planet and a star?", "Can you explain quantum physics simply?", "Tell me about the latest tech breakthrough"],
   'Emotional Intelligence': ["I\'ve been feeling really overwhelmed lately", "Can you help me express a boundary?", "How do I apologize sincerely in English?", "I want to talk about something vulnerable"],
   'History & Culture': ["Tell me about ancient Rome", "What caused World War I?", "How is the British monarchy structured today?", "What\'s an interesting historical fact?"],
+  'Phrasal Verbs': ["Teach me a phrasal verb with \'get\'", "What\'s the difference between \'look up\' and \'look after\'?", "Give me a phrasal verb for \'to tolerate\'", "How do I use \'come across\' in a sentence?"],
 };
 
 function showChips(topicKey) {
