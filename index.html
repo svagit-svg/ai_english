@@ -1074,6 +1074,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="jobs-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('service')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;font-size:18px;">🎧</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Customer Service</h3>
+          <span style="font-size:10px;font-weight:700;color:#0ea5e9" id="service-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="service-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="service-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1491,7 +1502,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1520,7 +1531,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2086,7 +2097,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -17289,6 +17300,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  service: {
+    title: 'Customer Service English 🎧',
+    lessons: [
+      {
+        id:1,title:'Основы клиентского сервиса',xp:15,
+        theory:`<b>Клиентский сервис — язык, который приносит деньги</b><br><br>Клиентский сервис (<b>customer service</b>) — это помощь клиентам до, во время и после покупки. Хороший сервис на английском строится на трёх вещах: вежливость (<b>politeness</b>), ясность (<b>clarity</b>) и эмпатия (<b>empathy</b>). Даже идеальный продукт теряет клиентов, если сотрудники грубы или непонятны.<br><br>Базовая лексика. <b>Customer</b> / <b>client</b> — клиент; <b>customer support</b> — поддержка; <b>representative</b> (или <b>rep</b>, <b>agent</b>) — сотрудник поддержки; <b>inquiry</b> — запрос, обращение; <b>issue</b> / <b>problem</b> — проблема; <b>request</b> — просьба; <b>to assist</b> — помогать (более формальное, чем help); <b>to resolve</b> — решать (проблему).<br><br>Золотое правило тона: в сервисе английский всегда чуть более вежливый, чем в обычной речи. Вместо «What do you want?» говорят «How can I help you?». Вместо «Wait» — «One moment, please». Прямые фразы смягчают словами <b>please</b>, <b>thank you</b>, <b>sorry</b>, <b>could</b>, <b>would</b>.<br><br>Ещё одно понятие — <b>customer experience</b> (CX): общее впечатление клиента от всех контактов с компанией. Цель сервиса — не просто решить проблему, а оставить клиента довольным (<b>satisfied</b>) и лояльным (<b>loyal</b>), чтобы он вернулся и рекомендовал вас.<br><br><div class="rule">"How can I help you today?"</div><div class="rule">"I'd be happy to assist you with that."</div><div class="rule">"Let me resolve this for you right away."</div><div class="rule">"Thank you for your patience."</div>`,
+        exercises:[
+          {q:`A person who helps customers is a customer service ___.`,blank:'representative',opts:['representative','passenger','landlord','stranger']},
+          {q:`A more formal word for "help" in service is to ___.`,blank:'assist',opts:['assist','attack','avoid','arrive']},
+          {q:`To fix a customer's problem is to ___ it.`,blank:'resolve',opts:['resolve','repeat','remove','return']},
+          {q:`Feeling what the customer feels is called ___.`,blank:'empathy',opts:['empathy','energy','envy','entry']},
+          {q:`Instead of "What do you want?", say "How can I ___ you?".`,blank:'help',opts:['help','stop','pay','call']}
+        ]
+      },
+      {
+        id:2,title:'Приветствие и первый контакт',xp:15,
+        theory:`<b>Первое впечатление решает всё</b><br><br>Первые секунды контакта задают тон всему общению. Тёплое, уверенное приветствие (<b>greeting</b>) сразу располагает клиента.<br><br>В магазине или лицом к лицу: <b>Hello! Welcome to [store]</b> — приветствие; <b>How can I help you today?</b> — предложение помощи; <b>Are you looking for anything in particular?</b> — «ищете что-то конкретное?»; <b>Take your time, I'm here if you need me</b> — «не спешите, я рядом». Важно не давить: навязчивость отпугивает.<br><br>По телефону представляются: <b>Good morning, [Company], this is Anna speaking. How may I help you?</b> Формула: приветствие + название компании + ваше имя + предложение помощи. <b>How may I help you?</b> — самая вежливая форма (may вежливее can).<br><br>Полезные фразы установления контакта: <b>Thank you for calling/visiting</b> — «спасибо, что позвонили/зашли»; <b>What can I do for you?</b> — «чем могу помочь?»; <b>Of course, I'd be glad to help</b> — «конечно, буду рад помочь». Обращение по имени персонализирует: если клиент представился, используйте его имя — «Certainly, Mr. Brown».<br><br>Ключ — искренняя доброжелательность в голосе. По телефону улыбку «слышно»: улыбаясь во время разговора, вы звучите теплее. Это реальный приём операторов колл-центров.<br><br><div class="rule">"Good morning, TechCo, this is Anna speaking. How may I help you?"</div><div class="rule">"Welcome! Are you looking for anything in particular?"</div><div class="rule">"Thank you for calling — what can I do for you today?"</div><div class="rule">"Of course, I'd be glad to help you with that, Mr. Brown."</div>`,
+        exercises:[
+          {q:`A warm hello to a customer is called a ___.`,blank:'greeting',opts:['greeting','warning','meeting','ending']},
+          {q:`The most polite offer of help is "How ___ I help you?".`,blank:'may',opts:['may','must','need','do']},
+          {q:`On the phone, say your name: "This is Anna ___".`,blank:'speaking',opts:['speaking','sleeping','shopping','standing']},
+          {q:`"Are you looking for anything in ___?" avoids being pushy.`,blank:'particular',opts:['particular','trouble','private','common']},
+          {q:`Using the customer's name makes service feel more ___.`,blank:'personal',opts:['personal','boring','formal','distant']}
+        ]
+      },
+      {
+        id:3,title:'Активное слушание и уточнение',xp:15,
+        theory:`<b>Слушать, чтобы понять — половина решения</b><br><br>Многие проблемы в сервисе возникают не из-за плохого решения, а из-за того, что сотрудник не понял запрос. Активное слушание (<b>active listening</b>) — навык номер один.<br><br>Показывайте, что слушаете: короткие подтверждения <b>I see</b>, <b>I understand</b>, <b>Got it</b>, <b>Right</b>. Не перебивайте — дайте клиенту договорить.<br><br>Перефразируйте, чтобы убедиться, что поняли (<b>paraphrasing</b>): <b>So, if I understand correctly, you...</b> — «если я правильно понял, вы...»; <b>Just to confirm, you'd like to...</b> — «уточню: вы хотите...»; <b>Let me make sure I've got this right</b> — «давайте убедимся, что я всё верно понял».<br><br>Задавайте уточняющие вопросы (<b>clarifying questions</b>): <b>Could you tell me a bit more about...?</b>; <b>When did this start happening?</b>; <b>Could you give me an example?</b>. Открытые вопросы (начинаются с what, when, how) дают больше информации, чем закрытые (да/нет).<br><br>Если не расслышали или не поняли, вежливо переспросите: <b>Sorry, could you repeat that?</b>; <b>Would you mind spelling that for me?</b> — «продиктуйте по буквам»; <b>Could you speak up a little, please?</b> — «говорите чуть громче». Переспросить не стыдно — стыдно решать не ту проблему.<br><br><div class="rule">"So, if I understand correctly, the payment failed twice?"</div><div class="rule">"Could you tell me a bit more about what happened?"</div><div class="rule">"Just to confirm, you'd like a refund rather than a replacement?"</div><div class="rule">"Sorry, could you spell your surname for me, please?"</div>`,
+        exercises:[
+          {q:`Truly focusing on what the customer says is called ___ listening.`,blank:'active',opts:['active','passive','silent','loud']},
+          {q:`Repeating the request in your words is called ___.`,blank:'paraphrasing',opts:['paraphrasing','panicking','purchasing','parking']},
+          {q:`"Just to ___, you'd like a refund?" checks your understanding.`,blank:'confirm',opts:['confirm','complain','cancel','close']},
+          {q:`Questions starting with what and how are called ___ questions.`,blank:'open',opts:['open','closed','locked','final']},
+          {q:`To ask for letters one by one, say "Could you ___ that for me?".`,blank:'spell',opts:['spell','sell','smell','spill']}
+        ]
+      },
+      {
+        id:4,title:'Вежливые фразы и волшебные слова',xp:15,
+        theory:`<b>Волшебные слова сервиса</b><br><br>В английском есть набор фраз, которые делают речь мягкой и профессиональной. Их называют <b>softeners</b> — «смягчители». Овладеть ими — значит звучать вежливо в любой ситуации.<br><br>Модальные глаголы вежливости: <b>could</b>, <b>would</b>, <b>may</b> вместо can/will. Сравните: «Can you wait?» → «Could you wait a moment, please?». «I will check» → «I'll just check that for you».<br><br>Смягчающие вступления: <b>I'm afraid...</b> — «боюсь, что...» (перед плохой новостью); <b>Unfortunately...</b> — «к сожалению»; <b>I'm sorry, but...</b>; <b>Let me see what I can do</b> — «посмотрю, чем могу помочь». Вместо резкого «No» — «I'm afraid that's not possible, but...».<br><br>Фразы-помощники: <b>Certainly</b> / <b>Of course</b> / <b>Absolutely</b> — «конечно» (охотное согласие); <b>One moment, please</b> — «минутку»; <b>Bear with me</b> — «потерпите немного»; <b>Is there anything else I can help you with?</b> — «могу ли ещё чем-то помочь?».<br><br>Слова благодарности и извинения используются щедро: <b>Thank you for your patience</b>, <b>Thank you for waiting</b>, <b>I appreciate your understanding</b> — «ценю ваше понимание». Эти фразы стоят «бесплатно», но заметно повышают качество общения. Правило: чем неприятнее ситуация, тем вежливее формулировка.<br><br><div class="rule">"Could you hold for just a moment, please?"</div><div class="rule">"I'm afraid that item is out of stock at the moment."</div><div class="rule">"Certainly! Let me check that for you right away."</div><div class="rule">"Is there anything else I can help you with today?"</div>`,
+        exercises:[
+          {q:`Words that make speech gentler are called ___.`,blank:'softeners',opts:['softeners','openers','closers','markers']},
+          {q:`"___ you hold for a moment?" is politer than "Can you wait?".`,blank:'Could',opts:['Could','Will','Do','Must']},
+          {q:`Before bad news, start with "I'm ___...".`,blank:'afraid',opts:['afraid','happy','proud','sure']},
+          {q:`An eager way to say yes is "___!".`,blank:'Certainly',opts:['Certainly','Whatever','Maybe','Nope']},
+          {q:`End the conversation with "Is there anything ___ I can help with?".`,blank:'else',opts:['else','wrong','free','left']}
+        ]
+      },
+      {
+        id:5,title:'Ответы по телефону',xp:15,
+        theory:`<b>Телефонный сервис</b><br><br>Телефон (<b>phone support</b>) сложнее личного общения: нет жестов и мимики, всё держится на голосе и словах. Говорите чётко, не спеша, дружелюбно.<br><br>Приём звонка: <b>Good afternoon, [Company], Anna speaking. How may I help you?</b> Если нужно перевести звонок: <b>I'll put you through to the right department</b> — «соединю вас с нужным отделом»; <b>May I put you on hold for a moment?</b> — «можно поставить звонок на удержание?». Всегда спрашивайте разрешение перед hold и благодарите за ожидание.<br><br>Приём сообщения (<b>taking a message</b>): <b>I'm afraid he's not available right now. Can I take a message?</b> — «его сейчас нет, передать что-нибудь?»; <b>Could I have your name and number?</b>; <b>I'll make sure she gets back to you</b> — «я передам, чтобы она вам перезвонила».<br><br>Полезные телефонные фразы: <b>Who's calling, please?</b> — «кто звонит?»; <b>Could you hold the line?</b> — «оставайтесь на линии»; <b>The line is busy</b> — «линия занята»; <b>I'm sorry, you're breaking up</b> — «связь прерывается»; <b>Let me call you back</b> — «я вам перезвоню».<br><br>Завершение: повторите договорённости, поблагодарите за звонок — <b>Thank you for calling, have a great day!</b>. И дайте клиенту положить трубку первым — это признак уважения. Чёткое завершение оставляет ощущение, что о клиенте позаботились.<br><br><div class="rule">"Good afternoon, TechCo, Anna speaking. How may I help you?"</div><div class="rule">"May I put you on hold for a moment while I check?"</div><div class="rule">"I'm afraid she's not available. Can I take a message?"</div><div class="rule">"Thank you for calling — have a great day!"</div>`,
+        exercises:[
+          {q:`To connect a caller to another department is to "put them ___".`,blank:'through',opts:['through','over','down','away']},
+          {q:`To pause a call politely, ask "May I put you on ___?".`,blank:'hold',opts:['hold','hook','line','wait']},
+          {q:`If someone is unavailable, offer to "take a ___".`,blank:'message',opts:['message','massage','mistake','minute']},
+          {q:`"You're ___ up" means the phone connection is poor.`,blank:'breaking',opts:['breaking','waking','baking','making']},
+          {q:`"Who's ___, please?" asks for the caller's identity.`,blank:'calling',opts:['calling','falling','selling','telling']}
+        ]
+      },
+      {
+        id:6,title:'Email-поддержка',xp:15,
+        theory:`<b>Как писать письма поддержки</b><br><br>Email-поддержка требует ясности и вежливости, ведь клиент читает без интонации. Структура письма важна.<br><br>Приветствие: <b>Dear [Name]</b> (формально) или <b>Hi [Name]</b> (дружелюбно). Благодарность и признание запроса: <b>Thank you for reaching out</b> — «спасибо за обращение»; <b>Thank you for your email</b>; <b>I'm sorry to hear about the issue with...</b> — «сожалею о проблеме с...».<br><br>Тело письма: сразу переходите к сути и решению. <b>I'd be happy to help</b>; <b>Here's what I can do</b>; <b>To resolve this, please...</b> — «чтобы решить, пожалуйста...»; <b>I've already processed your refund</b> — «я уже оформил возврат». Разбивайте инструкции на шаги (нумерованный список), чтобы клиенту было легко следовать.<br><br>Завершение: <b>Please let me know if you have any questions</b> — «дайте знать, если будут вопросы»; <b>Don't hesitate to reach out</b> — «обращайтесь без колебаний»; <b>We're here to help</b>. Подпись: <b>Best regards</b> / <b>Kind regards</b> + имя.<br><br>Правила тона в письмах: отвечайте быстро (даже короткое «I'm looking into this» лучше молчания); никогда не пишите капсом (это как крик); перечитывайте на опечатки; персонализируйте — избегайте ощущения, что клиент получил шаблон-робот. Хорошее письмо поддержки звучит как живой доброжелательный человек.<br><br><div class="rule">"Thank you for reaching out — I'm sorry to hear about the issue."</div><div class="rule">"To resolve this, please follow these three steps."</div><div class="rule">"I've already processed your refund; it will arrive in 3–5 days."</div><div class="rule">"Please don't hesitate to reach out if you have any questions."</div>`,
+        exercises:[
+          {q:`A friendly way to thank someone for contacting you: "Thank you for ___ out".`,blank:'reaching',opts:['reaching','reading','running','ringing']},
+          {q:`To show sympathy, write "I'm sorry to ___ about the issue".`,blank:'hear',opts:['hear','here','hire','hurt']},
+          {q:`Break instructions into numbered ___ so they're easy to follow.`,blank:'steps',opts:['steps','stops','stamps','stars']},
+          {q:`A professional email sign-off is "Best ___".`,blank:'regards',opts:['regards','rewards','records','remarks']},
+          {q:`Writing in all capitals feels like ___ to the reader.`,blank:'shouting',opts:['shouting','smiling','singing','sleeping']}
+        ]
+      },
+      {
+        id:7,title:'Поддержка в чате',xp:15,
+        theory:`<b>Live chat — быстро и точно</b><br><br>Чат-поддержка (<b>live chat</b>) сочетает скорость телефона и текст письма. Клиенты ждут быстрых ответов, но текст всё равно должен быть вежливым.<br><br>Начало чата: <b>Hi! Thanks for reaching out. How can I help you today?</b> Если нужно время на проверку: <b>Let me look into that for you — one moment</b>. В чате особенно важно не оставлять клиента в тишине: если пауза затягивается, напишите <b>Thanks for waiting, I'm still checking</b>.<br><br>Особенности чата. Ответы короче, чем в письме, но не грубые. Можно использовать <b>canned responses</b> (заготовленные ответы) для частых вопросов, но персонализируйте их — добавьте имя, детали. Эмодзи допустимы умеренно, если это соответствует тону бренда, но не в серьёзных жалобах.<br><br>Полезные чат-фразы: <b>Sure thing!</b> — «конечно!»; <b>Give me just a sec</b> — «секунду»; <b>Here's what I found</b> — «вот что я нашёл»; <b>Does that make sense?</b> — «понятно ли?»; <b>Is there anything else I can help with?</b>.<br><br>Завершение чата: убедитесь, что вопрос решён — <b>Did that solve your problem?</b>; поблагодарите — <b>Thanks for chatting with us!</b>. Часто в конце просят оценить чат (<b>rate this chat</b>). Быстрый, тёплый и результативный чат оставляет отличное впечатление о компании.<br><br><div class="rule">"Hi! Thanks for reaching out. How can I help you today?"</div><div class="rule">"Let me look into that for you — one moment, please."</div><div class="rule">"Here's what I found. Does that make sense?"</div><div class="rule">"Did that solve your problem? Thanks for chatting with us!"</div>`,
+        exercises:[
+          {q:`Text-based real-time support is called live ___.`,blank:'chat',opts:['chat','call','mail','desk']},
+          {q:`Pre-written answers for common questions are ___ responses.`,blank:'canned',opts:['canned','banned','planned','scanned']},
+          {q:`In chat, avoid leaving the customer in ___.`,blank:'silence',opts:['silence','science','service','safety']},
+          {q:`"Does that make ___?" checks the customer understood.`,blank:'sense',opts:['sense','cents','fence','sale']},
+          {q:`At the end, confirm: "Did that ___ your problem?".`,blank:'solve',opts:['solve','salve','serve','save']}
+        ]
+      },
+      {
+        id:8,title:'Обработка жалоб: основы',xp:20,
+        theory:`<b>Жалоба — это шанс, а не катастрофа</b><br><br>Жалоба (<b>complaint</b>) — момент истины в сервисе. Исследования показывают: клиент, чью проблему быстро и хорошо решили, часто становится ЛОЯЛЬНЕЕ, чем тот, у кого проблем не было. Ключ — правильная реакция.<br><br>Проверенная модель — <b>LEARN</b> или проще: <b>Listen, Empathize, Apologize, Solve, Thank</b>. Сначала выслушайте не перебивая. Затем проявите эмпатию: <b>I completely understand how frustrating this must be</b> — «полностью понимаю, как это неприятно». Не защищайтесь и не спорьте — это разжигает конфликт.<br><br>Признание чувств (<b>acknowledging</b>): <b>I can see why you're upset</b> — «понимаю, почему вы расстроены»; <b>You're absolutely right to raise this</b> — «вы правы, что подняли этот вопрос»; <b>I'm sorry you've had this experience</b> — «сожалею, что так вышло». Клиент прежде всего хочет быть услышанным.<br><br>Чего избегать: не говорите <b>Calm down</b> (звучит снисходительно), не перекладывайте вину на клиента (<b>It's your fault</b>), не прячьтесь за правилами (<b>That's our policy</b>) без объяснения. Не принимайте гнев на свой счёт — клиент злится на ситуацию, а не на вас лично.<br><br>После эмпатии переходите к решению. Но порядок важен: сначала эмоции, потом логика. Клиент, которого не выслушали, не воспримет даже отличное решение.<br><br><div class="rule">"I completely understand how frustrating this must be."</div><div class="rule">"You're absolutely right to raise this — I'm sorry."</div><div class="rule">"I can see why you're upset, and I'll help fix this."</div><div class="rule">"Thank you for bringing this to our attention."</div>`,
+        exercises:[
+          {q:`A customer's expression of dissatisfaction is a ___.`,blank:'complaint',opts:['complaint','compliment','component','company']},
+          {q:`Showing you understand a customer's feelings is called ___.`,blank:'empathizing',opts:['empathizing','arguing','ignoring','charging']},
+          {q:`Telling an angry customer to "___ down" sounds condescending.`,blank:'calm',opts:['calm','sit','slow','back']},
+          {q:`"I can see why you're ___" acknowledges the customer's feelings.`,blank:'upset',opts:['upset','wrong','lazy','late']},
+          {q:`With complaints, handle emotions first, then the ___.`,blank:'solution',opts:['solution','payment','silence','schedule']}
+        ]
+      },
+      {
+        id:9,title:'Извинения и признание проблемы',xp:20,
+        theory:`<b>Как правильно извиняться</b><br><br>Искреннее извинение (<b>apology</b>) обезоруживает недовольного клиента. Но извиняться нужно уметь — плохое извинение злит ещё больше.<br><br>Сильное извинение конкретно и берёт ответственность (<b>takes ownership</b>): <b>I'm very sorry for the delay in your order</b> — «искренне извиняюсь за задержку заказа». Слабое — расплывчатое и с оговорками: <b>I'm sorry if you feel that way</b> («извините, ЕСЛИ вы так считаете») звучит как перекладывание вины и раздражает. Избегайте «if» и «but» в извинениях.<br><br>Формулы искренних извинений: <b>I sincerely apologize for...</b> — «искренне извиняюсь за...»; <b>That should never have happened</b> — «этого не должно было случиться»; <b>We take full responsibility</b> — «мы берём всю ответственность»; <b>I understand this has caused you inconvenience</b> — «понимаю, что это доставило неудобства».<br><br>Извинение работает даже если виноваты не вы лично: вы извиняетесь от лица компании. Используйте <b>we</b> для компании и <b>I</b> для личного участия: <b>On behalf of the company, I apologize</b> — «от лица компании приношу извинения».<br><br>После извинения обязательно переходите к действию: извинение без решения — пустой звук. Формула: <b>апология + что вы сделаете</b>. «I'm sorry this happened, and here's how I'll fix it». Это превращает недовольство в доверие.<br><br><div class="rule">"I sincerely apologize for the delay — that should never have happened."</div><div class="rule">"We take full responsibility and will make this right."</div><div class="rule">"On behalf of the company, I'm very sorry for the inconvenience."</div><div class="rule">"I'm sorry this happened, and here's exactly how I'll fix it."</div>`,
+        exercises:[
+          {q:`A sincere apology takes ___ instead of making excuses.`,blank:'ownership',opts:['ownership','a break','revenge','a photo']},
+          {q:`"I'm sorry ___ you feel that way" is a weak, blame-shifting apology.`,blank:'if',opts:['if','that','because','since']},
+          {q:`"I sincerely ___ for the delay" is a strong apology.`,blank:'apologize',opts:['apologize','organize','realize','memorize']},
+          {q:`Speaking for the company, say "On ___ of the company, I apologize".`,blank:'behalf',opts:['behalf','behind','belong','below']},
+          {q:`An apology must always be followed by ___.`,blank:'action',opts:['action','silence','excuses','anger']}
+        ]
+      },
+      {
+        id:10,title:'Предложение решений',xp:20,
+        theory:`<b>От проблемы к решению</b><br><br>После того как клиент выслушан и получил извинение, наступает главное — решение (<b>solution</b> / <b>resolution</b>). Именно оно определяет, останется ли клиент.<br><br>Предлагайте решение уверенно и конкретно: <b>Here's what I can do for you</b> — «вот что я могу сделать»; <b>I'll arrange a replacement right away</b> — «немедленно оформлю замену»; <b>Let me offer you a refund/discount</b> — «предложу вам возврат/скидку». Избегайте неопределённости вроде «maybe we could try» — она подрывает доверие.<br><br>Когда возможны варианты, дайте клиенту выбор (<b>options</b>): <b>Would you prefer a refund or a replacement?</b> — «вы предпочтёте возврат или замену?». Выбор возвращает клиенту чувство контроля.<br><br>Если решение требует времени, установите ожидания (<b>set expectations</b>): <b>I'll need about 24 hours to sort this out. I'll email you as soon as it's done</b>. Честные сроки лучше ложных обещаний. Никогда не обещайте того, что не можете выполнить (<b>don't overpromise</b>).<br><br>Иногда уместна компенсация (<b>compensation</b> / <b>goodwill gesture</b>): скидка, бонус, бесплатная доставка — знак доброй воли. Он показывает, что компания ценит клиента. Завершите проверкой: <b>Does that work for you?</b> — «вас это устроит?». Решение, с которым клиент согласился, — настоящее решение.<br><br><div class="rule">"Here's what I can do for you right now."</div><div class="rule">"Would you prefer a full refund or a replacement?"</div><div class="rule">"I'll need 24 hours, and I'll email you the moment it's fixed."</div><div class="rule">"As a gesture of goodwill, I'd like to offer you free shipping."</div>`,
+        exercises:[
+          {q:`The fix to a customer's problem is called the ___.`,blank:'resolution',opts:['resolution','revolution','reservation','recognition']},
+          {q:`Giving a customer a choice restores their sense of ___.`,blank:'control',opts:['control','danger','silence','delay']},
+          {q:`Telling a realistic timeframe is called setting ___.`,blank:'expectations',opts:['expectations','decorations','directions','definitions']},
+          {q:`Never ___ what you can't deliver.`,blank:'overpromise',opts:['overpromise','overhear','overlook','override']},
+          {q:`A discount to show goodwill is a goodwill ___.`,blank:'gesture',opts:['gesture','picture','feature','mixture']}
+        ]
+      },
+      {
+        id:11,title:'Трудные клиенты и деэскалация',xp:20,
+        theory:`<b>Как гасить конфликт</b><br><br>Иногда клиент зол, кричит или груб. Умение снизить накал (<b>de-escalation</b>) — высший пилотаж сервиса.<br><br>Первое правило: сохраняйте спокойствие (<b>stay calm</b>). Не повышайте голос в ответ и не принимайте оскорбления на свой счёт. Ваш ровный тон постепенно «заражает» клиента спокойствием.<br><br>Приёмы деэскалации. Дайте выпустить пар (<b>let them vent</b>) — не перебивайте разгневанного клиента, дайте высказаться. Проявите эмпатию: <b>I understand why you're frustrated</b>. Используйте его имя — это персонализирует и успокаивает. Сфокусируйтесь на решении: <b>Let's focus on how I can fix this for you</b> — «давайте сосредоточимся на решении».<br><br>Полезные фразы: <b>I hear you, and I want to help</b> — «я вас слышу и хочу помочь»; <b>Let's work through this together</b> — «давайте разберёмся вместе»; <b>I'm going to do everything I can</b> — «сделаю всё возможное»; <b>You have every right to be upset</b> — «вы вправе быть недовольны».<br><br>Если клиент переходит на оскорбления, установите границу вежливо, но твёрдо: <b>I want to help you, but I'd ask that we keep the conversation respectful</b>. Если ситуация выходит из-под контроля, эскалируйте руководителю (<b>escalate to a supervisor</b>) — это нормально, а не поражение. Никогда не терпите угроз в свой адрес молча.<br><br><div class="rule">"I hear you, and I genuinely want to help fix this."</div><div class="rule">"You have every right to be upset — let's sort it out together."</div><div class="rule">"I'd ask that we keep the conversation respectful, please."</div><div class="rule">"Let me escalate this to my supervisor for you."</div>`,
+        exercises:[
+          {q:`Reducing a customer's anger is called ___.`,blank:'de-escalation',opts:['de-escalation','decoration','declaration','dedication']},
+          {q:`The first rule with an angry customer is to stay ___.`,blank:'calm',opts:['calm','loud','quiet','away']},
+          {q:`Letting an angry customer speak freely is letting them ___.`,blank:'vent',opts:['vent','rent','win','lie']},
+          {q:`Passing a hard case to your manager is to ___ it.`,blank:'escalate',opts:['escalate','translate','celebrate','calculate']},
+          {q:`"You have every ___ to be upset" validates the customer.`,blank:'right',opts:['right','wrong','reason','chance']}
+        ]
+      },
+      {
+        id:12,title:'Как вежливо сказать «нет»',xp:20,
+        theory:`<b>Отказ без потери клиента</b><br><br>Иногда просьбу клиента выполнить нельзя. Умение отказать (<b>say no</b>), не обидев, — важный навык. Секрет: смягчить формулировку и предложить альтернативу.<br><br>Никогда не говорите резкое «No» или «We can't do that». Вместо этого используйте мягкие вступления: <b>I'm afraid...</b>, <b>Unfortunately...</b>, <b>I wish I could, but...</b> — «хотел бы, но...». Затем объясните причину коротко и по-человечески, без «это наша политика» как отговорки.<br><br>Главный приём — <b>positive alternative</b> (позитивная альтернатива): вместо того, что нельзя, предложите то, что можно. <b>I can't offer a refund, but I can give you store credit</b> — «возврат не могу, но могу дать бонус на счёт». Формула: <b>No + but + what you CAN do</b>.<br><br>Полезные фразы: <b>What I can do instead is...</b> — «зато я могу...»; <b>Here's an alternative...</b>; <b>The best I can offer is...</b> — «максимум, что могу предложить...»; <b>Let me see if there's another way</b> — «поищу другой путь».<br><br>Управление ожиданиями (<b>managing expectations</b>): если чего-то не будет, скажите об этом честно и заранее, а не тяните. Клиент простит «нет», сказанное с уважением и альтернативой, но не простит ложного «да», которое потом не выполнили. Честный отказ сохраняет доверие.<br><br><div class="rule">"I'm afraid I can't offer a full refund, but I can give you store credit."</div><div class="rule">"I wish I could, but what I can do instead is upgrade your shipping."</div><div class="rule">"The best I can offer is a 20% discount on your next order."</div><div class="rule">"Let me see if there's another way to help you."</div>`,
+        exercises:[
+          {q:`Instead of a blunt "no", start with "I'm ___...".`,blank:'afraid',opts:['afraid','angry','amazed','asleep']},
+          {q:`Offering what you CAN do instead is a positive ___.`,blank:'alternative',opts:['alternative','argument','apology','advantage']},
+          {q:`The formula is: No + but + what you ___ do.`,blank:'can',opts:['can','can\'t','won\'t','never']},
+          {q:`Being honest about what's possible is ___ expectations.`,blank:'managing',opts:['managing','damaging','matching','marking']},
+          {q:`A false "___" you can't deliver damages trust more than an honest no.`,blank:'yes',opts:['yes','no','maybe','sorry']}
+        ]
+      },
+      {
+        id:13,title:'Возвраты, обмены и рефанды',xp:20,
+        theory:`<b>Returns and refunds</b><br><br>Возвраты — частая ситуация в сервисе. Знание точной лексики делает процесс гладким.<br><br>Ключевые слова: <b>return</b> — возврат товара; <b>refund</b> — возврат денег; <b>exchange</b> — обмен на другой товар; <b>store credit</b> — бонус на счёт магазина вместо денег; <b>receipt</b> — чек; <b>proof of purchase</b> — подтверждение покупки; <b>warranty</b> — гарантия; <b>faulty</b> / <b>defective</b> — бракованный.<br><br>Стандартные фразы. Уточнение причины: <b>May I ask what the issue is with the item?</b> — «в чём проблема с товаром?». Проверка условий: <b>Do you have the receipt with you?</b>; <b>Is it within our 30-day return window?</b> — «это в пределах 30 дней на возврат?». Оформление: <b>I'll process your refund now</b> — «оформляю возврат»; <b>The money will be back on your card in 3–5 working days</b> — «деньги вернутся на карту за 3–5 дней».<br><br>Про политику возврата (<b>return policy</b>): объясняйте условия дружелюбно, а не как barrier. Если товар бракованный (<b>faulty</b>), клиент обычно имеет право на полный возврат или замену по закону — не спорьте.<br><br>Даже если возврат невозможен по правилам, оставайтесь вежливы и ищите альтернативу (обмен, ремонт, скидка). Гладко проведённый возврат часто удерживает клиента лучше, чем сама покупка — он запоминает, что о нём позаботились в трудный момент.<br><br><div class="rule">"May I ask what the issue is with the item?"</div><div class="rule">"Do you have the receipt or any proof of purchase?"</div><div class="rule">"I'll process your refund now — it'll be back on your card in 3–5 days."</div><div class="rule">"As the item is faulty, you're entitled to a full refund."</div>`,
+        exercises:[
+          {q:`Getting your money back is a ___.`,blank:'refund',opts:['refund','return','receipt','reward']},
+          {q:`Swapping an item for a different one is an ___.`,blank:'exchange',opts:['exchange','excuse','example','exit']},
+          {q:`A proof that you bought something is a ___.`,blank:'receipt',opts:['receipt','recipe','report','request']},
+          {q:`A broken or defective product can be described as ___.`,blank:'faulty',opts:['faulty','faithful','famous','familiar']},
+          {q:`The rules about returns are the return ___.`,blank:'policy',opts:['policy','police','polite','pocket']}
+        ]
+      },
+      {
+        id:14,title:'Ритейл и продажи',xp:20,
+        theory:`<b>Сервис в магазине и продажи</b><br><br>В рознице (<b>retail</b>) сервис и продажи идут рука об руку. Помочь клиенту выбрать — это и забота, и способ продать больше.<br><br>Помощь с выбором: <b>Are you looking for something specific?</b>; <b>This one is very popular</b> — «это очень популярная модель»; <b>Would you like to try it on?</b> — «хотите примерить?»; <b>We have it in other colours/sizes</b> — «есть другие цвета/размеры». Знание товара (<b>product knowledge</b>) вызывает доверие.<br><br>Деликатные приёмы продаж. <b>Upselling</b> — предложить версию подороже/получше: <b>For a little more, you could get the premium model</b>. <b>Cross-selling</b> — предложить дополнение: <b>Would you like a case to go with that phone?</b> — «хотите чехол к телефону?». Ключ — предлагать то, что реально полезно клиенту, а не «впаривать». Навязчивость (<b>being pushy</b>) отталкивает.<br><br>Полезные фразы: <b>Can I help you find anything?</b>; <b>Let me check if we have that in stock</b> — «проверю наличие»; <b>It's on sale this week</b> — «на этой неделе со скидкой»; <b>That comes with a two-year warranty</b> — «идёт с двухлетней гарантией».<br><br>На кассе (<b>checkout</b>): <b>Will that be cash or card?</b> — «наличные или карта?»; <b>Would you like a receipt?</b>; <b>Would you like to join our loyalty programme?</b> — «хотите в программу лояльности?». Тёплое завершение — <b>Thank you, enjoy your purchase!</b> — оставляет клиента довольным и настроенным вернуться.<br><br><div class="rule">"Are you looking for something specific today?"</div><div class="rule">"Would you like a case to go with that phone?"</div><div class="rule">"Let me check if we have that in stock for you."</div><div class="rule">"Thank you — enjoy your purchase and have a lovely day!"</div>`,
+        exercises:[
+          {q:`Suggesting a more expensive version is called ___.`,blank:'upselling',opts:['upselling','upsetting','uploading','updating']},
+          {q:`Suggesting a related add-on product is ___.`,blank:'cross-selling',opts:['cross-selling','cross-word','cross-road','cross-fire']},
+          {q:`Being too aggressive in sales is called being ___.`,blank:'pushy',opts:['pushy','pretty','picky','patient']},
+          {q:`"Let me check if we have that in ___" means checking availability.`,blank:'stock',opts:['stock','store','stack','stick']},
+          {q:`Knowing your products well is called product ___.`,blank:'knowledge',opts:['knowledge','knock','knot','know']}
+        ]
+      },
+      {
+        id:15,title:'Гостеприимство: отель и ресторан',xp:20,
+        theory:`<b>Сервис в гостеприимстве</b><br><br>В гостеприимстве (<b>hospitality</b>) — отели, рестораны, кафе — сервис особенно важен: клиент платит не только за продукт, но за впечатление и заботу.<br><br>В отеле (<b>hotel</b>). Заселение: <b>Welcome! Do you have a reservation?</b> — «у вас есть бронь?»; <b>May I have your name and ID, please?</b>; <b>Here's your key card — you're in room 305</b>. Помощь гостю: <b>Is there anything you need for your stay?</b>; <b>I'd be happy to arrange that</b> — «с радостью это организую»; <b>Enjoy your stay!</b> — «приятного пребывания!».<br><br>В ресторане (<b>restaurant</b>). Встреча: <b>Table for two? Right this way</b> — «столик на двоих? Сюда, пожалуйста»; <b>Can I get you anything to drink to start?</b> — «что-нибудь выпить для начала?». Приём заказа: <b>Are you ready to order?</b>; <b>Excellent choice!</b>; <b>How is everything?</b> — «всё ли хорошо?» (проверка во время еды). Оплата: <b>Can I get you anything else?</b>; <b>I'll bring the bill</b> — «принесу счёт».<br><br>Особенность гостеприимства — предвосхищать нужды (<b>anticipate needs</b>): предложить зонт в дождь, детский стул семье, рекомендацию блюда. Это превращает обслуживание в заботу.<br><br>Фразы вежливости здесь особенно щедры: <b>My pleasure</b> — «мне только в радость»; <b>Certainly, right away</b>; <b>I hope you enjoyed your meal</b>. Тёплое прощание — <b>We hope to see you again soon!</b> — создаёт желание вернуться.<br><br><div class="rule">"Welcome! Do you have a reservation with us?"</div><div class="rule">"Here's your key card — you're in room 305. Enjoy your stay!"</div><div class="rule">"Are you ready to order, or would you like a few more minutes?"</div><div class="rule">"My pleasure! We hope to see you again soon."</div>`,
+        exercises:[
+          {q:`The industry of hotels and restaurants is called ___.`,blank:'hospitality',opts:['hospitality','hospital','history','hostility']},
+          {q:`A booking for a table or room is a ___.`,blank:'reservation',opts:['reservation','reputation','recreation','registration']},
+          {q:`A gracious reply to "thank you" is "My ___".`,blank:'pleasure',opts:['pleasure','pressure','measure','treasure']},
+          {q:`Guessing what a guest will need is to ___ their needs.`,blank:'anticipate',opts:['anticipate','announce','apologize','arrange']},
+          {q:`During a meal, waiters ask "How is ___?" to check satisfaction.`,blank:'everything',opts:['everything','nothing','anywhere','somebody']}
+        ]
+      },
+      {
+        id:16,title:'Технические проблемы и troubleshooting',xp:20,
+        theory:`<b>Техподдержка: помогаем разобраться</b><br><br>В техподдержке (<b>tech support</b>) задача — помочь клиенту решить проблему с продуктом, часто удалённо и с человеком, который не разбирается в технике. Терпение и ясность здесь важнее всего.<br><br>Диагностика (<b>troubleshooting</b>) — пошаговый поиск причины. Начните с уточнения: <b>Could you describe exactly what happens?</b> — «опишите, что именно происходит?»; <b>When did the problem start?</b>; <b>What error message do you see?</b> — «какое сообщение об ошибке?». Затем ведите клиента по шагам.<br><br>Инструкции простым языком: <b>First, could you try restarting the device?</b> — «сначала перезагрузите устройство»; <b>Click on the settings icon in the top right</b> — «нажмите на значок настроек справа вверху»; <b>Let me know what you see now</b> — «скажите, что вы видите теперь». Избегайте жаргона — объясняйте так, будто говорите с новичком, без снисходительности.<br><br>Полезные фразы: <b>Bear with me while I look into this</b> — «потерпите, я разбираюсь»; <b>Let's try a different approach</b> — «попробуем иначе»; <b>That should do the trick</b> — «это должно помочь»; <b>Is it working now?</b> — «теперь работает?».<br><br>Если проблему не решить сразу, честно скажите о следующих шагах: <b>I'll escalate this to our technical team and follow up by email</b>. Терпеливая, понятная техподдержка превращает раздражённого клиента в благодарного.<br><br><div class="rule">"Could you describe exactly what happens when you press the button?"</div><div class="rule">"First, could you try restarting the device for me?"</div><div class="rule">"Bear with me while I look into this for you."</div><div class="rule">"That should do the trick — is it working now?"</div>`,
+        exercises:[
+          {q:`Step-by-step searching for the cause of a problem is called ___.`,blank:'troubleshooting',opts:['troubleshooting','troublemaking','troublesome','translating']},
+          {q:`A good first step is often to ___ the device.`,blank:'restart',opts:['restart','remove','replace','return']},
+          {q:`Avoid technical ___ so beginners understand you.`,blank:'jargon',opts:['jargon','jacket','jungle','junior']},
+          {q:`"Bear ___ me" politely asks the customer to wait.`,blank:'with',opts:['with','for','on','to']},
+          {q:`"That should do the ___" means it should fix the problem.`,blank:'trick',opts:['trick','track','truck','trap']}
+        ]
+      },
+      {
+        id:17,title:'Follow-up и удержание клиента',xp:20,
+        theory:`<b>После решения: follow-up и лояльность</b><br><br>Работа с клиентом не заканчивается решением проблемы. Последующий контакт (<b>follow-up</b>) и удержание (<b>retention</b>) превращают разового покупателя в постоянного.<br><br>Follow-up — проверка, всё ли хорошо после решения: <b>I'm just following up to make sure everything's working now</b> — «пишу проверить, всё ли теперь работает»; <b>Did the solution work for you?</b>; <b>Is there anything else you need?</b>. Такой звонок или письмо показывает, что о клиенте помнят, и производит сильное впечатление.<br><br>Понятия удержания. <b>Customer retention</b> — удержание клиентов (удержать дешевле, чем привлечь нового); <b>loyalty</b> — лояльность; <b>churn</b> — отток (уход клиентов); <b>repeat customer</b> — постоянный клиент; <b>loyalty programme</b> — программа лояльности с бонусами.<br><br>Фразы удержания: <b>We value your business</b> — «мы ценим, что вы с нами»; <b>As a thank-you for your loyalty...</b> — «в благодарность за вашу верность...»; <b>We'd love to have you back</b> — «будем рады видеть вас снова». Если клиент собирается уйти (<b>cancel</b>), спросите почему и предложите решение: иногда небольшой жест удерживает.<br><br>Ключевая мысль: каждый контакт — шанс укрепить отношения. Довольный клиент не только возвращается, но и рекомендует вас другим (<b>word of mouth</b>) — самая ценная и бесплатная реклама.<br><br><div class="rule">"I'm just following up to make sure everything's working now."</div><div class="rule">"We really value your business and want you to be happy."</div><div class="rule">"As a thank-you for your loyalty, here's a discount on your next order."</div><div class="rule">"We'd love to have you back — is there anything we can do?"</div>`,
+        exercises:[
+          {q:`Checking back after solving a problem is called a ___.`,blank:'follow-up',opts:['follow-up','warm-up','clean-up','mix-up']},
+          {q:`Keeping existing customers is called customer ___.`,blank:'retention',opts:['retention','attention','invention','tension']},
+          {q:`When customers leave a company, it's called ___.`,blank:'churn',opts:['churn','charm','chain','cheer']},
+          {q:`A customer who buys again and again is a ___ customer.`,blank:'repeat',opts:['repeat','retreat','receipt','reboot']},
+          {q:`Happy customers recommending you is called word of ___.`,blank:'mouth',opts:['mouth','month','mind','money']}
+        ]
+      },
+      {
+        id:18,title:'Обратная связь и отзывы',xp:20,
+        theory:`<b>Feedback: слушать, чтобы расти</b><br><br>Обратная связь (<b>feedback</b>) от клиентов — золото для бизнеса. Умение её собирать и реагировать на отзывы (<b>reviews</b>) — часть современного сервиса.<br><br>Сбор обратной связи: часто через опросы (<b>surveys</b>) и оценки. Знакомые метрики: <b>rating</b> — оценка (звёзды); <b>review</b> — отзыв (текст); <b>NPS</b> (Net Promoter Score) — «порекомендуете ли вы нас?»; <b>CSAT</b> — оценка удовлетворённости. Просьба об отзыве: <b>We'd love to hear your feedback</b>; <b>Could you take a moment to rate your experience?</b> — «оцените, пожалуйста, ваш опыт».<br><br>Реакция на положительные отзывы: благодарите лично — <b>Thank you so much for your kind words!</b>; <b>We're thrilled you had a great experience</b> — «мы очень рады, что вам понравилось». Не игнорируйте похвалу — она заслуживает ответа.<br><br>Реакция на негативные отзывы (<b>negative reviews</b>): отвечайте публично, спокойно и конструктивно. Формула: поблагодарить за отзыв, извиниться, предложить решить лично. <b>Thank you for your feedback. I'm sorry about your experience — please contact us so we can make it right</b>. Никогда не спорьте и не грубите публично: это видят все будущие клиенты.<br><br>Мудрость сервиса: жалоба в отзыве — бесплатная консультация, как стать лучше. Компании, которые слушают feedback и меняются, обгоняют тех, кто его игнорирует.<br><br><div class="rule">"We'd love to hear your feedback — could you rate your experience?"</div><div class="rule">"Thank you so much for your kind words — we're thrilled!"</div><div class="rule">"I'm sorry about your experience — please contact us so we can make it right."</div><div class="rule">"Every review helps us improve our service."</div>`,
+        exercises:[
+          {q:`Customers' opinions about your service are called ___.`,blank:'feedback',opts:['feedback','flashback','payback','setback']},
+          {q:`A written customer opinion online is a ___.`,blank:'review',opts:['review','revenue','reserve','rehearse']},
+          {q:`A questionnaire to collect opinions is a ___.`,blank:'survey',opts:['survey','subway','summary','surgery']},
+          {q:`You should respond to negative reviews ___, not with anger.`,blank:'calmly',opts:['calmly','rudely','loudly','never']},
+          {q:`A star score a customer gives is a ___.`,blank:'rating',opts:['rating','writing','raising','racing']}
+        ]
+      },
+      {
+        id:19,title:'Профессионализм и стрессоустойчивость',xp:25,
+        theory:`<b>Заботиться о клиентах — и о себе</b><br><br>Работа в сервисе эмоционально тяжела: постоянное общение, жалобы, иногда грубость. Профессионализм (<b>professionalism</b>) и забота о себе помогают держаться и работать долго.<br><br>Что такое профессионализм в сервисе: ровный доброжелательный тон независимо от настроения; надёжность (делать, что обещал); ответственность вместо оправданий; уважение к клиенту и коллегам. Даже уставший или раздражённый сотрудник должен звучать спокойно — это часть работы.<br><br>Ключевой навык — не принимать грубость на свой счёт (<b>don't take it personally</b>). Разгневанный клиент злится на ситуацию, а не на вас. Отделяйте себя от проблемы: вы — помощник, решающий задачу, а не мишень.<br><br>Забота о себе (<b>self-care</b>) и профилактика выгорания (<b>burnout</b>): делайте паузы между тяжёлыми звонками, глубоко дышите, не носите чужой негатив домой. Опирайтесь на команду — коллеги в сервисе понимают друг друга. Если клиент перешёл черту, вы имеете право передать его руководителю.<br><br>Полезные внутренние установки: <b>This isn't about me</b> — «это не про меня лично»; <b>I did my best</b> — «я сделал всё возможное»; <b>One difficult call doesn't define my day</b>. Устойчивый, спокойный сотрудник даёт лучший сервис — и остаётся в профессии дольше. Забота о себе не роскошь, а условие хорошей работы.<br><br><div class="rule">"Stay professional and calm, even on a hard day."</div><div class="rule">"Don't take rudeness personally — it's about the situation."</div><div class="rule">"Take a short break between difficult calls to reset."</div><div class="rule">"One difficult customer doesn't define your whole day."</div>`,
+        exercises:[
+          {q:`Keeping a calm, reliable, respectful manner at work is ___.`,blank:'professionalism',opts:['professionalism','entertainment','advertisement','disappointment']},
+          {q:`A key skill is not to take rudeness ___.`,blank:'personally',opts:['personally','proudly','quickly','loudly']},
+          {q:`Emotional exhaustion from work stress is called ___.`,blank:'burnout',opts:['burnout','workout','printout','handout']},
+          {q:`Looking after your own wellbeing is called ___.`,blank:'self-care',opts:['self-care','self-doubt','self-service','self-employed']},
+          {q:`A healthy reminder is "this isn't ___ me".`,blank:'about',opts:['about','around','above','after']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: сервис, который запоминают</b><br><br>Поздравляем — вы прошли полный курс клиентского сервиса на английском, от приветствия до заботы о себе. Соберём главное.<br><br>Мы начали с основ: сервис держится на <b>politeness</b>, <b>clarity</b> и <b>empathy</b>, а тон в сервисе всегда чуть вежливее обычного. Освоили тёплые приветствия (<b>How may I help you?</b>), активное слушание (<b>paraphrasing</b>, <b>clarifying questions</b>) и «волшебные слова» — <b>softeners</b> вроде <b>could</b>, <b>I'm afraid</b>, <b>certainly</b>.<br><br>Мы прошли все каналы: телефон (<b>put through</b>, <b>on hold</b>, <b>take a message</b>), email (структура, <b>best regards</b>, никакого капса) и чат (<b>canned responses</b> с персонализацией). Затем — сердце сервиса: работа с жалобами по модели <b>Listen–Empathize–Apologize–Solve–Thank</b>, искренние извинения с <b>ownership</b>, уверенные решения с <b>options</b> и деэскалация трудных клиентов (<b>stay calm</b>, <b>let them vent</b>, <b>escalate</b> при необходимости).<br><br>Мы научились вежливо говорить «нет» (<b>No + but + positive alternative</b>), оформлять возвраты (<b>refund</b>, <b>exchange</b>, <b>store credit</b>), продавать без навязчивости (<b>upselling</b>, <b>cross-selling</b>), обслуживать в рознице и гостеприимстве, вести техподдержку (<b>troubleshooting</b> простым языком), делать <b>follow-up</b> ради <b>retention</b>, реагировать на <b>feedback</b> и <b>reviews</b>. И, наконец, — о профессионализме и <b>self-care</b>: не принимать грубость на свой счёт и беречь себя от <b>burnout</b>.<br><br>Главный принцип: люди забудут, что вы сказали, но запомнят, как вы заставили их себя чувствовать. Тёплый, спокойный и решающий проблемы сервис — то, ради чего клиенты возвращаются.<br><br><div class="rule">"How can I help you today?"</div><div class="rule">"I completely understand — let me make this right for you."</div><div class="rule">"I can't do X, but here's what I can do instead."</div><div class="rule">"Thank you for your patience — is there anything else I can help with?"</div>`,
+        exercises:[
+          {q:`Service rests on politeness, clarity, and ___.`,blank:'empathy',opts:['empathy','energy','economy','envy']},
+          {q:`With complaints, handle emotions before offering a ___.`,blank:'solution',opts:['solution','discount','receipt','survey']},
+          {q:`The polite refusal formula is: No + but + positive ___.`,blank:'alternative',opts:['alternative','argument','apology','attitude']},
+          {q:`Checking back after a fix, to keep the customer, is a ___.`,blank:'follow-up',opts:['follow-up','warm-up','line-up','mix-up']},
+          {q:`People remember how you made them ___.`,blank:'feel',opts:['feel','pay','wait','leave']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -17305,7 +17541,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -17367,7 +17603,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -18851,6 +19087,7 @@ const TOPIC_CHIPS = {
   'History & Culture': ["Tell me about ancient Rome", "What caused World War I?", "How is the British monarchy structured today?", "What\'s an interesting historical fact?"],
   'Phrasal Verbs': ["Teach me a phrasal verb with \'get\'", "What\'s the difference between \'look up\' and \'look after\'?", "Give me a phrasal verb for \'to tolerate\'", "How do I use \'come across\' in a sentence?"],
   'Job Search': ["Help me improve my resume summary", "How do I negotiate a higher salary?", "Write a short cover letter opening", "What should I say to a recruiter on LinkedIn?"],
+  'Customer Service': ["How do I calm down an angry customer?", "Help me apologize to a client politely", "How do I say no to a refund nicely?", "Give me a polite phone greeting"],
 };
 
 function showChips(topicKey) {
