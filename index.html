@@ -1063,6 +1063,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phrasal-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('jobs')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(20,184,166,0.1);color:#14b8a6;font-size:18px;">📄</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Job Search &amp; Career</h3>
+          <span style="font-size:10px;font-weight:700;color:#14b8a6" id="jobs-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="jobs-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="jobs-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1480,7 +1491,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1509,7 +1520,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2075,7 +2086,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -17053,6 +17064,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  jobs: {
+    title: 'Job Search & Career 📄',
+    lessons: [
+      {
+        id:1,title:'С чего начать поиск работы',xp:15,
+        theory:`<b>Поиск работы на английском — карта пути</b><br><br>Поиск работы (job search / job hunt) в англоязычной среде идёт по понятному сценарию, и знание правильных слов делает вас увереннее на каждом шаге.<br><br>Всё начинается с <b>self-assessment</b> — оценки своих навыков и целей. Затем вы ищете вакансии (<b>job openings</b> / <b>vacancies</b> / <b>positions</b>) на сайтах поиска работы (<b>job boards</b> вроде LinkedIn, Indeed, Glassdoor). Далее — <b>application</b> (отклик): обычно это резюме (<b>CV</b> или <b>resume</b>) плюс сопроводительное письмо (<b>cover letter</b>). Если вы подходите, вас приглашают на <b>interview</b> (собеседование), иногда сначала на короткий <b>phone screening</b> (телефонный отбор). В конце — <b>job offer</b> (предложение о работе), которое можно принять (<b>accept</b>) или отклонить (<b>decline</b>).<br><br>Ключевая лексика поиска: <b>applicant</b> / <b>candidate</b> — соискатель; <b>employer</b> — работодатель; <b>recruiter</b> — рекрутёр; <b>hiring manager</b> — нанимающий менеджер; <b>to apply for a job</b> — откликаться на вакансию; <b>to land a job</b> — «заполучить» работу.<br><br>Важно различать <b>CV</b> и <b>resume</b>: в США <b>resume</b> — короткий документ на 1–2 страницы под конкретную вакансию; в Великобритании и Европе чаще говорят <b>CV</b>. В академической среде CV — это длинный документ со всеми публикациями. В этом курсе слова используются как синонимы для «резюме».<br><br><div class="rule">"I'm currently job hunting and applying for marketing positions."</div><div class="rule">"She landed a job at a startup after three interviews."</div><div class="rule">"The recruiter reached out to me on LinkedIn."</div><div class="rule">"You need to tailor your application to each job opening."</div>`,
+        exercises:[
+          {q:`A person looking for a job is an applicant or a ___.`,blank:'candidate',opts:['candidate','manager','client','tenant']},
+          {q:`Websites like Indeed and LinkedIn where jobs are posted are called job ___.`,blank:'boards',opts:['boards','walls','desks','shops']},
+          {q:`To formally request a job is to "___ for a job".`,blank:'apply',opts:['apply','ask','order','sign']},
+          {q:`To successfully get a job is to "___ a job".`,blank:'land',opts:['land','lose','leave','lend']},
+          {q:`The short 1–2 page document used in the US is called a ___.`,blank:'resume',opts:['resume','contract','receipt','diploma']}
+        ]
+      },
+      {
+        id:2,title:'Резюме: структура и разделы',xp:15,
+        theory:`<b>Из чего состоит резюме</b><br><br>Хорошее резюме (resume / CV) имеет чёткую структуру. Разберём стандартные разделы (<b>sections</b>).<br><br><b>Contact details</b> — контакты: имя, телефон, email, ссылка на LinkedIn, город. <b>Professional summary</b> (или <b>personal profile</b>) — 2–3 строки о вас в начале: кто вы, сколько опыта, ключевая сила. <b>Work experience</b> (или <b>employment history</b>) — опыт работы в обратном хронологическом порядке (сначала последнее место). <b>Education</b> — образование. <b>Skills</b> — навыки (технические и «мягкие»). Дополнительно: <b>Certifications</b> (сертификаты), <b>Languages</b> (языки), <b>Projects</b>, <b>References</b> (рекомендации, часто «available on request»).<br><br>Полезная лексика: <b>reverse chronological order</b> — обратный хронологический порядок; <b>bullet points</b> — маркированные пункты (резюме пишут пунктами, а не абзацами); <b>one-pager</b> — резюме на одну страницу; <b>to tailor</b> — адаптировать под вакансию; <b>keywords</b> — ключевые слова из описания вакансии.<br><br>Важный момент: многие компании используют <b>ATS</b> (Applicant Tracking System) — программу, которая сканирует резюме на ключевые слова до того, как его увидит человек. Поэтому в резюме важно включать <b>keywords</b> из описания вакансии, иначе система может его отсеять.<br><br><div class="rule">"List your work experience in reverse chronological order."</div><div class="rule">"Keep your resume to one page if possible."</div><div class="rule">"Use bullet points, not long paragraphs."</div><div class="rule">"Add keywords from the job description so the ATS picks up your resume."</div>`,
+        exercises:[
+          {q:`The 2–3 line intro at the top of a resume is the professional ___.`,blank:'summary',opts:['summary','contract','address','signature']},
+          {q:`Work experience should be listed in reverse ___ order.`,blank:'chronological',opts:['chronological','alphabetical','random','numerical']},
+          {q:`Short dashes listing your achievements are called ___ points.`,blank:'bullet',opts:['bullet','focus','check','end']},
+          {q:`The software that scans resumes for keywords is called an ___.`,blank:'ATS',opts:['ATS','ATM','FBI','API']},
+          {q:`To adapt your resume to a specific job is to "___ it".`,blank:'tailor',opts:['tailor','delete','translate','copy']}
+        ]
+      },
+      {
+        id:3,title:'Резюме: как описывать опыт',xp:15,
+        theory:`<b>Опыт работы: глаголы действия и достижения</b><br><br>Самая важная часть резюме — раздел опыта. Секрет сильного резюме: описывать не обязанности, а <b>достижения</b> (<b>achievements</b> / <b>accomplishments</b>), и начинать каждый пункт с глагола действия (<b>action verb</b>).<br><br>Сильные глаголы действия: <b>managed</b> (руководил), <b>led</b> (возглавлял), <b>developed</b> (разработал), <b>increased</b> (увеличил), <b>reduced</b> (сократил), <b>launched</b> (запустил), <b>improved</b> (улучшил), <b>achieved</b> (достиг), <b>implemented</b> (внедрил), <b>coordinated</b> (координировал). Избегайте слабых фраз вроде <b>responsible for</b> — вместо «был ответственным за продажи» пишите «увеличил продажи на 30%».<br><br>Золотое правило: <b>quantify</b> — приводите цифры. «Improved customer satisfaction» слабее, чем «Improved customer satisfaction by 25% in six months». Цифры (проценты, суммы, сроки, количество людей) делают достижения конкретными и убедительными.<br><br>Формула сильного пункта: <b>Action verb + what you did + measurable result</b>. Например: «Led a team of 5 developers and launched a new app that reached 10,000 users in three months».<br><br><div class="rule">"Increased monthly sales by 40% through a new marketing strategy."</div><div class="rule">"Managed a team of eight and reduced project delays by 20%."</div><div class="rule">"Developed and launched a mobile app with 50,000 downloads."</div><div class="rule">"Always quantify your achievements with numbers."</div>`,
+        exercises:[
+          {q:`Each bullet point should start with a strong ___ verb.`,blank:'action',opts:['action','helping','being','linking']},
+          {q:`Instead of listing duties, focus on your ___.`,blank:'achievements',opts:['achievements','hobbies','opinions','excuses']},
+          {q:`To "___" an achievement means to add numbers to it.`,blank:'quantify',opts:['quantify','question','qualify','quit']},
+          {q:`Avoid the weak phrase "responsible ___" on a resume.`,blank:'for',opts:['for','of','to','with']},
+          {q:`"___ a team of five" is a strong way to describe leadership.`,blank:'Led',opts:['Led','Was','Did','Had']}
+        ]
+      },
+      {
+        id:4,title:'Резюме: навыки и образование',xp:15,
+        theory:`<b>Разделы Skills и Education</b><br><br>Раздел навыков (<b>Skills</b>) делится на два типа. <b>Hard skills</b> (технические навыки) — конкретные, измеримые умения: языки программирования, знание Excel, иностранные языки, вождение. <b>Soft skills</b> (гибкие навыки) — качества характера: <b>communication</b> (коммуникация), <b>teamwork</b> (командная работа), <b>leadership</b> (лидерство), <b>problem-solving</b> (решение проблем), <b>time management</b> (тайм-менеджмент), <b>adaptability</b> (гибкость).<br><br>Совет: soft skills лучше не просто перечислять, а показывать через достижения в разделе опыта. А hard skills можно перечислить списком, иногда с уровнем владения (<b>proficient</b> — уверенно, <b>intermediate</b> — средне, <b>basic</b> — базово).<br><br>Раздел образования (<b>Education</b>): <b>degree</b> — учёная степень (<b>Bachelor's</b> — бакалавр, <b>Master's</b> — магистр, <b>PhD</b> — доктор наук); <b>major</b> — специальность; <b>university</b> / <b>college</b>; <b>GPA</b> — средний балл (в США); <b>graduated in 2020</b> — окончил в 2020. Для языков используют уровни: <b>native</b> (родной), <b>fluent</b> (свободный), <b>proficient</b>, <b>intermediate</b>, <b>beginner</b>.<br><br>Если опыта мало (например, вы студент или выпускник — <b>graduate</b>), раздел Education ставят выше опыта, делая упор на учёбу, стажировки (<b>internships</b>) и проекты.<br><br><div class="rule">"My hard skills include Python, SQL, and data analysis."</div><div class="rule">"Soft skills like teamwork and communication matter too."</div><div class="rule">"I hold a Bachelor's degree in Economics."</div><div class="rule">"Languages: English (fluent), Spanish (intermediate)."</div>`,
+        exercises:[
+          {q:`Technical, measurable abilities like coding are called ___ skills.`,blank:'hard',opts:['hard','soft','free','open']},
+          {q:`Personal qualities like teamwork are called ___ skills.`,blank:'soft',opts:['soft','hard','heavy','cold']},
+          {q:`A university qualification is called a ___.`,blank:'degree',opts:['degree','license','ticket','permit']},
+          {q:`Your main field of study is your ___.`,blank:'major',opts:['major','minor','grade','term']},
+          {q:`If a language is your first language, your level is ___.`,blank:'native',opts:['native','basic','foreign','silent']}
+        ]
+      },
+      {
+        id:5,title:'Сопроводительное письмо: структура',xp:15,
+        theory:`<b>Cover letter — зачем и как</b><br><br>Сопроводительное письмо (<b>cover letter</b>) — это письмо, которое сопровождает резюме и объясняет, почему именно вы подходите на эту вакансию. Резюме — что вы делали, cover letter — почему вам нужна именно эта работа и что вы дадите компании.<br><br>Стандартная структура из четырёх частей. <b>Opening</b> — приветствие и указание вакансии: «I'm writing to apply for the position of...». Обращение: если знаете имя — <b>Dear Mr./Ms. Smith</b>; если нет — <b>Dear Hiring Manager</b>. <b>Body paragraph 1</b> — почему вы подходите: ключевой опыт и достижения под эту роль. <b>Body paragraph 2</b> — почему именно эта компания: что вас в ней привлекает. <b>Closing</b> — призыв к действию: «I would welcome the opportunity to discuss...» + <b>Yours sincerely</b> (если знаете имя) или <b>Yours faithfully</b> (если нет, британский стиль).<br><br>Полезные фразы: <b>I'm writing to apply for...</b> — «пишу, чтобы откликнуться на...»; <b>I came across your job posting...</b> — «я увидел вашу вакансию...»; <b>I'm confident that...</b> — «уверен, что...»; <b>Please find my resume attached</b> — «прилагаю резюме»; <b>I look forward to hearing from you</b> — «жду вашего ответа».<br><br>Главное правило: письмо должно быть коротким (не длиннее страницы) и адаптированным под конкретную компанию — шаблонные письма «на все случаи» рекрутёры распознают мгновенно.<br><br><div class="rule">"I'm writing to apply for the position of Junior Analyst."</div><div class="rule">"Please find my resume attached for your consideration."</div><div class="rule">"I look forward to hearing from you."</div><div class="rule">"Yours sincerely, / Yours faithfully,"</div>`,
+        exercises:[
+          {q:`The letter that accompanies your resume is the ___ letter.`,blank:'cover',opts:['cover','love','open','thank']},
+          {q:`If you don't know the recipient's name, start with "Dear Hiring ___".`,blank:'Manager',opts:['Manager','Friend','Person','Sir']},
+          {q:`"Please find my resume ___" means the resume is included.`,blank:'attached',opts:['attached','deleted','printed','signed']},
+          {q:`A common closing line is "I look forward to ___ from you".`,blank:'hearing',opts:['hearing','running','buying','leaving']},
+          {q:`A cover letter should be no longer than ___ page.`,blank:'one',opts:['one','five','ten','zero']}
+        ]
+      },
+      {
+        id:6,title:'Сопроводительное письмо: как выделиться',xp:15,
+        theory:`<b>Как сделать cover letter запоминающимся</b><br><br>Большинство сопроводительных писем скучны и одинаковы. Чтобы выделиться (<b>stand out</b>), используйте несколько приёмов.<br><br>Первое: сильное начало. Вместо «I am writing to apply...» можно начать с конкретного факта или энтузиазма: «As a marketer who grew a brand's audience by 200%, I was excited to see your opening...». Первое предложение решает, будут ли читать дальше.<br><br>Второе: связывайте свой опыт с потребностями компании. Изучите вакансию и компанию, найдите их задачи (<b>pain points</b>) и покажите, как вы их решите. Используйте фразы: <b>I noticed that...</b>, <b>I can help you...</b>, <b>This aligns with my experience in...</b> («это совпадает с моим опытом в...»).<br><br>Третье: покажите знание компании. Упомяните их продукт, ценности или недавнюю новость: «I admire your commitment to sustainability». Это доказывает, что письмо не шаблонное.<br><br>Четвёртое: избегайте клише вроде <b>hard-working</b>, <b>team player</b>, <b>go-getter</b> без доказательств — вместо этого показывайте качества через факты. И всегда вычитывайте письмо: опечатки (<b>typos</b>) — частая причина отказа. Проверьте, что название компании и вакансии верные — забыть поменять их из прошлого письма легко, но фатально.<br><br><div class="rule">"Start with a strong hook, not a generic sentence."</div><div class="rule">"I noticed your team is expanding into new markets — I can help with that."</div><div class="rule">"I admire your company's focus on customer experience."</div><div class="rule">"Always proofread to catch typos before sending."</div>`,
+        exercises:[
+          {q:`To be noticed among many applicants is to "stand ___".`,blank:'out',opts:['out','up','in','off']},
+          {q:`The problems a company needs solved are called their pain ___.`,blank:'points',opts:['points','walls','lines','ends']},
+          {q:`Overused phrases like "team player" without proof are called ___.`,blank:'cliches',opts:['cliches','facts','skills','goals']},
+          {q:`Spelling mistakes in a letter are called ___.`,blank:'typos',opts:['typos','fonts','margins','titles']},
+          {q:`To check your letter for errors before sending is to ___ it.`,blank:'proofread',opts:['proofread','print','fold','sign']}
+        ]
+      },
+      {
+        id:7,title:'LinkedIn: оформление профиля',xp:15,
+        theory:`<b>LinkedIn — ваше онлайн-резюме</b><br><br>LinkedIn — главная профессиональная соцсеть, и рекрутёры активно ищут кандидатов именно там. Сильный профиль (<b>profile</b>) часто важнее резюме.<br><br>Ключевые элементы. <b>Profile photo</b> — профессиональное фото (не селфи с вечеринки). <b>Headline</b> — строка под именем: не просто должность, а ваша ценность («Marketing Manager | Helping brands grow through data»). <b>About section</b> (или <b>summary</b>) — рассказ о себе от первого лица. <b>Experience</b> — опыт, как в резюме. <b>Skills</b> — навыки, которые коллеги могут подтвердить (<b>endorse</b>). <b>Recommendations</b> — рекомендации от коллег.<br><br>Полезная лексика: <b>headline</b> — заголовок профиля; <b>connections</b> — контакты (аналог «друзей»); <b>to connect with someone</b> — добавить в контакты; <b>endorsement</b> — подтверждение навыка; <b>recommendation</b> — письменная рекомендация; <b>open to work</b> — статус «открыт к предложениям».<br><br>Совет: включите значок <b>Open to Work</b>, чтобы рекрутёры видели, что вы в поиске. И заполните профиль полностью — LinkedIn показывает «полные» профили выше в результатах поиска. Регулярная активность (посты, комментарии) тоже повышает видимость (<b>visibility</b>).<br><br><div class="rule">"Your headline should show value, not just your job title."</div><div class="rule">"Recruiters search LinkedIn for candidates every day."</div><div class="rule">"Turn on the 'Open to Work' feature when job hunting."</div><div class="rule">"Ask colleagues to endorse your skills and write recommendations."</div>`,
+        exercises:[
+          {q:`The line under your name on LinkedIn is your ___.`,blank:'headline',opts:['headline','password','deadline','footer']},
+          {q:`Your contacts on LinkedIn are called ___.`,blank:'connections',opts:['connections','followers','subscribers','fans']},
+          {q:`When a colleague confirms a skill of yours, they ___ it.`,blank:'endorse',opts:['endorse','delete','borrow','ignore']},
+          {q:`The status showing recruiters you're job hunting is "Open to ___".`,blank:'Work',opts:['Work','Play','Talk','Rest']},
+          {q:`A written reference from a colleague on LinkedIn is a ___.`,blank:'recommendation',opts:['recommendation','complaint','invoice','warning']}
+        ]
+      },
+      {
+        id:8,title:'LinkedIn: нетворкинг и сообщения',xp:15,
+        theory:`<b>Нетворкинг: как писать людям</b><br><br>Нетворкинг (<b>networking</b>) — построение профессиональных связей — один из лучших способов найти работу. Многие вакансии закрываются через знакомства ещё до публикации (<b>the hidden job market</b>, скрытый рынок труда).<br><br>Как правильно добавлять человека в контакты: не отправляйте пустой запрос. Напишите короткую персонализированную заметку: «Hi [Name], I came across your profile and admire your work in [field]. I'd love to connect». Люди гораздо охотнее принимают такие запросы.<br><br>Как попросить о разговоре: <b>informational interview</b> — неформальная беседа с человеком из интересующей вас сферы, чтобы узнать о ней (не просить работу напрямую!). Фраза: «Would you be open to a quick 15-minute chat about your career path?».<br><br>Полезные фразы для сообщений: <b>I came across your profile...</b> — «я наткнулся на ваш профиль»; <b>I'd love to connect</b> — «был бы рад связаться»; <b>Would you be open to...</b> — «не были бы вы готовы...»; <b>I really appreciate your time</b> — «очень ценю ваше время»; <b>reach out</b> — обращаться, писать первым.<br><br>Главное правило нетворкинга: сначала давайте, потом просите. Проявляйте искренний интерес к людям, а не пишите только когда вам что-то нужно.<br><br><div class="rule">"Always add a personal note when you send a connection request."</div><div class="rule">"Would you be open to a quick 15-minute chat?"</div><div class="rule">"Many jobs are filled through the hidden job market."</div><div class="rule">"I really appreciate you taking the time to reply."</div>`,
+        exercises:[
+          {q:`Building professional relationships is called ___.`,blank:'networking',opts:['networking','sleeping','shopping','driving']},
+          {q:`Jobs filled through contacts before being posted are the hidden job ___.`,blank:'market',opts:['market','fair','centre','office']},
+          {q:`A casual chat to learn about a career is an ___ interview.`,blank:'informational',opts:['informational','final','group','panel']},
+          {q:`To contact someone first is to "___ out" to them.`,blank:'reach',opts:['reach','run','sell','call']},
+          {q:`A good networking rule is to give before you ___.`,blank:'ask',opts:['ask','eat','sleep','leave']}
+        ]
+      },
+      {
+        id:9,title:'Поиск вакансий: типы занятости',xp:15,
+        theory:`<b>Где искать и какие бывают вакансии</b><br><br>Вакансии ищут на сайтах поиска работы (<b>job boards</b>): LinkedIn, Indeed, Glassdoor, а также на сайтах самих компаний (в разделе <b>Careers</b>). Ещё источники: рекрутинговые агентства (<b>recruitment agencies</b>) и рекомендации знакомых (<b>referrals</b>).<br><br>Важно понимать типы занятости (<b>types of employment</b>). <b>Full-time</b> — полная занятость (обычно 40 часов в неделю). <b>Part-time</b> — частичная. <b>Contract</b> — по контракту на срок. <b>Freelance</b> — фриланс, разовые проекты. <b>Temporary</b> (<b>temp</b>) — временная работа. <b>Internship</b> — стажировка (часто для студентов). <b>Permanent</b> — постоянная (в отличие от временной).<br><br>Форматы работы: <b>on-site</b> — в офисе; <b>remote</b> — удалённо; <b>hybrid</b> — гибрид (часть в офисе, часть дома). Также встретите: <b>entry-level</b> — начальный уровень (без опыта); <b>mid-level</b> — средний; <b>senior</b> — старший; <b>salary</b> — оклад (годовой); <b>hourly rate</b> — почасовая ставка; <b>benefits</b> — соцпакет.<br><br>Совет: настройте оповещения (<b>job alerts</b>) на сайтах — они присылают новые вакансии по вашим критериям на почту, и вы откликаетесь первым, пока конкуренция мала.<br><br><div class="rule">"I'm looking for a full-time, remote position."</div><div class="rule">"This is an entry-level role, so no experience is required."</div><div class="rule">"The company offers a hybrid work arrangement."</div><div class="rule">"Set up job alerts to be the first to apply."</div>`,
+        exercises:[
+          {q:`A job of about 40 hours a week is ___.`,blank:'full-time',opts:['full-time','part-time','freelance','temporary']},
+          {q:`Working entirely from home is called ___ work.`,blank:'remote',opts:['remote','on-site','manual','night']},
+          {q:`A job for beginners with no experience is ___ level.`,blank:'entry',opts:['entry','senior','exit','top']},
+          {q:`A mix of office and home work is called ___.`,blank:'hybrid',opts:['hybrid','manual','double','split']},
+          {q:`Email notifications about new jobs are called job ___.`,blank:'alerts',opts:['alerts','boards','fairs','sites']}
+        ]
+      },
+      {
+        id:10,title:'Чтение описания вакансии',xp:15,
+        theory:`<b>Как читать job description</b><br><br>Описание вакансии (<b>job description</b> / <b>job posting</b> / <b>job ad</b>) обычно состоит из нескольких блоков, и умение их читать экономит время.<br><br><b>Responsibilities</b> (или <b>duties</b>) — обязанности: что вы будете делать. <b>Requirements</b> (или <b>qualifications</b>) — требования: что нужно иметь. Требования делятся на <b>must-have</b> (обязательные) и <b>nice-to-have</b> / <b>preferred</b> (желательные). Не пугайтесь, если не соответствуете 100% — обычно достаточно 70–80%.<br><br>Частые формулировки: <b>proven experience in...</b> — подтверждённый опыт в...; <b>excellent communication skills</b> — отличные навыки коммуникации; <b>ability to work under pressure</b> — умение работать под давлением; <b>degree in a related field</b> — диплом в смежной области; <b>X+ years of experience</b> — от X лет опыта; <b>fluent in English</b> — свободный английский.<br><br>Раздел о компании: <b>About us</b> — о нас; <b>What we offer</b> — что предлагаем (зарплата, соцпакет). Полезно: <b>salary range</b> — вилка зарплаты; <b>benefits package</b> — соцпакет; <b>equal opportunity employer</b> — работодатель равных возможностей.<br><br>Совет: выпишите ключевые слова (<b>keywords</b>) из требований и вставьте их в резюме и cover letter — это и честно (если у вас есть эти навыки), и помогает пройти ATS-сканирование.<br><br><div class="rule">"The job posting lists five main responsibilities."</div><div class="rule">"Don't worry if you don't meet every requirement."</div><div class="rule">"They want proven experience in project management."</div><div class="rule">"Match keywords from the requirements in your resume."</div>`,
+        exercises:[
+          {q:`The tasks you'll perform in a job are the ___.`,blank:'responsibilities',opts:['responsibilities','benefits','holidays','salaries']},
+          {q:`What you need to have for the job are the ___.`,blank:'requirements',opts:['requirements','rewards','breaks','bonuses']},
+          {q:`Essential requirements are called "___-have".`,blank:'must',opts:['must','nice','can','may']},
+          {q:`The pay range shown in a posting is the salary ___.`,blank:'range',opts:['range','tax','card','box']},
+          {q:`Usually you should meet about ___% of the requirements to apply.`,blank:'70',opts:['70','10','5','0']}
+        ]
+      },
+      {
+        id:11,title:'Отклик на вакансию: письмо',xp:15,
+        theory:`<b>Как написать письмо-отклик</b><br><br>Часто отклик отправляют по email — либо напрямую рекрутёру, либо через форму. Такое письмо должно быть коротким и профессиональным.<br><br>Структура. <b>Subject line</b> (тема письма) — важнейшая деталь: укажите вакансию и своё имя, например «Application for Marketing Manager — Anna Ivanova». <b>Greeting</b> — «Dear [Name]» или «Dear Hiring Team». <b>Body</b> — 3–4 предложения: на какую позицию откликаетесь, почему подходите, что прилагаете. <b>Closing</b> — вежливое завершение и подпись.<br><br>Готовые фразы: <b>I am writing to express my interest in...</b> — «пишу, чтобы выразить интерес к...»; <b>I have attached my resume and cover letter</b> — «прилагаю резюме и сопроводительное»; <b>I believe my experience in X makes me a strong fit</b> — «считаю, что мой опыт в X делает меня подходящим кандидатом»; <b>Thank you for considering my application</b> — «спасибо за рассмотрение моей заявки».<br><br>Важно про вложения (<b>attachments</b>): называйте файлы понятно — «Anna_Ivanova_Resume.pdf», а не «resume_final_v3.pdf». Отправляйте в <b>PDF</b>, чтобы форматирование не «поехало». И всегда проверяйте, что вложение действительно прикреплено — «I forgot to attach the file» портит первое впечатление.<br><br><div class="rule">"Subject: Application for Marketing Manager — Anna Ivanova"</div><div class="rule">"I am writing to express my interest in this position."</div><div class="rule">"I have attached my resume and cover letter as PDFs."</div><div class="rule">"Thank you for considering my application."</div>`,
+        exercises:[
+          {q:`The email subject line should include the job title and your ___.`,blank:'name',opts:['name','age','salary','photo']},
+          {q:`Files added to an email are called ___.`,blank:'attachments',opts:['attachments','subjects','signatures','folders']},
+          {q:`Send your resume as a ___ to keep the formatting.`,blank:'PDF',opts:['PDF','GIF','ZIP','MP3']},
+          {q:`"I am writing to express my ___ in this position."`,blank:'interest',opts:['interest','anger','doubt','fear']},
+          {q:`End with "Thank you for ___ my application".`,blank:'considering',opts:['considering','deleting','ignoring','losing']}
+        ]
+      },
+      {
+        id:12,title:'Общение с рекрутёрами',xp:15,
+        theory:`<b>Рекрутёры и хедхантеры</b><br><br>Рекрутёр (<b>recruiter</b>) — человек, который ищет кандидатов для компаний. Бывают <b>internal recruiters</b> (в штате компании) и <b>agency recruiters</b> / <b>headhunters</b> (из агентств, работают на несколько клиентов). Часто именно рекрутёр — ваш первый контакт.<br><br>Когда рекрутёр пишет вам первым (<b>reaches out</b>), отвечайте вежливо и быстро, даже если сейчас не ищете работу — связи пригодятся. Полезные фразы: <b>Thank you for reaching out</b> — «спасибо, что написали»; <b>I'd be interested in learning more</b> — «мне было бы интересно узнать больше»; <b>Could you tell me more about the role?</b> — «расскажите подробнее о позиции?»; <b>What's the salary range for this position?</b> — «какая вилка зарплаты?».<br><br>Вопросы, которые уместно задать рекрутёру: о зарплате (<b>salary range</b>), формате работы (remote/hybrid), команде, следующих шагах (<b>next steps</b>), сроках (<b>timeline</b>). Рекрутёр — ваш союзник: он заинтересован, чтобы вы прошли, ведь получает комиссию за успешный найм.<br><br>Если вакансия не подходит, откажитесь вежливо: «Thank you, but I'm not looking to move right now. I'd be happy to stay in touch». Никогда не сжигайте мосты (<b>don't burn bridges</b>) — тот же рекрутёр может предложить что-то лучше через год.<br><br><div class="rule">"Thank you for reaching out about this opportunity."</div><div class="rule">"Could you tell me more about the team and the role?"</div><div class="rule">"What's the salary range for this position?"</div><div class="rule">"I'd be happy to stay in touch for future roles."</div>`,
+        exercises:[
+          {q:`An agency recruiter who finds candidates is also called a ___.`,blank:'headhunter',opts:['headhunter','gatekeeper','freelancer','landlord']},
+          {q:`When a recruiter contacts you first, they "___ out".`,blank:'reach',opts:['reach','run','fall','give']},
+          {q:`It's smart to ask a recruiter about the salary ___.`,blank:'range',opts:['range','tax','card','desk']},
+          {q:`The upcoming stages of hiring are called the next ___.`,blank:'steps',opts:['steps','doors','weeks','floors']},
+          {q:`To keep good relationships and not "burn ___" is wise.`,blank:'bridges',opts:['bridges','money','books','files']}
+        ]
+      },
+      {
+        id:13,title:'Портфолио и рекомендации',xp:15,
+        theory:`<b>Portfolio и references</b><br><br>Для многих профессий (дизайн, разработка, маркетинг, копирайтинг) резюме дополняют портфолио (<b>portfolio</b>) — подборкой работ, доказывающей навыки. Портфолио бывает онлайн (сайт, Behance, GitHub) или в PDF.<br><br>Полезная лексика портфолио: <b>case study</b> — разбор проекта (задача → решение → результат); <b>sample</b> — образец работы; <b>showcase</b> — витрина, демонстрация лучшего; <b>before and after</b> — до и после. Совет: показывайте не всё подряд, а 3–5 лучших работ с описанием вашей роли и результата.<br><br>Рекомендации (<b>references</b>) — люди, готовые подтвердить ваш профессионализм. Обычно это бывшие руководители или коллеги. Фраза в резюме: <b>References available on request</b> («рекомендации предоставляются по запросу»). Работодатель может провести <b>reference check</b> — позвонить вашим рекомендателям.<br><br>Важно: всегда спрашивайте разрешение (<b>ask permission</b>), прежде чем указать человека как рекомендателя, и предупредите его, что могут позвонить. Хороший рекомендатель — тот, кто знает вашу работу и скажет о ней конкретно. Отдельно бывает <b>letter of recommendation</b> — письменная рекомендация, которую иногда просят заранее.<br><br><div class="rule">"Designers and developers usually need a portfolio."</div><div class="rule">"A strong case study shows the problem, solution, and result."</div><div class="rule">"References available on request."</div><div class="rule">"Always ask permission before listing someone as a reference."</div>`,
+        exercises:[
+          {q:`A collection of your best work is called a ___.`,blank:'portfolio',opts:['portfolio','payroll','passport','postcode']},
+          {q:`A detailed breakdown of one project is a case ___.`,blank:'study',opts:['study','file','box','note']},
+          {q:`People who confirm your professionalism are your ___.`,blank:'references',opts:['references','relatives','neighbours','rivals']},
+          {q:`When an employer calls your references, it's a reference ___.`,blank:'check',opts:['check','call','list','fee']},
+          {q:`Always ___ permission before naming someone as a reference.`,blank:'ask',opts:['ask','pay','force','avoid']}
+        ]
+      },
+      {
+        id:14,title:'Скрининг-звонок до интервью',xp:20,
+        theory:`<b>Phone screening — первый фильтр</b><br><br>Прежде чем пригласить на полноценное интервью, рекрутёр часто проводит короткий телефонный отбор (<b>phone screening</b> / <b>screening call</b>) на 15–30 минут. Его цель — проверить базовое соответствие: опыт, зарплатные ожидания, доступность.<br><br>Типичные вопросы скрининга: <b>Tell me a bit about yourself</b> — расскажите о себе; <b>Why are you looking for a new role?</b> — почему ищете новую работу?; <b>What are your salary expectations?</b> — каковы зарплатные ожидания?; <b>When could you start?</b> — когда могли бы начать?; <b>Are you happy with remote/hybrid?</b> — устраивает ли формат?<br><br>Как отвечать про зарплату: лучше назвать вилку (<b>range</b>), а не одну цифру, и основать её на рынке: «Based on my research and experience, I'm looking for something in the range of X to Y». Про доступность: <b>notice period</b> — срок отработки на текущем месте (обычно 2 недели–1 месяц): «I have a one-month notice period».<br><br>Полезные фразы: <b>I'm currently exploring new opportunities</b> — «сейчас рассматриваю новые возможности» (нейтральная причина ухода); <b>I could start within two weeks</b>; <b>Could you tell me about the next steps?</b>. Говорите чётко, не перебивайте и держите резюме перед глазами. Скрининг — это уже интервью, относитесь серьёзно.<br><br><div class="rule">"Tell me a bit about yourself and your background."</div><div class="rule">"What are your salary expectations for this role?"</div><div class="rule">"I have a one-month notice period at my current job."</div><div class="rule">"Could you tell me about the next steps in the process?"</div>`,
+        exercises:[
+          {q:`A short call before the real interview is a phone ___.`,blank:'screening',opts:['screening','printing','booking','landing']},
+          {q:`When asked about pay, it's better to give a ___ than one number.`,blank:'range',opts:['range','joke','lie','date']},
+          {q:`The time you must work before leaving your current job is the ___ period.`,blank:'notice',opts:['notice','trial','rest','tax']},
+          {q:`"I'm currently exploring new ___" is a neutral reason for leaving.`,blank:'opportunities',opts:['opportunities','problems','enemies','debts']},
+          {q:`Always ask about the next ___ in the hiring process.`,blank:'steps',opts:['steps','meals','floors','trains']}
+        ]
+      },
+      {
+        id:15,title:'Переговоры о зарплате',xp:20,
+        theory:`<b>Salary negotiation — как говорить о деньгах</b><br><br>Переговоры о зарплате (<b>salary negotiation</b>) пугают многих, но это нормальная и ожидаемая часть найма. Работодатели обычно оставляют пространство для торга.<br><br>Первое правило: изучите рынок (<b>do your research</b>). Сайты вроде Glassdoor, Levels.fyi показывают, сколько платят за похожие роли. Знание рыночной ставки (<b>market rate</b>) даёт вам уверенность и аргументы.<br><br>Если спрашивают ваши ожидания рано, можно отложить: «I'd like to learn more about the role first» или назвать вилку. Когда приходит оффер (<b>offer</b>), не соглашайтесь сразу — вежливо возьмите паузу: «Thank you, I'm excited! Could I have a couple of days to review?».<br><br>Как просить больше: обоснуйте ценностью, а не нуждой. Фразы: <b>Based on my experience and market rates, I was expecting something closer to X</b>; <b>Is there flexibility on the base salary?</b> — «есть ли гибкость по окладу?»; <b>Could we discuss the compensation?</b>. Помните: обсуждается не только оклад (<b>base salary</b>), но и весь пакет — бонус (<b>bonus</b>), акции (<b>equity</b>), отпуск, ДМС.<br><br>Держитесь вежливо и уверенно, не извиняйтесь за вопрос о деньгах. Худшее, что услышите — «нет», и тогда вы просто соглашаетесь на исходное. Но чаще работодатель идёт навстречу хотя бы частично.<br><br><div class="rule">"Based on market rates, I was expecting something closer to $60,000."</div><div class="rule">"Is there any flexibility on the base salary?"</div><div class="rule">"Could I have a couple of days to review the offer?"</div><div class="rule">"Let's discuss the whole package, not just the salary."</div>`,
+        exercises:[
+          {q:`Before negotiating, you should do your ___ on market pay.`,blank:'research',opts:['research','laundry','homework','shopping']},
+          {q:`The typical pay for a role in the market is the market ___.`,blank:'rate',opts:['rate','tax','fee','fine']},
+          {q:`Your fixed annual pay, before bonus, is the ___ salary.`,blank:'base',opts:['base','top','half','side']},
+          {q:`Ask "Is there ___ on the base salary?" to negotiate.`,blank:'flexibility',opts:['flexibility','danger','silence','traffic']},
+          {q:`When you get an offer, ask for a couple of days to ___ it.`,blank:'review',opts:['review','reject','forget','sign']}
+        ]
+      },
+      {
+        id:16,title:'Оценка предложения о работе',xp:20,
+        theory:`<b>Job offer — что входит в пакет</b><br><br>Предложение о работе (<b>job offer</b>) — это не только цифра зарплаты. Важно оценить весь компенсационный пакет (<b>compensation package</b>).<br><br>Составляющие: <b>base salary</b> — оклад; <b>bonus</b> — премия (годовая или по результатам); <b>equity</b> / <b>stock options</b> — доля/опционы (в стартапах); <b>benefits</b> — соцпакет. В benefits входят: <b>health insurance</b> (ДМС), <b>paid time off (PTO)</b> / <b>annual leave</b> (оплачиваемый отпуск), <b>pension</b> / <b>401(k)</b> (пенсионные отчисления), <b>sick leave</b> (больничный), <b>parental leave</b> (декрет).<br><br>Другие важные детали оффера: <b>start date</b> — дата выхода; <b>probation period</b> — испытательный срок; <b>working hours</b> — часы; <b>remote/hybrid policy</b> — формат; <b>relocation package</b> — помощь с переездом; <b>signing bonus</b> — бонус за подписание.<br><br>Оффер обычно присылают письменно (<b>offer letter</b>). Внимательно прочитайте условия. Полезно спросить: <b>Could you send the offer in writing?</b> — «пришлите оффер письменно»; <b>What does the benefits package include?</b> — «что входит в соцпакет?»; <b>What's the probation period?</b>.<br><br>Совет: сравнивайте офферы не только по окладу. Работа с меньшей зарплатой, но с гибким графиком, хорошим ДМС и обучением может оказаться выгоднее в сумме.<br><br><div class="rule">"The offer includes a base salary, a yearly bonus, and health insurance."</div><div class="rule">"How much paid time off does this role offer?"</div><div class="rule">"Could you send the offer in writing, please?"</div><div class="rule">"Compare the whole package, not just the salary."</div>`,
+        exercises:[
+          {q:`Everything you get — salary, bonus, benefits — is the compensation ___.`,blank:'package',opts:['package','postcode','printer','password']},
+          {q:`Paid vacation days are called paid time ___ (PTO).`,blank:'off',opts:['off','on','out','up']},
+          {q:`Medical coverage from an employer is health ___.`,blank:'insurance',opts:['insurance','inspection','invitation','instruction']},
+          {q:`The trial period at the start of a job is the ___ period.`,blank:'probation',opts:['probation','notice','lunch','tax']},
+          {q:`A one-time payment for joining is a ___ bonus.`,blank:'signing',opts:['signing','singing','sinking','sitting']}
+        ]
+      },
+      {
+        id:17,title:'Принятие и отклонение оффера',xp:20,
+        theory:`<b>Как принять или отклонить предложение</b><br><br>Когда вы решили, наступает время ответить на оффер — принять (<b>accept</b>) или отклонить (<b>decline</b>). И то, и другое делается письменно и вежливо.<br><br>Принятие оффера (<b>accepting</b>): подтвердите позицию, зарплату и дату выхода, чтобы избежать недопониманий. Фразы: <b>I'm delighted to accept the offer</b> — «рад принять предложение»; <b>I'm excited to join the team</b> — «рад присоединиться к команде»; <b>I confirm my start date will be...</b> — «подтверждаю, что выйду...»; <b>Thank you for this opportunity</b>.<br><br>Отклонение оффера (<b>declining</b>): будьте благодарны и кратки, не сжигайте мосты. Не обязательно объяснять причину, но можно: приняли другое предложение (<b>I've accepted another offer</b>). Фразы: <b>Thank you so much for the offer</b>; <b>After careful consideration, I've decided to decline</b> — «после размышлений решил отказаться»; <b>I hope we can stay in touch</b> — «надеюсь, останемся на связи».<br><br>Отдельная ситуация — <b>counteroffer</b> (контрпредложение): когда вы сообщаете о уходе, текущий работодатель может предложить повышение, чтобы удержать. Взвесьте: часто причина ухода не только в деньгах, и контроффер лишь откладывает проблему.<br><br>Всегда отвечайте на оффер в разумный срок, даже если это отказ — молчание непрофессионально. Компания потратила время, и вежливый ответ сохраняет вашу репутацию.<br><br><div class="rule">"I'm delighted to accept the offer and join the team."</div><div class="rule">"I confirm that my start date will be the 15th of May."</div><div class="rule">"After careful consideration, I've decided to decline."</div><div class="rule">"Thank you for the opportunity — I hope we can stay in touch."</div>`,
+        exercises:[
+          {q:`To say yes to a job offer is to ___ it.`,blank:'accept',opts:['accept','attack','attach','attend']},
+          {q:`To say no to a job offer is to ___ it.`,blank:'decline',opts:['decline','define','deliver','deserve']},
+          {q:`When accepting, always confirm your ___ date.`,blank:'start',opts:['start','birth','due','expiry']},
+          {q:`When your current employer offers more to keep you, it's a ___.`,blank:'counteroffer',opts:['counteroffer','handover','takeover','layoff']},
+          {q:`Even when declining, you should not "burn ___".`,blank:'bridges',opts:['bridges','candles','toast','fuel']}
+        ]
+      },
+      {
+        id:18,title:'Увольнение и уход с работы',xp:20,
+        theory:`<b>Как красиво уволиться</b><br><br>Уход с работы (<b>resigning</b> / <b>quitting</b>) — тоже навык. Красивый уход сохраняет репутацию и рекомендации на будущее.<br><br>Формальный шаг — заявление об увольнении (<b>resignation letter</b>): короткое письмо, где вы сообщаете об уходе, указываете последний день и благодарите. Обязательно отработайте срок уведомления (<b>notice period</b>) — обычно 2 недели в США, 1 месяц в Европе. Уйти без отработки (<b>leave without notice</b>) — плохой тон.<br><br>Полезные фразы: <b>I am writing to formally resign from my position as...</b> — «настоящим официально ухожу с должности...»; <b>My last day will be...</b> — «мой последний день...»; <b>Thank you for the opportunities I've had here</b> — «спасибо за возможности здесь»; <b>I'm happy to help with the handover</b> — «готов помочь с передачей дел».<br><br>Важные понятия: <b>handover</b> — передача дел преемнику; <b>exit interview</b> — беседа при уходе (HR спрашивает о причинах); <b>two weeks' notice</b> — уведомление за две недели; <b>gardening leave</b> — оплачиваемый период до ухода без работы (в некоторых странах).<br><br>Главное правило: не критикуйте компанию и коллег, даже если уходите из-за них. Мир профессионалов тесен, и бывший начальник может стать вашим рекомендателем или даже будущим работодателем. Уходите на хорошей ноте (<b>on good terms</b>).<br><br><div class="rule">"I am writing to formally resign from my position as Analyst."</div><div class="rule">"My last day will be the 30th of June."</div><div class="rule">"I'm happy to help with the handover before I leave."</div><div class="rule">"Always try to leave on good terms."</div>`,
+        exercises:[
+          {q:`The letter announcing you're leaving is a ___ letter.`,blank:'resignation',opts:['resignation','recommendation','reservation','registration']},
+          {q:`The time you work after announcing you'll leave is the ___ period.`,blank:'notice',opts:['notice','probation','lunch','grace']},
+          {q:`Passing your tasks to a successor is called the ___.`,blank:'handover',opts:['handover','takeover','layoff','walkout']},
+          {q:`The HR chat when you leave is an ___ interview.`,blank:'exit',opts:['exit','entry','panel','phone']},
+          {q:`Leaving a job politely means leaving on good ___.`,blank:'terms',opts:['terms','roads','days','notes']}
+        ]
+      },
+      {
+        id:19,title:'Карьерный рост и личный бренд',xp:25,
+        theory:`<b>Career development — рост в долгую</b><br><br>Поиск работы — часть более широкой темы: развития карьеры (<b>career development</b>). Умение расти важнее умения искать работу.<br><br>Ключевые понятия. <b>Career path</b> — карьерный путь; <b>promotion</b> — повышение; <b>to climb the career ladder</b> — подниматься по карьерной лестнице; <b>lateral move</b> — переход на равную должность в другой сфере (иногда полезен для нового опыта). <b>Upskilling</b> — освоение новых навыков; <b>reskilling</b> — переобучение на новую профессию.<br><br>Личный бренд (<b>personal brand</b>) — то, чем вы известны в профессии. Его строят через: активность в LinkedIn, выступления, статьи, участие в сообществах. Полезно: <b>thought leader</b> — эксперт с влиянием; <b>to build a reputation</b> — создавать репутацию; <b>visibility</b> — заметность.<br><br>Как расти на текущем месте: просите обратную связь (<b>feedback</b>), находите наставника (<b>mentor</b>), берите инициативу (<b>take initiative</b>), обсуждайте цели с руководителем на встречах один на один (<b>one-on-ones</b>). Чтобы попросить о повышении, приходите с доказательствами результата, а не просто с просьбой.<br><br>Помните: карьера — это марафон. Иногда стоит выбрать роль с меньшей зарплатой, но с обучением и ростом. Инвестиции в навыки и связи окупаются годами. И держите резюме и LinkedIn обновлёнными всегда, даже когда всё хорошо — лучшие возможности приходят неожиданно.<br><br><div class="rule">"I'm focused on my long-term career path, not just the next job."</div><div class="rule">"Learning new skills is called upskilling."</div><div class="rule">"Find a mentor and ask for regular feedback."</div><div class="rule">"Keep your LinkedIn updated even when you're not job hunting."</div>`,
+        exercises:[
+          {q:`Your long-term professional journey is your career ___.`,blank:'path',opts:['path','park','post','page']},
+          {q:`A move up to a higher position is a ___.`,blank:'promotion',opts:['promotion','emotion','portion','motion']},
+          {q:`Learning new skills to advance is called ___.`,blank:'upskilling',opts:['upskilling','unplugging','uploading','upsetting']},
+          {q:`An experienced advisor who guides you is a ___.`,blank:'mentor',opts:['mentor','tenant','vendor','waiter']},
+          {q:`What you're known for professionally is your personal ___.`,blank:'brand',opts:['brand','bread','board','brain']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: путь от поиска до роста</b><br><br>Поздравляем — вы прошли весь цикл поиска работы на английском, от первого отклика до карьерного роста. Соберём главное.<br><br>Мы начали с карты поиска: <b>job search</b> идёт от <b>self-assessment</b> к поиску вакансий (<b>job openings</b> на <b>job boards</b>), отклику (<b>application</b> = <b>resume</b> + <b>cover letter</b>), собеседованию и офферу. Разобрали резюме: его разделы, описание опыта через <b>action verbs</b> и <b>quantified achievements</b>, разницу <b>hard/soft skills</b> и роль <b>ATS</b> с <b>keywords</b>. Освоили сопроводительное письмо — структуру и приёмы, чтобы <b>stand out</b>.<br><br>Мы прокачали LinkedIn (<b>headline</b>, <b>connections</b>, <b>endorsements</b>, <b>Open to Work</b>) и нетворкинг (<b>informational interviews</b>, <b>hidden job market</b>). Научились читать <b>job descriptions</b> (<b>responsibilities</b> vs <b>requirements</b>, <b>must-have</b> vs <b>nice-to-have</b>), общаться с <b>recruiters</b>, готовить <b>portfolio</b> и <b>references</b>.<br><br>Прошли ключевые переговорные моменты: <b>phone screening</b>, <b>salary negotiation</b> (изучить <b>market rate</b>, назвать <b>range</b>, не соглашаться сразу), оценку <b>compensation package</b> (<b>base salary</b>, <b>bonus</b>, <b>benefits</b>, <b>PTO</b>), принятие и отклонение оффера, красивое увольнение (<b>notice period</b>, <b>handover</b>, <b>on good terms</b>) и, наконец, долгую игру — <b>career development</b> и <b>personal brand</b>.<br><br>Главный совет: относитесь к поиску работы как к навыку, который можно тренировать. Адаптируйте каждый отклик, стройте связи заранее и не бойтесь говорить о деньгах. Удачи в поиске — вы теперь вооружены нужными словами.<br><br><div class="rule">"Tailor every application — never send the same one twice."</div><div class="rule">"Quantify your achievements and lead with action verbs."</div><div class="rule">"Always research the market rate before negotiating salary."</div><div class="rule">"Build your network before you actually need it."</div>`,
+        exercises:[
+          {q:`An application usually consists of a resume and a ___ letter.`,blank:'cover',opts:['cover','love','open','last']},
+          {q:`Strong resume bullets start with an action verb and ___ the result.`,blank:'quantify',opts:['quantify','ignore','hide','repeat']},
+          {q:`Before negotiating pay, always research the market ___.`,blank:'rate',opts:['rate','tax','fine','fee']},
+          {q:`Casual chats to learn about a field are ___ interviews.`,blank:'informational',opts:['informational','final','group','exit']},
+          {q:`The best advice is to build your ___ before you need it.`,blank:'network',opts:['network','fortune','castle','engine']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -17069,7 +17305,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -17131,7 +17367,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -18614,6 +18850,7 @@ const TOPIC_CHIPS = {
   'Emotional Intelligence': ["I\'ve been feeling really overwhelmed lately", "Can you help me express a boundary?", "How do I apologize sincerely in English?", "I want to talk about something vulnerable"],
   'History & Culture': ["Tell me about ancient Rome", "What caused World War I?", "How is the British monarchy structured today?", "What\'s an interesting historical fact?"],
   'Phrasal Verbs': ["Teach me a phrasal verb with \'get\'", "What\'s the difference between \'look up\' and \'look after\'?", "Give me a phrasal verb for \'to tolerate\'", "How do I use \'come across\' in a sentence?"],
+  'Job Search': ["Help me improve my resume summary", "How do I negotiate a higher salary?", "Write a short cover letter opening", "What should I say to a recruiter on LinkedIn?"],
 };
 
 function showChips(topicKey) {
