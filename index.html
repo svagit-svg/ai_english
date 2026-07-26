@@ -1107,6 +1107,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="smalltalk-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('driving')" style="cursor:pointer" data-cat="life">
+      <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;font-size:18px;">🚗</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Driving &amp; Cars</h3>
+          <span style="font-size:10px;font-weight:700;color:#ef4444" id="driving-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="driving-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="driving-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1524,7 +1535,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk','driving'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1553,7 +1564,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk','driving'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2119,7 +2130,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk','driving'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -17997,6 +18008,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  driving: {
+    title: 'Driving & Cars 🚗',
+    lessons: [
+      {
+        id:1,title:'Части машины: снаружи и внутри',xp:15,
+        theory:`<b>Знакомимся с машиной по-английски</b><br><br>Прежде чем говорить о вождении, освоим базовую лексику частей автомобиля (<b>car parts</b>). Это пригодится и на дороге, и в автосервисе, и при аренде.<br><br>Снаружи (<b>exterior</b>): <b>bonnet</b> (брит.) / <b>hood</b> (амер.) — капот; <b>boot</b> (брит.) / <b>trunk</b> (амер.) — багажник; <b>windscreen</b> (брит.) / <b>windshield</b> (амер.) — лобовое стекло; <b>bumper</b> — бампер; <b>headlights</b> — фары; <b>tail lights</b> — задние фонари; <b>indicators</b> / <b>turn signals</b> — поворотники; <b>wing mirror</b> / <b>side mirror</b> — боковое зеркало; <b>tyre</b> (брит.) / <b>tire</b> (амер.) — шина; <b>number plate</b> / <b>license plate</b> — номерной знак.<br><br>Внутри (<b>interior</b>): <b>steering wheel</b> — руль; <b>dashboard</b> — приборная панель; <b>gear stick</b> / <b>gearshift</b> — рычаг передач; <b>handbrake</b> — ручной тормоз; <b>seatbelt</b> — ремень безопасности; <b>glovebox</b> — бардачок; <b>pedals</b> — педали (<b>accelerator/gas</b> — газ, <b>brake</b> — тормоз, <b>clutch</b> — сцепление); <b>rear-view mirror</b> — зеркало заднего вида.<br><br>Обратите внимание на британо-американские различия: капот, багажник, лобовое стекло, шина называются по-разному. Мы будем указывать оба варианта. Если едете в США — <b>hood, trunk, gas</b>; в Британии — <b>bonnet, boot, petrol</b>.<br><br><div class="rule">"Put the bags in the boot." (UK) / "Put the bags in the trunk." (US)</div><div class="rule">"Check your wing mirrors before you turn."</div><div class="rule">"Don't forget to fasten your seatbelt."</div><div class="rule">"One of the headlights isn't working."</div>`,
+        exercises:[
+          {q:`The front window of a car is the ___ (UK) or windshield (US).`,blank:'windscreen',opts:['windscreen','windmill','window','windpipe']},
+          {q:`In British English, the luggage space at the back is the ___.`,blank:'boot',opts:['boot','trunk','hood','deck']},
+          {q:`You turn the ___ wheel to steer the car.`,blank:'steering',opts:['steering','spinning','standing','starting']},
+          {q:`The lights that signal a turn are called ___.`,blank:'indicators',opts:['indicators','elevators','educators','radiators']},
+          {q:`The safety strap across your body is the ___.`,blank:'seatbelt',opts:['seatbelt','sunbelt','seatback','beltway']}
+        ]
+      },
+      {
+        id:2,title:'Основы вождения',xp:15,
+        theory:`<b>Как описать вождение</b><br><br>Разберём базовые глаголы и фразы вождения (<b>driving basics</b>).<br><br>Основные действия: <b>to start the engine</b> — завести двигатель; <b>to pull out</b> — выехать, тронуться; <b>to pull over</b> — остановиться у обочины; <b>to speed up / accelerate</b> — ускоряться; <b>to slow down</b> — замедляться; <b>to brake</b> — тормозить; <b>to change gear</b> — переключать передачу; <b>to reverse</b> — сдавать назад; <b>to turn / take a turn</b> — поворачивать; <b>to indicate</b> — включать поворотник; <b>to overtake</b> (брит.) / <b>to pass</b> (амер.) — обгонять.<br><br>Направления: <b>turn left / right</b> — повернуть налево/направо; <b>go straight on</b> — прямо; <b>take the second exit</b> — второй съезд (на кольце); <b>at the roundabout</b> — на кольцевой развязке; <b>at the junction</b> — на перекрёстке; <b>merge</b> — вливаться в поток.<br><br>Коробки передач: <b>manual</b> — механика (нужно самому переключаться и жать <b>clutch</b>); <b>automatic</b> — автомат. В Европе чаще механика, в США — автомат. Полезно уточнять при аренде: <b>Is it manual or automatic?</b>.<br><br>Полезные фразы: <b>Mind the speed limit</b> — «следи за ограничением скорости»; <b>Keep to the left/right</b> — «держись левой/правой стороны»; <b>Watch out for the cyclist</b> — «осторожно, велосипедист». Помните: в Британии, Австралии, Японии ездят по левой стороне (<b>drive on the left</b>), в большинстве стран — по правой.<br><br><div class="rule">"Start the engine and pull out slowly."</div><div class="rule">"Don't forget to indicate before you turn."</div><div class="rule">"Take the second exit at the roundabout."</div><div class="rule">"Is the car manual or automatic?"</div>`,
+        exercises:[
+          {q:`To move off from a parked position is to "pull ___".`,blank:'out',opts:['out','over','up','in']},
+          {q:`To stop by the side of the road is to "pull ___".`,blank:'over',opts:['over','out','up','off']},
+          {q:`To go past a slower car is to overtake (UK) or ___ (US).`,blank:'pass',opts:['pass','pause','park','push']},
+          {q:`A car with automatic gears is easier than a ___ one.`,blank:'manual',opts:['manual','musical','mineral','magical']},
+          {q:`Turning on your turn signal is called "to ___".`,blank:'indicate',opts:['indicate','irritate','imitate','illustrate']}
+        ]
+      },
+      {
+        id:3,title:'Дорожные знаки и разметка',xp:15,
+        theory:`<b>Road signs — язык дороги</b><br><br>Дорожные знаки (<b>road signs</b>) и разметка — это визуальный язык, но у него есть свои английские названия, которые важно знать.<br><br>Знаки-предписания: <b>stop sign</b> — знак «стоп»; <b>give way</b> (брит.) / <b>yield</b> (амер.) — уступи дорогу; <b>speed limit</b> — ограничение скорости; <b>no entry</b> — въезд запрещён; <b>no parking</b> — парковка запрещена; <b>one way</b> — одностороннее движение; <b>no U-turn</b> — разворот запрещён.<br><br>Предупреждающие знаки (<b>warning signs</b>): <b>sharp bend</b> — крутой поворот; <b>pedestrian crossing</b> — пешеходный переход; <b>school zone</b> — школьная зона; <b>roadworks</b> — дорожные работы; <b>slippery road</b> — скользкая дорога.<br><br>Разметка и элементы дороги: <b>lane</b> — полоса; <b>hard shoulder</b> — обочина (на трассе); <b>zebra crossing</b> — «зебра», пешеходный переход; <b>traffic lights</b> — светофор; <b>junction</b> — перекрёсток; <b>roundabout</b> — кольцо; <b>crossroads</b> — перекрёсток дорог; <b>central reservation</b> (брит.) / <b>median</b> (амер.) — разделительная полоса.<br><br>Светофор: <b>red</b> — стой; <b>amber</b> (брит.) / <b>yellow</b> (амер.) — приготовиться; <b>green</b> — можно ехать. Фраза: <b>The lights turned red</b> — «загорелся красный».<br><br>Полезные глаголы: <b>to obey the signs</b> — соблюдать знаки; <b>to give way to</b> — уступить дорогу; <b>to jump a red light</b> — проехать на красный (нарушение).<br><br><div class="rule">"You must give way to pedestrians at a zebra crossing."</div><div class="rule">"The speed limit here is 30 miles per hour."</div><div class="rule">"Slow down — there are roadworks ahead."</div><div class="rule">"He got a fine for jumping a red light."</div>`,
+        exercises:[
+          {q:`"Give way" (UK) is the same as "___" (US).`,blank:'yield',opts:['yield','field','shield','wield']},
+          {q:`A striped pedestrian crossing is called a ___ crossing.`,blank:'zebra',opts:['zebra','zigzag','zipper','zephyr']},
+          {q:`The maximum legal speed is the speed ___.`,blank:'limit',opts:['limit','level','ladder','label']},
+          {q:`A single line of traffic in one direction is a ___.`,blank:'lane',opts:['lane','line','lawn','loan']},
+          {q:`Driving through a red light illegally is to "___ a red light".`,blank:'jump',opts:['jump','join','jog','jam']}
+        ]
+      },
+      {
+        id:4,title:'Получение водительских прав',xp:15,
+        theory:`<b>Getting your driving licence</b><br><br>Получение прав (<b>driving licence</b> UK / <b>driver's license</b> US) — важный этап. Разберём лексику процесса.<br><br>Этапы: <b>learner's permit</b> / <b>provisional licence</b> — ученические права (с ними ездят под присмотром); <b>driving lessons</b> — уроки вождения; <b>driving instructor</b> — инструктор; <b>learner driver</b> — ученик (в UK на машине буква «L» — <b>L-plates</b>).<br><br>Экзамены: обычно два. <b>Theory test</b> — теоретический экзамен (правила, знаки); <b>practical test</b> / <b>road test</b> (US) — практический экзамен вождения с экзаменатором (<b>examiner</b>). Результат: <b>to pass</b> — сдать; <b>to fail</b> — не сдать; <b>a minor / major fault</b> — мелкая/грубая ошибка.<br><br>Полезные фразы: <b>I'm learning to drive</b> — «я учусь водить»; <b>I've booked my driving test</b> — «я записался на экзамен»; <b>I passed on my first attempt</b> — «сдал с первого раза»; <b>I failed the theory test</b> — «завалил теорию»; <b>How many lessons have you had?</b>.<br><br>После сдачи: <b>a full licence</b> — полноценные права; <b>a probationary period</b> — период для новичков (первые годы, строже правила). Права нужно периодически обновлять (<b>renew your licence</b>).<br><br>Полезно знать: в разных странах разные правила и минимальный возраст. Международные права (<b>International Driving Permit</b>) могут понадобиться для вождения за рубежом.<br><br><div class="rule">"I'm taking driving lessons with an instructor."</div><div class="rule">"I passed my theory test but failed the practical."</div><div class="rule">"She passed her driving test on the first attempt!"</div><div class="rule">"You'll need to renew your licence every ten years."</div>`,
+        exercises:[
+          {q:`A person learning to drive is a ___ driver.`,blank:'learner',opts:['learner','leader','lender','leaver']},
+          {q:`The written exam about rules and signs is the ___ test.`,blank:'theory',opts:['theory','thirsty','thorough','thrifty']},
+          {q:`To succeed in a driving test is to ___ it.`,blank:'pass',opts:['pass','past','post','push']},
+          {q:`The examiner sits with you during the ___ test.`,blank:'practical',opts:['practical','practice','practise','prickly']},
+          {q:`To keep a licence valid, you must ___ it periodically.`,blank:'renew',opts:['renew','review','remove','return']}
+        ]
+      },
+      {
+        id:5,title:'На заправке',xp:15,
+        theory:`<b>At the petrol station</b><br><br>Заправка (<b>petrol station</b> UK / <b>gas station</b> US) — частая остановка. Освоим нужные слова.<br><br>Топливо: <b>petrol</b> (UK) / <b>gas / gasoline</b> (US) — бензин; <b>diesel</b> — дизель; <b>unleaded</b> — неэтилированный (обычный бензин); <b>to fill up</b> — заправить полный бак; <b>a full tank</b> — полный бак; <b>the fuel gauge</b> — указатель топлива; <b>to run out of petrol/gas</b> — остаться без топлива.<br><br>Действия: <b>the pump</b> — колонка/заправочный пистолет; <b>to pump petrol</b> — заправляться; <b>How much is a litre?</b> (UK, литры) / <b>How much per gallon?</b> (US, галлоны); <b>Pump number 4</b> — «колонка номер 4» (при оплате внутри).<br><br>Оплата и покупки: часто на заправке есть магазин (<b>a kiosk / convenience store</b>). Фразы: <b>Twenty pounds on pump 4, please</b> — «на 20 фунтов, колонка 4»; <b>Fill her up, please</b> — «полный бак, пожалуйста» (her — разговорное про машину); <b>Do you take card?</b>.<br><br>Электромобили: <b>electric car / EV</b> — электромобиль; <b>to charge</b> — заряжать; <b>a charging station / charging point</b> — зарядная станция; <b>range</b> — запас хода. Про электромобили говорят <b>charge</b>, а не <b>fill up</b>.<br><br>Полезно: в США часто <b>self-service</b> (сам заправляешь и платишь на колонке картой), а раньше платили внутри. Уточняйте систему на незнакомой заправке.<br><br><div class="rule">"Fill her up with unleaded, please."</div><div class="rule">"Twenty pounds on pump 4, please."</div><div class="rule">"We're low on petrol — let's find a station."</div><div class="rule">"I need to find a charging point for the electric car."</div>`,
+        exercises:[
+          {q:`In British English, car fuel is called ___.`,blank:'petrol',opts:['petrol','gas','diesel','water']},
+          {q:`To completely fill the tank is to "fill ___".`,blank:'up',opts:['up','out','in','over']},
+          {q:`The device you use to put fuel in the car is the ___.`,blank:'pump',opts:['pump','plug','pipe','pot']},
+          {q:`To be left with no fuel is to "run ___ of petrol".`,blank:'out',opts:['out','off','down','over']},
+          {q:`An electric car needs a ___ point, not a petrol pump.`,blank:'charging',opts:['charging','changing','chasing','cheering']}
+        ]
+      },
+      {
+        id:6,title:'Автосервис и ремонт',xp:20,
+        theory:`<b>At the garage — сервис и ремонт</b><br><br>Машины ломаются, и уметь объяснить проблему в автосервисе (<b>garage</b> / <b>mechanic's</b>) очень полезно.<br><br>Специалисты и места: <b>mechanic</b> — механик; <b>garage</b> — автосервис/гараж; <b>service</b> — техобслуживание; <b>MOT</b> (UK) — обязательный техосмотр; <b>a service centre</b> — сервисный центр.<br><br>Виды работ: <b>to service the car</b> — провести ТО; <b>to repair / fix</b> — чинить; <b>to replace</b> — заменить; <b>an oil change</b> — замена масла; <b>a tune-up</b> — регулировка; <b>a spare part</b> — запчасть; <b>a quote / estimate</b> — смета, оценка стоимости.<br><br>Как описать проблему: <b>There's a strange noise coming from the engine</b> — «странный звук из двигателя»; <b>The brakes are making a squealing sound</b> — «тормоза скрипят»; <b>The car won't start</b> — «машина не заводится»; <b>It's making a rattling noise</b> — «дребезжит»; <b>The engine is overheating</b> — «двигатель перегревается»; <b>There's a warning light on the dashboard</b> — «горит лампочка на панели».<br><br>Полезные вопросы: <b>How much will it cost to fix?</b> — «сколько будет стоить ремонт?»; <b>How long will it take?</b> — «сколько займёт?»; <b>Can you give me a quote?</b> — «можете дать смету?»; <b>Is it safe to drive?</b> — «на ней безопасно ездить?».<br><br>Совет: описывая проблему механику, укажите когда она возникает (при торможении, на скорости, при повороте) и какой именно звук — это помогает быстрее найти причину. Всегда просите смету до начала работ.<br><br><div class="rule">"There's a strange noise coming from the engine."</div><div class="rule">"The car won't start this morning."</div><div class="rule">"Can you give me a quote before you start?"</div><div class="rule">"How long will the repair take?"</div>`,
+        exercises:[
+          {q:`A person who fixes cars is a ___.`,blank:'mechanic',opts:['mechanic','magician','musician','mathematician']},
+          {q:`Regular maintenance of a car is called a ___.`,blank:'service',opts:['service','surface','circus','survey']},
+          {q:`An estimate of the repair cost is called a ___.`,blank:'quote',opts:['quote','quiet','quilt','quota']},
+          {q:`A replacement component is called a ___ part.`,blank:'spare',opts:['spare','scary','square','sphere']},
+          {q:`"The car won't ___" means the engine doesn't turn on.`,blank:'start',opts:['start','stare','store','stir']}
+        ]
+      },
+      {
+        id:7,title:'Поломки и проблемы на дороге',xp:20,
+        theory:`<b>Breakdowns — когда машина подвела</b><br><br>Поломка в дороге (<b>a breakdown</b>) — стресс, но нужные фразы помогут вызвать помощь и объяснить ситуацию.<br><br>Типичные проблемы: <b>a flat tyre / puncture</b> — спущенное колесо, прокол; <b>a dead battery / flat battery</b> — севший аккумулятор; <b>to break down</b> — сломаться (<b>My car broke down</b>); <b>to stall</b> — заглохнуть; <b>to overheat</b> — перегреться; <b>to run out of petrol</b> — остаться без бензина; <b>the engine won't turn over</b> — двигатель не заводится.<br><br>Что делать: <b>to call for help / call a breakdown service</b> — вызвать техпомощь; <b>to be towed</b> — быть отбуксированным; <b>a tow truck</b> — эвакуатор; <b>to jump-start</b> — «прикурить» (завести от другого аккумулятора); <b>to change a tyre</b> — поменять колесо; <b>a spare tyre</b> — запаска; <b>a jack</b> — домкрат; <b>hazard lights</b> — аварийка.<br><br>Полезные фразы вызова помощи: <b>My car has broken down on the motorway</b> — «машина сломалась на трассе»; <b>I've got a flat tyre</b> — «у меня прокол»; <b>Could you send someone out?</b> — «можете прислать кого-то?»; <b>I'm stranded</b> — «я застрял»; <b>How long will you be?</b> — «как скоро приедете?».<br><br>Безопасность прежде всего: при поломке включите <b>hazard lights</b> (аварийку), по возможности съезжайте на <b>hard shoulder</b> (обочину), в Британии выходите из машины за отбойник. Спокойно опишите диспетчеру своё местоположение и проблему — это ускорит помощь.<br><br><div class="rule">"My car has broken down on the motorway."</div><div class="rule">"I've got a flat tyre — do you have a spare?"</div><div class="rule">"The battery's dead. Can you jump-start it?"</div><div class="rule">"Turn on your hazard lights and pull over safely."</div>`,
+        exercises:[
+          {q:`When a car stops working, it "___ down".`,blank:'breaks',opts:['breaks','bakes','brakes','blocks']},
+          {q:`A tyre with no air is a ___ tyre.`,blank:'flat',opts:['flat','fat','flag','flash']},
+          {q:`The vehicle that pulls a broken car away is a ___ truck.`,blank:'tow',opts:['tow','toy','top','tour']},
+          {q:`To start a car using another battery is to "___-start" it.`,blank:'jump',opts:['jump','join','jog','jam']},
+          {q:`Flashing warning lights on a stopped car are ___ lights.`,blank:'hazard',opts:['hazard','header','harbour','hammer']}
+        ]
+      },
+      {
+        id:8,title:'Аренда автомобиля',xp:20,
+        theory:`<b>Renting a car — аренда за границей</b><br><br>Аренда машины (<b>car rental</b> / <b>car hire</b> UK) — частая часть путешествий. Знание лексики сэкономит нервы и деньги.<br><br>Основное: <b>to rent / hire a car</b> — арендовать машину; <b>a rental car / hire car</b> — арендованный автомобиль; <b>a rental company</b> — прокатная компания; <b>the daily rate</b> — стоимость в день; <b>a deposit</b> — залог; <b>mileage</b> — пробег (<b>unlimited mileage</b> — без ограничения пробега); <b>to pick up / drop off</b> — забрать/вернуть машину.<br><br>Выбор и условия: <b>compact / economy / SUV</b> — классы машин; <b>manual or automatic</b> — механика или автомат (важно уточнить!); <b>insurance / cover</b> — страховка; <b>excess</b> — франшиза (сумма, которую платите при повреждении); <b>full-to-full</b> — вернуть с полным баком.<br><br>Полезные фразы у стойки: <b>I have a reservation under the name...</b> — «у меня бронь на имя...»; <b>Is insurance included?</b> — «страховка включена?»; <b>Is there a mileage limit?</b>; <b>What's the fuel policy?</b> — «какая политика по топливу?»; <b>Where do I return the car?</b> — «куда вернуть машину?»; <b>Are there any additional drivers?</b> — «есть доп. водители?».<br><br>Важно: перед выездом осмотрите машину на царапины и вмятины (<b>note any existing damage</b>), сфотографируйте — иначе могут списать за чужие повреждения. Проверьте, полный ли бак и какой тип топлива. Внимательно читайте, что покрывает страховка, а что — франшиза (<b>excess</b>).<br><br><div class="rule">"I'd like to hire a car for a week, please."</div><div class="rule">"Is the insurance included in the daily rate?"</div><div class="rule">"Is there a mileage limit, or is it unlimited?"</div><div class="rule">"Let me photograph any existing scratches before I drive off."</div>`,
+        exercises:[
+          {q:`To rent a car (British English) is to "___ a car".`,blank:'hire',opts:['hire','higher','here','hero']},
+          {q:`The money held as security during a rental is a ___.`,blank:'deposit',opts:['deposit','deodorant','depot','defeat']},
+          {q:`The total distance a car has travelled is its ___.`,blank:'mileage',opts:['mileage','message','montage','mortgage']},
+          {q:`The amount you pay toward damage before insurance is the ___.`,blank:'excess',opts:['excess','express','exhaust','exit']},
+          {q:`Before driving off, note any existing ___ on the car.`,blank:'damage',opts:['damage','massage','manage','garage']}
+        ]
+      },
+      {
+        id:9,title:'Парковка',xp:15,
+        theory:`<b>Parking — где и как поставить машину</b><br><br>Парковка (<b>parking</b>) в городе — целое искусство, и у неё своя лексика.<br><br>Места: <b>a car park</b> (UK) / <b>a parking lot</b> (US) — парковка/стоянка; <b>a parking space / spot</b> — парковочное место; <b>a multi-storey car park</b> — многоуровневый паркинг; <b>underground parking</b> — подземная; <b>a driveway</b> — подъездная дорожка (у дома); <b>on-street parking</b> — парковка вдоль улицы.<br><br>Типы парковки как манёвра: <b>to park</b> — парковаться; <b>parallel parking</b> — параллельная парковка (вдоль бордюра, самая сложная); <b>to reverse into a space</b> — заезжать задом; <b>to pull into a space</b> — заезжать передом.<br><br>Оплата и правила: <b>a parking meter</b> — паркомат; <b>a parking ticket</b> — 1) талон об оплате, 2) штраф за нарушение (по контексту!); <b>pay and display</b> — оплати и положи талон под стекло; <b>a fine</b> — штраф; <b>to get clamped</b> — получить блокиратор на колесо; <b>to get towed</b> — быть эвакуированным; <b>no parking / no waiting</b> — стоянка запрещена; <b>a disabled bay</b> — место для инвалидов.<br><br>Полезные фразы: <b>Is there any parking nearby?</b> — «есть парковка рядом?»; <b>How much is it per hour?</b>; <b>Can I park here?</b> — «здесь можно парковаться?»; <b>I got a parking ticket</b> — «мне выписали штраф»; <b>Is this space taken?</b> — «это место занято?».<br><br>Совет: всегда читайте знаки о времени и днях — во многих городах бесплатно вечером или по воскресеньям, но днём строго платно, и штрафы (<b>fines</b>) немаленькие.<br><br><div class="rule">"Is there a car park near the station?"</div><div class="rule">"How much is parking per hour here?"</div><div class="rule">"I'm terrible at parallel parking!"</div><div class="rule">"I got a parking fine for staying too long."</div>`,
+        exercises:[
+          {q:`A place to leave many cars is a car park (UK) or parking ___ (US).`,blank:'lot',opts:['lot','let','lit','lut']},
+          {q:`Parking along the kerb between two cars is ___ parking.`,blank:'parallel',opts:['parallel','parachute','paragraph','paralysis']},
+          {q:`A machine where you pay for street parking is a parking ___.`,blank:'meter',opts:['meter','matter','mentor','master']},
+          {q:`A penalty for parking wrongly is a parking ___.`,blank:'fine',opts:['fine','find','file','fire']},
+          {q:`A private path to a house where you can park is a ___.`,blank:'driveway',opts:['driveway','doorway','highway','runway']}
+        ]
+      },
+      {
+        id:10,title:'Пробки и трафик',xp:15,
+        theory:`<b>Traffic — движение и пробки</b><br><br>Трафик (<b>traffic</b>) — постоянная тема разговоров водителей, особенно в городах.<br><br>Основное: <b>traffic jam</b> / <b>a tailback</b> — пробка; <b>congestion</b> — загруженность дорог; <b>rush hour</b> — час пик; <b>bumper-to-bumper</b> — «бампер к бамперу» (плотная пробка); <b>gridlock</b> — полный затор; <b>to be stuck in traffic</b> — застрять в пробке; <b>a diversion</b> (UK) / <b>detour</b> (US) — объезд.<br><br>Дороги: <b>motorway</b> (UK) / <b>highway / freeway</b> (US) — автомагистраль; <b>a dual carriageway</b> — дорога с разделёнными полосами; <b>a country lane</b> — просёлочная дорога; <b>a junction / exit</b> — съезд; <b>a slip road</b> (UK) / <b>on-ramp</b> (US) — съезд на трассу; <b>the fast lane</b> — левая скоростная полоса.<br><br>Полезные фразы: <b>The traffic is terrible today</b> — «сегодня жуткие пробки»; <b>I got stuck in traffic</b> — «застрял в пробке»; <b>There's a hold-up on the motorway</b> — «затор на трассе»; <b>Let's avoid rush hour</b> — «объедем час пик»; <b>Take a different route</b> — «поедем другим путём»; <b>Sorry I'm late — the traffic was awful</b> (классическое оправдание опоздания!).<br><br>Навигация: <b>sat nav</b> (UK) / <b>GPS</b> — навигатор; <b>to reroute</b> — перестроить маршрут; <b>the shortcut</b> — короткий путь; <b>ETA (estimated time of arrival)</b> — расчётное время прибытия.<br><br>Полезно знать: <b>congestion charge</b> — плата за въезд в центр (в Лондоне и др. городах); <b>toll road</b> — платная дорога. Приложения-навигаторы показывают пробки в реальном времени и предлагают объезды — незаменимая вещь в городе.<br><br><div class="rule">"Sorry I'm late — I got stuck in traffic."</div><div class="rule">"The traffic is bumper-to-bumper during rush hour."</div><div class="rule">"There's a diversion because of an accident ahead."</div><div class="rule">"Let the sat nav find us a shortcut."</div>`,
+        exercises:[
+          {q:`A long line of stopped cars is a traffic ___.`,blank:'jam',opts:['jam','jar','jog','job']},
+          {q:`The busiest driving time, morning and evening, is ___ hour.`,blank:'rush',opts:['rush','rest','rich','rough']},
+          {q:`A major fast road is a motorway (UK) or ___ (US).`,blank:'highway',opts:['highway','hallway','walkway','subway']},
+          {q:`An alternative route around a blockage is a ___ (UK).`,blank:'diversion',opts:['diversion','decision','division','devotion']},
+          {q:`A navigation device is called a sat ___ in the UK.`,blank:'nav',opts:['nav','map','net','tag']}
+        ]
+      },
+      {
+        id:11,title:'ДТП и аварии',xp:20,
+        theory:`<b>Accidents — что говорить при ДТП</b><br><br>Авария (<b>a car accident</b> / <b>a crash</b>) — неприятная, но важная тема. Нужные фразы помогут сообщить о происшествии и разобраться.<br><br>Виды: <b>a crash / collision</b> — столкновение; <b>a rear-end collision</b> — удар сзади; <b>to hit / bump into</b> — врезаться; <b>a scratch / dent</b> — царапина/вмятина; <b>a write-off</b> — машина не подлежит восстановлению; <b>a hit-and-run</b> — скрылся с места ДТП; <b>a minor / serious accident</b> — мелкое/серьёзное ДТП.<br><br>Что делать: <b>to call the police / an ambulance</b> — вызвать полицию/скорую; <b>to exchange details</b> — обменяться данными (важнейший шаг!); <b>insurance details</b> — данные страховки; <b>to file a claim</b> — подать заявление в страховую; <b>a witness</b> — свидетель; <b>to report the accident</b> — сообщить о ДТП.<br><br>Полезные фразы: <b>There's been an accident</b> — «произошла авария»; <b>Is anyone hurt?</b> — «есть пострадавшие?»; <b>It wasn't my fault</b> — «это не моя вина»; <b>Someone ran into the back of my car</b> — «мне въехали сзади»; <b>Can we exchange insurance details?</b>; <b>I'd like to report an accident</b>.<br><br>Ключевой алгоритм при ДТП: убедитесь, что все целы (<b>check if anyone is hurt</b>); при пострадавших вызовите скорую; обменяйтесь контактами и данными страховки с другим водителем; сфотографируйте повреждения и место; запишите данные свидетелей. Не признавайте вину на месте эмоционально — этим займётся страховая. Спокойствие и полная информация — ключ к решению.<br><br><div class="rule">"There's been an accident — is anyone hurt?"</div><div class="rule">"Someone ran into the back of my car at the lights."</div><div class="rule">"Can we exchange insurance details, please?"</div><div class="rule">"I'd like to report a minor accident."</div>`,
+        exercises:[
+          {q:`Another word for a car crash is a ___.`,blank:'collision',opts:['collision','collection','correction','condition']},
+          {q:`When someone hits your car and drives away, it's a ___-and-run.`,blank:'hit',opts:['hit','hop','hut','hat']},
+          {q:`A small dip in the metal from a knock is a ___.`,blank:'dent',opts:['dent','tent','dust','dart']},
+          {q:`After a crash, drivers should ___ insurance details.`,blank:'exchange',opts:['exchange','explode','exhaust','expand']},
+          {q:`A person who saw the accident happen is a ___.`,blank:'witness',opts:['witness','wildness','wetness','wideness']}
+        ]
+      },
+      {
+        id:12,title:'Полиция и нарушения',xp:20,
+        theory:`<b>Traffic police and offences</b><br><br>Встреча с дорожной полицией (<b>traffic police</b>) и знание нарушений (<b>offences</b>) — полезная и важная тема.<br><br>Нарушения (<b>traffic offences / violations</b>): <b>speeding</b> — превышение скорости; <b>drink-driving</b> (UK) / <b>drunk driving / DUI</b> (US) — вождение в нетрезвом виде; <b>running a red light</b> — проезд на красный; <b>using your phone while driving</b> — телефон за рулём; <b>illegal parking</b> — неправильная парковка; <b>not wearing a seatbelt</b> — без ремня.<br><br>Последствия: <b>a fine</b> — штраф; <b>penalty points</b> (UK) — штрафные баллы (накопил — лишение прав); <b>to lose your licence</b> — лишиться прав; <b>a speeding ticket</b> — штраф за скорость; <b>a breathalyser test</b> — тест на алкоголь; <b>to be banned from driving</b> — лишение права управления.<br><br>Если остановила полиция: <b>to be pulled over</b> — быть остановленным; полицейский попросит <b>licence and registration</b> — права и документы. Полезные фразы: <b>Is there a problem, officer?</b> — «в чём дело, офицер?»; <b>I'm sorry, I didn't realise</b> — «извините, я не заметил»; <b>Here's my licence</b>.<br><br>Полезные фразы про нарушения: <b>I got a speeding ticket</b>; <b>He was fined for using his phone</b>; <b>She got three penalty points</b>.<br><br>Совет: при остановке полицией сохраняйте спокойствие и вежливость, держите руки на виду, не спорьте на месте — если не согласны со штрафом, его можно оспорить позже официально (<b>to contest / appeal a fine</b>). Вежливость почти всегда работает в вашу пользу.<br><br><div class="rule">"I'm sorry, officer — I didn't realise I was speeding."</div><div class="rule">"He got a fine for using his phone while driving."</div><div class="rule">"Drink-driving can get you banned from driving."</div><div class="rule">"She was pulled over for a broken tail light."</div>`,
+        exercises:[
+          {q:`Driving faster than the limit is called ___.`,blank:'speeding',opts:['speeding','spelling','spending','speaking']},
+          {q:`A money penalty for breaking a rule is a ___.`,blank:'fine',opts:['fine','find','fire','file']},
+          {q:`In the UK, offences add ___ points to your licence.`,blank:'penalty',opts:['penalty','plenty','penny','party']},
+          {q:`When police stop you, you get "pulled ___".`,blank:'over',opts:['over','out','up','off']},
+          {q:`A test for alcohol at the roadside is a ___ test.`,blank:'breathalyser',opts:['breathalyser','barometer','thermometer','pedometer']}
+        ]
+      },
+      {
+        id:13,title:'Страхование автомобиля',xp:20,
+        theory:`<b>Car insurance — страховка</b><br><br>Автострахование (<b>car insurance</b>) обязательно почти везде. Разберём его лексику — она пригодится и при покупке полиса, и при ДТП.<br><br>Типы покрытия: <b>third-party insurance</b> — покрывает ущерб другим, но не вашей машине (минимум); <b>third-party, fire and theft</b> — плюс пожар и угон; <b>fully comprehensive / comprehensive</b> — полное покрытие, включая вашу машину. В большинстве стран минимум — <b>third-party</b>.<br><br>Ключевые понятия: <b>a policy</b> — полис; <b>a premium</b> — страховой взнос (сколько платите); <b>the excess / deductible</b> — франшиза (ваша часть при выплате); <b>a claim</b> — заявление на выплату; <b>to make a claim</b> — подать заявление; <b>no-claims bonus / discount</b> — скидка за безаварийность (важно для снижения цены!); <b>cover</b> — покрытие.<br><br>Полезные фразы: <b>I need to renew my car insurance</b> — «нужно продлить страховку»; <b>What does the policy cover?</b> — «что покрывает полис?»; <b>How much is the premium?</b>; <b>I need to make a claim</b> — «нужно подать заявление»; <b>My no-claims bonus lowers the price</b> — «скидка за безаварийность снижает цену».<br><br>Что влияет на цену (<b>premium</b>): возраст и стаж водителя, история аварий, модель машины, район, годовой пробег. Молодые водители платят больше. Совет: <b>no-claims bonus</b> — ваш главный друг: каждый год без аварий снижает стоимость. Сравнивайте предложения (<b>shop around / compare quotes</b>) — цены сильно различаются между компаниями.<br><br><div class="rule">"I need to renew my car insurance this month."</div><div class="rule">"Does the policy cover theft and fire?"</div><div class="rule">"I had to make a claim after the accident."</div><div class="rule">"My no-claims bonus really lowered the premium."</div>`,
+        exercises:[
+          {q:`The insurance document itself is called a ___.`,blank:'policy',opts:['policy','police','polish','pocket']},
+          {q:`The amount you pay for insurance is the ___.`,blank:'premium',opts:['premium','preview','premise','pressure']},
+          {q:`A request for insurance money after damage is a ___.`,blank:'claim',opts:['claim','clean','climb','clamp']},
+          {q:`The discount for years without accidents is a no-___ bonus.`,blank:'claims',opts:['claims','clowns','clocks','clubs']},
+          {q:`Full protection including your own car is ___ cover.`,blank:'comprehensive',opts:['comprehensive','competitive','compulsive','compassionate']}
+        ]
+      },
+      {
+        id:14,title:'Покупка машины',xp:20,
+        theory:`<b>Buying a car — покупка автомобиля</b><br><br>Покупка машины (<b>buying a car</b>) — крупное решение со своей лексикой, будь то новая или подержанная.<br><br>Где и что: <b>a car dealership</b> — автосалон/дилер; <b>a dealer</b> — продавец; <b>a brand-new car</b> — новая; <b>a used / second-hand car</b> — подержанная; <b>a private seller</b> — частный продавец; <b>the make and model</b> — марка и модель.<br><br>Оценка машины: <b>mileage</b> — пробег (низкий пробег — плюс); <b>the year / registration</b> — год выпуска; <b>full service history</b> — полная сервисная история; <b>one owner</b> — один владелец; <b>MOT</b> — действующий техосмотр; <b>a test drive</b> — тест-драйв.<br><br>Деньги: <b>the asking price</b> — запрашиваемая цена; <b>to haggle / negotiate</b> — торговаться; <b>to knock money off</b> — сбить цену; <b>a deposit</b> — задаток; <b>finance / a car loan</b> — кредит на авто; <b>to pay in cash / in instalments</b> — наличными/в рассрочку; <b>a part exchange / trade-in</b> — сдать старую машину в зачёт.<br><br>Полезные фразы: <b>Can I take it for a test drive?</b> — «можно тест-драйв?»; <b>What's the mileage?</b>; <b>Is there any room on the price?</b> — «цена окончательная?» (вежливый торг); <b>Does it come with a warranty?</b> — «есть гарантия?»; <b>Can I see the service history?</b>.<br><br>Совет при покупке подержанной: всегда делайте тест-драйв, проверяйте сервисную историю и документы, при возможности заказывайте независимую проверку механиком (<b>an inspection</b>). Торговаться (<b>haggle</b>) — норма, особенно у частников; запрашиваемая цена почти всегда завышена. Не спешите и не поддавайтесь давлению продавца.<br><br><div class="rule">"Can I take the car for a test drive?"</div><div class="rule">"What's the mileage, and does it have a full service history?"</div><div class="rule">"Is there any room on the price?"</div><div class="rule">"I'm looking for a reliable second-hand car."</div>`,
+        exercises:[
+          {q:`A used car can also be called a ___-hand car.`,blank:'second',opts:['second','minute','double','single']},
+          {q:`A place that sells cars is a car ___.`,blank:'dealership',opts:['dealership','leadership','ownership','township']},
+          {q:`To bargain over the price is to ___.`,blank:'haggle',opts:['haggle','giggle','juggle','wiggle']},
+          {q:`A short drive to try the car is a test ___.`,blank:'drive',opts:['drive','dive','draw','dream']},
+          {q:`Trading your old car toward a new one is a part ___.`,blank:'exchange',opts:['exchange','explain','express','explore']}
+        ]
+      },
+      {
+        id:15,title:'Дорожные путешествия',xp:20,
+        theory:`<b>Road trips — путешествие на машине</b><br><br>Путешествие на машине (<b>a road trip</b>) — отдельное удовольствие со своей лексикой планирования и дороги.<br><br>Планирование: <b>to plan a route</b> — проложить маршрут; <b>a destination</b> — пункт назначения; <b>a pit stop</b> — остановка (заправка, туалет, еда); <b>a rest stop / services</b> (UK) — зона отдыха на трассе; <b>a scenic route</b> — живописная дорога; <b>to set off / hit the road</b> — отправиться в путь.<br><br>В дороге: <b>to fill up</b> — заправиться; <b>to stretch your legs</b> — размяться; <b>to take a break</b> — сделать перерыв; <b>the driver / the passenger</b> — водитель/пассажир; <b>to take turns driving</b> — вести по очереди; <b>a designated driver</b> — трезвый водитель (кто не пьёт).<br><br>Полезные фразы: <b>Let's hit the road!</b> — «в путь!»; <b>Shall we stop for a break?</b> — «остановимся передохнуть?»; <b>How far is it to...?</b> — «сколько ещё до...?»; <b>Are we there yet?</b> — «мы уже приехали?» (классический вопрос из машины!); <b>Let's take the scenic route</b> — «поедем красивой дорогой».<br><br>Полезно в дороге: <b>a full tank</b> — полный бак перед стартом; <b>snacks</b> — перекусы; <b>a playlist</b> — плейлист; <b>an emergency kit</b> — аварийный набор.<br><br>Совет для дальней дороги: делайте перерыв каждые пару часов, чтобы не уставать за рулём (<b>driver fatigue</b> опасна); меняйтесь местами водителя, если можно; держите бак не ниже четверти, особенно в глуши, где заправки редки. И, конечно, наслаждайтесь дорогой — road trip хорош не только пунктом назначения, но и самим путём.<br><br><div class="rule">"Let's hit the road early to beat the traffic."</div><div class="rule">"Shall we make a pit stop for coffee and fuel?"</div><div class="rule">"How far is it to the next town?"</div><div class="rule">"Let's take the scenic route along the coast."</div>`,
+        exercises:[
+          {q:`A long journey by car for pleasure is a road ___.`,blank:'trip',opts:['trip','tip','top','tap']},
+          {q:`A short stop for fuel or food is a pit ___.`,blank:'stop',opts:['stop','step','stay','star']},
+          {q:`"Let's ___ the road!" means let's start the journey.`,blank:'hit',opts:['hit','hurt','hide','hold']},
+          {q:`A beautiful, longer road is called a ___ route.`,blank:'scenic',opts:['scenic','sonic','scary','sunny']},
+          {q:`To share the driving is to "take ___ driving".`,blank:'turns',opts:['turns','tears','terms','tunes']}
+        ]
+      },
+      {
+        id:16,title:'Экологичное вождение и электромобили',xp:20,
+        theory:`<b>Eco-driving and electric cars</b><br><br>Экология меняет мир автомобилей. Лексика электромобилей и «зелёного» вождения становится всё нужнее.<br><br>Электромобили: <b>an electric vehicle (EV)</b> — электромобиль; <b>a hybrid</b> — гибрид (бензин + электро); <b>a plug-in hybrid</b> — подзаряжаемый гибрид; <b>the battery</b> — аккумулятор; <b>to charge</b> — заряжать; <b>a charging station / point</b> — зарядка; <b>range</b> — запас хода (сколько проедет на заряде); <b>range anxiety</b> — «тревога запаса хода» (страх, что заряд кончится).<br><br>Зарядка: <b>to plug in</b> — подключить; <b>a fast charger / rapid charger</b> — быстрая зарядка; <b>a full charge</b> — полный заряд; <b>charging time</b> — время зарядки; <b>a home charger</b> — домашняя зарядка.<br><br>Экономичное вождение (<b>eco-driving</b>): <b>fuel-efficient</b> — экономичный по топливу; <b>fuel economy / mpg (miles per gallon)</b> — расход; <b>to reduce emissions</b> — снижать выбросы; <b>carbon footprint</b> — углеродный след; <b>to idle</b> — работать на холостом ходу (тратит топливо зря).<br><br>Полезные фразы: <b>I've switched to an electric car</b> — «пересел на электромобиль»; <b>What's the range on a full charge?</b> — «какой запас хода?»; <b>Where's the nearest charging point?</b>; <b>Hybrids are great for city driving</b>.<br><br>Полезно знать: многие города вводят <b>low-emission zones</b> (зоны низких выбросов), где въезд старым бензиновым машинам платный или запрещён. Электромобили дешевле в эксплуатации, но требуют планирования зарядки в дальней дороге. Мир постепенно переходит на электро — эта лексика будет только нужнее.<br><br><div class="rule">"I've switched to an electric car to cut my emissions."</div><div class="rule">"What's the range on a full charge?"</div><div class="rule">"Where's the nearest rapid charging point?"</div><div class="rule">"Hybrids are really fuel-efficient in the city."</div>`,
+        exercises:[
+          {q:`A car that runs on electricity is an electric ___ (EV).`,blank:'vehicle',opts:['vehicle','village','victory','volume']},
+          {q:`A car using both petrol and electricity is a ___.`,blank:'hybrid',opts:['hybrid','hydrant','habitat','harbour']},
+          {q:`How far an EV can go on one charge is its ___.`,blank:'range',opts:['range','ridge','rouge','ring']},
+          {q:`To connect an EV to power is to "___ in".`,blank:'plug',opts:['plug','plum','plot','plan']},
+          {q:`A car that uses little fuel is fuel-___.`,blank:'efficient',opts:['efficient','expensive','sufficient','ancient']}
+        ]
+      },
+      {
+        id:17,title:'Погода и сложные условия',xp:20,
+        theory:`<b>Driving in bad weather and conditions</b><br><br>Вождение в плохую погоду (<b>driving in bad weather</b>) требует особой лексики и осторожности.<br><br>Условия: <b>fog</b> — туман; <b>heavy rain</b> — сильный дождь; <b>ice / black ice</b> — лёд/невидимый лёд (очень опасен); <b>snow</b> — снег; <b>a storm</b> — буря; <b>strong winds</b> — сильный ветер; <b>flooding</b> — потоп на дороге; <b>poor visibility</b> — плохая видимость.<br><br>Что делает водитель: <b>to slow down</b> — сбавить скорость; <b>to keep your distance</b> — держать дистанцию; <b>to turn on your fog lights</b> — включить противотуманки; <b>to use your wipers</b> — включить дворники; <b>to de-ice the windscreen</b> — очистить стекло ото льда; <b>to skid</b> — идти юзом, заносить; <b>to lose control</b> — потерять управление; <b>to grip the road</b> — держать дорогу (о шинах).<br><br>Полезные фразы: <b>Drive carefully — the roads are icy</b> — «осторожно, дороги обледенели»; <b>Visibility is poor in this fog</b> — «плохая видимость в тумане»; <b>Slow down in the rain</b>; <b>The car skidded on the ice</b> — «машину занесло на льду».<br><br>Оборудование для зимы: <b>winter tyres</b> — зимние шины; <b>snow chains</b> — цепи противоскольжения; <b>an ice scraper</b> — скребок для льда; <b>antifreeze</b> — антифриз.<br><br>Главное правило плохой погоды: сбавьте скорость и увеличьте дистанцию — тормозной путь на мокрой или ледяной дороге в разы длиннее. В сильный туман включайте противотуманные фары. Если машину заносит (<b>skid</b>), не тормозите резко. При очень плохих условиях иногда лучше вообще переждать — ни одна поездка не стоит риска.<br><br><div class="rule">"Drive carefully — there's black ice on the roads."</div><div class="rule">"Visibility is really poor in this fog."</div><div class="rule">"Slow down and keep your distance in the rain."</div><div class="rule">"The car skidded on a patch of ice."</div>`,
+        exercises:[
+          {q:`Thick mist that reduces visibility is ___.`,blank:'fog',opts:['fog','frog','flag','fig']},
+          {q:`Invisible ice on the road is called ___ ice.`,blank:'black',opts:['black','blank','block','blink']},
+          {q:`When a car slides on a slippery road, it "___".`,blank:'skids',opts:['skids','skips','skims','skins']},
+          {q:`The blades that clear rain from the windscreen are ___.`,blank:'wipers',opts:['wipers','writers','winners','wingers']},
+          {q:`In bad weather, slow down and keep your ___.`,blank:'distance',opts:['distance','instance','substance','entrance']}
+        ]
+      },
+      {
+        id:18,title:'Такси, каршеринг и общественный транспорт',xp:20,
+        theory:`<b>Taxis, ride-hailing and getting around</b><br><br>Не всегда за рулём вы сами. Такси, каршеринг и агрегаторы — важная часть городской мобильности.<br><br>Такси и агрегаторы: <b>a taxi / cab</b> — такси; <b>to hail a taxi</b> — поймать такси (рукой); <b>a taxi rank</b> (UK) / <b>taxi stand</b> (US) — стоянка такси; <b>ride-hailing apps</b> — приложения (Uber, Bolt); <b>to book / order a ride</b> — заказать поездку; <b>the fare</b> — плата за проезд; <b>the meter</b> — счётчик; <b>a tip</b> — чаевые.<br><br>Полезные фразы в такси: <b>Could you take me to the airport, please?</b> — «в аэропорт, пожалуйста»; <b>How much will it be?</b> — «сколько будет стоить?»; <b>Keep the change</b> — «сдачи не надо»; <b>Could you drop me off here?</b> — «высадите меня здесь»; <b>How long will it take?</b>.<br><br>Каршеринг и совместные поездки: <b>car sharing / car club</b> — каршеринг (аренда машины поминутно); <b>carpooling / a lift share</b> — совместные поездки (несколько человек в одной машине); <b>to give someone a lift</b> (UK) / <b>a ride</b> (US) — подвезти кого-то; <b>to carpool</b> — ездить вместе (например, на работу).<br><br>Полезные фразы: <b>Can you give me a lift?</b> — «подвезёшь?»; <b>I'll order an Uber</b>; <b>Let's split the fare</b> — «поделим оплату»; <b>Thanks for the lift!</b> — «спасибо, что подвёз!».<br><br>Полезно знать: агрегаторы показывают цену заранее (<b>upfront price</b>), в отличие от такси по счётчику. Чаевые (<b>tips</b>) в такси приняты в США, но менее обязательны в других странах. Каршеринг и carpooling дешевле и экологичнее, чем владеть машиной в большом городе.<br><br><div class="rule">"Could you take me to the station, please?"</div><div class="rule">"How much is the fare to the airport?"</div><div class="rule">"Keep the change, thanks!"</div><div class="rule">"Can you give me a lift to work tomorrow?"</div>`,
+        exercises:[
+          {q:`To wave down a taxi in the street is to "___ a taxi".`,blank:'hail',opts:['hail','hall','heal','hate']},
+          {q:`The price you pay for a taxi ride is the ___.`,blank:'fare',opts:['fare','fair','far','fear']},
+          {q:`"Keep the ___" means the driver can keep the extra money.`,blank:'change',opts:['change','charge','chance','choice']},
+          {q:`To drive someone somewhere for free is to give them a ___ (UK).`,blank:'lift',opts:['lift','list','lid','lip']},
+          {q:`Sharing a car ride to save money is called ___.`,blank:'carpooling',opts:['carpooling','caravanning','careering','cartooning']}
+        ]
+      },
+      {
+        id:19,title:'Вежливость и безопасность на дороге',xp:25,
+        theory:`<b>Road courtesy and safety</b><br><br>Хорошее вождение — это не только техника, но и вежливость (<b>road courtesy</b>) и безопасность (<b>road safety</b>). Разберём язык и культуру дороги.<br><br>Вежливость на дороге: <b>to let someone in / out</b> — пропустить кого-то; <b>to give way</b> — уступить; <b>to flash your lights</b> — моргнуть фарами (часто «проезжай»); <b>to wave a thank-you</b> — помахать в благодарность; <b>road rage</b> — агрессия за рулём (чего избегать). Вежливый водитель пропускает, благодарит и не сигналит без нужды.<br><br>Опасное поведение: <b>tailgating</b> — «сидеть на хвосте», ехать вплотную; <b>cutting someone off</b> — подрезать; <b>speeding</b> — превышение; <b>distracted driving</b> — отвлечение (телефон, еда); <b>drink-driving</b> — вождение пьяным. Всё это опасно и часто незаконно.<br><br>Безопасность: <b>to buckle up / fasten your seatbelt</b> — пристегнуться; <b>to check your mirrors / blind spot</b> — проверить зеркала и «слепую зону»; <b>to keep a safe distance</b> — держать дистанцию; <b>to stay alert</b> — быть внимательным; <b>a designated driver</b> — трезвый водитель компании.<br><br>Полезные фразы: <b>Thanks for letting me in!</b> — «спасибо, что пропустил!»; <b>Mind your blind spot</b> — «смотри слепую зону»; <b>Keep your eyes on the road</b> — «смотри на дорогу»; <b>Buckle up before we go</b> — «пристегнись».<br><br>Главная мысль: за рулём вы отвечаете не только за себя. Вежливость снижает стресс и аварийность, а несколько простых привычек — ремень, дистанция, никаких телефонов, никакого алкоголя — спасают жизни. Хороший водитель предсказуем, внимателен и уважителен. Дорога — общее пространство, и доброта на ней возвращается.<br><br><div class="rule">"Thanks for letting me in — I'll give a wave."</div><div class="rule">"Mind your blind spot before you change lanes."</div><div class="rule">"Buckle up, everyone, before we set off."</div><div class="rule">"Never use your phone while driving — stay alert."</div>`,
+        exercises:[
+          {q:`Angry, aggressive behaviour behind the wheel is called road ___.`,blank:'rage',opts:['rage','race','rain','rank']},
+          {q:`Driving too close behind another car is called ___.`,blank:'tailgating',opts:['tailgating','tailoring','tabulating','targeting']},
+          {q:`To fasten your seatbelt is to "___ up".`,blank:'buckle',opts:['buckle','bundle','bubble','bugle']},
+          {q:`The area you can't see in your mirrors is the blind ___.`,blank:'spot',opts:['spot','spit','spat','sport']},
+          {q:`The sober driver who doesn't drink is the ___ driver.`,blank:'designated',opts:['designated','decorated','dedicated','delegated']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: уверенно за рулём по-английски</b><br><br>Поздравляем — вы прошли полный курс о вождении и машинах на английском. Теперь вы готовы и вести машину за границей, и объясниться в сервисе, и поболтать о дороге. Соберём главное.<br><br>Мы начали с устройства машины (<b>car parts</b>) — снаружи (<b>bonnet/hood</b>, <b>boot/trunk</b>, <b>windscreen</b>) и внутри (<b>steering wheel</b>, <b>gear stick</b>, <b>seatbelt</b>), не забыв британо-американские различия. Освоили основы вождения (<b>pull out</b>, <b>overtake/pass</b>, <b>manual vs automatic</b>), дорожные знаки (<b>give way/yield</b>, <b>zebra crossing</b>) и получение прав (<b>theory</b> и <b>practical test</b>, <b>to pass/fail</b>).<br><br>Мы прошли практические ситуации: заправку (<b>petrol/gas</b>, <b>fill up</b>, <b>charging point</b>), автосервис (<b>mechanic</b>, <b>quote</b>, описание проблем), поломки (<b>breakdown</b>, <b>flat tyre</b>, <b>tow truck</b>), аренду (<b>hire a car</b>, <b>excess</b>, <b>mileage</b>), парковку, пробки (<b>traffic jam</b>, <b>rush hour</b>, <b>sat nav</b>), ДТП (<b>exchange details</b>, <b>witness</b>) и общение с полицией (<b>speeding</b>, <b>fine</b>, <b>pulled over</b>).<br><br>Разобрали страховку (<b>policy</b>, <b>premium</b>, <b>no-claims bonus</b>, <b>comprehensive</b>), покупку машины (<b>test drive</b>, <b>haggle</b>, <b>second-hand</b>), road trips (<b>hit the road</b>, <b>pit stop</b>), электромобили (<b>EV</b>, <b>range</b>, <b>charge</b>), вождение в плохую погоду (<b>black ice</b>, <b>skid</b>, <b>keep your distance</b>), такси и каршеринг (<b>fare</b>, <b>give a lift</b>, <b>carpooling</b>) и, наконец, вежливость и безопасность на дороге.<br><br>Главный вывод: язык дороги логичен и повторяем — те же слова встречаются снова и снова. А за рулём главное не идеальный английский, а спокойствие, вежливость и безопасность. Теперь вы можете уверенно сесть за руль в любой англоязычной стране. Safe travels — счастливого пути!<br><br><div class="rule">"Fill her up with unleaded, please."</div><div class="rule">"My car's broken down — could you send a tow truck?"</div><div class="rule">"Is the insurance included, and is there a mileage limit?"</div><div class="rule">"Buckle up, and let's hit the road. Safe travels!"</div>`,
+        exercises:[
+          {q:`In British English, the luggage space at the back is the ___.`,blank:'boot',opts:['boot','trunk','hood','deck']},
+          {q:`To go past a slower car is to overtake (UK) or ___ (US).`,blank:'pass',opts:['pass','park','pause','push']},
+          {q:`The vehicle that pulls away a broken-down car is a ___ truck.`,blank:'tow',opts:['tow','toy','tap','tip']},
+          {q:`The discount for years without a claim is a no-___ bonus.`,blank:'claims',opts:['claims','clocks','clowns','clubs']},
+          {q:`Before setting off, everyone should ___ up their seatbelt.`,blank:'buckle',opts:['buckle','bundle','bubble','battle']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -18013,7 +18249,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk','driving'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -18075,7 +18311,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk','driving'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -19562,6 +19798,7 @@ const TOPIC_CHIPS = {
   'Customer Service': ["How do I calm down an angry customer?", "Help me apologize to a client politely", "How do I say no to a refund nicely?", "Give me a polite phone greeting"],
   'Telephone': ["How do I answer a business call politely?", "What do I say to leave a voicemail?", "Help me reschedule a meeting by phone", "Useful phrases when the line is bad?"],
   'Small Talk': ["Help me break the ice with a stranger", "Give me safe topics for small talk", "How do I politely end a conversation?", "What's a good elevator pitch about me?"],
+  'Driving': ["How do I describe a car problem to a mechanic?", "Useful phrases for renting a car abroad?", "What do I say if my car breaks down?", "Help me at a petrol station in English"],
 };
 
 function showChips(topicKey) {
