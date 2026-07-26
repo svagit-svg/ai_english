@@ -1096,6 +1096,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phone-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('smalltalk')" style="cursor:pointer" data-cat="social">
+      <div class="card-icon" style="background:rgba(234,179,8,0.1);color:#eab308;font-size:18px;">☕</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Small Talk &amp; Networking</h3>
+          <span style="font-size:10px;font-weight:700;color:#eab308" id="smalltalk-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="smalltalk-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="smalltalk-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1513,7 +1524,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1542,7 +1553,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2108,7 +2119,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -17761,6 +17772,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  smalltalk: {
+    title: 'Small Talk & Networking ☕',
+    lessons: [
+      {
+        id:1,title:'Зачем нужен small talk',xp:15,
+        theory:`<b>Small talk — «пустая» болтовня, которая решает всё</b><br><br>Small talk — это лёгкая непринуждённая беседа на нейтральные темы: погода, выходные, дорога, кофе. Многим изучающим язык она кажется бессмысленной («зачем обсуждать погоду?»), но в англоязычной культуре это важнейший социальный навык.<br><br>Зачем он нужен? Small talk — это социальная «смазка» (<b>social lubricant</b>). Он снимает неловкость между незнакомцами, создаёт тёплую атмосферу и открывает дверь к более глубокому разговору или к делу. Собеседование, деловая встреча, вечеринка, даже поездка в лифте — почти всё начинается с small talk.<br><br>Ключевая идея: цель small talk — не обмен информацией, а установление связи (<b>building rapport</b>). Никого на самом деле не волнует ваш точный прогноз погоды — важен дружелюбный сигнал «я открыт к общению, я приятный человек».<br><br>Базовая лексика: <b>small talk</b> — светская беседа; <b>to break the ice</b> — растопить лёд, начать разговор; <b>rapport</b> — взаимопонимание, контакт; <b>an icebreaker</b> — фраза для начала; <b>to hit it off</b> — сразу поладить; <b>chit-chat</b> — болтовня.<br><br>В этом курсе вы научитесь начинать разговор, поддерживать его, выбирать безопасные темы, вежливо завершать беседу и уверенно вести себя на нетворкинг-событиях. Small talk — это навык, а не талант, и его можно натренировать.<br><br><div class="rule">"Small talk is the social lubricant that makes conversations flow."</div><div class="rule">"A simple comment about the weather can break the ice."</div><div class="rule">"The goal isn't information — it's building rapport."</div><div class="rule">"We really hit it off at the party."</div>`,
+        exercises:[
+          {q:`Light conversation on neutral topics is called ___ talk.`,blank:'small',opts:['small','big','deep','hard']},
+          {q:`To start a conversation and reduce awkwardness is to "break the ___".`,blank:'ice',opts:['ice','wall','door','rule']},
+          {q:`A friendly connection between people is called ___.`,blank:'rapport',opts:['rapport','report','reward','record']},
+          {q:`The real goal of small talk is building ___, not sharing facts.`,blank:'rapport',opts:['rapport','revenue','routine','rescue']},
+          {q:`When two people instantly get along, they "___ it off".`,blank:'hit',opts:['hit','kick','cut','put']}
+        ]
+      },
+      {
+        id:2,title:'Как начать разговор',xp:15,
+        theory:`<b>Первые слова — icebreakers</b><br><br>Самое трудное в small talk — начать. Хорошая новость: есть проверенные фразы-«ледоколы» (<b>icebreakers</b>), которые работают почти всегда.<br><br>Классический старт — про ситуацию, которую вы оба переживаете (<b>the shared situation</b>): очередь, погода, событие, место. <b>Lovely weather today, isn't it?</b> — «прекрасная погода, не правда ли?»; <b>This queue is taking forever!</b> — «очередь тянется вечно!»; <b>Great turnout tonight, isn't it?</b> — «сколько народу сегодня, да?» (на событии).<br><br>Комментарий + вопрос — сильная формула. Не просто утверждение, а с вопросом, чтобы дать собеседнику ответить: <b>Busy day, isn't it? Have you been here long?</b>.<br><br>«Хвостатые вопросы» (<b>question tags</b>) идеальны для small talk: <b>..., isn't it? / ..., don't you? / ..., right?</b>. Они превращают утверждение в мягкое приглашение к беседе: <b>Nice place, isn't it?</b>.<br><br>Универсальные стартеры: <b>How's your day going?</b> — «как проходит день?»; <b>Is this your first time here?</b> — «вы здесь впервые?»; <b>How do you know [the host]?</b> — «откуда вы знаете [хозяина]?» (на вечеринке); <b>Have you tried the coffee/food?</b>.<br><br>Секрет: не бойтесь банальности. Первая фраза не должна быть остроумной — она должна быть дружелюбной и лёгкой для ответа. Тёплая интонация и улыбка важнее слов.<br><br><div class="rule">"Lovely weather today, isn't it?"</div><div class="rule">"This queue is taking forever! Have you been waiting long?"</div><div class="rule">"Is this your first time at one of these events?"</div><div class="rule">"How do you know the host?"</div>`,
+        exercises:[
+          {q:`An opening line to start a chat is called an ___.`,blank:'icebreaker',opts:['icebreaker','iceberg','income','insect']},
+          {q:`A safe first topic is the shared ___ you're both in.`,blank:'situation',opts:['situation','salary','secret','sister']},
+          {q:`"Nice place, ___ it?" is a question tag inviting a reply.`,blank:'isn\'t',opts:['isn\'t','doesn\'t','won\'t','can\'t']},
+          {q:`A strong formula is a comment plus a ___.`,blank:'question',opts:['question','complaint','command','conclusion']},
+          {q:`The first line should be friendly and easy to ___, not clever.`,blank:'answer',opts:['answer','avoid','argue','announce']}
+        ]
+      },
+      {
+        id:3,title:'Безопасные и опасные темы',xp:15,
+        theory:`<b>О чём говорить, а о чём — нет</b><br><br>В small talk есть безопасные темы (<b>safe topics</b>) и «минные поля», которых лучше избегать с малознакомыми людьми.<br><br>Безопасные темы (нейтральные, всем близкие): погода (<b>the weather</b>); выходные и планы (<b>weekend plans</b>); работа в общих чертах (<b>what do you do?</b>); путешествия и отпуск (<b>holidays</b>); еда и рестораны; хобби и спорт; фильмы и сериалы; текущее событие/место, где вы находитесь. Полезная подсказка-акроним — <b>FORD</b>: <b>Family, Occupation, Recreation, Dreams</b> (семья, работа, отдых, мечты/планы) — четыре надёжных направления.<br><br>Опасные темы (<b>topics to avoid</b>) с незнакомцами: политика (<b>politics</b>), религия (<b>religion</b>), деньги и зарплата (<b>money / salary</b>), возраст и вес (особенно у женщин), личные проблемы и здоровье, отношения и разводы, спорные новости. Правило: избегайте всего, что может вызвать спор или неловкость.<br><br>Полезные фразы для перехода к теме: <b>So, what do you do?</b> — «чем вы занимаетесь?»; <b>Have you got any plans for the weekend?</b>; <b>Have you seen any good films lately?</b>; <b>Been anywhere nice recently?</b> — «были где-нибудь интересном?».<br><br>Культурная тонкость: в некоторых культурах вопрос о зарплате нормален, но в англоязычной он считается грубым. Если сомневаетесь, безопасна ли тема — не поднимайте её. Лучше скучноватая беседа о погоде, чем неловкость от спорного вопроса.<br><br><div class="rule">"So, what do you do for a living?"</div><div class="rule">"Have you got any plans for the weekend?"</div><div class="rule">"Been anywhere nice on holiday recently?"</div><div class="rule">"It's best to avoid politics and religion with people you've just met."</div>`,
+        exercises:[
+          {q:`Weather, weekends, and hobbies are all ___ topics.`,blank:'safe',opts:['safe','risky','secret','strange']},
+          {q:`The FORD acronym stands for Family, Occupation, Recreation, and ___.`,blank:'Dreams',opts:['Dreams','Debts','Diseases','Divorces']},
+          {q:`With strangers, avoid politics, religion, and ___.`,blank:'money',opts:['money','movies','music','meals']},
+          {q:`"What do you ___?" politely asks about someone's job.`,blank:'do',opts:['do','earn','own','owe']},
+          {q:`If you're unsure a topic is safe, it's best to ___ it.`,blank:'avoid',opts:['avoid','raise','repeat','rush']}
+        ]
+      },
+      {
+        id:4,title:'Разговор о погоде',xp:15,
+        theory:`<b>Погода — вечный стартер</b><br><br>Разговор о погоде (<b>talking about the weather</b>) — самый частый small talk в англоязычных странах, особенно в Британии. Это клише, но оно работает: погода нейтральна, общая для всех и никого не задевает.<br><br>Полезная лексика: <b>lovely / gorgeous / beautiful</b> — прекрасная (о погоде); <b>miserable / dreadful / awful</b> — ужасная; <b>chilly</b> — прохладно; <b>freezing</b> — очень холодно; <b>boiling / roasting</b> — очень жарко; <b>humid</b> — влажно; <b>pouring</b> — льёт как из ведра; <b>drizzling</b> — моросит; <b>clearing up</b> — проясняется.<br><br>Готовые фразы: <b>Lovely day, isn't it?</b> — «чудесный день, да?»; <b>Bit chilly today, isn't it?</b> — «прохладно сегодня»; <b>Can you believe this rain?</b> — «ну и дождь!»; <b>They say it'll clear up later</b> — «говорят, потом прояснится»; <b>At least it's not raining!</b> — «хотя бы не дождь!».<br><br>Как отвечать и продолжать: не отвечайте просто «yes». Добавьте что-то: <b>Yes, gorgeous! I hope it stays like this for the weekend</b>. Это поддерживает разговор.<br><br>Связка с другими темами: погода легко ведёт дальше. <b>This weather's perfect for a barbecue — do you have plans?</b>; <b>All this rain makes me want to stay in and watch films</b>. Так «пустой» разговор о погоде естественно перетекает в более интересную тему. Погода — это не финальная тема, а трамплин.<br><br><div class="rule">"Lovely day, isn't it? I hope it lasts through the weekend."</div><div class="rule">"Bit chilly today — I wasn't ready for this cold!"</div><div class="rule">"Can you believe this rain? It's been pouring all morning."</div><div class="rule">"At least it's supposed to clear up this afternoon."</div>`,
+        exercises:[
+          {q:`Very heavy rain can be described as "___".`,blank:'pouring',opts:['pouring','pointing','pausing','packing']},
+          {q:`"___" means very cold.`,blank:'Freezing',opts:['Freezing','Boiling','Cooking','Melting']},
+          {q:`Light, gentle rain is "___".`,blank:'drizzling',opts:['drizzling','dazzling','dribbling','dragging']},
+          {q:`Don't just say "yes" — ___ something to keep the chat going.`,blank:'add',opts:['add','end','stop','skip']},
+          {q:`The weather is a good ___ to other topics, not a dead end.`,blank:'bridge',opts:['bridge','wall','trap','hole']}
+        ]
+      },
+      {
+        id:5,title:'Вопросы, которые поддерживают беседу',xp:15,
+        theory:`<b>Открытые вопросы — топливо разговора</b><br><br>Секрет хорошего собеседника — умение задавать вопросы. Люди любят говорить о себе, и хорошие вопросы поддерживают беседу без усилий.<br><br>Открытые vs закрытые вопросы. Закрытый вопрос (<b>closed question</b>) требует «да/нет» и убивает разговор: <b>Do you like your job?</b> → «Yes». Открытый вопрос (<b>open question</b>) начинается с <b>what, how, why, where, when</b> и приглашает рассказать: <b>What do you enjoy most about your job?</b>. Всегда предпочитайте открытые.<br><br>Полезные открытые вопросы: <b>What brought you here?</b> — «что привело вас сюда?»; <b>How did you get into that?</b> — «как вы этим занялись?»; <b>What's that like?</b> — «а как это?»; <b>Tell me more about...</b> — «расскажите подробнее о...»; <b>What do you enjoy doing outside work?</b>.<br><br>Уточняющие вопросы (<b>follow-up questions</b>) — признак настоящего интереса. Услышав ответ, зацепитесь за деталь: <i>«— I just got back from Italy. — Oh, Italy! Whereabouts did you go?»</i>. Follow-up показывает, что вы слушаете, и разговор углубляется сам собой.<br><br>Приём «echo» — повторить ключевое слово с вопросительной интонацией: <i>«— I work in marketing. — Marketing? What kind?»</i>. Простой, но мощный способ продолжить.<br><br>Золотое правило: если разговор буксует, задайте вопрос. Проявлять интерес к собеседнику располагает сильнее, чем говорить о себе. Быть интересным менее важно, чем быть заинтересованным.<br><br><div class="rule">"What do you enjoy most about what you do?"</div><div class="rule">"Oh, Italy! Whereabouts did you go?"</div><div class="rule">"How did you get into that line of work?"</div><div class="rule">"That sounds fascinating — tell me more!"</div>`,
+        exercises:[
+          {q:`A question needing only "yes" or "no" is a ___ question.`,blank:'closed',opts:['closed','open','clever','common']},
+          {q:`Questions starting with what, how, and why are ___ questions.`,blank:'open',opts:['open','closed','locked','fixed']},
+          {q:`A question building on the last answer is a ___ question.`,blank:'follow-up',opts:['follow-up','warm-up','make-up','mix-up']},
+          {q:`Repeating a key word as a question is the "___" technique.`,blank:'echo',opts:['echo','emoji','error','essay']},
+          {q:`Being ___ in others matters more than being interesting.`,blank:'interested',opts:['interested','important','impatient','invisible']}
+        ]
+      },
+      {
+        id:6,title:'Активное слушание',xp:15,
+        theory:`<b>Слушать так, чтобы это было заметно</b><br><br>Хороший собеседник больше слушает, чем говорит. Но слушать нужно активно (<b>active listening</b>) — так, чтобы собеседник чувствовал ваше внимание.<br><br>Сигналы слушания (<b>back-channelling</b>) — короткие реакции, которые показывают «я слушаю»: <b>Really?</b>, <b>Wow!</b>, <b>That's interesting</b>, <b>I see</b>, <b>Oh no!</b>, <b>Exactly</b>, <b>Mm-hmm</b>. Без них собеседник чувствует, что говорит в пустоту.<br><br>Реакции эмоцией: подстраивайтесь под тон. На хорошую новость — <b>That's great!</b>, <b>How wonderful!</b>. На плохую — <b>Oh, I'm sorry to hear that</b>, <b>That must be tough</b>. Эмоциональный отклик создаёт связь.<br><br>Невербальные сигналы (даже в разговоре по-английски они важны): зрительный контакт, кивки (<b>nodding</b>), открытая поза, лёгкая улыбка. Не смотрите в телефон — это главный убийца small talk.<br><br>Опасность — перебивать или «перехватывать» разговор на себя. Если собеседник рассказывает про свой отпуск, не отвечайте сразу «А вот я...» — сначала проявите интерес к его истории. Это называется <b>conversational generosity</b> — щедрость в беседе: дать другому досказать и заблистать.<br><br>Полезный приём — перефразировать услышанное: <b>So it sounds like you really love your job</b> — «звучит так, будто вы обожаете свою работу». Это доказывает, что вы вникли. Люди уходят с ощущением приятного разговора именно тогда, когда чувствовали себя услышанными.<br><br><div class="rule">"Really? That sounds amazing — what happened next?"</div><div class="rule">"Oh no, I'm so sorry to hear that. That must be tough."</div><div class="rule">"So it sounds like you really enjoy living there."</div><div class="rule">"Put your phone away — nothing kills a chat faster."</div>`,
+        exercises:[
+          {q:`Truly paying attention while listening is called ___ listening.`,blank:'active',opts:['active','passive','silent','instant']},
+          {q:`Short sounds like "really?" and "mm-hmm" are called ___.`,blank:'back-channelling',opts:['back-channelling','back-firing','back-packing','back-tracking']},
+          {q:`Nodding your head is a ___ signal of listening.`,blank:'non-verbal',opts:['non-verbal','non-stop','non-sense','non-fiction']},
+          {q:`The biggest killer of small talk is looking at your ___.`,blank:'phone',opts:['phone','watch','shoes','food']},
+          {q:`Letting the other person shine is conversational ___.`,blank:'generosity',opts:['generosity','geography','gymnastics','gravity']}
+        ]
+      },
+      {
+        id:7,title:'Комплименты и как их принимать',xp:15,
+        theory:`<b>Комплименты — тёплое начало</b><br><br>Искренний комплимент (<b>compliment</b>) — прекрасный способ начать разговор или потеплеть в нём. Но важно делать и принимать их правильно.<br><br>Безопасные комплименты — про выбор, а не про внешность/тело. Хвалите то, что человек выбрал: <b>I love your jacket!</b> — «мне нравится ваш пиджак!»; <b>That's a great bag — where's it from?</b>; <b>Your presentation was brilliant</b>. Комплимент про вещь легко переходит в разговор («Where did you get it?»).<br><br>Осторожно с комплиментами о внешности незнакомым людям — они могут прозвучать неуместно. Безопаснее хвалить действия, вкус, работу: <b>You explained that really clearly</b>; <b>You have great taste in music</b>.<br><br>Как принимать комплимент. В англоязычной культуре принято поблагодарить, а не отнекиваться. Просто скажите <b>Thank you!</b> или <b>Thanks, that's kind of you</b> — «спасибо, вы очень любезны». Не преуменьшайте: ответ «Oh, this old thing?» звучит странно. Можно вернуть тепло: <b>Thank you! I love yours too</b>.<br><br>Полезные фразы: <b>That's so kind of you to say</b> — «как мило, что вы это сказали»; <b>I really appreciate that</b>; <b>You've made my day!</b> — «вы поднялли мне настроение!».<br><br>Комплимент работает, только если искренний. Не льстите ради выгоды — люди это чувствуют. Заметьте что-то реально приятное и скажите об этом просто и тепло.<br><br><div class="rule">"I love your jacket — where's it from?"</div><div class="rule">"Your presentation was brilliant, really clear."</div><div class="rule">"Thank you, that's so kind of you to say!"</div><div class="rule">"Thanks! I really appreciate that."</div>`,
+        exercises:[
+          {q:`A kind remark praising someone is a ___.`,blank:'compliment',opts:['compliment','complaint','component','command']},
+          {q:`Safer compliments praise a person's ___, like their jacket.`,blank:'choice',opts:['choice','weight','age','body']},
+          {q:`The polite way to receive a compliment is to say "___".`,blank:'thank you',opts:['thank you','no way','stop it','not really']},
+          {q:`A compliment only works if it is ___.`,blank:'sincere',opts:['sincere','secret','sudden','silent']},
+          {q:`"You've made my ___!" is a warm reaction to kindness.`,blank:'day',opts:['day','week','year','hour']}
+        ]
+      },
+      {
+        id:8,title:'Как рассказать о себе',xp:15,
+        theory:`<b>Говорить о себе — интересно и в меру</b><br><br>Small talk — это обмен, а не только вопросы. Когда спрашивают вас, нужно уметь ответить интересно, но не заболтать собеседника.<br><br>Про работу. Не выдавайте сухую должность — добавьте «крючок». Вместо <b>I'm an accountant</b> скажите <b>I'm an accountant — I help small businesses stay out of trouble with taxes</b>. Такой ответ даёт собеседнику, за что зацепиться вопросом.<br><br>Правило «мяч обратно»: ответив, верните вопрос собеседнику. <b>...and what about you?</b> — «а вы?»; <b>How about yourself?</b>. Это поддерживает баланс и не даёт монологу затянуться.<br><br>Про себя в целом: делитесь понемногу и следите за реакцией. Хороший ответ — 2–3 предложения, а не пятиминутный рассказ. Если тема заинтересовала — собеседник спросит ещё.<br><br>Полезные конструкции: <b>I'm originally from...</b> — «вообще-то я из...»; <b>I've been [doing X] for a few years now</b> — «я занимаюсь X уже несколько лет»; <b>What I really love is...</b> — «что мне по-настоящему нравится...»; <b>Funnily enough...</b> — «забавно, но...» (перед историей).<br><br>Уместная уязвимость сближает: небольшое честное признание (<b>I'm actually a bit nervous at these events</b>) делает вас человечнее и часто вызывает ответную открытость. Главное — баланс: говорите достаточно, чтобы быть интересным, но оставляйте пространство собеседнику. Диалог, а не монолог.<br><br><div class="rule">"I'm an accountant — I help small businesses with their taxes."</div><div class="rule">"I've been living here for about three years now."</div><div class="rule">"What I really love is hiking on the weekends. How about you?"</div><div class="rule">"Funnily enough, I'm a bit nervous at events like this!"</div>`,
+        exercises:[
+          {q:`When you answer, add a "___" so the other person can ask more.`,blank:'hook',opts:['hook','joke','fact','list']},
+          {q:`After answering, return the question: "...and what about ___?".`,blank:'you',opts:['you','me','them','it']},
+          {q:`A good self-answer is 2–3 sentences, not a five-minute ___.`,blank:'monologue',opts:['monologue','dialogue','apology','catalogue']},
+          {q:`"I'm ___ from Spain" tells where you were born.`,blank:'originally',opts:['originally','ordinarily','obviously','occasionally']},
+          {q:`Small talk should be a ___, not a monologue.`,blank:'dialogue',opts:['dialogue','monologue','catalogue','epilogue']}
+        ]
+      },
+      {
+        id:9,title:'Поддержание разговора',xp:20,
+        theory:`<b>Как не дать разговору заглохнуть</b><br><br>Разговор начат — теперь его нужно поддерживать (<b>keeping it going</b>). Главный страх новичка — неловкая пауза (<b>awkward silence</b>). Есть приёмы, чтобы её избежать или спокойно пережить.<br><br>Приём «ниточки» (<b>threading</b>): в каждом ответе собеседника есть несколько «ниточек», за которые можно потянуть. <i>«— I spent the weekend fixing my bike before the trip.»</i> — здесь три темы: bike, fixing (DIY), trip. Хватайтесь за любую: <b>Oh, where are you travelling to?</b>.<br><br>Смена темы, когда прежняя иссякла: <b>By the way...</b> — «кстати»; <b>That reminds me...</b> — «это мне напомнило...»; <b>Speaking of [X]...</b> — «кстати о [X]...»; <b>So, have you...?</b>. Эти связки делают переход плавным.<br><br>Если возникла пауза — не паникуйте. Небольшая тишина нормальна. Можно мягко её заполнить: <b>So...</b>, <b>Anyway...</b>, или новым вопросом. Улыбка в паузе снимает неловкость.<br><br>Возврат к сказанному ранее: <b>You mentioned earlier that you...</b> — «вы упомянули, что...». Это показывает, что вы внимательно слушали, и оживляет разговор.<br><br>Общие «вечные» темы-спасатели, если совсем застряли: планы на выходные, недавние фильмы/сериалы, путешествия, еда, само событие/место. Держите пару таких вопросов «в кармане». С практикой поддержание разговора становится автоматическим — вы перестаёте бояться пауз и начинаете получать удовольствие.<br><br><div class="rule">"You mentioned you fix bikes — where are you off to on the trip?"</div><div class="rule">"That reminds me — have you seen the new exhibition?"</div><div class="rule">"Speaking of travel, have you been anywhere exciting lately?"</div><div class="rule">"A little silence is fine — just smile and ask a new question."</div>`,
+        exercises:[
+          {q:`An uncomfortable pause in conversation is an awkward ___.`,blank:'silence',opts:['silence','science','signal','sender']},
+          {q:`Picking a topic from the other person's answer is called ___.`,blank:'threading',opts:['threading','treating','trading','trending']},
+          {q:`"That ___ me..." smoothly introduces a related new topic.`,blank:'reminds',opts:['reminds','removes','repeats','rewards']},
+          {q:`"Speaking ___ travel..." links to a topic just mentioned.`,blank:'of',opts:['of','to','by','for']},
+          {q:`Referring back to something they said shows you were ___.`,blank:'listening',opts:['listening','leaving','laughing','lying']}
+        ]
+      },
+      {
+        id:10,title:'Как вежливо закончить разговор',xp:20,
+        theory:`<b>Красиво выйти из разговора</b><br><br>Так же важно, как начать разговор, — уметь его завершить (<b>exiting a conversation</b>), не обидев собеседника. Многие «застревают», не зная, как уйти вежливо.<br><br>Сигнал завершения + причина: <b>Well, it was really nice talking to you</b> — «было очень приятно поговорить»; <b>I should probably mingle a bit</b> — «пойду пообщаюсь ещё с кем-то» (на событии); <b>I'd better get going</b> — «мне пора»; <b>I don't want to keep you</b> — «не буду вас задерживать» (тактично: как будто заботитесь о нём).<br><br>Позитивное закрытие: закончите на тёплой ноте. <b>It was great to meet you</b>; <b>I really enjoyed our chat</b>; <b>Let's stay in touch</b> — «давайте на связи»; <b>Enjoy the rest of the evening!</b>.<br><br>Обмен контактами, если хотите продолжить: <b>Could I get your number / email?</b>; <b>Are you on LinkedIn?</b>; <b>Here's my card</b> — «вот моя визитка».<br><br>Полезные «выходные» фразы на событии: <b>I'm going to grab another drink — it was lovely chatting</b>; <b>I promised to catch someone before they leave</b>; <b>I'll let you get back to it</b>.<br><br>Тонкость: не обрывайте резко и не исчезайте молча (<b>don't just walk off</b>). Завершение с благодарностью и тёплым словом оставляет о вас хорошее впечатление — а именно оно и есть цель small talk. Хороший выход не менее важен, чем хорошее начало.<br><br><div class="rule">"Well, it was really lovely talking to you!"</div><div class="rule">"I should probably go mingle, but let's stay in touch."</div><div class="rule">"Could I get your email so we can continue this?"</div><div class="rule">"I'll let you get back to it — enjoy the rest of the evening!"</div>`,
+        exercises:[
+          {q:`Leaving a conversation politely is called ___ it.`,blank:'exiting',opts:['exiting','exciting','existing','expecting']},
+          {q:`"I don't want to ___ you" is a tactful way to leave.`,blank:'keep',opts:['keep','know','kick','keen']},
+          {q:`At an event, "I should go ___" means chat with other people.`,blank:'mingle',opts:['mingle','mumble','manage','march']},
+          {q:`End on a warm note: "Let's stay in ___".`,blank:'touch',opts:['touch','trouble','tune','turn']},
+          {q:`Never just ___ off without a polite goodbye.`,blank:'walk',opts:['walk','talk','look','wait']}
+        ]
+      },
+      {
+        id:11,title:'Что такое нетворкинг',xp:20,
+        theory:`<b>Networking — связи, которые открывают двери</b><br><br>Нетворкинг (<b>networking</b>) — это построение сети профессиональных знакомств. Это не «использование людей», а взаимный обмен ценностью и поддержкой. Многие возможности — работа, партнёрства, советы — приходят именно через знакомых.<br><br>Ключевая смена мышления: нетворкинг — это не «что я могу получить», а «чем я могу быть полезен». Люди тянутся к тем, кто искренне интересуется ими и готов помочь. Отдавайте сначала (<b>give first</b>): совет, знакомство, полезную ссылку.<br><br>Базовая лексика: <b>a contact</b> — контакт, знакомый; <b>a connection</b> — связь; <b>to network</b> — заводить связи; <b>a networking event</b> — нетворкинг-мероприятие; <b>to make connections</b> — заводить знакомства; <b>a mutual contact</b> — общий знакомый; <b>to follow up</b> — поддержать контакт после встречи.<br><br>Где происходит нетворкинг: конференции (<b>conferences</b>), отраслевые мероприятия (<b>industry events</b>), встречи по интересам (<b>meetups</b>), онлайн (LinkedIn). Но и обычный разговор в очереди за кофе на конференции — это нетворкинг.<br><br>Главный принцип — качество важнее количества. Лучше пять тёплых, настоящих связей, чем пятьдесят визиток без лица. Цель — не собрать контакты, а построить отношения, в которых люди помнят и уважают вас.<br><br>Небольшой секрет: нетворкинг — это тот же small talk, только с прицелом на профессиональную связь. Все навыки из этого курса — начать, слушать, задавать вопросы, красиво завершить — работают и здесь.<br><br><div class="rule">"Networking is about giving value, not just taking it."</div><div class="rule">"I made some great connections at the conference."</div><div class="rule">"We have a mutual contact — Sarah introduced us."</div><div class="rule">"Five real connections beat fifty forgotten business cards."</div>`,
+        exercises:[
+          {q:`Building professional relationships is called ___.`,blank:'networking',opts:['networking','nesting','narrating','navigating']},
+          {q:`The right mindset is to ___ first, not just take.`,blank:'give',opts:['give','grab','guess','grow']},
+          {q:`A person you both know is a ___ contact.`,blank:'mutual',opts:['mutual','manual','musical','mineral']},
+          {q:`In networking, quality of connections beats ___.`,blank:'quantity',opts:['quantity','quality','quiet','quick']},
+          {q:`Networking is really just small talk aimed at a professional ___.`,blank:'connection',opts:['connection','correction','collection','conclusion']}
+        ]
+      },
+      {
+        id:12,title:'На нетворкинг-мероприятии',xp:20,
+        theory:`<b>Как вести себя на нетворкинг-событии</b><br><br>Нетворкинг-мероприятие (<b>networking event</b>) — конференция, встреча, приём — может пугать: комната полна незнакомцев. Несколько тактик снимают страх.<br><br>Как подойти к людям. Легче всего присоединиться к паре или небольшой группе, а не к тесной беседе двоих. Ищите открытые группы (люди стоят «подковой», а не замкнутым кругом). Подойти можно просто: <b>Mind if I join you?</b> — «не против, если присоединюсь?»; <b>Is this seat taken?</b>.<br><br>Готовый «самопрезентационный» ответ. Заранее продумайте краткий рассказ о себе на вопрос <b>What do you do?</b> — это ваш <b>elevator pitch</b> (речь «на время поездки в лифте»), 1–2 предложения: кто вы и чем полезны. <b>I help startups design their apps</b>.<br><br>Полезные фразы знакомства: <b>Hi, I don't think we've met — I'm Anna</b> — «кажется, мы не знакомы, я Анна»; <b>What brings you here today?</b> — «что привело вас сюда?»; <b>Which sessions are you looking forward to?</b> (на конференции); <b>How are you finding the event?</b> — «как вам мероприятие?».<br><br>Совет для интровертов: не нужно «работать всю комнату». Поставьте цель — 2–3 хороших разговора, а не толпа. Помогает роль «дающего»: спросите, чем вы можете помочь собеседнику, — это снимает давление «продавать себя».<br><br>И не забывайте про еду и напитки как повод: очередь за кофе — идеальное место завязать разговор. Стойте у стола с едой, а не в углу с телефоном.<br><br><div class="rule">"Hi, I don't think we've met — I'm Anna."</div><div class="rule">"Mind if I join you? What brings you here today?"</div><div class="rule">"I help startups design their apps — what about you?"</div><div class="rule">"How are you finding the event so far?"</div>`,
+        exercises:[
+          {q:`A short self-introduction about your work is your elevator ___.`,blank:'pitch',opts:['pitch','patch','porch','punch']},
+          {q:`It's easier to join an ___ group than a tight pair.`,blank:'open',opts:['open','angry','asleep','empty']},
+          {q:`"___ if I join you?" politely asks to enter a group.`,blank:'Mind',opts:['Mind','Mine','Mend','Mild']},
+          {q:`"What ___ you here today?" asks someone's reason for attending.`,blank:'brings',opts:['brings','breaks','builds','burns']},
+          {q:`Aim for 2–3 good talks, not to "work the whole ___".`,blank:'room',opts:['room','roof','road','root']}
+        ]
+      },
+      {
+        id:13,title:'Знакомство и представление людей',xp:20,
+        theory:`<b>Introductions — знакомимся и знакомим</b><br><br>Умение представиться и представить других (<b>introductions</b>) — базовый социальный навык, особенно в нетворкинге.<br><br>Представить себя: <b>Hi, I'm Anna</b> + рукопожатие (в деловой культуре). Чуть формальнее: <b>Hello, I'm Anna Petrova, nice to meet you</b>. Ответ: <b>Nice to meet you too</b>; <b>Pleasure to meet you</b> — «приятно познакомиться»; <b>Likewise</b> — «взаимно».<br><br>Представить двух людей друг другу (важный навык на событиях): назовите оба имени и добавьте «мостик» — общую тему. <b>Anna, this is John. John works in design, like you</b> — «Анна, это Джон. Он тоже в дизайне». «Мостик» даёт им, о чём говорить, и вы можете отойти.<br><br>Полезные фразы: <b>Have you two met?</b> — «вы знакомы?»; <b>Let me introduce you to...</b> — «позвольте познакомить вас с...»; <b>I'd like you to meet...</b> — «хочу представить вам...»; <b>Do you know Sarah?</b>.<br><br>Запоминание имён — суперсила. Повторите имя сразу: <i>«— I'm John. — Nice to meet you, John.»</i> Использование имени в разговоре располагает и помогает не забыть. Если забыли — честно: <b>Sorry, could you remind me of your name?</b>.<br><br>Рукопожатие и зрительный контакт в западной деловой культуре важны: твёрдое (не железное) рукопожатие, взгляд в глаза, улыбка. В неформальной обстановке достаточно кивка и «Hi». Уверенное, тёплое знакомство закладывает основу хорошего контакта.<br><br><div class="rule">"Hi, I'm Anna, nice to meet you." — "Nice to meet you too!"</div><div class="rule">"Anna, this is John — he works in design, like you."</div><div class="rule">"Have you two met? Let me introduce you."</div><div class="rule">"Sorry, could you remind me of your name?"</div>`,
+        exercises:[
+          {q:`"Nice to meet you." — A common reply is "___", meaning 'the same'.`,blank:'Likewise',opts:['Likewise','Lonely','Loudly','Lately']},
+          {q:`When introducing two people, add a "___" — a shared topic.`,blank:'bridge',opts:['bridge','burden','barrier','basket']},
+          {q:`"Have you two ___?" asks if people already know each other.`,blank:'met',opts:['met','meet','mate','melt']},
+          {q:`Repeating a person's ___ helps you remember it.`,blank:'name',opts:['name','game','fame','frame']},
+          {q:`In Western business culture, a firm ___ shows confidence.`,blank:'handshake',opts:['handshake','handbag','handbook','handrail']}
+        ]
+      },
+      {
+        id:14,title:'Обмен контактами и follow-up',xp:20,
+        theory:`<b>После знакомства: контакты и продолжение</b><br><br>Хороший разговор без продолжения — упущенная возможность. Обмен контактами (<b>exchanging contacts</b>) и последующий контакт (<b>follow-up</b>) превращают знакомство в связь.<br><br>Попросить контакт естественно, когда разговор был хорошим: <b>It's been great talking — shall we connect on LinkedIn?</b>; <b>Could I get your email?</b>; <b>Do you have a card?</b> — «у вас есть визитка?»; <b>Let's swap numbers</b> — «обменяемся номерами».<br><br>Визитки (<b>business cards</b>): принимая карточку, взгляните на неё (не суйте сразу в карман — в некоторых культурах это невежливо). Предлагая свою: <b>Here's my card — feel free to reach out anytime</b>.<br><br>Follow-up — ключ, который забывают 90% людей. В течение 1–2 дней после встречи напишите короткое сообщение: <b>Hi John, it was great meeting you at the conference. I really enjoyed our chat about design. Let's stay in touch!</b>. Упомяните деталь из разговора — это доказывает, что вы запомнили именно его.<br><br>Полезные фразы follow-up: <b>Great to meet you the other day</b> — «рад был познакомиться на днях»; <b>As promised, here's the article I mentioned</b> — «как обещал, вот та статья» (дать обещанное — сильный ход); <b>Would love to grab a coffee sometime</b> — «было бы здорово как-нибудь выпить кофе».<br><br>Правило: связь без follow-up почти всегда угасает. Одно короткое сообщение через день превращает случайное знакомство в начало настоящих профессиональных отношений.<br><br><div class="rule">"It's been great talking — shall we connect on LinkedIn?"</div><div class="rule">"Here's my card — feel free to reach out anytime."</div><div class="rule">"Hi John, great meeting you — I enjoyed our chat about design."</div><div class="rule">"As promised, here's the article I mentioned!"</div>`,
+        exercises:[
+          {q:`Sharing phone numbers or emails is ___ contacts.`,blank:'exchanging',opts:['exchanging','exploding','expiring','exhausting']},
+          {q:`A small printed card with your details is a business ___.`,blank:'card',opts:['card','cart','cord','curd']},
+          {q:`Contacting someone soon after meeting is called ___.`,blank:'follow-up',opts:['follow-up','warm-up','clean-up','stand-up']},
+          {q:`In a follow-up, mention a ___ from your conversation.`,blank:'detail',opts:['detail','danger','defeat','deposit']},
+          {q:`Without follow-up, a new connection usually ___.`,blank:'fades',opts:['fades','grows','stays','starts']}
+        ]
+      },
+      {
+        id:15,title:'Групповые разговоры',xp:20,
+        theory:`<b>Small talk в группе</b><br><br>Разговор один на один — это одно, а групповая беседа (<b>group conversation</b>) требует особых навыков: следить за очередностью, включаться и включать других.<br><br>Как вступить в групповой разговор: дождитесь естественной паузы и добавьте по теме — <b>Sorry to jump in, but that reminds me of...</b>; <b>Can I add something to that?</b>. Не перебивайте на полуслове.<br><br>Как взять слово, если вас «переговаривают»: <b>I was just going to say...</b> — «я как раз хотел сказать...»; <b>If I could just add...</b>. Небольшой жест (лёгкий подъём руки, наклон вперёд) сигналит, что вы хотите вступить.<br><br>Включать тихих участников — признак хорошего собеседника (и лидера). Если кто-то молчит, вовлеките его вопросом: <b>What do you think, Anna?</b>; <b>Anna, you've done this — what's your take?</b>. Это делает вас человеком, рядом с которым приятно.<br><br>Следите за «сценой»: в группе не стоит монополизировать разговор. Правило — говорить примерно свою долю времени и передавать слово. Задавайте вопросы другим, а не только рассказывайте о себе.<br><br>Динамика групп: часто большая группа распадается на подгруппы (<b>breaks into smaller groups</b>) — это нормально. Если чувствуете, что вас оттеснили, можно мягко переключиться на соседа рядом. Групповой small talk — это оркестр: цель не солировать, а чтобы звучали все.<br><br><div class="rule">"Sorry to jump in, but that reminds me of something similar."</div><div class="rule">"What do you think, Anna? You've done this before."</div><div class="rule">"If I could just add one thing to that..."</div><div class="rule">"In a group, aim to speak your share, not monopolize."</div>`,
+        exercises:[
+          {q:`To enter a group chat, wait for a natural ___.`,blank:'pause',opts:['pause','panic','prize','plan']},
+          {q:`"Sorry to ___ in, but..." politely enters the conversation.`,blank:'jump',opts:['jump','join','jog','joke']},
+          {q:`A good speaker ___ quiet people with a question.`,blank:'includes',opts:['includes','ignores','insults','interrupts']},
+          {q:`"What's your ___, Anna?" invites someone's opinion.`,blank:'take',opts:['take','cake','lake','rake']},
+          {q:`In a group, don't ___ the conversation — share the time.`,blank:'monopolize',opts:['monopolize','memorize','modernize','minimize']}
+        ]
+      },
+      {
+        id:16,title:'Юмор и лёгкость в беседе',xp:20,
+        theory:`<b>Юмор — быстрый путь к теплу</b><br><br>Немного юмора (<b>humour</b>) делает small talk живым и располагает людей. Но юмор в чужом языке — тонкая штука, поэтому важно понимать безопасные приёмы.<br><br>Безопасный юмор — лёгкий, самоироничный, про общую ситуацию, а не про людей. <b>Self-deprecating humour</b> (мягкая ирония над собой) особенно любят в британской культуре: <b>I'm great at starting diets — it's finishing them I struggle with</b>. Она безобидна и делает вас человечнее.<br><br>Юмор про ситуацию: пошутить о том, что вы оба переживаете, — очередь, погода, длинная презентация. <b>Well, at least the coffee is good — that's the real reason I'm here</b>.<br><br>Опасный юмор — которого избегайте с малознакомыми: сарказм (может быть не понят), шутки про политику/религию/внешность, шутки на грани, юмор за чей-то счёт. Что смешно в одной культуре, может обидеть в другой.<br><br>Реакция на чужие шутки: даже если не совсем поняли, дружелюбная улыбка и лёгкий смех уместны. <b>Ha, good one!</b> — «ха, хорошо сказано!»; <b>That's funny!</b>. Не обязательно отвечать своей шуткой.<br><br>Главное — лёгкость (<b>being light-hearted</b>), а не «быть комиком». Не нужно смешить — нужно быть тёплым и не слишком серьёзным. Улыбка, доброжелательный тон и готовность посмеяться над собой располагают сильнее любой отрепетированной шутки. Лёгкость заразительна.<br><br><div class="rule">"At least the coffee's good — that's the real reason I came!"</div><div class="rule">"I'm great at starting projects; finishing them is another story."</div><div class="rule">"Ha, good one! I'll have to remember that."</div><div class="rule">"Being light-hearted matters more than being funny."</div>`,
+        exercises:[
+          {q:`Gentle joking about yourself is called self-___ humour.`,blank:'deprecating',opts:['deprecating','decorating','delivering','depositing']},
+          {q:`Safe humour is about the shared ___, not about people.`,blank:'situation',opts:['situation','salary','sister','secret']},
+          {q:`___ can be risky because it may be misunderstood.`,blank:'Sarcasm',opts:['Sarcasm','Silence','Science','Safety']},
+          {q:`"Ha, good ___!" is a friendly reaction to a joke.`,blank:'one',opts:['one','two','way','day']},
+          {q:`The goal is being ___, not being a comedian.`,blank:'light-hearted',opts:['light-hearted','heavy-handed','cold-blooded','tongue-tied']}
+        ]
+      },
+      {
+        id:17,title:'Культурные различия',xp:20,
+        theory:`<b>Small talk в разных культурах</b><br><br>Правила small talk сильно различаются между культурами. Понимание этих различий (<b>cultural differences</b>) помогает не попасть впросак с людьми из разных стран.<br><br>Количество small talk. В США и Британии small talk обязателен почти везде — с кассиром, таксистом, в лифте. Молчание кажется холодным. В некоторых других культурах (например, Северная Европа) small talk с незнакомцами меньше принят, и его избыток может казаться неискренним.<br><br>Дистанция и темы. То, что нормально в одной культуре, табу в другой. Вопрос о зарплате или возрасте нормален кое-где, но груб в англоязычной среде. Комплименты о внешности где-то тёплые, где-то неуместные. Универсально безопасны: погода, еда, путешествия, само событие.<br><br>Прямота vs вежливость. Британцы очень косвенны и любят приуменьшение (<b>understatement</b>): <b>not bad</b> может значить «отлично», <b>a bit of a problem</b> — «серьёзная проблема». Американцы прямее и щедрее на энтузиазм (<b>Awesome! Great!</b>). Это не неискренность — это норма.<br><br>Личное пространство и контакт. Рукопожатие, объятия, поцелуи в щёку, дистанция при разговоре — всё различается. Наблюдайте за собеседником и следуйте его сигналам (<b>follow their lead</b>).<br><br>Главный принцип — наблюдательность и уважение. Если не знаете местную норму, будьте чуть более вежливы и сдержанны, наблюдайте, как ведут себя другие, и подстраивайтесь. Любопытство к чужой культуре само по себе располагает людей.<br><br><div class="rule">"In the US and UK, small talk with strangers is expected everywhere."</div><div class="rule">"British understatement: 'not bad' can actually mean 'excellent'."</div><div class="rule">"When unsure, follow the other person's lead."</div><div class="rule">"Curiosity about someone's culture is always charming."</div>`,
+        exercises:[
+          {q:`Differences in how cultures chat are called cultural ___.`,blank:'differences',opts:['differences','directions','decisions','definitions']},
+          {q:`British speech often uses ___, saying less than they mean.`,blank:'understatement',opts:['understatement','overstatement','entertainment','arrangement']},
+          {q:`In British English, "not bad" can actually mean "___".`,blank:'excellent',opts:['excellent','terrible','boring','average']},
+          {q:`When unsure of the local norm, ___ the other person.`,blank:'follow',opts:['follow','fight','forget','fool']},
+          {q:`If you don't know a custom, be a bit more ___ and observe.`,blank:'polite',opts:['polite','loud','pushy','distant']}
+        ]
+      },
+      {
+        id:18,title:'Стеснительность и уверенность',xp:20,
+        theory:`<b>Побеждаем застенчивость</b><br><br>Многие боятся small talk из-за застенчивости (<b>shyness</b>) или тревоги (<b>social anxiety</b>). Хорошая новость: уверенность в общении — навык, который растёт с практикой, а не врождённый дар.<br><br>Смена мышления. Помните: другие тоже нервничают. Большинство людей на событии рады, когда с ними заговаривают, — вы делаете им одолжение, а не навязываетесь. Никто не судит вас так строго, как вы сами (<b>the spotlight effect</b> — иллюзия, что все на вас смотрят).<br><br>Снимите давление: цель — не блеснуть, а быть дружелюбным. Вам не нужно быть остроумным или идеально говорить по-английски. Тёплая улыбка и искренний вопрос ценятся выше безупречной грамматики.<br><br>Практические приёмы. Приходите чуть раньше — вступить в комнату с 5 людьми легче, чем с 50. Ставьте маленькую цель: один разговор. Заранее заготовьте 2–3 вопроса и короткий рассказ о себе — «сценарий» снимает тревогу. Задавайте вопросы: когда говорит собеседник, давление с вас снято.<br><br>Полезные честные фразы: <b>I'm not great at these events, but I wanted to say hello</b> — обезоруживающе и по-человечески; <b>I'm a bit nervous, actually</b>. Признание волнения часто вызывает симпатию.<br><br>И главное — практика. Каждый маленький разговор (с бариста, соседом, в очереди) тренирует навык. Уверенность приходит от повторения, а не от ожидания, пока «станет не страшно». Начните с малого — и страх отступит.<br><br><div class="rule">"Remember: most people are relieved when someone talks to them first."</div><div class="rule">"You don't need to be witty — just warm and friendly."</div><div class="rule">"I'm a bit nervous at these things, but I wanted to say hi!"</div><div class="rule">"Confidence comes from practice, not from waiting to feel ready."</div>`,
+        exercises:[
+          {q:`Fear of social situations is called social ___.`,blank:'anxiety',opts:['anxiety','activity','ability','authority']},
+          {q:`The illusion that everyone is watching you is the ___ effect.`,blank:'spotlight',opts:['spotlight','sunlight','streetlight','flashlight']},
+          {q:`You don't need to be witty — just warm and ___.`,blank:'friendly',opts:['friendly','flawless','famous','fast']},
+          {q:`Arriving ___ makes it easier to enter a small room.`,blank:'early',opts:['early','late','angry','alone']},
+          {q:`Confidence comes from ___, not from waiting to feel ready.`,blank:'practice',opts:['practice','patience','pressure','perfection']}
+        ]
+      },
+      {
+        id:19,title:'Small talk на работе',xp:25,
+        theory:`<b>Светская беседа в рабочей среде</b><br><br>На работе small talk (<b>workplace small talk</b>) выполняет важную роль: строит отношения с коллегами, создаёт тёплую атмосферу и открывает двери к сотрудничеству. Это не «пустая трата времени», а часть профессионализма.<br><br>Где и когда: у кулера/кофемашины (<b>water cooler chat</b>), перед началом встречи (<b>before the meeting starts</b>), в лифте, в чате команды. Утреннее <b>Morning! How was your weekend?</b> — маленький ритуал, который сближает.<br><br>Безопасные рабочие темы: выходные и планы, обед, погода, отпуска, лёгкие рабочие моменты, общие проекты, спорт, сериалы. Избегайте офисных сплетен (<b>office gossip</b>), жалоб на начальство и коллег, слишком личного.<br><br>Полезные фразы: <b>How was your weekend?</b>; <b>Any plans for the holidays?</b>; <b>How's the [project] going?</b> — «как продвигается [проект]?»; <b>Did you catch the game last night?</b>; <b>How's your week been?</b>.<br><br>Перед встречей (<b>pre-meeting small talk</b>): пока все собираются, лёгкая беседа разряжает обстановку. <b>Did everyone find the room okay?</b>; <b>Traffic was terrible this morning, wasn't it?</b>. Затем ведущий плавно переходит к делу: <b>Right, shall we get started?</b>.<br><br>С руководством и клиентами: небольшой small talk в начале звонка или встречи — норма и признак хорошего тона. <b>How are things on your end?</b> — «как у вас дела?». Не переходите к делу «в лоб» без пары тёплых фраз — это может показаться холодным. Рабочий small talk — это смазка профессиональных отношений.<br><br><div class="rule">"Morning! How was your weekend?"</div><div class="rule">"How's the project going on your end?"</div><div class="rule">"Traffic was terrible this morning, wasn't it?"</div><div class="rule">"Right, shall we get started? Thanks everyone for coming."</div>`,
+        exercises:[
+          {q:`Casual chat by the coffee machine is called ___ cooler chat.`,blank:'water',opts:['water','coffee','office','fire']},
+          {q:`At work, avoid office ___ and complaints about the boss.`,blank:'gossip',opts:['gossip','gospel','goggles','garbage']},
+          {q:`A common Monday opener is "How was your ___?".`,blank:'weekend',opts:['weekend','wedding','warning','weather']},
+          {q:`Light chat before a meeting is called pre-meeting small ___.`,blank:'talk',opts:['talk','walk','task','team']},
+          {q:`Jumping straight to business with no warmth can seem ___.`,blank:'cold',opts:['cold','kind','clever','calm']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: от неловкости к лёгкости</b><br><br>Поздравляем — вы прошли полный курс small talk и нетворкинга. То, что казалось пугающим и «бессмысленным», теперь — понятный набор навыков. Соберём главное.<br><br>Мы начали с идеи, что small talk — это социальная смазка, чья цель не информация, а <b>rapport</b> (контакт). Научились начинать разговор с <b>icebreakers</b> и <b>question tags</b> (<b>lovely day, isn't it?</b>), выбирать безопасные темы (помните <b>FORD</b>: Family, Occupation, Recreation, Dreams) и избегать опасных (политика, религия, деньги).<br><br>Мы освоили сердце беседы: открытые вопросы и <b>follow-up questions</b>, активное слушание с <b>back-channelling</b> (<b>really? that's interesting!</b>), комплименты и как их принимать, рассказ о себе с «крючком» и возвратом мяча (<b>...and what about you?</b>). Научились поддерживать разговор через <b>threading</b> и плавно его завершать (<b>it was lovely talking — let's stay in touch</b>).<br><br>Затем — нетворкинг: мышление «давать первым», поведение на событиях, <b>elevator pitch</b>, представление себя и других с «мостиком», обмен контактами и — важнейшее — <b>follow-up</b> в течение пары дней. Разобрали групповые разговоры (включать тихих, не монополизировать), уместный юмор (<b>self-deprecating</b>, про ситуацию), культурные различия (<b>understatement</b>, <b>follow their lead</b>), победу над застенчивостью (практика, а не ожидание) и small talk на работе.<br><br>Главный вывод: small talk — это навык, а не талант. Быть заинтересованным важнее, чем интересным. Задавайте вопросы, слушайте искренне, будьте тёплым — и связи возникнут сами. Каждый маленький разговор делает вас увереннее. Начните сегодня — с погоды, с улыбки, с одного вопроса.<br><br><div class="rule">"Lovely day, isn't it? Is this your first time here?"</div><div class="rule">"That sounds fascinating — how did you get into that?"</div><div class="rule">"It was really great talking to you — let's stay in touch!"</div><div class="rule">"Be interested, not interesting — and the rest follows."</div>`,
+        exercises:[
+          {q:`The real goal of small talk is building ___.`,blank:'rapport',opts:['rapport','revenue','routine','rumour']},
+          {q:`FORD safe topics: Family, Occupation, Recreation, ___.`,blank:'Dreams',opts:['Dreams','Debts','Diets','Doctors']},
+          {q:`After a networking event, the key step most people skip is ___.`,blank:'follow-up',opts:['follow-up','warm-up','clean-up','back-up']},
+          {q:`The best mindset is to be ___, not just interesting.`,blank:'interested',opts:['interested','impressive','important','impatient']},
+          {q:`Small talk is a ___, not a talent — it grows with practice.`,blank:'skill',opts:['skill','spell','secret','stage']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -17777,7 +18013,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -17839,7 +18075,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone','smalltalk'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -19325,6 +19561,7 @@ const TOPIC_CHIPS = {
   'Job Search': ["Help me improve my resume summary", "How do I negotiate a higher salary?", "Write a short cover letter opening", "What should I say to a recruiter on LinkedIn?"],
   'Customer Service': ["How do I calm down an angry customer?", "Help me apologize to a client politely", "How do I say no to a refund nicely?", "Give me a polite phone greeting"],
   'Telephone': ["How do I answer a business call politely?", "What do I say to leave a voicemail?", "Help me reschedule a meeting by phone", "Useful phrases when the line is bad?"],
+  'Small Talk': ["Help me break the ice with a stranger", "Give me safe topics for small talk", "How do I politely end a conversation?", "What's a good elevator pitch about me?"],
 };
 
 function showChips(topicKey) {
