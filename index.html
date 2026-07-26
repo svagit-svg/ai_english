@@ -1085,6 +1085,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="service-bar" style="width:0%"></div></div>
       </div>
     </div>
+    <div class="course-card" onclick="openCourse('phone')" style="cursor:pointer" data-cat="work">
+      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">📞</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+          <h3 style="font-size:14px;font-weight:800">Telephone &amp; Video Calls</h3>
+          <span style="font-size:10px;font-weight:700;color:#8b5cf6" id="phone-pct">0%</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted)" id="phone-sub">20 уроков</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phone-bar" style="width:0%"></div></div>
+      </div>
+    </div>
     <div class="divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
@@ -1502,7 +1513,7 @@ function _doCloudSave(){
     });
 
     // Course progress — compact: {courseId:[lessonId,...]}
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
     const cp={};
     allIds.forEach(id=>{
       try{
@@ -1531,7 +1542,7 @@ async function _doServerSync(onDone){
   try{
     if(!tg || !tg.initData){ if(onDone) onDone(); return; }
     const s = getStats();
-    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
+    const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
     const courseProgress = {};
     allIds.forEach(id=>{ const p=getCourseProgress(id); if(Object.keys(p).length) courseProgress[id]=p; });
 
@@ -2097,7 +2108,7 @@ const ACHIEVEMENTS=[
 ];
 
 function getCoursePercents(){
-  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
+  const ids=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
   const r={};
   ids.forEach(id=>{
     const p=getCourseProgress(id);
@@ -17525,6 +17536,231 @@ I would be happy to take any questions.</div>
       }
     ]
   },
+  phone: {
+    title: 'Telephone & Video Calls 📞',
+    lessons: [
+      {
+        id:1,title:'Почему телефон — особый навык',xp:15,
+        theory:`<b>Телефон на английском — отдельный страх и отдельный навык</b><br><br>Разговор по телефону (<b>phone call</b>) пугает изучающих язык больше личного общения. Причина проста: нет жестов, мимики и губ собеседника — только голос и слова. Плюс часто плохая связь и нет времени подумать. Но это навык, который тренируется, и у него есть свои устойчивые фразы.<br><br>Базовая лексика. <b>To call</b> / <b>to phone</b> / <b>to ring (someone)</b> — звонить; <b>to make a call</b> — совершать звонок; <b>to answer / pick up</b> — отвечать; <b>to hang up</b> — класть трубку; <b>to call back</b> — перезвонить; <b>caller</b> — звонящий; <b>the line</b> — линия связи; <b>a missed call</b> — пропущенный звонок; <b>voicemail</b> — голосовая почта.<br><br>Ключевая идея: на телефоне речь более формульная, чем в жизни. Есть готовые фразы почти на каждый шаг — представиться, попросить кого-то к телефону, переспросить, завершить разговор. Выучив эти «кирпичики», вы перестанете теряться.<br><br>Ещё важно: на телефоне говорите чуть медленнее и чётче обычного, а если не расслышали — не стесняйтесь переспросить. Носители языка тоже переспрашивают по телефону постоянно, это абсолютно нормально.<br><br>В этом курсе мы пройдём и деловые, и личные звонки, голосовую почту, назначение встреч, конференц- и видеозвонки. К концу вы сможете уверенно взять трубку на английском.<br><br><div class="rule">"Could I speak to Mr. Brown, please?"</div><div class="rule">"Sorry, I didn't catch that — could you repeat it?"</div><div class="rule">"I'll call you back in five minutes."</div><div class="rule">"You have three missed calls and one voicemail."</div>`,
+        exercises:[
+          {q:`To end a phone call is to "___ up".`,blank:'hang',opts:['hang','pick','call','ring']},
+          {q:`To answer a ringing phone is to "___ up".`,blank:'pick',opts:['pick','hang','set','give']},
+          {q:`A recorded message you leave when nobody answers is ___.`,blank:'voicemail',opts:['voicemail','headline','password','signal']},
+          {q:`A call you didn't answer is a ___ call.`,blank:'missed',opts:['missed','lost','broken','free']},
+          {q:`On the phone, if you don't hear well, it's normal to ___.`,blank:'ask',opts:['ask','shout','leave','laugh']}
+        ]
+      },
+      {
+        id:2,title:'Приём входящего звонка',xp:15,
+        theory:`<b>Как отвечать на звонок</b><br><br>То, как вы отвечаете (<b>answer</b>) на звонок, задаёт тон разговору. Отличается личный и деловой ответ.<br><br>Личный звонок: просто <b>Hello?</b> с вопросительной интонацией. Если узнали номер: <b>Hi, Anna!</b>.<br><br>Деловой звонок отвечают по формуле: приветствие + компания + имя + предложение помощи. <b>Good morning, TechCo, Anna speaking. How may I help you?</b> Иногда добавляют отдел: <b>Sales department, John speaking</b>. Слово <b>speaking</b> после имени — стандарт: оно означает «я у телефона».<br><br>Если звонят и просят коллегу: <b>May I ask who's calling?</b> — «могу узнать, кто звонит?»; <b>One moment, I'll put you through</b> — «минутку, соединяю»; <b>I'm afraid she's not at her desk right now</b> — «её сейчас нет на месте».<br><br>Полезные фразы приёма: <b>How can I help you?</b>; <b>Who would you like to speak to?</b> — «с кем вы хотите поговорить?»; <b>Could I take your name?</b> — «могу узнать ваше имя?»; <b>Let me just check</b> — «сейчас проверю».<br><br>Если ошиблись номером (<b>wrong number</b>): вежливо скажите <b>I'm sorry, I think you've got the wrong number</b>. И наоборот, если это вы ошиблись: <b>Sorry to bother you — wrong number</b>. Спокойный, приветливый ответ сразу располагает собеседника.<br><br><div class="rule">"Good morning, TechCo, Anna speaking. How may I help you?"</div><div class="rule">"May I ask who's calling, please?"</div><div class="rule">"One moment, I'll put you through."</div><div class="rule">"I'm sorry, I think you've got the wrong number."</div>`,
+        exercises:[
+          {q:`After your name on a business call, you add the word "___".`,blank:'speaking',opts:['speaking','sleeping','standing','singing']},
+          {q:`To connect a caller to a colleague, you "put them ___".`,blank:'through',opts:['through','over','down','off']},
+          {q:`To find out who is calling, ask "May I ask who's ___?".`,blank:'calling',opts:['calling','coming','cooking','closing']},
+          {q:`If someone dials incorrectly, they have the ___ number.`,blank:'wrong',opts:['wrong','right','busy','free']},
+          {q:`"She's not at her ___ right now" means she stepped away.`,blank:'desk',opts:['desk','disk','dish','dusk']}
+        ]
+      },
+      {
+        id:3,title:'Как позвонить самому',xp:15,
+        theory:`<b>Совершаем исходящий звонок</b><br><br>Когда звоните вы (<b>making a call</b>), тоже есть чёткая последовательность.<br><br>Представьтесь и назовите цель: <b>Hello, this is Anna from TechCo</b> — «здравствуйте, это Анна из TechCo». Обратите внимание: по телефону говорят <b>this is Anna</b> (а не «I am Anna»). Затем — кого вам нужно: <b>Could I speak to Mr. Brown, please?</b> — «могу я поговорить с мистером Брауном?»; <b>I'm calling about...</b> — «я звоню по поводу...»; <b>I'd like to speak to someone in the sales department</b> — «хотел бы поговорить с кем-то из отдела продаж».<br><br>Если человека нет: вам предложат оставить сообщение или перезвонить. Ваши варианты: <b>Could you ask him to call me back?</b> — «попросите его перезвонить?»; <b>When would be a good time to call back?</b> — «когда удобно перезвонить?»; <b>Could I leave a message?</b> — «можно оставить сообщение?».<br><br>Полезные фразы начала разговора: <b>Is this a good time to talk?</b> — «удобно ли сейчас говорить?» (вежливо спросить перед долгим разговором); <b>Do you have a moment?</b>; <b>Am I catching you at a bad time?</b> — «я не вовремя?».<br><br>Причина звонка: <b>The reason I'm calling is...</b> — «причина моего звонка...»; <b>I'm just calling to check / confirm / ask...</b>. Чёткое начало экономит время обоим и звучит профессионально.<br><br><div class="rule">"Hello, this is Anna from TechCo. Could I speak to Mr. Brown?"</div><div class="rule">"I'm calling about the invoice I received yesterday."</div><div class="rule">"Is this a good time to talk, or shall I call back later?"</div><div class="rule">"Could you ask her to call me back when she's free?"</div>`,
+        exercises:[
+          {q:`When you call, introduce yourself as "This ___ Anna".`,blank:'is',opts:['is','am','are','be']},
+          {q:`To ask for a person, say "Could I ___ to Mr. Brown?".`,blank:'speak',opts:['speak','tell','say','talk']},
+          {q:`"I'm ___ about the invoice" states the reason for your call.`,blank:'calling',opts:['calling','falling','selling','walking']},
+          {q:`To check it's convenient, ask "Is this a good ___ to talk?".`,blank:'time',opts:['time','day','place','line']},
+          {q:`To be phoned again, ask them to "call me ___".`,blank:'back',opts:['back','up','off','in']}
+        ]
+      },
+      {
+        id:4,title:'Hold и перевод звонка',xp:15,
+        theory:`<b>Удержание и перевод звонка</b><br><br>В деловых звонках часто нужно поставить собеседника на удержание (<b>put on hold</b>) или перевести звонок (<b>transfer</b>) другому человеку.<br><br>Просьба подождать: всегда спрашивайте разрешение и объясняйте зачем. <b>Could you hold for a moment while I check?</b> — «можете подождать, пока я проверю?»; <b>Do you mind holding?</b> — «не против подождать?»; <b>Please bear with me</b> — «потерпите немного». Вернувшись, поблагодарите: <b>Thank you for holding</b> — «спасибо, что подождали».<br><br>Перевод звонка: <b>I'll put you through to the sales team</b> — «переведу вас на отдел продаж»; <b>Let me transfer you to my colleague</b> — «переведу вас на коллегу»; <b>I'll connect you now</b> — «соединяю». Полезно предупредить, кому переводите и зачем: <b>Sarah handles billing — I'll pass you over to her</b>.<br><br>Если перевести не получается: <b>I'm afraid the line is busy</b> — «линия занята»; <b>Would you like to hold or shall I take a message?</b> — «подождёте или оставите сообщение?».<br><br>Полезные глаголы: <b>to put through</b> / <b>to connect</b> / <b>to transfer</b> / <b>to pass over</b> — все означают «соединить/перевести». <b>To hold</b> / <b>to hold the line</b> — оставаться на линии. Никогда не переводите молча — всегда предупредите, иначе собеседник решит, что его бросили.<br><br><div class="rule">"Could you hold for a moment while I check that for you?"</div><div class="rule">"Thank you for holding — I have the information now."</div><div class="rule">"I'll transfer you to my colleague Sarah, who handles billing."</div><div class="rule">"I'm afraid the line is busy — would you like to hold?"</div>`,
+        exercises:[
+          {q:`To make a caller wait, you put them "on ___".`,blank:'hold',opts:['hold','hook','line','wait']},
+          {q:`To send a call to another person is to ___ it.`,blank:'transfer',opts:['transfer','translate','transport','transform']},
+          {q:`After a wait, thank them: "Thank you for ___".`,blank:'holding',opts:['holding','helping','hoping','hiding']},
+          {q:`"I'll ___ you through to sales" connects the caller.`,blank:'put',opts:['put','pull','push','pass']},
+          {q:`If the other line is not free, it is ___.`,blank:'busy',opts:['busy','empty','early','easy']}
+        ]
+      },
+      {
+        id:5,title:'Проблемы со связью',xp:15,
+        theory:`<b>Когда связь плохая</b><br><br>Плохая связь (<b>bad connection</b>) — частая ситуация, особенно на мобильном. Знание нужных фраз спасает разговор.<br><br>Когда плохо слышно: <b>Sorry, you're breaking up</b> — «связь прерывается»; <b>The line is bad</b> — «плохая связь»; <b>I can't hear you very well</b> — «плохо вас слышу»; <b>Could you speak up a little?</b> — «говорите чуть громче?»; <b>You're very faint</b> — «вас еле слышно».<br><br>Просьба повторить: <b>Sorry, could you repeat that?</b>; <b>I didn't catch that</b> — «я не расслышал»; <b>Could you say that again, please?</b>; <b>Would you mind repeating the last part?</b> — «повторите последнюю часть?».<br><br>Когда звонок обрывается (<b>the call drops</b> / <b>we got cut off</b>): перезвонив, скажите <b>Sorry, we got cut off</b> — «извините, нас разъединило». Если связь совсем плохая: <b>The reception is terrible here — let me call you back</b> — «здесь ужасный приём, я перезвоню».<br><br>Продиктовать по буквам (<b>spelling</b>): для сложных слов и имён используют фонетический алфавит или простые слова: <b>B for Bravo, A for Alpha</b> или <b>B as in boy</b>. Фраза: <b>Could you spell that for me?</b> — «продиктуйте по буквам?». Не бойтесь переспрашивать: лучше уточнить трижды, чем записать неверный номер или имя.<br><br><div class="rule">"Sorry, you're breaking up — could you say that again?"</div><div class="rule">"I didn't catch your name — could you spell it for me?"</div><div class="rule">"The reception is bad here. Let me call you right back."</div><div class="rule">"Sorry, we got cut off. Where were we?"</div>`,
+        exercises:[
+          {q:`When the signal makes your voice cut in and out, you're "___ up".`,blank:'breaking',opts:['breaking','waking','baking','shaking']},
+          {q:`"I didn't ___ that" politely means you didn't hear it.`,blank:'catch',opts:['catch','watch','match','touch']},
+          {q:`When a call disconnects, you say "we got ___ off".`,blank:'cut',opts:['cut','put','set','let']},
+          {q:`To ask for a louder voice, say "Could you ___ up?".`,blank:'speak',opts:['speak','stand','sit','stay']},
+          {q:`The quality of a mobile signal is called ___.`,blank:'reception',opts:['reception','recession','reflection','reduction']}
+        ]
+      },
+      {
+        id:6,title:'Оставить и принять сообщение',xp:15,
+        theory:`<b>Taking and leaving messages</b><br><br>Часто нужного человека нет, и приходится оставить (<b>leave</b>) или принять (<b>take</b>) сообщение.<br><br>Если вы принимаете сообщение для коллеги: <b>I'm afraid he's not available. Can I take a message?</b> — «его нет, передать что-нибудь?»; <b>Could I have your name and number?</b> — «ваше имя и номер?»; <b>I'll make sure she gets the message</b> — «обязательно передам»; <b>I'll ask him to call you back</b> — «попрошу перезвонить».<br><br>Если сообщение оставляете вы: <b>Could I leave a message?</b> — «можно оставить сообщение?»; <b>Could you tell him that Anna called?</b> — «передайте, что звонила Анна»; <b>Please ask her to call me back on this number</b> — «пусть перезвонит по этому номеру»; <b>It's regarding the meeting on Friday</b> — «это по поводу встречи в пятницу».<br><br>Записывая сообщение, повторяйте детали для проверки: <b>Let me read that back to you</b> — «повторю, чтобы проверить»; <b>So that's Anna, and the number is...</b>. Уточняйте написание имени и цифры номера.<br><br>Полезные слова: <b>message</b> — сообщение; <b>to pass on a message</b> — передать сообщение; <b>regarding / about</b> — по поводу; <b>urgent</b> — срочно (<b>Could you tell her it's urgent?</b>). Чёткое, полное сообщение экономит всем время и показывает вашу надёжность.<br><br><div class="rule">"I'm afraid he's not available. Can I take a message?"</div><div class="rule">"Could you ask her to call me back on 555-0192?"</div><div class="rule">"Let me read that back to you to make sure I've got it right."</div><div class="rule">"It's regarding Friday's meeting, and it's fairly urgent."</div>`,
+        exercises:[
+          {q:`If someone is unavailable, offer to "___ a message".`,blank:'take',opts:['take','make','bake','wake']},
+          {q:`To give the message to your colleague later is to "pass it ___".`,blank:'on',opts:['on','off','up','out']},
+          {q:`"It's ___ Friday's meeting" means the message is about it.`,blank:'regarding',opts:['regarding','regretting','recording','rewarding']},
+          {q:`To confirm details, say "Let me read that ___ to you".`,blank:'back',opts:['back','out','over','up']},
+          {q:`If a message needs a fast reply, it is ___.`,blank:'urgent',opts:['urgent','ancient','absent','elegant']}
+        ]
+      },
+      {
+        id:7,title:'Голосовая почта',xp:15,
+        theory:`<b>Voicemail — сообщение на автоответчик</b><br><br>Голосовая почта (<b>voicemail</b>) записывает сообщение, когда вы не отвечаете. Оставить хорошее voicemail — навык: у вас нет собеседника, только несколько секунд записи.<br><br>Структура делового voicemail. 1) Представьтесь: <b>Hi, this is Anna from TechCo</b>. 2) Время и причина: <b>I'm calling on Monday about the contract</b>. 3) Что нужно: <b>Could you call me back when you get a chance?</b>. 4) Ваш номер (медленно и дважды): <b>My number is 555-0192 — again, that's 555-0192</b>. 5) Завершение: <b>Thanks, and I look forward to hearing from you</b>.<br><br>Главное правило voicemail: говорите МЕДЛЕННО, особенно номер. Слушатель записывает его на слух, и быстрый номер бесполезен. Повторите номер дважды.<br><br>Ваше собственное приветствие автоответчика (<b>greeting</b>): <b>Hi, you've reached Anna. I can't take your call right now, so please leave a message after the tone and I'll get back to you</b> — «вы позвонили Анне, сейчас не могу ответить, оставьте сообщение после сигнала».<br><br>Полезные слова: <b>to leave a voicemail</b> — оставить голосовое; <b>after the tone / beep</b> — после сигнала; <b>to get back to you</b> — перезвонить/ответить; <b>you've reached...</b> — «вы дозвонились до...». Короткое, чёткое voicemail с медленным номером — признак профессионала.<br><br><div class="rule">"Hi, this is Anna from TechCo, calling about the contract."</div><div class="rule">"Please call me back at 555-0192 — again, that's 555-0192."</div><div class="rule">"You've reached Anna. Please leave a message after the tone."</div><div class="rule">"Thanks, and I look forward to hearing from you."</div>`,
+        exercises:[
+          {q:`A recorded message system for missed calls is ___.`,blank:'voicemail',opts:['voicemail','videotape','vitamin','vehicle']},
+          {q:`On voicemail, always say your number ___.`,blank:'slowly',opts:['slowly','quickly','loudly','once']},
+          {q:`You leave a message "after the ___".`,blank:'tone',opts:['tone','tune','town','tent']},
+          {q:`"You've ___ Anna" is a common greeting on voicemail.`,blank:'reached',opts:['reached','reduced','received','recalled']},
+          {q:`"I'll ___ back to you" means you'll return the call.`,blank:'get',opts:['get','give','go','grow']}
+        ]
+      },
+      {
+        id:8,title:'Назначение и перенос встреч',xp:20,
+        theory:`<b>Договариваемся о встрече по телефону</b><br><br>Частая цель звонка — назначить (<b>arrange / schedule</b>), перенести (<b>reschedule</b>) или отменить (<b>cancel</b>) встречу.<br><br>Предложить встречу: <b>Are you free on Tuesday?</b> — «свободны во вторник?»; <b>Would Thursday at 3 work for you?</b> — «четверг в 3 подойдёт?»; <b>Shall we say 10 o'clock?</b> — «давайте в 10?»; <b>Does that suit you?</b> — «вас устраивает?».<br><br>Согласиться: <b>That works for me</b> — «мне подходит»; <b>Sounds good</b>; <b>I'm available then</b> — «я свободен тогда». Не согласиться и предложить другое: <b>I'm afraid I'm busy then. How about Friday?</b> — «занят тогда. Как насчёт пятницы?»; <b>Could we make it a bit later?</b> — «можно чуть позже?».<br><br>Перенос: <b>I need to reschedule our meeting</b> — «нужно перенести встречу»; <b>Could we move it to next week?</b> — «перенесём на следующую неделю?»; <b>Something's come up</b> — «возникли дела» (вежливая причина).<br><br>Отмена: <b>I'm afraid I have to cancel</b> — «вынужден отменить»; <b>Let's reschedule for another time</b> — «перенесём на другой раз».<br><br>Подтверждение: всегда повторите договорённость в конце — <b>So, that's Thursday at 3 at your office</b> — «итак, четверг, 3 часа, у вас в офисе». <b>I'll send you a calendar invite</b> — «пришлю приглашение в календарь». Подтверждение исключает недопонимание.<br><br><div class="rule">"Are you free on Tuesday afternoon? Would 3 o'clock work?"</div><div class="rule">"I'm afraid something's come up — could we reschedule?"</div><div class="rule">"So, that's Thursday at 3 at your office. I'll send an invite."</div><div class="rule">"That works for me — see you then!"</div>`,
+        exercises:[
+          {q:`To set up a meeting is to ___ it.`,blank:'arrange',opts:['arrange','arrive','argue','arrest']},
+          {q:`To change a meeting to a different time is to ___ it.`,blank:'reschedule',opts:['reschedule','research','resemble','reserve']},
+          {q:`"Does that ___ you?" asks if a time is convenient.`,blank:'suit',opts:['suit','sail','soil','suet']},
+          {q:`A polite vague reason to reschedule: "Something's ___ up".`,blank:'come',opts:['come','gone','put','set']},
+          {q:`Always ___ the details at the end to avoid confusion.`,blank:'confirm',opts:['confirm','cancel','forget','ignore']}
+        ]
+      },
+      {
+        id:9,title:'Заказы, брони и запросы по телефону',xp:20,
+        theory:`<b>Практические звонки: заказ, бронь, запрос</b><br><br>Много бытовых дел решается по телефону: заказать столик, забронировать номер, узнать информацию, сделать заказ.<br><br>Бронирование (<b>booking / reservation</b>): <b>I'd like to book a table for two for Friday evening</b> — «хочу забронировать столик на двоих на вечер пятницы»; <b>Do you have any availability?</b> — «есть свободные места?»; <b>I'd like to make a reservation</b> — «хочу забронировать»; <b>Under the name Anna</b> — «на имя Анна».<br><br>Запрос информации: <b>I'm calling to ask about...</b>; <b>Could you tell me your opening hours?</b> — «часы работы?»; <b>How much does it cost?</b>; <b>Do you deliver?</b> — «доставляете?».<br><br>Заказ: <b>I'd like to place an order</b> — «хочу сделать заказ»; <b>Could I order...?</b>; <b>How long will delivery take?</b> — «сколько займёт доставка?».<br><br>Полезные вежливые конструкции: <b>I'd like to...</b> — «я хотел бы...» (вежливее, чем I want); <b>Could you...?</b>; <b>Is it possible to...?</b> — «возможно ли...?»; <b>I was wondering if...</b> — «мне интересно, не могли бы вы...» (очень вежливо).<br><br>В конце подтвердите детали: время, имя, адрес, сумму. <b>So that's a table for two at 7 pm under Anna — is that right?</b>. Такие звонки — отличная практика: они короткие, с понятной целью и предсказуемыми фразами.<br><br><div class="rule">"I'd like to book a table for two for Friday at 7 pm."</div><div class="rule">"Could you tell me your opening hours, please?"</div><div class="rule">"I was wondering if it's possible to change my booking."</div><div class="rule">"So that's a table for two under Anna — is that correct?"</div>`,
+        exercises:[
+          {q:`To reserve a table or room is to ___ it.`,blank:'book',opts:['book','cook','look','hook']},
+          {q:`A reservation is made "___ the name Anna".`,blank:'under',opts:['under','over','above','below']},
+          {q:`Free tables or rooms are called ___.`,blank:'availability',opts:['availability','ability','visibility','durability']},
+          {q:`To make an order, you "___ an order".`,blank:'place',opts:['place','plate','plane','plan']},
+          {q:`"I was ___ if you could help" is a very polite request.`,blank:'wondering',opts:['wondering','wandering','watering','wintering']}
+        ]
+      },
+      {
+        id:10,title:'Как переспросить и уточнить',xp:15,
+        theory:`<b>Clarifying — переспрашиваем без стеснения</b><br><br>По телефону особенно важно уметь переспрашивать и уточнять, ведь ошибка стоит дорого. Переспрашивать — нормально и профессионально.<br><br>Переспросить: <b>Sorry, could you repeat that?</b>; <b>I didn't quite catch that</b> — «я не совсем расслышал»; <b>Could you say that again more slowly?</b> — «повторите медленнее?».<br><br>Уточнить детали: <b>Let me just check I've got this right</b> — «уточню, всё ли верно»; <b>So, if I understand correctly...</b>; <b>Do you mean...?</b> — «вы имеете в виду...?»; <b>Just to confirm...</b> — «просто уточню...».<br><br>Проверить цифры и написание: <b>Could you spell that for me?</b> — «продиктуйте по буквам»; <b>Was that fifteen or fifty?</b> — «пятнадцать или пятьдесят?» (частая путаница!); <b>Let me read the number back to you</b> — «повторю номер».<br><br>Особая ловушка — числа. <b>-teen</b> (13–19) и <b>-ty</b> (30, 40, 50) на слух похожи: <b>thirteen / thirty</b>, <b>fifteen / fifty</b>. Всегда уточняйте: <b>Sorry, thirteen or thirty?</b>. Ставьте ударение чётко: thirTEEN против THIRty.<br><br>Показать, что слушаете: короткие <b>uh-huh</b>, <b>I see</b>, <b>right</b>, <b>got it</b> дают собеседнику понять, что связь есть и вы следите за мыслью. По телефону молчание тревожит — эти маленькие сигналы важны.<br><br><div class="rule">"Sorry, I didn't quite catch that — could you repeat it?"</div><div class="rule">"Just to confirm, was that fifteen or fifty?"</div><div class="rule">"Could you spell your surname for me, please?"</div><div class="rule">"Let me read that back to you: 555-0192, correct?"</div>`,
+        exercises:[
+          {q:`"I didn't quite ___ that" means you didn't hear clearly.`,blank:'catch',opts:['catch','watch','reach','teach']},
+          {q:`"Just to ___..." introduces a detail you want to check.`,blank:'confirm',opts:['confirm','conform','confess','confuse']},
+          {q:`Numbers like thirteen and thirty are easy to ___ on the phone.`,blank:'confuse',opts:['confuse','choose','close','cross']},
+          {q:`To hear a word letter by letter, ask them to ___ it.`,blank:'spell',opts:['spell','sell','smell','swell']},
+          {q:`Small sounds like "uh-huh" show you're still ___.`,blank:'listening',opts:['listening','leaving','laughing','losing']}
+        ]
+      },
+      {
+        id:11,title:'Личные звонки друзьям и семье',xp:15,
+        theory:`<b>Неформальный телефон</b><br><br>Звонки друзьям и семье (<b>informal calls</b>) гораздо расслабленнее деловых — здесь другой, разговорный язык.<br><br>Начало: <b>Hey, it's me!</b> — «привет, это я!»; <b>Hi, how's it going?</b> — «как дела?»; <b>What are you up to?</b> — «чем занят?»; <b>Long time no speak!</b> — «давно не общались!».<br><br>Проверить, удобно ли: <b>Are you busy?</b>; <b>Is now a good time?</b>; <b>Can you talk?</b> — «можешь говорить?»; <b>Sorry, I know it's late</b>.<br><br>Разговорные связки: <b>By the way...</b> — «кстати»; <b>Anyway...</b> — «в общем» (для смены темы или завершения); <b>Guess what!</b> — «угадай что!» (перед новостью); <b>You'll never believe...</b> — «ты не поверишь...».<br><br>Завершение неформального звонка: <b>Anyway, I should let you go</b> — «ладно, не буду задерживать»; <b>I'd better run</b> — «мне пора бежать»; <b>Let's catch up soon</b> — «давай скоро увидимся»; <b>Talk to you later!</b> (часто пишут <b>TTYL</b>); <b>Take care!</b> — «береги себя!».<br><br>Обратите внимание: <b>I should let you go</b> — вежливый способ закончить, даже если торопитесь вы сами, звучит заботливо. А <b>Anyway...</b> — универсальный сигнал «пора закругляться», понятный всем носителям. Неформальный звонок держится на тёплой интонации и лёгких разговорных фразах.<br><br><div class="rule">"Hey, it's me! How's it going?"</div><div class="rule">"Is now a good time, or are you busy?"</div><div class="rule">"Guess what — you'll never believe what happened!"</div><div class="rule">"Anyway, I should let you go. Talk to you later!"</div>`,
+        exercises:[
+          {q:`A casual "what are you ___?" asks what someone is doing.`,blank:'up to',opts:['up to','down to','off to','in to']},
+          {q:`"___ what!" builds excitement before sharing news.`,blank:'Guess',opts:['Guess','Tell','Ask','Show']},
+          {q:`"I should ___ you go" politely ends a friendly call.`,blank:'let',opts:['let','make','have','give']},
+          {q:`"Talk to you ___!" is a warm, casual goodbye.`,blank:'later',opts:['later','never','louder','longer']},
+          {q:`"By the ___..." introduces a new, casual topic.`,blank:'way',opts:['way','day','week','time']}
+        ]
+      },
+      {
+        id:12,title:'Автоответчики и call-центры',xp:15,
+        theory:`<b>Автоматические меню и колл-центры</b><br><br>Часто мы звоним не человеку, а в компанию с автоматическим меню (<b>automated menu</b> / <b>IVR</b>). Понимать его на слух — отдельный навык.<br><br>Типичные фразы автоответчика: <b>Thank you for calling [Company]</b>; <b>Your call is important to us</b> — «ваш звонок важен для нас»; <b>Please listen carefully as our options have changed</b> — «прослушайте, варианты изменились»; <b>Press 1 for sales, press 2 for support</b> — «нажмите 1 для..., 2 для...»; <b>To speak to an operator, press 0</b> — «для связи с оператором нажмите 0».<br><br>Ожидание: <b>Please hold, and your call will be answered shortly</b> — «оставайтесь на линии, вам скоро ответят»; <b>You are number four in the queue</b> — «вы четвёртый в очереди»; <b>All our agents are currently busy</b> — «все операторы заняты».<br><br>Когда ответит человек: он представится и спросит цель. Полезно иметь наготове <b>account number</b> (номер счёта), <b>reference number</b> (номер обращения) — их часто спрашивают для проверки личности (<b>security check</b>).<br><br>Полезные слова: <b>to press</b> — нажать (кнопку); <b>option</b> — вариант меню; <b>the queue</b> — очередь; <b>on hold</b> — на удержании; <b>an operator / agent</b> — оператор; <b>hotline</b> / <b>helpline</b> — горячая линия. Совет: если запутались в меню, часто помогает нажать <b>0</b> или сказать <b>operator</b> — многие системы соединяют с человеком.<br><br><div class="rule">"Thank you for calling. Press 1 for sales, or 2 for support."</div><div class="rule">"All our agents are busy. You are number four in the queue."</div><div class="rule">"Please have your account number ready."</div><div class="rule">"To speak to an operator, press zero."</div>`,
+        exercises:[
+          {q:`An automated phone menu asks you to ___ a number.`,blank:'press',opts:['press','pull','pour','pray']},
+          {q:`The line of callers waiting is called the ___.`,blank:'queue',opts:['queue','quest','quiz','quote']},
+          {q:`A human who answers in a call centre is an ___.`,blank:'operator',opts:['operator','operation','opinion','opener']},
+          {q:`A phone number for help is often called a ___.`,blank:'helpline',opts:['helpline','deadline','headline','outline']},
+          {q:`Companies do a security ___ to confirm who you are.`,blank:'check',opts:['check','chart','chain','cheer']}
+        ]
+      },
+      {
+        id:13,title:'Завершение телефонного разговора',xp:15,
+        theory:`<b>Как красиво закончить звонок</b><br><br>Завершение (<b>ending the call</b>) — важный момент: резкий обрыв оставляет неприятное впечатление, а тёплое завершение — хорошее.<br><br>Сигнал к завершению: <b>Well, I think that's everything</b> — «кажется, это всё»; <b>Anyway, I won't keep you</b> — «не буду вас задерживать»; <b>Is there anything else?</b> — «что-нибудь ещё?»; <b>I think that covers it</b> — «думаю, всё обсудили».<br><br>Подведение итога (в деловом): повторите договорённости и следующие шаги. <b>So, I'll send the report by Friday, and you'll review it</b> — «итак, я пришлю отчёт к пятнице, а вы просмотрите». <b>I'll follow up with an email</b> — «пришлю письмо с деталями».<br><br>Благодарность и прощание: <b>Thanks for your time</b> — «спасибо за время»; <b>It was good to talk to you</b> — «приятно было поговорить»; <b>Have a great day!</b>; <b>Speak soon</b> — «до связи»; <b>Take care</b>; <b>Bye for now</b>.<br><br>В деловом звонке: <b>Thank you for calling, goodbye</b>. В личном: <b>Alright, talk later, bye!</b>.<br><br>Тонкость этикета: обычно тот, кто позвонил, завершает разговор первым. А в сервисе принято дать клиенту положить трубку первым — знак уважения. Никогда не бросайте трубку резко после решения вопроса — короткое тёплое прощание закрепляет всё хорошее впечатление от разговора.<br><br><div class="rule">"Well, I think that covers everything. Is there anything else?"</div><div class="rule">"So, I'll send the report by Friday. Thanks for your time!"</div><div class="rule">"It was great to talk to you — have a lovely day!"</div><div class="rule">"Alright, speak soon. Bye for now!"</div>`,
+        exercises:[
+          {q:`"I won't ___ you" politely signals the call is ending.`,blank:'keep',opts:['keep','call','hold','miss']},
+          {q:`Before ending, ask "Is there ___ else?".`,blank:'anything',opts:['anything','everywhere','somebody','nowhere']},
+          {q:`"I'll ___ up with an email" promises follow-up.`,blank:'follow',opts:['follow','fill','feel','fall']},
+          {q:`A casual sign-off meaning "until next time" is "Speak ___".`,blank:'soon',opts:['soon','slow','soft','sore']},
+          {q:`Usually the person who ___ the call ends it first.`,blank:'made',opts:['made','missed','lost','heard']}
+        ]
+      },
+      {
+        id:14,title:'Видеозвонки: основы и лексика',xp:20,
+        theory:`<b>Video calls — новая норма общения</b><br><br>Видеозвонки (<b>video calls</b>) через Zoom, Teams, Google Meet стали повседневностью, особенно в работе. У них своя лексика и этикет.<br><br>Базовые слова: <b>to join a meeting</b> — присоединиться к встрече; <b>to host</b> — организовывать (<b>host</b> — организатор); <b>meeting link</b> — ссылка на встречу; <b>to share your screen</b> — показать экран; <b>to mute / unmute</b> — выключить/включить микрофон; <b>camera on / off</b> — камера вкл/выкл; <b>to record</b> — записывать; <b>the chat</b> — чат; <b>breakout rooms</b> — комнаты для групп; <b>to leave the meeting</b> — покинуть встречу.<br><br>Начало видеовстречи: <b>Can everyone hear me?</b> — «все меня слышат?»; <b>Can you see my screen?</b> — «видите мой экран?»; <b>Let's wait a minute for everyone to join</b> — «подождём, пока все подключатся»; <b>You're on mute</b> — «у вас выключен микрофон» (самая частая фраза видеозвонков!).<br><br>Технические проблемы: <b>Your video is frozen</b> — «у вас зависло видео»; <b>You're lagging</b> — «у вас задержка»; <b>I think you cut out</b> — «вас прервало»; <b>Can you turn your camera on?</b>.<br><br>Управление разговором: <b>Sorry, you go first</b> — «извините, говорите вы» (при накладке); <b>Go ahead</b> — «продолжайте». Совет: на видео чаще возникают паузы и накладки, поэтому важно делать паузы и не перебивать. Держите себя на mute, когда не говорите — это уменьшает фоновый шум.<br><br><div class="rule">"Can everyone hear me okay? Can you see my screen?"</div><div class="rule">"Sorry, you're on mute — we can't hear you."</div><div class="rule">"Let me share my screen so you can see the slides."</div><div class="rule">"Your video's frozen — could you turn it off and on again?"</div>`,
+        exercises:[
+          {q:`To enter a video meeting is to "___ the meeting".`,blank:'join',opts:['join','joke','jump','jog']},
+          {q:`The most common video-call phrase is "You're on ___".`,blank:'mute',opts:['mute','mode','move','mood']},
+          {q:`To show your slides to others, you "___ your screen".`,blank:'share',opts:['share','shine','shape','shake']},
+          {q:`If your image stops moving, your video is ___.`,blank:'frozen',opts:['frozen','broken','falling','flashing']},
+          {q:`The person who organizes the video meeting is the ___.`,blank:'host',opts:['host','guest','ghost','post']}
+        ]
+      },
+      {
+        id:15,title:'Этикет видеовстреч',xp:20,
+        theory:`<b>Video meeting etiquette</b><br><br>У видеовстреч есть неписаные правила (<b>etiquette</b>), которые отличают профессионала.<br><br>Перед встречей: проверьте технику (<b>test your setup</b>) — камеру, микрофон, интернет. Подключайтесь вовремя или на минуту раньше. Выберите нейтральный фон (<b>background</b>) или размытие (<b>blur</b>), хорошее освещение (свет спереди, не сзади) и уровень камеры на уровне глаз.<br><br>Во время встречи: держите микрофон на mute, когда не говорите (<b>mute when not speaking</b>) — фоновый шум мешает всем. Смотрите в камеру, а не на своё изображение — это создаёт «зрительный контакт». Не перебивайте; используйте <b>raise hand</b> (поднять руку) или чат, чтобы вступить.<br><br>Полезные фразы вступления: <b>Can I jump in here?</b> — «можно я вставлю?»; <b>Just to add to that...</b> — «хочу добавить...»; <b>Sorry to interrupt, but...</b> — «извините, что перебиваю, но...»; <b>I have a quick question</b>.<br><br>Управление как ведущий (<b>host</b>): <b>Let's go around and each share an update</b> — «давайте по очереди»; <b>Let's take that offline</b> — «обсудим это отдельно» (для долгих тем не по теме); <b>Let's park that for now</b> — «отложим пока»; <b>Let's wrap up</b> — «давайте завершать».<br><br>Одеваться стоит как на очную встречу (хотя бы верх). И помните: даже до и после встречи камера и микрофон могут быть включены — следите за этим, чтобы не попасть в неловкую ситуацию.<br><br><div class="rule">"Keep yourself on mute when you're not speaking, please."</div><div class="rule">"Sorry to interrupt, but can I jump in here quickly?"</div><div class="rule">"That's a big topic — let's take it offline afterwards."</div><div class="rule">"Okay, let's wrap up — thanks everyone for joining."</div>`,
+        exercises:[
+          {q:`The unwritten rules of good behaviour are called ___.`,blank:'etiquette',opts:['etiquette','equipment','estimate','entrance']},
+          {q:`To reduce noise, "___ when not speaking".`,blank:'mute',opts:['mute','move','meet','mark']},
+          {q:`"Can I ___ in here?" politely asks to contribute.`,blank:'jump',opts:['jump','join','jog','joke']},
+          {q:`Discussing a side topic separately later is to "take it ___".`,blank:'offline',opts:['offline','online','offside','outline']},
+          {q:`To finish the meeting, the host says "Let's ___ up".`,blank:'wrap',opts:['wrap','warm','wake','walk']}
+        ]
+      },
+      {
+        id:16,title:'Деловые конференц-звонки',xp:20,
+        theory:`<b>Conference calls — много людей на линии</b><br><br>Конференц-звонок (<b>conference call</b>) — разговор нескольких участников сразу, часто без видео. Здесь легко перебить друг друга, поэтому важна структура.<br><br>Начало: ведущий проверяет участников (<b>roll call</b>): <b>Let's do a quick roll call — who's on the line?</b> — «кто на линии?»; <b>Is everyone here?</b>. Участники отмечаются: <b>Anna here</b>; <b>This is John from marketing</b>.<br><br>Представляйтесь перед репликой: поскольку не видно лиц, называйте себя — <b>This is Anna — I'd like to add...</b>. Это ключевое правило конференц-звонков.<br><br>Управление обсуждением: <b>Let's stick to the agenda</b> — «придерживаемся повестки»; <b>Can we hear from the sales team?</b> — «что скажет отдел продаж?»; <b>Let's go around the room</b> — «по очереди»; <b>One at a time, please</b> — «по одному, пожалуйста».<br><br>Если перебили: <b>Sorry, go ahead</b> — «извините, продолжайте»; <b>After you</b> — «после вас»; <b>You were saying?</b> — «вы говорили?».<br><br>Полезные слова: <b>agenda</b> — повестка; <b>to be on the line</b> — быть на связи; <b>to speak up</b> — высказаться; <b>action items</b> — задачи по итогам; <b>minutes</b> — протокол встречи; <b>to wrap up</b> — завершать. В конце ведущий подводит итог и раздаёт задачи: <b>So, the action items are...</b> — «итак, задачи следующие...». Чёткая структура спасает конференц-звонок от хаоса.<br><br><div class="rule">"Let's do a quick roll call — who's on the line?"</div><div class="rule">"This is Anna — I'd like to add something here."</div><div class="rule">"One at a time, please. Sorry John, go ahead."</div><div class="rule">"So, the action items are: John sends the report, Anna books the room."</div>`,
+        exercises:[
+          {q:`A call with several participants is a ___ call.`,blank:'conference',opts:['conference','confidence','conscience','confession']},
+          {q:`Checking who is present is called a roll ___.`,blank:'call',opts:['call','ball','wall','fall']},
+          {q:`On audio calls, always ___ yourself before speaking.`,blank:'introduce',opts:['introduce','interrupt','ignore','include']},
+          {q:`The list of topics for a meeting is the ___.`,blank:'agenda',opts:['agenda','antenna','arena','agency']},
+          {q:`Tasks assigned at the end are called ___ items.`,blank:'action',opts:['action','auction','addition','audition']}
+        ]
+      },
+      {
+        id:17,title:'Сложные телефонные ситуации',xp:20,
+        theory:`<b>Когда звонок идёт трудно</b><br><br>Не все звонки простые: собеседник злится, говорит слишком быстро, вы не понимаете акцент или нужно сообщить плохую новость. Разберём тактики.<br><br>Собеседник говорит слишком быстро: <b>Sorry, could you slow down a little?</b> — «помедленнее, пожалуйста?»; <b>I'm not a native speaker — could you speak a bit more slowly?</b> — честно и эффективно, люди почти всегда идут навстречу.<br><br>Незнакомый акцент или слово: не притворяйтесь, что поняли. <b>Sorry, what does ... mean?</b>; <b>Could you explain that differently?</b> — «объясните иначе?».<br><br>Настойчивый или злой собеседник: сохраняйте спокойствие. <b>I understand your frustration</b> — «понимаю ваше недовольство»; <b>Let me see what I can do</b>; <b>I'll need to check and call you back</b> — «мне нужно проверить и перезвонить».<br><br>Сообщить плохую новость мягко: <b>I'm afraid I have some bad news</b>; <b>Unfortunately, we won't be able to...</b>; <b>I'm really sorry, but...</b>.<br><br>Нежелательные звонки (<b>cold calls</b>, спам): вежливо, но твёрдо — <b>Thank you, but I'm not interested</b> — «спасибо, но мне не интересно»; <b>Please take me off your list</b> — «удалите меня из списка»; <b>Now is not a good time</b>. Не обязательно быть грубым, но и не обязательно долго слушать. Уверенность и вежливые готовые фразы помогают справиться с любым сложным звонком.<br><br><div class="rule">"I'm not a native speaker — could you speak a bit more slowly?"</div><div class="rule">"Sorry, what does that word mean exactly?"</div><div class="rule">"I understand your frustration — let me see what I can do."</div><div class="rule">"Thank you, but I'm not interested. Please take me off your list."</div>`,
+        exercises:[
+          {q:`To ask someone to talk less quickly, say "Could you ___ down?".`,blank:'slow',opts:['slow','show','snow','stow']},
+          {q:`Before bad news, soften with "I'm ___ I have some bad news".`,blank:'afraid',opts:['afraid','angry','amazed','awake']},
+          {q:`An unwanted sales call is called a ___ call.`,blank:'cold',opts:['cold','warm','long','quick']},
+          {q:`To stop spam calls, ask them to "take me off your ___".`,blank:'list',opts:['list','line','desk','file']},
+          {q:`With an angry caller, first stay ___.`,blank:'calm',opts:['calm','loud','rude','busy']}
+        ]
+      },
+      {
+        id:18,title:'Числа, даты и написание по буквам',xp:20,
+        theory:`<b>Числа и буквы на слух — точность важна</b><br><br>По телефону чаще всего ошибаются в числах, датах и написании имён. Есть приёмы, чтобы этого избежать.<br><br>Диктовка номеров: цифры называют по одной. <b>555-0192</b> — «five five five, oh one nine two». Ноль по телефону часто <b>oh</b> (как буква O) или <b>zero</b>. Двойные цифры: <b>7700</b> — «seven seven double oh» (<b>double</b> = дважды). Диктуйте медленно, группами.<br><br>Ловушка -teen / -ty: <b>thirteen (13)</b> vs <b>thirty (30)</b>, <b>fifteen (15)</b> vs <b>fifty (50)</b>. Уточняйте: <b>one-three, thirteen?</b>. Можно назвать цифрами: «thirteen, that's one-three».<br><br>Даты: <b>the 3rd of May</b> (британ.) или <b>May 3rd</b> (амер.). Год: <b>2025</b> — «twenty twenty-five». Уточняйте формат, если важно (день/месяц путают между US и UK).<br><br>Написание по буквам (<b>the phonetic alphabet</b>): для ясности буквы называют словами. Международный стандарт: <b>A — Alpha, B — Bravo, C — Charlie, D — Delta, E — Echo</b>... Или проще: <b>B as in boy, M as in Mary</b>. Фраза: <b>That's S as in Sugar, M as in Mike</b>.<br><br>Полезные фразы: <b>Let me spell that</b> — «продиктую по буквам»; <b>Was that with a double L?</b> — «с двумя L?»; <b>Could you confirm the number?</b>. Всегда повторяйте важные цифры и имена обратно собеседнику для проверки — это спасает от дорогих ошибок.<br><br><div class="rule">"My number is five five five, oh one nine two."</div><div class="rule">"Sorry, was that thirteen or thirty? One-three?"</div><div class="rule">"That's spelled S as in Sugar, M as in Mike, Anna."</div><div class="rule">"Let me read the number back: 555-0192, correct?"</div>`,
+        exercises:[
+          {q:`On the phone, the number zero is often said as "___".`,blank:'oh',opts:['oh','ah','no','so']},
+          {q:`"7700" can be read as "seven seven ___ oh".`,blank:'double',opts:['double','single','triple','couple']},
+          {q:`13 and 30 are confused because of the "-teen" and "-___" endings.`,blank:'ty',opts:['ty','th',' ed','ing']},
+          {q:`Naming letters as words (Alpha, Bravo) uses the ___ alphabet.`,blank:'phonetic',opts:['phonetic','fantastic','frantic','forensic']},
+          {q:`"B ___ in boy" clarifies which letter you mean.`,blank:'as',opts:['as','is','at','of']}
+        ]
+      },
+      {
+        id:19,title:'Собеседование и важные звонки',xp:25,
+        theory:`<b>Телефонное интервью и звонки высокой важности</b><br><br>Некоторые звонки особенно важны: телефонное собеседование (<b>phone interview</b>), звонок работодателю, врачу, в банк. К ним стоит готовиться.<br><br>Подготовка: найдите тихое место с хорошей связью; держите под рукой нужные бумаги (резюме, документы, вопросы); зарядите телефон. Возьмите ручку и бумагу для заметок.<br><br>Телефонное собеседование (напомним из курса Job Search): представьтесь бодро, говорите чётко, улыбайтесь (это слышно в голосе). Полезные фразы: <b>Thank you for taking the time to speak with me</b> — «спасибо, что нашли время»; <b>Could you tell me more about the role?</b>; <b>That's a great question — let me think for a second</b> — нормально взять паузу подумать.<br><br>Официальные звонки (банк, врач, госучреждение): будьте готовы пройти проверку личности (<b>security check</b>) — назвать дату рождения, номер счёта, кодовое слово. Объясните цель чётко: <b>I'm calling to...</b>. Записывайте имя того, с кем говорили, и <b>reference number</b> обращения — это пригодится, если придётся звонить снова.<br><br>Если разнервничались: сделайте вдох, говорите медленно. Пауза лучше, чем скомканная спешка. Заранее напишите себе ключевые фразы и вопросы на бумаге — по телефону никто не видит вашу шпаргалку. Подготовка превращает страшный звонок в управляемый.<br><br><div class="rule">"Thank you for taking the time to speak with me today."</div><div class="rule">"That's a great question — let me think for a second."</div><div class="rule">"Could you give me the reference number for this call?"</div><div class="rule">"I'm calling to discuss my account, if now is a good time."</div>`,
+        exercises:[
+          {q:`A job interview conducted by phone is a phone ___.`,blank:'interview',opts:['interview','interval','internet','interest']},
+          {q:`Before an important call, find a ___ place with good signal.`,blank:'quiet',opts:['quiet','quick','quite','queen']},
+          {q:`Banks confirm your identity with a security ___.`,blank:'check',opts:['check','chart','chain','cheer']},
+          {q:`Note down the ___ number so you can refer to the call later.`,blank:'reference',opts:['reference','referee','refill','refund']},
+          {q:`Taking a short ___ to think is fine on an interview call.`,blank:'pause',opts:['pause','path','pack','park']}
+        ]
+      },
+      {
+        id:20,title:'Финальный обзор курса',xp:30,
+        theory:`<b>Финальный обзор: уверенность на любой линии</b><br><br>Поздравляем — вы прошли полный курс телефонного и видеообщения на английском. Теперь взять трубку не страшно. Соберём главное.<br><br>Мы начали с идеи, что телефон — формульный навык: есть готовые фразы почти на каждый шаг. Освоили приём звонка (<b>Anna speaking, how may I help you?</b>) и совершение звонка (<b>this is Anna, could I speak to...</b>), удержание и перевод (<b>put on hold</b>, <b>put you through</b>, <b>transfer</b>), а также фразы для плохой связи (<b>you're breaking up</b>, <b>we got cut off</b>, <b>could you repeat that?</b>).<br><br>Мы научились оставлять и принимать сообщения, оставлять чёткую <b>voicemail</b> с медленным номером, назначать и переносить встречи (<b>arrange</b>, <b>reschedule</b>, <b>cancel</b>), делать бытовые звонки (брони, заказы, запросы) и переспрашивать без стеснения — особенно числа (<b>thirteen or thirty?</b>) и написание по буквам (<b>B as in boy</b>).<br><br>Разобрали неформальные звонки друзьям (<b>hey, it's me</b>, <b>I should let you go</b>), автоматические меню и колл-центры (<b>press 1</b>, <b>the queue</b>, <b>operator</b>), красивое завершение разговора. Освоили современность — видеозвонки (<b>join</b>, <b>share your screen</b>, <b>you're on mute</b>), их этикет (<b>mute when not speaking</b>, <b>take it offline</b>, <b>wrap up</b>) и конференц-звонки (<b>roll call</b>, представляться перед репликой, <b>action items</b>). И подготовились к сложным и важным звонкам — от злого собеседника до телефонного собеседования.<br><br>Главный совет: не стремитесь к идеальной речи — стремитесь быть понятым. Говорите медленно, переспрашивайте смело, держите под рукой нужные фразы. С практикой телефон на английском станет обычным делом.<br><br><div class="rule">"Good morning, this is Anna speaking. How may I help you?"</div><div class="rule">"Sorry, you're breaking up — could you repeat that more slowly?"</div><div class="rule">"You're on mute — we can't hear you!"</div><div class="rule">"Thanks for your time. Speak soon — bye for now!"</div>`,
+        exercises:[
+          {q:`On a business call, you add "___" after your name.`,blank:'speaking',opts:['speaking','sleeping','standing','starting']},
+          {q:`If a call disconnects, you say "we got ___ off".`,blank:'cut',opts:['cut','put','set','let']},
+          {q:`On video calls, the top phrase is "You're on ___".`,blank:'mute',opts:['mute','mood','move','mode']},
+          {q:`On a conference call, always ___ yourself before speaking.`,blank:'introduce',opts:['introduce','interrupt','ignore','imitate']},
+          {q:`The main goal on the phone is not perfection but being ___.`,blank:'understood',opts:['understood','underpaid','underground','undersold']}
+        ]
+      }
+    ]
+  },
 };
 // ── COURSE UI ─────────────────────────────────────────────
 let currentCourseId='',currentLessonIdx=0,currentExIdx=0,exCorrect=0,exMistakes=[];
@@ -17541,7 +17777,7 @@ function saveLessonDone(courseId,lessonId,score,xp){
 }
 
 function renderCourseProgress(){
-  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'].forEach(id=>{
+  ['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'].forEach(id=>{
     const p=getCourseProgress(id);
     const total=COURSES[id].lessons.length;
     const done=Object.keys(p).length;
@@ -17603,7 +17839,7 @@ function renderContinueWidget(){
 }
 
 function renderWeakSpotWidget(){
-  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service'];
+  const allIds=['basic','business','it','travel','everyday','dating','news','speaking','adating','food','health','expat','social','movies','grammar','slang','medical','finance','academic','interview','legal','pronunciation','writing','sport','shopping','realestate','eco','ukusa','idioms','negotiate','scitech','eq','history','phrasal','jobs','service','phone'];
   // Count total lessons done across all courses
   const totalDone = allIds.reduce((sum,id)=>{
     const p=getCourseProgress(id);
@@ -19088,6 +19324,7 @@ const TOPIC_CHIPS = {
   'Phrasal Verbs': ["Teach me a phrasal verb with \'get\'", "What\'s the difference between \'look up\' and \'look after\'?", "Give me a phrasal verb for \'to tolerate\'", "How do I use \'come across\' in a sentence?"],
   'Job Search': ["Help me improve my resume summary", "How do I negotiate a higher salary?", "Write a short cover letter opening", "What should I say to a recruiter on LinkedIn?"],
   'Customer Service': ["How do I calm down an angry customer?", "Help me apologize to a client politely", "How do I say no to a refund nicely?", "Give me a polite phone greeting"],
+  'Telephone': ["How do I answer a business call politely?", "What do I say to leave a voicemail?", "Help me reschedule a meeting by phone", "Useful phrases when the line is bad?"],
 };
 
 function showChips(topicKey) {
