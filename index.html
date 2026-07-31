@@ -1151,7 +1151,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="art-bar" style="width:0%"></div></div>
       </div>
     </div>
-    <div class="divider"></div>
+    <div class="divider" id="soon-divider"></div>
     <p class="section-label">Скоро</p>
     <div class="card" onclick="showComingSoon('IELTS Intensive')">
       <div class="card-row">
@@ -20135,25 +20135,53 @@ function toggleTopics(){
   applyTopicCollapse();
 }
 
+const CAT_META = {
+  base:   {emoji:'📗', label:'Базовый уровень'},
+  work:   {emoji:'💼', label:'Работа и карьера'},
+  social: {emoji:'💬', label:'Общение и культура'},
+  life:   {emoji:'🌍', label:'Жизнь и здоровье'},
+};
+const CAT_ORDER = ['base','work','social','life'];
+
 function filterCat(cat, btn){
   // update active pill
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
   if(btn) btn.classList.add('active');
   localStorage.setItem('smart_cat_filter', cat);
 
-  const cards = document.querySelectorAll('#courses-list-wrap .course-card');
-  let visible = 0;
-  cards.forEach(card=>{
-    const cardCat = card.dataset.cat;
-    const show = cat==='all' || cardCat===cat;
-    card.style.display = show ? '' : 'none';
-    if(show) visible++;
-  });
+  const wrap = document.getElementById('courses-list-wrap');
+  const anchor = document.getElementById('soon-divider'); // всё «живое» вставляем перед блоком «Скоро»
+  const topLabel = document.getElementById('courses-section-label');
+  const cards = Array.from(wrap.querySelectorAll('.course-card'));
 
-  // update section label
-  const labels = {all:'Все курсы', base:'Базовый уровень', work:'Работа и карьера', social:'Общение и культура', life:'Жизнь и здоровье'};
-  const lbl = document.getElementById('courses-section-label');
-  if(lbl) lbl.textContent = (labels[cat]||'Курсы') + ' — ' + visible;
+  // убрать ранее вставленные заголовки-секции
+  wrap.querySelectorAll('.cat-group-header').forEach(h=>h.remove());
+
+  if(cat === 'all'){
+    // Сгруппированный вид: единый верхний лейбл прячем, показываем секции по категориям
+    if(topLabel) topLabel.style.display = 'none';
+    CAT_ORDER.forEach(c=>{
+      const groupCards = cards.filter(card=>card.dataset.cat === c);
+      if(!groupCards.length) return;
+      const header = document.createElement('p');
+      header.className = 'section-label cat-group-header';
+      header.style.marginTop = '4px';
+      header.textContent = CAT_META[c].emoji + ' ' + CAT_META[c].label + ' — ' + groupCards.length;
+      wrap.insertBefore(header, anchor);
+      groupCards.forEach(card=>{ card.style.display = ''; wrap.insertBefore(card, anchor); });
+    });
+  } else {
+    // Один фильтр: секции не нужны, показываем единый лейбл и только нужные карточки
+    if(topLabel) topLabel.style.display = '';
+    let visible = 0;
+    cards.forEach(card=>{
+      const show = card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    const lbl = CAT_META[cat] ? CAT_META[cat].label : 'Курсы';
+    if(topLabel) topLabel.textContent = lbl + ' — ' + visible;
+  }
 }
 
 function restoreCatFilter(){
