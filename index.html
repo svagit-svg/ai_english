@@ -20706,7 +20706,22 @@ async function callClaude(userText,isGreeting,existingDiv){
     scrollMessages();
   }catch(err){
     const target=existingDiv||document.querySelector('.msg.ai:last-child');
-    if(target)target.textContent='❌ ERR: '+(err.toString()||'unknown');
+    if(target){
+      const errStr=(err&&err.toString())||'';
+      const outsideTg=!(tg&&tg.initData);
+      let msg;
+      if(/API error 401/.test(errStr)){
+        // 401 = не прошла проверка Telegram-подписи (защита #34)
+        msg=outsideTg
+          ?'🔒 AI-тьютор работает только внутри Telegram. Открой приложение через бота — и диалоги заработают.'
+          :'🔒 Не удалось авторизоваться. Попробуй переоткрыть приложение через Telegram.';
+      }else if(/aborted|abort/i.test(errStr)){
+        msg='⏳ Ответ занял слишком долго. Проверь соединение и попробуй ещё раз.';
+      }else{
+        msg='⚠️ Не удалось получить ответ. Проверь интернет и попробуй ещё раз.';
+      }
+      target.textContent=msg;
+    }
   }finally{
     isLoading=false;
     document.getElementById('send-btn').disabled=false;
