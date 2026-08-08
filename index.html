@@ -81,6 +81,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .topic-card .t-icon{font-size:24px;margin-bottom:7px;}
 .topic-card h3{font-family:var(--font-head);font-size:12px;font-weight:700;margin-bottom:2px;}
 .topic-card p{font-size:10px;color:var(--muted);}
+#home-view{flex:1;overflow-y:auto;scrollbar-width:none;}
+#home-view::-webkit-scrollbar{display:none;}
+.home-greeting{font-family:var(--font-head);font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:14px;}
+.home-hero{background:linear-gradient(135deg,rgba(79,110,247,0.14),rgba(124,58,237,0.07));border:1.5px solid rgba(79,110,247,0.4);border-radius:20px;padding:18px;margin-bottom:14px;cursor:pointer;transition:opacity 0.2s;}
+.home-hero:active{opacity:0.85;}
+.home-hero-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:#8fa0c0;text-transform:uppercase;margin-bottom:8px;font-family:var(--font-head);}
+.home-hero-title{font-family:var(--font-head);font-size:17px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.home-hero-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.home-hero-bar{height:6px;background:rgba(0,0,0,0.28);border-radius:6px;overflow:hidden;margin-bottom:16px;}
+.home-hero-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width 0.4s;}
+.home-hero-btn{width:100%;padding:13px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:15px;font-weight:800;cursor:pointer;}
+.home-tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.home-tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:15px 8px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.home-tile:active{transform:scale(0.96);border-color:rgba(79,110,247,0.3);}
+.home-tile .ht-icon{font-size:21px;margin-bottom:6px;}
+.home-tile .ht-label{font-size:11px;font-weight:700;color:var(--text);font-family:var(--font-head);line-height:1.2;}
+.ai-back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:12px;}
 #chat-view{display:none;flex-direction:column;}
 #chat-view.visible{display:flex;position:fixed;top:0;left:0;right:0;bottom:60px;background:var(--bg);z-index:50;padding:0 16px;}
 .chat-topbar{display:flex;align-items:center;gap:10px;padding:8px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px;flex-shrink:0;}
@@ -493,45 +510,55 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <!-- CHAT -->
   <section id="screen-chat" class="screen active">
 
-    <!-- Quick Actions: компактная горизонтально-прокручиваемая полоса вместо стопки карточек -->
-    <div class="quick-actions-row" id="quick-actions-row">
-      <div class="qa-pill" id="continue-card" onclick="continueLastCourse()" style="border-color:rgba(79,110,247,0.35);background:rgba(79,110,247,0.08)">
-        <div class="qa-pill-icon">▶</div>
+    <!-- ГЛАВНАЯ: guided-хаб (герой «Продолжить» + быстрые действия) -->
+    <div id="home-view">
+      <h2 class="home-greeting" id="home-greeting">С возвращением 👋</h2>
+
+      <!-- Streak Freeze Used Notice (session-only) -->
+      <div id="freeze-used-card" style="display:none;background:rgba(56,189,248,0.10);border:1px solid rgba(56,189,248,0.3);border-radius:14px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px">
+        <div style="font-size:22px">❄️</div>
         <div>
-          <div class="qa-pill-title" id="continue-title">Курс</div>
-          <div class="qa-pill-sub"><span id="continue-sub">Продолжить</span> · <span id="continue-pct" style="color:#818cf8;font-weight:700">0%</span></div>
+          <div style="font-size:13px;font-weight:800;color:var(--text)">Заморозка использована</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:1px" id="freeze-used-sub"></div>
         </div>
       </div>
-    </div>
 
-    <!-- Streak Freeze Used Notice (session-only) -->
-    <div id="freeze-used-card" style="display:none;background:rgba(56,189,248,0.10);border:1px solid rgba(56,189,248,0.3);border-radius:14px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px">
-      <div style="font-size:22px">❄️</div>
-      <div>
-        <div style="font-size:13px;font-weight:800;color:var(--text)">Заморозка использована</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:1px" id="freeze-used-sub"></div>
+      <!-- ГЕРОЙ: Продолжить / Начать -->
+      <div class="home-hero" id="home-hero" onclick="homeHeroAction()">
+        <div class="home-hero-label" id="home-hero-label">Продолжить обучение</div>
+        <div class="home-hero-title" id="home-hero-title">Курс</div>
+        <div class="home-hero-sub" id="home-hero-sub">Урок 1</div>
+        <div class="home-hero-bar"><div class="home-hero-fill" id="home-hero-fill" style="width:0%"></div></div>
+        <button class="home-hero-btn" id="home-hero-btn">Продолжить</button>
       </div>
-    </div>
 
-    <!-- Daily Challenge Card -->
-    <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="font-size:26px" id="dc-card-icon">🔥</div>
-          <div>
-            <div style="font-size:13px;font-weight:800;color:var(--text)">Ежедневное задание</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:1px" id="dc-card-sub">5 вопросов из разных курсов</div>
+      <!-- Быстрые действия -->
+      <div class="home-tiles">
+        <div class="home-tile" onclick="openAiDialog()"><div class="ht-icon">💬</div><div class="ht-label">Диалог с AI</div></div>
+        <div class="home-tile" onclick="switchTab('practice')"><div class="ht-icon">🎯</div><div class="ht-label">Практика</div></div>
+        <div class="home-tile" onclick="switchTab('courses')"><div class="ht-icon">📚</div><div class="ht-label">Все курсы</div></div>
+      </div>
+
+      <!-- Daily Challenge Card -->
+      <div class="dc-card" id="dc-card" onclick="startDailyChallenge()">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="font-size:26px" id="dc-card-icon">🔥</div>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:var(--text)">Ежедневное задание</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:1px" id="dc-card-sub">5 вопросов из разных курсов</div>
+            </div>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-size:14px;font-weight:800;color:var(--amber)" id="dc-card-xp">+50 XP</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:1px" id="dc-card-badge">Новое!</div>
           </div>
         </div>
-        <div style="text-align:right;flex-shrink:0">
-          <div style="font-size:14px;font-weight:800;color:var(--amber)" id="dc-card-xp">+50 XP</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:1px" id="dc-card-badge">Новое!</div>
+        <div id="dc-streak-row" style="display:none;margin-top:10px;align-items:center;gap:6px">
+          <span style="font-size:10px;color:var(--muted)">Серия:</span>
+          <div id="dc-streak-dots"></div>
+          <span id="dc-streak-label" style="font-size:11px;font-weight:700;color:var(--amber)"></span>
         </div>
-      </div>
-      <div id="dc-streak-row" style="display:none;margin-top:10px;align-items:center;gap:6px">
-        <span style="font-size:10px;color:var(--muted)">Серия:</span>
-        <div id="dc-streak-dots"></div>
-        <span id="dc-streak-label" style="font-size:11px;font-weight:700;color:var(--amber)"></span>
       </div>
     </div>
 
@@ -570,7 +597,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
     </div>
 
-    <div id="topic-picker">
+    <div id="topic-picker" style="display:none">
+      <div class="ai-back" onclick="closeAiDialog()"><i class="fa-solid fa-arrow-left"></i> Назад</div>
       <p class="screen-title">Выбери тему</p>
       <div class="topic-grid" id="topic-grid">
         <div class="topic-card" data-goals="it,business" onclick="startChat('IT English','You are a strict technical interviewer at a US tech company. Ask about algorithms, OOP, and experience in English. After each answer, correct grammar mistakes.','💻','IT English','Greet the candidate briefly, introduce yourself as the interviewer, then ask your first question — start with their background or a basic concept like &quot;Tell me about yourself and your tech stack.&quot;')">
@@ -1477,7 +1505,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 </div>
 
 <nav class="bottom-nav">
-  <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-robot"></i>AI Тьютор</button>
+  <button class="nav-btn active" id="nav-chat" onclick="switchTab('chat')"><i class="fa-solid fa-house"></i>Главная</button>
   <button class="nav-btn" id="nav-courses" onclick="switchTab('courses')"><i class="fa-solid fa-book-open"></i>Курсы</button>
   <button class="nav-btn" id="nav-practice" onclick="switchTab('practice')"><i class="fa-solid fa-dumbbell"></i>Практика</button>
   <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i>Профиль</button>
@@ -18999,23 +19027,92 @@ function saveLastCourse(courseId, lessonIdx){
   localStorage.setItem('smart_last_course', JSON.stringify({id: courseId, lesson: lessonIdx}));
 }
 
+// Старый виджет-пилюля заменён героем на Главной (renderHome). Оставлен как no-op
+// с guard'ом на случай вызова из legacy-кода.
 function renderContinueWidget(){
-  const raw = localStorage.getItem('smart_last_course');
-  if(!raw) return;
-  try {
-    const {id, lesson} = JSON.parse(raw);
-    const course = COURSES[id];
-    if(!course) return;
-    const total = course.lessons.length;
-    const progress = getCourseProgress(id);
-    const done = Object.values(progress).filter(p=>p.done).length;
-    const pct = Math.round(done / total * 100);
-    const lessonObj = course.lessons[lesson] || course.lessons[0];
-    document.getElementById('continue-title').textContent = course.title;
-    document.getElementById('continue-sub').textContent = 'Урок ' + lessonObj.id + ' · ' + lessonObj.title;
-    document.getElementById('continue-pct').textContent = pct + '%';
-    document.getElementById('continue-card').style.display = 'flex';
-  } catch(e){}
+  if(!document.getElementById('continue-title')) return;
+}
+
+// ── ГЛАВНАЯ (guided home) ────────────────────────────────
+// Герой «Продолжить/Начать»: текущий урок из smart_last_course, либо
+// рекомендованный курс (наименьший прогресс, не завершён; дефолт basic).
+function renderHome(){
+  const hero = document.getElementById('home-hero');
+  if(!hero) return;
+  // приветствие
+  const nm = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) || '';
+  const g = document.getElementById('home-greeting');
+  if(g) g.textContent = nm ? ('С возвращением, ' + nm + ' 👋') : 'С возвращением 👋';
+
+  // цель героя
+  let id = null, lessonIdx = 0, isContinue = false;
+  try{
+    const raw = localStorage.getItem('smart_last_course');
+    if(raw){ const o = JSON.parse(raw); if(o && o.id && COURSES[o.id]){ id = o.id; lessonIdx = o.lesson || 0; isContinue = true; } }
+  }catch(e){}
+
+  if(!id){
+    // рекомендация: курс с наименьшим прогрессом, ещё не завершённый
+    let best = null, bestScore = Infinity;
+    Object.keys(COURSES).forEach(cid=>{
+      const c = COURSES[cid]; if(!c) return;
+      const p = getCourseProgress(cid);
+      const dn = Object.values(p).filter(v=>v.done).length;
+      const tot = c.lessons.length;
+      if(dn === tot) return;
+      const score = (dn/tot) + (dn === 0 ? 0.5 : 0);
+      if(score < bestScore){ bestScore = score; best = cid; }
+    });
+    id = best || 'basic';
+    const c = COURSES[id], p = getCourseProgress(id);
+    const ni = c.lessons.findIndex(l => !(p[l.id] && p[l.id].done));
+    lessonIdx = ni >= 0 ? ni : 0;
+  }
+
+  const course = COURSES[id];
+  const prog = getCourseProgress(id);
+  const done = Object.values(prog).filter(v=>v.done).length;
+  const total = course.lessons.length;
+  const pct = Math.round(done / total * 100);
+  const lessonObj = course.lessons[lessonIdx] || course.lessons[0];
+
+  document.getElementById('home-hero-label').textContent = isContinue ? 'Продолжить обучение' : 'Начать обучение';
+  document.getElementById('home-hero-title').textContent = course.title;
+  document.getElementById('home-hero-sub').textContent = 'Урок ' + lessonObj.id + ' · ' + lessonObj.title;
+  document.getElementById('home-hero-fill').style.width = pct + '%';
+  document.getElementById('home-hero-btn').textContent = isContinue ? 'Продолжить' : 'Начать';
+  hero.dataset.courseId = id;
+  hero.dataset.lessonIdx = lessonIdx;
+  hero.dataset.isContinue = isContinue ? '1' : '0';
+
+  renderDCCard();
+}
+
+function homeHeroAction(){
+  const hero = document.getElementById('home-hero');
+  if(!hero) return;
+  if(hero.dataset.isContinue === '1'){ continueLastCourse(); return; }
+  const id = hero.dataset.courseId;
+  const idx = parseInt(hero.dataset.lessonIdx) || 0;
+  if(!id) return;
+  switchTab('courses');
+  openCourse(id);
+  openLesson(idx);
+}
+
+// AI-диалог теперь вторичен: открывается с плитки, а не по умолчанию.
+function openAiDialog(){
+  const hv = document.getElementById('home-view');
+  const tp = document.getElementById('topic-picker');
+  if(hv) hv.style.display = 'none';
+  if(tp) tp.style.display = '';
+  const ms = document.getElementById('main-scroll'); if(ms) ms.scrollTop = 0;
+}
+function closeAiDialog(){
+  const hv = document.getElementById('home-view');
+  const tp = document.getElementById('topic-picker');
+  if(tp) tp.style.display = 'none';
+  if(hv) hv.style.display = '';
 }
 
 function renderWeakSpotWidget(){
@@ -19970,7 +20067,7 @@ loadFromCloud(()=>{ checkOnboarding(); renderProBadge(); checkTrialMoments(); })
 renderDCCard();
 // Telegram может отдать данные пользователя чуть позже
 setTimeout(renderAvatar, 500);
-renderContinueWidget();
+renderHome();
 renderWeakSpotWidget();
 renderMistakesWidget();
 renderFreezeWidget();
@@ -20212,7 +20309,14 @@ function switchTab(id){
   if(id==='practice')renderPractice();
   if(id==='courses'){renderCourseProgress();document.getElementById('courses-main').style.display='block';document.getElementById('lesson-list-view').style.display='none';restoreCatFilter();}
   if(id==='premium'){renderTrialBanner();}
-  if(id==='chat'){personalizeTopics();}
+  if(id==='chat'){
+    // Заход на Главную всегда сбрасывает к guided-хабу (не к сетке тем / чату)
+    const hv=document.getElementById('home-view'); if(hv) hv.style.display='';
+    const tp=document.getElementById('topic-picker'); if(tp) tp.style.display='none';
+    const cv=document.getElementById('chat-view'); if(cv) cv.classList.remove('visible');
+    renderHome();
+    personalizeTopics();
+  }
 }
 function selectPlan(id,btn){
   document.querySelectorAll('.plan-tab').forEach(t=>t.classList.remove('active'));
