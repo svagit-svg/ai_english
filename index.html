@@ -19039,10 +19039,12 @@ function renderContinueWidget(){
 function renderHome(){
   const hero = document.getElementById('home-hero');
   if(!hero) return;
-  // приветствие
+  // приветствие: новичок → «Добро пожаловать», вернувшийся → «С возвращением»
   const nm = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) || '';
+  const started = ((getStats().lessons||0) > 0) || !!localStorage.getItem('smart_last_course');
+  const hi = started ? 'С возвращением' : 'Добро пожаловать';
   const g = document.getElementById('home-greeting');
-  if(g) g.textContent = nm ? ('С возвращением, ' + nm + ' 👋') : 'С возвращением 👋';
+  if(g) g.textContent = nm ? (hi + ', ' + nm + ' 👋') : (hi + ' 👋');
 
   // цель героя
   let id = null, lessonIdx = 0, isContinue = false;
