@@ -317,6 +317,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ex-feedback.show{display:block;}
 .ex-feedback.ok{background:rgba(16,217,138,0.1);color:var(--green);}
 .ex-feedback.err{background:rgba(244,63,94,0.1);color:var(--rose);}
+.ex-continue-btn{display:block;width:100%;margin-top:10px;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;}
+/* Фокус-режим: во время упражнений убираем шапку и нижнюю навигацию,
+   чтобы ничто не отвлекало и нельзя было случайно выйти из урока */
+body.focus-mode .header,body.focus-mode .bottom-nav{display:none;}
+body.focus-mode .main{padding-bottom:20px;}
+/* Закрытые уроки одним блоком вместо длинной стены замков */
+.locked-rest{margin-top:8px;}
+.locked-rest-main{display:flex;align-items:center;gap:11px;background:rgba(199,127,10,0.07);border:1px solid rgba(199,127,10,0.28);border-radius:14px;padding:13px 14px;cursor:pointer;}
+.locked-rest-title{font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--text);}
+.locked-rest-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.locked-rest-toggle{display:block;width:100%;margin-top:8px;background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer;padding:6px;}
 .lesson-btn{display:block;width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;}
 .lesson-btn:active{opacity:0.85;}
 .result-box{text-align:center;padding:24px 16px;}
@@ -19705,6 +19716,7 @@ function renderCourseProgress(){
 }
 
 function openCourse(id){
+  if(id!==currentCourseId) courseListExpanded=false; // новый курс — снова свёрнутый вид
   currentCourseId=id;
   const course=COURSES[id];
   const progress=getCourseProgress(id);
@@ -19713,16 +19725,60 @@ function openCourse(id){
   document.getElementById('course-title-view').textContent=course.title;
   document.getElementById('course-sub-view').textContent=course.lessons.length+' уроков';
   const container=document.getElementById('lesson-items');
-  container.innerHTML=course.lessons.map((l,i)=>{
+  const pro=isPro();
+  // Без Premium показываем 3 бесплатных + 2 закрытых «на витрину», а остальные
+  // прячем за одним аккуратным блоком вместо стены замков (разворачивается по клику).
+  const TEASE_UPTO=5;
+  const hideRest=!pro && !courseListExpanded && course.lessons.length>TEASE_UPTO;
+  const visible=hideRest?course.lessons.slice(0,TEASE_UPTO):course.lessons;
+
+  const rowHtml=(l,i)=>{
     const done=progress[l.id]?.done;
-    const locked=i>=3&&!isPro();
+    const locked=i>=3&&!pro;
+    // честное число упражнений: движок добавляет «собери предложение» и аудирование
+    const exCount=buildExerciseList(l).length;
     return `<div class="lesson-item${done?' done':''}${locked?' locked':''}" onclick="${locked?'showCoursePaywall()':'openLesson('+i+')'}">
       <div class="lesson-num">${done?'✓':l.id}</div>
       <div class="lesson-info"><h4>${l.title}</h4>
-      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Premium 👑':l.exercises.length+' упражнений • +'+l.xp+' XP'}</p></div>
+      <p>${done?'Пройдено • +'+l.xp+' XP':locked?'Premium 👑':exCount+' упражнений • +'+l.xp+' XP'}</p></div>
       ${locked?'<i class="fa-solid fa-lock" style="color:var(--amber);font-size:11px;margin-left:auto"></i>':'<i class="fa-solid fa-chevron-right" style="color:var(--muted);font-size:11px;margin-left:auto"></i>'}
     </div>`;
-  }).join('');
+  };
+
+  let html=visible.map(rowHtml).join('');
+  if(hideRest){
+    const rest=course.lessons.length-TEASE_UPTO;
+    html+=`<div class="locked-rest">
+      <div class="locked-rest-main" onclick="showCoursePaywall()">
+        <span style="font-size:18px">👑</span>
+        <div style="flex:1">
+          <div class="locked-rest-title">Ещё ${rest} ${plural(rest,'урок','урока','уроков')} в Premium</div>
+          <div class="locked-rest-sub">Открой весь курс целиком</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="color:var(--amber);font-size:11px"></i>
+      </div>
+      <button class="locked-rest-toggle" onclick="toggleCourseList(event)">Посмотреть все уроки</button>
+    </div>`;
+  } else if(!pro && courseListExpanded && course.lessons.length>TEASE_UPTO){
+    html+=`<button class="locked-rest-toggle" style="margin-top:6px" onclick="toggleCourseList(event)">Свернуть список ↑</button>`;
+  }
+  container.innerHTML=html;
+}
+
+// Разворот/сворачивание полного списка уроков у закрытого курса
+let courseListExpanded=false;
+function toggleCourseList(e){
+  if(e){e.stopPropagation();}
+  courseListExpanded=!courseListExpanded;
+  haptic('selection');
+  openCourse(currentCourseId);
+}
+
+function plural(n,one,few,many){
+  const m10=n%10,m100=n%100;
+  if(m10===1&&m100!==11)return one;
+  if(m10>=2&&m10<=4&&(m100<10||m100>=20))return few;
+  return many;
 }
 
 function closeCourse(){
@@ -19906,6 +19962,7 @@ function openLesson(idx){
   // («Следующий урок →», «Продолжить курс», «Слабые места»)
   if(idx>=3 && !isPro()){showCoursePaywall();return;}
   currentLessonIdx=idx;
+  setFocusMode(false);
   const lesson=COURSES[currentCourseId].lessons[idx];
   saveLastCourse(currentCourseId, idx);
   // switch to lesson screen
@@ -19925,9 +19982,11 @@ function showTheory(){
   document.getElementById('lesson-theory').style.display='block';
   document.getElementById('lesson-exercises').style.display='none';
   document.getElementById('main-scroll').scrollTop=0;
+  setFocusMode(false);
 }
 
 function closeLesson(){
+  setFocusMode(false);
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-courses').classList.add('active');
   document.getElementById('courses-main').style.display='none';
@@ -19985,7 +20044,13 @@ function startExercises(){
   document.getElementById('lesson-exercises').style.display='block';
   document.getElementById('ex-title').textContent=lesson.title;
   document.getElementById('main-scroll').scrollTop=0;
+  setFocusMode(true);
   renderExercise();
+}
+
+// Фокус-режим включён только на время упражнений
+function setFocusMode(on){
+  document.body.classList.toggle('focus-mode',!!on);
 }
 
 function renderExercise(){
@@ -20066,7 +20131,7 @@ function checkOrderAnswer(){
     exMistakes.push({q:'Собери: '+ex.sentence,blank:ex.sentence,selected:answer,correct:ex.sentence});
     haptic('error');
   }
-  setTimeout(nextExercise,1600);
+  advanceAfterAnswer(answer===ex.sentence);
 }
 
 function renderListenExercise(ex){
@@ -20104,7 +20169,21 @@ function checkAnswer(btn,optIdx){
     if(!ex.type)saveMistake(ex.q,ex.blank,ex.opts,COURSES[currentCourseId].title,lesson.title);
     haptic('error');
   }
-  setTimeout(nextExercise,1200);
+  advanceAfterAnswer(selected===correct);
+}
+
+// Верный ответ — быстрый автопереход; ошибка — пауза с кнопкой,
+// чтобы человек успел прочитать разбор (самый ценный момент обучения).
+function advanceAfterAnswer(isCorrect){
+  if(isCorrect){ setTimeout(nextExercise,900); return; }
+  const fb=document.getElementById('ex-fb');
+  if(!fb){ setTimeout(nextExercise,2600); return; }
+  const btn=document.createElement('button');
+  btn.className='ex-continue-btn';
+  btn.textContent='Понятно →';
+  btn.onclick=nextExercise;
+  fb.appendChild(btn);
+  btn.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 
 // ── MISTAKES STORAGE (#33) ───────────────────────────────
@@ -20224,6 +20303,7 @@ function showResult(){
   if(s.lessons>0 && s.lessons%5===0){const lvl=localStorage.getItem('smart_level')||'intermediate';if(lvl==='beginner'||lvl==='elementary')setTimeout(suggestLevelUp,1500);}
   document.getElementById('xp-count').textContent=s.xp;showXpFloat(xpEarned);
   // Show result screen
+  setFocusMode(false);
   document.getElementById('lesson-exercises').style.display='none';
   document.getElementById('lesson-result').style.display='block';
   document.getElementById('ex-progress-bar').style.width='100%';
@@ -20999,6 +21079,7 @@ function restoreCatFilter(){
 
 function switchTab(id){
   haptic('selection');
+  setFocusMode(false);
   // save chat history if leaving chat mid-session
   if(id!=='chat' && sessionMsgs>0 && currentTopic){
     const s=getStats();
