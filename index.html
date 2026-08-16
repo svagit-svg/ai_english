@@ -20174,14 +20174,19 @@ function checkAnswer(btn,optIdx){
 
 // Верный ответ — быстрый автопереход; ошибка — пауза с кнопкой,
 // чтобы человек успел прочитать разбор (самый ценный момент обучения).
-function advanceAfterAnswer(isCorrect){
-  if(isCorrect){ setTimeout(nextExercise,900); return; }
-  const fb=document.getElementById('ex-fb');
-  if(!fb){ setTimeout(nextExercise,2600); return; }
+// Используется во всех режимах: уроки, ежедневное задание, работа над
+// ошибками и квиз словаря — поэтому цель и блок подсказки настраиваются.
+function advanceAfterAnswer(isCorrect,opts){
+  opts=opts||{};
+  const next=opts.next||nextExercise;
+  const fbId=opts.fbId||'ex-fb';
+  if(isCorrect){ setTimeout(next,opts.delay||900); return; }
+  const fb=document.getElementById(fbId);
+  if(!fb){ setTimeout(next,2600); return; }
   const btn=document.createElement('button');
   btn.className='ex-continue-btn';
   btn.textContent='Понятно →';
-  btn.onclick=nextExercise;
+  btn.onclick=next;
   fb.appendChild(btn);
   btn.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
@@ -20769,7 +20774,7 @@ function checkDCAnswer(btn, optIdx) {
     if (!mistakesMode) saveMistake(ex.q, ex.blank, ex.opts, ex.courseTitle, ex.lessonTitle);
     haptic('error');
   }
-  setTimeout(nextDCQuestion, 1100);
+  advanceAfterAnswer(selected === correct, {fbId:'dc-fb', next:nextDCQuestion, delay:800});
 }
 
 function nextDCQuestion() {
@@ -21327,28 +21332,63 @@ function renderVocabQuizQuestion(){
       </div>`;
     return;
   }
-  const correct=items[vocabQuizIdx];
-  const others=items.filter((_,i)=>i!==vocabQuizIdx);
-  const wrongs=others.sort(()=>Math.random()-0.5).slice(0,2);
-  const choices=[correct,...wrongs].sort(()=>Math.random()-0.5);
+  const item=items[vocabQuizIdx];
+  const q=buildVocabQuizItem(item,items);
+  if(!q){ vocabQuizIdx++; renderVocabQuizQuestion(); return; } // фразу не превратить в вопрос — пропускаем
   vocabQuizAnswered=false;
+  vocabQuizAnswer._answer=q.answer;
   document.getElementById('vocab-quiz-content').innerHTML=`
     <div style="background:rgba(79,110,247,0.07);border:1px solid rgba(79,110,247,0.2);border-radius:16px;padding:20px;text-align:center;margin-bottom:20px">
       <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Вопрос ${vocabQuizIdx+1} из ${items.length}</div>
-      <div style="font-size:17px;font-weight:800;color:var(--text);line-height:1.4">"${correct.phrase}"</div>
+      <div style="font-size:17px;font-weight:800;color:var(--text);line-height:1.4">"${q.masked}"</div>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Что означает эта фраза? (выбери сам)</div>
-    ${choices.map((c,i)=>`<button class="vq-choice" onclick="vocabQuizAnswer(this,${c===correct})">${c.phrase}</button>`).join('')}`;
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Какое слово пропущено?</div>
+    ${q.opts.map(o=>`<button class="vq-choice" onclick="vocabQuizAnswer(this,${o===q.answer?'true':'false'})">${o}</button>`).join('')}
+    <div class="ex-feedback" id="vq-fb" style="margin-top:12px"></div>`;
+}
+
+// Собираем вопрос из сохранённой фразы: прячем самое «содержательное» слово,
+// отвлекающие берём из других сохранённых фраз (перевода у нас нет,
+// поэтому проверяем именно припоминание фразы).
+function buildVocabQuizItem(item,allItems){
+  const strip=w=>w.replace(/^[^\wа-яА-Я']+|[^\wа-яА-Я']+$/g,'');
+  const words=(item.phrase||'').trim().split(/\s+/).filter(Boolean);
+  if(words.length<2) return null;
+  let bestIdx=-1,bestLen=0;
+  words.forEach((w,i)=>{ const l=strip(w).length; if(l>bestLen){bestLen=l;bestIdx=i;} });
+  if(bestIdx<0||bestLen<3) return null;
+  const answer=strip(words[bestIdx]);
+  const masked=words.map((w,i)=>i===bestIdx?'___':w).join(' ');
+  const pool=[];
+  allItems.forEach(it=>{
+    if(it===item) return;
+    (it.phrase||'').trim().split(/\s+/).forEach(w=>{
+      const c=strip(w);
+      if(c.length>=3 && c.toLowerCase()!==answer.toLowerCase() && !pool.some(p=>p.toLowerCase()===c.toLowerCase())) pool.push(c);
+    });
+  });
+  if(!pool.length) return null;
+  const wrongs=pool.sort(()=>Math.random()-0.5).slice(0,2);
+  return {masked,answer,opts:[answer,...wrongs].sort(()=>Math.random()-0.5)};
 }
 
 function vocabQuizAnswer(btn,isCorrect){
   if(vocabQuizAnswered) return;
   vocabQuizAnswered=true;
+  document.querySelectorAll('.vq-choice').forEach(b=>b.disabled=true);
   btn.classList.add(isCorrect?'correct':'wrong');
-  setTimeout(()=>{
-    vocabQuizIdx++;
-    renderVocabQuizQuestion();
-  },900);
+  const answer=vocabQuizAnswer._answer;
+  const fb=document.getElementById('vq-fb');
+  if(fb){
+    if(isCorrect){ fb.className='ex-feedback show ok'; fb.textContent='✓ Правильно!'; }
+    else{
+      fb.className='ex-feedback show err';
+      fb.textContent='✗ Правильный ответ: '+answer;
+      document.querySelectorAll('.vq-choice').forEach(b=>{ if(b.textContent===answer) b.classList.add('correct'); });
+    }
+  }
+  haptic(isCorrect?'success':'error');
+  advanceAfterAnswer(isCorrect,{fbId:'vq-fb',delay:800,next:function(){ vocabQuizIdx++; renderVocabQuizQuestion(); }});
 }
 // ── END VOCABULARY ────────────────────────────────────────────
 
