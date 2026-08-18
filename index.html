@@ -37,7 +37,7 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font-body);display:flex;flex-direction:column;}
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(244,246,251,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);flex-shrink:0;z-index:10;}
 .logo{display:flex;align-items:center;gap:10px;}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;}
 .logo-text h1{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:-0.3px;white-space:nowrap;}
 .logo{flex-shrink:0;}
 .logo-text p{font-size:10px;color:var(--green);display:flex;align-items:center;gap:4px;margin-top:1px;}
@@ -63,20 +63,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .cat-pill.active{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#fff;}
 #cat-filter-wrap::-webkit-scrollbar{display:none;}
 /* CARD */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:11px 12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px 12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s,transform 0.15s;}
 .card:active{transform:scale(0.98);border-color:rgba(79,110,247,0.3);}
 .card-row{display:flex;align-items:center;gap:12px;}
-.card-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .card-text h3{font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:2px;}
 .card-text p{font-size:11px;color:var(--muted);}
-.badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:7px;margin-left:5px;vertical-align:middle;}
+.badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;margin-left:5px;vertical-align:middle;}
 /* CHAT */
 #screen-chat{display:none;flex-direction:column;height:calc(100vh - 118px);height:calc(100dvh - 118px);}
 #screen-chat.active{display:flex;}
 #topic-picker{flex:1;overflow-y:auto;}
 #topic-picker::-webkit-scrollbar{display:none;}
 .topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.topic-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.topic-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;transition:all 0.2s;}
 .topic-card:active{transform:scale(0.96);border-color:var(--accent);}
 .topic-card .t-icon{font-size:24px;margin-bottom:7px;}
 .topic-card h3{font-family:var(--font-head);font-size:12px;font-weight:700;margin-bottom:2px;}
@@ -91,7 +91,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .home-hero-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
 .home-hero-bar{height:6px;background:rgba(20,30,60,0.10);border-radius:6px;overflow:hidden;margin-bottom:16px;}
 .home-hero-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width 0.4s;}
-.home-hero-btn{width:100%;padding:13px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:15px;font-weight:800;cursor:pointer;}
+.home-hero-btn{width:100%;padding:13px;border:none;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:15px;font-weight:800;cursor:pointer;}
 .home-tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
 .home-tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:15px 8px;text-align:center;cursor:pointer;transition:all 0.2s;}
 .home-tile:active{transform:scale(0.96);border-color:rgba(79,110,247,0.3);}
@@ -101,12 +101,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 #chat-view{display:none;flex-direction:column;}
 #chat-view.visible{display:flex;position:fixed;top:0;left:0;right:0;bottom:60px;background:var(--bg);z-index:50;padding:0 16px;}
 .chat-topbar{display:flex;align-items:center;gap:10px;padding:8px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px;flex-shrink:0;}
-.back-btn{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--muted);flex-shrink:0;}
+.back-btn{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--muted);flex-shrink:0;}
 .chat-topbar-info h3{font-family:var(--font-head);font-size:13px;font-weight:700;}
 .chat-topbar-info p{font-size:10px;color:var(--green);}
 .messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-bottom:6px;}
 .messages::-webkit-scrollbar{display:none;}
-.msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.5;animation:msgIn 0.2s ease;}
+.msg{max-width:85%;padding:9px 12px;border-radius:16px;font-size:13px;line-height:1.5;animation:msgIn 0.2s ease;}
 @keyframes msgIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
 .msg.ai{background:var(--surface2);border:1px solid var(--border);border-bottom-left-radius:3px;align-self:flex-start;}
 .msg.user{background:linear-gradient(135deg,var(--accent),var(--accent2));border-bottom-right-radius:3px;align-self:flex-end;}
@@ -117,17 +117,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .chat-input-row{display:flex;gap:7px;align-items:flex-end;padding-top:8px;border-top:1px solid var(--border);flex-shrink:0;}
 .chat-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:9px 12px;color:var(--text);font-family:var(--font-body);font-size:13px;resize:none;outline:none;line-height:1.4;max-height:80px;}
 .chat-input::placeholder{color:var(--muted);}
-.send-btn{width:38px;height:38px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:11px;color:white;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;outline:none;transition:opacity 0.2s;}
+.send-btn{width:38px;height:38px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:12px;color:white;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;outline:none;transition:opacity 0.2s;}
 .send-btn:active{opacity:0.8;}
 .send-btn:disabled{opacity:0.4;}
 /* COURSES */
-.course-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+.course-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
 .progress-bar{height:3px;background:var(--surface2);border-radius:2px;margin-top:5px;overflow:hidden;}
 .progress-fill{height:100%;border-radius:2px;}
 /* PROFILE */
 .profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px;border:3px solid rgba(79,110,247,0.25);}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;}
-.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px;text-align:center;}
+.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center;}
 .stat-box .val{font-family:var(--font-head);font-size:19px;font-weight:800;}
 .stat-box .lbl{font-size:10px;color:var(--muted);margin-top:1px;}
 .level-bar{background:var(--surface2);border-radius:6px;height:6px;margin:8px 0 3px;overflow:hidden;}
@@ -135,38 +135,38 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .history-item{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);}
 .history-item:last-child{border-bottom:none;}
 /* PREMIUM */
-.plan-tabs{display:flex;background:var(--surface2);border-radius:11px;padding:3px;gap:3px;margin-bottom:9px;}
+.plan-tabs{display:flex;background:var(--surface2);border-radius:12px;padding:3px;gap:3px;margin-bottom:9px;}
 .plan-tab{flex:1;padding:6px 4px;border-radius:8px;border:none;background:none;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.2s;text-align:center;line-height:1.3;}
 .plan-tab span{display:block;font-size:9px;font-weight:500;margin-top:1px;}
 .plan-tab.active{background:var(--surface);color:var(--text);border:1px solid var(--border);}
-.plan-detail{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px;display:none;}
+.plan-detail{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:13px;display:none;}
 .plan-detail.active{display:block;}
 .plan-detail.popular-plan{border-color:var(--accent);}
 .plan-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
 .plan-price-block{display:flex;align-items:baseline;gap:5px;flex-shrink:0;}
 .plan-price{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;white-space:nowrap;}
 .plan-period{font-size:11px;color:var(--muted);white-space:nowrap;}
-.popular-badge{background:rgba(79,110,247,0.15);color:var(--accent);font-size:10px;font-weight:700;padding:3px 8px;border-radius:18px;font-family:var(--font-head);white-space:nowrap;}
+.popular-badge{background:rgba(79,110,247,0.15);color:var(--accent);font-size:10px;font-weight:700;padding:3px 8px;border-radius:16px;font-family:var(--font-head);white-space:nowrap;}
 .features{list-style:none;margin-bottom:9px;}
 .features li{font-size:12px;color:var(--muted);margin-bottom:4px;display:flex;align-items:center;gap:7px;}
 .features li i{color:var(--green);font-size:10px;flex-shrink:0;}
-.plan-btn{display:block;width:fit-content;min-width:140px;padding:9px 24px;border-radius:10px;border:none;font-family:var(--font-head);font-size:12px;font-weight:700;cursor:pointer;transition:opacity 0.2s;margin-top:2px;}
+.plan-btn{display:block;width:fit-content;min-width:140px;padding:9px 24px;border-radius:12px;border:none;font-family:var(--font-head);font-size:12px;font-weight:700;cursor:pointer;transition:opacity 0.2s;margin-top:2px;}
 .plan-btn:active{opacity:0.85;}
 .perks-grid{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.perk{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
+.perk{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
 /* NAV */
 /* ── Daily Challenge ── */
-.continue-card{background:linear-gradient(135deg,rgba(79,110,247,0.12),rgba(124,58,237,0.06));border:1.5px solid rgba(79,110,247,0.3);border-radius:18px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:opacity 0.2s;display:none;}
+.continue-card{background:linear-gradient(135deg,rgba(79,110,247,0.12),rgba(124,58,237,0.06));border:1.5px solid rgba(79,110,247,0.3);border-radius:16px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:opacity 0.2s;display:none;}
 .quick-actions-row{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .quick-actions-row::-webkit-scrollbar{display:none;}
-.qa-pill{flex-shrink:0;display:none;align-items:center;gap:8px;border:1.5px solid;border-radius:14px;padding:9px 13px;cursor:pointer;transition:opacity 0.2s;max-width:200px;}
+.qa-pill{flex-shrink:0;display:none;align-items:center;gap:8px;border:1.5px solid;border-radius:16px;padding:9px 13px;cursor:pointer;transition:opacity 0.2s;max-width:200px;}
 .qa-pill:active{opacity:0.8;}
 .qa-pill-icon{font-size:18px;flex-shrink:0;}
 .qa-pill-title{font-size:11px;font-weight:800;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
 .qa-pill-sub{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;margin-top:1px;}
 .order-slot{min-height:48px;border:1.5px dashed var(--border);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center;}
 .order-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-.order-chip{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;color:var(--text);font-weight:600;transition:opacity 0.15s;}
+.order-chip{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:9px 13px;font-size:14px;cursor:pointer;color:var(--text);font-weight:600;transition:opacity 0.15s;}
 .order-chip.used{opacity:0.25;pointer-events:none;}
 .order-chip.placed{background:rgba(79,110,247,0.15);border-color:rgba(79,110,247,0.4);}
 .listen-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:50%;width:72px;height:72px;font-size:30px;cursor:pointer;display:block;margin:0 auto 18px;color:#fff;box-shadow:0 4px 16px rgba(79,110,247,0.4);}
@@ -174,12 +174,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .continue-card:active{opacity:0.8;}
 .continue-progress-bar{background:rgba(79,110,247,0.15);border-radius:4px;height:5px;margin:10px 0 12px;}
 .continue-progress-fill{background:linear-gradient(90deg,#4f6ef7,#7c3aed);height:5px;border-radius:4px;transition:width 0.4s;}
-.continue-btn-inline{background:rgba(79,110,247,0.2);border:1px solid rgba(79,110,247,0.4);border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;color:#818cf8;cursor:pointer;font-family:var(--font-body);}
-.dc-card{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,179,8,0.06));border:1.5px solid rgba(245,158,11,0.35);border-radius:18px;padding:14px 16px;margin-bottom:16px;cursor:pointer;transition:opacity 0.2s;}
+.continue-btn-inline{background:rgba(79,110,247,0.2);border:1px solid rgba(79,110,247,0.4);border-radius:12px;padding:7px 14px;font-size:12px;font-weight:700;color:#818cf8;cursor:pointer;font-family:var(--font-body);}
+.dc-card{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,179,8,0.06));border:1.5px solid rgba(245,158,11,0.35);border-radius:16px;padding:14px 16px;margin-bottom:16px;cursor:pointer;transition:opacity 0.2s;}
 .dc-card:active{opacity:0.8;}
 .dc-card.done{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.05));border-color:rgba(34,197,94,0.3);}
 .dc-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;overflow-y:auto;padding:20px 16px 100px;}
-.dc-choice-btn{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:13px;padding:13px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:border-color 0.15s,background 0.15s;}
+.dc-choice-btn{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:border-color 0.15s,background 0.15s;}
 .dc-choice-btn:active{background:var(--surface2);}
 .dc-choice-btn.correct{background:rgba(34,197,94,0.15);border-color:var(--green);color:var(--green);}
 .dc-choice-btn.wrong{background:rgba(239,68,68,0.12);border-color:#ef4444;color:#ef4444;}
@@ -197,7 +197,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ach-pro-badge{position:absolute;top:4px;left:4px;font-size:7px;font-weight:700;background:var(--amber);color:#000;padding:1px 4px;border-radius:4px;}
 @keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
 @keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px)}}
-.ach-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.5);animation:slideDown 0.3s ease;min-width:220px;max-width:300px;}
+.ach-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:16px;padding:10px 16px;display:flex;align-items:center;gap:10px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.5);animation:slideDown 0.3s ease;min-width:220px;max-width:300px;}
 /* ONBOARDING */
 .ob-overlay{position:fixed;inset:0;background:var(--bg);z-index:10000;display:flex;flex-direction:column;padding:24px 20px 32px;overflow-y:auto;}
 .ob-dots{display:flex;gap:6px;justify-content:center;margin-bottom:28px;}
@@ -213,7 +213,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ob-title{font-family:var(--font-head);font-size:22px;font-weight:800;text-align:center;margin-bottom:8px;color:var(--text);}
 .ob-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:28px;line-height:1.5;}
 .ob-options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
-.ob-option{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;}
+.ob-option{background:var(--surface);border:2px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;}
 .ob-option:active{transform:scale(0.98);}
 .ob-option.selected{border-color:var(--accent);background:rgba(99,102,241,0.1);}
 .lm-option.selected{border-color:var(--accent)!important;background:rgba(99,102,241,0.1);}
@@ -221,7 +221,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ob-option-text{flex:1;}
 .ob-option-title{font-size:14px;font-weight:700;color:var(--text);}
 .ob-option-desc{font-size:11px;color:var(--muted);margin-top:2px;}
-.ob-btn{width:100%;padding:15px;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);margin-top:auto;}
+.ob-btn{width:100%;padding:15px;border:none;border-radius:16px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);margin-top:auto;}
 .ob-btn:disabled{opacity:0.4;cursor:not-allowed;}
 .ob-skip{text-align:center;margin-top:12px;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;}
 .ob-rec-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
@@ -239,15 +239,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .result-celebrate{animation:resultPop 0.5s cubic-bezier(.34,1.56,.64,1) forwards;}
 /* PROFILE STAT CARDS */
 .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
 .stat-card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .stat-card-val{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;}
 .stat-card-lbl{font-size:10px;color:var(--muted);margin-top:2px;}
 /* ACHIEVEMENT PROGRESS */
-.ach-card2{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;position:relative;overflow:hidden;}
+.ach-card2{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;position:relative;overflow:hidden;}
 .ach-card2.earned2{border-color:rgba(99,102,241,0.4);background:linear-gradient(135deg,rgba(99,102,241,0.08),var(--surface));}
 .ach-card2.locked2{opacity:0.55;}
-.ach2-icon{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.ach2-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .ach2-body{flex:1;min-width:0;}
 .ach2-name{font-size:13px;font-weight:700;color:var(--text);}
 .ach2-desc{font-size:11px;color:var(--muted);margin-top:1px;}
@@ -257,24 +257,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* PAYWALL */
 .paywall-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);z-index:600;display:flex;align-items:flex-end;justify-content:center;}
 .paywall-overlay.hidden{display:none;}
-.paywall-box{background:var(--surface);border:1px solid var(--border);border-radius:24px 24px 0 0;padding:28px 20px 36px;width:100%;max-width:480px;text-align:center;}
+.paywall-box{background:var(--surface);border:1px solid var(--border);border-radius:20px 24px 0 0;padding:28px 20px 36px;width:100%;max-width:480px;text-align:center;}
 .paywall-emoji{font-size:44px;margin-bottom:12px;}
 .paywall-box h2{font-family:var(--font-head);font-size:20px;font-weight:800;margin-bottom:8px;}
 .paywall-box p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
-.paywall-btn{display:block;width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;}
+.paywall-btn{display:block;width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;}
 .paywall-btn:active{opacity:0.85;}
 .paywall-skip{font-size:12px;color:var(--muted);cursor:pointer;padding:6px;}
 .msg-counter{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 2px;}
 .msg-counter span{color:var(--amber);font-weight:700;}
 /* VOCAB */
 .vocab-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
-.vocab-chip{background:rgba(79,110,247,0.1);border:1px solid rgba(79,110,247,0.25);border-radius:10px;padding:4px 9px;font-size:11px;color:var(--accent);cursor:pointer;font-family:var(--font-body);transition:all 0.15s;}
+.vocab-chip{background:rgba(79,110,247,0.1);border:1px solid rgba(79,110,247,0.25);border-radius:12px;padding:4px 9px;font-size:11px;color:var(--accent);cursor:pointer;font-family:var(--font-body);transition:all 0.15s;}
 .vocab-chip:active{background:rgba(79,110,247,0.2);}
 .vocab-chip.saved{background:rgba(16,217,138,0.1);border-color:rgba(16,217,138,0.3);color:var(--green);}
 .vocab-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
 .vocab-item:last-child{border-bottom:none;}
 .vocab-del{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:0 4px;line-height:1;}
-.vq-choice{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:13px;padding:13px 16px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:all 0.15s;}
+.vq-choice{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:13px 16px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;margin-bottom:10px;text-align:left;font-family:var(--font-body);transition:all 0.15s;}
 .vq-choice.correct{background:rgba(16,217,138,0.12);border-color:var(--green);color:var(--green);}
 .vq-choice.wrong{background:rgba(244,63,94,0.1);border-color:var(--rose);color:var(--rose);}
 /* XP FLOAT ANIMATION */
@@ -290,28 +290,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:6px 13px;font-size:12px;color:var(--text);white-space:nowrap;cursor:pointer;flex-shrink:0;font-family:var(--font-body);transition:border-color 0.15s,background 0.15s;}
 .chip:active{background:rgba(79,110,247,0.12);border-color:var(--accent);}
 /* LESSONS */
-.lesson-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:13px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;}
+.lesson-item{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;}
 .lesson-item:active{border-color:var(--accent);}
 .lesson-item.locked{opacity:0.5;cursor:default;}
 .lesson-item.done .lesson-num{background:var(--green);color:#000;}
 .lesson-num{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:12px;font-weight:700;flex-shrink:0;}
 .lesson-info h4{font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:2px;}
 .lesson-info p{font-size:11px;color:var(--muted);}
-.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;line-height:1.7;font-size:13px;}
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px;line-height:1.7;font-size:13px;}
 .theory-block h3{font-family:var(--font-head);font-size:15px;font-weight:800;margin-bottom:10px;color:var(--accent);}
 .theory-block .rule{background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:8px 12px;margin:8px 0;font-size:12px;}
 .theory-block .example{color:var(--green);font-style:italic;margin:4px 0;}
-.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px;}
 .ex-card .ex-q{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:14px;line-height:1.4;}
 .ex-card .ex-q span{color:var(--accent);}
 .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.choice-btn{padding:10px 8px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:var(--font-body);font-size:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.choice-btn{padding:10px 8px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:var(--font-body);font-size:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
 .choice-btn:active{transform:scale(0.97);}
 .choice-btn.correct{background:rgba(16,217,138,0.15);border-color:var(--green);color:var(--green);}
 .choice-btn.wrong{background:rgba(244,63,94,0.15);border-color:var(--rose);color:var(--rose);}
 .choice-btn:disabled{cursor:default;}
 .ex-feedback{margin-top:10px;font-size:12px;padding:8px 12px;border-radius:8px;display:none;}
-.ai-correction{margin-top:8px;padding:8px 11px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;font-size:12px;color:var(--text);line-height:1.5;}
+.ai-correction{margin-top:8px;padding:8px 11px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:12px;font-size:12px;color:var(--text);line-height:1.5;}
 .ai-correction strong{color:var(--amber);}
 .correction-toggle{font-size:10px;color:var(--muted);margin-left:6px;cursor:pointer;text-decoration:underline;}
 .ex-feedback.show{display:block;}
@@ -324,7 +324,7 @@ body.focus-mode .header,body.focus-mode .bottom-nav{display:none;}
 body.focus-mode .main{padding-bottom:20px;}
 /* Закрытые уроки одним блоком вместо длинной стены замков */
 .locked-rest{margin-top:8px;}
-.locked-rest-main{display:flex;align-items:center;gap:11px;background:rgba(199,127,10,0.07);border:1px solid rgba(199,127,10,0.28);border-radius:14px;padding:13px 14px;cursor:pointer;}
+.locked-rest-main{display:flex;align-items:center;gap:11px;background:rgba(199,127,10,0.07);border:1px solid rgba(199,127,10,0.28);border-radius:16px;padding:13px 14px;cursor:pointer;}
 .locked-rest-title{font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--text);}
 .locked-rest-sub{font-size:11px;color:var(--muted);margin-top:2px;}
 .locked-rest-toggle{display:block;width:100%;margin-top:8px;background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer;padding:6px;}
@@ -333,13 +333,13 @@ body.focus-mode .main{padding-bottom:20px;}
 .result-box{text-align:center;padding:24px 16px;}
 .result-box .r-emoji{font-size:52px;margin-bottom:12px;}
 .mistakes-section{text-align:left;margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
-.mistake-item{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:10px 12px;margin-bottom:8px;}
+.mistake-item{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:10px 12px;margin-bottom:8px;}
 .mistake-q{font-size:12px;color:var(--muted);margin-bottom:5px;line-height:1.5;}
 .mistake-q .blank-wrong{color:var(--rose);font-weight:700;text-decoration:line-through;}
 .mistake-q .blank-correct{color:var(--green);font-weight:700;}
 .mistake-translate-btn{font-size:10px;color:var(--accent);cursor:pointer;margin-left:auto;padding:2px 7px;border:1px solid var(--accent);border-radius:6px;white-space:nowrap;}
 .mistake-translate-btn:active{opacity:0.7;}
-.mistake-translation{font-size:11px;color:var(--muted);margin-top:6px;padding:6px 8px;background:rgba(99,102,241,0.07);border-radius:7px;line-height:1.5;}
+.mistake-translation{font-size:11px;color:var(--muted);margin-top:6px;padding:6px 8px;background:rgba(99,102,241,0.07);border-radius:8px;line-height:1.5;}
 .mistake-ans{font-size:11px;display:flex;gap:10px;flex-wrap:wrap;}
 .mistake-ans span{padding:3px 8px;border-radius:6px;font-weight:600;}
 .mistake-wrong-tag{background:rgba(239,68,68,0.15);color:var(--rose);}
@@ -492,10 +492,10 @@ body.focus-mode .main{padding-bottom:20px;}
       <div style="font-size:11px;color:var(--muted);margin-top:10px">Каждый день в это время</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px">
-      <button onclick="setReminderQuick('08:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">☀️ 8:00</button>
-      <button onclick="setReminderQuick('12:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌤 12:00</button>
-      <button onclick="setReminderQuick('19:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 19:00</button>
-      <button onclick="setReminderQuick('21:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 21:00</button>
+      <button onclick="setReminderQuick('08:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">☀️ 8:00</button>
+      <button onclick="setReminderQuick('12:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌤 12:00</button>
+      <button onclick="setReminderQuick('19:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 19:00</button>
+      <button onclick="setReminderQuick('21:00')" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:7px 14px;font-size:12px;color:var(--muted);cursor:pointer">🌙 21:00</button>
     </div>
     <button class="ob-btn" onclick="finishOnboardingWithReminder()">Готово! Начинаем 🎉</button>
     <div class="ob-skip" onclick="finishOnboarding()">Без напоминания</div>
@@ -503,11 +503,9 @@ body.focus-mode .main{padding-bottom:20px;}
 </div>
 
 <header class="header">
+  <!-- Название приложения не дублируем: в Telegram оно и так в шапке бота -->
   <div class="logo">
     <div class="logo-icon">🧠</div>
-    <div class="logo-text">
-      <h1>SmartAI English</h1>
-    </div>
   </div>
   <div style="display:flex;align-items:center;gap:6px">
     <div class="plan-badge" id="plan-badge" onclick="switchTab('premium')">Free</div>
@@ -526,7 +524,7 @@ body.focus-mode .main{padding-bottom:20px;}
       <h2 class="home-greeting" id="home-greeting">С возвращением 👋</h2>
 
       <!-- Streak Freeze Used Notice (session-only) -->
-      <div id="freeze-used-card" style="display:none;background:rgba(56,189,248,0.10);border:1px solid rgba(56,189,248,0.3);border-radius:14px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px">
+      <div id="freeze-used-card" style="display:none;background:rgba(56,189,248,0.10);border:1px solid rgba(56,189,248,0.3);border-radius:16px;padding:12px 14px;margin-bottom:12px;align-items:center;gap:10px">
         <div style="font-size:22px">❄️</div>
         <div>
           <div style="font-size:13px;font-weight:800;color:var(--text)">Заморозка использована</div>
@@ -577,7 +575,7 @@ body.focus-mode .main{padding-bottom:20px;}
     <div class="dc-overlay" id="dc-overlay" style="display:none">
       <!-- Header -->
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-        <button onclick="closeDC()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted);line-height:1">✕</button>
+        <button onclick="closeDC()" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted);line-height:1">✕</button>
         <div style="flex:1">
           <div style="font-size:15px;font-weight:800;color:var(--text)" id="dc-header-title">🔥 Ежедневное задание</div>
           <div style="font-size:11px;color:var(--muted)" id="dc-progress-text">Вопрос 1 из 5</div>
@@ -603,7 +601,7 @@ body.focus-mode .main{padding-bottom:20px;}
           <div style="font-size:13px;color:var(--amber);font-weight:700" id="dc-r-streak-text"></div>
         </div>
         <br>
-        <button onclick="closeDC()" style="background:linear-gradient(135deg,var(--amber),#f97316);color:white;border:none;border-radius:14px;padding:14px 40px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font-head);width:100%;margin-bottom:10px">Отлично! →</button>
+        <button onclick="closeDC()" style="background:linear-gradient(135deg,var(--amber),#f97316);color:white;border:none;border-radius:16px;padding:14px 40px;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font-head);width:100%;margin-bottom:10px">Отлично! →</button>
         <button onclick="shareResult('dc')" style="width:100%;background:rgba(20,30,60,0.05);border:1px solid rgba(20,30,60,0.12);border-radius:12px;padding:11px;color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-head);display:flex;align-items:center;justify-content:center;gap:8px"><span style="width:20px;height:20px;background:#229ED9;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px">✈</span>Поделиться в Telegram</button>
       </div>
     </div>
@@ -680,7 +678,7 @@ body.focus-mode .main{padding-bottom:20px;}
     <div style="position:relative;margin-bottom:12px">
       <input type="search" id="courses-search-input" placeholder="🔍  Поиск курсов и уроков..."
         oninput="searchCourses(this.value)"
-        style="width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:10px 38px 10px 14px;font-size:13px;color:var(--text);font-family:var(--font-body);outline:none;-webkit-appearance:none">
+        style="width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 38px 10px 14px;font-size:13px;color:var(--text);font-family:var(--font-body);outline:none;-webkit-appearance:none">
       <button id="search-clear-btn" onclick="clearSearch()" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0">✕</button>
     </div>
     <div id="search-results-wrap" style="display:none">
@@ -696,10 +694,10 @@ body.focus-mode .main{padding-bottom:20px;}
 <div id="courses-list-wrap">
     <p class="section-label" id="courses-section-label">Доступные курсы</p>
     <div class="course-card" onclick="openCourse('basic')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(16,217,138,0.1);color:var(--green);font-size:18px;">📗</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">📗</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Basic English</h3><span style="font-size:9px;background:rgba(16,217,138,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A1–A2</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Basic English</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A1–A2</span></div>
           <span id="basic-pct" style="font-size:11px;color:var(--green);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Грамматика, базовая лексика</p>
@@ -708,7 +706,7 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('business')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(79,110,247,0.1);color:var(--accent);font-size:18px;">💼</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">💼</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Business English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
@@ -720,11 +718,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('it')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(124,58,237,0.1);color:var(--accent2);font-size:18px;">💻</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">💻</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">IT English</h3><span style="font-size:9px;background:rgba(124,58,237,0.15);color:var(--accent2);border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
-          <span id="it-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">IT English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
+          <span id="it-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Программирование, DevOps, команды</p>
         <div class="progress-bar"><div class="progress-fill" id="it-bar" style="width:0%;background:var(--accent2)"></div></div>
@@ -732,11 +730,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('travel')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(244,63,94,0.1);color:var(--rose);font-size:18px;">✈️</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">✈️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Travel English</h3><span style="font-size:9px;background:rgba(244,63,94,0.15);color:var(--rose);border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
-          <span id="travel-pct" style="font-size:11px;color:var(--rose);font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Travel English</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
+          <span id="travel-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Путешествия, отели, рестораны</p>
         <div class="progress-bar"><div class="progress-fill" id="travel-bar" style="width:0%;background:var(--rose)"></div></div>
@@ -744,11 +742,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('everyday')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(245,158,11,0.1);color:var(--amber);font-size:18px;">🗣️</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">🗣️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Everyday English</h3><span style="font-size:9px;background:rgba(245,158,11,0.15);color:var(--amber);border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
-          <span id="everyday-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Everyday English</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
+          <span id="everyday-pct" style="font-size:11px;color:var(--green);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Идиомы, фразовые глаголы, разговорный</p>
         <div class="progress-bar"><div class="progress-fill" id="everyday-bar" style="width:0%;background:var(--amber)"></div></div>
@@ -756,11 +754,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('dating')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">💕</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">💕</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Dating English</h3><span style="font-size:9px;background:rgba(236,72,153,0.15);color:#ec4899;border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
-          <span id="dating-pct" style="font-size:11px;color:#ec4899;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Dating English</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2+</span></div>
+          <span id="dating-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Флирт, свидания, отношения</p>
         <div class="progress-bar"><div class="progress-fill" id="dating-bar" style="width:0%;background:#ec4899"></div></div>
@@ -768,11 +766,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('news')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;font-size:18px;">📰</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">📰</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">News & Media English</h3><span style="font-size:9px;background:rgba(14,165,233,0.15);color:#0ea5e9;border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
-          <span id="news-pct" style="font-size:11px;color:#0ea5e9;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">News & Media English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
+          <span id="news-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">СМИ, подкасты, медиаграмотность</p>
         <div class="progress-bar"><div class="progress-fill" id="news-bar" style="width:0%;background:#0ea5e9"></div></div>
@@ -780,11 +778,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('speaking')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">🎤</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">🎤</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Public Speaking</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B2-C1</span></div>
-          <span id="speaking-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Public Speaking</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B2-C1</span></div>
+          <span id="speaking-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Выступления, дебаты, убеждение</p>
         <div class="progress-bar"><div class="progress-fill" id="speaking-bar" style="width:0%;background:#8b5cf6"></div></div>
@@ -792,11 +790,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('adating')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(244,63,94,0.1);color:#f43f5e;font-size:18px;">💎</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">💎</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Advanced Dating English</h3><span style="font-size:9px;background:rgba(244,63,94,0.15);color:#f43f5e;border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
-          <span id="adating-pct" style="font-size:11px;color:#f43f5e;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Advanced Dating English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B2</span></div>
+          <span id="adating-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Глубокие диалоги, эмоции, отношения</p>
         <div class="progress-bar"><div class="progress-fill" id="adating-bar" style="width:0%;background:#f43f5e"></div></div>
@@ -805,11 +803,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('food')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(249,115,22,0.1);color:#f97316;font-size:18px;">🍽️</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🍽️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Food & Restaurants</h3><span style="font-size:9px;background:rgba(249,115,22,0.15);color:#f97316;border-radius:4px;padding:1px 5px;font-weight:700">A2</span></div>
-          <span id="food-pct" style="font-size:11px;color:#f97316;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Food & Restaurants</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2</span></div>
+          <span id="food-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Меню, заказы, рестораны, кулинария</p>
         <div class="progress-bar"><div class="progress-fill" id="food-bar" style="width:0%;background:#f97316"></div></div>
@@ -818,11 +816,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('health')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(34,197,94,0.1);color:#22c55e;font-size:18px;">💪</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">💪</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Health & Fitness</h3><span style="font-size:9px;background:rgba(34,197,94,0.15);color:#22c55e;border-radius:4px;padding:1px 5px;font-weight:700">A2–B1</span></div>
-          <span id="health-pct" style="font-size:11px;color:#22c55e;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Health & Fitness</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2–B1</span></div>
+          <span id="health-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Тренировки, питание, врачи, спорт</p>
         <div class="progress-bar"><div class="progress-fill" id="health-bar" style="width:0%;background:#22c55e"></div></div>
@@ -831,11 +829,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('expat')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(6,182,212,0.1);color:#06b6d4;font-size:18px;">✈️</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">✈️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Expat Life</h3><span style="font-size:9px;background:rgba(6,182,212,0.15);color:#06b6d4;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
-          <span id="expat-pct" style="font-size:11px;color:#06b6d4;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Expat Life</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
+          <span id="expat-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Виза, жильё, работа, банк, культура</p>
         <div class="progress-bar"><div class="progress-fill" id="expat-bar" style="width:0%;background:#06b6d4"></div></div>
@@ -844,11 +842,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('social')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">📱</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">📱</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Social Media & Internet</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B1</span></div>
-          <span id="social-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Social Media & Internet</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1</span></div>
+          <span id="social-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Соцсети, интернет, технологии</p>
         <div class="progress-bar"><div class="progress-fill" id="social-bar" style="width:0%;background:#8b5cf6"></div></div>
@@ -857,11 +855,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('movies')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;font-size:18px;">🎬</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">🎬</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Movies & Pop Culture</h3><span style="font-size:9px;background:rgba(239,68,68,0.15);color:#ef4444;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
-          <span id="movies-pct" style="font-size:11px;color:#ef4444;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Movies & Pop Culture</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
+          <span id="movies-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Фильмы, музыка, поп-культура</p>
         <div class="progress-bar"><div class="progress-fill" id="movies-bar" style="width:0%;background:#ef4444"></div></div>
@@ -870,11 +868,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('grammar')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;font-size:18px;">📝</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">📝</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Grammar Deep Dive</h3><span style="font-size:9px;background:rgba(99,102,241,0.15);color:#6366f1;border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
-          <span id="grammar-pct" style="font-size:11px;color:#6366f1;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Grammar Deep Dive</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
+          <span id="grammar-pct" style="font-size:11px;color:var(--green);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Грамматика без скуки — с нуля до B2</p>
         <div class="progress-bar"><div class="progress-fill" id="grammar-bar" style="width:0%;background:#6366f1"></div></div>
@@ -883,11 +881,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('slang')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(16,185,129,0.1);color:#10b981;font-size:18px;">🇺🇸</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">🇺🇸</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">American Slang</h3><span style="font-size:9px;background:rgba(16,185,129,0.15);color:#10b981;border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
-          <span id="slang-pct" style="font-size:11px;color:#10b981;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">American Slang</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1+</span></div>
+          <span id="slang-pct" style="font-size:11px;color:var(--accent2);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Сленг, идиомы, Gen Z, разговорный</p>
         <div class="progress-bar"><div class="progress-fill" id="slang-bar" style="width:0%;background:#10b981"></div></div>
@@ -896,11 +894,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('medical')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">🏥</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🏥</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Medical English</h3><span style="font-size:9px;background:rgba(236,72,153,0.15);color:#ec4899;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
-          <span id="medical-pct" style="font-size:11px;color:#ec4899;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Medical English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
+          <span id="medical-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Врачи, симптомы, больница, здоровье</p>
         <div class="progress-bar"><div class="progress-fill" id="medical-bar" style="width:0%;background:#ec4899"></div></div>
@@ -909,11 +907,11 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <div class="course-card" onclick="openCourse('finance')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(22,163,74,0.1);color:#16a34a;font-size:18px;">💹</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">💹</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Finance English</h3><span style="font-size:9px;background:rgba(22,163,74,0.15);color:#16a34a;border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
-          <span id="finance-pct" style="font-size:11px;color:#16a34a;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Finance English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–B2</span></div>
+          <span id="finance-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Инвестиции, банки, экономика, бизнес</p>
         <div class="progress-bar"><div class="progress-fill" id="finance-bar" style="width:0%;background:#16a34a"></div></div>
@@ -921,11 +919,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('academic')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;font-size:18px;">🎓</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">🎓</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Academic English</h3><span style="font-size:9px;background:rgba(99,102,241,0.15);color:#6366f1;border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
-          <span id="academic-pct" style="font-size:11px;color:#6366f1;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Academic English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
+          <span id="academic-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Эссе, исследования, презентации, академический стиль</p>
         <div class="progress-bar"><div class="progress-fill" id="academic-bar" style="width:0%;background:#6366f1"></div></div>
@@ -933,11 +931,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('interview')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">🎤</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">🎤</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Interview English</h3><span style="font-size:9px;background:rgba(139,92,246,0.15);color:#8b5cf6;border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
-          <span id="interview-pct" style="font-size:11px;color:#8b5cf6;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Interview English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
+          <span id="interview-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Собеседования, STAR-метод, переговоры о зарплате</p>
         <div class="progress-bar"><div class="progress-fill" id="interview-bar" style="width:0%;background:#8b5cf6"></div></div>
@@ -945,11 +943,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('legal')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(8,145,178,0.1);color:#0891b2;font-size:18px;">⚖️</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">⚖️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Legal English</h3><span style="font-size:9px;background:rgba(8,145,178,0.15);color:#0891b2;border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
-          <span id="legal-pct" style="font-size:11px;color:#0891b2;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Legal English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B2–C1</span></div>
+          <span id="legal-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Контракты, суды, GDPR, юридические документы</p>
         <div class="progress-bar"><div class="progress-fill" id="legal-bar" style="width:0%;background:#0891b2"></div></div>
@@ -957,11 +955,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('pronunciation')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(124,58,237,0.1);color:#7c3aed;font-size:18px;">🗣️</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">🗣️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Pronunciation</h3><span style="font-size:9px;background:rgba(124,58,237,0.15);color:#7c3aed;border-radius:4px;padding:1px 5px;font-weight:700">A2–C1</span></div>
-          <span id="pronunciation-pct" style="font-size:11px;color:#7c3aed;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Pronunciation</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2–C1</span></div>
+          <span id="pronunciation-pct" style="font-size:11px;color:var(--green);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Звуки, ударение, интонация, связная речь</p>
         <div class="progress-bar"><div class="progress-fill" id="pronunciation-bar" style="width:0%;background:#7c3aed"></div></div>
@@ -969,11 +967,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('writing')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(5,150,105,0.1);color:#059669;font-size:18px;">✍️</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">✍️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Writing English</h3><span style="font-size:9px;background:rgba(5,150,105,0.15);color:#059669;border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
-          <span id="writing-pct" style="font-size:11px;color:#059669;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Writing English</h3><span style="font-size:9px;background:rgba(79,110,247,0.15);color:var(--accent);border-radius:4px;padding:1px 5px;font-weight:700">B1–C1</span></div>
+          <span id="writing-pct" style="font-size:11px;color:var(--accent);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Email, резюме, эссе, деловые письма</p>
         <div class="progress-bar"><div class="progress-fill" id="writing-bar" style="width:0%;background:#059669"></div></div>
@@ -981,11 +979,11 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('sport')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(220,38,38,0.1);color:#dc2626;font-size:18px;">🏋️</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🏋️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Sport & Fitness</h3><span style="font-size:9px;background:rgba(220,38,38,0.15);color:#dc2626;border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
-          <span id="sport-pct" style="font-size:11px;color:#dc2626;font-weight:600">0%</span>
+          <div style="display:flex;align-items:center;gap:6px"><h3 style="font-family:var(--font-head);font-size:13px;font-weight:700">Sport & Fitness</h3><span style="font-size:9px;background:rgba(16,163,113,0.15);color:var(--green);border-radius:4px;padding:1px 5px;font-weight:700">A2–B2</span></div>
+          <span id="sport-pct" style="font-size:11px;color:var(--amber);font-weight:600">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted);margin:2px 0">Спорт, фитнес, питание, тренировки</p>
         <div class="progress-bar"><div class="progress-fill" id="sport-bar" style="width:0%;background:#dc2626"></div></div>
@@ -993,231 +991,231 @@ body.focus-mode .main{padding-bottom:20px;}
       </div>
     </div>
     <div class="course-card" onclick="openCourse('shopping')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">🛍️</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🛍️</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Shopping & Fashion</h3>
-          <span style="font-size:10px;font-weight:700;color:#ec4899" id="shopping-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="shopping-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="shopping-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="shopping-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('realestate')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(16,185,129,0.1);color:#10b981;font-size:18px;">🏠</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🏠</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Real Estate & Housing</h3>
-          <span style="font-size:10px;font-weight:700;color:#10b981" id="realestate-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="realestate-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="realestate-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="realestate-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('eco')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(34,197,94,0.1);color:#22c55e;font-size:18px;">🌿</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🌿</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Environment & Eco</h3>
-          <span style="font-size:10px;font-weight:700;color:#22c55e" id="eco-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="eco-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="eco-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="eco-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('ukusa')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6;font-size:18px;">🇬🇧🇺🇸</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🇬🇧🇺🇸</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">British vs American</h3>
-          <span style="font-size:10px;font-weight:700;color:#3b82f6" id="ukusa-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="ukusa-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="ukusa-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="ukusa-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('idioms')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(168,85,247,0.1);color:#a855f7;font-size:18px;">📜</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">📜</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Idioms & Proverbs</h3>
-          <span style="font-size:10px;font-weight:700;color:#a855f7" id="idioms-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="idioms-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="idioms-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="idioms-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('negotiate')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(249,115,22,0.1);color:#f97316;font-size:18px;">🤝</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">🤝</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Negotiation & Persuasion</h3>
-          <span style="font-size:10px;font-weight:700;color:#f97316" id="negotiate-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent)" id="negotiate-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="negotiate-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="negotiate-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('scitech')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(6,182,212,0.1);color:#06b6d4;font-size:18px;">🔬</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">🔬</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Science & Tech English</h3>
-          <span style="font-size:10px;font-weight:700;color:#06b6d4" id="scitech-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--green)" id="scitech-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="scitech-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="scitech-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('eq')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(244,63,94,0.1);color:#f43f5e;font-size:18px;">🧠</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🧠</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Emotional Intelligence</h3>
-          <span style="font-size:10px;font-weight:700;color:#f43f5e" id="eq-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="eq-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="eq-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="eq-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('history')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(217,119,6,0.1);color:#d97706;font-size:18px;">📚</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">📚</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">History & Culture</h3>
-          <span style="font-size:10px;font-weight:700;color:#d97706" id="history-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--green)" id="history-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="history-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="history-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('phrasal')" style="cursor:pointer" data-cat="base">
-      <div class="card-icon" style="background:rgba(79,110,247,0.1);color:#4f6ef7;font-size:18px;">📎</div>
+      <div class="card-icon" style="background:rgba(16,163,113,0.10);color:var(--green);font-size:18px;">📎</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Phrasal Verbs</h3>
-          <span style="font-size:10px;font-weight:700;color:#4f6ef7" id="phrasal-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--green)" id="phrasal-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="phrasal-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phrasal-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('jobs')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(20,184,166,0.1);color:#14b8a6;font-size:18px;">📄</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">📄</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Job Search &amp; Career</h3>
-          <span style="font-size:10px;font-weight:700;color:#14b8a6" id="jobs-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent)" id="jobs-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="jobs-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="jobs-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('service')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(14,165,233,0.1);color:#0ea5e9;font-size:18px;">🎧</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">🎧</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Customer Service</h3>
-          <span style="font-size:10px;font-weight:700;color:#0ea5e9" id="service-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent)" id="service-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="service-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="service-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('phone')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;font-size:18px;">📞</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">📞</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Telephone &amp; Video Calls</h3>
-          <span style="font-size:10px;font-weight:700;color:#8b5cf6" id="phone-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent)" id="phone-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="phone-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="phone-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('smalltalk')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(234,179,8,0.1);color:#eab308;font-size:18px;">☕</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">☕</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Small Talk &amp; Networking</h3>
-          <span style="font-size:10px;font-weight:700;color:#eab308" id="smalltalk-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent2)" id="smalltalk-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="smalltalk-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="smalltalk-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('driving')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#ef4444;font-size:18px;">🚗</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🚗</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Driving &amp; Cars</h3>
-          <span style="font-size:10px;font-weight:700;color:#ef4444" id="driving-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="driving-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="driving-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="driving-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('household')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(34,197,94,0.1);color:#22c55e;font-size:18px;">🏠</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🏠</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Home &amp; Household</h3>
-          <span style="font-size:10px;font-weight:700;color:#22c55e" id="household-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="household-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="household-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="household-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('productivity')" style="cursor:pointer" data-cat="work">
-      <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;font-size:18px;">⏰</div>
+      <div class="card-icon" style="background:rgba(79,110,247,0.10);color:var(--accent);font-size:18px;">⏰</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Time Management</h3>
-          <span style="font-size:10px;font-weight:700;color:#6366f1" id="productivity-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent)" id="productivity-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="productivity-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="productivity-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('art')" style="cursor:pointer" data-cat="social">
-      <div class="card-icon" style="background:rgba(236,72,153,0.1);color:#ec4899;font-size:18px;">🎨</div>
+      <div class="card-icon" style="background:rgba(124,58,237,0.10);color:var(--accent2);font-size:18px;">🎨</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Art, Music &amp; Culture</h3>
-          <span style="font-size:10px;font-weight:700;color:#ec4899" id="art-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--accent2)" id="art-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="art-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="art-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('family')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(224,54,79,0.1);color:#e0364f;font-size:18px;">👪</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">👪</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Family &amp; Parenting</h3>
-          <span style="font-size:10px;font-weight:700;color:#e0364f" id="family-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="family-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="family-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="family-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('transport')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(8,145,178,0.1);color:#0891b2;font-size:18px;">🚇</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🚇</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Public Transport</h3>
-          <span style="font-size:10px;font-weight:700;color:#0891b2" id="transport-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="transport-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="transport-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="transport-bar" style="width:0%"></div></div>
       </div>
     </div>
     <div class="course-card" onclick="openCourse('pets')" style="cursor:pointer" data-cat="life">
-      <div class="card-icon" style="background:rgba(22,163,74,0.1);color:#16a34a;font-size:18px;">🐾</div>
+      <div class="card-icon" style="background:rgba(199,127,10,0.10);color:var(--amber);font-size:18px;">🐾</div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
           <h3 style="font-size:14px;font-weight:800">Pets &amp; Animals</h3>
-          <span style="font-size:10px;font-weight:700;color:#16a34a" id="pets-pct">0%</span>
+          <span style="font-size:10px;font-weight:700;color:var(--amber)" id="pets-pct">0%</span>
         </div>
         <p style="font-size:11px;color:var(--muted)" id="pets-sub">20 уроков</p>
         <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" id="pets-bar" style="width:0%"></div></div>
@@ -1338,9 +1336,9 @@ body.focus-mode .main{padding-bottom:20px;}
     <div id="practice-vocab-block">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;margin-top:4px">
         <p class="section-label" style="margin-bottom:0">📖 Мой словарь</p>
-        <button id="vocab-quiz-btn" onclick="startVocabQuiz()" style="display:none;background:rgba(79,110,247,0.15);color:var(--accent);border:none;border-radius:10px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повторить →</button>
+        <button id="vocab-quiz-btn" onclick="startVocabQuiz()" style="display:none;background:rgba(79,110,247,0.15);color:var(--accent);border:none;border-radius:12px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повторить →</button>
       </div>
-      <div id="vocab-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px;margin-bottom:4px">
+      <div id="vocab-list" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px 14px;margin-bottom:4px">
         <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Сохраняй фразы из AI чата — нажми 📖 под сообщением</div>
       </div>
     </div>
@@ -1393,7 +1391,7 @@ body.focus-mode .main{padding-bottom:20px;}
     </div>
 
     <!-- Streak Freeze (статус живёт в Профиле рядом со стриком) -->
-    <div id="freeze-card" style="display:none;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.3);border-radius:13px;padding:12px 16px;margin-top:10px;align-items:center;justify-content:space-between;gap:10px">
+    <div id="freeze-card" style="display:none;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.3);border-radius:12px;padding:12px 16px;margin-top:10px;align-items:center;justify-content:space-between;gap:10px">
       <div style="display:flex;align-items:center;gap:10px">
         <div style="font-size:22px">❄️</div>
         <div>
@@ -1406,39 +1404,39 @@ body.focus-mode .main{padding-bottom:20px;}
 
     <div class="divider"></div>
     <p class="section-label">Уровень английского</p>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
       <div>
         <div id="eng-level-name" style="font-size:14px;font-weight:700;color:var(--text)">Intermediate</div>
         <div id="eng-level-desc" style="font-size:11px;color:var(--muted);margin-top:2px">B1–B2</div>
       </div>
-      <button onclick="openLevelModal()" style="border:none;background:rgba(99,102,241,0.12);color:var(--accent);border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Изменить</button>
+      <button onclick="openLevelModal()" style="border:none;background:rgba(99,102,241,0.12);color:var(--accent);border-radius:12px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Изменить</button>
     </div>
 
     <!-- VOCAB QUIZ OVERLAY -->
     <div id="vocab-quiz-overlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:400;overflow-y:auto;padding:20px 16px 100px">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-        <button onclick="closeVocabQuiz()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted)">✕</button>
+        <button onclick="closeVocabQuiz()" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 12px;font-size:15px;cursor:pointer;color:var(--muted)">✕</button>
         <div style="font-size:15px;font-weight:800;color:var(--text)">📖 Повторение слов</div>
       </div>
       <div id="vocab-quiz-content"></div>
     </div>
 
     <p class="section-label" style="margin-top:4px">История занятий</p>
-    <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:4px 14px">
+    <div id="history-list" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px 14px">
       <div style="padding:16px 0;text-align:center;font-size:12px;color:var(--muted)">Начни первый диалог, чтобы увидеть историю</div>
     </div>
 
     <div class="divider"></div>
     <p class="section-label">Аналитика</p>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:10px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px">
       <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">XP за последние 7 дней</p>
       <div id="xp-chart-container"></div>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:10px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px">
       <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Активность (28 дней)</p>
       <div id="activity-dots" style="display:grid;grid-template-columns:repeat(28,1fr);gap:3px"></div>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px">
       <p style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Прогресс по курсам</p>
       <div id="course-analytics"></div>
     </div>
@@ -2169,14 +2167,14 @@ function renderProfilePremiumCard(){
   const t=getTrialInfo();
   if(paid){
     el.innerHTML=`
-      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:18px;padding:18px 16px;text-align:center">
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px;text-align:center">
         <div style="font-size:28px;margin-bottom:6px">👑</div>
         <div style="font-size:15px;font-weight:800;color:var(--text)">Premium активен</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">Все курсы и AI-функции открыты</div>
       </div>`;
   } else if(t.active){
     el.innerHTML=`
-      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(245,158,11,0.06));border:1.5px solid var(--accent);border-radius:18px;padding:18px 16px">
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(245,158,11,0.06));border:1.5px solid var(--accent);border-radius:16px;padding:18px 16px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
           <div style="font-size:28px">⏳</div>
           <div>
@@ -2184,13 +2182,13 @@ function renderProfilePremiumCard(){
             <div style="font-size:11px;color:var(--muted);margin-top:2px">Все возможности Premium открыты</div>
           </div>
         </div>
-        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
+        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
           Оформить подписку →
         </button>
       </div>`;
   } else {
     el.innerHTML=`
-      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.06));border:1.5px solid var(--amber);border-radius:18px;padding:18px 16px">
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.06));border:1.5px solid var(--amber);border-radius:16px;padding:18px 16px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
           <div style="font-size:28px">🚀</div>
           <div>
@@ -2198,7 +2196,7 @@ function renderProfilePremiumCard(){
             <div style="font-size:11px;color:var(--muted);margin-top:2px">Все курсы, безлимитный AI-тьютор</div>
           </div>
         </div>
-        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:13px;border:none;background:linear-gradient(135deg,#b45309,var(--amber));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
+        <button onclick="switchTab('premium')" style="width:100%;padding:12px;border-radius:12px;border:none;background:linear-gradient(135deg,#b45309,var(--amber));color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer">
           ${t.expired?'Восстановить Premium →':'Посмотреть планы →'}
         </button>
       </div>`;
@@ -2451,8 +2449,8 @@ function renderAnalytics(){
             <span style="font-size:12px;color:var(--text)">${c.name}</span>
             <span style="font-size:11px;color:var(--muted)">??/20 уроков</span>
           </div>
-          <div style="height:5px;background:rgba(20,30,60,0.07);border-radius:10px">
-            <div style="height:100%;width:${Math.round(Math.random()*80+10)}%;background:${c.color};border-radius:10px"></div>
+          <div style="height:5px;background:rgba(20,30,60,0.07);border-radius:12px">
+            <div style="height:100%;width:${Math.round(Math.random()*80+10)}%;background:${c.color};border-radius:12px"></div>
           </div></div>`).join('')}
       </div>
       <div style="text-align:center;margin-top:8px">
@@ -2470,8 +2468,8 @@ function renderAnalytics(){
           <span style="font-size:12px;color:var(--text)">${c.name}</span>
           <span style="font-size:11px;color:var(--muted)">${done}/${total} уроков</span>
         </div>
-        <div style="height:5px;background:rgba(20,30,60,0.07);border-radius:10px">
-          <div style="height:100%;width:${pct}%;background:${c.color};border-radius:10px;transition:width 0.4s"></div>
+        <div style="height:5px;background:rgba(20,30,60,0.07);border-radius:12px">
+          <div style="height:100%;width:${pct}%;background:${c.color};border-radius:12px;transition:width 0.4s"></div>
         </div>
       </div>`;
     }).join('');
@@ -20082,7 +20080,7 @@ function renderOrderExercise(ex){
       <div class="order-bank" id="order-bank">
         ${shuffled.map(i=>`<button class="order-chip" id="order-src-${i}" onclick="orderPick(${i})">${words[i]}</button>`).join('')}
       </div>
-      <button id="order-check" onclick="checkOrderAnswer()" disabled style="width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;opacity:0.4">Проверить</button>
+      <button id="order-check" onclick="checkOrderAnswer()" disabled style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-head);font-size:14px;font-weight:700;cursor:pointer;opacity:0.4">Проверить</button>
       <div class="ex-feedback" id="ex-fb"></div>
     </div>`;
 }
@@ -20342,7 +20340,7 @@ function showResult(){
   const navEl=document.getElementById('result-nav-btns');
   if(isLastLesson){
     navEl.innerHTML=`
-      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:18px;padding:18px;margin-bottom:14px;text-align:center">
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(16,185,129,0.08));border:1.5px solid var(--accent);border-radius:16px;padding:18px;margin-bottom:14px;text-align:center">
         <div style="font-size:36px;margin-bottom:6px">🏆</div>
         <div style="font-size:16px;font-weight:800;color:var(--text)">Курс завершён!</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">Ты прошёл все ${allLessons.length} уроков курса</div>
@@ -21183,13 +21181,13 @@ function showPayBanner(paymentId,plan){
   if(!b){
     b=document.createElement('div');
     b.id='pay-banner';
-    b.style.cssText='position:fixed;left:12px;right:12px;bottom:74px;z-index:400;background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:13px 15px;box-shadow:0 6px 24px rgba(0,0,0,0.4)';
+    b.style.cssText='position:fixed;left:12px;right:12px;bottom:74px;z-index:400;background:var(--surface);border:1.5px solid var(--accent);border-radius:16px;padding:13px 15px;box-shadow:0 6px 24px rgba(0,0,0,0.4)';
     document.body.appendChild(b);
   }
   b.innerHTML=`
     <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">💳 Ожидаем оплату…</div>
     <div style="font-size:11px;color:var(--muted);margin-bottom:9px">После оплаты на странице YooKassa Premium подключится автоматически.</div>
-    <button onclick="manualPayCheck('${paymentId}','${plan}')" style="width:100%;padding:9px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-family:var(--font-head);font-size:12px;font-weight:700;cursor:pointer">Я оплатил — проверить</button>`;
+    <button onclick="manualPayCheck('${paymentId}','${plan}')" style="width:100%;padding:9px;border-radius:12px;border:none;background:var(--accent);color:#fff;font-family:var(--font-head);font-size:12px;font-weight:700;cursor:pointer">Я оплатил — проверить</button>`;
   b.style.display='block';
 }
 
@@ -21328,7 +21326,7 @@ function renderVocabQuizQuestion(){
         <div style="font-size:52px;margin-bottom:12px">🎉</div>
         <div style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px">Повторение завершено!</div>
         <div style="font-size:13px;color:var(--muted);margin-bottom:24px">Ты повторил ${items.length} фраз</div>
-        <button onclick="closeVocabQuiz()" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:13px;padding:13px 32px;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--font-head)">Готово →</button>
+        <button onclick="closeVocabQuiz()" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:12px;padding:13px 32px;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--font-head)">Готово →</button>
       </div>`;
     return;
   }
@@ -21716,7 +21714,7 @@ function suggestLevelUp(){
   // show toast-style suggestion
   const toast=document.createElement('div');
   toast.id='level-suggest-toast';
-  toast.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:12px 16px;z-index:9000;width:calc(100% - 40px);max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.3)';
+  toast.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);border-radius:16px;padding:12px 16px;z-index:9000;width:calc(100% - 40px);max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.3)';
   toast.innerHTML=`
     <div style="display:flex;align-items:center;gap:10px">
       <span style="font-size:22px">📈</span>
@@ -21726,8 +21724,8 @@ function suggestLevelUp(){
       </div>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px">
-      <button onclick="applyLevelSuggestion('${next.val}')" style="flex:1;padding:8px;background:var(--accent);color:white;border:none;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повысить</button>
-      <button onclick="dismissLevelSuggestion()" style="flex:1;padding:8px;background:var(--border);color:var(--muted);border:none;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Пока нет</button>
+      <button onclick="applyLevelSuggestion('${next.val}')" style="flex:1;padding:8px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Повысить</button>
+      <button onclick="dismissLevelSuggestion()" style="flex:1;padding:8px;background:var(--border);color:var(--muted);border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Пока нет</button>
     </div>`;
   document.body.appendChild(toast);
   setTimeout(()=>{ if(document.getElementById('level-suggest-toast')) dismissLevelSuggestion(); }, 10000);
@@ -21761,24 +21759,24 @@ function dismissLevelSuggestion(){
     </div>
     <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Изменение уровня не сбрасывает прогресс по курсам</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-      <div class="lm-option" data-val="beginner" onclick="selectEngLevel('beginner')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+      <div class="lm-option" data-val="beginner" onclick="selectEngLevel('beginner')" style="background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
         <span style="font-size:22px">🌱</span>
         <div><div style="font-size:13px;font-weight:700;color:var(--text)">Начинающий</div><div style="font-size:11px;color:var(--muted)">A1–A2 · Базовые фразы и слова</div></div>
       </div>
-      <div class="lm-option" data-val="elementary" onclick="selectEngLevel('elementary')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+      <div class="lm-option" data-val="elementary" onclick="selectEngLevel('elementary')" style="background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
         <span style="font-size:22px">📘</span>
         <div><div style="font-size:13px;font-weight:700;color:var(--text)">Элементарный</div><div style="font-size:11px;color:var(--muted)">A2–B1 · Простые тексты и диалоги</div></div>
       </div>
-      <div class="lm-option" data-val="intermediate" onclick="selectEngLevel('intermediate')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+      <div class="lm-option" data-val="intermediate" onclick="selectEngLevel('intermediate')" style="background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
         <span style="font-size:22px">🚀</span>
         <div><div style="font-size:13px;font-weight:700;color:var(--text)">Средний</div><div style="font-size:11px;color:var(--muted)">B1–B2 · Сериалы, статьи, разговоры</div></div>
       </div>
-      <div class="lm-option" data-val="upper" onclick="selectEngLevel('upper')" style="background:var(--surface);border:2px solid var(--border);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
+      <div class="lm-option" data-val="upper" onclick="selectEngLevel('upper')" style="background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s">
         <span style="font-size:22px">⭐</span>
         <div><div style="font-size:13px;font-weight:700;color:var(--text)">Выше среднего</div><div style="font-size:11px;color:var(--muted)">B2–C1 · Свободное общение</div></div>
       </div>
     </div>
-    <button onclick="saveEngLevel()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Сохранить</button>
+    <button onclick="saveEngLevel()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-head)">Сохранить</button>
   </div>
 </div>
 
